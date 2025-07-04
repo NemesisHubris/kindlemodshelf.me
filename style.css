@@ -128,3 +128,39 @@ a:hover { color: #ffef6d; border-color: #ffef6d; text-decoration: underline; }
   .section-title { font-size: 1.08em; }
   .summary { font-size: .98em; }
 }
+.faq-box {
+  background: rgba(34, 41, 54, 0.93); /* Matches your summary background! */
+  border-left: 5px solid #6cc29e;
+  border-radius: 10px;
+  padding: 1.5em 1.5em 1em 1.5em;
+  margin-bottom: 1.5em;
+  box-shadow: 0 1px 5px rgba(50,200,120,0.06);
+  color: #d5f1ff; /* matches your summary font color */
+}
+
+.faq-title {
+  color: #6cc29e;
+  font-size: 1.18em;
+  font-weight: 700;
+  margin-bottom: 0.7em;
+}
+
+.faq-q {
+  font-weight: 700;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+  color: #67dfff;
+  font-size: 1.07em;
+}
+
+.faq-a {
+  margin-left: 1em;
+  margin-bottom: 0.7em;
+  color: #e0ffe7;
+  font-size: 1em;
+}
+
+.faq-box a {
+  color: #38b6ff;
+  text-decoration: underline;
+}
