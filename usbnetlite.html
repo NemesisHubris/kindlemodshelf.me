@@ -2,9 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>kindle-usbnetlite – SSH into Your Kindle via USB</title>
+  <title>SSH into Your Kindle via USB – kindle-usbnetlite (No More Slow Typing!)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Skip slow typing in KTerm! Use kindle-usbnetlite to SSH into your jailbroken Kindle over USB for fast, easy modding, troubleshooting, and file management.">
+  <link rel="canonical" href="https://kindlemodshelf.me/usbnetlite.html">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "kindle-usbnetlite",
+    "operatingSystem": "Kindle OS (jailbroken)",
+    "applicationCategory": "Utility",
+    "description": "kindle-usbnetlite lets you SSH into your Kindle over USB—no more slow typing in KTerm! Perfect for modding, troubleshooting, and file access.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://kindlemodshelf.me/usbnetlite.html"
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -12,19 +30,21 @@
     <h1>kindle-usbnetlite – SSH into Your Kindle via USB</h1>
 
     <div class="summary">
-      <b>kindle-usbnetlite</b> is a lightweight utility for jailbroken Kindles that lets you connect to your Kindle’s command line using SSH over a USB cable. This is useful for modding, troubleshooting, and direct file access, without the need for Wi-Fi.
+      <b>kindle-usbnetlite</b> is the easiest way to access your jailbroken Kindle’s command line using SSH over a USB cable.
+      No more typing painfully slow commands in KTerm on a 1 FPS display—just use your computer’s terminal for instant modding, troubleshooting, and file management.
     </div>
 
     <div class="section-title">What Is kindle-usbnetlite?</div>
     <div class="card card-desc">
-      <b>kindle-usbnetlite</b> enables USB networking on your Kindle, allowing you to open an SSH connection from your computer while the Kindle is plugged in via USB. This is a simple way to access your device for advanced tasks, especially if Wi-Fi SSH isn’t an option.
+      <b>kindle-usbnetlite</b> enables USB networking on your Kindle, so you can SSH in from your computer while the Kindle is plugged in via USB.
+      This makes it simple to run commands, manage files, and mod your Kindle—without dealing with the Kindle’s slow on-device terminal.
     </div>
 
     <div class="section-title">Requirements</div>
     <div class="card card-desc">
       <ul>
         <li><a href="jailbreaking.html">Jailbroken Kindle</a></li>
-        <li><a href="kterm.html">KTerm terminal emulator</a> (for setup)</li>
+        <li>KUAL (Kindle Unified Application Launcher) for launching usbnetlite</li>
         <li>Computer running Windows, macOS, or Linux</li>
         <li>USB cable to connect your Kindle</li>
       </ul>
@@ -33,37 +53,38 @@
     <div class="section-title">How to Install</div>
     <div class="card card-desc">
       <ol>
-        <li>Download <a href="https://github.com/notmarek/kindle-usbnetlite/" target="_blank">kindle-usbnetlite from GitHub</a>.</li>
-        <li>Follow the installation instructions in the repository to copy the files to your Kindle (typically in the <b>/extensions</b> directory).</li>
-        <li>Launch kindle-usbnetlite from KUAL (Kindle Unified Application Launcher).</li>
+        <li>Download the latest release from <a href="https://github.com/notmarek/kindle-usbnetlite/releases" target="_blank">the kindle-usbnetlite GitHub releases page</a> and extract the contents on your computer.</li>
+        <li>Copy the entire <b>usbnetlite</b> folder to the <b>/extensions</b> directory on your Kindle’s USB storage.</li>
+        <li>Safely eject your Kindle from your computer.</li>
+        <li>On your Kindle, open KUAL and launch <b>kindle-usbnetlite</b> from the menu.</li>
       </ol>
     </div>
 
-    <div class="section-title">How to Connect via SSH over USB</div>
+    <div class="section-title">How to SSH into Your Kindle Over USB</div>
     <div class="card card-desc">
       <ol>
+        <li>On your Kindle, open KUAL and launch <b>kindle-usbnetlite</b> to enable USB networking.</li>
         <li>Plug your Kindle into your computer with a USB cable.</li>
-        <li>Enable USB networking by launching kindle-usbnetlite from KUAL.</li>
-        <li>Your Kindle will appear as a network device on your computer. If needed, set your computer's USB network interface to use IP address <b>192.168.15.201</b> with subnet mask <b>255.255.255.0</b>.</li>
-        <li>Open a terminal on your computer and connect with the following command:
+        <li>On your computer, set your USB network interface to IP address <b>192.168.15.201</b> with subnet mask <b>255.255.255.0</b> if it does not configure automatically.</li>
+        <li>Open a terminal on your computer and connect with:<br>
           <pre><code>ssh root@192.168.15.244</code></pre>
         </li>
         <li>When prompted for a password, enter: <b>kindle</b></li>
       </ol>
       <div class="tip">
-        <b>Tip:</b> If you have trouble connecting, check your network settings and refer to the official <a href="https://github.com/notmarek/kindle-usbnetlite/" target="_blank">kindle-usbnetlite GitHub page</a> for troubleshooting.
+        <b>Tip:</b> If you have trouble connecting, check your network settings.
       </div>
     </div>
 
     <div class="section-title">Why Use kindle-usbnetlite?</div>
     <div class="card card-desc">
       <ul>
-        <li>Provides a secure and direct way to access your Kindle for modding or troubleshooting</li>
-        <li>Does not require Wi-Fi; works anywhere you have a USB cable</li>
-        <li>Lightweight, fast, and focused on SSH-only access</li>
+        <li><b>Fast SSH access</b> – No more typing on the Kindle at 1 FPS; use your real keyboard and tools!</li>
+        <li><b>No Wi-Fi needed</b> – Works anywhere you have a USB cable.</li>
+        <li><b>Essential for modders and power users</b> – The easiest way to mod, troubleshoot, or access your Kindle’s files.</li>
+        <li><b>Lightweight and secure</b> – Just what you need, nothing more.</li>
       </ul>
     </div>
-
   </div>
 </body>
 </html>
