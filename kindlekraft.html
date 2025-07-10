@@ -2,86 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KindleKraft – Minecraft Server for Kindle</title>
+  <title>KindleKraft – Run a Minecraft Server on Kindle (Minecraft LAN SMP)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="KindleKraft lets you host a Minecraft LAN server (1.7.x–1.8.x) right on your Kindle. Turn your e-reader into a Minecraft multiplayer server. Free, open-source, and experimental.">
+  <link rel="canonical" href="https://kindlemodshelf.me/kindlekraft.html">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "KindleKraft – Minecraft Server for Kindle",
+    "operatingSystem": "Kindle OS (softfloat firmware)",
+    "applicationCategory": "GameServerApplication",
+    "description": "Host a Minecraft LAN SMP server (1.7.x–1.8.x) on your Kindle with KindleKraft. Works on select jailbroken Kindles with softfloat firmware.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://kindlemodshelf.me/kindlekraft.html"
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <h1>KindleKraft – Minecraft Server for Kindle</h1>
     <div class="summary">
-      <b>KindleKraft</b> lets you run a Minecraft multiplayer server directly on your Kindle!
-      Turn your jailbroken Kindle (with the right firmware) into a LAN Minecraft server for versions 1.7.x and 1.8.x. It’s fun, experimental, and perfect for creative tinkering.
+      <b>KindleKraft</b> turns your Kindle e-reader into a Minecraft multiplayer LAN server for versions 1.7.x and 1.8.x. Host and play Minecraft SMP right from your Kindle—no computer required after setup!
     </div>
 
-    <div class="section-title">What Is It?</div>
+    <div class="section-title">What Is KindleKraft?</div>
     <div class="card card-desc">
-      KindleKraft transforms your Kindle into a Minecraft LAN server. Host classic Minecraft (1.7.x–1.8.x) multiplayer sessions right from your e-reader—no PC required once it’s set up!
+      KindleKraft is an experimental project that lets you run a Minecraft LAN server on your Kindle. Host classic Minecraft (1.7.x–1.8.x) multiplayer sessions directly from your e-reader.
     </div>
 
     <div class="section-title">Requirements</div>
     <div class="card card-desc">
       <ul>
-        <li>Jailbroken Kindle with <b>softfloat (SF)</b> firmware<br>
-          <small>(Firmware must be below 5.16.3. KindleKraft is SF-only unless you manually replace the Java install for hardfloat.)</small>
-        </li>
+        <li>Kindle with <b>softfloat (SF)</b> firmware (firmware below 5.16.3; SF-only unless Java is manually replaced for hardfloat)</li>
         <li>KTerm terminal emulator installed</li>
       </ul>
     </div>
 
-    <div class="section-title">How to Install</div>
+    <div class="section-title">Install & Setup</div>
     <div class="card card-desc">
       <ol>
-        <li><b>Download KindleKraft:</b><br>
-          <a href="https://github.com/polish-penguin-dev/KindleKraft/releases" target="_blank">Get from GitHub Releases</a>
+        <li>
+          <b>Download:</b>
+          <a href="https://github.com/polish-penguin-dev/KindleKraft/releases" target="_blank">KindleKraft on GitHub</a>
         </li>
-        <li><b>Copy files:</b>
-          <ul>
-            <li>Put the extension in your Kindle’s <b>/extensions</b> folder.</li>
-            <li>Put the archive in the root directory of your Kindle (do not extract).</li>
-          </ul>
-        </li>
-        <li><b>(Optional) Create a 256MB swapfile:</b> For best server performance, use a swapfile of at least 256MB.</li>
+        <li>Place the extension in <b>/extensions</b> and the archive in your Kindle’s root directory (do not extract).</li>
+        <li>(Optional) Create a 256MB swapfile for better performance.</li>
       </ol>
     </div>
 
     <div class="section-title">How to Run</div>
     <div class="card card-desc">
       <ol>
-        <li>Open <b>KindleKraft</b> in KUAL and select <b>‘Install KindleKraft’</b>.<br>
-            This may take a while—please be patient!</li>
-        <li>Once installed, select <b>‘Launch’</b> in KUAL.<br>
-            This opens KTerm.</li>
-        <li>In KTerm, start the server by typing:<br>
-          <code>kindlekraft</code>
-        </li>
-        <li>Use <code>kindlekraft -s</code> to start the Minecraft server.<br>
-            Use <code>kindlekraft -i</code> to display your Kindle’s private IP address.</li>
+        <li>Open KindleKraft in KUAL and select <b>Install KindleKraft</b>. Wait for installation.</li>
+        <li>Select <b>Launch</b> in KUAL. KTerm will open.</li>
+        <li>In KTerm, start the server with <code>kindlekraft</code>.</li>
+        <li>For multiplayer, run <code>kindlekraft -s</code>. To check your Kindle’s LAN IP, use <code>kindlekraft -i</code>.</li>
       </ol>
     </div>
 
     <div class="section-title">Connect & Play</div>
     <div class="card card-desc">
       <ul>
-        <li>Join the server from any device on the same LAN using Minecraft client version 1.7.x or 1.8.x.</li>
-        <li>For best compatibility, use the latest client with <b>ViaFabricPlus</b>.</li>
-        <li>Enjoy your own Kindle-based Minecraft SMP!</li>
+        <li>Join from any device on the same LAN using Minecraft 1.7.x or 1.8.x.</li>
+        <li>Latest client + ViaFabricPlus recommended for compatibility.</li>
       </ul>
     </div>
 
     <div class="section-title">Notes</div>
     <div class="card card-desc">
       <ul>
-        <li>Tested and fully working on Kindle 7 (KT2, BASIC). Partially working on Kindle Paperwhite 7th Gen (PW3) up to firmware 5.16.2.1.1.</li>
-        <li>On newer Kindles or firmwares, UI glitches may occur, but core server functionality should still work.</li>
-        <li>This is a fun, experimental project—expect quirks!</li>
-        <li>By running KindleKraft, you agree to the <a href="https://account.mojang.com/documents/minecraft_eula" target="_blank">Minecraft EULA</a>.</li>
+        <li>Fully tested on Kindle 7 (KT2, BASIC). Partially tested on Kindle Paperwhite 7th Gen (PW3) up to 5.16.2.1.1.</li>
+        <li>UI glitches may occur on newer Kindles or firmware, but server functionality usually works.</li>
+        <li>Fun, experimental, and open-source—expect quirks and have fun!</li>
+        <li>Usage subject to the <a href="https://account.mojang.com/documents/minecraft_eula" target="_blank">Minecraft EULA</a>.</li>
       </ul>
     </div>
 
     <div class="card card-desc">
-      Turn your Kindle into a Minecraft server and start your own LAN SMP with KindleKraft!
+      Start your own Minecraft LAN SMP server—right on your Kindle—with KindleKraft!
     </div>
   </div>
 </body>

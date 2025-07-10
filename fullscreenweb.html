@@ -2,26 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fullscreen Web Browser for Kindle (Firmware 5.16.4+)</title>
+  <title>Fullscreen Web Browser for Kindle – Distraction-Free Reading (Firmware 5.16.4+)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Install a fullscreen web browser on your Kindle. Read websites, use web apps, or access online references in distraction-free mode. Designed for Kindle firmware 5.16.4 and newer.">
+  <link rel="canonical" href="https://kindlemodshelf.me/fullscreenweb.html">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Fullscreen Web Browser for Kindle",
+    "operatingSystem": "Kindle OS (5.16.4+)",
+    "applicationCategory": "WebBrowserApplication",
+    "description": "Launch any website in fullscreen mode on your Kindle. Distraction-free browser for web reading, apps, and online research on your e-reader.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://kindlemodshelf.me/fullscreenweb.html"
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <h1>Fullscreen Web Browser for Kindle (Firmware 5.16.4+)</h1>
     <div class="summary">
-      <b>Fullscreen Web Browser</b> is a custom browser for jailbroken Kindles running firmware 5.16.4 and above.
-      It launches any website in true full screen, perfect for reading, reference, or web apps right on your e-reader.
+      <b>Fullscreen Web Browser</b> turns your Kindle into a clean, distraction-free internet portal. Enjoy focused web reading, reference, or web apps in a truly fullscreen experience—right on your e-reader.
     </div>
 
     <div class="section-title">Features</div>
     <div class="card card-desc">
       <ul>
         <li>Open any website in a clean, fullscreen view</li>
-        <li>Easily change the homepage to any site you want</li>
+        <li>Easily set your homepage to any site you want</li>
         <li>Minimal interface for maximum reading space</li>
-        <li>Script included to stop the browser if needed</li>
+        <li>Includes a script to stop the browser if needed</li>
         <li>Designed for Kindle firmware 5.16.4 and newer</li>
       </ul>
     </div>
@@ -29,21 +46,16 @@
     <div class="section-title">How to Install &amp; Use</div>
     <div class="card card-desc">
       <ol>
-        <li><b>Download the latest ZIP:</b><br>
-          <a href="https://github.com/mitchellurgero/kindle-shortcut-browser/releases" target="_blank">Get it from GitHub Releases</a>
-        </li>
-        <li><b>Extract the contents:</b><br>
-          Unzip and copy everything to the <code>/</code> (root) directory of your Kindle.
-        </li>
+        <li><b>Download the latest ZIP:</b> <a href="https://github.com/mitchellurgero/kindle-shortcut-browser/releases" target="_blank">Get it from GitHub Releases</a></li>
+        <li><b>Extract the contents:</b> Unzip and copy everything to the <code>/</code> (root) directory of your Kindle.</li>
         <li><b>Set your website:</b>
           <ul>
-            <li><b>Method 1:</b> Edit the <code>index.html</code> in the <code>fullscreenbrowser</code> folder. Replace <code>https://example.com</code> with your desired site.</li>
-            <li><b>Method 2:</b> Open <code>documents/shortcut_browser.sh</code> and set the <code>FULLSCREEN_SITE</code> variable to your preferred URL.</li>
+            <li><b>Method 1:</b> Edit <code>index.html</code> in the <code>fullscreenbrowser</code> folder and change the URL to your desired website.</li>
+            <li><b>Method 2:</b> Edit <code>documents/shortcut_browser.sh</code> and set the <code>FULLSCREEN_SITE</code> variable to your preferred URL.</li>
           </ul>
         </li>
-        <li><b>Launch the app:</b><br>
-          Open the shortcut script from your Kindle’s library to launch the fullscreen browser.<br>
-          (Tip: You can rename the script for multiple website shortcuts!)
+        <li><b>Launch the browser:</b> Open the shortcut script from your Kindle’s library to launch the fullscreen web browser.<br>
+          (Tip: Rename the script for multiple website shortcuts!)
         </li>
       </ol>
     </div>
@@ -63,14 +75,14 @@
     <div class="section-title">Known Issues</div>
     <div class="card card-desc">
       <ul>
-        <li>Some websites may not load in the <code>index.html</code> method (iframe limitation). For best results, use the <code>FULLSCREEN_SITE</code> variable in the script.</li>
-        <li>If the browser freezes or acts up, use the Stop Shortcut Browser script or restart your Kindle.</li>
+        <li>Some websites may not load with the <code>index.html</code> method (iframe limitation). For best results, use the <code>FULLSCREEN_SITE</code> variable in the script.</li>
+        <li>If the browser freezes or stops responding, use the Stop Shortcut Browser script or restart your Kindle.</li>
       </ul>
     </div>
 
     <div class="section-title">Summary</div>
     <div class="card card-desc">
-      With <b>Fullscreen Web Browser</b>, your Kindle becomes a focused internet portal—perfect for distraction-free web reading, reference, or apps, all from your e-reader.
+      With the Fullscreen Web Browser, your Kindle becomes the ultimate device for distraction-free web reading, online research, or using web apps—all in fullscreen mode on your e-reader.
     </div>
   </div>
 </body>

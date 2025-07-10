@@ -2,103 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KWordle – Wordle for Kindle</title>
+  <title>KWordle – Wordle for Kindle (Offline, Multilingual, E-ink Optimized)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="KWordle brings the classic Wordle game to Kindle e-readers. Play offline, in multiple languages, and enjoy visuals designed for e-ink screens.">
+  <link rel="canonical" href="https://kindlemodshelf.me/kwordle.html">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Game",
+    "name": "KWordle – Wordle for Kindle",
+    "operatingSystem": "Kindle OS",
+    "applicationCategory": "WordGame",
+    "description": "Play Wordle on Kindle. KWordle features e-ink optimized visuals, multilingual support, and works fully offline.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://kindlemodshelf.me/kwordle.html"
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <h1>KWordle – Wordle for Kindle</h1>
     <div class="summary">
-      <b>KWordle</b> brings the classic Wordle word-guessing game to your Kindle e-reader.  
-      Built specifically for e-ink screens, KWordle offers the same addictive gameplay with a Kindle-friendly design and can be played completely offline after installation.
+      <b>KWordle</b> brings the classic Wordle puzzle game to your Kindle e-reader. Built for e-ink, KWordle is offline, multilingual, and offers simple visuals for black-and-white screens.
     </div>
 
-    <div class="section-title">Overview</div>
+    <div class="section-title">About KWordle</div>
     <div class="card card-desc">
-      KWordle is a Kindle-optimized port of the popular Wordle game.  
-      Guess a hidden 5-letter word within six attempts, using helpful visual indicators that are easy to see on black-and-white Kindle displays.  
-      The game tracks your statistics and works in multiple languages, so you can play and improve your vocabulary in English, French, German, and more.
+      Guess the hidden 5-letter word in six attempts. Use on-screen feedback designed for Kindle:  
+      ■ = correct letter and spot, □ = correct letter wrong spot, × = not in the word.  
+      Track your win streak and stats. Play in English, French, German, and more. No ads or tracking.
     </div>
 
     <div class="section-title">Features</div>
     <div class="card card-desc">
       <ul>
-        <li>Classic Wordle gameplay: Guess the 5-letter word in six tries</li>
-        <li>
-          <b>E-ink optimized visuals:</b><br>
-          ■ Filled square: Letter is correct and in the right position<br>
-          □ Empty square: Letter is correct but in the wrong position<br>
-          × Cross: Letter is not in the word
-        </li>
-        <li>On-screen keyboard with feedback for guessed letters</li>
-        <li>Play in multiple languages (English, French, German; more can be added)</li>
-        <li>Statistics: Tracks win percentage and streaks</li>
-        <li>Works completely offline—no internet needed after install</li>
-        <li>Compatible with Kindle’s WebKit browser and all major Kindle models</li>
+        <li>Classic Wordle gameplay—guess a 5-letter word in 6 tries</li>
+        <li>Visual feedback for every guess (optimized for e-ink)</li>
+        <li>Multilingual: English, French, German, customizable word lists</li>
+        <li>Statistics: Win percentage and streaks saved locally</li>
+        <li>Works fully offline—no internet required after install</li>
+        <li>Compatible with Kindle’s WebKit browser and all major models</li>
       </ul>
     </div>
 
-    <div class="section-title">How to Install</div>
+    <div class="section-title">Installation</div>
     <div class="card card-desc">
       <ol>
-        <li>Download the latest KWordle release from GitHub:  
-          <a href="https://github.com/crizmo/KWordle" target="_blank">github.com/crizmo/KWordle</a>
-        </li>
-        <li>Connect your Kindle to your computer via USB.</li>
-        <li>Copy the entire <b>kwordle</b> folder and <b>kwordle.sh</b> script to your Kindle’s <b>documents</b> folder.</li>
-        <li>Disconnect your Kindle from your computer.</li>
-        <li>On your Kindle, open the KWordle booklet or run the <b>kwordle.sh</b> script to launch the game.</li>
+        <li>Download the latest release from <a href="https://github.com/crizmo/KWordle" target="_blank">KWordle on GitHub</a>.</li>
+        <li>Connect your Kindle by USB and copy the <b>kwordle</b> folder and <b>kwordle.sh</b> script to your <b>documents</b> folder.</li>
+        <li>Disconnect, then open the KWordle booklet or run <b>kwordle.sh</b> to launch the game.</li>
       </ol>
     </div>
 
     <div class="section-title">How to Play</div>
     <div class="card card-desc">
       <ol>
-        <li>The game picks a random 5-letter word.</li>
-        <li>Type in your guess using the on-screen or Kindle keyboard and press “Enter.”</li>
-        <li>After each guess, you’ll see visual indicators:<br>
-          ■ Letter is in the correct spot<br>
-          □ Letter is in the word but in the wrong place<br>
-          × Letter is not in the word
+        <li>Game picks a random 5-letter word.</li>
+        <li>Enter guesses with the on-screen or Kindle keyboard.</li>
+        <li>After each guess:  
+          ■ = correct spot,  
+          □ = wrong spot,  
+          × = not in word
         </li>
-        <li>You have six attempts to find the correct word.</li>
-        <li>Try to win in as few guesses as possible!</li>
+        <li>You have 6 tries. See if you can guess the word!</li>
       </ol>
-    </div>
-
-    <div class="section-title">Game Statistics</div>
-    <div class="card card-desc">
-      KWordle tracks your win percentage and streaks, storing your results right on your Kindle (localStorage).
     </div>
 
     <div class="section-title">Language Support & Customization</div>
     <div class="card card-desc">
-      KWordle includes word lists for English, French, and German.<br><br>
+      KWordle supports multiple languages.  
       <b>To add a new language:</b>
       <ol>
-        <li>Create two lists: one for words to guess, one for all valid five-letter words.</li>
-        <li>Place these lists in the <code>words.js</code> file.</li>
-        <li>Add your language to the language selection in <code>main.js</code>.</li>
-        <li>Replace accented letters with unaccented equivalents.</li>
-        <li>Credit the source of your word lists in the app’s credits section.</li>
+        <li>Create lists of guess and valid words, add to <code>words.js</code>.</li>
+        <li>Update the language selection in <code>main.js</code>.</li>
+        <li>Replace accented with unaccented letters.</li>
+        <li>Credit your sources in the credits.</li>
       </ol>
     </div>
 
     <div class="section-title">Technical Details</div>
     <div class="card card-desc">
       <ul>
-        <li>Uses ES5 JavaScript for compatibility with older Kindle models</li>
-        <li>Optimized for e-ink and smaller screens</li>
-        <li>Works fully offline after installation</li>
-        <li>No known issues reported as of the latest release</li>
+        <li>Uses ES5 JavaScript for broad Kindle compatibility</li>
+        <li>Optimized for e-ink and small screens</li>
+        <li>All game data stored locally on your Kindle</li>
       </ul>
     </div>
 
-    <div class="section-title">Enjoy Wordle Anywhere!</div>
     <div class="card card-desc">
-      KWordle lets you enjoy Wordle anywhere, right on your Kindle—no ads, no tracking, just pure word puzzle fun!
+      Enjoy Wordle anywhere—right on your Kindle, ad-free and offline.
     </div>
   </div>
 </body>

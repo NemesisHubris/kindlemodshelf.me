@@ -2,32 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Telnet – Remote Command-Line Access for Kindle</title>
+  <title>Telnet for Kindle – Remote Command Line Tool for Jailbroken Kindles</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Set up remote command-line access to your jailbroken Kindle with this lightweight Telnet server script. Connect from your computer for quick CLI management and debugging.">
+  <link rel="canonical" href="https://kindlemodshelf.me/telnet.html">
   <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Telnet for Kindle",
+    "operatingSystem": "Kindle OS (jailbroken)",
+    "applicationCategory": "Utility",
+    "description": "Run a lightweight Telnet server on your jailbroken Kindle for remote command-line access and quick debugging over your network.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://kindlemodshelf.me/telnet.html"
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <h1>Telnet – Remote Command-Line Access for Kindle</h1>
+    <h1>Telnet for Kindle – Remote Command Line Tool</h1>
 
     <div class="summary">
-      Telnet is a lightweight server script for jailbroken Kindles. It provides remote command-line (CLI) access to your device from another computer over your network. Telnet can be used as a legacy alternative to SSH for quick remote management and debugging.
+      <b>Telnet for Kindle</b> is a lightweight server script for jailbroken Kindles. It provides remote command-line (CLI) access to your device from another computer over your network. Use it as a fast, legacy alternative to SSH for remote management and debugging.
     </div>
 
     <div class="section-title">What Is Telnet for Kindle?</div>
     <div class="card card-desc">
-      This upgraded Telnet script lets you open a remote shell on your Kindle. Unlike the original version, this script allows you to close the connection from the Kindle itself by touching the screen. It also includes a simple title bar and icon.
-      <br><br>
-      <b>Security Note:</b> Telnet does not use encryption. Use only on trusted local networks. For secure remote access, use SSH instead.
+      This upgraded Telnet script lets you open a remote shell on your Kindle from any computer on the same network. You can close the connection from the Kindle itself by touching the screen. The script also includes a simple title bar and icon.<br><br>
+      <b>Security Note:</b> Telnet does not use encryption. Use only on trusted local networks. For secure access, use SSH.
     </div>
 
     <div class="section-title">Features</div>
     <div class="card card-desc">
       <ul>
-        <li>Remote shell access to your Kindle from another device on the network</li>
+        <li>Remote shell access to your Kindle from another device on your local network</li>
         <li>Close the Telnet session by touching the Kindle screen</li>
-        <li>Lightweight script, useful for quick debugging</li>
+        <li>Extremely lightweight—perfect for quick debugging and recovery</li>
       </ul>
     </div>
 
@@ -35,28 +52,30 @@
     <div class="card card-desc">
       <ul>
         <li><a href="jailbreaking.html">Jailbroken Kindle</a></li>
-        <li><a href="kterm.html">KTerm terminal emulator</a> (recommended for setup)</li>
-        <li>Kindle and your computer connected to the same local network</li>
+        <li>KUAL or KTerm terminal emulator for running scripts (<a href="kterm.html">see KTerm page</a>)</li>
+        <li>Computer and Kindle connected to the same local network</li>
       </ul>
     </div>
 
     <div class="section-title">Installation & Usage</div>
     <div class="card card-desc">
       <ol>
-        <li>Download <b>Telnet.sh</b> (see Downloads section)</li>
-        <li>Copy <b>Telnet.sh</b> to your Kindle (for example, in /extensions or /documents)</li>
-        <li>Start the script using <a href="kterm.html">KTerm</a> or any terminal:</li>
-        <li><code>sh Telnet.sh</code></li>
-        <li>From your computer, connect using any Telnet client to your Kindle’s IP address</li>
-        <li>To close the session, touch the Kindle’s screen</li>
+        <li>Download <b>Telnet.sh</b> (see Downloads section).</li>
+        <li>Copy <b>Telnet.sh</b> to the <b>/extensions</b> directory on your Kindle.</li>
+        <li>On your Kindle, run the script with KUAL or in KTerm:<br>
+          <code>sh /extensions/Telnet.sh</code>
+        </li>
+        <li>From your computer, connect using any Telnet client to your Kindle’s IP address.</li>
+        <li>To close the session, touch the Kindle’s screen.</li>
       </ol>
     </div>
 
     <div class="section-title">Technical Details</div>
     <div class="card card-desc">
       <ul>
-        <li>The script includes touch detection so you can end the Telnet server from the device itself</li>
+        <li>Touch detection lets you end the Telnet server session from your Kindle</li>
         <li>Does not make permanent changes; closing the script ends the session</li>
+        <li>No encryption—use only on trusted networks</li>
       </ul>
     </div>
   </div>
