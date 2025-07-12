@@ -1,4 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /downloads/*.html
+Allow: /downloads/
 
 Sitemap: https://kindlemodshelf.me/sitemap.xml
