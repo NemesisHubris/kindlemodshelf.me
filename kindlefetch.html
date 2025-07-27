@@ -7,6 +7,9 @@
   <meta name="description" content="KindleFetch is the easiest way to download eBooks from Anna’s Archive and Library Genesis directly on your Kindle. Simple terminal-based tool for fast, wireless downloads—no PC needed.">
   <link rel="canonical" href="https://kindlemodshelf.me/kindlefetch.html">
   <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="KindleFetch – Download eBooks Directly to Kindle (Anna’s Archive, LibGen, More)">
+  <meta property="og:description" content="Download eBooks from Anna’s Archive and Library Genesis directly to your Kindle—no PC needed. KindleFetch is a fast, open-source downloader for jailbroken Kindles.">
+  <meta property="og:url" content="https://kindlemodshelf.me/kindlefetch.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,70 +30,83 @@
 </head>
 <body>
   <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
     <h1>KindleFetch – Download eBooks Directly to Kindle</h1>
 
     <div class="summary">
       <b>KindleFetch</b> is the simplest way to download eBooks straight to your Kindle—no computer or cables required. Search and download books from Anna’s Archive, Library Genesis, and other sources directly from your device using the terminal.
     </div>
 
-    <div class="section-title">About KindleFetch</div>
-    <div class="card card-desc">
-      KindleFetch is a free, open-source downloader for Kindle e-readers. It lets you quickly search and download books from top sources—all on your Kindle, saving you time and avoiding manual sideloading.
-    </div>
+    <section aria-labelledby="about">
+      <h2 class="section-title" id="about">About KindleFetch</h2>
+      <div class="card card-desc">
+        KindleFetch is a free, open-source downloader for Kindle e-readers. It lets you quickly search and download books from top sources—all on your Kindle, saving you time and avoiding manual sideloading.
+      </div>
+    </section>
 
-    <div class="section-title">Key Features</div>
-    <div class="card card-desc">
-      <ul>
-        <li>Download eBooks directly—no PC needed</li>
-        <li>Text-based, easy-to-use terminal interface</li>
-        <li>Supports Anna’s Archive, Library Genesis, and more</li>
-        <li>Works on most Kindle models and firmware (HF & SF)</li>
-        <li>Regular updates and community support</li>
-      </ul>
-    </div>
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Key Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Download eBooks directly—no PC needed</li>
+          <li>Text-based, easy-to-use terminal interface</li>
+          <li>Supports Anna’s Archive, Library Genesis, and more</li>
+          <li>Works on most Kindle models and firmware (HF & SF)</li>
+          <li>Regular updates and community support</li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="section-title">Requirements</div>
-    <div class="card card-desc">
-      <ul>
-        <li><a href="kterm.html">KTerm terminal emulator</a> (required to run KindleFetch)</li>
-      </ul>
-    </div>
+    <section aria-labelledby="requirements">
+      <h2 class="section-title" id="requirements">Requirements</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="kterm.html">KTerm terminal emulator</a> (required to run KindleFetch)</li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="section-title">Install KindleFetch</div>
-    <div class="card card-desc">
-      <b>Automatic Install (Recommended):</b>
-      <ol>
-        <li>Open KTerm on your Kindle.</li>
-        <li>Type and run:<br>
-          <code>curl https://justrals.github.io/KindleFetch/install.sh | sh</code>
-        </li>
-        <li>Wait for installation to finish and follow the prompts.</li>
-      </ol>
-      <b>Manual Install:</b>
-      <ol>
-        <li>Download from <a href="https://github.com/justrals/KindleFetch/releases" target="_blank">KindleFetch GitHub Releases</a>.</li>
-        <li>Unzip and copy the files to your <b>/extensions</b> folder on Kindle.</li>
-      </ol>
-    </div>
+    <section aria-labelledby="install">
+      <h2 class="section-title" id="install">Install KindleFetch</h2>
+      <div class="card card-desc">
+        <b>Automatic Install (Recommended):</b>
+        <ol>
+          <li>Open KTerm on your Kindle.</li>
+          <li>Type and run:<br>
+            <code>curl https://justrals.github.io/KindleFetch/install.sh | sh</code>
+          </li>
+          <li>Wait for installation to finish and follow the prompts.</li>
+        </ol>
+        <b>Manual Install:</b>
+        <ol>
+          <li>Download from <a href="https://github.com/justrals/KindleFetch/releases" target="_blank" rel="noopener">KindleFetch GitHub Releases</a>.</li>
+          <li>Unzip and copy the files to your <b>/extensions</b> folder on Kindle.</li>
+        </ol>
+      </div>
+    </section>
 
-    <div class="section-title">How to Use KindleFetch</div>
-    <div class="card card-desc">
-      <ol>
-        <li>Open KTerm and launch KindleFetch.</li>
-        <li>Search for your book by title, author, or keyword.</li>
-        <li>Choose your download source (Anna’s Archive, Library Genesis, etc).</li>
-        <li>Select the book and follow the on-screen instructions to download.</li>
-        <li>Your downloaded eBook will appear in your Kindle library.</li>
-      </ol>
-    </div>
+    <section aria-labelledby="howtouse">
+      <h2 class="section-title" id="howtouse">How to Use KindleFetch</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Open KTerm and launch KindleFetch.</li>
+          <li>Search for your book by title, author, or keyword.</li>
+          <li>Choose your download source (Anna’s Archive, Library Genesis, etc).</li>
+          <li>Select the book and follow the on-screen instructions to download.</li>
+          <li>Your downloaded eBook will appear in your Kindle library.</li>
+        </ol>
+      </div>
+    </section>
 
-    <div class="section-title">Troubleshooting</div>
-    <div class="card card-desc">
-      <ul>
-        <li><b>No search results or errors?</b> Book sources may be temporarily unavailable—try again later or use a different source.</li>
-        <li><b>“Sign in” or HTML file from Z-Library?</b> You have reached the Z-Library download limit—try another source like Library Genesis.</li>
-      </ul>
-    </div>
+    <section aria-labelledby="troubleshooting">
+      <h2 class="section-title" id="troubleshooting">Troubleshooting</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><b>No search results or errors?</b> Book sources may be temporarily unavailable—try again later or use a different source.</li>
+          <li><b>“Sign in” or HTML file from Z-Library?</b> You have reached the Z-Library download limit—try another source like Library Genesis.</li>
+        </ul>
+      </div>
+    </section>
 
   </div>
 </body>

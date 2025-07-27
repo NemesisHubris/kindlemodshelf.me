@@ -7,6 +7,9 @@
   <meta name="description" content="Remotely control your Kindle from your computer. Use screenControl to automate, view, and interact with your Kindle’s screen for wireless automation, DeDRM book downloads, and more.">
   <link rel="canonical" href="https://kindlemodshelf.me/screencontrol.html">
   <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="screenControl – Remote Control & Automate Your Kindle from Your Computer">
+  <meta property="og:description" content="Remotely control, view, and automate your Kindle with screenControl. Perfect for DeDRM workflows, automation, and developer testing.">
+  <meta property="og:url" content="https://kindlemodshelf.me/screencontrol.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,13 +30,14 @@
 </head>
 <body>
   <div class="container">
-    <h1>screenControl – Remote Control & Automate Your Kindle</h1>
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>screenControl – Remote Control &amp; Automate Your Kindle</h1>
     <div class="summary">
-      <b>screenControl</b> is a utility script for jailbroken Kindles that lets you view and interact with your Kindle’s screen remotely, straight from your web browser.
-      Originally discovered in a leaked developer firmware and adapted for community use, screenControl lets you automate Kindle actions and control your e-reader from any computer on your local network.
+      <b>screenControl</b> lets you view and interact with your Kindle’s screen remotely, straight from your web browser.
+      Adapted from a leaked developer firmware and improved for the Kindle modding community, screenControl enables wireless automation, remote control, and seamless interaction with your e-reader from any computer on your local network.
     </div>
 
-    <div class="section-title">What Does screenControl Do?</div>
+    <h2 class="section-title">What Does screenControl Do?</h2>
     <div class="card card-desc">
       <ul>
         <li><b>Remote screen viewing:</b> See your Kindle’s display in real time through your web browser.</li>
@@ -43,7 +47,7 @@
       </ul>
     </div>
 
-    <div class="section-title">Features</div>
+    <h2 class="section-title">Features</h2>
     <div class="card card-desc">
       <ul>
         <li>Connect from any computer or phone using a web browser</li>
@@ -51,62 +55,60 @@
         <li>Click anywhere on the Kindle screen from your browser to interact</li>
         <li>Automate tasks by sending clicks or scripts</li>
         <li>Supports both SF and HF Kindle firmwares (tested up to 5.18.x)</li>
-        <li>Perfect for Kindle automation, bulk book downloading, or DeDRM workflows</li>
+        <li>Perfect for automation, bulk book downloads, or DeDRM workflows</li>
       </ul>
     </div>
 
-    <div class="section-title">Installation</div>
+    <h2 class="section-title">Installation</h2>
     <div class="card card-desc">
       <ol>
-        <li>Download the official version here:<br>
-          <a href="downloads/screenControl.tar.gz">screenControl.tar.gz (download)</a>
-        </li>
+        <li><b>Download:</b> <a href="downloads/screenControl.tar.gz" download>screenControl.tar.gz</a></li>
         <li>Extract the archive on your computer.</li>
-        <li>Copy the extracted files to your Kindle’s <code>/mnt/us/extensions/</code> directory for easy management.</li>
-        <li><b>Optional:</b> To show up as a KUAL app, make a KUAL-compatible folder/script, or just run the .sh script directly.</li>
-        <li>Start the script using KUAL, or by running it in KTerm or another terminal emulator.</li>
+        <li>Copy the extracted files to your Kindle’s <code>/mnt/us/extensions/</code> directory.</li>
+        <li><b>Optional:</b> To use from KUAL, make a KUAL-compatible folder/script, or run the .sh script directly in KTerm.</li>
+        <li>Start the script from KUAL or by running it in your terminal emulator.</li>
       </ol>
     </div>
 
-    <div class="section-title">How to Use</div>
+    <h2 class="section-title">How to Use</h2>
     <div class="card card-desc">
       <ol>
         <li><b>Find your Kindle’s IP address:</b><br>
-          Open KTerm and run <code>ip a</code> to display your IP address.
+          Open KTerm and run <code>ip a</code> to display your Kindle’s IP address.
         </li>
         <li><b>Connect from your browser:</b><br>
           On any device on the same network, go to:<br>
-          <code>http://[your-kindle-ip]:6789</code><br>
+          <code>http://[your-kindle-ip]:6789</code> <br>
           (Example: <code>http://192.168.0.69:6789</code>)
         </li>
         <li><b>Interact with your Kindle:</b><br>
-          The Kindle screen displays in your browser window. Click anywhere to control your Kindle—tap buttons, turn pages, or automate actions.
+          The Kindle screen displays in your browser. Click anywhere to control—tap buttons, turn pages, automate actions, or test scripts.
         </li>
       </ol>
     </div>
 
-    <div class="section-title">Tips &amp; Troubleshooting</div>
+    <h2 class="section-title">Tips &amp; Troubleshooting</h2>
     <div class="card card-desc">
       <ul>
         <li><b>Not showing up in KUAL?</b> Make sure the folder/script is placed in <code>/mnt/us/extensions/</code>.</li>
-        <li><b>Script not appearing as a book?</b> Only .sh scripts appear this way—make a KUAL wrapper for easier access if needed.</li>
+        <li><b>Script not appearing as a book?</b> Only .sh scripts appear as books—make a KUAL wrapper for easier access if needed.</li>
         <li><b>To stop screenControl:</b> Restart your Kindle, or run <code>killall screenControlHF</code> or <code>killall screenControl</code> in KTerm.</li>
-        <li><b>Lag or slow updates?</b> Display speed depends on your network and device, but full control is supported.</li>
+        <li><b>Lag or slow updates?</b> Display speed depends on your network and Kindle model.</li>
         <li><b>Safe to use:</b> There are no known risks of bricking your Kindle when using screenControl as intended.</li>
       </ul>
     </div>
 
-    <div class="section-title">Advanced Uses</div>
+    <h2 class="section-title">Advanced Uses</h2>
     <div class="card card-desc">
       Developers can use screenControl to test Kindle apps, debug layouts, or automate repetitive tasks.<br>
       The tool supports sending click events programmatically, so you can automate actions or integrate it into scripts.
     </div>
 
-    <div class="section-title">Notes</div>
+    <h2 class="section-title">Notes</h2>
     <div class="card card-desc">
       <ul>
         <li>Compatible with both softfloat (SF) and hardfloat (HF) Kindle firmware.</li>
-        <li>Use screenControl for automated workflows: This tool is an excellent way to automate the downloading of multiple books—especially for DeDRM—without manually clicking through each book.</li>
+        <li>Use screenControl for automated workflows: Automate the downloading of multiple books, DeDRM, or complex interactions without manual taps.</li>
       </ul>
     </div>
 

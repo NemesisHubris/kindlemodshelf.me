@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Illusion – Kindle Web App Framework (HTML, CSS, JavaScript, Mesquite)</title>
+  <title>Illusion – Kindle Mesquite App Toolset</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Illusion is a framework for making Kindle apps with HTML, CSS, and JavaScript, using Mesquite. Build custom Kindle web apps, tools, and games. Learn how to use config.xml.">
+  <meta name="description" content="Illusion is the open toolset for developing, launching, and managing Mesquite HTML/JS apps on jailbroken Kindles.">
   <link rel="canonical" href="https://kindlemodshelf.me/llusion.html">
   <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Illusion – Kindle Mesquite App Toolset">
+  <meta property="og:description" content="Illusion is the toolset for creating and managing Mesquite HTML/JS apps on jailbroken Kindles.">
+  <meta property="og:url" content="https://kindlemodshelf.me/llusion.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Illusion Kindle Web App Framework",
+    "name": "Illusion Kindle App Toolset",
     "operatingSystem": "Kindle OS (Mesquite compatible)",
     "applicationCategory": "DevelopmentTool",
-    "description": "Illusion lets you create HTML, CSS, and JavaScript apps for Kindle using Mesquite. Build games, tools, and custom utilities for your e-reader.",
+    "description": "Illusion lets you create, launch, and manage Mesquite HTML/CSS/JS apps for Kindle.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -27,53 +30,48 @@
 </head>
 <body>
   <div class="container">
-    <h1>Illusion: Kindle Web App Framework (HTML, CSS, JS, Mesquite)</h1>
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>Illusion: Kindle Mesquite App Toolset</h1>
     <div class="summary">
-      <b>Illusion</b> is a framework for building custom Kindle apps using HTML, CSS, and JavaScript, powered by the Mesquite web app engine found on modern Kindles. Create and run your own web-based Kindle tools, utilities, and games—no sideloading or complex modding required.
+      <b>Illusion</b> is the core tool for building, launching, and managing custom web apps on jailbroken Kindles, using HTML, CSS, and JavaScript via the Mesquite engine.
+      Check out the <a href="https://github.com/polish-penguin-dev/Illusion" target="_blank" rel="noopener">official Illusion project page</a> for source code, wiki, and updates.
     </div>
 
-    <div class="section-title">What Is Illusion?</div>
-    <div class="card card-desc">
-      Illusion lets you build and run web-based apps on your Kindle. Use classic web tech—HTML, CSS, and ES5 JavaScript—rendered natively via Mesquite (the same engine used for the Kindle Store and Browser). Make apps persistent, store user data, and expand your e-reader’s functionality.
-    </div>
+    <section aria-labelledby="what">
+      <h2 class="section-title" id="what">What is Illusion?</h2>
+      <div class="card card-desc">
+        Illusion lets you turn any folder of HTML, CSS, and JavaScript into a real Kindle app—registered natively in the Mesquite launcher (just like the Kindle browser or Store). It’s perfect for making simple games, tools, or utilities using classic web tech. Illusion takes care of registration and launching—just write your app!
+      </div>
+    </section>
 
-    <div class="section-title">Key Features</div>
-    <div class="card card-desc">
-      <ul>
-        <li>Create and run your own HTML/CSS/JS apps on Kindle (via Mesquite)</li>
-        <li>Persistent environment—apps can store state and data</li>
-        <li>Supports most ES5 JavaScript and legacy CSS (no flexbox, grid, or ES6+ syntax)</li>
-        <li>Easy adaptation: just add a <a href="https://kindlemodding.org/wafs-and-mesquite/understanding-config-xml.html" target="_blank">config.xml</a> file for Mesquite compatibility</li>
-        <li>Experiment, share, and modify Kindle web apps</li>
-      </ul>
-    </div>
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Develop Kindle apps using only HTML, CSS, and ES5 JavaScript</li>
+          <li>Simple scriptlet-based install: just copy your app folder and scriptlet to Kindle</li>
+          <li>Fully documented—see the official site for a complete wiki, utilities, config guides, and FAQ</li>
+          <li>Works on all modern jailbroken Kindles with Mesquite support</li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="section-title">How It Works</div>
-    <div class="card card-desc">
-      Build your app using HTML, CSS, and ES5 JavaScript. Add a <b><a href="https://kindlemodding.org/wafs-and-mesquite/understanding-config-xml.html" target="_blank">config.xml</a></b> file for Mesquite compatibility, and use the Illusion scriptlet to launch your web app directly on Kindle.<br><br>
-      Note: Mesquite uses an old WebKit engine—use ES5 JavaScript and classic CSS only. Use Babel to transpile newer JavaScript if needed.
-    </div>
+    <section aria-labelledby="howtouse">
+      <h2 class="section-title" id="howtouse">How to Use</h2>
+      <div class="card card-desc">
+        For detailed setup instructions, developer documentation, and examples, visit the
+        <a href="https://github.com/polish-penguin-dev/Illusion" target="_blank" rel="noopener">Illusion GitHub page</a>.
+        Everything you need—including sample projects, install scripts, and a full wiki—is there.
+      </div>
+    </section>
 
-    <div class="section-title">Compatibility</div>
-    <div class="card card-desc">
-      Illusion apps work on any Kindle supporting Mesquite (all modern jailbroken Kindles). Perfect for homebrew, prototypes, and Kindle hobby development.
-    </div>
-
-    <div class="section-title">Developer Notes</div>
-    <div class="card card-desc">
-      <ul>
-        <li>Always test on real Kindle hardware—browser emulators may behave differently.</li>
-        <li>Polyfill unsupported features and avoid modern web APIs.</li>
-        <li>Future releases may allow deeper system integration (e.g., shell command support).</li>
-      </ul>
-      <p>
-        See a full example: <a href="https://github.com/polish-penguin-dev/IllusionChess" target="_blank">IllusionChess on GitHub</a>
-      </p>
-    </div>
-
-    <div class="card card-desc">
-      Start making Kindle web apps with Illusion—use HTML, CSS, JavaScript, and Mesquite to power your own e-reader creations.
-    </div>
+    <section aria-labelledby="example">
+      <h2 class="section-title" id="example">Example: IllusionChess</h2>
+      <div class="card card-desc">
+        <b>IllusionChess</b> is a real open-source chess web app built using Illusion and Mesquite. Playable on Kindle e-readers.
+        See the example at <a href="https://github.com/polish-penguin-dev/IllusionChess" target="_blank" rel="noopener">IllusionChess on GitHub</a>.
+      </div>
+    </section>
   </div>
 </body>
 </html>
