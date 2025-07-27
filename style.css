@@ -26,6 +26,7 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 32px 16px 48px;
+  position: relative;
 }
 
 h1 {
@@ -101,15 +102,22 @@ h1 {
 .card-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
 
 a {
+  display: inline;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  vertical-align: baseline;
   color: #72b6ff;
-  word-break: break-all;
   text-decoration: none;
   border-bottom: 1px dotted #2b4f66;
   transition: color .14s, border-color .15s;
   font-weight: 500;
 }
-
-a:hover { color: #ffef6d; border-color: #ffef6d; text-decoration: underline; }
+a:hover {
+  color: #ffef6d;
+  border-color: #ffef6d;
+  text-decoration: underline;
+}
 
 .zip-link {
   color: #b2ff59;
@@ -117,7 +125,6 @@ a:hover { color: #ffef6d; border-color: #ffef6d; text-decoration: underline; }
   letter-spacing: .02em;
   border-bottom: 1.5px dotted #689f38;
 }
-
 .zip-link:hover { color: var(--secondary); border-color: var(--secondary); }
 
 .beta { color: #ffd180; font-size: 0.95em; font-style: italic; }
@@ -128,23 +135,22 @@ a:hover { color: #ffef6d; border-color: #ffef6d; text-decoration: underline; }
   .section-title { font-size: 1.08em; }
   .summary { font-size: .98em; }
 }
+
 .faq-box {
-  background: rgba(34, 41, 54, 0.93); /* Matches your summary background! */
+  background: rgba(34, 41, 54, 0.93);
   border-left: 5px solid #6cc29e;
   border-radius: 10px;
   padding: 1.5em 1.5em 1em 1.5em;
   margin-bottom: 1.5em;
   box-shadow: 0 1px 5px rgba(50,200,120,0.06);
-  color: #d5f1ff; /* matches your summary font color */
+  color: #d5f1ff;
 }
-
 .faq-title {
   color: #6cc29e;
   font-size: 1.18em;
   font-weight: 700;
   margin-bottom: 0.7em;
 }
-
 .faq-q {
   font-weight: 700;
   margin-top: 1em;
@@ -152,15 +158,104 @@ a:hover { color: #ffef6d; border-color: #ffef6d; text-decoration: underline; }
   color: #67dfff;
   font-size: 1.07em;
 }
-
 .faq-a {
   margin-left: 1em;
   margin-bottom: 0.7em;
   color: #e0ffe7;
   font-size: 1em;
 }
-
 .faq-box a {
   color: #38b6ff;
   text-decoration: underline;
+}
+
+/* Responsive YouTube video embed for .responsive-video */
+.responsive-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  background: #121418;
+  box-shadow: 0 3px 20px rgba(8, 25, 33, 0.19);
+}
+.responsive-video iframe,
+.responsive-video object,
+.responsive-video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.25rem;
+  background: #000;
+  border: none;
+}
+
+/* Back to Home button, clean and plain */
+.back-home-btn {
+  position: absolute;
+  right: 24px;
+  top: 32px;
+  padding: 7px 18px 7px 14px;
+  border-radius: 999px;
+  background: rgba(34,41,54,0.93);
+  color: #ececec;
+  border: 1.5px solid #323846;
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(16,21,26,0.11);
+  transition: background .18s, color .16s, border-color .14s;
+  z-index: 11;
+}
+.back-home-btn:hover, .back-home-btn:focus {
+  background: #181a20;
+  color: var(--secondary);
+  border-color: var(--secondary);
+  outline: none;
+}
+@media (max-width: 700px) {
+  .back-home-btn {
+    position: static;
+    display: block;
+    margin: 0 auto 18px auto;
+    top: unset;
+    right: unset;
+    left: unset;
+  }
+}
+
+.morris-header {
+  padding: 16px 20px;
+  border-radius: 15px 15px 0 0;
+  margin-bottom: 0;
+  font-size: 1.33em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #14181d;
+  background: linear-gradient(90deg, var(--primary) 0%, #fff3e2 100%);
+  box-shadow: 0 4px 18px 0 rgba(30,80,128,0.07);
+  border-bottom: 2px solid var(--secondary);
+}
+.morris-header.hf {
+  background: linear-gradient(90deg, #ffe082 0%, #e3fffb 100%);
+  color: #0b0e10;
+  border-bottom: 2px solid var(--primary);
+}
+.morris-section {
+  margin-bottom: 42px;
+  background: linear-gradient(115deg, var(--card-bg-start) 80%, var(--card-bg-end) 100%);
+  border-radius: 18px;
+  box-shadow: 0 6px 30px rgba(22,28,38,0.12);
+  border: 1.5px solid var(--card-border);
+  overflow: hidden;
+}
+.morris-body {
+  padding: 26px 22px 18px 22px;
+}
+@media (max-width: 700px) {
+  .morris-header, .morris-body { padding-left: 10px; padding-right: 10px; }
 }

@@ -27,17 +27,22 @@
 </head>
 <body>
   <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
     <h1>kindle-usbnetlite – SSH into Your Kindle via USB</h1>
 
     <div class="summary">
-      <b>kindle-usbnetlite</b> is the easiest way to access your jailbroken Kindle’s command line using SSH over a USB cable.
-      No more typing painfully slow commands in KTerm on a 1 FPS display—just use your computer’s terminal for instant modding, troubleshooting, and file management.
+      <p>
+        <b>kindle-usbnetlite</b> is the easiest way to access your jailbroken Kindle’s command line using SSH over a USB cable.
+        No more typing painfully slow commands in KTerm on a 1 FPS display—just use your computer’s terminal for instant modding, troubleshooting, and file management.
+      </p>
     </div>
 
     <div class="section-title">What Is kindle-usbnetlite?</div>
     <div class="card card-desc">
-      <b>kindle-usbnetlite</b> enables USB networking on your Kindle, so you can SSH in from your computer while the Kindle is plugged in via USB.
-      This makes it simple to run commands, manage files, and mod your Kindle—without dealing with the Kindle’s slow on-device terminal.
+      <p>
+        <b>kindle-usbnetlite</b> enables USB networking on your Kindle, so you can SSH in from your computer while the Kindle is plugged in via USB.
+        This makes it simple to run commands, manage files, and mod your Kindle—without dealing with the Kindle’s slow on-device terminal.
+      </p>
     </div>
 
     <div class="section-title">Requirements</div>
@@ -53,26 +58,35 @@
     <div class="section-title">How to Install</div>
     <div class="card card-desc">
       <ol>
-        <li>Download the latest release from <a href="https://github.com/notmarek/kindle-usbnetlite/releases" target="_blank">the kindle-usbnetlite GitHub releases page</a> and extract the contents on your computer.</li>
-        <li>Copy the entire <b>usbnetlite</b> folder to the <b>/extensions</b> directory on your Kindle’s USB storage.</li>
-        <li>Safely eject your Kindle from your computer.</li>
-        <li>On your Kindle, open KUAL and launch <b>kindle-usbnetlite</b> from the menu.</li>
+        <li>
+          <p>Download the latest release from
+            <a href="https://github.com/notmarek/kindle-usbnetlite/releases" target="_blank">
+              the kindle-usbnetlite GitHub releases page
+            </a> and extract the contents on your computer.
+          </p>
+        </li>
+        <li><p>Copy the entire <b>usbnetlite</b> folder to the <b>/extensions</b> directory on your Kindle’s USB storage.</p></li>
+        <li><p>Safely eject your Kindle from your computer.</p></li>
+        <li><p>On your Kindle, open KUAL and launch <b>kindle-usbnetlite</b> from the menu.</p></li>
       </ol>
     </div>
 
     <div class="section-title">How to SSH into Your Kindle Over USB</div>
     <div class="card card-desc">
       <ol>
-        <li>On your Kindle, open KUAL and launch <b>kindle-usbnetlite</b> to enable USB networking.</li>
-        <li>Plug your Kindle into your computer with a USB cable.</li>
-        <li>On your computer, set your USB network interface to IP address <b>192.168.15.201</b> with subnet mask <b>255.255.255.0</b> if it does not configure automatically.</li>
-        <li>Open a terminal on your computer and connect with:<br>
+        <li><p>On your Kindle, open KUAL and launch <b>kindle-usbnetlite</b> to enable USB networking.</p></li>
+        <li><p>Plug your Kindle into your computer with a USB cable.</p></li>
+        <li>
+          <p>On your computer, set your USB network interface to IP address <b>192.168.15.201</b> with subnet mask <b>255.255.255.0</b> if it does not configure automatically.</p>
+        </li>
+        <li>
+          <p>Open a terminal on your computer and connect with:</p>
           <pre><code>ssh root@192.168.15.244</code></pre>
         </li>
-        <li>When prompted for a password, enter: <b>kindle</b></li>
+        <li><p>When prompted for a password, enter: <b>kindle</b></p></li>
       </ol>
       <div class="tip">
-        <b>Tip:</b> If you have trouble connecting, check your network settings.
+        <p><b>Tip:</b> If you have trouble connecting, check your network settings.</p>
       </div>
     </div>
 
