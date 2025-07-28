@@ -136,6 +136,7 @@ a:hover {
   .summary { font-size: .98em; }
 }
 
+/* FAQ styles */
 .faq-box {
   background: rgba(34, 41, 54, 0.93);
   border-left: 5px solid #6cc29e;
@@ -195,26 +196,31 @@ a:hover {
 }
 
 /* Back to Home button, clean and plain */
+
+
+/* Back to Home button, high-contrast white style */
 .back-home-btn {
   position: absolute;
-  right: 24px;
-  top: 32px;
-  padding: 7px 18px 7px 14px;
+  top: 24px;
+  left: 24px;
+  padding: 8px 20px;
   border-radius: 999px;
-  background: rgba(34,41,54,0.93);
-  color: #ececec;
-  border: 1.5px solid #323846;
-  font-size: 1em;
-  font-weight: 500;
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  font-size: 0.98em;
+  font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(16,21,26,0.11);
-  transition: background .18s, color .16s, border-color .14s;
-  z-index: 11;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background .2s, color .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
 }
 .back-home-btn:hover, .back-home-btn:focus {
-  background: #181a20;
-  color: var(--secondary);
-  border-color: var(--secondary);
+  background: var(--primary);
+  color: #fff;
   outline: none;
 }
 @media (max-width: 700px) {
@@ -223,12 +229,15 @@ a:hover {
     display: block;
     margin: 0 auto 18px auto;
     top: unset;
-    right: unset;
     left: unset;
+    right: unset;
+    padding: 9px 18px 9px 14px;
+    font-size: 1em;
   }
 }
 
-.morris-header {
+/* Split/dual section header styles for "Gameboy" and "Morris" page patterns */
+.morris-header, .emulator-header {
   padding: 16px 20px;
   border-radius: 15px 15px 0 0;
   margin-bottom: 0;
@@ -240,12 +249,12 @@ a:hover {
   box-shadow: 0 4px 18px 0 rgba(30,80,128,0.07);
   border-bottom: 2px solid var(--secondary);
 }
-.morris-header.hf {
+.morris-header.hf, .emulator-header.k {
   background: linear-gradient(90deg, #ffe082 0%, #e3fffb 100%);
   color: #0b0e10;
   border-bottom: 2px solid var(--primary);
 }
-.morris-section {
+.morris-section, .emulator-section {
   margin-bottom: 42px;
   background: linear-gradient(115deg, var(--card-bg-start) 80%, var(--card-bg-end) 100%);
   border-radius: 18px;
@@ -253,9 +262,56 @@ a:hover {
   border: 1.5px solid var(--card-border);
   overflow: hidden;
 }
-.morris-body {
+.morris-body, .emulator-body {
   padding: 26px 22px 18px 22px;
 }
 @media (max-width: 700px) {
-  .morris-header, .morris-body { padding-left: 10px; padding-right: 10px; }
+  .morris-header, .morris-body,
+  .emulator-header, .emulator-body {
+    padding-left: 10px; padding-right: 10px;
+  }
+}
+
+/* Search bar styles */
+.search-bar-wrap {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto 32px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#search-bar {
+  width: 100%;
+  font-size: 1.07em;
+  padding: 9px 16px;
+  border-radius: 12px;
+  border: 1.5px solid var(--card-border);
+  background: var(--card-bg-start);
+  color: var(--fg);
+  box-shadow: 0 1px 8px var(--shadow-color);
+  outline: none;
+  transition: border-color .16s;
+  margin-right: 10px;
+}
+#search-bar:focus { border-color: var(--primary); }
+.search-label {
+  font-size: 0.98em;
+  color: var(--secondary);
+  margin-right: 8px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.no-results {
+  color: #f8b2b2;
+  text-align: center;
+  margin: 38px 0 0 0;
+  font-size: 1.18em;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  background: rgba(34,41,54,0.80);
+  border-radius: 12px;
+  padding: 18px;
+  border-left: 5px solid #d9534f;
+  box-shadow: 0 3px 22px rgba(1,25,33,0.06);
 }
