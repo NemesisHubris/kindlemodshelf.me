@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>KAnki Editor (Static, No Backend)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+:root { 
+  --bg:#f0f2f7; 
+  --card:#fff; 
+  --ink:#1a2135; 
+  --muted:#6b7385; 
+  --line:#d7dbea; 
+  --accent:#4267d9; 
+  --accent-hover:#3555c3;
+  --panel:#f9faff; 
+  --kindle-bg: #f5f5f5;
+  --kindle-header: #eaeaea;
+  --kindle-border: #ccc;
+  --kindle-button: #555555;
+  --kindle-hard: #444444;
+  --kindle-good: #666666;
+  --kindle-easy: #888888;
+  --kindle-again: #222222;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.08);
+  --transition: all 0.2s ease-in-out;
+}
+
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; height:100%; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color:#222; }
+body { display:flex; min-height:100vh; background:var(--bg); }
+
+/* Layout */
+#sidebar { width:250px; min-width:200px; background:#fff; border-right:1px solid var(--line); display:flex; flex-direction:column; box-shadow: var(--shadow-sm); z-index: 2; }
+#topbar { height:56px; display:flex; align-items:center; justify-content:space-between; padding:0 14px; border-bottom:1px solid var(--line); background:var(--panel); position:sticky; top:0; z-index:5; box-shadow: var(--shadow-sm); }
+#topbar .title { font-weight:700; color:#27304d; letter-spacing:.2px; }
+#topbar .actions { display:flex; gap:8px; }
+button { cursor:pointer; border:1px solid #cfd5ea; background:#fff; color:#20315a; padding:8px 10px; border-radius:8px; font-weight:600; transition: var(--transition); }
+button:hover { background:#f7f9ff; transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.btn-primary { background: var(--accent); color:#fff; border-color:var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); box-shadow: 0 2px 8px rgba(66, 103, 217, 0.25); }
+.btn-danger { background:#ffefef; color:#a10; border-color:#edc9c9; }
+.btn-danger:hover { background:#ffe0e0; }
+.btn-ghost { background:#fff; color:#20315a; border-color:#dbe1f5; }
+.btn-ghost:hover { background:#f7f9ff; }
+.btn-small { padding:5px 9px; border-radius:6px; font-size:.92em; }
+
+#deckListWrap { padding:10px 10px 14px; overflow:auto; flex: 1; }
+.deckHeader { font-weight:700; color:#2a355a; margin:12px 6px 10px; letter-spacing: 0.3px; }
+#deckList { list-style:none; margin:0; padding:0; }
+.deckItem { display:flex; align-items:center; gap:6px; padding:9px 12px; border-radius:8px; margin-bottom: 2px; transition: var(--transition); }
+.deckItem:hover { background:#f5f8ff; }
+.deckItem.selected { background:#e6eeff; color:#18346d; font-weight:700; }
+.deckItem .spacer { flex:1; }
+.deckItem .del { color:#b33; border:none; background:none; font-size:1.05em; opacity: 0.7; transition: var(--transition); }
+.deckItem .del:hover { opacity: 1; transform: scale(1.1); }
+.deckFoot { padding:10px; border-top:1px solid var(--line); background: var(--panel); }
+
+/* Main */
+#main { flex:1; display:grid; grid-template-columns: 1fr 1fr; gap:0; min-width:0; }
+#cardsPane { display:flex; flex-direction:column; min-width:0; box-shadow: var(--shadow-sm); z-index: 1; background: #fcfcfe; }
+#cardsBar { height:56px; display:flex; align-items:center; gap:10px; padding:0 16px; border-bottom:1px solid var(--line); background:#fff; position:sticky; top:0; z-index:4; box-shadow: var(--shadow-sm); }
+#cardsBar .levelTitle { font-weight:800; color:#202a49; letter-spacing:.2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+#cardsList { flex:1; overflow:auto; padding:10px; scroll-behavior: smooth; }
+.row { display:grid; grid-template-columns: 1.2fr 1.6fr .8fr .6fr; gap:10px; align-items:center; padding:12px; margin:8px 0; background:#fff; border:1px solid var(--line); border-radius:10px; transition: var(--transition); box-shadow: var(--shadow-sm); }
+.row:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.row.selected { outline:2px solid var(--accent); background: #fafcff; }
+.row.visible { background: #f9fbff; }
+.cell { min-width:0; overflow:hidden; text-overflow:ellipsis; color:#2d3557; padding: 4px 0; }
+.cell.muted { color:var(--muted); }
+.row .actions { display:flex; gap:6px; justify-content:flex-end; }
+#cardsFoot { padding:12px 16px; border-top:1px solid var(--line); background:#fff; }
+
+/* Preview */
+#previewPane { border-left:1px solid var(--line); background:#f6f7fb; display:flex; flex-direction:column; min-width:0; overflow:hidden; box-shadow: var(--shadow-sm) inset; }
+#previewBar { height:56px; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:0 14px; border-bottom:1px solid var(--line); background:var(--panel); position:sticky; top:0; z-index:4; box-shadow: var(--shadow-sm); }
+#deviceSel { padding:6px 10px; border-radius:8px; border:1px solid #cfd5ea; background:#fff; box-shadow: var(--shadow-sm); transition: var(--transition); }
+#deviceSel:hover, #deviceSel:focus { border-color: var(--accent); outline: none; box-shadow: 0 1px 4px rgba(66, 103, 217, 0.2); }
+#previewHost { flex:1; display:flex; align-items:center; justify-content:center; padding:20px; overflow:auto; }
+
+/* Kindle Device Styles */
+#device {
+  background:var(--kindle-bg);
+  border-radius:5px;
+  border:1px solid #333;
+  box-shadow:0 10px 28px #1c234040;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  transform-origin:center;
+  filter: grayscale(1);
+  transition: transform 0.3s ease-out;
+}
+
+/* KAnki App Styles */
+#headerBar {
+  margin:0;
+  padding:0;
+  border-bottom:1px solid var(--kindle-border);
+  background-color:var(--kindle-header);
+}
+
+.topBar {
+  width:100%;
+  display:table;
+  table-layout:fixed;
+  border-spacing:0;
+  padding:5px 10px;
+  background-color:var(--kindle-header);
+}
+
+.logoArea {
+  display:table-cell;
+  width:25%;
+  text-align:left;
+  vertical-align:middle;
+}
+
+.infoArea {
+  display:table-cell;
+  width:75%;
+  text-align:right;
+  vertical-align:middle;
+  padding-right:15px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+#title {
+  margin:0;
+  padding:5px 0;
+  font-size:1.6em;
+  text-align:left;
+}
+
+.menuBar {
+  width:98%;
+  margin:0 auto;
+  padding:5px 0;
+  text-align:center;
+  display:table;
+  table-layout:fixed;
+  border-spacing:0;
+  border-top:1px solid #ddd;
+}
+
+.menuSection {
+  display:table-cell;
+  vertical-align:middle;
+  text-align:center;
+}
+
+.menuDivider {
+  display:table-cell;
+  width:10px;
+}
+
+#mainContainer {
+  background-color:var(--kindle-bg);
+  height:calc(100% - 106px);
+  overflow:auto;
+  position:relative;
+}
+
+.card {
+  background-color:white;
+  border-radius:5px;
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  padding:20px;
+  margin:20px auto;
+  width:80%;
+  position:relative;
+  min-height:300px;
+  border:1px solid #000;
+}
+
+.levelBadge {
+  position:absolute;
+  top:10px;
+  right:10px;
+  background-color:#4285f4;
+  color:white;
+  padding:3px 8px;
+  border-radius:3px;
+  font-size:0.8em;
+}
+
+.starButton {
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:none;
+  border:none;
+  font-size:1.5em;
+  cursor:pointer;
+  z-index:10;
+  padding:5px;
+}
+
+.starButton.starred {
+  color:#555;
+}
+
+.cardFront {
+  font-size:2em;
+  font-weight:bold;
+  margin-bottom:20px;
+  margin-top:15px;
+  min-height:60px;
+  font-family:'LanguageFont', sans-serif;
+  white-space: pre-wrap;
+  line-height: 1.25em;
+  padding: 20px 24px 8px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.cardBack {
+  font-size:1.5em;
+  margin-bottom:10px;
+  padding-top:15px;
+  border-top:1px solid #eee;
+  min-height:50px;
+  white-space: pre-wrap;
+  line-height: 1.25em;
+  padding: 15px 24px 8px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.cardNotes {
+  font-size:0.9em;
+  color:#666;
+  font-style:italic;
+  white-space: pre-wrap;
+  line-height: 1.25em;
+  padding: 2px 24px 16px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.cardStats {
+  font-size:0.7em;
+  color:#888;
+  text-align:right;
+  margin-top:15px;
+  padding-top:5px;
+  border-top:1px dashed #eee;
+  font-style:italic;
+  white-space: pre-wrap;
+  line-height: 1.25em;
+  padding: 5px 10px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.buttonContainer {
+  text-align:center;
+  margin:20px 0;
+}
+
+.buttonContainer button {
+  margin:0 5px;
+  padding:5px 10px;
+  border:1px solid #000;
+  border-radius:0;
+  background-color:white;
+}
+
+#showAnswerBtn {
+  padding:12px 25px;
+  margin:8px auto;
+  font-size:1.1em;
+  cursor:pointer;
+  border:1px solid #000;
+  min-width:80%;
+  display:block;
+  border-radius:0;
+}
+
+#intervalButtons {
+  text-align:center;
+  width:100%;
+  height:auto;
+}
+
+.intervalBtn {
+  padding:8px 12px;
+  margin:0 5px;
+  font-size:0.95em;
+  cursor:pointer;
+  border:1px solid #000;
+  min-width:60px;
+  display:inline-block;
+  border-radius:0;
+}
+
+.againBtn {
+  background-color:var(--kindle-again);
+  color:white;
+  font-weight:bold;
+  border-width:2px;
+  min-width:75px;
+}
+
+.hardBtn {
+  background-color:var(--kindle-hard);
+  color:white;
+}
+
+.goodBtn {
+  background-color:var(--kindle-good);
+  color:white;
+}
+
+.easyBtn {
+  background-color:var(--kindle-easy);
+  color:white;
+}
+
+.footer {
+  text-align:center;
+  margin-bottom:20px;
+  font-size:0.8em;
+  color:#666;
+}
+
+/* Create virtual font for preview */
+@font-face {
+  font-family:'LanguageFont';
+  src:url('data:font/woff2;base64,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') format('woff2');
+  font-weight:normal;
+  font-style:normal;
+  font-display:block;
+}
+
+/* Card Editor */
+.editingText { background-color: #f0f8ff; }
+
+/* Loading animation */
+.loading {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+}
+.loading:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 12px solid #ccc;
+  border-color: #ccc transparent #ccc transparent;
+  animation: loading 1.2s infinite;
+}
+@keyframes loading {
+  0% { transform: rotate(0); opacity: 0.8; }
+  100% { transform: rotate(360deg); opacity: 0.2; }
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(32, 49, 90, 0.9);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.toast.show {
+  opacity: 1;
+}
+
+/* Modals */
+.modalBG { 
+  display:none; 
+  position:fixed; 
+  inset:0; 
+  background:rgba(14,18,36,.4); 
+  z-index:10; 
+  align-items:center; 
+  justify-content:center;
+  backdrop-filter: blur(2px);
+}
+.modal { 
+  width:min(680px, 92vw); 
+  background:#fff; 
+  border-radius:12px; 
+  border:1px solid var(--line); 
+  box-shadow:0 18px 60px rgba(12,18,36,0.2); 
+  padding:20px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.2s ease-out;
+}
+.modalBG.active .modal {
+  transform: translateY(0);
+  opacity: 1;
+}
+.modal h3 { 
+  margin:4px 0 16px; 
+  color:#223059; 
+  font-size: 1.25em;
+}
+.grid { 
+  display:grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap:14px; 
+}
+.grid label { 
+  font-size:.9em; 
+  color:#465070; 
+  font-weight:700; 
+  margin-bottom: 4px;
+  display: block;
+}
+.grid input, .grid textarea { 
+  width:100%; 
+  padding:10px 12px; 
+  border-radius:8px; 
+  border:1px solid #cfd5ea; 
+  background:#fff;
+  transition: var(--transition);
+}
+.grid input:focus, .grid textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 103, 217, 0.1);
+}
+.grid textarea { 
+  min-height:80px; 
+  resize:vertical; 
+}
+.modalFoot { 
+  margin-top:20px; 
+  display:flex; 
+  justify-content:flex-end; 
+  gap:10px; 
+}
+.onecol { grid-template-columns: 1fr; }
+.muted { color:#79819e; }
+
+/* Empty states */
+.empty { 
+  color:#6c7390; 
+  text-align:center; 
+  padding:40px 20px;
+  background: #fbfcff;
+  border-radius: 12px;
+  border: 1px dashed #d7dbea;
+  margin: 20px;
+}
+.empty-icon {
+  font-size: 2em;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f2f7;
+}
+::-webkit-scrollbar-thumb {
+  background: #c8cdd9;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a9bb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+  #main {
+    grid-template-columns: 1fr;
+  }
+  #previewPane {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+<div id="topbar">
+<div class="title">KAnki Editor</div>
+<div class="actions">
+<input id="fileInput" type="file" accept=".js" style="display:none" />
+<button class="btn-ghost btn-small" id="btnImport">Import</button>
+<button class="btn-primary btn-small" id="btnExport" disabled>Export</button>
+</div>
+</div>
+<div id="deckListWrap">
+<div class="deckHeader">Decks / Levels</div>
+<ul id="deckList"></ul>
+</div>
+<div class="deckFoot">
+<button id="btnAddDeck" class="btn-ghost">+ Add Deck</button>
+</div>
+</aside>
+
+<!-- MAIN -->
+<main id="main">
+<!-- Cards -->
+<section id="cardsPane">
+<div id="cardsBar">
+<div class="levelTitle" id="levelTitle">(no deck selected)</div>
+<div style="margin-left:auto; display:flex; gap:8px;">
+<button id="btnAddCard" class="btn-ghost btn-small" disabled>+ Add Card</button>
+</div>
+</div>
+<div id="cardsList"></div>
+<div id="cardsFoot"></div>
+</section>
+
+<!-- Preview -->
+<aside id="previewPane">
+<div id="previewBar">
+<div class="muted">Live Preview</div>
+<div>
+<label class="muted" for="deviceSel">Kindle size:</label>
+<select id="deviceSel">
+<option value="340,480">Basic (340×480)</option>
+<option value="360,540" selected>Paperwhite 3/4 (360×540)</option>
+<option value="412,600">PW5 / Oasis (412×600)</option>
+<option value="514,660">Oasis 3 / Signature (514×660)</option>
+<option value="640,900">Scribe-ish (640×900)</option>
+</select>
+</div>
+</div>
+<div id="previewHost">
+<div id="device" style="width:360px; height:540px;">
+<!-- KAnki App HTML Structure -->
+<div id="headerBar">
+  <div class="topBar">
+    <div class="logoArea">
+      <h1 id="title">KAnki</h1>
+    </div>
+    <div class="infoArea">
+      <div id="progressDisplay" class="progressBar">Cards: 0/0 (0%)</div>
+      <div id="levelDisplay" class="levelDisplay">Current Deck: None</div>
+    </div>
+  </div>
+  <div class="menuBar">
+    <div id="levelButtons" class="menuSection">
+      <button class="active">All Levels</button>
+    </div>
+    <div class="menuDivider"></div>
+    <div id="toolButtons" class="menuSection">
+      <button id="starredFilterBtn">★ Star</button>
+      <button id="reverseToggleBtn">↔ Flip</button>
+    </div>
+  </div>
+</div>
+
+<div id="mainContainer">
+  <div id="cardContainer" class="card">
+    <div id="levelBadge" class="levelBadge">Deck</div>
+    <button id="starButton" class="starButton">☆</button>
+    <div id="cardFront" class="cardFront">Import a file to start</div>
+    <div id="cardBack" class="cardBack"></div>
+    <div id="cardNotes" class="cardNotes"></div>
+    <div id="cardStats" class="cardStats"></div>
+  </div>
+
+  <div id="controlButtons" class="buttonContainer">
+    <button id="showAnswerBtn">Show Answer</button>
+    <div id="intervalButtons" style="display: none;">
+      <button class="intervalBtn againBtn">Again<br>&lt;10m</button>
+      <button class="intervalBtn hardBtn">Hard<br>1d</button>
+      <button class="intervalBtn goodBtn">Good<br>3d</button>
+      <button class="intervalBtn easyBtn">Easy<br>7d</button>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>v1.1.0</p>
+</div>
+</div>
+</div>
+</aside>
+</main>
+
+<!-- CARD MODAL -->
+<div id="cardModalBG" class="modalBG">
+<div class="modal">
+<h3 id="cardModalTitle">Add/Edit Card</h3>
+<div id="cardFields" class="grid"></div>
+<div class="modalFoot">
+<button id="btnCancelCard" class="btn-ghost">Cancel</button>
+<button id="btnSaveCard" class="btn-primary">Save</button>
+</div>
+</div>
+</div>
+
+<!-- DECK MODAL -->
+<div id="deckModalBG" class="modalBG">
+<div class="modal">
+<h3>Add Deck/Level</h3>
+<div class="grid onecol">
+<label for="deckName">Deck/Level name</label>
+<input id="deckName" placeholder="e.g., AirspeedSymbols" />
+</div>
+<div class="modalFoot">
+<button id="btnCancelDeck" class="btn-ghost">Cancel</button>
+<button id="btnSaveDeck" class="btn-primary">Add</button>
+</div>
+</div>
+</div>
+
+<!-- Toast notification -->
+<div id="toast" class="toast"></div>
+
+<script>
+/* ===== State ===== */
+let allDecks = {}; // { level: [ {front, back, ...}, ... ] }
+let levels = []; // [levelName, ...]
+let selectedLevel = '';
+let selectedCardIndex = -1;
+let customFields = new Set(['front','back','notes','reading']);
+let importedFileName = 'kanki_config.js';
+let importedLanguage = 'Deck';
+let editingDraft = null; // holds draft data while editing (for live preview)
+let isEditExisting = false;
+let lastVisibleCardIdx = -1; // Track last visible card for scroll sync
+
+/* ===== Dom helpers ===== */
+const $ = sel => document.querySelector(sel);
+const $$ = sel => document.querySelectorAll(sel);
+function el(tag, props={}, children=[]) {
+  const n = document.createElement(tag);
+  Object.assign(n, props);
+  for (const c of (Array.isArray(children)?children:[children])) {
+    if (typeof c === 'string') n.appendChild(document.createTextNode(c));
+    else if (c) n.appendChild(c);
+  }
+  return n;
+}
+function escapeHTML(txt='') {
+  return String(txt).replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+}
+
+/* ===== Toast Notification ===== */
+function showToast(message, duration = 3000) {
+  const toast = $('#toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, duration);
+}
+
+/* ===== Modal Controls ===== */
+function openModal(id) {
+  const modal = $(`#${id}`);
+  modal.style.display = 'flex';
+  
+  // Trigger animation after display is set
+  setTimeout(() => {
+    modal.classList.add('active');
+  }, 10);
+}
+
+function closeModal(id) {
+  const modal = $(`#${id}`);
+  modal.classList.remove('active');
+  
+  // Wait for animation to complete before hiding
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 200);
+}
+
+/* ===== Import / Parse ===== */
+$('#btnImport').addEventListener('click', ()=> $('#fileInput').click());
+$('#fileInput').addEventListener('change', (e)=>{
+  const f = e.target.files[0];
+  if (!f) return;
+  importedFileName = f.name || 'kanki_config.js';
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const jsText = String(ev.target.result || '');
+      // Create a sandboxed function scope for var declarations from file
+      const fn = new Function(
+        jsText + '\nreturn {KANKI_CONFIG: (typeof KANKI_CONFIG!=="undefined"?KANKI_CONFIG:null), VOCABULARY: (typeof VOCABULARY!=="undefined"?VOCABULARY:null)};'
+      );
+      const parsed = fn();
+      if (!parsed || !parsed.VOCABULARY || typeof parsed.VOCABULARY !== 'object') {
+        throw new Error('Could not find a valid VOCABULARY object.');
+      }
+      allDecks = {};
+      levels = [];
+      customFields = new Set(['front','back','notes','reading']);
+      importedLanguage = (parsed.KANKI_CONFIG && parsed.KANKI_CONFIG.language) ? parsed.KANKI_CONFIG.language : 'Deck';
+      for (const key of Object.keys(parsed.VOCABULARY)) {
+        const list = Array.isArray(parsed.VOCABULARY[key]) ? parsed.VOCABULARY[key] : [];
+        allDecks[key] = list.map(c => ({...c}));
+        levels.push(key);
+        list.forEach(card => Object.keys(card||{}).forEach(f=>customFields.add(f)));
+      }
+      if (levels.length === 0) {
+        selectedLevel = ''; selectedCardIndex = -1;
+      } else {
+        selectedLevel = levels[0]; selectedCardIndex = 0;
+      }
+      editingDraft = null;
+      isEditExisting = false;
+      renderAll();
+      $('#btnExport').disabled = false;
+      $('#btnAddCard').disabled = !selectedLevel;
+      showToast("File imported successfully!");
+    } catch (err) {
+      showToast("Error: Could not parse file", 5000);
+      alert('Could not parse kanki_config.js:\n' + err.message);
+    }
+  };
+  reader.readAsText(f);
+  // reset input so user can re-import same file later
+  e.target.value = '';
+});
+
+/* ===== Export ===== */
+$('#btnExport').addEventListener('click', ()=>{
+  if (!levels.length) {
+    showToast('Nothing to export. Import a file first.'); 
+    return;
+  }
+  const safeLanguage = importedLanguage || 'Deck';
+  const config = `var KANKI_CONFIG = {
+  language: ${JSON.stringify(safeLanguage)},
+  levels: [${levels.map(l=>JSON.stringify(l)).join(', ')}]
+};`;
+
+  const vocab = 'var VOCABULARY = {\n' + levels.map(level => {
+    const cards = (allDecks[level] || []).map(c => JSON.stringify(c)).join(',\n  ');
+    return `  ${JSON.stringify(level)}: [\n  ${cards}\n  ]`;
+  }).join(',\n') + '\n};\n';
+
+  const out = `/**\n * KAnki Configuration (exported)\n */\n${config}\n\n/**\n * Flashcards (exported)\n */\n${vocab}`;
+  const blob = new Blob([out], {type: 'application/javascript'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = importedFileName || 'kanki_config.js';
+  a.click();
+  showToast("File exported successfully!");
+});
+
+/* ===== Decks UI ===== */
+function renderDecks() {
+  const ul = $('#deckList');
+  ul.innerHTML = '';
+  
+  if (!levels.length) {
+    ul.appendChild(el('li', { className: 'empty' }, [
+      el('div', { className: 'empty-icon' }, '📚'),
+      el('div', {}, 'No decks yet. Import a file or add a deck to begin.')
+    ]));
+    return;
+  }
+  
+  levels.forEach(level => {
+    const li = el('li', { className: 'deckItem' + (selectedLevel === level ? ' selected' : '') }, [
+      el('span', {}, level),
+      el('span', { className:'spacer' }),
+      el('button', { className:'del', title:'Delete deck', onclick: (e)=>{ e.stopPropagation(); deleteDeck(level); } }, '✕')
+    ]);
+    li.addEventListener('click', ()=>{
+      selectedLevel = level; selectedCardIndex = 0; editingDraft = null;
+      $('#btnAddCard').disabled = false;
+      renderAll();
+    });
+    ul.appendChild(li);
+  });
+}
+
+$('#btnAddDeck').addEventListener('click', ()=> {
+  openModal('deckModalBG');
+  $('#deckName').value = '';
+  setTimeout(()=> $('#deckName').focus(), 30);
+});
+
+$('#btnCancelDeck').addEventListener('click', ()=> closeModal('deckModalBG'));
+
+$('#btnSaveDeck').addEventListener('click', ()=>{
+  const name = ($('#deckName').value || '').trim();
+  if (!name) return;
+  if (levels.includes(name)) { 
+    showToast('Deck already exists.'); 
+    return; 
+  }
+  allDecks[name] = [];
+  levels.push(name);
+  selectedLevel = name;
+  selectedCardIndex = -1;
+  closeModal('deckModalBG');
+  $('#btnAddCard').disabled = false;
+  renderAll();
+  showToast(`Deck "${name}" created!`);
+});
+
+function deleteDeck(level) {
+  if (!confirm(`Delete deck "${level}" and all its cards?`)) return;
+  levels = levels.filter(l => l !== level);
+  delete allDecks[level];
+  if (selectedLevel === level) {
+    selectedLevel = levels[0] || '';
+    selectedCardIndex = selectedLevel ? 0 : -1;
+  }
+  renderAll();
+  showToast(`Deck "${level}" deleted`);
+}
+
+/* ===== Cards UI ===== */
+$('#btnAddCard').addEventListener('click', ()=> openCardModal(null));
+
+function renderCards() {
+  $('#levelTitle').textContent = selectedLevel ? `Deck: ${selectedLevel}` : '(no deck selected)';
+  const list = $('#cardsList');
+  list.innerHTML = '';
+  
+  if (!selectedLevel) {
+    list.appendChild(el('div', {className:'empty'}, [
+      el('div', { className: 'empty-icon' }, '📝'),
+      el('div', {}, 'Import a file or add a deck to begin.')
+    ]));
+    return;
+  }
+  
+  const cards = allDecks[selectedLevel] || [];
+  
+  if (!cards.length) {
+    list.appendChild(el('div', {className:'empty'}, [
+      el('div', { className: 'empty-icon' }, '✨'),
+      el('div', {}, 'No cards yet — add your first card.')
+    ]));
+    return;
+  }
+  
+  // Create cards
+  cards.forEach((card, i) => {
+    const row = el('div', { className: 'row' + (i === selectedCardIndex ? ' selected' : ''), id: `card-${i}` });
+    row.dataset.index = i;
+    
+    row.addEventListener('click', ()=>{ 
+      selectedCardIndex = i; 
+      editingDraft = null; 
+      renderPreview(); 
+      highlightSelectedRow(); 
+    });
+    
+    const c1 = el('div', { className:'cell' }, escapeHTML(card.front || ''));
+    const c2 = el('div', { className:'cell' }, escapeHTML(card.back || ''));
+    const c3 = el('div', { className:'cell muted' }, escapeHTML(card.notes || card.reading || ''));
+    const actions = el('div', { className:'actions' }, [
+      el('button', { className:'btn-small', onclick:(e)=>{ e.stopPropagation(); openCardModal(i); } }, 'Edit'),
+      el('button', { className:'btn-small', onclick:(e)=>{ e.stopPropagation(); duplicateCard(i); } }, 'Dup'),
+      el('button', { className:'btn-small btn-danger', onclick:(e)=>{ e.stopPropagation(); deleteCard(i); } }, 'Del')
+    ]);
+    row.appendChild(c1); 
+    row.appendChild(c2); 
+    row.appendChild(c3); 
+    row.appendChild(actions);
+    list.appendChild(row);
+  });
+  
+  // Set up intersection observer to track visible cards
+  setupCardVisibilityObserver();
+}
+
+function setupCardVisibilityObserver() {
+  // Remove any existing observer
+  if (window.cardObserver) {
+    window.cardObserver.disconnect();
+  }
+  
+  // Create a new IntersectionObserver
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const cardElement = entry.target;
+      const cardIndex = parseInt(cardElement.dataset.index, 10);
+      
+      if (entry.isIntersecting) {
+        // Add visible class
+        cardElement.classList.add('visible');
+        
+        // Update the preview to follow scroll if not actively editing
+        if (!editingDraft && lastVisibleCardIdx !== cardIndex) {
+          lastVisibleCardIdx = cardIndex;
+          // Only update the preview, not selection
+          updatePreviewWithoutSelection(cardIndex);
+        }
+      } else {
+        // Remove visible class
+        cardElement.classList.remove('visible');
+      }
+    });
+  }, {
+    root: $('#cardsList'),
+    threshold: 0.7 // 70% of card must be visible
+  });
+  
+  // Observe all card rows
+  $$('#cardsList .row').forEach(card => {
+    observer.observe(card);
+  });
+  
+  // Store the observer for later cleanup
+  window.cardObserver = observer;
+}
+
+function updatePreviewWithoutSelection(cardIndex) {
+  if (!selectedLevel) return;
+  
+  const cards = allDecks[selectedLevel] || [];
+  if (cardIndex >= 0 && cardIndex < cards.length) {
+    const card = cards[cardIndex];
+    
+    // Update preview without changing selection
+    $('#levelBadge').textContent = selectedLevel;
+    $('#cardFront').textContent = card.front || '';
+    $('#cardBack').textContent = card.back || '';
+    $('#cardNotes').textContent = card.notes || '';
+    
+    // Update progress display
+    const totalCards = cards.length;
+    const currentCard = cardIndex + 1;
+    const percent = totalCards > 0 ? Math.round((currentCard / totalCards) * 100) : 0;
+    $('#progressDisplay').textContent = `Cards: ${currentCard}/${totalCards} (${percent}%)`;
+    $('#levelDisplay').textContent = `Current Deck: ${selectedLevel}`;
+    
+    // Add stats
+    let statsHtml = '';
+    if (card.reading) {
+      statsHtml += `Reading: ${card.reading}<br>`;
+    }
+    
+    // Add any other custom fields to stats
+    for (const k of Object.keys(card)) {
+      if (['front','back','notes','reading'].includes(k)) continue;
+      statsHtml += `${k}: ${card[k]}<br>`;
+    }
+    
+    if (statsHtml) {
+      $('#cardStats').innerHTML = statsHtml;
+      $('#cardStats').style.display = 'block';
+    } else {
+      $('#cardStats').style.display = 'none';
+    }
+  }
+}
+function highlightSelectedRow() {
+  $$('#cardsList .row').forEach((r, idx)=> {
+    if (idx === selectedCardIndex) {
+      r.classList.add('selected');
+      
+      // Scroll into view if needed
+      const list = $('#cardsList');
+      const rowTop = r.offsetTop;
+      const rowBottom = rowTop + r.offsetHeight;
+      const listTop = list.scrollTop;
+      const listBottom = listTop + list.offsetHeight;
+      
+      if (rowTop < listTop) {
+        r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (rowBottom > listBottom) {
+        r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    } else {
+      r.classList.remove('selected');
+    }
+  });
+}
+
+function openCardModal(index) {
+  isEditExisting = (index !== null && index !== undefined);
+  selectedCardIndex = isEditExisting ? index : selectedCardIndex;
+  const cards = allDecks[selectedLevel] = allDecks[selectedLevel] || [];
+  const card = isEditExisting ? (cards[index] || {}) : {};
+  editingDraft = {...card};
+  
+  // Build fields (front, back, reading, notes + custom)
+  const fields = Array.from(new Set([...customFields, ...Object.keys(card||{})]));
+  const wrap = $('#cardFields');
+  wrap.innerHTML = '';
+  
+  // two-column grid; make inputs
+  fields.forEach(f=>{
+    const label = el('label', {}, f.toUpperCase());
+    const isTextarea = (f === 'back' || f === 'notes');
+    const input = isTextarea ? el('textarea', { value: card[f] || '' }) : el('input', { value: card[f] || '' });
+    input.dataset.field = f;
+    input.addEventListener('input', ()=>{
+      editingDraft[f] = input.value;
+      renderPreview(); // live preview while editing
+    });
+    wrap.appendChild(label);
+    wrap.appendChild(input);
+  });
+  
+  $('#cardModalTitle').textContent = isEditExisting ? 'Edit Card' : 'Add Card';
+  openModal('cardModalBG');
+  setTimeout(()=> (wrap.querySelector('input,textarea')||{}).focus?.(), 30);
+}
+
+$('#btnCancelCard').addEventListener('click', ()=> { 
+  closeModal('cardModalBG'); 
+  editingDraft = null; 
+  renderPreview(); 
+});
+
+$('#btnSaveCard').addEventListener('click', ()=>{
+  if (!selectedLevel) return;
+  const wrap = $('#cardFields');
+  const inputs = wrap.querySelectorAll('input,textarea');
+  const next = {};
+  inputs.forEach(inp=>{
+    const f = inp.dataset.field;
+    const v = inp.value;
+    if (v && v.length) next[f] = v;
+  });
+  
+  // Expand custom fields set so future edits keep them visible
+  Object.keys(next).forEach(f => customFields.add(f));
+  const cards = allDecks[selectedLevel] = allDecks[selectedLevel] || [];
+  
+  if (isEditExisting && selectedCardIndex >= 0 && selectedCardIndex < cards.length) {
+    cards[selectedCardIndex] = next;
+  } else {
+    cards.push(next);
+    selectedCardIndex = cards.length - 1;
+  }
+  
+  closeModal('cardModalBG');
+  editingDraft = null;
+  renderAll();
+  showToast("Card saved successfully!");
+});
+
+function deleteCard(i) {
+  if (!selectedLevel) return;
+  const cards = allDecks[selectedLevel] || [];
+  if (!confirm('Delete this card?')) return;
+  cards.splice(i, 1);
+  if (selectedCardIndex >= cards.length) selectedCardIndex = Math.max(0, cards.length-1);
+  editingDraft = null;
+  renderAll();
+  showToast("Card deleted");
+}
+
+function duplicateCard(i) {
+  if (!selectedLevel) return;
+  const cards = allDecks[selectedLevel] || [];
+  cards.splice(i+1, 0, {...cards[i]});
+  selectedCardIndex = i+1;
+  renderAll();
+  showToast("Card duplicated");
+}
+
+/* ===== Preview ===== */
+$('#deviceSel').addEventListener('change', ()=>{
+  const [w, h] = $('#deviceSel').value.split(',').map(x=>parseInt(x, 10));
+  updateDeviceSize(w, h);
+  renderPreview();
+});
+
+function updateDeviceSize(width, height) {
+  const container = $('#previewHost');
+  const device = $('#device');
+  
+  // Set the basic dimensions
+  device.style.width = width + 'px';
+  device.style.height = height + 'px';
+  
+  // Calculate if we need to scale down to fit viewport
+  const hostWidth = container.offsetWidth - 40; // 40px for padding
+  const hostHeight = container.offsetHeight - 40;
+  
+  // If device is bigger than available space, scale it down
+  if (width > hostWidth || height > hostHeight) {
+    const scaleX = hostWidth / width;
+    const scaleY = hostHeight / height;
+    const scale = Math.min(scaleX, scaleY);
+    
+    device.style.transform = `scale(${scale})`;
+    device.style.transformOrigin = 'center center';
+  } else {
+    device.style.transform = 'none';
+  }
+  
+  // Adjust card container size based on device size
+  const card = $('#cardContainer');
+  card.style.width = Math.min(width * 0.8, width - 40) + 'px';
+}
+
+function renderPreview() {
+  if (!selectedLevel) {
+    // No deck selected state
+    $('#levelBadge').textContent = '';
+    $('#cardFront').textContent = 'Import a file to start';
+    $('#cardBack').textContent = '';
+    $('#cardNotes').textContent = '';
+    $('#cardStats').textContent = '';
+    $('#progressDisplay').textContent = 'Cards: 0/0 (0%)';
+    $('#levelDisplay').textContent = 'Current Deck: None';
+    $('#showAnswerBtn').style.display = 'block';
+    $('#intervalButtons').style.display = 'none';
+    return;
+  }
+  
+  const cards = allDecks[selectedLevel] || [];
+  
+  if (cards.length === 0) {
+    // Empty deck
+    $('#levelBadge').textContent = selectedLevel;
+    $('#cardFront').textContent = 'No cards yet in this deck';
+    $('#cardBack').textContent = '';
+    $('#cardNotes').textContent = '';
+    $('#cardStats').textContent = '';
+    $('#progressDisplay').textContent = 'Cards: 0/0 (0%)';
+    $('#levelDisplay').textContent = `Current Deck: ${selectedLevel}`;
+    $('#showAnswerBtn').style.display = 'block';
+    $('#intervalButtons').style.display = 'none';
+    return;
+  }
+  
+  const baseCard = (selectedCardIndex >= 0 && cards[selectedCardIndex]) ? cards[selectedCardIndex] : {};
+  const card = editingDraft ? {...baseCard, ...editingDraft} : baseCard;
+  
+  // Update Kindle app UI elements
+  $('#levelBadge').textContent = selectedLevel;
+  $('#cardFront').textContent = card.front || '';
+  $('#cardBack').textContent = card.back || '';
+  $('#cardNotes').textContent = card.notes || '';
+  
+  // Update progress display
+  const totalCards = cards.length;
+  const currentCard = selectedCardIndex + 1;
+  const percent = totalCards > 0 ? Math.round((currentCard / totalCards) * 100) : 0;
+  $('#progressDisplay').textContent = `Cards: ${currentCard}/${totalCards} (${percent}%)`;
+  $('#levelDisplay').textContent = `Current Deck: ${selectedLevel}`;
+  
+  // Add stats
+  let statsHtml = '';
+  if (card.reading) {
+    statsHtml += `Reading: ${card.reading}<br>`;
+  }
+  
+  // Add any other custom fields to stats
+  for (const k of Object.keys(card)) {
+    if (['front','back','notes','reading'].includes(k)) continue;
+    statsHtml += `${k}: ${card[k]}<br>`;
+  }
+  
+  if (statsHtml) {
+    $('#cardStats').innerHTML = statsHtml;
+    $('#cardStats').style.display = 'block';
+  } else {
+    $('#cardStats').style.display = 'none';
+  }
+  
+  // Show the Show Answer button
+  $('#showAnswerBtn').style.display = 'block';
+  $('#intervalButtons').style.display = 'none';
+}
+
+/* ===== Button Actions ===== */
+$('#showAnswerBtn').addEventListener('click', () => {
+  $('#showAnswerBtn').style.display = 'none';
+  $('#intervalButtons').style.display = 'block';
+});
+
+$('#starButton').addEventListener('click', () => {
+  const button = $('#starButton');
+  if (button.textContent === '☆') {
+    button.textContent = '★';
+    button.classList.add('starred');
+  } else {
+    button.textContent = '☆';
+    button.classList.remove('starred');
+  }
+});
+
+/* ===== Window resize handler ===== */
+window.addEventListener('resize', () => {
+  const [w, h] = $('#deviceSel').value.split(',').map(x=>parseInt(x, 10));
+  updateDeviceSize(w, h);
+});
+
+/* ===== Render root ===== */
+function renderAll() {
+  renderDecks();
+  renderCards();
+  renderPreview();
+  $('#btnExport').disabled = levels.length === 0;
+  $('#btnAddCard').disabled = !selectedLevel;
+  
+  // Make sure device size is correct
+  const [w, h] = $('#deviceSel').value.split(',').map(x=>parseInt(x, 10));
+  updateDeviceSize(w, h);
+}
+
+/* ===== First load: prompt import ===== */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    $('#fileInput').click();
+    renderAll(); // Initialize UI
+  }, 400);
+});
+</script>
+</body>
+</html>
