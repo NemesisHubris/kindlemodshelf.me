@@ -36,6 +36,13 @@
       <b>KAnki</b> is an open-source flashcard app that brings true spaced repetition learning to Kindle e-readers. Study any language or subject, customize your decks, and track your progress—right from your Kindle.
     </div>
 
+    <section aria-labelledby="editor">
+      <h2 class="section-title" id="editor">Web Flashcard Editor</h2>
+      <div class="card card-desc">
+        You can create, import, edit, and organize your KAnki flashcard decks in your browser using the <a href="https://kindlemodshelf.me/editor.html" target="_blank" rel="noopener">KAnki Web Editor</a> by KindleModShelf. The editor lets you import your KAnki flashcard file, add and edit cards and decks, and see a live preview of what your cards will look like on your Kindle, with the ability to change the preview to match your Kindle model. For the best experience, use it on desktop or laptop.
+      </div>
+    </section>
+
     <section aria-labelledby="about">
       <h2 class="section-title" id="about">About KAnki</h2>
       <div class="card card-desc">
@@ -74,7 +81,9 @@
           <li>Connect your Kindle to your computer via USB and unzip the downloaded file.</li>
           <li>Customize for your language:
             <ul>
-              <li>Edit <code>kanki/js/kanki_config.js</code> to set up your language, levels, and vocabulary.</li>
+              <li>Edit <code>kanki/js/kanki_config.js</code> to set up your language, levels, and vocabulary.<br>
+                <span style="color:#9bbcd1;">(You can use the <a href="https://kindlemodshelf.me/editor.html" target="_blank" rel="noopener">KAnki Web Editor</a> for this step!)</span>
+              </li>
               <li>Add a compatible TTF font for your language, rename to <b>language.ttf</b>, and place in <code>kanki/assets/fonts/language.ttf</code>.</li>
             </ul>
           </li>
@@ -114,7 +123,9 @@
       <div class="card card-desc">
         <ol>
           <li>Add a TTF font for your language in <code>kanki/assets/fonts/language.ttf</code>.</li>
-          <li>Edit <code>kanki/js/kanki_config.js</code> for your language, levels, and vocabulary.</li>
+          <li>Edit <code>kanki/js/kanki_config.js</code> for your language, levels, and vocabulary.<br>
+            <span style="color:#9bbcd1;">(Tip: Use the <a href="https://kindlemodshelf.me/editor.html" target="_blank" rel="noopener">KAnki Web Editor</a> for this!)</span>
+          </li>
           <li>For languages with special scripts, add a <code>reading</code> field as needed.</li>
         </ol>
         <b>Example deck setup:</b>
