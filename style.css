@@ -25,7 +25,7 @@ body {
 .container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 32px 16px 48px;
+  padding: 64px 16px 48px; /* Increased top padding for back-home-btn */
   position: relative;
 }
 
@@ -195,44 +195,67 @@ a:hover {
   border: none;
 }
 
-/* Back to Home button, clean and plain */
-
-
-/* Back to Home button, high-contrast white style */
-.back-home-btn {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-  padding: 8px 20px;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  font-size: 0.98em;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  transition: background .2s, color .2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  z-index: 100;
+/* Kindle-style ultra-subtle button */
+.kindle-btn {
+  background: rgba(30, 34, 44, 0.45);
+  color: #98b6cb;
+  font-size: 1em;
+  padding: 9px 20px;
+  border: 1.5px solid rgba(103,223,255,0.17);
+  border-radius: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: none;
+  transition: 
+    background 0.16s,
+    color 0.15s,
+    border-color 0.16s;
 }
-.back-home-btn:hover, .back-home-btn:focus {
-  background: var(--primary);
-  color: #fff;
+.kindle-btn:hover, .kindle-btn:focus {
+  background: rgba(55, 70, 85, 0.57);
+  color: #b5e4ff;
+  border-color: #67dfff77;
   outline: none;
 }
+
+/* Back to Home button, also ultra subtle and never white */
+.back-home-btn {
+  display: inline-block;
+  margin-bottom: 24px;
+  padding: 7px 16px 7px 14px;
+  border-radius: 999px;
+  background: rgba(28, 34, 44, 0.40);
+  color: #98b6cb;
+  border: 1.5px solid rgba(103,223,255,0.15);
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: none;
+  transition: background 0.14s, color 0.14s, border-color 0.14s;
+  vertical-align: middle;
+}
+.back-home-btn:hover, .back-home-btn:focus {
+  background: rgba(60, 70, 90, 0.55);
+  color: #b5e4ff;
+  border-color: #67dfff55;
+  outline: none;
+}
+
+/* On mobile, make back-home-btn static, always at top, and reduce container top padding */
 @media (max-width: 700px) {
   .back-home-btn {
     position: static;
     display: block;
     margin: 0 auto 18px auto;
+    padding: 9px 18px 9px 14px;
+    font-size: 1em;
     top: unset;
     left: unset;
     right: unset;
-    padding: 9px 18px 9px 14px;
-    font-size: 1em;
+  }
+  .container {
+    padding-top: 28px !important;
   }
 }
 
