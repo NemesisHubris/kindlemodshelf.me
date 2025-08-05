@@ -12,9 +12,123 @@
   <meta property="og:url" content="https://kindlemodshelf.me/images.html">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    /* Override the placeholder style that's blocking images */
+    /* Override problematic CSS styles that hide images */
     .img-thumb-wrap::before {
-      display: none !important; /* Remove the blocking layer */
+      display: none !important;
+    }
+    .img-thumb {
+      opacity: 1 !important;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      padding: 5px;
+    }
+    .img-thumb-wrap {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      background: #191c22;
+    }
+    .img-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    /* Image Viewer Modal Styles */
+    #img-viewer-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    #img-viewer-modal.active {
+      opacity: 1;
+    }
+    #img-viewer-img-wrap {
+      position: relative;
+      max-width: 90%;
+      max-height: 90vh;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+    #img-viewer-img {
+      display: block;
+      max-width: 100%;
+      max-height: 90vh;
+      margin: 0 auto;
+      cursor: zoom-out;
+    }
+    #img-viewer-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 30px;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1010;
+      opacity: 0.7;
+    }
+    #img-viewer-download {
+      position: absolute;
+      top: 12px;
+      right: 50px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1010;
+      opacity: 0.7;
+    }
+    
+    /* Loading indicator */
+    .loader {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid var(--primary);
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Load more button */
+    .load-more-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 8px 16px;
+      background: rgba(30, 34, 44, 0.45);
+      color: #98b6cb;
+      border: 1.5px solid rgba(103,223,255,0.17);
+      border-radius: 10px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .load-more-btn:hover {
+      background: rgba(55, 70, 85, 0.57);
+      color: #b5e4ff;
+      border-color: #67dfff77;
     }
   </style>
 </head>
@@ -40,16 +154,15 @@
             <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12" stroke="#ffe082" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <div id="img-viewer-loader"></div>
         <img id="img-viewer-img" src="" alt="Large view" draggable="false">
       </div>
     </div>
   </div>
   <script>
     // Configuration
-    const INITIAL_AUTHORS = 10;       // Number of authors to load initially
-    const LOAD_MORE_AUTHORS = 5;      // Number of authors to load when scrolling
-    const IMAGES_PER_ROW = 5;         // Maximum initial images per author (one row)
+    const INITIAL_AUTHORS = 10;
+    const LOAD_MORE_AUTHORS = 5;
+    const IMAGES_PER_ROW = 5;
     
     let allAuthors = [];
     let allData = null;
@@ -91,7 +204,7 @@
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       
-      // Load more when user scrolls near the bottom (200px threshold)
+      // Load more when user scrolls near the bottom
       if (scrollY + windowHeight > documentHeight - 200) {
         loadMoreAuthors(LOAD_MORE_AUTHORS);
       }
@@ -107,7 +220,6 @@
       const galleryRoot = document.getElementById('gallery-root');
       const endIndex = Math.min(loadedAuthors + count, allAuthors.length);
       
-      // Use setTimeout to prevent UI blocking
       setTimeout(() => {
         for (let i = loadedAuthors; i < endIndex; i++) {
           const author = allAuthors[i];
@@ -118,7 +230,6 @@
           const section = document.createElement('section');
           section.setAttribute('aria-labelledby', sectionId);
           
-          // Show only first row of images initially
           const hasMore = images.length > IMAGES_PER_ROW;
           const initialImages = hasMore ? images.slice(0, IMAGES_PER_ROW) : images;
           
@@ -132,13 +243,11 @@
           
           galleryRoot.appendChild(section);
           
-          // Add initial images (just one row)
           const grid = document.getElementById(`grid-${sectionId}`);
           initialImages.forEach(filename => {
             addImageToGrid(grid, author, filename);
           });
           
-          // Add event listener for "Show More" button
           if (hasMore) {
             const showMoreBtn = section.querySelector('.load-more-btn');
             showMoreBtn.addEventListener('click', function() {
@@ -146,7 +255,7 @@
               remainingImages.forEach(filename => {
                 addImageToGrid(grid, author, filename);
               });
-              this.remove(); // Remove the button after showing all images
+              this.remove();
             });
           }
         }
@@ -155,11 +264,10 @@
         isLoading = false;
         loadingIndicator.style.display = 'none';
         
-        // If we've loaded all authors, remove the scroll listener
         if (loadedAuthors >= allAuthors.length) {
           window.removeEventListener('scroll', handleScroll);
         }
-      }, 50); // Small delay to allow UI to breathe
+      }, 50);
     }
 
     function addImageToGrid(grid, author, filename) {
@@ -167,16 +275,15 @@
       const cell = document.createElement('div');
       cell.className = "img-thumb-wrap";
       
-      // Create the image element
       const img = document.createElement('img');
-      img.className = "img-thumb"; // No longer need the "loaded" class
+      img.className = "img-thumb";
       img.alt = "";
       img.src = imgPath;
-      img.dataset.highQualitySrc = imgPath; // Store high-quality path for viewing
+      img.loading = "eager"; // Force immediate loading
+      img.style.opacity = "1"; // Force visibility
       
-      // Set up click handler for viewing
       img.addEventListener('click', function() {
-        openViewer(this.dataset.highQualitySrc);
+        openViewer(imgPath);
       });
       
       cell.appendChild(img);
@@ -186,30 +293,19 @@
     // Viewer Modal Logic
     const modal = document.getElementById('img-viewer-modal');
     const modalImg = document.getElementById('img-viewer-img');
-    const modalLoader = document.getElementById('img-viewer-loader');
     const modalDownload = document.getElementById('img-viewer-download');
     const modalClose = document.getElementById('img-viewer-close');
     
     function openViewer(src) {
-      // Show modal and loader
       modal.style.display = 'flex';
-      modalLoader.style.display = 'block';
-      modalImg.style.opacity = '0';
       
-      // Clear previous image
-      modalImg.src = '';
-      
-      // Set up onload handler before setting src
       modalImg.onload = function() {
-        modalLoader.style.display = 'none';
-        modalImg.style.opacity = '1';
+        modal.classList.add('active');
       };
       
-      // Set the source to high-quality version
       modalImg.src = src;
       modalDownload.href = src;
       
-      // Show modal with animation
       setTimeout(() => { modal.classList.add('active'); }, 10);
     }
     
@@ -222,29 +318,11 @@
       }, 200);
     }
     
-    // Set up event handlers
     modalClose.onclick = closeViewer;
     modal.onclick = e => { if (e.target === modal) closeViewer(); };
     document.addEventListener('keydown', e => {
       if (modal.classList.contains('active') && (e.key === 'Escape' || e.key === 'Esc')) closeViewer();
     });
   </script>
-  <style>
-    /* Loading indicator styles */
-    .loader {
-      border: 4px solid rgba(0, 0, 0, 0.1);
-      border-radius: 50%;
-      border-top: 4px solid var(--primary);
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 10px;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
 </body>
 </html>
