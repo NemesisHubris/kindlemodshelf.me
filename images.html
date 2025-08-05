@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KAnki Image Gallery – Community Collection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A curated gallery of KAnki community images, organized by author. Download and explore creative Kindle flashcard art, backgrounds, and more.">
+  <link rel="canonical" href="https://kindlemodshelf.me/images.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="KAnki Images – Community Gallery">
+  <meta property="og:description" content="A curated gallery of KAnki community images, organized by author. Download and explore creative Kindle flashcard art, backgrounds, and more.">
+  <meta property="og:url" content="https://kindlemodshelf.me/images.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>KAnki Image Gallery – Community Collection</h1>
+    <div class="summary">
+      Browse and download user-contributed images for KAnki and Kindle, organized by author. Click any image to view it large, or use the download icon in the preview to save.
+    </div>
+    <div id="gallery-root"></div>
+
+    <!-- Modal Viewer -->
+    <div id="img-viewer-modal">
+      <div id="img-viewer-img-wrap">
+        <button id="img-viewer-close" title="Close">&times;</button>
+        <a id="img-viewer-download" href="#" download title="Download">
+          <svg width="21" height="21" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12" stroke="#ffe082" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <img id="img-viewer-img" src="" alt="Large view" draggable="false">
+      </div>
+    </div>
+  </div>
+  <script>
+    fetch('images.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Could not load images.json');
+        return res.json();
+      })
+      .then(data => {
+        const galleryRoot = document.getElementById('gallery-root');
+        const authors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', {sensitivity: 'base'}));
+        if (authors.length === 0) {
+          galleryRoot.innerHTML = '<div style="color:#ffe082; padding:2em;">No images found.</div>';
+          return;
+        }
+        authors.forEach(author => {
+          const images = data[author];
+          if (!Array.isArray(images) || images.length === 0) return;
+          const sectionId = author.replace(/[^a-zA-Z0-9_\-.]/g, '_');
+          const section = document.createElement('section');
+          section.setAttribute('aria-labelledby', sectionId);
+          section.innerHTML = `
+            <h2 class="section-title" id="${sectionId}">${author}</h2>
+            <div class="card card-desc">
+              <div class="gallery-grid"></div>
+            </div>
+          `;
+          const grid = section.querySelector('.gallery-grid');
+          images.forEach(filename => {
+            const imgPath = `images/${author}/${filename}`;
+            const cell = document.createElement('div');
+            cell.className = "img-thumb-wrap";
+            cell.innerHTML = `
+              <img src="${imgPath}" alt="" loading="lazy" class="img-thumb">
+            `;
+            cell.querySelector('.img-thumb').onclick = (e) => { openViewer(imgPath); };
+            grid.appendChild(cell);
+          });
+          galleryRoot.appendChild(section);
+        });
+      })
+      .catch(() => {
+        document.getElementById('gallery-root').innerHTML =
+          '<div style="color:#ffe082; padding:2em;">Could not load image list. Please contact the site owner.</div>';
+      });
+
+    // Viewer Modal Logic
+    const modal = document.getElementById('img-viewer-modal');
+    const modalImg = document.getElementById('img-viewer-img');
+    const modalDownload = document.getElementById('img-viewer-download');
+    const modalClose = document.getElementById('img-viewer-close');
+    function openViewer(src) {
+      modalImg.src = src;
+      modalDownload.href = src;
+      modal.style.display = 'flex';
+      setTimeout(() => { modal.classList.add('active'); }, 10);
+    }
+    function closeViewer() {
+      modal.classList.remove('active');
+      setTimeout(() => {
+        modal.style.display = 'none';
+        modalImg.src = '';
+        modalDownload.href = '#';
+      }, 180);
+    }
+    modalClose.onclick = closeViewer;
+    modal.onclick = e => { if (e.target === modal) closeViewer(); };
+    document.addEventListener('keydown', e => {
+      if (modal.classList.contains('active') && (e.key === 'Escape' || e.key === 'Esc')) closeViewer();
+    });
+  </script>
+</body>
+</html>
