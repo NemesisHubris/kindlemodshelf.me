@@ -383,7 +383,7 @@ a:hover {
   object-fit: cover;
   object-position: center;
   transition: opacity 0.2s ease;
-  opacity: 0;
+  opacity: 1 !important; /* Force opacity */
 }
 
 .img-thumb.loaded {
@@ -394,8 +394,9 @@ a:hover {
   opacity: 0.9;
 }
 
-/* Placeholder while image loads */
+/* Placeholder while image loads - DISABLED to fix visibility issues */
 .img-thumb-wrap::before {
+  display: none !important;
   content: "";
   position: absolute;
   top: 0;
@@ -450,6 +451,7 @@ a:hover {
   cursor: zoom-out;
 }
 
+/* Repositioned close button to right side */
 #img-viewer-close {
   position: absolute;
   top: 10px;
@@ -468,10 +470,11 @@ a:hover {
   opacity: 1;
 }
 
+/* Repositioned download button to left side */
 #img-viewer-download {
   position: absolute;
   top: 12px;
-  right: 50px;
+  left: 15px;
   background: none;
   border: none;
   cursor: pointer;
@@ -547,6 +550,11 @@ a:hover {
   }
 }
 
+/* Hidden canvas for thumbnail generation */
+#thumbnail-canvas {
+  display: none;
+}
+
 /* Floating email popup */
 #emailPopup {
   position: fixed;
@@ -612,4 +620,15 @@ a:hover {
 
 #emailPopup button[type="submit"]:hover {
   background: #5ccaf0;
+}
+
+/* Loading indicator */
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid var(--primary);
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
 }
