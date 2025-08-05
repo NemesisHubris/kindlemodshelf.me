@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subscribe – Kindle Modding Tools & Resources</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Get the latest Kindle modding tools and updates delivered to your inbox. Subscribe to our newsletter for jailbreak tools, plugins, guides, and more.">
+  <link rel="canonical" href="https://kindlemodshelf.me/subscribe.html">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Make the email input match your site's style and fill the card width */
+    .card input[type="email"],
+    #subscribeForm input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #1a1d23;
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+      box-sizing: border-box;
+      display: block;
+    }
+    /* Center the form button */
+    #subscribeForm button[type="submit"] {
+      width: 100%;
+      background: #67dfff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 9px;
+      cursor: pointer;
+      font-size: 0.95em;
+      margin-top: 10px;
+      transition: background 0.16s;
+    }
+    #subscribeForm button[type="submit"]:hover {
+      background: #5ccaf0;
+    }
+    /* Center the card and set max width */
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding-top: 48px;
+    }
+    .card {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-title" style="text-align:center;">Subscribe for Updates</div>
+      <div class="card-desc" style="text-align:center; margin-bottom: 18px;">
+        Get the latest Kindle modding tools, jailbreak guides, and screensaver images right in your inbox.
+      </div>
+      <form id="subscribeForm" style="margin-bottom: 0;">
+        <input type="hidden" name="accessKey" value="sf_2bjm74inh9ald1i63b5lefie">
+        <input type="email" name="email" placeholder="you@example.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div id="thankYouMessage" style="display:none; text-align:center; margin-top:20px;">
+        <p>Thanks for subscribing! You'll receive updates about new Kindle mods and tools.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Handle form submission without redirect
+    document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+      const formData = new FormData(form);
+      fetch('https://api.staticforms.xyz/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('thankYouMessage').style.display = 'block';
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        alert('Something went wrong. Please try again.');
+      });
+    });
+  </script>
+</body>
+</html>
