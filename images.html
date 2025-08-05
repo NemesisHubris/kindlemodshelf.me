@@ -20,6 +20,10 @@
       Browse and download user-contributed images for KAnki and Kindle, organized by author. Click any image to view it large, or use the download icon in the preview to save.
     </div>
     <div id="gallery-root"></div>
+    <div id="loading-indicator" style="text-align: center; margin: 20px 0; display: none;">
+      <div class="loader"></div>
+      <p>Loading more authors...</p>
+    </div>
 
     <!-- Modal Viewer -->
     <div id="img-viewer-modal">
@@ -37,36 +41,80 @@
   </div>
   <script>
     // Configuration
-    const BATCH_SIZE = 15; // Number of authors to load at once
-    const MAX_VISIBLE_IMAGES = 20; // Maximum initial images per author
+    const INITIAL_AUTHORS = 10;       // Number of authors to load initially
+    const LOAD_MORE_AUTHORS = 5;      // Number of authors to load when scrolling
+    const IMAGES_PER_ROW = 5;         // Maximum initial images per author (one row)
     
-    // Load all authors at once but batch image loading
+    let allAuthors = [];
+    let allData = null;
+    let loadedAuthors = 0;
+    let isLoading = false;
+    
+    // Fetch all image data
     fetch('images.json')
       .then(res => {
         if (!res.ok) throw new Error('Could not load images.json');
         return res.json();
       })
       .then(data => {
+        allData = data;
         const galleryRoot = document.getElementById('gallery-root');
-        const authors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', {sensitivity: 'base'}));
+        allAuthors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', {sensitivity: 'base'}));
         
-        if (authors.length === 0) {
+        if (allAuthors.length === 0) {
           galleryRoot.textContent = 'No images found.';
           return;
         }
 
-        // Generate all author sections first
-        authors.forEach(author => {
-          const images = data[author];
-          if (!Array.isArray(images) || images.length === 0) return;
+        // Load initial authors
+        loadMoreAuthors(INITIAL_AUTHORS);
+        
+        // Set up scroll listener for loading more authors
+        window.addEventListener('scroll', handleScroll);
+      })
+      .catch(error => {
+        console.error('Error loading gallery:', error);
+        document.getElementById('gallery-root').textContent =
+          'Could not load image list. Please contact the site owner.';
+      });
+
+    function handleScroll() {
+      if (isLoading || loadedAuthors >= allAuthors.length) return;
+      
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Load more when user scrolls near the bottom (200px threshold)
+      if (scrollY + windowHeight > documentHeight - 200) {
+        loadMoreAuthors(LOAD_MORE_AUTHORS);
+      }
+    }
+
+    function loadMoreAuthors(count) {
+      if (isLoading || loadedAuthors >= allAuthors.length) return;
+      
+      isLoading = true;
+      const loadingIndicator = document.getElementById('loading-indicator');
+      loadingIndicator.style.display = 'block';
+      
+      const galleryRoot = document.getElementById('gallery-root');
+      const endIndex = Math.min(loadedAuthors + count, allAuthors.length);
+      
+      // Use setTimeout to prevent UI blocking
+      setTimeout(() => {
+        for (let i = loadedAuthors; i < endIndex; i++) {
+          const author = allAuthors[i];
+          const images = allData[author];
+          if (!Array.isArray(images) || images.length === 0) continue;
           
           const sectionId = author.replace(/[^a-zA-Z0-9_\-.]/g, '_');
           const section = document.createElement('section');
           section.setAttribute('aria-labelledby', sectionId);
           
-          // Show a "Show More" button if there are many images
-          const hasMore = images.length > MAX_VISIBLE_IMAGES;
-          const initialImages = hasMore ? images.slice(0, MAX_VISIBLE_IMAGES) : images;
+          // Show only first row of images initially
+          const hasMore = images.length > IMAGES_PER_ROW;
+          const initialImages = hasMore ? images.slice(0, IMAGES_PER_ROW) : images;
           
           section.innerHTML = `
             <h2 class="section-title" id="${sectionId}">${author} ${hasMore ? `<small>(showing ${initialImages.length} of ${images.length})</small>` : ''}</h2>
@@ -78,7 +126,7 @@
           
           galleryRoot.appendChild(section);
           
-          // Add initial images
+          // Add initial images (just one row)
           const grid = document.getElementById(`grid-${sectionId}`);
           initialImages.forEach(filename => {
             addImageToGrid(grid, author, filename);
@@ -88,40 +136,37 @@
           if (hasMore) {
             const showMoreBtn = section.querySelector('.load-more-btn');
             showMoreBtn.addEventListener('click', function() {
-              const remainingImages = images.slice(MAX_VISIBLE_IMAGES);
+              const remainingImages = images.slice(IMAGES_PER_ROW);
               remainingImages.forEach(filename => {
                 addImageToGrid(grid, author, filename);
               });
               this.remove(); // Remove the button after showing all images
             });
           }
-        });
+        }
         
-        // Process images in small batches for smoother loading
-        startBatchProcessing();
-      })
-      .catch(error => {
-        console.error('Error loading gallery:', error);
-        document.getElementById('gallery-root').textContent =
-          'Could not load image list. Please contact the site owner.';
-      });
+        loadedAuthors = endIndex;
+        isLoading = false;
+        loadingIndicator.style.display = 'none';
+        
+        // If we've loaded all authors, remove the scroll listener
+        if (loadedAuthors >= allAuthors.length) {
+          window.removeEventListener('scroll', handleScroll);
+        }
+      }, 50); // Small delay to allow UI to breathe
+    }
 
-    // Add an image to the grid
     function addImageToGrid(grid, author, filename) {
       const imgPath = `images/${author}/${filename}`;
       const cell = document.createElement('div');
       cell.className = "img-thumb-wrap";
       
-      // Create low-quality thumbnail URL
-      const thumbnailPath = imgPath; // Use the same path for now
-
       // Create the image element
       const img = document.createElement('img');
-      img.className = "img-thumb";
+      img.className = "img-thumb loaded"; // Add loaded class immediately to avoid shimmer
       img.alt = "";
-      img.src = thumbnailPath;
+      img.src = imgPath;
       img.dataset.highQualitySrc = imgPath; // Store high-quality path for viewing
-      img.loading = "eager"; // Eager loading for all thumbnails
       
       // Set up click handler for viewing
       img.addEventListener('click', function() {
@@ -130,20 +175,6 @@
       
       cell.appendChild(img);
       grid.appendChild(cell);
-    }
-
-    // Process images in batches to avoid UI freezing
-    function startBatchProcessing() {
-      // Process all thumbnails to show them immediately
-      const allThumbnails = document.querySelectorAll('.img-thumb');
-      console.log(`Processing ${allThumbnails.length} thumbnails`);
-      
-      // Force layout recalculation to display all thumbnails
-      setTimeout(() => {
-        allThumbnails.forEach(img => {
-          img.classList.add('loaded');
-        });
-      }, 100);
     }
 
     // Viewer Modal Logic
@@ -171,7 +202,6 @@
       // Set the source to high-quality version
       modalImg.src = src;
       modalDownload.href = src;
-      modalDownload.style.display = 'block'; // Ensure download button is visible
       
       // Show modal with animation
       setTimeout(() => { modal.classList.add('active'); }, 10);
@@ -193,5 +223,22 @@
       if (modal.classList.contains('active') && (e.key === 'Escape' || e.key === 'Esc')) closeViewer();
     });
   </script>
+  <style>
+    /* Loading indicator styles */
+    .loader {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid var(--primary);
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </body>
 </html>
