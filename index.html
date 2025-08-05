@@ -2,15 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kindle Modding Tools & Resources – KOReader, Games, Plugins & More</title>
+  <title>Kindle Modding Tools & Resources – KOReader, Games, Plugins & More</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Up‑to‑date Kindle jailbreak tools, KOReader plugins, games, media players, and guides. Everything you need to unlock your jailbroken Kindle.">
   <link rel="canonical" href="https://kindlemodshelf.me/">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Slide-in animation */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Floating email popup */
+    #emailPopup {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(26, 29, 35, 0.95);
+      border: 1px solid #2b2f36;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      max-width: 300px;
+      color: #eaeaea;
+      font-family: 'Inter', sans-serif;
+      display: none;
+      animation: slideUp 0.4s ease-out forwards;
+    }
+
+    /* Close button */
+    #emailPopup .close-btn {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #emailPopup .close-btn:hover {
+      color: #fff;
+    }
+
+    /* Email input */
+    #emailPopup input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #1a1d23;
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+    }
+
+    /* Submit button */
+    #emailPopup button[type="submit"] {
+      width: 100%;
+      background: #67dfff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 9px;
+      cursor: pointer;
+      font-size: 0.95em;
+    }
+
+    #emailPopup button[type="submit"]:hover {
+      background: #5ccaf0;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Kindle Modding Tools &amp; Resources</h1>
+    <h1>Kindle Modding Tools &amp; Resources</h1>
 
     <div class="summary">
       The most essential Kindle modding tools, plugins, games, and guides for your jailbroken Kindle. Everything here requires a jailbroken Kindle unless stated otherwise.
@@ -32,41 +102,41 @@
     </div>
 
     <div class="summary" style="background:rgba(34,41,54,0.85);color:#ffe082;border-left:5px solid #67dfff;text-align:center;">
-      <b>Start here:</b> <a href="jailbreaking.html" style="color:#67dfff;">How to Jailbreak Your Kindle</a>
+      <b>Start here:</b> <a href="jailbreaking.html" style="color:#67dfff;">How to Jailbreak Your Kindle</a>
     </div>
 
     <!-- ESSENTIAL TOOLS -->
-    <div class="section-title">Most Popular &amp; Essential Tools</div>
+    <div class="section-title">Most Popular &amp; Essential Tools</div>
 
     <div class="card" data-tags="koreader reader essential epub pdf cbz mobi plugin">
       <div class="card-title">KOReader</div>
       <div class="card-tags"><span class="tag">Essential</span></div>
       <div class="card-desc">
-        Free, open‑source e‑book reader with fast page turns, broad format support (EPUB, PDF, DJVU, CBZ/CBR, TXT, and more), plus advanced customization, dictionary, and screensaver options not possible with Amazon’s stock app.
+        Free, open‑source e‑book reader with fast page turns, broad format support (EPUB, PDF, DJVU, CBZ/CBR, TXT, and more), plus advanced customization, dictionary, and screensaver options not possible with Amazon's stock app.
       </div>
-      <div class="card-links"><a href="koreader.html">Learn more about KOReader</a></div>
+      <div class="card-links"><a href="koreader.html">Learn more about KOReader</a></div>
     </div>
 
     <div class="card" data-tags="kindlefetch downloader essential books anna's archive library genesis">
       <div class="card-title">KindleFetch</div>
       <div class="card-tags"><span class="tag">Essential</span></div>
       <div class="card-desc">
-        The simplest way to download e‑books straight to your Kindle—no computer or cables needed. Search Anna’s Archive, Library Genesis, and more directly from the KTerm terminal.
+        The simplest way to download e‑books straight to your Kindle—no computer or cables needed. Search Anna's Archive, Library Genesis, and more directly from the KTerm terminal.
       </div>
-      <div class="card-links"><a href="kindlefetch.html">Learn more about KindleFetch</a></div>
+      <div class="card-links"><a href="kindlefetch.html">Learn more about KindleFetch</a></div>
     </div>
 
     <div class="card" data-tags="kterm terminal emulator shell essential">
-      <div class="card-title">KTerm (Terminal Emulator)</div>
+      <div class="card-title">KTerm (Terminal Emulator)</div>
       <div class="card-tags"><span class="tag">Essential</span></div>
       <div class="card-desc">
         The must‑have terminal for jailbroken Kindles. Run shell scripts, install mods, and manage files directly on‑device with an on‑screen keyboard.
       </div>
-      <div class="card-links"><a href="kterm.html">Learn more about KTerm</a></div>
+      <div class="card-links"><a href="kterm.html">Learn more about KTerm</a></div>
     </div>
 
     <!-- KOReader PLUGINS -->
-    <div class="section-title">KOReader Plugins</div>
+    <div class="section-title">KOReader Plugins</div>
 
     <div class="card" data-tags="z-library plugin koreader books downloader">
       <div class="card-title">Z‑Library Plugin</div>
@@ -78,12 +148,12 @@
     </div>
 
     <div class="card" data-tags="telegram highlights plugin koreader">
-      <div class="card-title">Telegram Highlights</div>
+      <div class="card-title">Telegram Highlights</div>
       <div class="card-tags"><span class="tag">Plugin</span></div>
       <div class="card-desc">
-        Send Kindle highlights and screenshots to your Telegram account instantly via @bookshotsbot.
+        Send Kindle highlights and screenshots to your Telegram account instantly via @bookshotsbot.
       </div>
-      <div class="card-links"><a href="telegram.html">Telegram Highlights Plugin</a></div>
+      <div class="card-links"><a href="telegram.html">Telegram Highlights Plugin</a></div>
     </div>
 
     <div class="card" data-tags="koweather weather plugin koreader">
@@ -96,7 +166,7 @@
     </div>
 
     <div class="card" data-tags="clock plugin koreader dtDisplay">
-      <div class="card-title">dtDisplay Clock</div>
+      <div class="card-title">dtDisplay Clock</div>
       <div class="card-tags"><span class="tag">Plugin</span></div>
       <div class="card-desc">
         Full‑screen clock widget (time & date) for a clean e‑ink desk or bedside clock while charging.
@@ -108,30 +178,30 @@
     <div class="section-title">Games</div>
 
     <div class="card" data-tags="tetris game kterm hf hardfloat terminal classic">
-      <div class="card-title">Tetris for KTerm (HF)</div>
+      <div class="card-title">Tetris for KTerm (HF)</div>
       <div class="card-tags"><span class="tag">Game</span></div>
       <div class="card-desc">
         Play classic Tetris in the terminal on hardfloat‑firmware Kindles. Lightweight—no emulator needed.
       </div>
-      <div class="card-links"><a href="tetris.html">Play Tetris on Kindle</a></div>
+      <div class="card-links"><a href="tetris.html">Play Tetris on Kindle</a></div>
     </div>
 
     <div class="card" data-tags="gnome chess minesweeper game strategy">
-      <div class="card-title">Gnome Chess & Mines</div>
+      <div class="card-title">Gnome Chess & Mines</div>
       <div class="card-tags"><span class="tag">Game</span></div>
       <div class="card-desc">
-        Touch‑friendly ports of Gnome Chess and Minesweeper. Smooth, responsive gameplay on e‑ink.
+        Touch‑friendly ports of Gnome Chess and Minesweeper. Smooth, responsive gameplay on e‑ink.
       </div>
-      <div class="card-links"><a href="gnomegames.html">Chess & Mines details</a></div>
+      <div class="card-links"><a href="gnomegames.html">Chess & Mines details</a></div>
     </div>
 
     <div class="card" data-tags="nine men's morris game kual kterm board strategy">
-      <div class="card-title">Nine Men’s Morris (SF & HF)</div>
+      <div class="card-title">Nine Men's Morris (SF & HF)</div>
       <div class="card-tags"><span class="tag">Game</span></div>
       <div class="card-desc">
         Strategy board game in two editions: softfloat (launches from KUAL) or hardfloat (runs in KTerm).
       </div>
-      <div class="card-links"><a href="ninemensmorris.html">Nine Men’s Morris info</a></div>
+      <div class="card-links"><a href="ninemensmorris.html">Nine Men's Morris info</a></div>
     </div>
 
     <div class="card" data-tags="kwordle wordle game puzzle offline multilingual">
@@ -140,44 +210,44 @@
       <div class="card-desc">
         Offline Wordle clone for Kindle—multilingual word lists and e‑ink‑friendly visuals.
       </div>
-      <div class="card-links"><a href="kwordle.html">Play KWordle</a></div>
+      <div class="card-links"><a href="kwordle.html">Play KWordle</a></div>
     </div>
 
     <div class="card" data-tags="universal paperclips idle clicker mesquite game">
-      <div class="card-title">Universal Paperclips</div>
+      <div class="card-title">Universal Paperclips</div>
       <div class="card-tags"><span class="tag">Game</span></div>
       <div class="card-desc">
         Idle clicker classic as a Mesquite web app—play on any jailbroken Kindle.
       </div>
-      <div class="card-links"><a href="universalpaperclips.html">Play Paperclips</a></div>
+      <div class="card-links"><a href="universalpaperclips.html">Play Paperclips</a></div>
     </div>
 
     <div class="card" data-tags="gameboy emulator gambatte k2 k classic hf sf">
-      <div class="card-title">Game Boy Emulators</div>
+      <div class="card-title">Game Boy Emulators</div>
       <div class="card-tags"><span class="tag">Emulator</span></div>
       <div class="card-desc">
-        Gambatte‑K2 (modern, HF+SF) and Gambatte‑K (legacy, SF) let you play Game Boy / Color ROMs on Kindle.
+        Gambatte‑K2 (modern, HF+SF) and Gambatte‑K (legacy, SF) let you play Game Boy / Color ROMs on Kindle.
       </div>
-      <div class="card-links"><a href="gameboy.html">Game Boy on Kindle</a></div>
+      <div class="card-links"><a href="gameboy.html">Game Boy on Kindle</a></div>
     </div>
 
     <!-- MEDIA / BLUETOOTH -->
-    <div class="section-title">Media &amp; Audio</div>
+    <div class="section-title">Media &amp; Audio</div>
 
     <div class="card" data-tags="sox media player audio bluetooth music wav mp3 flac ogg">
-      <div class="card-title">SOX Media Player</div>
+      <div class="card-title">SOX Media Player</div>
       <div class="card-tags"><span class="tag">Media</span><span class="tag">Audio</span></div>
       <div class="card-desc">
         Bluetooth audio player for music, audiobooks, and internet streams. Supports many popular formats (WAV, MP3, FLAC, OGG, and more). Both softfloat (SF) and hardfloat (HF) versions available.
       </div>
-      <div class="card-links"><a href="sox.html">SOX Player details</a></div>
+      <div class="card-links"><a href="sox.html">SOX Player details</a></div>
     </div>
 
     <!-- OTHER TOOLS -->
-    <div class="section-title">Other Useful Tools</div>
+    <div class="section-title">Other Useful Tools</div>
 
     <div class="card" data-tags="minecraft kindle server game kindlekraft lan smp">
-      <div class="card-title">KindleKraft (Minecraft Server)</div>
+      <div class="card-title">KindleKraft (Minecraft Server)</div>
       <div class="card-tags"><span class="tag">Tool</span></div>
       <div class="card-desc">
         Host a LAN Minecraft server (1.7–1.8) directly on your Kindle. Softfloat by default; HF possible with manual Java.
@@ -186,19 +256,19 @@
     </div>
 
     <div class="card" data-tags="disable ads screensaver script tool">
-      <div class="card-title">Disable Ads %</div>
+      <div class="card-title">Disable Ads %</div>
       <div class="card-tags"><span class="tag">Tool</span></div>
       <div class="card-desc">
         Enable KOReader custom screensavers (book covers or images) on ad‑supported Kindles using a single script.
       </div>
-      <div class="card-links"><a href="disableads.html">Disable Ads %</a></div>
+      <div class="card-links"><a href="disableads.html">Disable Ads %</a></div>
     </div>
 
     <div class="card" data-tags="fullscreen browser web tool reader">
-      <div class="card-title">Fullscreen Web Browser</div>
+      <div class="card-title">Fullscreen Web Browser</div>
       <div class="card-tags"><span class="tag">Tool</span></div>
       <div class="card-desc">
-        Distraction‑free, true‑fullscreen browser for firmware 5.16.4 +. Perfect for reading long articles or running simple web apps.
+        Distraction‑free, true‑fullscreen browser for firmware 5.16.4 +. Perfect for reading long articles or running simple web apps.
       </div>
       <div class="card-links"><a href="fullscreenweb.html">Fullscreen Browser</a></div>
     </div>
@@ -213,37 +283,37 @@
     </div>
 
     <div class="card" data-tags="check ota status script tool updates jailbreak">
-      <div class="card-title">Check OTA Status</div>
+      <div class="card-title">Check OTA Status</div>
       <div class="card-tags"><span class="tag">Tool</span></div>
       <div class="card-desc">
         One‑tap scriptlet that shows whether OTA updates are blocked—keep your jailbreak safe at a glance.
       </div>
-      <div class="card-links"><a href="ota.html">Check OTA script</a></div>
+      <div class="card-links"><a href="ota.html">Check OTA script</a></div>
     </div>
 
     <div class="card" data-tags="alpine linux toolkit chromebook experiment">
-      <div class="card-title">Alpine Kindle Toolkit</div>
+      <div class="card-title">Alpine Kindle Toolkit</div>
       <div class="card-tags"><span class="tag">Tool</span></div>
       <div class="card-desc">
-        Run Alpine Linux on Kindle, launch a minimal Chromium build, and explore file management—mostly for experimental fun.
+        Run Alpine Linux on Kindle, launch a minimal Chromium build, and explore file management—mostly for experimental fun.
       </div>
-      <div class="card-links"><a href="alpine.html">Alpine Kindle info</a></div>
+      <div class="card-links"><a href="alpine.html">Alpine Kindle info</a></div>
     </div>
 
     <!-- DEVELOPMENT -->
     <div class="section-title">Development</div>
 
     <div class="card" data-tags="usbnetlite ssh usb dev tool package manager">
-      <div class="card-title">kindle‑usbnetlite (SSH over USB)</div>
+      <div class="card-title">kindle‑usbnetlite (SSH over USB)</div>
       <div class="card-tags"><span class="tag">Dev</span></div>
       <div class="card-desc">
-        SSH into your Kindle via USB—edit files or run commands from your computer’s terminal instead of KTerm.
+        SSH into your Kindle via USB—edit files or run commands from your computer's terminal instead of KTerm.
       </div>
       <div class="card-links"><a href="usbnetlite.html">usbnetlite details</a></div>
     </div>
 
     <div class="card" data-tags="illusion framework dev html css js mesquite">
-      <div class="card-title">Illusion Framework</div>
+      <div class="card-title">Illusion Framework</div>
       <div class="card-tags"><span class="tag">Dev</span></div>
       <div class="card-desc">
         Build Kindle apps with HTML, CSS, and JavaScript (Mesquite web‑app engine). Backbone for tools like KAnki and IllusionChess.
@@ -261,7 +331,7 @@
     </div>
 
     <div class="card" data-tags="telnet server cli remote dev tool">
-      <div class="card-title">Telnet Server (upgraded)</div>
+      <div class="card-title">Telnet Server (upgraded)</div>
       <div class="card-tags"><span class="tag">Dev</span></div>
       <div class="card-desc">
         Lightweight Telnet server for quick remote CLI access—handy legacy alternative to SSH.
@@ -270,7 +340,7 @@
     </div>
 
     <div class="card" data-tags="kpm kindle package manager dev mods app tool">
-      <div class="card-title">KPM – Kindle Package Manager</div>
+      <div class="card-title">KPM – Kindle Package Manager</div>
       <div class="card-tags"><span class="tag">Dev</span></div>
       <div class="card-desc">
         On‑device package manager. Browse, install, update, and manage Kindle mods without manual downloads.
@@ -278,6 +348,20 @@
       <div class="card-links"><a href="kpm.html">KPM project</a></div>
     </div>
   </div>
+  
+  <!-- Floating Email Signup -->
+  <div id="emailPopup">
+    <button class="close-btn" onclick="document.getElementById('emailPopup').style.display='none'">×</button>
+    <div style="font-weight:600; margin-bottom: 8px; color:#ffe082;">✉️ Stay Updated!</div>
+    <div style="font-size: 0.92em; margin-bottom: 10px;">Get the latest Kindle modding tools & updates.</div>
+    <form action="https://api.staticforms.xyz/submit" method="POST">
+      <input type="hidden" name="accessKey" value="sf_2bjm74inh9ald1i63b5lefie">
+      <input type="hidden" name="redirectTo" value="https://kindlemodshelf.me/thanks.html">
+      <input type="email" name="email" placeholder="you@example.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+  
   <script>
     // Simple search filtering for cards
     const searchBar = document.getElementById('search-bar');
@@ -323,6 +407,14 @@
         document.querySelector('.container').appendChild(noRes);
       }
       noRes.style.display = (visibleCount === 0 && val.length > 0) ? '' : 'none';
+    });
+    
+    // Slide-in animation trigger for email popup
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const box = document.getElementById('emailPopup');
+        if (box) box.style.display = 'block';
+      }, 3000); // Show after 3 seconds
     });
   </script>
 </body>
