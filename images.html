@@ -44,7 +44,7 @@
         const galleryRoot = document.getElementById('gallery-root');
         const authors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', {sensitivity: 'base'}));
         if (authors.length === 0) {
-          galleryRoot.innerHTML = '<div style="color:#ffe082; padding:2em;">No images found.</div>';
+          galleryRoot.textContent = 'No images found.';
           return;
         }
         authors.forEach(author => {
@@ -61,24 +61,22 @@
           `;
           const grid = section.querySelector('.gallery-grid');
           images.forEach(filename => {
-            // Use encodeURIComponent for both parts!
-            const authorEnc = encodeURIComponent(author);
-            const filenameEnc = encodeURIComponent(filename);
-            const imgPath = `images/${authorEnc}/${filenameEnc}`;
+            // Always construct image path in this way
+            const imgPath = `images/${author}/${filename}`;
             const cell = document.createElement('div');
             cell.className = "img-thumb-wrap";
             cell.innerHTML = `
               <img src="${imgPath}" alt="" loading="lazy" class="img-thumb">
             `;
-            cell.querySelector('.img-thumb').onclick = (e) => { openViewer(imgPath); };
+            cell.querySelector('.img-thumb').onclick = () => { openViewer(imgPath); };
             grid.appendChild(cell);
           });
           galleryRoot.appendChild(section);
         });
       })
       .catch(() => {
-        document.getElementById('gallery-root').innerHTML =
-          '<div style="color:#ffe082; padding:2em;">Could not load image list. Please contact the site owner.</div>';
+        document.getElementById('gallery-root').textContent =
+          'Could not load image list. Please contact the site owner.';
       });
 
     // Viewer Modal Logic
