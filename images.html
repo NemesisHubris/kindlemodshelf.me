@@ -20,7 +20,6 @@
       Browse and download user-contributed images for KAnki and Kindle, organized by author. Click any image to view it large, or use the download icon in the preview to save.
     </div>
     <div id="gallery-root"></div>
-    <button id="load-more-btn" class="load-more-btn" style="display: none;">Load More Authors</button>
 
     <!-- Modal Viewer -->
     <div id="img-viewer-modal">
@@ -38,29 +37,10 @@
   </div>
   <script>
     // Configuration
-    const BATCH_SIZE = 10; // Number of authors to load at once
-    const IMAGES_PER_AUTHOR = 20; // Maximum images to show per author initially
+    const BATCH_SIZE = 15; // Number of authors to load at once
+    const MAX_VISIBLE_IMAGES = 20; // Maximum initial images per author
     
-    let allAuthors = [];
-    let loadedAuthors = 0;
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          // Replace with a smaller version for thumbnails (if available)
-          img.src = img.getAttribute('data-src');
-          img.onload = () => {
-            img.classList.add('loaded');
-          };
-          observer.unobserve(img);
-        }
-      });
-    }, {
-      rootMargin: '100px 0px', // Load images 100px before they come into view
-      threshold: 0.01
-    });
-
-    // Fetch all image data but display progressively
+    // Load all authors at once but batch image loading
     fetch('images.json')
       .then(res => {
         if (!res.ok) throw new Error('Could not load images.json');
@@ -68,100 +48,102 @@
       })
       .then(data => {
         const galleryRoot = document.getElementById('gallery-root');
-        allAuthors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', {sensitivity: 'base'}));
+        const authors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', {sensitivity: 'base'}));
         
-        if (allAuthors.length === 0) {
+        if (authors.length === 0) {
           galleryRoot.textContent = 'No images found.';
           return;
         }
 
-        // Initial load
-        loadMoreAuthors(data);
+        // Generate all author sections first
+        authors.forEach(author => {
+          const images = data[author];
+          if (!Array.isArray(images) || images.length === 0) return;
+          
+          const sectionId = author.replace(/[^a-zA-Z0-9_\-.]/g, '_');
+          const section = document.createElement('section');
+          section.setAttribute('aria-labelledby', sectionId);
+          
+          // Show a "Show More" button if there are many images
+          const hasMore = images.length > MAX_VISIBLE_IMAGES;
+          const initialImages = hasMore ? images.slice(0, MAX_VISIBLE_IMAGES) : images;
+          
+          section.innerHTML = `
+            <h2 class="section-title" id="${sectionId}">${author} ${hasMore ? `<small>(showing ${initialImages.length} of ${images.length})</small>` : ''}</h2>
+            <div class="card card-desc">
+              <div class="gallery-grid" id="grid-${sectionId}"></div>
+              ${hasMore ? `<button class="load-more-btn" data-author="${author}" data-section="${sectionId}">Show all ${images.length} images</button>` : ''}
+            </div>
+          `;
+          
+          galleryRoot.appendChild(section);
+          
+          // Add initial images
+          const grid = document.getElementById(`grid-${sectionId}`);
+          initialImages.forEach(filename => {
+            addImageToGrid(grid, author, filename);
+          });
+          
+          // Add event listener for "Show More" button
+          if (hasMore) {
+            const showMoreBtn = section.querySelector('.load-more-btn');
+            showMoreBtn.addEventListener('click', function() {
+              const remainingImages = images.slice(MAX_VISIBLE_IMAGES);
+              remainingImages.forEach(filename => {
+                addImageToGrid(grid, author, filename);
+              });
+              this.remove(); // Remove the button after showing all images
+            });
+          }
+        });
         
-        // Show load more button if there are more authors to display
-        const loadMoreBtn = document.getElementById('load-more-btn');
-        if (loadedAuthors < allAuthors.length) {
-          loadMoreBtn.style.display = 'block';
-          loadMoreBtn.addEventListener('click', () => loadMoreAuthors(data));
-        }
+        // Process images in small batches for smoother loading
+        startBatchProcessing();
       })
-      .catch(() => {
+      .catch(error => {
+        console.error('Error loading gallery:', error);
         document.getElementById('gallery-root').textContent =
           'Could not load image list. Please contact the site owner.';
       });
 
-    function loadMoreAuthors(data) {
-      const galleryRoot = document.getElementById('gallery-root');
-      const endIndex = Math.min(loadedAuthors + BATCH_SIZE, allAuthors.length);
-      const loadMoreBtn = document.getElementById('load-more-btn');
-      
-      for (let i = loadedAuthors; i < endIndex; i++) {
-        const author = allAuthors[i];
-        const images = data[author];
-        if (!Array.isArray(images) || images.length === 0) continue;
-        
-        const sectionId = author.replace(/[^a-zA-Z0-9_\-.]/g, '_');
-        const section = document.createElement('section');
-        section.setAttribute('aria-labelledby', sectionId);
-        
-        // Limit initial number of images per author
-        const displayImages = images.slice(0, IMAGES_PER_AUTHOR);
-        const hasMore = images.length > IMAGES_PER_AUTHOR;
-        
-        section.innerHTML = `
-          <h2 class="section-title" id="${sectionId}">${author} ${hasMore ? `<small>(showing ${displayImages.length} of ${images.length})</small>` : ''}</h2>
-          <div class="card card-desc">
-            <div class="gallery-grid"></div>
-            ${hasMore ? `<button class="load-more-btn author-load-more" data-author="${author}">Show All ${images.length} Images</button>` : ''}
-          </div>
-        `;
-        
-        const grid = section.querySelector('.gallery-grid');
-        displayImages.forEach(filename => {
-          addImageToGrid(grid, author, filename);
-        });
-        
-        galleryRoot.appendChild(section);
-        
-        // Add click handler for "Show All Images" button if it exists
-        const showAllBtn = section.querySelector('.author-load-more');
-        if (showAllBtn) {
-          showAllBtn.addEventListener('click', function() {
-            const authorName = this.getAttribute('data-author');
-            const remainingImages = data[authorName].slice(IMAGES_PER_AUTHOR);
-            remainingImages.forEach(filename => {
-              addImageToGrid(grid, authorName, filename);
-            });
-            this.style.display = 'none';
-          });
-        }
-      }
-      
-      loadedAuthors = endIndex;
-      
-      // Hide load more button if all authors are loaded
-      if (loadedAuthors >= allAuthors.length) {
-        loadMoreBtn.style.display = 'none';
-      }
-    }
-
+    // Add an image to the grid
     function addImageToGrid(grid, author, filename) {
       const imgPath = `images/${author}/${filename}`;
       const cell = document.createElement('div');
       cell.className = "img-thumb-wrap";
       
-      // Create image with lazy loading
+      // Create low-quality thumbnail URL
+      const thumbnailPath = imgPath; // Use the same path for now
+
+      // Create the image element
       const img = document.createElement('img');
       img.className = "img-thumb";
       img.alt = "";
-      img.setAttribute('data-src', imgPath);
-      img.addEventListener('click', () => { openViewer(imgPath); });
+      img.src = thumbnailPath;
+      img.dataset.highQualitySrc = imgPath; // Store high-quality path for viewing
+      img.loading = "eager"; // Eager loading for all thumbnails
+      
+      // Set up click handler for viewing
+      img.addEventListener('click', function() {
+        openViewer(this.dataset.highQualitySrc);
+      });
       
       cell.appendChild(img);
       grid.appendChild(cell);
+    }
+
+    // Process images in batches to avoid UI freezing
+    function startBatchProcessing() {
+      // Process all thumbnails to show them immediately
+      const allThumbnails = document.querySelectorAll('.img-thumb');
+      console.log(`Processing ${allThumbnails.length} thumbnails`);
       
-      // Observe the image for lazy loading
-      imageObserver.observe(img);
+      // Force layout recalculation to display all thumbnails
+      setTimeout(() => {
+        allThumbnails.forEach(img => {
+          img.classList.add('loaded');
+        });
+      }, 100);
     }
 
     // Viewer Modal Logic
@@ -172,19 +154,26 @@
     const modalClose = document.getElementById('img-viewer-close');
     
     function openViewer(src) {
+      // Show modal and loader
       modal.style.display = 'flex';
       modalLoader.style.display = 'block';
       modalImg.style.opacity = '0';
       
-      // Set source after showing loader
+      // Clear previous image
+      modalImg.src = '';
+      
+      // Set up onload handler before setting src
       modalImg.onload = function() {
         modalLoader.style.display = 'none';
         modalImg.style.opacity = '1';
       };
       
+      // Set the source to high-quality version
       modalImg.src = src;
       modalDownload.href = src;
+      modalDownload.style.display = 'block'; // Ensure download button is visible
       
+      // Show modal with animation
       setTimeout(() => { modal.classList.add('active'); }, 10);
     }
     
@@ -194,9 +183,10 @@
         modal.style.display = 'none';
         modalImg.src = '';
         modalDownload.href = '#';
-      }, 180);
+      }, 200);
     }
     
+    // Set up event handlers
     modalClose.onclick = closeViewer;
     modal.onclick = e => { if (e.target === modal) closeViewer(); };
     document.addEventListener('keydown', e => {
