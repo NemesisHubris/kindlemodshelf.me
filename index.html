@@ -7,76 +7,6 @@
   <meta name="description" content="Up‑to‑date Kindle jailbreak tools, KOReader plugins, games, media players, and guides. Everything you need to unlock your jailbroken Kindle.">
   <link rel="canonical" href="https://kindlemodshelf.me/">
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Slide-in animation */
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Floating email popup */
-    #emailPopup {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(26, 29, 35, 0.95);
-      border: 1px solid #2b2f36;
-      padding: 16px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      max-width: 300px;
-      color: #eaeaea;
-      font-family: 'Inter', sans-serif;
-      display: none;
-      animation: slideUp 0.4s ease-out forwards;
-    }
-
-    /* Close button */
-    #emailPopup .close-btn {
-      position: absolute;
-      top: 6px;
-      right: 10px;
-      background: none;
-      border: none;
-      color: #aaa;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    #emailPopup .close-btn:hover {
-      color: #fff;
-    }
-
-    /* Email input */
-    #emailPopup input[type="email"] {
-      width: 100%;
-      padding: 8px;
-      border-radius: 6px;
-      border: 1px solid #444;
-      background: #1a1d23;
-      color: #fff;
-      margin-bottom: 10px;
-      font-size: 0.95em;
-    }
-
-    /* Submit button */
-    #emailPopup button[type="submit"] {
-      width: 100%;
-      background: #67dfff;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      padding: 9px;
-      cursor: pointer;
-      font-size: 0.95em;
-    }
-
-    #emailPopup button[type="submit"]:hover {
-      background: #5ccaf0;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
@@ -86,23 +16,21 @@
       The most essential Kindle modding tools, plugins, games, and guides for your jailbroken Kindle. Everything here requires a jailbroken Kindle unless stated otherwise.
     </div>
 
-    <!-- Chat with GPT button added below this line -->
-    <div class="summary" style="text-align:center; margin-top: 20px;">
-      <button onclick="window.open('https://chatgpt.com/g/g-68870752205c819197aec27bab75084c-kindle-paperwhite-modding-gpt', '_blank')"
-              style="background-color: #10a37f; color: white; font-size: 16px; padding: 12px 24px; border: none; border-radius: 10px; cursor: pointer;">
+    <!-- Chat with GPT button -->
+    <div class="summary">
+      <button onclick="window.open('https://chatgpt.com/g/g-68870752205c819197aec27bab75084c-kindle-paperwhite-modding-gpt', '_blank')" class="kindle-btn">
         💬 Ask About Kindle Modding (ChatGPT)
       </button>
     </div>
-    <!-- End GPT button -->
 
-    <!-- Search bar placed below the description, clearly styled -->
+    <!-- Search bar -->
     <div class="search-bar-wrap">
       <label for="search-bar" class="search-label">Search:</label>
       <input type="text" id="search-bar" placeholder="Search tools, plugins, games..." autocomplete="off">
     </div>
 
-    <div class="summary" style="background:rgba(34,41,54,0.85);color:#ffe082;border-left:5px solid #67dfff;text-align:center;">
-      <b>Start here:</b> <a href="jailbreaking.html" style="color:#67dfff;">How to Jailbreak Your Kindle</a>
+    <div class="summary">
+      <b>Start here:</b> <a href="jailbreaking.html">How to Jailbreak Your Kindle</a>
     </div>
 
     <!-- ESSENTIAL TOOLS -->
@@ -352,14 +280,21 @@
   <!-- Floating Email Signup -->
   <div id="emailPopup">
     <button class="close-btn" onclick="document.getElementById('emailPopup').style.display='none'">×</button>
-    <div style="font-weight:600; margin-bottom: 8px; color:#ffe082;">✉️ Stay Updated!</div>
-    <div style="font-size: 0.92em; margin-bottom: 10px;">Get the latest Kindle modding tools & updates.</div>
-    <form action="https://api.staticforms.xyz/submit" method="POST">
+    <div class="popup-title">✉️ Stay Updated!</div>
+    <div class="popup-desc">Get the latest Kindle modding tools & updates.</div>
+    
+    <!-- Subscription form -->
+    <form id="subscribeForm">
       <input type="hidden" name="accessKey" value="sf_2bjm74inh9ald1i63b5lefie">
-      <input type="hidden" name="redirectTo" value="https://kindlemodshelf.me/thanks.html">
       <input type="email" name="email" placeholder="you@example.com" required>
       <button type="submit">Subscribe</button>
     </form>
+    
+    <!-- Thank you message (hidden by default) -->
+    <div id="thankYouMessage">
+      <span class="checkmark">✓</span>
+      <p>Thanks for subscribing! You'll receive updates about new Kindle mods and tools.</p>
+    </div>
   </div>
   
   <script>
@@ -416,6 +351,50 @@
         if (box) box.style.display = 'block';
       }, 3000); // Show after 3 seconds
     });
+    
+    // Handle form submission without page redirect
+    document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const form = this;
+      const formData = new FormData(form);
+      
+      // Submit the form using fetch API
+      fetch('https://api.staticforms.xyz/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          // Hide the form and show thank you message
+          form.style.display = 'none';
+          document.getElementById('thankYouMessage').style.display = 'block';
+          
+          // Store in localStorage that user has subscribed
+          localStorage.setItem('kindleModsSubscribed', 'true');
+          
+          // Optional: close the popup after a few seconds
+          setTimeout(() => {
+            document.getElementById('emailPopup').style.display = 'none';
+          }, 5000);
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Something went wrong. Please try again.');
+      });
+    });
+    
+    // Don't show popup if already subscribed
+    if (localStorage.getItem('kindleModsSubscribed') === 'true') {
+      // Don't show the popup again if already subscribed
+      window.addEventListener('load', () => {
+        const popup = document.getElementById('emailPopup');
+        if (popup) popup.style.display = 'none';
+      });
+    }
   </script>
 </body>
 </html>
