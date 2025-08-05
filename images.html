@@ -11,6 +11,12 @@
   <meta property="og:description" content="A curated gallery of KAnki community images, organized by author. Download and explore creative Kindle flashcard art, backgrounds, and more.">
   <meta property="og:url" content="https://kindlemodshelf.me/images.html">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Override the placeholder style that's blocking images */
+    .img-thumb-wrap::before {
+      display: none !important; /* Remove the blocking layer */
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -117,7 +123,7 @@
           const initialImages = hasMore ? images.slice(0, IMAGES_PER_ROW) : images;
           
           section.innerHTML = `
-            <h2 class="section-title" id="${sectionId}">${author} ${hasMore ? `<small>(showing ${initialImages.length} of ${images.length})</small>` : ''}</h2>
+            <h2 class="section-title" id="${sectionId}">${author}</h2>
             <div class="card card-desc">
               <div class="gallery-grid" id="grid-${sectionId}"></div>
               ${hasMore ? `<button class="load-more-btn" data-author="${author}" data-section="${sectionId}">Show all ${images.length} images</button>` : ''}
@@ -163,7 +169,7 @@
       
       // Create the image element
       const img = document.createElement('img');
-      img.className = "img-thumb loaded"; // Add loaded class immediately to avoid shimmer
+      img.className = "img-thumb"; // No longer need the "loaded" class
       img.alt = "";
       img.src = imgPath;
       img.dataset.highQualitySrc = imgPath; // Store high-quality path for viewing
