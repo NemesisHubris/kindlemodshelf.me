@@ -20,6 +20,7 @@
       Browse and download user-contributed images for KAnki and Kindle, organized by author. Click any image to view it large, or use the download icon in the preview to save.
     </div>
     <div id="gallery-root"></div>
+    <button id="load-more-btn" class="load-more-btn" style="display: none;">Load More Authors</button>
 
     <!-- Modal Viewer -->
     <div id="img-viewer-modal">
@@ -30,11 +31,36 @@
             <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12" stroke="#ffe082" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
+        <div id="img-viewer-loader"></div>
         <img id="img-viewer-img" src="" alt="Large view" draggable="false">
       </div>
     </div>
   </div>
   <script>
+    // Configuration
+    const BATCH_SIZE = 10; // Number of authors to load at once
+    const IMAGES_PER_AUTHOR = 20; // Maximum images to show per author initially
+    
+    let allAuthors = [];
+    let loadedAuthors = 0;
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          // Replace with a smaller version for thumbnails (if available)
+          img.src = img.getAttribute('data-src');
+          img.onload = () => {
+            img.classList.add('loaded');
+          };
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '100px 0px', // Load images 100px before they come into view
+      threshold: 0.01
+    });
+
+    // Fetch all image data but display progressively
     fetch('images.json')
       .then(res => {
         if (!res.ok) throw new Error('Could not load images.json');
@@ -42,54 +68,126 @@
       })
       .then(data => {
         const galleryRoot = document.getElementById('gallery-root');
-        const authors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', {sensitivity: 'base'}));
-        if (authors.length === 0) {
+        allAuthors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', {sensitivity: 'base'}));
+        
+        if (allAuthors.length === 0) {
           galleryRoot.textContent = 'No images found.';
           return;
         }
-        authors.forEach(author => {
-          const images = data[author];
-          if (!Array.isArray(images) || images.length === 0) return;
-          const sectionId = author.replace(/[^a-zA-Z0-9_\-.]/g, '_');
-          const section = document.createElement('section');
-          section.setAttribute('aria-labelledby', sectionId);
-          section.innerHTML = `
-            <h2 class="section-title" id="${sectionId}">${author}</h2>
-            <div class="card card-desc">
-              <div class="gallery-grid"></div>
-            </div>
-          `;
-          const grid = section.querySelector('.gallery-grid');
-          images.forEach(filename => {
-            // Always construct image path in this way
-            const imgPath = `images/${author}/${filename}`;
-            const cell = document.createElement('div');
-            cell.className = "img-thumb-wrap";
-            cell.innerHTML = `
-              <img src="${imgPath}" alt="" loading="lazy" class="img-thumb">
-            `;
-            cell.querySelector('.img-thumb').onclick = () => { openViewer(imgPath); };
-            grid.appendChild(cell);
-          });
-          galleryRoot.appendChild(section);
-        });
+
+        // Initial load
+        loadMoreAuthors(data);
+        
+        // Show load more button if there are more authors to display
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        if (loadedAuthors < allAuthors.length) {
+          loadMoreBtn.style.display = 'block';
+          loadMoreBtn.addEventListener('click', () => loadMoreAuthors(data));
+        }
       })
       .catch(() => {
         document.getElementById('gallery-root').textContent =
           'Could not load image list. Please contact the site owner.';
       });
 
+    function loadMoreAuthors(data) {
+      const galleryRoot = document.getElementById('gallery-root');
+      const endIndex = Math.min(loadedAuthors + BATCH_SIZE, allAuthors.length);
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      
+      for (let i = loadedAuthors; i < endIndex; i++) {
+        const author = allAuthors[i];
+        const images = data[author];
+        if (!Array.isArray(images) || images.length === 0) continue;
+        
+        const sectionId = author.replace(/[^a-zA-Z0-9_\-.]/g, '_');
+        const section = document.createElement('section');
+        section.setAttribute('aria-labelledby', sectionId);
+        
+        // Limit initial number of images per author
+        const displayImages = images.slice(0, IMAGES_PER_AUTHOR);
+        const hasMore = images.length > IMAGES_PER_AUTHOR;
+        
+        section.innerHTML = `
+          <h2 class="section-title" id="${sectionId}">${author} ${hasMore ? `<small>(showing ${displayImages.length} of ${images.length})</small>` : ''}</h2>
+          <div class="card card-desc">
+            <div class="gallery-grid"></div>
+            ${hasMore ? `<button class="load-more-btn author-load-more" data-author="${author}">Show All ${images.length} Images</button>` : ''}
+          </div>
+        `;
+        
+        const grid = section.querySelector('.gallery-grid');
+        displayImages.forEach(filename => {
+          addImageToGrid(grid, author, filename);
+        });
+        
+        galleryRoot.appendChild(section);
+        
+        // Add click handler for "Show All Images" button if it exists
+        const showAllBtn = section.querySelector('.author-load-more');
+        if (showAllBtn) {
+          showAllBtn.addEventListener('click', function() {
+            const authorName = this.getAttribute('data-author');
+            const remainingImages = data[authorName].slice(IMAGES_PER_AUTHOR);
+            remainingImages.forEach(filename => {
+              addImageToGrid(grid, authorName, filename);
+            });
+            this.style.display = 'none';
+          });
+        }
+      }
+      
+      loadedAuthors = endIndex;
+      
+      // Hide load more button if all authors are loaded
+      if (loadedAuthors >= allAuthors.length) {
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+
+    function addImageToGrid(grid, author, filename) {
+      const imgPath = `images/${author}/${filename}`;
+      const cell = document.createElement('div');
+      cell.className = "img-thumb-wrap";
+      
+      // Create image with lazy loading
+      const img = document.createElement('img');
+      img.className = "img-thumb";
+      img.alt = "";
+      img.setAttribute('data-src', imgPath);
+      img.addEventListener('click', () => { openViewer(imgPath); });
+      
+      cell.appendChild(img);
+      grid.appendChild(cell);
+      
+      // Observe the image for lazy loading
+      imageObserver.observe(img);
+    }
+
     // Viewer Modal Logic
     const modal = document.getElementById('img-viewer-modal');
     const modalImg = document.getElementById('img-viewer-img');
+    const modalLoader = document.getElementById('img-viewer-loader');
     const modalDownload = document.getElementById('img-viewer-download');
     const modalClose = document.getElementById('img-viewer-close');
+    
     function openViewer(src) {
+      modal.style.display = 'flex';
+      modalLoader.style.display = 'block';
+      modalImg.style.opacity = '0';
+      
+      // Set source after showing loader
+      modalImg.onload = function() {
+        modalLoader.style.display = 'none';
+        modalImg.style.opacity = '1';
+      };
+      
       modalImg.src = src;
       modalDownload.href = src;
-      modal.style.display = 'flex';
+      
       setTimeout(() => { modal.classList.add('active'); }, 10);
     }
+    
     function closeViewer() {
       modal.classList.remove('active');
       setTimeout(() => {
@@ -98,6 +196,7 @@
         modalDownload.href = '#';
       }, 180);
     }
+    
     modalClose.onclick = closeViewer;
     modal.onclick = e => { if (e.target === modal) closeViewer(); };
     document.addEventListener('keydown', e => {
