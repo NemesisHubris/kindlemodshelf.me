@@ -60,6 +60,13 @@ h1 {
   letter-spacing: .01em;
 }
 
+.section-title small {
+  font-size: 0.75em;
+  opacity: 0.8;
+  font-weight: normal;
+  margin-left: 8px;
+}
+
 .card {
   background: linear-gradient(120deg, var(--card-bg-start) 90%, var(--card-bg-end) 100%);
   border-radius: 18px;
@@ -345,69 +352,6 @@ a:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Floating email popup */
-#emailPopup {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(26, 29, 35, 0.95);
-  border: 1px solid #2b2f36;
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  max-width: 300px;
-  color: #eaeaea;
-  font-family: 'Inter', sans-serif;
-  display: none;
-  animation: slideUp 0.4s ease-out forwards;
-}
-
-/* Dismiss "×" button */
-#emailPopup button {
-  font-family: inherit;
-}
-
-#emailPopup button.close-btn {
-  position: absolute;
-  top: 6px;
-  right: 10px;
-  background: none;
-  border: none;
-  color: #aaa;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-#emailPopup button.close-btn:hover {
-  color: #fff;
-}
-
-/* Email input */
-#emailPopup input[type="email"] {
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #444;
-  background: #1a1d23;
-  color: #fff;
-  margin-bottom: 10px;
-  font-size: 0.95em;
-}
-
-/* Subscribe button */
-#emailPopup button[type="submit"] {
-  width: 100%;
-  background: #67dfff;
-  color: #000;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  padding: 9px;
-  cursor: pointer;
-  font-size: 0.95em;
-}
-
 /* Gallery Grid Styles */
 .gallery-grid {
   display: grid;
@@ -425,7 +369,7 @@ a:hover {
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  background: #111;
+  background: #191c22;
 }
 
 .img-thumb-wrap:hover {
@@ -439,10 +383,33 @@ a:hover {
   object-fit: cover;
   object-position: center;
   transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.img-thumb.loaded {
+  opacity: 1;
 }
 
 .img-thumb-wrap:hover .img-thumb {
   opacity: 0.9;
+}
+
+/* Placeholder while image loads */
+.img-thumb-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #1a1d23 25%, #1e222a 50%, #1a1d23 75%);
+  background-size: 200% 200%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }
 
 /* Image Viewer Modal Styles */
@@ -517,7 +484,47 @@ a:hover {
   opacity: 1;
 }
 
-/* Responsive adjustments */
+/* Loading indicator for viewer */
+#img-viewer-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Load more button */
+.load-more-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: rgba(30, 34, 44, 0.45);
+  color: #98b6cb;
+  border: 1.5px solid rgba(103,223,255,0.17);
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.16s, color 0.15s, border-color 0.16s;
+}
+
+.load-more-btn:hover {
+  background: rgba(55, 70, 85, 0.57);
+  color: #b5e4ff;
+  border-color: #67dfff77;
+}
+
+/* Responsive adjustments for gallery */
 @media (max-width: 768px) {
   .gallery-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -538,6 +545,69 @@ a:hover {
   .img-thumb-wrap {
     height: 100px;
   }
+}
+
+/* Floating email popup */
+#emailPopup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(26, 29, 35, 0.95);
+  border: 1px solid #2b2f36;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-width: 300px;
+  color: #eaeaea;
+  font-family: 'Inter', sans-serif;
+  display: none;
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Dismiss "×" button */
+#emailPopup button {
+  font-family: inherit;
+}
+
+#emailPopup button.close-btn {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#emailPopup button.close-btn:hover {
+  color: #fff;
+}
+
+/* Email input */
+#emailPopup input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1a1d23;
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 0.95em;
+}
+
+/* Subscribe button */
+#emailPopup button[type="submit"] {
+  width: 100%;
+  background: #67dfff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 9px;
+  cursor: pointer;
+  font-size: 0.95em;
 }
 
 #emailPopup button[type="submit"]:hover {
