@@ -130,6 +130,11 @@
       color: #b5e4ff;
       border-color: #67dfff77;
     }
+    
+    /* Hidden canvas for thumbnail generation */
+    #thumbnail-canvas {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -144,6 +149,9 @@
       <div class="loader"></div>
       <p>Loading more authors...</p>
     </div>
+
+    <!-- Hidden canvas for thumbnail generation -->
+    <canvas id="thumbnail-canvas" width="150" height="150"></canvas>
 
     <!-- Modal Viewer -->
     <div id="img-viewer-modal">
@@ -163,11 +171,15 @@
     const INITIAL_AUTHORS = 10;
     const LOAD_MORE_AUTHORS = 5;
     const IMAGES_PER_ROW = 5;
+    const THUMBNAIL_WIDTH = 150;
+    const THUMBNAIL_HEIGHT = 150;
+    const THUMBNAIL_QUALITY = 0.4; // Lower value = smaller file size and lower quality
     
     let allAuthors = [];
     let allData = null;
     let loadedAuthors = 0;
     let isLoading = false;
+    let thumbnailCache = {}; // Cache for generated thumbnails
     
     // Fetch all image data
     fetch('images.json')
@@ -271,23 +283,111 @@
     }
 
     function addImageToGrid(grid, author, filename) {
-      const imgPath = `images/${author}/${filename}`;
+      const imgFullPath = `images/${author}/${filename}`;
       const cell = document.createElement('div');
       cell.className = "img-thumb-wrap";
       
       const img = document.createElement('img');
       img.className = "img-thumb";
       img.alt = "";
-      img.src = imgPath;
-      img.loading = "eager"; // Force immediate loading
-      img.style.opacity = "1"; // Force visibility
+      img.loading = "eager"; 
+      img.style.opacity = "1";
+      
+      // Add a color placeholder before the thumbnail loads
+      img.style.backgroundColor = getColorFromFilename(filename);
+      
+      // Store the full path for the modal viewer
+      img.dataset.fullPath = imgFullPath;
+      
+      // Use low-quality thumbnail generation
+      createThumbnail(imgFullPath, function(thumbnailUrl) {
+        img.src = thumbnailUrl;
+      });
       
       img.addEventListener('click', function() {
-        openViewer(imgPath);
+        openViewer(this.dataset.fullPath);
       });
       
       cell.appendChild(img);
       grid.appendChild(cell);
+    }
+    
+    // Generate a background color from filename for placeholders
+    function getColorFromFilename(filename) {
+      let hash = 0;
+      for (let i = 0; i < filename.length; i++) {
+        hash = filename.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      
+      // Generate a dark but visible color
+      let r = 30 + (hash & 0xFF) % 50;
+      let g = 30 + ((hash >> 8) & 0xFF) % 50;
+      let b = 40 + ((hash >> 16) & 0xFF) % 60;
+      
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    
+    // Create a low-quality thumbnail from the original image
+    function createThumbnail(imgPath, callback) {
+      // Check cache first
+      if (thumbnailCache[imgPath]) {
+        callback(thumbnailCache[imgPath]);
+        return;
+      }
+      
+      // Use a solid color placeholder immediately
+      const initialColor = getColorFromFilename(imgPath);
+      const canvas = document.getElementById('thumbnail-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Create an image element to load the original
+      const originalImg = new Image();
+      originalImg.crossOrigin = 'anonymous';
+      
+      originalImg.onload = function() {
+        // Clear canvas
+        ctx.fillStyle = initialColor;
+        ctx.fillRect(0, 0, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
+        
+        // Calculate dimensions to maintain aspect ratio
+        const aspectRatio = originalImg.width / originalImg.height;
+        let drawWidth = THUMBNAIL_WIDTH;
+        let drawHeight = THUMBNAIL_WIDTH / aspectRatio;
+        
+        if (drawHeight > THUMBNAIL_HEIGHT) {
+          drawHeight = THUMBNAIL_HEIGHT;
+          drawWidth = THUMBNAIL_HEIGHT * aspectRatio;
+        }
+        
+        // Center the image on the canvas
+        const x = (THUMBNAIL_WIDTH - drawWidth) / 2;
+        const y = (THUMBNAIL_HEIGHT - drawHeight) / 2;
+        
+        // Draw the image at lower quality
+        ctx.drawImage(originalImg, x, y, drawWidth, drawHeight);
+        
+        // Convert to low-quality JPEG data URL
+        try {
+          const thumbnailUrl = canvas.toDataURL('image/jpeg', THUMBNAIL_QUALITY);
+          thumbnailCache[imgPath] = thumbnailUrl;
+          callback(thumbnailUrl);
+        } catch (e) {
+          // If canvas is tainted (CORS issue), use original
+          console.warn('Could not generate thumbnail for', imgPath, e);
+          callback(imgPath);
+        }
+      };
+      
+      originalImg.onerror = function() {
+        console.warn('Could not load image:', imgPath);
+        callback(imgPath);
+      };
+      
+      // Start loading the original image
+      originalImg.src = imgPath;
+      
+      // Return a color placeholder immediately
+      return initialColor;
     }
 
     // Viewer Modal Logic
