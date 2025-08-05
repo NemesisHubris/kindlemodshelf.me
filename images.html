@@ -2,147 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KAnki Image Gallery – Community Collection</title>
+  <title>Kindle Screensaver Image Gallery – Community Collection</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A curated gallery of KAnki community images, organized by author. Download and explore creative Kindle flashcard art, backgrounds, and more.">
+  <meta name="description" content="A curated gallery of community Kindle screensaver images, organized by author. Download and explore creative Kindle backgrounds, wallpapers, and more.">
   <link rel="canonical" href="https://kindlemodshelf.me/images.html">
   <link rel="stylesheet" href="style.css">
-  <meta property="og:title" content="KAnki Images – Community Gallery">
-  <meta property="og:description" content="A curated gallery of KAnki community images, organized by author. Download and explore creative Kindle flashcard art, backgrounds, and more.">
+  <meta property="og:title" content="Kindle Screensaver Images – Community Gallery">
+  <meta property="og:description" content="A curated gallery of community Kindle screensaver images, organized by author. Download and explore creative Kindle backgrounds, wallpapers, and more.">
   <meta property="og:url" content="https://kindlemodshelf.me/images.html">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    /* Override problematic CSS styles that hide images */
-    .img-thumb-wrap::before {
-      display: none !important;
-    }
-    .img-thumb {
-      opacity: 1 !important;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 12px;
-      padding: 5px;
-    }
-    .img-thumb-wrap {
-      position: relative;
-      width: 100%;
-      height: 150px;
-      overflow: hidden;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      background: #191c22;
-    }
-    .img-thumb {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    /* Image Viewer Modal Styles */
-    #img-viewer-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-    #img-viewer-modal.active {
-      opacity: 1;
-    }
-    #img-viewer-img-wrap {
-      position: relative;
-      max-width: 90%;
-      max-height: 90vh;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      overflow: hidden;
-    }
-    #img-viewer-img {
-      display: block;
-      max-width: 100%;
-      max-height: 90vh;
-      margin: 0 auto;
-      cursor: zoom-out;
-    }
-    #img-viewer-close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 30px;
-      color: #fff;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1010;
-      opacity: 0.7;
-    }
-    #img-viewer-download {
-      position: absolute;
-      top: 12px;
-      right: 50px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 1010;
-      opacity: 0.7;
-    }
-    
-    /* Loading indicator */
-    .loader {
-      border: 4px solid rgba(0, 0, 0, 0.1);
-      border-radius: 50%;
-      border-top: 4px solid var(--primary);
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 10px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    /* Load more button */
-    .load-more-btn {
-      display: block;
-      margin: 10px auto;
-      padding: 8px 16px;
-      background: rgba(30, 34, 44, 0.45);
-      color: #98b6cb;
-      border: 1.5px solid rgba(103,223,255,0.17);
-      border-radius: 10px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .load-more-btn:hover {
-      background: rgba(55, 70, 85, 0.57);
-      color: #b5e4ff;
-      border-color: #67dfff77;
-    }
-    
-    /* Hidden canvas for thumbnail generation */
-    #thumbnail-canvas {
-      display: none;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
-    <h1>KAnki Image Gallery – Community Collection</h1>
+    <h1>Kindle Screensaver Image Gallery</h1>
     <div class="summary">
-      Browse and download user-contributed images for KAnki and Kindle, organized by author. Click any image to view it large, or use the download icon in the preview to save.
+      Browse and download user-contributed Kindle screensaver images, organized by author. Click any image to view it large, or use the download icon in the preview to save.
     </div>
     <div id="gallery-root"></div>
     <div id="loading-indicator" style="text-align: center; margin: 20px 0; display: none;">
@@ -151,17 +26,17 @@
     </div>
 
     <!-- Hidden canvas for thumbnail generation -->
-    <canvas id="thumbnail-canvas" width="150" height="150"></canvas>
+    <canvas id="thumbnail-canvas" width="300" height="300"></canvas>
 
     <!-- Modal Viewer -->
     <div id="img-viewer-modal">
       <div id="img-viewer-img-wrap">
-        <button id="img-viewer-close" title="Close">&times;</button>
         <a id="img-viewer-download" href="#" download title="Download">
           <svg width="21" height="21" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12" stroke="#ffe082" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
+        <button id="img-viewer-close" title="Close">&times;</button>
         <img id="img-viewer-img" src="" alt="Large view" draggable="false">
       </div>
     </div>
@@ -171,9 +46,9 @@
     const INITIAL_AUTHORS = 10;
     const LOAD_MORE_AUTHORS = 5;
     const IMAGES_PER_ROW = 5;
-    const THUMBNAIL_WIDTH = 150;
-    const THUMBNAIL_HEIGHT = 150;
-    const THUMBNAIL_QUALITY = 0.4; // Lower value = smaller file size and lower quality
+    const THUMBNAIL_WIDTH = 300;  // Higher quality thumbnails
+    const THUMBNAIL_HEIGHT = 300;
+    const THUMBNAIL_QUALITY = 0.65; // Higher quality value (between 0-1)
     
     let allAuthors = [];
     let allData = null;
@@ -299,7 +174,7 @@
       // Store the full path for the modal viewer
       img.dataset.fullPath = imgFullPath;
       
-      // Use low-quality thumbnail generation
+      // Use higher-quality thumbnail generation
       createThumbnail(imgFullPath, function(thumbnailUrl) {
         img.src = thumbnailUrl;
       });
@@ -327,7 +202,7 @@
       return `rgb(${r}, ${g}, ${b})`;
     }
     
-    // Create a low-quality thumbnail from the original image
+    // Create a higher-quality thumbnail from the original image
     function createThumbnail(imgPath, callback) {
       // Check cache first
       if (thumbnailCache[imgPath]) {
@@ -363,16 +238,15 @@
         const x = (THUMBNAIL_WIDTH - drawWidth) / 2;
         const y = (THUMBNAIL_HEIGHT - drawHeight) / 2;
         
-        // Draw the image at lower quality
+        // Draw the image at higher quality
         ctx.drawImage(originalImg, x, y, drawWidth, drawHeight);
         
-        // Convert to low-quality JPEG data URL
+        // Convert to higher-quality JPEG data URL
         try {
           const thumbnailUrl = canvas.toDataURL('image/jpeg', THUMBNAIL_QUALITY);
           thumbnailCache[imgPath] = thumbnailUrl;
           callback(thumbnailUrl);
         } catch (e) {
-          // If canvas is tainted (CORS issue), use original
           console.warn('Could not generate thumbnail for', imgPath, e);
           callback(imgPath);
         }
