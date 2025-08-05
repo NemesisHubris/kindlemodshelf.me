@@ -408,6 +408,138 @@ a:hover {
   font-size: 0.95em;
 }
 
+/* Gallery Grid Styles */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  padding: 5px;
+}
+
+.img-thumb-wrap {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #111;
+}
+
+.img-thumb-wrap:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.img-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.2s ease;
+}
+
+.img-thumb-wrap:hover .img-thumb {
+  opacity: 0.9;
+}
+
+/* Image Viewer Modal Styles */
+#img-viewer-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#img-viewer-modal.active {
+  opacity: 1;
+}
+
+#img-viewer-img-wrap {
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+#img-viewer-img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  margin: 0 auto;
+  cursor: zoom-out;
+}
+
+#img-viewer-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 30px;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1010;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+#img-viewer-close:hover {
+  opacity: 1;
+}
+
+#img-viewer-download {
+  position: absolute;
+  top: 12px;
+  right: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1010;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+#img-viewer-download:hover {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+  }
+  
+  .img-thumb-wrap {
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 6px;
+  }
+  
+  .img-thumb-wrap {
+    height: 100px;
+  }
+}
+
 #emailPopup button[type="submit"]:hover {
   background: #5ccaf0;
 }
