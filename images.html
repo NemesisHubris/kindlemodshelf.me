@@ -61,7 +61,10 @@
           `;
           const grid = section.querySelector('.gallery-grid');
           images.forEach(filename => {
-            const imgPath = `images/${author}/${filename}`;
+            // Use encodeURIComponent for both parts!
+            const authorEnc = encodeURIComponent(author);
+            const filenameEnc = encodeURIComponent(filename);
+            const imgPath = `images/${authorEnc}/${filenameEnc}`;
             const cell = document.createElement('div');
             cell.className = "img-thumb-wrap";
             cell.innerHTML = `
