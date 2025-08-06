@@ -9,6 +9,9 @@
   --shadow-color: rgba(14, 20, 27, 0.4);
   --tag-bg: #323846;
   --tag-fg: #ade1ff;
+  --warning-bg: rgba(178, 34, 34, 0.9);
+  --warning-border: #ff6b6b;
+  --warning-text: #fff;
 }
 
 * { box-sizing: border-box; }
@@ -631,4 +634,108 @@ a:hover {
   height: 30px;
   animation: spin 1s linear infinite;
   margin: 0 auto 10px;
+}
+
+/* Warning banner styles */
+.warning-banner {
+  background: var(--warning-bg);
+  border: 2px solid var(--warning-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 0 auto 30px;
+  max-width: 800px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  color: var(--warning-text);
+}
+
+.warning-title {
+  margin: 0 0 12px 0;
+  font-size: 1.3em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.warning-content {
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.warning-content p {
+  margin: 8px 0;
+}
+
+.warning-content strong {
+  color: #ffd54f;
+  font-weight: 700;
+}
+
+/* Action buttons grid layout */
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto 30px;
+}
+
+.action-button {
+  display: flex;
+}
+
+.feature-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, rgba(26, 32, 44, 0.7) 0%, rgba(30, 37, 54, 0.95) 100%);
+  border: 1.5px solid #384357;
+  border-radius: 12px;
+  width: 100%;
+  min-height: 100px;
+  padding: 16px 10px;
+  text-align: center;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: var(--fg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(8, 25, 42, 0.3);
+  border-color: var(--primary);
+  background: linear-gradient(145deg, rgba(26, 32, 44, 0.8) 0%, rgba(35, 45, 65, 0.95) 100%);
+  text-decoration: none;
+  color: var(--fg);
+}
+
+.feature-button .button-title {
+  font-weight: 600;
+  font-size: 1.1em;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.feature-button .button-desc {
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.feature-button.chat-button .button-title {
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .feature-button {
+    min-height: 80px;
+    padding: 12px 8px;
+  }
 }
