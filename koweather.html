@@ -2,28 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KOReader for Kindle – Powerful eBook Reader App (Official Site & Guide)</title>
+  <title>KOWeather Plugin for KOReader – Weather on E-Ink (Kobo & Kindle)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KOReader is a free, open-source reading app for Kindle. Read EPUB, PDF, and more with advanced features and full customization. Download, install, and learn more at the official KOReader site.">
-  <link rel="canonical" href="https://kindlemodshelf.me/koreader.html">
+  <meta name="description" content="KOWeather — a lo-fidelity weather plugin for KOReader. Get current conditions, hourly forecasts, and a short multi-day outlook on your e-ink device.">
+  <link rel="canonical" href="https://kindlemodshelf.me/weather.html">
   <link rel="stylesheet" href="style.css">
-  <meta property="og:title" content="KOReader for Kindle – Powerful eBook Reader App (Official Site & Guide)">
-  <meta property="og:description" content="KOReader: The most advanced reading app for Kindle—read EPUB, PDF, and more, customize everything, and enjoy features the default Kindle reader doesn't have.">
-  <meta property="og:url" content="https://kindlemodshelf.me/koreader.html">
+  <meta property="og:title" content="KOWeather Plugin for KOReader – Weather on E-Ink (Kobo & Kindle)">
+  <meta property="og:description" content="KOWeather — lo-fidelity weather for KOReader devices. Forecasts, hourly details, and simple configuration for postal-code based locations.">
+  <meta property="og:url" content="https://kindlemodshelf.me/weather.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "KOReader for Kindle",
-    "operatingSystem": "Kindle OS",
-    "applicationCategory": "ReadingApplication",
-    "description": "KOReader is the most advanced reading app for Kindle—read EPUB, PDF, and more, customize everything, and enjoy features the default Kindle reader doesn't have.",
+    "name": "KOWeather (weather.koplugin)",
+    "operatingSystem": "KOReader (Kindle, Kobo, e-ink)",
+    "applicationCategory": "WeatherApplication",
+    "description": "KOWeather is a lightweight weather plugin for KOReader. Provides current conditions, hourly forecasts, and a short multi-day outlook for e-ink devices. Weather data provided by WeatherAPI.",
+    "url": "https://github.com/roygbyte/weather.koplugin",
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/koreader.html"
+    }
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
@@ -31,60 +31,102 @@
 <body>
   <div class="container">
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
-    <h1>KOReader for Kindle – Advanced eBook Reader (Official Site)</h1>
+    <h1>KOWeather — lo-fidelity Weather for KOReader</h1>
+
     <div class="summary">
-      <b>KOReader</b> is a free, open-source eBook reader app for Kindle and e-ink devices. Enjoy fast page turns, broad format support, and advanced customization not possible with Amazon’s stock app.
+      <strong>Did you say weather? Did you say e-reader? Did you say now?</strong> Say "welcome" to your new best friend, <b>KOWeather</b>, the lo-fidelity weather app that delivers weather conditions and forecasts to your favorite e-ink device. Weather information is provided by <a href="https://www.weatherapi.com/" target="_blank" rel="noopener">WeatherAPI</a>.
     </div>
 
     <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Main Features</h2>
+      <h2 class="section-title" id="features">Features</h2>
       <div class="card card-desc">
         <ul>
-          <li>Read all major formats: EPUB, PDF, DJVU, CBZ, MOBI, DOC, TXT, and more</li>
-          <li>Customize margins, font, contrast, line spacing, and themes</li>
-          <li>Instant dictionary and translation support</li>
-          <li>Send books wirelessly, zoom into comics, and use custom screensavers</li>
-          <li>Designed for e-ink: simple, fast, no unnecessary animations</li>
+          <li>Forecast for current day</li>
+          <li>Forecast for the next 2 days</li>
+          <li>Hourly forecast for the current day</li>
+          <li>Celsius and Fahrenheit (except it's not yet working!)</li>
+          <li>24- or 12-hour clock</li>
         </ul>
       </div>
     </section>
 
-    <section aria-labelledby="why">
-      <h2 class="section-title" id="why">Why Use KOReader?</h2>
+    <section aria-labelledby="customization">
+      <h2 class="section-title" id="customization">Customization</h2>
+      <div class="card card-desc">
+        <p>Have it your way. This plugin lets you set the forecast location by <strong>postal code</strong>. Change the postal code in the plugin settings to get weather for your area.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="screenshots">
+      <h2 class="section-title" id="screenshots">Screenshots</h2>
+      <div class="card card-desc">
+        <p>Add screenshots here to show the current view, hourly list, and settings screen. (Place screenshot images in the same folder and reference with &lt;img&gt; tags if you'd like.)</p>
+        <!-- Example placeholder markup; replace with actual images if available:
+        <div class="screenshot-row">
+          <img src="screenshots/koweather-main.png" alt="KOWeather main view">
+          <img src="screenshots/koweather-hourly.png" alt="KOWeather hourly forecast">
+        </div>
+        -->
+      </div>
+    </section>
+
+    <section aria-labelledby="compatibility">
+      <h2 class="section-title" id="compatibility">Compatibility</h2>
       <div class="card card-desc">
         <ul>
-          <li>Open and read virtually any ebook or document</li>
-          <li>Personalize your Kindle’s look and feel</li>
-          <li>Access features the standard Kindle app doesn’t offer</li>
+          <li>Tested with the <strong>Kobo Libra H2O</strong>.</li>
+          <li>Other devices are unknown — feel encouraged to try this plugin on your device.</li>
+          <li>If it does or doesn't work on your device, our elves would love to know (open an issue on the GitHub repo).</li>
         </ul>
       </div>
     </section>
 
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">Official KOReader Site & Installation</h2>
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
       <div class="card card-desc">
+        <p>Easy as pie — drag and drop:</p>
         <ol>
-          <li>
-            <b>KOReader Official Site:</b>
-            <a href="https://koreader.rocks/" target="_blank" rel="noopener">https://koreader.rocks/</a> (All downloads, install instructions, support, and documentation)
-          </li>
-          <li>
-            <b>Direct Download (Latest Version):</b>
-            <a href="https://github.com/koreader/koreader/releases" target="_blank" rel="noopener">KOReader GitHub Releases</a>
-          </li>
-          <li>
-            <b>Installation Guide:</b>
-            <a href="https://github.com/koreader/koreader/wiki" target="_blank" rel="noopener">KOReader Wiki</a>
-          </li>
+          <li>Download the latest release from the project's GitHub: <a href="https://github.com/roygbyte/weather.koplugin" target="_blank" rel="noopener">roygbyte/weather.koplugin</a>.</li>
+          <li>Unzip the downloaded archive on your computer.</li>
+          <li>Transfer the <code>weather.koplugin</code> folder to your KOReader-powered device and place it under <code>/mnt/us/.adds/koreader/plugins/</code> (or <code>/.adds/koreader/plugins/</code> depending on your device layout).</li>
+          <li>Restart KOReader. The plugin should appear under <em>Plugins → More tools → Weather</em> (or a similar menu entry) — select it to run.</li>
         </ol>
       </div>
     </section>
 
-    <section aria-labelledby="summary2">
-      <h2 class="section-title" id="summary2">Summary</h2>
+    <section aria-labelledby="usage">
+      <h2 class="section-title" id="usage">How to Use</h2>
       <div class="card card-desc">
-        Make your Kindle a powerful, flexible reading device with KOReader.<br>
-        Visit the <a href="https://koreader.rocks/" target="_blank" rel="noopener">official KOReader website</a> to download, install, and get the latest updates and support.
+        <ol>
+          <li>Open KOReader.</li>
+          <li>Navigate to <b>Plugins</b> → <b>More tools</b> → <b>Weather</b>.</li>
+          <li>View the current conditions and the short forecast. Tap or press the navigation control to return to KOReader.</li>
+          <li>To change location, open the plugin settings and enter your postal code.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="notes">
+      <h2 class="section-title" id="notes">Notes &amp; Troubleshooting</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Weather data courtesy of WeatherAPI; an internet connection is required to fetch updates.</li>
+          <li>If the Celsius/Fahrenheit toggle isn't functioning yet, try updating the plugin or filing an issue on GitHub.</li>
+          <li>For device-specific quirks, open an issue on the repo with device model and KOReader version.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="contribute">
+      <h2 class="section-title" id="contribute">Contribute / Report Issues</h2>
+      <div class="card card-desc">
+        <p>Found a bug or want to improve KOWeather? File an issue or submit a pull request on GitHub: <a href="https://github.com/roygbyte/weather.koplugin" target="_blank" rel="noopener">roygbyte/weather.koplugin</a>.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="final">
+      <div class="card card-desc">
+        <p>KOWeather brings simple, useful weather forecasts to your e-ink device — perfect for deciding whether to read under the tree or run for cover from the rain.</p>
       </div>
     </section>
   </div>
