@@ -19,37 +19,37 @@
     <h2 class="section-title">Installation Instructions (only what you NEED)</h2>
     <div class="card card-desc">
       <ol>
-        <li><strong>Download</strong> the appropriate <code>update.bin</code> (the MR package) for your firmware from the project's Releases page.</li>
-        <li><strong>Do not extract or unzip</strong> the file — you need the raw <code>update.bin</code>.</li>
-        <li><strong>Place</strong> the <code>update.bin</code> into a folder named <code>mrpackages</code> on your Kindle's USB storage (create <code>mrpackages</code> if it doesn't exist).</li>
-        <li>On the Kindle, open KUAL and install the MR package via <em>Helper → Install MR Packages</em> (or run the MR installer from KUAL and pick the .bin in <code>mrpackages</code>).</li>
-        <li>Optional/diagnostic: run <code>;log mrpi</code> from the KUAL search bar to view installer logs if you need troubleshooting info.</li>
-        <li>After installation, control / launch <strong>usbnetlite</strong> from the KUAL menu.</li>
+        <li><strong>Download</strong> the correct <code>update_*.bin</code> file for your firmware version from the usbnetlite project’s Releases page.</li>
+        <li><strong>Do not extract or unzip</strong> anything — you need the raw <code>.bin</code> file.</li>
+        <li><strong>Copy</strong> the <code>.bin</code> file into the <code>mrpackages</code> folder on your Kindle’s USB storage (create <code>mrpackages</code> if it doesn’t exist).</li>
+        <li>On your Kindle, open <strong>KUAL</strong> → go to <em>Helper → Install MR Packages</em>. This will install the <code>.bin</code> you placed in <code>mrpackages</code>.</li>
+        <li>Optional: type <code>;log mrpi</code> in the Kindle search bar to check MR installer logs if troubleshooting is needed.</li>
+        <li>Once installed, usbnetlite will appear in the KUAL menu and can be launched from there.</li>
       </ol>
     </div>
 
     <h2 class="section-title">Connection Info (default config)</h2>
     <div class="card card-desc">
-      <p>There is a config file you can edit with KOReader. The default connection credentials are:</p>
+      <p>Edit the config file if needed (can be done in KOReader). Default login credentials are:</p>
       <pre><code>username: root
 password: kindle</code></pre>
-      <p>Once usbnetlite is running you should be able to control it from KUAL.</p>
+      <p>Once usbnetlite is running, you can enable/disable USB networking directly from KUAL.</p>
     </div>
 
     <h2 class="section-title">Quick Launch</h2>
     <div class="card card-desc">
       <ul>
-        <li>Install the MR package as above.</li>
+        <li>Install the MR package as described above.</li>
         <li>Open KUAL → find <strong>usbnetlite</strong> in the menu → launch.</li>
-        <li>Use the KUAL interface to enable/disable USB networking as needed.</li>
+        <li>Use the KUAL interface to toggle USB networking.</li>
       </ul>
     </div>
 
     <h2 class="section-title">Notes</h2>
     <div class="card card-desc">
       <ul>
-        <li>This page contains only the minimal, corrected steps — follow the project's Releases for specific firmware builds.</li>
-        <li>If an installer log is required for debugging, use <code>;log mrpi</code> in the KUAL search bar to read it.</li>
+        <li>This page contains only the minimal, corrected steps — always follow the project’s Releases for firmware-specific builds.</li>
+        <li>If debugging is needed, use <code>;log mrpi</code> in the Kindle search bar to read the MR installer log.</li>
       </ul>
     </div>
   </div>
