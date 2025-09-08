@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Home Screen Shortcuts</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Copy the scripts you want into /mnt/us/documents and tap them on the Home screen to launch apps without opening KUAL." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <a class="back-home-btn" href="index.html" aria-label="Back to Home">← Back to Home</a>
+
+    <h1>Home Screen Shortcuts</h1>
+
+    <div class="summary">
+      <p>Copy only the shortcuts you want into <code>/mnt/us/documents</code>. Tap them from the Kindle Home screen to run the corresponding app directly — no KUAL required.</p>
+    </div>
+
+    <div class="section-title">Quick steps</div>
+    <div class="card card-desc">
+      <ol>
+        <li>From this website, open the <code>downloads/</code> folder and pick the script(s) you want.</li>
+        <li>Copy them to <code>/mnt/us/documents</code> on your Kindle.</li>
+        <li>Make them executable if necessary:
+          <pre style="margin:8px 0 0 0;"><code>chmod +x /mnt/us/documents/*.sh</code></pre>
+        </li>
+        <li>Tap the file on the Home screen to launch the app.</li>
+      </ol>
+    </div>
+
+    <div class="section-title">Shortcut files</div>
+    <div class="card card-desc card-links">
+      <a href="downloads/Alpine.sh" download>Alpine.sh</a>
+      <small>Alpine mail client launcher — drop into <code>/mnt/us/documents</code>.</small>
+
+      <a href="downloads/KOReader.sh" download>KOReader.sh</a>
+      <small>KOReader launcher — opens KOReader directly from the Home screen.</small>
+
+      <a href="downloads/KindleFetch.sh" download>KindleFetch.sh</a>
+      <small>KindleFetch utility launcher.</small>
+
+      <a href="downloads/Kterm.sh" download>Kterm.sh</a>
+      <small>KTerm terminal launcher.</small>
+    </div>
+
+    <div class="section-title">Notes</div>
+    <div class="card card-desc">
+      <ul>
+        <li>All files referenced on this page live in <code>downloads/</code> on the website — copy the specific ones you need.</li>
+        <li>If a shortcut doesn't run: confirm the file is executable and located in <code>/mnt/us/documents</code>.</li>
+        <li>These scripts are simple launchers that call the actual app start scripts on-device. Inspect them before use if you want to confirm exact behavior.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
