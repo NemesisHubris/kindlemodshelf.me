@@ -1,102 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>SSH into Your Kindle via USB – kindle-usbnetlite (No More Slow Typing!)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Skip slow typing in KTerm! Use kindle-usbnetlite to SSH into your jailbroken Kindle over USB for fast, easy modding, troubleshooting, and file management.">
-  <link rel="canonical" href="https://kindlemodshelf.me/usbnetlite.html">
+  <meta charset="utf-8">
+  <title>usbnetlite — Simple Installation & Connection Info</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Minimal instructions to install and use usbnetlite on a jailbroken Kindle via KUAL / MR packages.">
   <link rel="stylesheet" href="style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "kindle-usbnetlite",
-    "operatingSystem": "Kindle OS (jailbroken)",
-    "applicationCategory": "Utility",
-    "description": "kindle-usbnetlite lets you SSH into your Kindle over USB—no more slow typing in KTerm! Perfect for modding, troubleshooting, and file access.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/usbnetlite.html"
-  }
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
-    <h1>kindle-usbnetlite – SSH into Your Kindle via USB</h1>
+    <h1>usbnetlite — Simple install & connection (Kindle)</h1>
 
-    <div class="summary">
-      <p>
-        <b>kindle-usbnetlite</b> is the easiest way to access your jailbroken Kindle’s command line using SSH over a USB cable.
-        No more typing painfully slow commands in KTerm on a 1 FPS display—just use your computer’s terminal for instant modding, troubleshooting, and file management.
-      </p>
+    <div class="summary card card-desc">
+      Minimal, corrected install instructions so you can enable USB networking and control usbnetlite from KUAL.
     </div>
 
-    <div class="section-title">What Is kindle-usbnetlite?</div>
+    <h2 class="section-title">Installation Instructions (only what you NEED)</h2>
     <div class="card card-desc">
-      <p>
-        <b>kindle-usbnetlite</b> enables USB networking on your Kindle, so you can SSH in from your computer while the Kindle is plugged in via USB.
-        This makes it simple to run commands, manage files, and mod your Kindle—without dealing with the Kindle’s slow on-device terminal.
-      </p>
+      <ol>
+        <li><strong>Download</strong> the appropriate <code>update.bin</code> (the MR package) for your firmware from the project's Releases page.</li>
+        <li><strong>Do not extract or unzip</strong> the file — you need the raw <code>update.bin</code>.</li>
+        <li><strong>Place</strong> the <code>update.bin</code> into a folder named <code>mrpackages</code> on your Kindle's USB storage (create <code>mrpackages</code> if it doesn't exist).</li>
+        <li>On the Kindle, open KUAL and install the MR package via <em>Helper → Install MR Packages</em> (or run the MR installer from KUAL and pick the .bin in <code>mrpackages</code>).</li>
+        <li>Optional/diagnostic: run <code>;log mrpi</code> from the KUAL search bar to view installer logs if you need troubleshooting info.</li>
+        <li>After installation, control / launch <strong>usbnetlite</strong> from the KUAL menu.</li>
+      </ol>
     </div>
 
-    <div class="section-title">Requirements</div>
+    <h2 class="section-title">Connection Info (default config)</h2>
+    <div class="card card-desc">
+      <p>There is a config file you can edit with KOReader. The default connection credentials are:</p>
+      <pre><code>username: root
+password: kindle</code></pre>
+      <p>Once usbnetlite is running you should be able to control it from KUAL.</p>
+    </div>
+
+    <h2 class="section-title">Quick Launch</h2>
     <div class="card card-desc">
       <ul>
-        <li><a href="jailbreaking.html">Jailbroken Kindle</a></li>
-        <li>KUAL (Kindle Unified Application Launcher) for launching usbnetlite</li>
-        <li>Computer running Windows, macOS, or Linux</li>
-        <li>USB cable to connect your Kindle</li>
+        <li>Install the MR package as above.</li>
+        <li>Open KUAL → find <strong>usbnetlite</strong> in the menu → launch.</li>
+        <li>Use the KUAL interface to enable/disable USB networking as needed.</li>
       </ul>
     </div>
 
-    <div class="section-title">How to Install</div>
-    <div class="card card-desc">
-      <ol>
-        <li>
-          <p>Download the latest release from
-            <a href="https://github.com/notmarek/kindle-usbnetlite/releases" target="_blank">
-              the kindle-usbnetlite GitHub releases page
-            </a> and extract the contents on your computer.
-          </p>
-        </li>
-        <li><p>Copy the entire <b>usbnetlite</b> folder to the <b>/extensions</b> directory on your Kindle’s USB storage.</p></li>
-        <li><p>Safely eject your Kindle from your computer.</p></li>
-        <li><p>On your Kindle, open KUAL and launch <b>kindle-usbnetlite</b> from the menu.</p></li>
-      </ol>
-    </div>
-
-    <div class="section-title">How to SSH into Your Kindle Over USB</div>
-    <div class="card card-desc">
-      <ol>
-        <li><p>On your Kindle, open KUAL and launch <b>kindle-usbnetlite</b> to enable USB networking.</p></li>
-        <li><p>Plug your Kindle into your computer with a USB cable.</p></li>
-        <li>
-          <p>On your computer, set your USB network interface to IP address <b>192.168.15.201</b> with subnet mask <b>255.255.255.0</b> if it does not configure automatically.</p>
-        </li>
-        <li>
-          <p>Open a terminal on your computer and connect with:</p>
-          <pre><code>ssh root@192.168.15.244</code></pre>
-        </li>
-        <li><p>When prompted for a password, enter: <b>kindle</b></p></li>
-      </ol>
-      <div class="tip">
-        <p><b>Tip:</b> If you have trouble connecting, check your network settings.</p>
-      </div>
-    </div>
-
-    <div class="section-title">Why Use kindle-usbnetlite?</div>
+    <h2 class="section-title">Notes</h2>
     <div class="card card-desc">
       <ul>
-        <li><b>Fast SSH access</b> – No more typing on the Kindle at 1 FPS; use your real keyboard and tools!</li>
-        <li><b>No Wi-Fi needed</b> – Works anywhere you have a USB cable.</li>
-        <li><b>Essential for modders and power users</b> – The easiest way to mod, troubleshoot, or access your Kindle’s files.</li>
-        <li><b>Lightweight and secure</b> – Just what you need, nothing more.</li>
+        <li>This page contains only the minimal, corrected steps — follow the project's Releases for specific firmware builds.</li>
+        <li>If an installer log is required for debugging, use <code>;log mrpi</code> in the KUAL search bar to read it.</li>
       </ul>
     </div>
   </div>
