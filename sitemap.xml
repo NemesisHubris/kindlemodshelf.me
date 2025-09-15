@@ -4,8 +4,7 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
+<!-- cleaned and corrected sitemap for kindlemodshelf.me -->
 
 <url>
   <loc>https://kindlemodshelf.me/</loc>
@@ -163,11 +162,6 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/index.html</loc>
-  <lastmod>2025-09-08T20:04:35+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
   <loc>https://kindlemodshelf.me/faq.html</loc>
   <lastmod>2025-09-08T20:04:34+00:00</lastmod>
   <priority>0.64</priority>
@@ -177,6 +171,5 @@
   <lastmod>2025-09-08T20:04:35+00:00</lastmod>
   <priority>0.64</priority>
 </url>
-
 
 </urlset>
