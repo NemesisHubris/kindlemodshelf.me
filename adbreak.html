@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AdBreak — Kindle jailbreak (24 Sep 2025)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AdBreak jailbreak for ad-enabled Kindles (firmware 5.18.1–5.18.5). Release: 24 Sep 2025. Based on CVE-2012-3748.">
+  <link rel="canonical" href="https://kindlemodding.org/jailbreaking/AdBreak/">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="AdBreak — Kindle jailbreak (24 Sep 2025)">
+  <meta property="og:description" content="AdBreak jailbreak for ad-enabled Kindles (firmware 5.18.1–5.18.5). Release: 24 Sep 2025.">
+  <meta property="og:url" content="https://kindlemodding.org/jailbreaking/AdBreak/">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"AdBreak",
+    "operatingSystem":"Kindle OS (firmware 5.18.1–5.18.5)",
+    "applicationCategory":"Utility",
+    "description":"AdBreak is a jailbreak for ad-enabled Kindle devices. Released 24 Sep 2025; based on CVE-2012-3748.",
+    "offers":{ "@type":"Offer", "price":"0", "priceCurrency":"USD" },
+    "url":"https://kindlemodding.org/jailbreaking/AdBreak/"
+  }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
+
+    <h1>AdBreak</h1>
+
+    <div class="summary card card-desc">
+      <p><strong>AdBreak</strong> is a concise, PC-assisted jailbreak released <strong>24 Sep 2025</strong> for ad-enabled Kindle devices on firmware <strong>5.18.1 → 5.18.5</strong>. It leverages an exploit related to <code>CVE-2012-3748</code>. This page gives the essential facts, a compact install checklist, how to enable ads if needed, and key troubleshooting notes. <strong>Read everything before you begin.</strong></p>
+      <p><a href="https://kindlemodding.org/jailbreaking/AdBreak/" target="_blank" rel="noopener">Official release & resources</a></p>
+    </div>
+
+    <h2 class="section-title">Release at a glance</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><strong>Release date:</strong> 24 Sep 2025</li>
+        <li><strong>Maintainer:</strong> @hhhhhhhhh</li>
+        <li><strong>Exploit base:</strong> CVE-2012-3748</li>
+        <li><strong>Supported firmware:</strong> 5.18.1 — 5.18.5 (some micro-patches may block the exploit)</li>
+        <li><strong>Requires:</strong> Special Offers (ads) active on the lockscreen</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Prerequisites</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><strong>PC + USB cable</strong> (you will copy/replace the device <code>.assets</code> folder)</li>
+        <li>Kindle must be <strong>registered</strong> and not blacklisted</li>
+        <li>Kindle must display <strong>Special Offers (ads)</strong> on the lockscreen</li>
+        <li>Device firmware must be in the supported range (see above). If ≤ 5.18.0.2, use WinterBreak instead.</li>
+      </ul>
+      <p><strong>Do not proceed</strong> without verifying the above—especially the presence of ads and correct firmware.</p>
+    </div>
+
+    <h2 class="section-title">Quick install checklist</h2>
+    <div class="card card-desc">
+      <ol>
+        <li><strong>Download</strong> the latest AdBreak package from the official release page.</li>
+        <li><strong>Confirm ads:</strong> keep the Kindle online until ads appear on the lockscreen. If no ads appear, a factory reset can sometimes help (see Troubleshooting).</li>
+        <li><strong>Enable airplane mode</strong> after ads are visible.</li>
+        <li>Open lockscreen menu → <strong>View all ads</strong> to confirm multiple Special Offers are listed.</li>
+        <li><strong>Copy <code>.assets</code></strong> — connect Kindle to PC and copy the device’s <code>.assets</code> folder (backup the original).</li>
+        <li><strong>Unpack AdBreak</strong> and merge its files into the copied <code>.assets</code> folder on your PC.</li>
+        <li><strong>Run replace helper:</strong>
+          <ul>
+            <li>Windows — run <code>replace.bat</code></li>
+            <li>macOS / Linux — run the provided terminal command to place the exploit HTML into matching ad folders (example in the release)</li>
+          </ul>
+        </li>
+        <li><strong>Replace device assets:</strong> delete the original <code>.assets</code> on the Kindle and copy the modified folder back.</li>
+        <li><strong>Trigger exploit:</strong> unplug the Kindle, tap the modified ad, follow prompts; the jailbreak script should run at the final popup.</li>
+      </ol>
+      <p><strong>Backup your original <code>.assets</code> folder and any data before modifying anything.</strong></p>
+    </div>
+
+    <h2 class="section-title">Enable Special Offers (if needed)</h2>
+    <div class="card card-desc">
+      <p>If your device shipped without ads you can often re-enable them via your Amazon account:</p>
+      <ol>
+        <li>Amazon → <strong>Manage Your Content and Devices → Preferences → Country/Region</strong>: select a supported region (US, UK, DE, FR, IT, ES, JP, CN).</li>
+        <li>Add a matching billing address and a payment method (card required; usually no charge).</li>
+        <li>Enable <strong>Special Offers</strong> for your device and sync — ads should populate the lockscreen after some time.</li>
+      </ol>
+      <p><strong>Important:</strong> Kindle Scribe and Colorsoft cannot be made ad-enabled and are not compatible with AdBreak.</p>
+    </div>
+
+    <h2 class="section-title">Troubleshooting & key cautions</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><strong>Ad removal:</strong> AdBreak does not remove Special Offers. Use separate scripts if you want ads removed after jailbreaking.</li>
+        <li><strong>Unsupported models:</strong> Scribe & Colorsoft cannot be jailbroken with AdBreak.</li>
+        <li><strong>Firmware issues:</strong> some 5.18.5 micro-builds (e.g., 5.18.5.0.1) may block the exploit — check community threads for workarounds.</li>
+        <li><strong>Hidden system folders:</strong> mass-storage Kindles may hide the system folder—follow a device-specific guide to reveal it before replacing <code>.assets</code>.</li>
+        <li><strong>Factory reset:</strong> can force ad downloads but will erase personal data—only use if you understand the consequences.</li>
+        <li><strong>Always keep backups:</strong> preserve the original <code>.assets</code> so you can restore the device if needed.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Credits</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><strong>@hhhhhhhhh</strong> — release maintainer</li>
+        <li>Exploit contributions from community members (including work attributed to Chris Evans / @scarybeasts)</li>
+        <li>Helper / install scripts contributed by community maintainers</li>
+      </ul>
+    </div>
+
+    <div class="card card-desc">
+      <p><strong>Summary:</strong> AdBreak is a targeted jailbreak for ad-enabled Kindles on firmware 5.18.1–5.18.5. It requires Special Offers and a PC to replace the device <code>.assets</code>. Verify prerequisites, back up originals, and consult community threads for model-specific advice before you proceed.</p>
+    </div>
+  </div>
+</body>
+</html>
