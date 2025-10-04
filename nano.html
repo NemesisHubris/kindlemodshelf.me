@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GNU Nano 8.x for Kindle – Terminal Text Editor (HF)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nano 8.x packaged for Hardfloat (HF) Kindles. Run ./nano on-device; in SSH set TERM=linux. Use -f nanorc to enable syntax highlighting.">
+  <link rel="canonical" href="https://kindlemodshelf.me/nano.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="GNU Nano 8.x for Kindle – Terminal Text Editor (HF)">
+  <meta property="og:description" content="Nano 8.x for HF Kindles. Run ./nano on-device; set TERM=linux for SSH sessions; use -f nanorc to enable syntax highlighting.">
+  <meta property="og:url" content="https://kindlemodshelf.me/nano.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "GNU Nano 8.x for Kindle",
+    "operatingSystem": "Kindle OS (Hardfloat / KTerm environment)",
+    "applicationCategory": "DeveloperTool",
+    "description": "GNU Nano 8.x — terminal text editor packaged for HF Kindles. Runs in KTerm or over SSH. Supports an optional nanorc for syntax highlighting.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://kindlemodshelf.me/nano.html"
+  }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>GNU Nano 8.x for Kindle (HF)</h1>
+
+    <div class="summary">
+      <b>Nano 8.x</b> is a terminal-first text editor packaged for Hardfloat (HF) Kindle builds. The package is available as <code>nano.zip</code>. Run the provided binary from the extracted folder with <code>./nano</code>. When connecting over SSH, set the terminal type first (for example <code>export TERM=linux</code>). Syntax highlighting can be enabled by passing a <code>nanorc</code> rules file using <code>-f nanorc</code>.
+    </div>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Familiar terminal editing with standard Nano shortcuts (save, exit, search, cut/paste)</li>
+          <li>Small, fast binary suitable for quick on-device edits</li>
+          <li>Optional syntax highlighting via a <code>nanorc</code> rules file (use <code>-f nanorc</code>)</li>
+          <li>Runs in KTerm or over SSH</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="requirements">
+      <h2 class="section-title" id="requirements">Requirements</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><strong>Hardfloat (HF) Kindle build only.</strong> The provided binary targets armhf/HF runtime.</li>
+          <li>KTerm (on-device terminal) or SSH shell access.</li>
+          <li>External keyboard (Bluetooth or USB) recommended for comfortable editing.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="install">
+      <h2 class="section-title" id="install">How to Install</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download: <a href="downloads/nano.zip" download>nano.zip</a>.</li>
+          <li>Extract the archive on your computer or copy the ZIP to the Kindle and extract it there.</li>
+          <li>Place the extracted folder on the Kindle (for example under <code>/mnt/us</code> or <code>/mnt/us/documents/nano</code>).</li>
+          <li>Make the binary executable if needed:
+            <pre><code>chmod +x /path/to/nano</code></pre>
+          </li>
+          <li>If shared libraries are included, keep them next to the binary or ensure they are discoverable at runtime (rpath or <code>LD_LIBRARY_PATH</code>).</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="run">
+      <h2 class="section-title" id="run">How to Run</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><b>Run locally on the Kindle:</b>
+            <pre><code>cd /path/to/extracted/folder
+./nano filename.txt</code></pre>
+          </li>
+
+          <li><b>Run over SSH:</b>
+            <p>When launching from a desktop terminal via SSH, set the terminal type first:
+            <pre><code>export TERM=linux
+./nano filename.txt</code></pre>
+            Setting <code>TERM</code> can help Nano handle control keys correctly in SSH sessions.</p>
+          </li>
+
+          <li><b>Enable syntax highlighting:</b> Provide a nanorc rules file and pass it with <code>-f</code>:
+            <pre><code>./nano -f nanorc filename.txt
+# or
+./nano -f ./nanorc myfile.c</code></pre>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="troubleshooting">
+      <h2 class="section-title" id="troubleshooting">Troubleshooting</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><strong>Permission denied</strong> — possible causes:
+            <ul>
+              <li>File not executable (<code>chmod +x ./nano</code>).</li>
+              <li>Execution disabled on the mount being used; move the binary to a writable mount that permits exec (e.g., <code>/mnt/us</code>).</li>
+              <li>Executable ABI incompatible with the device (verify armhf/HF).</li>
+            </ul>
+          </li>
+
+          <li><strong>Segfaults or immediate exits</strong> — possible causes and checks:
+            <ul>
+              <li>ABI or shared library mismatches (ncurses or other libs).</li>
+              <li>Try running with bundled libraries using <code>LD_LIBRARY_PATH=./</code> so the binary finds local libraries.</li>
+              <li>Confirm the binary's architecture where possible.</li>
+            </ul>
+          </li>
+
+          <li><strong>Key/terminal behavior over SSH</strong> — set <code>TERM=linux</code> before launching Nano to normalize control-key handling.</li>
+
+          <li><strong>Library search path</strong> — ensure libraries are found via rpath or <code>LD_LIBRARY_PATH</code>; host-side tools can adjust rpath before transfer if needed.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="notes">
+      <h2 class="section-title" id="notes">Notes</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>The distributed package targets HF (armhf) devices only; it will not work on non-HF/armel builds.</li>
+          <li>Results may vary across firmware versions; verify compatibility with your device and firmware before use.</li>
+          <li>An external keyboard greatly improves the editing experience.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
