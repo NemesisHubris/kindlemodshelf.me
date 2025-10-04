@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Textadept (KTerm) for Kindle – Desktop-grade Text Editor (HF)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Textadept for Kindle (HF) — a fast, extensible, Lua-scriptable text editor with multi-buffer, split view, lexer support and a KTerm CLI.">
+  <link rel="canonical" href="https://kindlemodshelf.me/textadept.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Textadept (KTerm) for Kindle – Desktop-grade Text Editor (HF)">
+  <meta property="og:description" content="Textadept for Kindle (HF). A compact, powerful, and Lua-scriptable editor with both GUI and terminal interfaces; best used with an external keyboard.">
+  <meta property="og:url" content="https://kindlemodshelf.me/textadept.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Textadept for Kindle",
+    "operatingSystem": "Kindle OS (Hardfloat / Mesquite environment)",
+    "applicationCategory": "DeveloperTool",
+    "description": "Textadept, a lightweight, extensible text editor scriptable in Lua. Includes GUI and a KTerm-compatible CLI for on-device editing.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://kindlemodshelf.me/textadept.html"
+  }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>Textadept (KTerm) for Kindle</h1>
+
+    <div class="summary">
+      <b>Textadept</b> is a compact, desktop-grade text editor brought to Kindle (HF). Fast, scriptable in Lua, and packed with developer features — multi-buffer, split view, lexer-based highlighting, and a command palette. Includes both a GTK-based graphical interface and a CLI interface for KTerm.
+    </div>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Multi-buffer editing and split views (side-by-side)</li>
+          <li>Lexer-based syntax highlighting for many languages</li>
+          <li>Command palette for quick commands and actions</li>
+          <li>Completely scriptable and extensible in <b>Lua</b></li>
+          <li>Graphical GTK UI &amp; a lightweight CLI interface that runs in KTerm</li>
+          <li>Small footprint and fast startup — suited to HF Kindle builds</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="requirements">
+      <h2 class="section-title" id="requirements">Requirements</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><b>Hardfloat (HF) Kindle build only</b> — Textadept requires HF runtime support</li>
+          <li>Mesquite / Illusion environment for GUI integration (if using GTK frontend)</li>
+          <li>KTerm (terminal) available for CLI usage</li>
+          <li>External Bluetooth keyboard recommended (see Bugs)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="install">
+      <h2 class="section-title" id="install">How to Install</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download <a href="downloads/textadept.zip" download>textadept.zip</a></li>
+          <li>Either:
+            <ul>
+              <li>Unzip on your computer and copy the resulting folder and any included <b>.sh</b> launcher to your Kindle's <b>documents</b> folder, or</li>
+              <li>Copy the zip to the Kindle and extract it on-device (if you prefer extracting directly on the Kindle).</li>
+            </ul>
+          </li>
+          <li>If there is a launcher script (<b>.sh</b>), make it executable and place it in <code>/mnt/us/documents</code> so it appears as a tappable "book" on the Home screen.</li>
+          <li>To run the terminal interface, open KTerm and launch the included CLI binary or wrapper script from the Textadept folder.</li>
+          <li>For the GUI, launch the supplied GTK frontend (requires Mesquite / Illusion integration and HF runtime).</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="usage">
+      <h2 class="section-title" id="usage">How to Use</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><b>CLI (KTerm):</b> Open KTerm and run the included textadept CLI. Ideal when using the Kindle touchscreen + on-screen keyboard or when GTK is not usable.</li>
+          <li><b>GUI (GTK):</b> Launch the GTK interface for mouse-like menus, split panes, and the command palette. Best with an external keyboard for shortcuts.</li>
+          <li>Use the command palette to quickly open files, switch buffers, or run Lua commands.</li>
+          <li>All editor functionality is scriptable — read the included Lua snippets and the manual to extend behavior and add shortcuts.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="bugs">
+      <h2 class="section-title" id="bugs">Known Issues</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><b>Software keyboard bug:</b> When using the GTK graphical interface, the Kindle's software keyboard may disappear when a modal dialog opens. This is a known GTK integration issue.</li>
+          <li>Workaround: use a Bluetooth/external keyboard or use the KTerm CLI interface until the dialog/keyboard issue is resolved.</li>
+          <li>If you encounter crashes or missing lexers, check the included log or open the CLI to see error output.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="docs">
+      <h2 class="section-title" id="docs">Documentation</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Read the included <b>manual</b> and <b>API</b> files in the Textadept folder for usage, keyboard shortcuts, and Lua extension examples.</li>
+          <li>Command palette and keybindings are configurable via Lua — the docs show sample bindings for common editing tasks.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="summary2">
+      <div class="card card-desc">
+        Textadept brings a desktop-grade editing experience to HF Kindles. If you use an external keyboard or prefer terminal workflows, it's a powerful and lightweight editor worth learning.
+      </div>
+    </section>
+  </div>
+</body>
+</html>
