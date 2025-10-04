@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AdBreak — Kindle jailbreak (24 Sep 2025)</title>
+  <title>AdBreak – Kindle jailbreak (24 Sep 2025)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="AdBreak jailbreak for ad-enabled Kindles (firmware 5.18.1–5.18.5). Release: 24 Sep 2025. Based on CVE-2012-3748.">
   <link rel="canonical" href="https://kindlemodding.org/jailbreaking/AdBreak/">
   <link rel="stylesheet" href="style.css">
-  <meta property="og:title" content="AdBreak — Kindle jailbreak (24 Sep 2025)">
+  <meta property="og:title" content="AdBreak – Kindle jailbreak (24 Sep 2025)">
   <meta property="og:description" content="AdBreak jailbreak for ad-enabled Kindles (firmware 5.18.1–5.18.5). Release: 24 Sep 2025.">
   <meta property="og:url" content="https://kindlemodding.org/jailbreaking/AdBreak/">
   <script type="application/ld+json">
@@ -29,6 +29,15 @@
 
     <h1>AdBreak</h1>
 
+    <div class="faq-box">
+      <div class="faq-title">📺 Video Tutorial Available</div>
+      <p style="margin-bottom: 1em;">Before you begin, check out this comprehensive step-by-step video guide on how to jailbreak using AdBreak:</p>
+      <p style="margin-bottom: 1em;">
+        <a href="https://www.patreon.com/posts/how-to-jailbreak-140311438/" target="_blank" rel="noopener"><strong>How to Jailbreak Your Kindle Using AdBreak</strong></a> by <strong>Dammit Jeff</strong>
+      </p>
+      <p style="margin-bottom: 0.5em; color: #6cc29e; font-weight: 600;">Be sure to support Dammit Jeff for creating this detailed walkthrough that makes the jailbreak process much easier to follow!</p>
+    </div>
+
     <div class="summary card card-desc">
       <p><strong>AdBreak</strong> is a concise, PC-assisted jailbreak released <strong>24 Sep 2025</strong> for ad-enabled Kindle devices on firmware <strong>5.18.1 → 5.18.5</strong>. It leverages an exploit related to <code>CVE-2012-3748</code>. This page gives the essential facts, a compact install checklist, how to enable ads if needed, and key troubleshooting notes. <strong>Read everything before you begin.</strong></p>
       <p><a href="https://kindlemodding.org/jailbreaking/AdBreak/" target="_blank" rel="noopener">Official release & resources</a></p>
@@ -40,7 +49,7 @@
         <li><strong>Release date:</strong> 24 Sep 2025</li>
         <li><strong>Maintainer:</strong> @hhhhhhhhh</li>
         <li><strong>Exploit base:</strong> CVE-2012-3748</li>
-        <li><strong>Supported firmware:</strong> 5.18.1 — 5.18.5 (some micro-patches may block the exploit)</li>
+        <li><strong>Supported firmware:</strong> 5.18.1 – 5.18.5 (some micro-patches may block the exploit)</li>
         <li><strong>Requires:</strong> Special Offers (ads) active on the lockscreen</li>
       </ul>
     </div>
@@ -63,12 +72,12 @@
         <li><strong>Confirm ads:</strong> keep the Kindle online until ads appear on the lockscreen. If no ads appear, a factory reset can sometimes help (see Troubleshooting).</li>
         <li><strong>Enable airplane mode</strong> after ads are visible.</li>
         <li>Open lockscreen menu → <strong>View all ads</strong> to confirm multiple Special Offers are listed.</li>
-        <li><strong>Copy <code>.assets</code></strong> — connect Kindle to PC and copy the device’s <code>.assets</code> folder (backup the original).</li>
+        <li><strong>Copy <code>.assets</code></strong> – connect Kindle to PC and copy the device's <code>.assets</code> folder (backup the original).</li>
         <li><strong>Unpack AdBreak</strong> and merge its files into the copied <code>.assets</code> folder on your PC.</li>
         <li><strong>Run replace helper:</strong>
           <ul>
-            <li>Windows — run <code>replace.bat</code></li>
-            <li>macOS / Linux — run the provided terminal command to place the exploit HTML into matching ad folders (example in the release)</li>
+            <li>Windows – run <code>replace.bat</code></li>
+            <li>macOS / Linux – run the provided terminal command to place the exploit HTML into matching ad folders (example in the release)</li>
           </ul>
         </li>
         <li><strong>Replace device assets:</strong> delete the original <code>.assets</code> on the Kindle and copy the modified folder back.</li>
@@ -83,7 +92,7 @@
       <ol>
         <li>Amazon → <strong>Manage Your Content and Devices → Preferences → Country/Region</strong>: select a supported region (US, UK, DE, FR, IT, ES, JP, CN).</li>
         <li>Add a matching billing address and a payment method (card required; usually no charge).</li>
-        <li>Enable <strong>Special Offers</strong> for your device and sync — ads should populate the lockscreen after some time.</li>
+        <li>Enable <strong>Special Offers</strong> for your device and sync – ads should populate the lockscreen after some time.</li>
       </ol>
       <p><strong>Important:</strong> Kindle Scribe and Colorsoft cannot be made ad-enabled and are not compatible with AdBreak.</p>
     </div>
@@ -93,7 +102,7 @@
       <ul>
         <li><strong>Ad removal:</strong> AdBreak does not remove Special Offers. Use separate scripts if you want ads removed after jailbreaking.</li>
         <li><strong>Unsupported models:</strong> Scribe & Colorsoft cannot be jailbroken with AdBreak.</li>
-        <li><strong>Firmware issues:</strong> some 5.18.5 micro-builds (e.g., 5.18.5.0.1) may block the exploit — check community threads for workarounds.</li>
+        <li><strong>Firmware issues:</strong> some 5.18.5 micro-builds (e.g., 5.18.5.0.1) may block the exploit – check community threads for workarounds.</li>
         <li><strong>Hidden system folders:</strong> mass-storage Kindles may hide the system folder—follow a device-specific guide to reveal it before replacing <code>.assets</code>.</li>
         <li><strong>Factory reset:</strong> can force ad downloads but will erase personal data—only use if you understand the consequences.</li>
         <li><strong>Always keep backups:</strong> preserve the original <code>.assets</code> so you can restore the device if needed.</li>
@@ -103,7 +112,7 @@
     <h2 class="section-title">Credits</h2>
     <div class="card card-desc">
       <ul>
-        <li><strong>@hhhhhhhhh</strong> — release maintainer</li>
+        <li><strong>@hhhhhhhhh</strong> – release maintainer</li>
         <li>Exploit contributions from community members (including work attributed to Chris Evans / @scarybeasts)</li>
         <li>Helper / install scripts contributed by community maintainers</li>
       </ul>
