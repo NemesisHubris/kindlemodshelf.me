@@ -558,6 +558,150 @@ a:hover {
   display: none;
 }
 
+/* Custom Video Player Styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  background: #121418;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 20px rgba(8, 25, 33, 0.19);
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.video-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgba(26, 29, 35, 0.95) 0%, rgba(22, 24, 30, 0.98) 100%);
+  border-top: 1px solid rgba(103, 223, 255, 0.1);
+}
+
+.video-btn {
+  background: rgba(103, 223, 255, 0.1);
+  color: #67dfff;
+  border: 1px solid rgba(103, 223, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+.video-btn:hover {
+  background: rgba(103, 223, 255, 0.2);
+  border-color: #67dfff;
+  transform: scale(1.05);
+}
+
+.video-btn:active {
+  transform: scale(0.98);
+}
+
+#play-pause-btn {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.play-icon, .pause-icon {
+  font-size: 1.1em;
+}
+
+.seeker-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.video-seeker {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: rgba(103, 223, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.video-seeker::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #67dfff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.video-seeker::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #67dfff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.video-seeker::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(103, 223, 255, 0.5);
+}
+
+.video-seeker::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(103, 223, 255, 0.5);
+}
+
+/* Progress fill effect */
+.video-seeker {
+  background: linear-gradient(to right, #67dfff 0%, #67dfff var(--progress, 0%), rgba(103, 223, 255, 0.1) var(--progress, 0%), rgba(103, 223, 255, 0.1) 100%);
+}
+
+.time-display {
+  color: #98b6cb;
+  font-size: 0.85em;
+  font-weight: 500;
+  min-width: 100px;
+  text-align: right;
+}
+
+/* Mobile responsive */
+@media (max-width: 700px) {
+  .video-controls {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  
+  .video-btn {
+    padding: 6px 10px;
+    font-size: 0.85em;
+  }
+  
+  #backward-btn, #forward-btn {
+    padding: 6px 8px;
+  }
+  
+  .time-display {
+    font-size: 0.8em;
+    min-width: 85px;
+  }
+}
+
 /* Floating email popup */
 #emailPopup {
   position: fixed;
