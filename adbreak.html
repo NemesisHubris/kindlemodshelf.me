@@ -34,29 +34,6 @@
       <p><a href="https://kindlemodding.org/jailbreaking/AdBreak/" target="_blank" rel="noopener">Official release & resources</a></p>
     </div>
 
-    <h2 class="section-title">Video Walkthrough</h2>
-    <div class="card card-desc">
-      <div class="video-container">
-        <video id="adbreak-video">
-          <source src="adbreak.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="video-controls">
-          <button class="video-btn" id="play-pause-btn" aria-label="Play/Pause">
-            <span class="play-icon">▶</span>
-            <span class="pause-icon" style="display:none;">❚❚</span>
-          </button>
-          <button class="video-btn" id="backward-btn" aria-label="Backward 10s">⟲ 10s</button>
-          <div class="seeker-container">
-            <input type="range" id="seeker" class="video-seeker" min="0" max="100" value="0">
-            <span class="time-display">0:00 / 0:00</span>
-          </div>
-          <button class="video-btn" id="forward-btn" aria-label="Forward 10s">10s ⟳</button>
-        </div>
-      </div>
-      <p style="margin-top:1.1em;font-size:1em;">Watch the AdBreak jailbreak process step-by-step in this video demonstration.</p>
-    </div>
-
     <h2 class="section-title">Release at a glance</h2>
     <div class="card card-desc">
       <ul>
@@ -86,7 +63,7 @@
         <li><strong>Confirm ads:</strong> keep the Kindle online until ads appear on the lockscreen. If no ads appear, a factory reset can sometimes help (see Troubleshooting).</li>
         <li><strong>Enable airplane mode</strong> after ads are visible.</li>
         <li>Open lockscreen menu → <strong>View all ads</strong> to confirm multiple Special Offers are listed.</li>
-        <li><strong>Copy <code>.assets</code></strong> — connect Kindle to PC and copy the device's <code>.assets</code> folder (backup the original).</li>
+        <li><strong>Copy <code>.assets</code></strong> — connect Kindle to PC and copy the device’s <code>.assets</code> folder (backup the original).</li>
         <li><strong>Unpack AdBreak</strong> and merge its files into the copied <code>.assets</code> folder on your PC.</li>
         <li><strong>Run replace helper:</strong>
           <ul>
@@ -136,117 +113,5 @@
       <p><strong>Summary:</strong> AdBreak is a targeted jailbreak for ad-enabled Kindles on firmware 5.18.1–5.18.5. It requires Special Offers and a PC to replace the device <code>.assets</code>. Verify prerequisites, back up originals, and consult community threads for model-specific advice before you proceed.</p>
     </div>
   </div>
-
-  <script>
-    // Video player controls
-    document.addEventListener('DOMContentLoaded', function() {
-      const video = document.getElementById('adbreak-video');
-      const playPauseBtn = document.getElementById('play-pause-btn');
-      const playIcon = playPauseBtn.querySelector('.play-icon');
-      const pauseIcon = playPauseBtn.querySelector('.pause-icon');
-      const backwardBtn = document.getElementById('backward-btn');
-      const forwardBtn = document.getElementById('forward-btn');
-      const seeker = document.getElementById('seeker');
-      const timeDisplay = document.querySelector('.time-display');
-
-      // Format time helper
-      function formatTime(seconds) {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs.toString().padStart(2, '0')}`;
-      }
-
-      // Update time display
-      function updateTimeDisplay() {
-        if (video.duration) {
-          const current = formatTime(video.currentTime);
-          const total = formatTime(video.duration);
-          timeDisplay.textContent = `${current} / ${total}`;
-        }
-      }
-
-      // Play/Pause functionality
-      playPauseBtn.addEventListener('click', function() {
-        if (video.paused) {
-          video.play();
-          playIcon.style.display = 'none';
-          pauseIcon.style.display = 'inline';
-        } else {
-          video.pause();
-          playIcon.style.display = 'inline';
-          pauseIcon.style.display = 'none';
-        }
-      });
-
-      // Click on video to play/pause
-      video.addEventListener('click', function() {
-        playPauseBtn.click();
-      });
-
-      // Backward 10 seconds
-      backwardBtn.addEventListener('click', function() {
-        video.currentTime = Math.max(0, video.currentTime - 10);
-      });
-
-      // Forward 10 seconds
-      forwardBtn.addEventListener('click', function() {
-        video.currentTime = Math.min(video.duration, video.currentTime + 10);
-      });
-
-      // Update seeker as video plays
-      video.addEventListener('timeupdate', function() {
-        if (video.duration) {
-          const progress = (video.currentTime / video.duration) * 100;
-          seeker.value = progress;
-          // Update the progress fill
-          seeker.style.setProperty('--progress', progress + '%');
-          updateTimeDisplay();
-        }
-      });
-
-      // Seek when user drags the seeker
-      seeker.addEventListener('input', function() {
-        if (video.duration) {
-          const time = (seeker.value / 100) * video.duration;
-          video.currentTime = time;
-        }
-      });
-
-      // Update UI when video ends
-      video.addEventListener('ended', function() {
-        playIcon.style.display = 'inline';
-        pauseIcon.style.display = 'none';
-      });
-
-      // Initialize time display when metadata loads
-      video.addEventListener('loadedmetadata', function() {
-        updateTimeDisplay();
-      });
-
-      // Keyboard shortcuts
-      document.addEventListener('keydown', function(e) {
-        // Only work when video is in view
-        const rect = video.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (inView) {
-          switch(e.key) {
-            case ' ':
-              e.preventDefault();
-              playPauseBtn.click();
-              break;
-            case 'ArrowLeft':
-              e.preventDefault();
-              backwardBtn.click();
-              break;
-            case 'ArrowRight':
-              e.preventDefault();
-              forwardBtn.click();
-              break;
-          }
-        }
-      });
-    });
-  </script>
 </body>
 </html>
