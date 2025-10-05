@@ -35,7 +35,7 @@ Want to contribute a new mod, guide, or resource page?
 6. **Image manifest**
    - If you add images to the gallery, update [`images.json`](images.json).
 7. **Validate**
-   - **Check your HTML and CSS yourself** for all affected pages using tools like [W3C Validator](https://validator.w3.org/), [HTMLHint](https://htmlhint.io/), or [stylelint](https://stylelint.io/).
+   - **Check your HTML and CSS yourself** for all affected pages.
 8. **Accessibility**
    - Use semantic headings, alt text for images, and clear link labels.
 
