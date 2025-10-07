@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video + Audio Playback (Experimental) – HF Only</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Experimental demo combining gmplay video with SoX audio on HF Kindles. Includes setup steps, usage, and references.">
+  <link rel="canonical" href="https://kindlemodshelf.me/audiovideo.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Video + Audio Playback (Experimental) – HF Only">
+  <meta property="og:description" content="Experimental demo combining gmplay video with SoX audio on HF Kindles. HF devices only.">
+  <meta property="og:url" content="https://kindlemodshelf.me/audiovideo.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Video + Audio Playback (Experimental)",
+    "operatingSystem": "Kindle (HF)",
+    "applicationCategory": "MultimediaApplication",
+    "description": "Experimental demo combining gmplay video playback with SoX audio processing on HF Kindles.",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "url": "https://kindlemodshelf.me/audiovideo.html"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>Video + Audio Playback (Experimental)</h1>
+
+    <div class="summary">
+      <b>Experimental (HF only).</b> A demo that pairs <b>gmplay</b> video with <b>SoX</b> audio. Not a polished player; intended for tinkering and proof‑of‑concept.
+    </div>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Plays <code>.gmv.gz</code> video via gmplay with separate audio via SoX.</li>
+          <li>Simple script launcher for quick demos in KTerm.</li>
+          <li>Works when audio and video files match; the included demo media is not synchronized.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="requirements">
+      <h2 class="section-title" id="requirements">Requirements</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><b>Hardfloat (HF) Kindle only</b>.</li>
+          <li><a href="kterm.html">KTerm</a> (to run commands).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="install">
+      <h2 class="section-title" id="install">Download & Install</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download <a href="downloads/video-audio-all.zip" target="_blank" rel="noopener">video-audio-all.zip</a>.</li>
+          <li>Unzip on your computer or Kindle.</li>
+          <li>Place the <code>videos</code> folder in the Kindle root (<code>/mnt/us</code>).</li>
+          <li>Place the <code>vidoe-audio</code> folder (typo intentional) into <code>/mnt/us/extensions/</code>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="run">
+      <h2 class="section-title" id="run">How to Run</h2>
+      <div class="card card-desc">
+        <pre><code>cd /mnt/us/extensions/vidoe-audio/
+chmod +x playgmvmp3.sh
+./playgmvmp3.sh</code></pre>
+        <ul>
+          <li>The bundled demo uses gmplay’s sample video and a separate audio track of the same song; they are not synchronized.</li>
+          <li>To create a synced demo, put your matching <code>.gmv.gz</code> and <code>.wav</code> in <code>/mnt/us/videos/</code> with consistent names and update the script if needed.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="downloads">
+      <h2 class="section-title" id="downloads">Downloads</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="downloads/video-audio-all.zip" target="_blank" rel="noopener">video-audio-all.zip</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="references">
+      <h2 class="section-title" id="references">References</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>gmplay (geekmaster video): <a href="https://www.mobileread.com/forums/showthread.php?t=177455&highlight=gmplay&page=4" target="_blank" rel="noopener">MobileRead thread</a></li>
+          <li>SoX Media Player: <a href="sox.html">local page</a> · <a href="https://www.mobileread.com/forums/showthread.php?t=336390&highlight=sox" target="_blank" rel="noopener">MobileRead thread</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Project by <b>kindlemodshelfguy</b>.</li>
+          <li>gmplay by community devs (see MobileRead thread).</li>
+          <li>SoX Media Player community work (see references).</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+

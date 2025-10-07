@@ -19,6 +19,10 @@
     <div class="summary">
       Browse and download user-contributed Kindle screensaver images, organized by author. Click any image to view it large, or use the download icon in the preview to save.
     </div>
+    <div class="search-bar-wrap">
+      <label for="search-bar" class="search-label">Search by author:</label>
+      <input type="text" id="search-bar" placeholder="Type an author name…" autocomplete="off">
+    </div>
     <div id="gallery-root"></div>
     <div id="loading-indicator" style="text-align: center; margin: 20px 0; display: none;">
       <div class="loader"></div>
@@ -77,6 +81,62 @@
         
         // Set up scroll listener for loading more authors
         window.addEventListener('scroll', handleScroll);
+
+        // Set up author search
+        const searchBar = document.getElementById('search-bar');
+        searchBar.addEventListener('input', function() {
+          const q = this.value.trim().toLowerCase();
+          const galleryRoot = document.getElementById('gallery-root');
+          const loadingIndicator = document.getElementById('loading-indicator');
+
+          // Reset container
+          galleryRoot.innerHTML = '';
+
+          if (q === '') {
+            // Restore incremental loading state
+            loadedAuthors = 0;
+            isLoading = false;
+            loadingIndicator.style.display = 'none';
+            // Re-enable infinite scroll
+            window.removeEventListener('scroll', handleScroll);
+            window.addEventListener('scroll', handleScroll);
+            loadMoreAuthors(INITIAL_AUTHORS);
+            return;
+          }
+
+          // While searching, disable infinite scroll
+          window.removeEventListener('scroll', handleScroll);
+          loadingIndicator.style.display = 'none';
+
+          // Find matching authors and render ALL of their images
+          const matches = allAuthors.filter(a => a.toLowerCase().includes(q));
+          if (matches.length === 0) {
+            const msg = document.createElement('div');
+            msg.className = 'no-results';
+            msg.textContent = 'No authors match your search.';
+            galleryRoot.appendChild(msg);
+            return;
+          }
+
+          matches.forEach(author => {
+            const images = allData[author];
+            if (!Array.isArray(images) || images.length === 0) return;
+
+            const sectionId = author.replace(/[^a-zA-Z0-9_\-.]/g, '_');
+            const section = document.createElement('section');
+            section.setAttribute('aria-labelledby', sectionId);
+            section.innerHTML = `
+              <h2 class="section-title" id="${sectionId}">${author}</h2>
+              <div class="card card-desc">
+                <div class="gallery-grid" id="grid-${sectionId}"></div>
+              </div>
+            `;
+            galleryRoot.appendChild(section);
+
+            const grid = document.getElementById(`grid-${sectionId}`);
+            images.forEach(filename => addImageToGrid(grid, author, filename));
+          });
+        });
       })
       .catch(error => {
         console.error('Error loading gallery:', error);
