@@ -2,44 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KindleKraft – Run a Minecraft Server on Kindle (Minecraft LAN SMP)</title>
+  <title>KindleKraft – Minecraft Server on Kindle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KindleKraft lets you host a Minecraft LAN server (1.7.x–1.8.x) right on your Kindle. Turn your e-reader into a Minecraft multiplayer server. Free, open-source, and experimental.">
+  <meta name="description" content="Turn your Kindle into a Minecraft multiplayer server for versions 1.7.x and 1.8.x with KindleKraft.">
   <link rel="canonical" href="https://kindlemodshelf.me/kindlekraft.html">
   <link rel="stylesheet" href="style.css">
-  <meta property="og:title" content="KindleKraft – Run a Minecraft Server on Kindle (Minecraft LAN SMP)">
-  <meta property="og:description" content="Host a Minecraft 1.7.x–1.8.x LAN server directly from your Kindle. KindleKraft is free, open-source, and experimental.">
+  <meta property="og:title" content="KindleKraft – Minecraft Server on Kindle">
+  <meta property="og:description" content="Run a Minecraft 1.7.x–1.8.x LAN server directly on your Kindle.">
   <meta property="og:url" content="https://kindlemodshelf.me/kindlekraft.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "KindleKraft – Minecraft Server for Kindle",
-    "operatingSystem": "Kindle OS (softfloat firmware)",
+    "name": "KindleKraft",
+    "operatingSystem": "Kindle OS",
     "applicationCategory": "GameServerApplication",
-    "description": "Host a Minecraft LAN SMP server (1.7.x–1.8.x) on your Kindle with KindleKraft. Works on select jailbroken Kindles with softfloat firmware.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
+    "description": "KindleKraft turns your Kindle e-reader into a Minecraft multiplayer LAN server for versions 1.7.x and 1.8.x.",
+    "offers": {"@type": "Offer","price":"0","priceCurrency":"USD"},
     "url": "https://kindlemodshelf.me/kindlekraft.html"
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div class="container">
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
-    <h1>KindleKraft – Minecraft Server for Kindle</h1>
+
+    <h1>KINDLEKRAFT – MINECRAFT SERVER ON KINDLE</h1>
+
     <div class="summary">
-      <b>KindleKraft</b> turns your Kindle e-reader into a Minecraft multiplayer LAN server for versions 1.7.x and 1.8.x. Host and play Minecraft SMP right from your Kindle—no computer required after setup!
+      <b>KindleKraft</b> turns your Kindle e-reader into a Minecraft multiplayer LAN server for versions 1.7.x and 1.8.x.  
+      Host and play Minecraft SMP right from your Kindle—no computer required after setup!
     </div>
 
-    <section aria-labelledby="about">
-      <h2 class="section-title" id="about">What Is KindleKraft?</h2>
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
       <div class="card card-desc">
-        KindleKraft is an experimental project that lets you run a Minecraft LAN server on your Kindle. Host classic Minecraft (1.7.x–1.8.x) multiplayer sessions directly from your e-reader.
+        <ul>
+          <li><a href="https://github.com/polish-penguin-dev/KindleKraft" target="_blank" rel="noopener">KindleKraft on GitHub</a></li>
+          <li><a href="https://github.com/polish-penguin-dev/KindleKraft/releases" target="_blank" rel="noopener">Latest Release</a></li>
+        </ul>
       </div>
     </section>
 
@@ -47,8 +50,8 @@
       <h2 class="section-title" id="requirements">Requirements</h2>
       <div class="card card-desc">
         <ul>
-          <li>Kindle with <b>softfloat (SF)</b> firmware (firmware below 5.16.3; SF-only unless Java is manually replaced for hardfloat)</li>
-          <li>KTerm terminal emulator installed</li>
+          <li>Kindle with <b>softfloat (SF)</b> firmware</li>
+          <li>KTerm</li>
         </ul>
       </div>
     </section>
@@ -57,18 +60,15 @@
       <h2 class="section-title" id="install">Install & Setup</h2>
       <div class="card card-desc">
         <ol>
-          <li>
-            <b>Download:</b>
-            <a href="https://github.com/polish-penguin-dev/KindleKraft/releases" target="_blank" rel="noopener">KindleKraft on GitHub</a>
-          </li>
+          <li>Download: <a href="https://github.com/polish-penguin-dev/KindleKraft" target="_blank" rel="noopener">KindleKraft on GitHub</a></li>
           <li>Place the extension in <b>/extensions</b> and the archive in your Kindle’s root directory (do not extract).</li>
           <li>(Optional) Create a 256MB swapfile for better performance.</li>
         </ol>
       </div>
     </section>
 
-    <section aria-labelledby="howto">
-      <h2 class="section-title" id="howto">How to Run</h2>
+    <section aria-labelledby="run">
+      <h2 class="section-title" id="run">How to Run</h2>
       <div class="card card-desc">
         <ol>
           <li>Open KindleKraft in KUAL and select <b>Install KindleKraft</b>. Wait for installation.</li>
@@ -82,10 +82,7 @@
     <section aria-labelledby="connect">
       <h2 class="section-title" id="connect">Connect & Play</h2>
       <div class="card card-desc">
-        <ul>
-          <li>Join from any device on the same LAN using Minecraft 1.7.x or 1.8.x.</li>
-          <li>Latest client + ViaFabricPlus recommended for compatibility.</li>
-        </ul>
+        <p>Join from any device on the same LAN using Minecraft 1.7.x or 1.8.x.</p>
       </div>
     </section>
 
@@ -101,9 +98,10 @@
       </div>
     </section>
 
-    <section aria-labelledby="start">
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credit</h2>
       <div class="card card-desc">
-        Start your own Minecraft LAN SMP server—right on your Kindle—with KindleKraft!
+        <p>penguins</p>
       </div>
     </section>
   </div>

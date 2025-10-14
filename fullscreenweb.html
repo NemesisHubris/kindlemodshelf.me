@@ -2,88 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fullscreen Web Browser for Kindle – Distraction-Free Reading (Firmware 5.16.4+)</title>
+  <title>Textadept – Kindle (HF)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Install a fullscreen web browser on your Kindle. Read websites, use web apps, or access online references in distraction-free mode. Designed for Kindle firmware 5.16.4 and newer.">
-  <link rel="canonical" href="https://kindlemodshelf.me/fullscreenweb.html">
+  <meta name="description" content="Textadept is a compact, desktop-grade text editor brought to Kindle (HF). Multi-buffer, Lua scripting, and GTK UI support.">
+  <link rel="canonical" href="https://kindlemodshelf.me/textadept.html">
   <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Textadept – Kindle (HF)">
+  <meta property="og:description" content="Textadept is a compact, desktop-grade text editor brought to Kindle (HF).">
+  <meta property="og:url" content="https://kindlemodshelf.me/textadept.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Fullscreen Web Browser for Kindle",
-    "operatingSystem": "Kindle OS (5.16.4+)",
-    "applicationCategory": "WebBrowserApplication",
-    "description": "Launch any website in fullscreen mode on your Kindle. Distraction-free browser for web reading, apps, and online research on your e-reader.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/fullscreenweb.html"
+    "name": "Textadept",
+    "operatingSystem": "Kindle OS (Hardfloat)",
+    "applicationCategory": "DeveloperTool",
+    "description": "Textadept is a compact, desktop-grade text editor brought to Kindle (HF).",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://kindlemodshelf.me/textadept.html"
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div class="container">
-    <h1>Fullscreen Web Browser for Kindle (Firmware 5.16.4+)</h1>
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+
+    <h1>TEXTADEPT</h1>
+
     <div class="summary">
-      <b>Fullscreen Web Browser</b> turns your Kindle into a clean, distraction-free internet portal. Enjoy focused web reading, reference, or web apps in a truly fullscreen experience—right on your e-reader.
+      <b>Textadept</b> is a compact, desktop-grade text editor brought to Kindle (HF).
     </div>
 
-    <div class="section-title">Features</div>
-    <div class="card card-desc">
-      <ul>
-        <li>Open any website in a clean, fullscreen view</li>
-        <li>Easily set your homepage to any site you want</li>
-        <li>Minimal interface for maximum reading space</li>
-        <li>Includes a script to stop the browser if needed</li>
-        <li>Designed for Kindle firmware 5.16.4 and newer</li>
-      </ul>
-    </div>
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="downloads/textadept.zip" download>textadept.zip</a></li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="section-title">How to Install &amp; Use</div>
-    <div class="card card-desc">
-      <ol>
-        <li><b>Download the latest ZIP:</b> <a href="https://github.com/mitchellurgero/kindle-shortcut-browser/releases" target="_blank">Get it from GitHub Releases</a></li>
-        <li><b>Extract the contents:</b> Unzip and copy everything to the <code>/</code> (root) directory of your Kindle.</li>
-        <li><b>Set your website:</b>
-          <ul>
-            <li><b>Method 1:</b> Edit <code>index.html</code> in the <code>fullscreenbrowser</code> folder and change the URL to your desired website.</li>
-            <li><b>Method 2:</b> Edit <code>documents/shortcut_browser.sh</code> and set the <code>FULLSCREEN_SITE</code> variable to your preferred URL.</li>
-          </ul>
-        </li>
-        <li><b>Launch the browser:</b> Open the shortcut script from your Kindle’s library to launch the fullscreen web browser.<br>
-          (Tip: Rename the script for multiple website shortcuts!)
-        </li>
-      </ol>
-    </div>
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">FEATURES</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Multi-buffer editing and split views (side-by-side)</li>
+          <li>Lexer-based syntax highlighting for many languages</li>
+          <li>Command palette for quick commands and actions</li>
+          <li>Completely scriptable and extensible in Lua</li>
+          <li>Graphical GTK UI & a lightweight CLI interface that runs in KTerm</li>
+          <li>Small footprint and fast startup — suited to HF Kindle builds</li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="section-title">Stopping the Browser</div>
-    <div class="card card-desc">
-      If the browser process becomes unresponsive, simply run the included <code>shortcut_stop.sh</code> from your Kindle library, or restart your device.
-    </div>
+    <section aria-labelledby="requirements">
+      <h2 class="section-title" id="requirements">REQUIREMENTS</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Hardfloat (HF) Kindle only </li>
+          <li>KTerm</li>
+          <li>External Bluetooth keyboard (recommended)</li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="section-title">Options</div>
-    <div class="card card-desc">
-      <ul>
-        <li><b>GO_FULLSCREEN:</b> Set this to <code>false</code> in the script if you want to keep the Kindle’s UI visible instead of true full screen.</li>
-      </ul>
-    </div>
+    <section aria-labelledby="install">
+      <h2 class="section-title" id="install">HOW TO INSTALL</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download textadept.zip</li>
+          <li>Unzip on your computer and copy the resulting folder to /extensions folder</li>
+          <li>Connect to Bluetooth keyboard (optional)</li>
+          <li>Open and launch in kual</li>
+        </ol>
+      </div>
+    </section>
 
-    <div class="section-title">Known Issues</div>
-    <div class="card card-desc">
-      <ul>
-        <li>Some websites may not load with the <code>index.html</code> method (iframe limitation). For best results, use the <code>FULLSCREEN_SITE</code> variable in the script.</li>
-        <li>If the browser freezes or stops responding, use the Stop Shortcut Browser script or restart your Kindle.</li>
-      </ul>
-    </div>
+    <section aria-labelledby="issues">
+      <h2 class="section-title" id="issues">KNOWN ISSUES</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><b>Software keyboard bug:</b> When using the GTK graphical interface, the Kindle's software keyboard may disappear when a modal dialog opens. This is a known GTK integration issue.</li>
+          <li><b>Workaround:</b> use a Bluetooth/external keyboard or use the KTerm CLI interface until the dialog/keyboard issue is resolved.</li>
+          <li>If you encounter crashes or missing lexers, check the included log or open the CLI to see error output.</li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="section-title">Summary</div>
-    <div class="card card-desc">
-      With the Fullscreen Web Browser, your Kindle becomes the ultimate device for distraction-free web reading, online research, or using web apps—all in fullscreen mode on your e-reader.
-    </div>
+    <section aria-labelledby="docs">
+      <h2 class="section-title" id="docs">DOCUMENTATION</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Read the included manual and API files in the Textadept folder for usage, keyboard shortcuts, and Lua extension examples.</li>
+          <li>Command palette and keybindings are configurable via Lua — the docs show sample bindings for common editing tasks.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credit</h2>
+      <div class="card card-desc">
+        <p>Barna</p>
+      </div>
+    </section>
+
   </div>
 </body>
 </html>

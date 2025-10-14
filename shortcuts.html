@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Home Screen Shortcuts</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Copy the scripts you want into /mnt/us/documents and tap them on the Home screen to launch apps without opening KUAL." />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Home Screen Shortcuts – Quick Access Launchers for Kindle Mods</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quick and beautiful Kindle Home Screen shortcuts. Launch KOReader, KTerm, Alpine, and more directly from your Kindle without KUAL.">
+  <link rel="canonical" href="https://kindlemodshelf.me/shortcuts.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Home Screen Shortcuts – Quick Access Launchers for Kindle Mods">
+  <meta property="og:description" content="A simple and beautiful way to access your Kindle mods directly from the Home screen using launcher scripts.">
+  <meta property="og:url" content="https://kindlemodshelf.me/shortcuts.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Home Screen Shortcuts for Kindle",
+    "operatingSystem": "Kindle OS (jailbroken)",
+    "applicationCategory": "Utility",
+    "description": "Quick and beautiful launcher shortcuts for Kindle mods. Launch KOReader, KTerm, Alpine, and more directly from the Home screen.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://kindlemodshelf.me/shortcuts.html"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <a class="back-home-btn" href="index.html" aria-label="Back to Home">← Back to Home</a>
-
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
     <h1>Home Screen Shortcuts</h1>
 
     <div class="summary">
-      <p>Copy only the shortcuts you want into <code>/mnt/us/documents</code>. Tap them from the Kindle Home screen to run the corresponding app directly — no KUAL required.</p>
+      <p><b>Home Screen Shortcuts</b> are a quick and beautiful way to access your Kindle mods directly from the Home screen. Each shortcut launches an installed app or script instantly — no KUAL needed.</p>
     </div>
 
-    <div class="section-title">Quick steps</div>
+    <h2 class="section-title">Installation Steps</h2>
     <div class="card card-desc">
       <ol>
-        <li>From this website, open the <code>downloads/</code> folder and pick the script(s) you want.</li>
-        <li>Copy them to <code>/mnt/us/documents</code> on your Kindle.</li>
-        <li>Make them executable if necessary:
-          <pre style="margin:8px 0 0 0;"><code>chmod +x /mnt/us/documents/*.sh</code></pre>
-        </li>
-        <li>Tap the file on the Home screen to launch the app.</li>
+        <li>Select the shortcuts you want to add and download them from the list below.</li>
+        <li>Copy them to the <code>/mnt/us/documents</code> folder on your Kindle.</li>
+        <li>Disconnect your Kindle from your computer.</li>
+        <li>After a few seconds, they will appear like books on your Kindle Home screen.</li>
       </ol>
     </div>
 
-    <div class="section-title">Shortcut files</div>
+    <h2 class="section-title">Shortcut Files</h2>
     <div class="card card-desc card-links">
       <a href="downloads/Alpine.sh" download>Alpine.sh</a>
       <small>Alpine mail client launcher — drop into <code>/mnt/us/documents</code>.</small>
@@ -42,17 +56,25 @@
 
       <a href="downloads/Kterm.sh" download>Kterm.sh</a>
       <small>KTerm terminal launcher.</small>
+
+      <a href="downloads/shortcut_gambatte-k2.sh" download>shortcut_gambatte-k2.sh</a>
+      <small>Game Boy emulator launcher for hardfloat Kindles.</small>
+
+      <a href="downloads/gargoyle.sh" download>gargoyle.sh</a>
+      <small>Text adventure (Infocom) emulator launcher.</small>
+
+      <a href="downloads/koreader_launcher_asap.sh" download>koreader_launcher_asap.sh</a>
+      <small>KOReader ASAP launcher — opens KOReader instantly.</small>
     </div>
 
-    <div class="section-title">Notes</div>
+    <h2 class="section-title">Notes</h2>
     <div class="card card-desc">
       <ul>
-        <li>All files referenced on this page live in <code>downloads/</code> on the website — copy the specific ones you need.</li>
-        <li>If a shortcut doesn't run: confirm the file is executable and located in <code>/mnt/us/documents</code>.</li>
-        <li>These scripts are simple launchers that call the actual app start scripts on-device. Inspect them before use if you want to confirm exact behavior.</li>
+        <li>If a shortcut doesn't run, confirm the file is executable and located in <code>/mnt/us/documents</code>.</li>
+        <li>If a shortcut doesn’t appear, restart your Kindle and wait — it should show up within a minute.</li>
+        <li>These scripts are simple launchers that call the actual app start scripts on your device. You must have the corresponding app installed for them to work.</li>
       </ul>
     </div>
-
   </div>
 </body>
 </html>

@@ -2,122 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Page header (KOReader userpatch) – Plugins</title>
+  <title>Page Header (KOReader Userpatch)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KOReader userpatch that adds clean, book‑style page headers at the top of the screen with per‑book settings.">
+  <meta name="description" content="KOReader userpatch that adds fiction-style page headers at the top of the screen—minimal, elegant, and configurable per book.">
   <link rel="canonical" href="https://kindlemodshelf.me/pageheader.html">
   <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Page Header (KOReader Userpatch)">
+  <meta property="og:description" content="A KOReader userpatch that adds fiction-book-style page headers with per-book customization for Kindle.">
+  <meta property="og:url" content="https://kindlemodshelf.me/pageheader.html">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Page header (KOReader userpatch)",
-    "operatingSystem": "Kindle (KOReader)",
+    "name": "Page Header (KOReader Userpatch)",
+    "operatingSystem": "Kindle OS (KOReader)",
     "applicationCategory": "Plugin",
-    "description": "KOReader userpatch that adds clean, book‑style page headers at the top of the screen with per‑book settings.",
-    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+    "description": "KOReader userpatch that adds fiction-style page headers with customizable font, margin, and layout per book.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
     "url": "https://kindlemodshelf.me/pageheader.html"
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
-  <meta name="robots" content="index,follow">
-  <meta name="author" content="sandcastles">
-  <meta name="keywords" content="KOReader, userpatch, page header, Kindle plugin, small caps">
-  <meta property="og:title" content="Page header (KOReader userpatch) – Plugins">
-  <meta property="og:description" content="KOReader userpatch for book‑style page headers with per‑book settings.">
-  <meta property="og:url" content="https://kindlemodshelf.me/pageheader.html">
 </head>
 <body>
   <div class="container">
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
-    <h1>Page header (KOReader userpatch)</h1>
+    <h1>Page Header (KOReader Userpatch)</h1>
 
     <div class="summary">
-      <b>KOReader userpatch</b> that mimics fiction‑book page headers at the top of the screen—minimal, elegant, and configurable per book.
+      <p><b>KOReader userpatch</b> that mimics fiction-book page headers at the top of the screen—minimal, elegant, and configurable per book.</p>
     </div>
 
-    <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Features</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Minimal, fiction‑style header shown at the top of the screen.</li>
-          <li>Per‑book controls: font, size, margin, letter‑spacing, padding.</li>
-          <li>Small‑caps friendly; choose any installed font by filename.</li>
-          <li>Chapter‑first pages: header hides automatically (like print books).</li>
-          <li>Cover pages: page number hidden (latest update).</li>
-          <li>Optional tweak to hide bottom page number on chapter pages.</li>
-          <li>Built on userpatch work by joshuacant and sebdelsol.</li>
-        </ul>
-      </div>
-    </section>
+    <h2 class="section-title">Features</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>Minimal, fiction-style header shown at the top of the screen.</li>
+        <li>Per-book controls: font, size, margin, letter-spacing, and padding.</li>
+        <li>Small-caps friendly; choose any installed font by filename.</li>
+        <li>Chapter-first pages: header hides automatically (like print books).</li>
+        <li>Cover pages: page number hidden (latest update).</li>
+        <li>Optional tweak to hide bottom page number on chapter pages.</li>
+      </ul>
+    </div>
 
-    <section aria-labelledby="requirements">
-      <h2 class="section-title" id="requirements">Requirements</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><b>KOReader</b> installed on your Kindle.</li>
-          <li>Optional: small‑caps font installed (e.g., EB Garamond SC, Coelacanth SC, IM Fell SC).</li>
-        </ul>
-      </div>
-    </section>
+    <h2 class="section-title">Requirements</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><a href="koreader.html">KOReader</a> installed on your Kindle.</li>
+      </ul>
+    </div>
 
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">How to Install</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Download <a href="downloads/2-page-header.lua" download>2-page-header.lua</a>.</li>
-          <li>On your Kindle, open the KOReader install directory. If a folder named <code>patches</code> does not exist, create it.</li>
-          <li>Place <code>2-page-header.lua</code> in the <code>patches</code> folder.</li>
-          <li>Restart KOReader.</li>
-        </ol>
-      </div>
-    </section>
+    <h2 class="section-title">How to Install</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>Download <a href="downloads/2-page-header.lua" target="_blank" rel="noopener">2-page-header.lua</a>.</li>
+        <li>On your Kindle, open the KOReader folder. If a folder named <code>patches</code> does not exist, create it.</li>
+        <li>Place <code>2-page-header.lua</code> in the <code>patches</code> folder.</li>
+        <li>Restart KOReader.</li>
+      </ol>
+    </div>
 
-    <section aria-labelledby="configure">
-      <h2 class="section-title" id="configure">Configure</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Open the top menu → <b>Settings (cog)</b> → <b>Status bar</b> → <b>Page header</b>.</li>
-          <li>Set <b>font</b> (filename only), <b>font size</b>, <b>margin</b>, <b>letter‑spacing</b>, and <b>padding</b>. These are saved per book.</li>
-          <li>Prefer a small‑caps font for the best look. If body text overlaps, increase the book’s <b>top margin</b>.</li>
-        </ol>
-      </div>
-    </section>
+    <h2 class="section-title">Configure</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>Open the top menu → <b>Settings (cog)</b> → <b>Status Bar</b> → <b>Page Header</b>.</li>
+        <li>Set <b>font</b> (filename only), <b>font size</b>, <b>margin</b>, <b>letter-spacing</b>, and <b>padding</b>. These are saved per book.</li>
+        <li>Prefer a small-caps font for the best look. If body text overlaps, increase the book’s <b>top margin</b>.</li>
+      </ol>
+    </div>
 
-    <section aria-labelledby="downloads">
-      <h2 class="section-title" id="downloads">Downloads</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="downloads/2-page-header.lua" target="_blank" rel="noopener">2-page-header.lua</a></li>
-        </ul>
-      </div>
-    </section>
+    <h2 class="section-title">Downloads</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><a href="downloads/2-page-header.lua" target="_blank" rel="noopener">2-page-header.lua</a></li>
+      </ul>
+    </div>
 
-    <section aria-labelledby="technical">
-      <h2 class="section-title" id="technical">Technical Notes</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><b>Defaults:</b> open the Lua file and find <code>-- Defaults</code> (around line 20) to set default font, size, margin, letter‑spacing.</li>
-          <li><b>Font name:</b> set the font by filename only (e.g., <code>EBGaramondSC.ttf</code>), no paths; some fonts use <code>.otf</code>.</li>
-          <li><b>Missing font:</b> if a book references a font you later remove/rename, KOReader shows an error on open—pick a valid font in settings.</li>
-          <li><b>Chapter first page:</b> header intentionally hides; page number moves to the bottom. To always hide the bottom page number on those pages, change <code>if page_bottom or first_page_of_chapter then</code> to <code>if page_bottom then</code> (around line 677).</li>
-          <li><b>Cover page tweak:</b> update ensures the page number no longer shows on cover pages.</li>
-          <li><b>Device notes:</b> reported working well on Kindle Scribe; adjust margins/font size to taste.</li>
-        </ul>
-      </div>
-    </section>
+    <h2 class="section-title">Technical Notes</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><b>Defaults:</b> open the Lua file and find <code>-- Defaults</code> (around line 20) to set default font, size, margin, and letter-spacing.</li>
+        <li><b>Font name:</b> set the font by filename only (e.g., <code>EBGaramondSC.ttf</code>), no paths; some fonts use <code>.otf</code>.</li>
+        <li><b>Missing font:</b> if a book references a font you later remove or rename, KOReader will show an error—pick a valid font in settings.</li>
+        <li><b>Chapter-first page:</b> the header intentionally hides and the page number moves to the bottom. To always hide the bottom page number, change <code>if page_bottom or first_page_of_chapter then</code> to <code>if page_bottom then</code> (around line 677).</li>
+        <li><b>Cover page tweak:</b> ensures the page number no longer shows on cover pages.</li>
+        <li><b>Device notes:</b> reported working well on Kindle Scribe; adjust margins and font size to taste.</li>
+      </ul>
+    </div>
 
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credits</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Author: <b>sandcastles</b></li>
-          <li>Based on: <code>2-reader-header-centered.lua</code> by <b>joshuacant</b> and <code>2--ui-font.lua</code> by <b>sebdelsol</b></li>
-        </ul>
-      </div>
-    </section>
-
-    
+    <h2 class="section-title">Credits</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>Author: <b>sandcastles</b></li>
+        <li>Based on: <code>2-reader-header-centered.lua</code> by <b>joshuacant</b> and <code>2--ui-font.lua</code> by <b>sebdelsol</b></li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>

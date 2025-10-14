@@ -4,57 +4,78 @@
   <meta charset="UTF-8">
   <title>Kreate – Minimal Drawing App for Kindle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Minimal drawing app for Kindle. Sketch on your jailbroken Kindle with tap-based modes for dots, lines, and curves.">
+  <meta name="description" content="Minimal drawing app for Kindle. Sketch directly on your Kindle using tap-based modes for dots, lines, and curves.">
   <link rel="canonical" href="https://kindlemodshelf.me/kreate.html">
   <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Kreate – Minimal Drawing App for Kindle">
+  <meta property="og:description" content="Unleash your creativity with Kreate, a tap-based drawing app for Kindle e-ink devices. Supports dots, lines, and curves.">
+  <meta property="og:url" content="https://kindlemodshelf.me/kreate.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kreate",
+    "operatingSystem": "Kindle OS",
+    "applicationCategory": "DrawingApplication",
+    "description": "Minimal drawing app for Kindle using tap-based gestures for dots, lines, and curves.",
+    "offers": {"@type": "Offer","price":"0","priceCurrency":"USD"},
+    "url": "https://kindlemodshelf.me/kreate.html"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+
     <h1>Kreate</h1>
 
     <div class="summary">
-      <p><b>Kreate</b> is a minimal drawing app for Kindle. Unleash your creativity and sketch directly on your e‑ink device using tap‑based modes—no drag tracking required. See the examples page to explore what others have created.</p>
+      <b>Kreate</b> is a minimal drawing app for Kindle. Unleash your creativity and sketch directly on your e-ink device using tap-based modes.  
+      See the examples page on GitHub to explore what others have created.
     </div>
 
-    <div class="section-title">Challenges</div>
-    <div class="card card-desc">
-      <p>Kindle’s <code>kindle.gestures</code> API recognizes taps and only coarse swipe directions (up, down, left, right), not precise finger paths or end points. This makes traditional “press‑and‑drag to draw” impossible.</p>
-      <p>To work around this, Kreate provides multiple drawing modes so you can choose exactly what to place—<b>dots</b>, <b>lines</b>, and even <b>curves</b>.</p>
-      <p>Kreate is designed to adapt to any Kindle screen size and model. If sizing looks off on your device, please report it so adjustments can be made.</p>
-    </div>
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/foskya/kreate" target="_blank" rel="noopener">Kreate on GitHub</a></li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="section-title">Installation</div>
-    <div class="card card-desc">
-      <ul>
-        <li><b>Prerequisites:</b> Jailbroken Kindle with Universal Hotfix and Winterbreak installed.</li>
-        <li>Copy the <code>/kreate</code> folder into <code>/documents</code> on your Kindle’s main storage (<code>/mnt/us/documents</code> from root).</li>
-        <li>That’s it—launch Kreate from your Kindle Home screen.</li>
-      </ul>
-    </div>
+    <section aria-labelledby="install">
+      <h2 class="section-title" id="install">Installation & Usage</h2>
+      <div class="card card-desc">
+        <p><b>Install through Kindle Forge (recommended):</b><br>
+        Click the download button in Kindle Forge for <b>Kreate</b> once installed.</p>
 
-    <div class="section-title">Downloads</div>
-    <div class="card card-desc">
-      <ul>
-        <li><a href="https://github.com/Foskya/Kreate" target="_blank" rel="noopener">Kreate on GitHub</a></li>
-      </ul>
-    </div>
+        <p><b>Manual installation:</b></p>
+        <ul>
+          <li>Copy the <code>/kreate</code> folder and <code>.sh</code> file into <code>/mnt/us/documents</code> (from root).</li>
+          <li>Launch <b>Kreate</b> from your Kindle Home screen by opening the booklet.</li>
+        </ul>
+      </div>
+    </section>
 
-    <div class="section-title">Future Implementations</div>
-    <div class="card card-desc">
-      <ul>
-        <li>Add an app icon</li>
-        <li>Improve usability and reduce clumsiness</li>
-        <li>Button to download your masterpieces</li>
-        <li>QR code generator for drawings</li>
-        <li>Geometric Shapes mode (circles, rectangles, triangles, etc.)</li>
-        <li>Fill Color mode</li>
-        <li>Dot size indicator</li>
-        <li>Back button</li>
-        <li>Use more images instead of text where appropriate</li>
-        <li>Enhance top bar (show current mode and color)</li>
-      </ul>
-    </div>
+    <section aria-labelledby="notes">
+      <h2 class="section-title" id="notes">Notes</h2>
+      <div class="card card-desc">
+        <p>Kindle’s <code>kindle.gestures</code> API recognizes taps and only coarse swipe directions (up, down, left, right), not precise finger paths or endpoints.  
+        This makes traditional “press-and-drag to draw” impossible.</p>
+
+        <p>To work around this, <b>Kreate</b> provides multiple drawing modes so you can choose exactly what to place — dots, lines, or curves.</p>
+
+        <p>Kreate automatically adapts to any Kindle screen size and model.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <p>Foskya</p>
+      </div>
+    </section>
   </div>
 </body>
 </html>

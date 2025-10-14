@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Game Boy Emulators for Kindle – Play Retro Games (Gambatte-K2, Gambatte-K)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Play Game Boy and Game Boy Color games on your Kindle with Gambatte-K2 (modern) or Gambatte-K (legacy). Works on both hardfloat and softfloat firmware. Download, install, and enjoy retro gaming on e-ink!">
+  <meta name="description" content="Play Game Boy and Game Boy Color games on your Kindle with Gambatte-K2 (modern) or Gambatte-K (legacy). Works on both hardfloat and softfloat firmware.">
   <link rel="canonical" href="https://kindlemodshelf.me/gameboy.html">
   <link rel="stylesheet" href="style.css">
   <meta property="og:title" content="Game Boy Emulators for Kindle – Play Retro Games (Gambatte-K2, Gambatte-K)">
@@ -27,56 +27,26 @@
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    .emulator-header {
-      padding: 16px 20px;
-      border-radius: 15px 15px 0 0;
-      margin-bottom: 0;
-      font-size: 1.33em;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      color: #14181d;
-      background: linear-gradient(90deg, var(--primary) 0%, #fff3e2 100%);
-      box-shadow: 0 4px 18px 0 rgba(30,80,128,0.07);
-      border-bottom: 2px solid var(--secondary);
-    }
-    .emulator-header.k { 
-      background: linear-gradient(90deg, #ffe082 0%, #e3fffb 100%);
-      color: #0b0e10;
-      border-bottom: 2px solid var(--primary);
-    }
-    .emulator-section {
-      margin-bottom: 42px;
-      background: linear-gradient(115deg, var(--card-bg-start) 80%, var(--card-bg-end) 100%);
-      border-radius: 18px;
-      box-shadow: 0 6px 30px rgba(22,28,38,0.12);
-      border: 1.5px solid var(--card-border);
-      overflow: hidden;
-    }
-    .emulator-body {
-      padding: 26px 22px 18px 22px;
-    }
-    @media (max-width: 700px) {
-      .emulator-header, .emulator-body { padding-left: 10px; padding-right: 10px; }
-    }
-  </style>
 </head>
 <body>
   <div class="container">
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+
     <h1>Game Boy Emulators for Kindle</h1>
+
     <div class="summary">
       <b>Play Game Boy and Game Boy Color Games on Your Kindle</b><br>
-      With Gambatte-K2 and Gambatte-K, you can turn your Kindle into a retro handheld console. Both emulators let you play your own legally obtained Game Boy and Game Boy Color ROMs, all from the comfort of your e-reader.
+      With <b>Gambatte-K2</b> and <b>Gambatte-K</b>, you can turn your Kindle into a retro handheld console. Both emulators let you play your own Game Boy and Game Boy Color ROMs, all from the comfort of your e-reader.
     </div>
 
-    <!-- Gambatte-K2 SECTION -->
+    <!-- Gambatte-K2 SECTION (keeps the original structure/classes from your file) -->
     <section class="emulator-section" aria-labelledby="k2header">
       <div class="emulator-header" id="k2header">Gambatte-K2 (Recommended for Most Users)</div>
       <div class="emulator-body">
         <div class="card card-desc">
-          <b>Gambatte-K2</b> is a modern, feature-rich Game Boy emulator for Kindle. It supports both hardfloat and softfloat firmware in a single package, offering faster performance, advanced features, and regular updates. If you have a newer or fully jailbroken Kindle, Gambatte-K2 is your best choice for retro Game Boy and Game Boy Color gaming.
+          <b>Gambatte-K2</b> is a modern, feature-rich Game Boy emulator for Kindle. It supports hardfloat Kindles, offering faster performance, advanced features, and regular updates. It also has improved refresh behavior, making it much more playable. If you have a newer or fully jailbroken Kindle, Gambatte-K2 is your best choice for retro Game Boy and Game Boy Color gaming.
         </div>
+
         <div class="section-title">Gambatte-K2 Features</div>
         <div class="card card-desc">
           <ul>
@@ -89,26 +59,29 @@
             <li>Compatible with hardfloat and softfloat firmware</li>
           </ul>
         </div>
+
         <div class="section-title">How to Install Gambatte-K2</div>
         <div class="card card-desc">
           <ol>
-            <li>Download the latest release: <a href="https://www.mobileread.com/forums/showthread.php?t=355712" target="_blank" rel="noopener">Gambatte-K2 on MobileRead (HF & SF)</a></li>
+            <li>Download the latest release: <a href="https://www.mobileread.com/forums/showthread.php?t=355712" target="_blank" rel="noopener">Gambatte-K2 on MobileRead (HF &amp; SF)</a></li>
             <li>Or use GitHub: <a href="https://github.com/crazy-electron/gambatte-k2" target="_blank" rel="noopener">Gambatte-K2 on GitHub</a></li>
             <li>Unzip the folder and place it in <code>/mnt/us/extensions/</code> on your Kindle.</li>
             <li>Open <a href="kual.html">KUAL (Kindle Unified Application Launcher)</a>. Gambatte-K2 will appear as an extension.</li>
-            <li>(Optional) Copy <code>shortcut_gambatte-k2.sh</code> to your Kindle's documents folder for quick access.</li>
+            <li>(Optional) Copy <code>shortcut_gambatte-k2.sh</code> to your Kindle’s <code>documents</code> folder for quick access.</li>
           </ol>
         </div>
+
         <div class="section-title">How to Use Gambatte-K2</div>
         <div class="card card-desc">
           <ol>
             <li>Launch Gambatte-K2 from KUAL or your Kindle’s home screen if you added the shortcut.</li>
-            <li>Tap <b>Open</b> and select the Game Boy or Game Boy Color ROM (.gb or .gbc).</li>
+            <li>Tap <b>Open</b> and select a Game Boy or Game Boy Color ROM (<code>.gb</code> or <code>.gbc</code>).</li>
             <li>Use the virtual touchscreen controls to play (supports multi-touch for pressing two buttons at once).</li>
             <li>Press the refresh button to clean up the e-ink display as needed.</li>
-            <li>Use save/load state features (experimental) to save or continue your game progress.</li>
+            <li>Use save/load buttons to save or continue your game progress.</li>
           </ol>
         </div>
+
         <div class="section-title">Good to Know</div>
         <div class="card card-desc">
           <ul>
@@ -128,6 +101,7 @@
         <div class="card card-desc">
           <b>Gambatte-K</b> is the original, stable Game Boy emulator for Kindle. Recommended for older models or those running softfloat firmware, it offers simple controls and reliable performance.
         </div>
+
         <div class="section-title">Gambatte-K Features</div>
         <div class="card card-desc">
           <ul>
@@ -137,6 +111,7 @@
             <li>No advanced save/load or multitouch features</li>
           </ul>
         </div>
+
         <div class="section-title">How to Install Gambatte-K</div>
         <div class="card card-desc">
           <ol>
@@ -146,6 +121,7 @@
             <li>Open <a href="kual.html">KUAL</a> and launch Gambatte-K from the menu</li>
           </ol>
         </div>
+
         <div class="section-title">Usage Notes</div>
         <div class="card card-desc">
           <ul>

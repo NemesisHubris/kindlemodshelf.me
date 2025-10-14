@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>SOX Media Player for Kindle – Bluetooth Audio Playback</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SOX Media Player brings Bluetooth audio playback—music, audiobooks, and more—to your jailbroken Kindle. Supports WAV, MP3, FLAC, OGG, and more. Download for softfloat or hardfloat firmware.">
+  <meta name="description" content="SOX Media Player adds Bluetooth audio playback to your jailbroken Kindle for music, audiobooks, and internet streams. Supports WAV, MP3, FLAC, OGG, and more.">
   <link rel="canonical" href="https://kindlemodshelf.me/sox.html">
   <link rel="stylesheet" href="style.css">
   <meta property="og:title" content="SOX Media Player for Kindle – Bluetooth Audio Playback">
-  <meta property="og:description" content="SOX Media Player adds Bluetooth audio playback for music, audiobooks, and internet streams to your Kindle. Supports many formats.">
+  <meta property="og:description" content="Play audio, music, and internet streams via Bluetooth on your Kindle with SOX Media Player. Works with softfloat and hardfloat firmware.">
   <meta property="og:url" content="https://kindlemodshelf.me/sox.html">
   <script type="application/ld+json">
   {
@@ -17,7 +17,7 @@
     "name": "SOX Media Player for Kindle",
     "operatingSystem": "Kindle OS (softfloat & hardfloat)",
     "applicationCategory": "MediaApplication",
-    "description": "SOX Media Player adds Bluetooth audio playback to your Kindle e-reader. Supports WAV, MP3, FLAC, OGG, and more. Download the right version for your firmware from the official MobileRead thread.",
+    "description": "SOX Media Player brings Bluetooth audio playback—music, audiobooks, and internet streams—to your Kindle. Supports MP3, FLAC, WAV, and more formats.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -27,54 +27,15 @@
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
-  <style>
-    .back-home-btn {
-      position: absolute;
-      right: 24px;
-      top: 32px;
-      padding: 7px 18px 7px 14px;
-      border-radius: 999px;
-      background: rgba(34,41,54,0.93);
-      color: #ececec;
-      border: 1.5px solid #323846;
-      font-size: 1em;
-      font-weight: 500;
-      text-decoration: none;
-      box-shadow: 0 2px 8px rgba(16,21,26,0.11);
-      transition: background .18s, color .16s, border-color .14s;
-      z-index: 11;
-    }
-    .back-home-btn:hover, .back-home-btn:focus {
-      background: #181a20;
-      color: var(--secondary);
-      border-color: var(--secondary);
-      outline: none;
-    }
-    @media (max-width: 700px) {
-      .back-home-btn {
-        position: static;
-        display: block;
-        margin: 0 auto 18px auto;
-        top: unset;
-        right: unset;
-        left: unset;
-      }
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 32px 16px 48px;
-      position: relative;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
-    <h1>SOX Media Player for Kindle</h1>
+
+    <h1>SOX Media Player</h1>
+
     <div class="summary">
-      <b>SOX Media Player</b> lets you play music, audiobooks, and internet streams over Bluetooth on your jailbroken Kindle. Supports popular audio formats including WAV, MP3, FLAC, OGG, and more. Softfloat (SF) and hardfloat (HF) versions are available.<br>
-      <b><a href="https://www.mobileread.com/forums/showthread.php?t=368945" target="_blank" rel="noopener">Get the latest SOX Media Player (SF & HF) – Download & instructions on MobileRead</a></b>
+      <b>SOX Media Player</b> lets you play music, audiobooks, and internet streams over Bluetooth directly on your Kindle. Supports WAV, MP3, FLAC, OGG, and many other audio formats. Versions are available for both <b>softfloat (SF)</b> and <b>hardfloat (HF)</b> firmware.
     </div>
 
     <section aria-labelledby="features">
@@ -85,7 +46,7 @@
           <li>Supports WAV, MP3, FLAC, OGG, AIFF, AU, GSM, RAW, CAF, VOC, W64, WVE, XA, XI, and more</li>
           <li>Playlist support: M3U, PLS</li>
           <li>Simple KUAL-based interface</li>
-          <li>Custom internet radio/streams support (edit <code>menu.json</code>)</li>
+          <li>Custom internet radio/stream support via editable <code>menu.json</code></li>
         </ul>
       </div>
     </section>
@@ -94,9 +55,9 @@
       <h2 class="section-title" id="requirements">Requirements</h2>
       <div class="card card-desc">
         <ul>
-          <li>Jailbroken Kindle with KUAL and Bluetooth support</li>
-          <li>Download either SF (softfloat) or HF (hardfloat) version, matching your Kindle firmware</li>
-          <li>Music or audiobooks in <code>/mnt/us/music</code> (the Kindle’s music folder)</li>
+          <li>Kindle with Bluetooth support</li>
+          <li>Jailbroken with <a href="kual.html">KUAL</a> installed</li>
+          <li>Download either SF (softfloat) or HF (hardfloat) version matching your Kindle firmware</li>
         </ul>
       </div>
     </section>
@@ -104,11 +65,16 @@
     <section aria-labelledby="install">
       <h2 class="section-title" id="install">How to Install</h2>
       <div class="card card-desc">
+        <p><b>Install through Kindle Forge (recommended):</b></p>
+        <ul>
+          <li>Click the download button in Kindle Forge for SOX once installed. It will appear in KUAL automatically.</li>
+        </ul>
+        <p><b>Manual installation:</b></p>
         <ol>
           <li>Visit the <a href="https://www.mobileread.com/forums/showthread.php?t=368945" target="_blank" rel="noopener">official SOX Media Player thread</a> and download the correct zip for your firmware (SF or HF).</li>
-          <li>Unzip on your computer.</li>
-          <li>Copy the <code>SOX</code> folder to <code>extensions/</code> on your Kindle.</li>
-          <li>Put your music or audiobooks in <code>/mnt/us/music</code> on your Kindle.</li>
+          <li>Unzip the file on your computer.</li>
+          <li>Copy the <code>SOX</code> folder to <code>/mnt/us/extensions/</code> on your Kindle.</li>
+          <li>Place your music or audiobooks in <code>/mnt/us/music/</code> on your Kindle.</li>
           <li>Safely eject and disconnect your Kindle.</li>
         </ol>
       </div>
@@ -118,25 +84,30 @@
       <h2 class="section-title" id="usage">How to Use</h2>
       <div class="card card-desc">
         <ol>
-          <li>Pair your Bluetooth audio device with your Kindle in Settings.</li>
+          <li>Pair your Bluetooth audio device with your Kindle via Settings.</li>
           <li>Open <b>KUAL</b> on your Kindle.</li>
           <li>Launch <b>SOX Media Player</b> from the KUAL menu.</li>
-          <li>For internet radio, edit <code>menu.json</code> to add streams (see the README and thread for setup).</li>
+          <li>For internet radio, edit <code>menu.json</code> to add custom streams (see the README and forum thread for setup details).</li>
         </ol>
       </div>
     </section>
 
-    <section aria-labelledby="troubleshooting">
-      <h2 class="section-title" id="troubleshooting">Notes & Troubleshooting</h2>
+    <section aria-labelledby="notes">
+      <h2 class="section-title" id="notes">Notes & Troubleshooting</h2>
       <div class="card card-desc">
         <ul>
-          <li>All files in one playlist/call must have the same format, rate, channels, and bit depth.</li>
-          <li>SOX expects files in the <code>music</code> directory. Custom menu items can be added in <code>menu.json</code>.</li>
-          <li>Bluetooth can sometimes be unreliable; if playback freezes, reconnect your device or restart Kindle.</li>
-          <li><b>AAC files are not supported.</b> Any attempt to play AAC will fail.</li>
+          <li>All files in a single playlist or call must share the same format, rate, channels, and bit depth.</li>
+          <li>Bluetooth may sometimes disconnect; if playback freezes, reconnect your device or restart the Kindle.</li>
+          <li><b>AAC files are not supported</b> — playback attempts will fail.</li>
+          <li>Ensure your device is properly paired before launching SOX for smoother performance.</li>
         </ul>
       </div>
     </section>
+
+    <div class="section-title">Credits</div>
+    <div class="card card-desc">
+      <p>dhdurgee</p>
+    </div>
   </div>
 </body>
 </html>
