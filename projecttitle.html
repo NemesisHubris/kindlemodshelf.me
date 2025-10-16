@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ProjectTitle – Modern Library View for KOReader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ProjectTitle is a redesigned book browser for KOReader with cover-first layouts, progress indicators, and enhanced navigation.">
+  <link rel="canonical" href="https://kindlemodshelf.me/projecttitle.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="ProjectTitle – Modern Library View for KOReader">
+  <meta property="og:description" content="Transform KOReader’s library experience with ProjectTitle: polished covers, smart progress tracking, gestures, and custom footers.">
+  <meta property="og:url" content="https://kindlemodshelf.me/projecttitle.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>ProjectTitle</h1>
+
+    <div class="summary">
+      A redesigned KOReader book browser inspired by Cover Browser. ProjectTitle delivers cover-first navigation, smart progress tracking, and gesture-driven layout controls tailored to modern Kindle libraries.
+    </div>
+
+    <section aria-labelledby="overview">
+      <h2 class="section-title" id="overview">Overview</h2>
+      <div class="card card-desc">
+        <p>ProjectTitle replaces KOReader’s default Cover Browser with a polished interface that emphasises library artwork, reading progress, and quick navigation shortcuts.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <p><a href="https://github.com/joshuacant/ProjectTitle/releases" target="_blank" rel="noopener">Releases Page</a> – Download the version matching your KOReader build exactly.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><strong>Enhanced Title Bar</strong> – Quick access to Favorites, History, Open Last Book, and Up Folder.</li>
+          <li><strong>Visual Book Listing</strong> – Custom fonts, icons for missing covers, and optional progress bars showing book length.</li>
+          <li><strong>Clean Folders</strong> – Display as cover images, thumbnails, or icons.</li>
+          <li><strong>Configurable Footer</strong> – Show folder paths or device status (time, Wi-Fi, battery, frontlight).</li>
+          <li><strong>Updated Status Page</strong> – Stylish screensaver view with book description and completion progress.</li>
+          <li><strong>Trophy Icons</strong> – Mark finished books at a glance.</li>
+          <li><strong>Gesture Controls</strong> – Pinch or spread to resize items.</li>
+          <li><strong>Library Mode</strong> – Long-press the origami bird to view all books sorted by author or series.</li>
+          <li><strong>Auto-scan</strong> – Detect new books after USB eject.</li>
+          <li><strong>Filenames Mode</strong> – Optional barebones listing (v2025.08v3.5+).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <p><strong>Kindle Only:</strong></p>
+        <ol>
+          <li>Download the release that matches your KOReader version.</li>
+          <li>Extract the archive and copy the <code>projecttitle.koplugin</code> folder to <code>koreader/plugins/</code>.</li>
+          <li>Copy the bundled fonts to <code>koreader/fonts/</code>.</li>
+          <li>Copy the icons to <code>koreader/resources/icons/</code>.</li>
+          <li>Restart KOReader.</li>
+          <li>Navigate to <em>Menu → Tools → Plugin Management</em> and disable <strong>Cover Browser</strong>.</li>
+          <li>Restart KOReader again so ProjectTitle becomes the default browser.</li>
+        </ol>
+        <p><strong>Uninstall:</strong> Re-enable Cover Browser in Plugin Management, then delete the ProjectTitle plugin folder, fonts, and icons.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="howto">
+      <h2 class="section-title" id="howto">How to Use</h2>
+      <div class="card card-desc">
+        <p>Open ProjectTitle settings in KOReader via <em>Menu → Tools → More Tools → Project: Title</em>.</p>
+        <p>Review the full documentation for customization tips: <a href="https://github.com/joshuacant/ProjectTitle/wiki/Documentation" target="_blank" rel="noopener">ProjectTitle Wiki</a>.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="notes">
+      <h2 class="section-title" id="notes">Notes</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Release versions must match KOReader exactly.</li>
+          <li>Works best with libraries that have clean metadata and cover images.</li>
+          <li>Optional Calibre integration powers the reading progress bars.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="links">
+      <h2 class="section-title" id="links">Links</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/joshuacant/ProjectTitle" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://github.com/joshuacant/ProjectTitle/wiki/Installation" target="_blank" rel="noopener">Installation Guide</a></li>
+          <li><a href="https://github.com/joshuacant/ProjectTitle/wiki/Configure-Calibre-Page-Counts" target="_blank" rel="noopener">Calibre Setup</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Based on Cover Browser by @poire-z and the KOReader team</li>
+          <li>Modified by @joshuacant and @elfbutt</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -35,32 +35,69 @@
     <!-- Modal Viewer -->
     <div id="img-viewer-modal">
       <div id="img-viewer-img-wrap">
-        <a id="img-viewer-download" href="#" download title="Download">
-          <svg width="21" height="21" viewBox="0 0 20 20" fill="none" style="vertical-align:middle;" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12" stroke="#ffe082" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <button id="img-viewer-close" title="Close">&times;</button>
-        <img id="img-viewer-img" src="" alt="Large view" draggable="false">
+        <div class="viewer-topbar">
+          <div class="viewer-info">
+            <span id="img-viewer-author"></span>
+            <span id="img-viewer-filename"></span>
+          </div>
+          <div class="viewer-actions">
+            <a id="img-viewer-download" class="viewer-button viewer-download" href="#" download>
+              <svg width="21" height="21" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Download</span>
+            </a>
+            <button id="img-viewer-close" class="viewer-button viewer-close" type="button">Close</button>
+          </div>
+        </div>
+        <div class="viewer-canvas">
+          <div id="img-viewer-loader"></div>
+          <img id="img-viewer-img" src="" alt="Large view" draggable="false">
+        </div>
       </div>
     </div>
   </div>
-  <script>
-    // Configuration
+    <script>
     const INITIAL_AUTHORS = 10;
-    const LOAD_MORE_AUTHORS = 5;
-    const IMAGES_PER_ROW = 5;
-    const THUMBNAIL_WIDTH = 300;  // Higher quality thumbnails
-    const THUMBNAIL_HEIGHT = 300;
-    const THUMBNAIL_QUALITY = 0.65; // Higher quality value (between 0-1)
-    
+    const LOAD_MORE_AUTHORS = 6;
+    const PREVIEW_IMAGE_COUNT = 8;
+    const THUMBNAIL_WIDTH = 520;
+    const THUMBNAIL_HEIGHT = 520;
+    const THUMBNAIL_QUALITY = 0.82;
+    const PLACEHOLDER_SRC = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
+    const SECTION_UNLOAD_OFFSET = 1400;
+    const MAX_CACHE_ITEMS = 60;
+    const PLACEHOLDER_BACKGROUND = 'linear-gradient(160deg, rgba(88, 225, 255, 0.18), rgba(12, 20, 34, 0.92))';
+    const CANVAS_BACKGROUND = '#081524';
+
     let allAuthors = [];
     let allData = null;
     let loadedAuthors = 0;
     let isLoading = false;
-    let thumbnailCache = {}; // Cache for generated thumbnails
-    
-    // Fetch all image data
+    let isSearchMode = false;
+
+    const thumbnailCache = new Map();
+    const sectionsMeta = new Map();
+
+    const galleryRoot = document.getElementById('gallery-root');
+    const loadingIndicator = document.getElementById('loading-indicator');
+    const thumbnailCanvas = document.getElementById('thumbnail-canvas');
+    const thumbnailCtx = thumbnailCanvas.getContext('2d');
+
+    const imageObserver = new IntersectionObserver(handleImageIntersection, {
+      root: null,
+      rootMargin: '600px 0px 600px 0px',
+      threshold: 0.1
+    });
+
+    const sectionObserver = new IntersectionObserver(handleSectionIntersection, {
+      root: null,
+      rootMargin: '800px 0px 800px 0px',
+      threshold: 0.05
+    });
+
+    let scrollEnabled = false;
+
     fetch('images.json')
       .then(res => {
         if (!res.ok) throw new Error('Could not load images.json');
@@ -68,295 +105,409 @@
       })
       .then(data => {
         allData = data;
-        const galleryRoot = document.getElementById('gallery-root');
-        allAuthors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', {sensitivity: 'base'}));
-        
+        allAuthors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }));
         if (allAuthors.length === 0) {
           galleryRoot.textContent = 'No images found.';
           return;
         }
-
-        // Load initial authors
+        enableScrollLoading();
         loadMoreAuthors(INITIAL_AUTHORS);
-        
-        // Set up scroll listener for loading more authors
-        window.addEventListener('scroll', handleScroll);
 
-        // Set up author search
         const searchBar = document.getElementById('search-bar');
-        searchBar.addEventListener('input', function() {
-          const q = this.value.trim().toLowerCase();
-          const galleryRoot = document.getElementById('gallery-root');
-          const loadingIndicator = document.getElementById('loading-indicator');
-
-          // Reset container
-          galleryRoot.innerHTML = '';
-
-          if (q === '') {
-            // Restore incremental loading state
-            loadedAuthors = 0;
-            isLoading = false;
-            loadingIndicator.style.display = 'none';
-            // Re-enable infinite scroll
-            window.removeEventListener('scroll', handleScroll);
-            window.addEventListener('scroll', handleScroll);
-            loadMoreAuthors(INITIAL_AUTHORS);
-            return;
-          }
-
-          // While searching, disable infinite scroll
-          window.removeEventListener('scroll', handleScroll);
-          loadingIndicator.style.display = 'none';
-
-          // Find matching authors and render ALL of their images
-          const matches = allAuthors.filter(a => a.toLowerCase().includes(q));
-          if (matches.length === 0) {
-            const msg = document.createElement('div');
-            msg.className = 'no-results';
-            msg.textContent = 'No authors match your search.';
-            galleryRoot.appendChild(msg);
-            return;
-          }
-
-          matches.forEach(author => {
-            const images = allData[author];
-            if (!Array.isArray(images) || images.length === 0) return;
-
-            const sectionId = author.replace(/[^a-zA-Z0-9_\-.]/g, '_');
-            const section = document.createElement('section');
-            section.setAttribute('aria-labelledby', sectionId);
-            section.innerHTML = `
-              <h2 class="section-title" id="${sectionId}">${author}</h2>
-              <div class="card card-desc">
-                <div class="gallery-grid" id="grid-${sectionId}"></div>
-              </div>
-            `;
-            galleryRoot.appendChild(section);
-
-            const grid = document.getElementById(`grid-${sectionId}`);
-            images.forEach(filename => addImageToGrid(grid, author, filename));
-          });
-        });
+        searchBar.addEventListener('input', handleSearch);
       })
       .catch(error => {
         console.error('Error loading gallery:', error);
-        document.getElementById('gallery-root').textContent =
-          'Could not load image list. Please contact the site owner.';
+        galleryRoot.textContent = 'Could not load image list. Please contact the site owner.';
       });
 
+    function handleSearch(event) {
+      const query = event.target.value.trim().toLowerCase();
+      resetGallery();
+      loadingIndicator.style.display = 'none';
+
+      if (query === '') {
+        isSearchMode = false;
+        enableScrollLoading();
+        loadMoreAuthors(INITIAL_AUTHORS);
+        return;
+      }
+
+      isSearchMode = true;
+      disableScrollLoading();
+
+      const matches = allAuthors.filter(author => author.toLowerCase().includes(query));
+      if (matches.length === 0) {
+        const msg = document.createElement('div');
+        msg.className = 'no-results';
+        msg.textContent = 'No authors match your search.';
+        galleryRoot.appendChild(msg);
+        return;
+      }
+
+      matches.forEach(author => createSection(author));
+    }
+
     function handleScroll() {
-      if (isLoading || loadedAuthors >= allAuthors.length) return;
-      
+      if (isSearchMode || isLoading || loadedAuthors >= allAuthors.length) return;
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      
-      // Load more when user scrolls near the bottom
       if (scrollY + windowHeight > documentHeight - 200) {
         loadMoreAuthors(LOAD_MORE_AUTHORS);
       }
     }
 
     function loadMoreAuthors(count) {
-      if (isLoading || loadedAuthors >= allAuthors.length) return;
-      
+      if (isSearchMode || isLoading || loadedAuthors >= allAuthors.length) return;
+
       isLoading = true;
-      const loadingIndicator = document.getElementById('loading-indicator');
       loadingIndicator.style.display = 'block';
-      
-      const galleryRoot = document.getElementById('gallery-root');
+
       const endIndex = Math.min(loadedAuthors + count, allAuthors.length);
-      
       setTimeout(() => {
         for (let i = loadedAuthors; i < endIndex; i++) {
           const author = allAuthors[i];
           const images = allData[author];
           if (!Array.isArray(images) || images.length === 0) continue;
-          
-          const sectionId = author.replace(/[^a-zA-Z0-9_\-.]/g, '_');
-          const section = document.createElement('section');
-          section.setAttribute('aria-labelledby', sectionId);
-          
-          const hasMore = images.length > IMAGES_PER_ROW;
-          const initialImages = hasMore ? images.slice(0, IMAGES_PER_ROW) : images;
-          
-          section.innerHTML = `
-            <h2 class="section-title" id="${sectionId}">${author}</h2>
-            <div class="card card-desc">
-              <div class="gallery-grid" id="grid-${sectionId}"></div>
-              ${hasMore ? `<button class="load-more-btn" data-author="${author}" data-section="${sectionId}">Show all ${images.length} images</button>` : ''}
-            </div>
-          `;
-          
-          galleryRoot.appendChild(section);
-          
-          const grid = document.getElementById(`grid-${sectionId}`);
-          initialImages.forEach(filename => {
-            addImageToGrid(grid, author, filename);
-          });
-          
-          if (hasMore) {
-            const showMoreBtn = section.querySelector('.load-more-btn');
-            showMoreBtn.addEventListener('click', function() {
-              const remainingImages = images.slice(IMAGES_PER_ROW);
-              remainingImages.forEach(filename => {
-                addImageToGrid(grid, author, filename);
-              });
-              this.remove();
-            });
-          }
+          createSection(author);
         }
-        
         loadedAuthors = endIndex;
         isLoading = false;
         loadingIndicator.style.display = 'none';
-        
         if (loadedAuthors >= allAuthors.length) {
-          window.removeEventListener('scroll', handleScroll);
+          disableScrollLoading();
         }
-      }, 50);
+      }, 40);
+    }
+
+    function createSection(author) {
+      const images = allData[author];
+      if (!Array.isArray(images) || images.length === 0) return;
+
+      const sectionId = sanitizeId(author);
+      const section = document.createElement('section');
+      section.dataset.author = author;
+      section.setAttribute('aria-labelledby', sectionId);
+      section.innerHTML = `
+        <h2 class="section-title" id="${sectionId}">${author}</h2>
+        <div class="card card-desc gallery-card">
+          <div class="gallery-grid" id="grid-${sectionId}"></div>
+          <div class="gallery-controls" id="controls-${sectionId}"></div>
+        </div>
+      `;
+
+      galleryRoot.appendChild(section);
+
+      const meta = {
+        author,
+        section,
+        grid: section.querySelector('.gallery-grid'),
+        controls: section.querySelector('.gallery-controls'),
+        rendered: false,
+        expanded: false,
+        loadMoreBtn: null
+      };
+
+      sectionsMeta.set(author, meta);
+      sectionObserver.observe(section);
+
+      if (isSectionNearViewport(section) || isSearchMode) {
+        ensureSectionRendered(meta);
+      }
     }
 
     function addImageToGrid(grid, author, filename) {
       const imgFullPath = `images/${author}/${filename}`;
       const cell = document.createElement('div');
-      cell.className = "img-thumb-wrap";
-      
+      cell.className = 'img-thumb-wrap';
+
       const img = document.createElement('img');
-      img.className = "img-thumb";
-      img.alt = "";
-      img.loading = "eager"; 
-      img.style.opacity = "1";
-      
-      // Add a color placeholder before the thumbnail loads
-      img.style.backgroundColor = getColorFromFilename(filename);
-      
-      // Store the full path for the modal viewer
+      img.className = 'img-thumb';
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.dataset.loaded = '0';
+      img.dataset.loading = '0';
       img.dataset.fullPath = imgFullPath;
-      
-      // Use higher-quality thumbnail generation
-      createThumbnail(imgFullPath, function(thumbnailUrl) {
-        img.src = thumbnailUrl;
+      img.dataset.author = author;
+      img.dataset.filename = filename;
+      img.src = PLACEHOLDER_SRC;
+      img.style.background = PLACEHOLDER_BACKGROUND;
+
+      img.addEventListener('click', function () {
+        if (this.dataset.loaded !== '1') {
+          loadImage(this);
+        }
+        openViewer(this);
       });
-      
-      img.addEventListener('click', function() {
-        openViewer(this.dataset.fullPath);
-      });
-      
+
       cell.appendChild(img);
       grid.appendChild(cell);
+      imageObserver.observe(img);
     }
-    
-    // Generate a background color from filename for placeholders
-    function getColorFromFilename(filename) {
-      let hash = 0;
-      for (let i = 0; i < filename.length; i++) {
-        hash = filename.charCodeAt(i) + ((hash << 5) - hash);
-      }
-      
-      // Generate a dark but visible color
-      let r = 30 + (hash & 0xFF) % 50;
-      let g = 30 + ((hash >> 8) & 0xFF) % 50;
-      let b = 40 + ((hash >> 16) & 0xFF) % 60;
-      
-      return `rgb(${r}, ${g}, ${b})`;
-    }
-    
-    // Create a higher-quality thumbnail from the original image
+
     function createThumbnail(imgPath, callback) {
-      // Check cache first
-      if (thumbnailCache[imgPath]) {
-        callback(thumbnailCache[imgPath]);
+      if (thumbnailCache.has(imgPath)) {
+        callback(thumbnailCache.get(imgPath));
         return;
       }
-      
-      // Use a solid color placeholder immediately
-      const initialColor = getColorFromFilename(imgPath);
-      const canvas = document.getElementById('thumbnail-canvas');
-      const ctx = canvas.getContext('2d');
-      
-      // Create an image element to load the original
+
       const originalImg = new Image();
       originalImg.crossOrigin = 'anonymous';
-      
-      originalImg.onload = function() {
-        // Clear canvas
-        ctx.fillStyle = initialColor;
-        ctx.fillRect(0, 0, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
-        
-        // Calculate dimensions to maintain aspect ratio
+
+      originalImg.onload = function () {
+        thumbnailCanvas.width = THUMBNAIL_WIDTH;
+        thumbnailCanvas.height = THUMBNAIL_HEIGHT;
+        thumbnailCtx.imageSmoothingEnabled = true;
+        thumbnailCtx.imageSmoothingQuality = 'high';
+
+        thumbnailCtx.fillStyle = CANVAS_BACKGROUND;
+        thumbnailCtx.fillRect(0, 0, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
+
         const aspectRatio = originalImg.width / originalImg.height;
         let drawWidth = THUMBNAIL_WIDTH;
         let drawHeight = THUMBNAIL_WIDTH / aspectRatio;
-        
+
         if (drawHeight > THUMBNAIL_HEIGHT) {
           drawHeight = THUMBNAIL_HEIGHT;
           drawWidth = THUMBNAIL_HEIGHT * aspectRatio;
         }
-        
-        // Center the image on the canvas
+
         const x = (THUMBNAIL_WIDTH - drawWidth) / 2;
         const y = (THUMBNAIL_HEIGHT - drawHeight) / 2;
-        
-        // Draw the image at higher quality
-        ctx.drawImage(originalImg, x, y, drawWidth, drawHeight);
-        
-        // Convert to higher-quality JPEG data URL
+
+        thumbnailCtx.drawImage(originalImg, x, y, drawWidth, drawHeight);
+
         try {
-          const thumbnailUrl = canvas.toDataURL('image/jpeg', THUMBNAIL_QUALITY);
-          thumbnailCache[imgPath] = thumbnailUrl;
+          const thumbnailUrl = thumbnailCanvas.toDataURL('image/jpeg', THUMBNAIL_QUALITY);
+          thumbnailCache.set(imgPath, thumbnailUrl);
+          if (thumbnailCache.size > MAX_CACHE_ITEMS) {
+            const oldestKey = thumbnailCache.keys().next().value;
+            thumbnailCache.delete(oldestKey);
+          }
           callback(thumbnailUrl);
         } catch (e) {
           console.warn('Could not generate thumbnail for', imgPath, e);
           callback(imgPath);
         }
       };
-      
-      originalImg.onerror = function() {
+
+      originalImg.onerror = function () {
         console.warn('Could not load image:', imgPath);
         callback(imgPath);
       };
-      
-      // Start loading the original image
+
       originalImg.src = imgPath;
-      
-      // Return a color placeholder immediately
-      return initialColor;
     }
 
-    // Viewer Modal Logic
+    function loadImage(img) {
+      if (img.dataset.loaded === '1' || img.dataset.loading === '1') return;
+      img.dataset.loading = '1';
+      const imgPath = img.dataset.fullPath;
+
+      const applyThumbnail = thumbnailUrl => {
+        if (!img.isConnected || img.dataset.loading !== '1') return;
+        img.src = thumbnailUrl;
+        img.dataset.loaded = '1';
+        img.dataset.loading = '0';
+        img.classList.add('loaded');
+      };
+
+      if (thumbnailCache.has(imgPath)) {
+        applyThumbnail(thumbnailCache.get(imgPath));
+        return;
+      }
+
+      createThumbnail(imgPath, applyThumbnail);
+    }
+
+    function unloadImage(img) {
+      if (img.dataset.loaded !== '1') return;
+      img.dataset.loaded = '0';
+      img.dataset.loading = '0';
+      img.src = PLACEHOLDER_SRC;
+      img.classList.remove('loaded');
+    }
+
+    function handleImageIntersection(entries) {
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      entries.forEach(entry => {
+        const img = entry.target;
+        if (entry.isIntersecting) {
+          loadImage(img);
+          return;
+        }
+
+        const rect = entry.boundingClientRect;
+        const aboveThreshold = rect.bottom < -SECTION_UNLOAD_OFFSET;
+        const belowThreshold = rect.top > viewportHeight + SECTION_UNLOAD_OFFSET;
+
+        if (aboveThreshold || belowThreshold) {
+          unloadImage(img);
+        }
+      });
+    }
+
+    function ensureSectionRendered(meta) {
+      if (meta.rendered) return;
+      const images = allData[meta.author] || [];
+      if (!images.length) return;
+
+      const list = meta.expanded ? images : images.slice(0, PREVIEW_IMAGE_COUNT);
+      list.forEach(filename => addImageToGrid(meta.grid, meta.author, filename));
+
+      if (!meta.expanded && images.length > PREVIEW_IMAGE_COUNT) {
+        const btn = createLoadMoreButton(meta, images);
+        meta.controls.appendChild(btn);
+        meta.loadMoreBtn = btn;
+      }
+
+      meta.rendered = true;
+    }
+
+    function createLoadMoreButton(meta, images) {
+      const btn = document.createElement('button');
+      btn.className = 'load-more-btn';
+      btn.type = 'button';
+      btn.textContent = `Show all ${images.length} images`;
+      btn.addEventListener('click', () => {
+        const currentCount = meta.grid.querySelectorAll('.img-thumb-wrap').length;
+        images.slice(currentCount).forEach(filename => addImageToGrid(meta.grid, meta.author, filename));
+        meta.expanded = true;
+        btn.remove();
+        meta.loadMoreBtn = null;
+      });
+      return btn;
+    }
+
+    function teardownSection(meta) {
+      if (!meta.rendered) return;
+      const thumbs = meta.grid.querySelectorAll('.img-thumb');
+      thumbs.forEach(img => imageObserver.unobserve(img));
+      meta.grid.innerHTML = '';
+      if (meta.loadMoreBtn) {
+        meta.loadMoreBtn.remove();
+        meta.loadMoreBtn = null;
+      }
+      meta.rendered = false;
+    }
+
+    function handleSectionIntersection(entries) {
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      entries.forEach(entry => {
+        const author = entry.target.dataset.author;
+        const meta = sectionsMeta.get(author);
+        if (!meta) return;
+
+        if (entry.isIntersecting) {
+          ensureSectionRendered(meta);
+          return;
+        }
+
+        const rect = entry.boundingClientRect;
+        if (rect.bottom < -SECTION_UNLOAD_OFFSET || rect.top > viewportHeight + SECTION_UNLOAD_OFFSET) {
+          teardownSection(meta);
+        }
+      });
+    }
+
+    function isSectionNearViewport(section) {
+      const buffer = 800;
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      return rect.top <= viewportHeight + buffer && rect.bottom >= -buffer;
+    }
+
+    function sanitizeId(str) {
+      return str.replace(/[^a-zA-Z0-9_\-.]/g, '_');
+    }
+
+    function resetGallery() {
+      sectionsMeta.forEach(meta => {
+        sectionObserver.unobserve(meta.section);
+        teardownSection(meta);
+      });
+      sectionsMeta.clear();
+      galleryRoot.innerHTML = '';
+      imageObserver.disconnect();
+      sectionObserver.disconnect();
+      loadedAuthors = 0;
+      isLoading = false;
+    }
+
+    function enableScrollLoading() {
+      if (scrollEnabled) return;
+      window.addEventListener('scroll', handleScroll);
+      scrollEnabled = true;
+    }
+
+    function disableScrollLoading() {
+      if (!scrollEnabled) return;
+      window.removeEventListener('scroll', handleScroll);
+      scrollEnabled = false;
+    }
+
     const modal = document.getElementById('img-viewer-modal');
     const modalImg = document.getElementById('img-viewer-img');
     const modalDownload = document.getElementById('img-viewer-download');
     const modalClose = document.getElementById('img-viewer-close');
-    
-    function openViewer(src) {
+    const modalAuthor = document.getElementById('img-viewer-author');
+    const modalFilename = document.getElementById('img-viewer-filename');
+    const modalLoader = document.getElementById('img-viewer-loader');
+
+    function openViewer(thumbnail) {
       modal.style.display = 'flex';
-      
-      modalImg.onload = function() {
-        modal.classList.add('active');
-      };
-      
-      modalImg.src = src;
+      modal.classList.remove('active');
+      modalLoader.classList.add('active');
+      modalImg.style.opacity = '0';
+
+      const src = thumbnail.dataset.fullPath;
+      const author = thumbnail.dataset.author || 'Unknown Author';
+      const filename = thumbnail.dataset.filename || '';
+
+      modalAuthor.textContent = author;
+      modalFilename.textContent = filename;
       modalDownload.href = src;
-      
-      setTimeout(() => { modal.classList.add('active'); }, 10);
+      if (filename) {
+        modalDownload.download = filename;
+      }
+
+      modalImg.onload = function () {
+        modalLoader.classList.remove('active');
+        modalImg.style.opacity = '1';
+        requestAnimationFrame(() => modal.classList.add('active'));
+      };
+
+      modalImg.onerror = function () {
+        modalLoader.classList.remove('active');
+        modalImg.style.opacity = '1';
+      };
+
+      modalImg.src = src;
+      requestAnimationFrame(() => modal.classList.add('active'));
     }
-    
+
     function closeViewer() {
       modal.classList.remove('active');
       setTimeout(() => {
         modal.style.display = 'none';
         modalImg.src = '';
         modalDownload.href = '#';
+        modalLoader.classList.remove('active');
       }, 200);
     }
-    
+
     modalClose.onclick = closeViewer;
-    modal.onclick = e => { if (e.target === modal) closeViewer(); };
-    document.addEventListener('keydown', e => {
-      if (modal.classList.contains('active') && (e.key === 'Escape' || e.key === 'Esc')) closeViewer();
+    modal.onclick = event => {
+      if (event.target === modal) closeViewer();
+    };
+    document.addEventListener('keydown', event => {
+      if (modal.classList.contains('active') && (event.key === 'Escape' || event.key === 'Esc')) {
+        closeViewer();
+      }
     });
   </script>
+
 </body>
 </html>

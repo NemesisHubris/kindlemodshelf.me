@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gargoyle Interactive Fiction Interpreter – HF & SF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Experimental Gargoyle interpreter build for Kindle with hardfloat and softfloat setup guidance, downloads, and troubleshooting.">
+  <link rel="canonical" href="https://kindlemodshelf.me/gargoyle.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Gargoyle Interactive Fiction Interpreter – HF & SF">
+  <meta property="og:description" content="Install and run the Kindle Gargoyle interpreter on hardfloat and softfloat devices with the provided instructions and resources.">
+  <meta property="og:url" content="https://kindlemodshelf.me/gargoyle.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+
+    <h1>Gargoyle Interactive Fiction Interpreter</h1>
+
+    <div class="summary">
+      Experimental interpreter for playing interactive fiction on Kindle.<br>
+      Supports all major IF formats including Z-Machine, Glulx, TADS, and more.
+    </div>
+
+    <!-- HARDFLOAT SECTION -->
+    <section class="emulator-section" aria-labelledby="hfheader">
+      <div class="emulator-header k" id="hfheader">Hardfloat (HF) Version</div>
+      <div class="emulator-body">
+
+        <div class="section-title">Features</div>
+        <div class="card card-desc">
+          <ul>
+            <li>Full interactive fiction player for modern Kindles (PW5, firmware 5.16.3+).</li>
+            <li>Supports multiple IF formats: Z-Machine (.z1-.z8), Glulx (.ulx, .blb), TADS (.gam, .t3), and many more.</li>
+            <li>On-screen keyboard with gesture controls.</li>
+            <li>Configurable fonts and typography via garglk.ini.</li>
+            <li>Available as KUAL extension or booklet launcher; see <a href="shortcuts.html">here</a>.</li>
+          </ul>
+        </div>
+
+        <div class="section-title">Requirements</div>
+        <div class="card card-desc">
+          <ul>
+            <li>Jailbroken Kindle running hardfloat firmware (5.16.3 or newer).</li>
+            <li>KUAL (Kindle Unified Application Launcher) installed for extension method.</li>
+            <li>Kindle Paperwhite 5 or compatible device.</li>
+          </ul>
+        </div>
+
+        <div class="section-title">Download & Install (HF)</div>
+        <div class="card card-desc">
+          <ol>
+            <li>Download <a href="https://www.mobileread.com/forums/showthread.php?t=366347" target="_blank" rel="noopener">gargoyle.zip from the MobileRead forum thread</a>.</li>
+            <li>Unzip on your computer.</li>
+            <li>For KUAL: Place the extracted folder into <code>/mnt/us/extensions/</code>.</li>
+          </ol>
+        </div>
+
+        <div class="section-title">How to Run (HF)</div>
+        <div class="card card-desc">
+          <ul>
+            <li>Starting Gargoyle: Open KUAL and select Gargoyle from the menu.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SOFTFLOAT SECTION -->
+    <section class="emulator-section" aria-labelledby="sfheader">
+      <div class="emulator-header" id="sfheader">Softfloat (SF) Version</div>
+      <div class="emulator-body">
+
+        <div class="section-title">Requirements</div>
+        <div class="card card-desc">
+          <ul>
+            <li>Jailbroken Kindle with softfloat firmware.</li>
+            <li>KUAL (Kindle Unified Application Launcher) installed.</li>
+            <li>Kindle Touch or Paperwhite (older models).</li>
+          </ul>
+        </div>
+
+        <div class="section-title">Download & Install (SF)</div>
+        <div class="card card-desc">
+          <ol>
+            <li>Download gargoyle 0.2 (5.6.5) zip package from the <a href="https://www.fabiszewski.net/kindle-gargoyle/" target="_blank" rel="noopener">Kindle Gargoyle page</a>.</li>
+            <li>Unzip on your computer or Kindle.</li>
+            <li>Place the extracted folder into <code>/mnt/us/extensions/</code>.</li>
+          </ol>
+        </div>
+
+        <div class="section-title">How to Run (SF)</div>
+        <div class="card card-desc">
+          <p>Open KUAL and launch Gargoyle from the menu.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section aria-labelledby="play-header">
+      <h2 class="section-title" id="play-header">Playing Games</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Copy your IF game files to the games folder or any folder that you select.</li>
+          <li>Launch Gargoyle.</li>
+          <li>Use the menu to navigate to the game you want to play.</li>
+          <li>Click on the game and press OK.</li>
+          <li>To save your game, type <code>save</code> in the menu.</li>
+          <li>To exit the game, type <code>quit</code> and confirm with <code>Y</code>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="troubleshooting-header">
+      <h2 class="section-title" id="troubleshooting-header">Troubleshooting</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><b>Gargoyle isn't starting!</b> Check firmware is 5.16.2 or newer. Verify files are in the extensions folder.</li>
+          <li><b>Keyboard disappeared!</b> Two-finger tap on the top right corner of the screen.</li>
+          <li><b>Crashes on .dat files</b> Rename the file to <code>.z5</code> to force the glulxe interpreter instead of advsys.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="references-header">
+      <h2 class="section-title" id="references-header">References</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://www.mobileread.com/forums/showthread.php?t=366347" target="_blank" rel="noopener">Gargoyle HF port</a></li>
+          <li><a href="https://github.com/garglk/garglk/" target="_blank" rel="noopener">Original Gargoyle project</a></li>
+          <li><a href="https://github.com/kbarni/garglk/" target="_blank" rel="noopener">Source code for Kindle port</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="section-title">Credits</div>
+    <div class="card card-desc">
+      <ul>
+        <li>kbarni – HF version (PW5 port)</li>
+        <li>pete330 – SF version base port</li>
+        <li>baf – Original patches</li>
+        <li>Tor Andersson – Original Gargoyle developer</li>
+        <li>Ben Cressey</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,13 +1,24 @@
 #!/bin/sh
-# Name: Disable ADs
-# Author: Marek
+# Name: Enable ADs
+# Author: MonkeyInPrivite
 # Icon:
-echo "Removing adunits folder"
-rm -rf /var/local/adunits
-echo "Removing ad assets"
-rm -rf /mnt/us/.assets
-echo "Updating appreg.db"
-sqlite3 /var/local/appreg.db 'update properties set value = "false" where name = "adunit.viewable";'
-echo "Rebooting in 5 seconds :)"
-sleep 5
-reboot;
+echo "################################"
+echo "#AD-ENABLER BY MONKEYINPRIVITE#"
+echo "# BASED OFF OF MAREK'S SCRIPT #"
+echo "################################"
+sleep 2
+echo "Updating Ad-Supported Status to True"
+sqlite3 /var/local/appreg.db 'update properties set value = "true" where name = "adunit.viewable";'
+echo "Your kindle is now Ad-Supported!"
+echo "Restarting in..."
+echo "5"
+sleep 1
+echo "4"
+sleep 1
+echo "3"
+sleep 1
+echo "2"
+sleep 1
+echo "1"
+sleep 1
+reboot

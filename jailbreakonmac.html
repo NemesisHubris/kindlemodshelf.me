@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jailbreaking on Mac – Kindle USB Requirements</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Understand the USB requirements for jailbreaking a Kindle using macOS. Learn when Amazon’s USB file transfer app is required and how to verify your connection.">
+  <link rel="canonical" href="https://kindlemodshelf.me/jailbreakonmac.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Jailbreaking on Mac – Kindle USB Requirements">
+  <meta property="og:description" content="Determine whether you need Amazon’s USB File Transfer app before jailbreaking your Kindle from a Mac.">
+  <meta property="og:url" content="https://kindlemodshelf.me/jailbreakonmac.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>Jailbreaking on Mac</h1>
+
+    <div class="summary">
+      Jailbreaking from macOS depends on a reliable USB connection. Determine whether your Kindle needs extra drivers before you begin so the jailbreak scripts can access the device.
+    </div>
+
+    <section aria-labelledby="usb-reqs">
+      <h2 class="section-title" id="usb-reqs">USB Connection Requirements</h2>
+      <div class="card card-desc">
+        <p>macOS communicates with Kindles over USB in two distinct ways depending on the device generation. Confirm which workflow applies to you before starting the jailbreak.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="modern-kindles">
+      <h2 class="section-title" id="modern-kindles">Modern Kindle Devices (USB-C)</h2>
+      <div class="card card-desc">
+        <p>Recent Kindle models with USB-C ports expose their storage over MTP (Media Transfer Protocol). macOS does not ship with native MTP support, so you must install an additional utility.</p>
+        <p><strong>Required Software:</strong> <a href="https://www.amazon.com/sendtokindle/mac" target="_blank" rel="noopener">Amazon USB File Transfer</a></p>
+        <ul>
+          <li>Installs Amazon’s Send to Kindle application, which bundles the MTP driver.</li>
+          <li>Once installed, your Kindle will appear in Finder and is accessible to jailbreak scripts.</li>
+          <li>Restart both the app and Finder if the Kindle does not mount immediately after installation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="legacy-kindles">
+      <h2 class="section-title" id="legacy-kindles">Legacy Kindle Devices</h2>
+      <div class="card card-desc">
+        <p>Older Kindles with micro-USB ports expose their storage as classic USB Mass Storage. macOS supports this natively, so no additional software is required.</p>
+        <ul>
+          <li>Connect the Kindle using its micro-USB cable.</li>
+          <li>The Kindle should mount in Finder automatically.</li>
+          <li>If Finder does not display the device, try a different cable or USB port.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="testing-connection">
+      <h2 class="section-title" id="testing-connection">Testing Your Connection</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Plug your Kindle into the Mac with a known-good USB cable.</li>
+          <li>Open Finder and look for the Kindle in the sidebar.</li>
+          <li>If it appears, you can proceed directly with the jailbreak instructions.</li>
+          <li>If it does not appear, install the <a href="https://www.amazon.com/sendtokindle/mac" target="_blank" rel="noopener">Amazon USB File Transfer</a> application and reconnect.</li>
+        </ol>
+        <p>Confirming USB access before starting prevents mid-jailbreak interruptions caused by missing MTP support.</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

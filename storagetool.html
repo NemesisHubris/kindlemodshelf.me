@@ -2,99 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>StorageTool – Kindle Storage Manager & Cleanup Utility</title>
+  <title>StorageTool – Kindle Storage Management</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Manage Kindle storage easily with StorageTool. Analyze disk usage, find duplicates, and keep your Kindle ebook library organized—all from KTerm.">
+  <meta name="description" content="StorageTool helps jailbroken Kindle users analyze, visualize, and manage ebook storage. Learn how to install and use the tool.">
   <link rel="canonical" href="https://kindlemodshelf.me/storagetool.html">
   <link rel="stylesheet" href="style.css">
-  <meta property="og:title" content="StorageTool – Kindle Storage Manager & Cleanup Utility">
-  <meta property="og:description" content="Analyze, organize, and clean up your Kindle’s storage with StorageTool. Find duplicates, check usage, and keep your library tidy.">
+  <meta property="og:title" content="StorageTool – Kindle Storage Management">
+  <meta property="og:description" content="Install StorageTool to analyze storage usage, find duplicates, and organize your Kindle library.">
   <meta property="og:url" content="https://kindlemodshelf.me/storagetool.html">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "StorageTool",
-    "operatingSystem": "Kindle OS",
-    "applicationCategory": "Utility",
-    "description": "StorageTool is a storage management and cleanup utility for Kindle e-readers. Visualize disk usage, find duplicates, and keep your device tidy—all from KTerm.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/storagetool.html"
-  }
-  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
-    <h1>StorageTool – Kindle Storage Manager</h1>
+    <h1>StorageTool</h1>
+
     <div class="summary">
-      <b>StorageTool</b> is a storage management utility for Kindle e-readers. Analyze, visualize, and clean up your device’s storage with detailed overviews, duplicate detection, and fast cleanup tools—all directly from KTerm.
+      StorageTool is a storage management utility for jailbroken Kindles.<br>
+      Analyze, visualize, and organize your ebook collection to keep storage under control.
     </div>
 
-    <h2 class="section-title">What Is StorageTool?</h2>
+    <h2 class="section-title">Download</h2>
     <div class="card card-desc">
-      StorageTool lets you instantly see how your Kindle’s storage is being used, identify large or duplicate files, and organize your books. Ideal for large collections or when your Kindle is running low on space.
-    </div>
-
-    <h2 class="section-title">Features</h2>
-    <div class="card card-desc">
-      <ul>
-        <li><b>Storage overview:</b> View total, used, and free space at a glance.</li>
-        <li><b>Book directory scan:</b> Analyze file sizes and types in your documents folder.</li>
-        <li><b>Format breakdown:</b> See storage usage by file type (MOBI, PDF, AZW3, etc).</li>
-        <li><b>Recent files:</b> Find newly added or modified books.</li>
-        <li><b>Duplicate finder:</b> Locate and review potential duplicate files.</li>
-        <li><b>Settings:</b> Set main directory, show hidden files, enable debug mode, and more.</li>
-        <li><b>Auto-updater:</b> Download and install the latest StorageTool version from within the app.</li>
-      </ul>
+      <p><a href="https://github.com/jkpth/StorageTool" target="_blank" rel="noopener"><strong>StorageTool on GitHub</strong></a></p>
     </div>
 
     <h2 class="section-title">Requirements</h2>
     <div class="card card-desc">
       <ul>
-        <li><a href="kterm.html">KTerm terminal emulator</a></li>
+        <li><a href="kterm.html">KTerm</a></li>
       </ul>
     </div>
 
-    <h2 class="section-title">How to Install</h2>
+    <h2 class="section-title">Installation</h2>
     <div class="card card-desc">
+      <h3>Method 1: One-Line Install (Recommended)</h3>
       <ol>
-        <li>Open KTerm on your Kindle.</li>
-        <li>Run this command to install automatically:<br>
-          <code>curl https://jpt.bio/StorageTool/install.sh | sh</code>
-        </li>
-        <li>Or, for manual install: Download StorageTool from the <a href="https://github.com/jkpth/StorageTool" target="_blank" rel="noopener">official GitHub repository</a>.</li>
-        <li>Copy the <code>storagetool</code> folder to your Kindle’s <code>/mnt/us/extensions/</code> directory.</li>
-        <li>Set executable permissions for the scripts:<br>
-          <code>chmod +x /mnt/us/extensions/storagetool/run.sh</code><br>
-          <code>chmod +x /mnt/us/extensions/storagetool/bin/storagetool.sh</code>
-        </li>
+        <li>On your Kindle, open KUAL and launch KTerm.</li>
+        <li>Run the following command:</li>
+      </ol>
+      <pre><code>curl https://jpt.bio/StorageTool/install.sh | sh</code></pre>
+      <ol start="3">
+        <li>Restart KUAL to see StorageTool in your menu.</li>
+      </ol>
+      <h3>Method 2: Direct Installation</h3>
+      <ol>
+        <li>Copy the <code>storagetool</code> folder to your Kindle's <code>/mnt/us/extensions/</code> directory.</li>
+        <li>Restart KUAL to see StorageTool in your menu.</li>
       </ol>
     </div>
 
-    <h2 class="section-title">How to Use</h2>
+    <h2 class="section-title">Usage</h2>
     <div class="card card-desc">
+      <p>Launch StorageTool from the KUAL menu. From there, you can:</p>
       <ol>
-        <li>Open KTerm.</li>
-        <li>Run StorageTool with:<br>
-          <code>sh /mnt/us/extensions/storagetool/run.sh</code>
-        </li>
-        <li>Use the menu to view storage usage, scan for large files, find recent additions, or locate duplicates.</li>
-        <li>Adjust settings to choose your directory, show hidden files, and customize your experience.</li>
+        <li>Storage Overview: View your Kindle's overall storage usage.</li>
+        <li>Scan Books Directory: Analyze your books directory for size and file types.</li>
+        <li>Analyze by File Type: See a breakdown of book formats and their storage usage.</li>
+        <li>Recent Files: View recently added or modified books.</li>
+        <li>Find Duplicates: Identify potential duplicate books.</li>
+        <li>Settings: Configure StorageTool options and set your books directory.</li>
+        <li>Check for Updates: Automatically check for and install the latest version of StorageTool.</li>
       </ol>
     </div>
 
-    <h2 class="section-title">Troubleshooting</h2>
+    <h2 class="section-title">Credits</h2>
     <div class="card card-desc">
-      <ul>
-        <li><b>Tool not running?</b> Make sure you have KTerm installed and that all scripts have executable permissions.</li>
-        <li><b>Still having issues?</b> Reinstall StorageTool or review the official GitHub instructions.</li>
-      </ul>
+      <p>Made by <a href="https://github.com/jkpth" target="_blank" rel="noopener">jkpth</a></p>
+      <p>Inspired by <a href="kindlefetch.html">KindleFetch</a></p>
     </div>
   </div>
 </body>
