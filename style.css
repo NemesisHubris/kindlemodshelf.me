@@ -22,13 +22,17 @@
 }
 
 .legal-disclaimer {
-  margin: 32px auto 32px;
-  max-width: 720px;
+  margin: 32px auto;
+  width: min(100% - 32px, 720px);
   font-size: 0.85rem;
   line-height: 1.5;
   color: #8a93a7;
   text-align: center;
   opacity: 0.85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
 }
 
 * { box-sizing: border-box; }
