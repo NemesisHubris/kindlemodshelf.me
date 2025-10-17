@@ -9,17 +9,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Site-wide critical update banner -->
+  <div class="top-announcement" role="banner">
+    <div class="top-announcement__inner">
+      <div class="top-announcement__text">
+        <span class="top-announcement__label">Critical Update · Sept 2025</span>
+        <span class="top-announcement__message">
+          <strong>AdBreak jailbreak</strong> now covers firmware <strong>5.18.1 → 5.18.5</strong>, but your Kindle must show <strong>Special Offers (ads)</strong>.
+          Scribe and Colorsoft remain unsupported—stay offline and wait for UJ if you can’t enable ads.
+        </span>
+      </div>
+      <a class="top-announcement__action" href="adbreak.html">Read AdBreak guide</a>
+      <button class="top-announcement__close" type="button" aria-label="Dismiss announcement">×</button>
+    </div>
+  </div>
+
   <div class="container">
     <h1>Kindle Modding Tools &amp; Resources</h1>
-
-    <!-- Warning Alert Banner -->
-    <div class="warning-banner">
-      <h2 class="warning-title">CRITICAL UPDATE (September 2025)</h2>
-      <div class="warning-content">
-        <p>A new jailbreak called <strong><a href="adbreak.html">AdBreak</a></strong> has been released. It works on all current Kindle firmware versions <strong>5.18.1 through 5.18.5</strong>, but only on devices with <strong>Special Offers (ads) enabled</strong>.</p>
-        <p>If you are on <strong>5.18.4 or 5.18.5</strong>, jailbreak now with <a href="adbreak.html"><strong>AdBreak</strong></a>. If you are on <strong>5.18.1–5.18.3</strong> and cannot enable ads (for example, on Scribe models or in certain countries), remain in airplane mode and wait for the upcoming <strong>Unnamed Jailbreak (UJ)</strong>. If you are on <strong>5.18.0 or lower</strong>, continue using <strong>WinterBreak</strong>.</p>
-      </div>
-    </div>
 
     <div class="summary">
       The most essential Kindle modding tools, plugins, games, and guides for your jailbroken Kindle. Everything here requires a jailbroken Kindle unless stated otherwise.
@@ -615,6 +621,15 @@
         <div class="card-links"><a href="jailbreakonmac.html">More</a></div>
     </div>
     </div>
+  
+    <!-- Support CTA -->
+    <div class="support-cta" id="support">
+      <div class="support-cta__content">
+        <div class="support-cta__title">Ko-fi Support Coming Soon</div>
+        <p class="support-cta__text">I just set up Ko-fi and will share the official link here shortly. Thanks for the support and for spreading the word!</p>
+        <button class="support-cta__button" type="button" disabled>Ko-fi link launching soon</button>
+      </div>
+    </div>
   </div>
   
   <!-- Floating Email Signup -->
@@ -637,6 +652,33 @@
   </div>
   
   <script>
+    // Dismissable top announcement
+    const topAnnouncement = document.querySelector('.top-announcement');
+    const topAnnouncementClose = document.querySelector('.top-announcement__close');
+
+    if (topAnnouncement) {
+      let hideTop = false;
+      try {
+        hideTop = localStorage.getItem('hideTopAnnouncement') === '1';
+      } catch (err) {
+        hideTop = false;
+      }
+      if (hideTop) {
+        topAnnouncement.style.display = 'none';
+      }
+    }
+
+    if (topAnnouncement && topAnnouncementClose) {
+      topAnnouncementClose.addEventListener('click', () => {
+        topAnnouncement.style.display = 'none';
+        try {
+          localStorage.setItem('hideTopAnnouncement', '1');
+        } catch (err) {
+          // Ignore storage errors (private mode, etc.)
+        }
+      });
+    }
+
     // Simple search filtering for cards
     const searchBar = document.getElementById('search-bar');
     const cards = Array.from(document.getElementsByClassName('card'));
