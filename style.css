@@ -216,6 +216,16 @@ h1 {
   flex-grow: 1;
 }
 
+.legal-warning {
+  border: 1px solid rgba(255, 118, 118, 0.45);
+  background: rgba(255, 80, 80, 0.12);
+  color: rgba(255, 230, 230, 0.92);
+}
+
+.legal-warning strong {
+  color: #ffb8c2;
+}
+
 .card-links { display: flex; flex-direction: column; gap: 6px; margin-bottom: 6px; }
 
 a {
