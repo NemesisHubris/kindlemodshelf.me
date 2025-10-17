@@ -142,14 +142,21 @@ h1 {
   text-transform: none;
 }
 
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
 .card {
   background: linear-gradient(140deg, var(--card-bg-start) 0%, var(--card-bg-end) 100%);
   border-radius: 18px;
   box-shadow: 0 22px 45px var(--shadow-color);
-  padding: 24px;
-  margin-bottom: 24px;
+  padding: 18px;
+  margin: 0;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
   border: 1px solid var(--card-border);
   position: relative;
   backdrop-filter: blur(12px);
@@ -184,23 +191,40 @@ h1 {
   opacity: 0.9;
 }
 
+.card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
 .card-title {
-  font-size: 1.14em;
+  font-size: 1.04em;
   font-weight: 600;
   color: #b5f8ff;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+  flex: 1 1 auto;
 }
 
-.card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.card-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  align-items: center;
+}
+
 .tag {
   background: var(--tag-bg);
   color: var(--tag-fg);
-  font-size: 0.72em;
+  font-size: 0.7em;
   font-weight: 600;
-  padding: 3px 10px;
+  padding: 3px 9px;
   border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -209,10 +233,10 @@ h1 {
 }
 
 .card-desc {
-  font-size: 1em;
+  font-size: 0.92em;
   color: rgba(223, 232, 255, 0.9);
-  margin-bottom: 12px;
-  line-height: 1.75;
+  margin-bottom: 8px;
+  line-height: 1.55;
   flex-grow: 1;
 }
 
@@ -226,7 +250,46 @@ h1 {
   color: #ffb8c2;
 }
 
-.card-links { display: flex; flex-direction: column; gap: 6px; margin-bottom: 6px; }
+.card-links {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: rgba(7, 16, 26, 0.9);
+  border: 1px solid rgba(122, 248, 255, 0.35);
+  color: #7af8ff;
+  font-size: 0.88em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: none;
+  box-shadow: 0 14px 28px rgba(3, 12, 26, 0.55);
+}
+
+.card-links a::after {
+  content: "→";
+  font-size: 1.1em;
+  transition: transform 0.2s ease;
+}
+
+.card-links a:hover,
+.card-links a:focus-visible {
+  color: #ffe780;
+  border-color: rgba(255, 231, 128, 0.7);
+  text-shadow: none;
+}
+
+.card-links a:hover::after,
+.card-links a:focus-visible::after {
+  transform: translateX(4px);
+}
 
 a {
   display: inline;
@@ -301,7 +364,8 @@ pre code {
 .beta { color: #ffc37c; font-size: 0.95em; font-style: italic; letter-spacing: 0.03em; }
 
 @media (max-width: 700px) {
-  .card { padding: 18px 14px; }
+  .card { padding: 16px 14px; }
+  .card-grid { grid-template-columns: 1fr; gap: 16px; }
   h1 { font-size: 1.9em; letter-spacing: 0.12em; }
   .section-title { font-size: 1em; letter-spacing: 0.08em; flex-wrap: wrap; gap: 10px; }
   .section-title::after { display: none; }
@@ -414,6 +478,41 @@ pre code {
   box-shadow: 0 18px 35px rgba(4, 16, 32, 0.6);
   transform: translateY(-2px);
   outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    animation-delay: 0s !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+  .card,
+  .card::before,
+  .card:hover,
+  .card:hover::before,
+  a,
+  .card-links a::after,
+  .card-links a:hover::after,
+  .card-links a:focus-visible::after,
+  .kindle-btn,
+  .kindle-btn:hover,
+  .kindle-btn:focus,
+  .back-home-btn,
+  .back-home-btn:hover,
+  .back-home-btn:focus {
+    transition: none !important;
+    transform: none !important;
+  }
+  .card:hover::before {
+    opacity: 0 !important;
+  }
 }
 
 /* Back to Home button, also ultra subtle and never white */
