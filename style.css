@@ -81,10 +81,10 @@ h1 {
 
 .section-title {
   margin: 42px 0 16px;
-  font-size: 1.22em;
+  font-size: 1.6em;
   color: var(--primary);
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
   border-bottom: 1px solid rgba(255, 180, 87, 0.3);
@@ -143,11 +143,11 @@ h1 {
 }
 
 .card-title {
-  font-size: 1.04em;
-  font-weight: 600;
+  font-size: 1em;
+  font-weight: 500;
   color: #ffd7a2;
   margin-bottom: 0;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
   flex: 1 1 auto;
@@ -1197,6 +1197,165 @@ pre code {
 .warning-content strong {
   color: #ffd54f;
   font-weight: 700;
+}
+
+/* Top-of-page announcement banner */
+.top-announcement {
+  background: linear-gradient(120deg, rgba(32, 6, 6, 0.96) 0%, rgba(62, 12, 12, 0.98) 45%, rgba(24, 4, 4, 0.97) 100%);
+  border-bottom: 1px solid rgba(220, 60, 60, 0.55);
+  color: #f7f7fb;
+  padding: 12px 0;
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px rgba(5, 5, 8, 0.35);
+}
+
+.top-announcement__inner {
+  width: min(100% - 32px, 1000px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.top-announcement__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.top-announcement__label {
+  font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+  font-size: 0.78em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 132, 132, 0.9);
+}
+
+.top-announcement__message {
+  font-size: 0.92em;
+  color: rgba(245, 246, 255, 0.88);
+  line-height: 1.5;
+}
+
+.top-announcement__message strong {
+  color: #ffb3b3;
+}
+
+.top-announcement__action {
+  justify-self: end;
+  font-size: 0.85em;
+  font-weight: 700;
+  color: #fff7f7;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 108, 108, 0.7);
+  background: rgba(255, 80, 80, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.top-announcement__action:hover {
+  color: #ffffff;
+  background: rgba(255, 80, 80, 0.32);
+  border-color: rgba(255, 120, 120, 0.85);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  transform: translateY(-1px);
+}
+
+.top-announcement__close {
+  justify-self: end;
+  background: none;
+  border: 1px solid rgba(255, 100, 100, 0.45);
+  color: rgba(255, 220, 220, 0.85);
+  border-radius: 999px;
+  width: 28px;
+  height: 28px;
+  font-size: 1em;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.top-announcement__close:hover {
+  background: rgba(255, 96, 96, 0.24);
+  color: #fff;
+  border-color: rgba(255, 138, 138, 0.7);
+}
+
+.top-announcement__close:focus-visible {
+  outline: 2px solid rgba(255, 130, 130, 0.85);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .top-announcement {
+    padding: 14px 0;
+  }
+  .top-announcement__inner {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .top-announcement__action,
+  .top-announcement__close {
+    justify-self: start;
+  }
+  .top-announcement__close {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Support CTA */
+.support-cta {
+  margin: 64px auto 0;
+  width: min(100% - 32px, 820px);
+  background: linear-gradient(145deg, rgba(18, 20, 28, 0.95) 0%, rgba(12, 12, 18, 0.9) 100%);
+  border: 1px solid rgba(255, 180, 87, 0.25);
+  border-radius: 16px;
+  padding: 34px 36px;
+  box-shadow: 0 22px 40px rgba(8, 8, 12, 0.45);
+}
+
+.support-cta__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.support-cta__title {
+  font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  color: #ffd7a2;
+}
+
+.support-cta__text {
+  margin: 0;
+  font-size: 0.97em;
+  color: rgba(235, 236, 244, 0.85);
+  line-height: 1.7;
+}
+
+.support-cta__button {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px dashed rgba(255, 180, 87, 0.4);
+  background: rgba(255, 180, 87, 0.12);
+  color: rgba(255, 235, 210, 0.8);
+  font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: not-allowed;
 }
 
 /* Action buttons grid layout */
