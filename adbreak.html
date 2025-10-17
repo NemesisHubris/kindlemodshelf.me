@@ -157,24 +157,45 @@
       <p><strong>Important:</strong> Kindle Scribe and Colorsoft cannot be made ad-enabled and are not compatible with AdBreak.</p>
     </div>
 
-    <h2 class="section-title">Troubleshooting & key cautions</h2>
+    <h2 class="section-title">Troubleshooting</h2>
     <div class="card card-desc">
+      <h3>FAQ</h3>
       <ul>
-        <li><strong>Ad removal:</strong> AdBreak does not remove Special Offers. Use separate scripts if you want ads removed after jailbreaking.</li>
-        <li><strong>Unsupported models:</strong> Scribe & Colorsoft cannot be jailbroken with AdBreak.</li>
-        <li><strong>Firmware issues:</strong> some 5.18.5 micro-builds (e.g., 5.18.5.0.1) may block the exploit – check community threads for workarounds.</li>
-        <li><strong>Hidden system folders:</strong> mass-storage Kindles may hide the system folder—follow a device-specific guide to reveal it before replacing <code>.assets</code>.</li>
-        <li><strong>Factory reset:</strong> can force ad downloads but will erase personal data—only use if you understand the consequences.</li>
-        <li><strong>Always keep backups:</strong> preserve the original <code>.assets</code> so you can restore the device if needed.</li>
+        <li>The JB does <strong>not</strong> automatically remove advertisements—see Marek’s scriptlet.</li>
+        <li>It will never work on the CS/Colorsoft; ads cannot be re-enabled there.</li>
+        <li>No, this is not “UJ”/“Unnamed Jailbreak”. That is separate.</li>
+        <li>“Is there a way to make my device ad supported?” (See below.)</li>
+      </ul>
+    </div>
+    <div class="card card-desc">
+      <h3>Common Issues</h3>
+      <ul>
+        <li><strong>Can’t find the system folder:</strong> On mass-storage Kindles, if you cannot see the system folder, navigate to the path manually or follow a guide to reveal protected system folders.</li>
+        <li><strong>“Bang!” shows but the jailbreak doesn’t run:</strong> Check the <code>.assets</code> folder on the Kindle—<code>jb.sh</code> and <code>patchedUks.sqsh</code> must be present.</li>
       </ul>
     </div>
 
-    <h2 class="section-title">Credits</h2>
+    <h2 class="section-title">Enabling Ads</h2>
+    <div class="card card-desc">
+      <p><strong>Needed for jailbreak, safe to remove later.</strong></p>
+      <ol>
+        <li><strong>Switch account region:</strong> Go to <em>Manage Your Content and Devices → Preferences → Country/Region Settings → Change</em>. Select one of: US, UK, DE, FR, IT, ES, JP, CN, AU. Use valid details (address, phone, email).</li>
+        <li><strong>Add payment method:</strong> Set a default credit card and billing address matching the chosen region. No charge should occur.</li>
+        <li><strong>Enable special offers:</strong> In your Amazon account, turn on Special Offers for your Kindle.</li>
+        <li><strong>Sync Kindle:</strong> Connect to Wi-Fi—ads will eventually appear on the lockscreen.</li>
+      </ol>
+      <p><strong>Notes:</strong></p>
+      <ul>
+        <li>If your Kindle originally had no ads, re-disabling later is free.</li>
+        <li>If your Kindle is an ads model, disabling normally costs a one-time fee, but it can be removed post-jailbreak with a script.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Special Thanks</h2>
     <div class="card card-desc">
       <ul>
-        <li><strong>@hhhhhhhhh</strong> – release maintainer</li>
-        <li>Exploit contributions from community members (including work attributed to Chris Evans / @scarybeasts)</li>
-        <li>Helper / install scripts contributed by community maintainers</li>
+        <li><strong>Penguins184:</strong> This guide</li>
+        <li><strong>Ceoz:</strong> Enable-ad findings</li>
       </ul>
     </div>
 
