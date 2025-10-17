@@ -1,237 +1,302 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
   <loc>https://kindlemodshelf.me/</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
+  <lastmod>2025-10-17T09:07:35+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/adbreak.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/jailbreaking.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/images.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/koreader.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/shortcuts.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/kindlefetch.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/kterm.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/z-library.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/pageheader.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/telegram.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/koweather.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/koclock.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/tetris.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/gnomegames.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/ninemensmorris.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/kwordle.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/universalpaperclips.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/gameboy.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/sudoku.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://kindlemodshelf.me/2048.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/snake.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/hangman.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/connect4.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/towerofhanoi.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/sox.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/audiovideo.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/kreate.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/kpaint.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/kindlekraft.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/disableads.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/fullscreenweb.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/textadept.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/kanki.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/ota.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
+  <loc>https://kindlemodshelf.me/adbreak.html</loc>
+  <lastmod>2025-10-17T07:16:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://kindlemodshelf.me/alpine.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/usbnetlite.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
+  <loc>https://kindlemodshelf.me/announcements.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/llusion.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
+  <loc>https://kindlemodshelf.me/audiovideo.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/screencontrol.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
+  <loc>https://kindlemodshelf.me/connect4.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/telnet.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
+  <loc>https://kindlemodshelf.me/disableads.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/nano.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
+  <loc>https://kindlemodshelf.me/editor.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/kpm.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
+  <loc>https://kindlemodshelf.me/faq.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/fullscreenweb.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/gameboy.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/gargoyle.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/gnomegames.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/hangman.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/images.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://kindlemodshelf.me/index.html</loc>
-  <lastmod>2025-10-07T05:11:09+00:00</lastmod>
-  <priority>0.64</priority>
+  <lastmod>2025-10-17T09:07:35+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/faq.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://kindlemodshelf.me/jailbreaking.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/editor.html</loc>
-  <lastmod>2025-10-07T05:11:10+00:00</lastmod>
-  <priority>0.64</priority>
+  <loc>https://kindlemodshelf.me/jailbreakonmac.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
-
-
+<url>
+  <loc>https://kindlemodshelf.me/jarlauncher.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kanki.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kindlefetch.html</loc>
+  <lastmod>2025-10-17T00:29:38+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kindleforge.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kindlekraft.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/koclock.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/koreader.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/koweather.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kpaint.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kpm.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kreate.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kterm.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kual.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/kwordle.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/llusion.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/nano.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/nethack.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/ninemensmorris.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/ota.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/pageheader.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/parentalcontrols.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/plugins.html</loc>
+  <lastmod>2025-10-17T08:01:07+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/projecttitle.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/screencontrol.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/shortcuts.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/snake.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/sox.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/storagetool.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/subscribe.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/sudoku.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/telegram.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/telnet.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/template.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/tetris.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/textadept.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/tictactoe.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/towerofhanoi.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/universalpaperclips.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/usbnetlite.html</loc>
+  <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://kindlemodshelf.me/z-library.html</loc>
+  <lastmod>2025-10-17T00:29:42+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 </urlset>
