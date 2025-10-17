@@ -21,6 +21,16 @@
   --grid-line-strong: rgba(88, 225, 255, 0.08);
 }
 
+.legal-disclaimer {
+  margin: 32px auto 32px;
+  max-width: 720px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #8a93a7;
+  text-align: center;
+  opacity: 0.85;
+}
+
 * { box-sizing: border-box; }
 
 body {
