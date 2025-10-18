@@ -712,15 +712,6 @@ const filterNote = document.getElementById('filterNote');
 
 let activeCategory = 'all';
 
-const helperConfigs = [
-  {
-    label: 'KOReader Recommended',
-    link: 'koreader.html',
-    match: (primaryTags, tagTokens) =>
-      (primaryTags.includes('Plugin') || tagTokens.includes('plugin')) && tagTokens.includes('koreader')
-  }
-];
-
     const categoryFilterConfig = {
       all: () => true,
       essential: (primaryTags) => primaryTags.includes('Essential'),
@@ -749,41 +740,6 @@ const helperConfigs = [
       card.dataset.tagTokens = tagTokens.join(',');
       card.dataset.primaryTags = primaryTags.join(',');
       card.dataset.searchCache = card.innerText.toLowerCase() + ' ' + tagsAttr;
-
-      const existingWrap = card.querySelector('.helper-pill-wrap');
-      if (existingWrap) existingWrap.remove();
-
-      const titleText = (card.querySelector('.card-title')?.textContent || '').toLowerCase();
-      card.dataset.titleText = titleText;
-      const helpers = helperConfigs.filter(cfg => {
-        if (titleText.includes('koreader')) return false;
-        return cfg.match(primaryTags, tagTokens);
-      });
-
-      if (helpers.length) {
-        const wrap = document.createElement('div');
-        wrap.className = 'helper-pill-wrap';
-        helpers.forEach(cfg => {
-          const pill = document.createElement('a');
-          pill.className = 'helper-pill';
-          pill.textContent = cfg.label;
-          if (cfg.link) {
-            pill.href = cfg.link;
-            pill.target = '_blank';
-            pill.rel = 'noopener';
-          } else {
-            pill.href = '#';
-            pill.addEventListener('click', ev => ev.preventDefault());
-          }
-          wrap.appendChild(pill);
-        });
-        const header = card.querySelector('.card-header');
-        if (header) {
-          header.insertAdjacentElement('afterend', wrap);
-        } else {
-          card.insertBefore(wrap, card.firstChild);
-        }
-      }
     });
 
     function updateFilterNote() {
