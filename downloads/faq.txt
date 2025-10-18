@@ -1,0 +1,137 @@
+Kindle Jailbreaking Support & FAQ
+Author: PENGUINS184, USERNAME99
+Last Updated: 07/09/2025
+
+Q: When is the 5.18.x jailbreak coming out?
+
+A: Soon - hopefully. There is no ETA given, and side projects, such as KPM (Kindle Package Manager), KindleForge (GUI for KPM), Sh_Integration in C, New jb.sh must be finished too. The in-development jailbreak supports 5.16.4 - 5.18.3 in theory, 5.18.4 patches the jailbreak and will not be supported for a while. No, there is nothing you can do at this time.
+
+Q: Can I downgrade my Kindle?
+
+A: Only if you are jailbroken first. See https://kindlemodding.org/firmware-and-flashing/downgrading/#downgrading.
+
+Q: The Kindle Disk Filler script isn't working!
+
+A: You are likely on an MTP kindle. You can manually fill your kindle with junk files. https://github.com/bastianmarin/Kindle-Filler-Disk/tree/main/MTP.
+
+Note: Ensure to delete any .partial.tmp.bin files or something of that sort when completing this step to prevent updates if you are susceptible to them.
+
+Q: ;log mrpi fails
+
+A: Drag the .bin file to the root of your kindle and press update your kindle in settings. This works functionally the same.
+
+Note: Ensure to delete any .partial.tmp.bin files or something of that sort when completing this step to prevent updates if you are susceptible to them.
+
+Q: MRPI says 'Destroying ...bin'/Update fails on the previous step
+
+A: You have an incorrect .bin file. Ensure you are using the correct/compatible KUAL edition (try the other) or software update.
+
+Q: KUAL Says 'Application Error'
+
+A: Run the 'Run Hotfix/Bridge' scriptlet.
+
+Q: Updated to 5.18.x post-jailbreak (e.g. during blocking OTAs)
+
+A: You may still be jailbroken! search for ;log and if it says something along the lines of "no args passed", you are still jailbroken, reinstall mrpi & kual and run hotfix, it should work.
+Q: KOReader isn't opening!
+
+A: You have the incorrect KOReader version. Refer to this table to find out which version you need:
+
+kindle-legacy: K2, DX, K3 (and all variants)
+kindle: K4, K5, PW1
+kindlepw2: PW2 and newer models running firmware =< 5.16.2.1.1
+kindlehf: Any Kindle device running firmware >=5.16.3
+
+Q: I keep getting KPPMainAppv2 errors/logs!
+
+A: Create an empty file named "DISABLE_CORE_DUMP" (no extension) in the kindle root.
+
+Q: How can I prevent updates on 5.18.1-3 whilst waiting?
+
+A: Fill up your kindle with junk files, either manually or with the filler script, forget networks, and enable aeroplane mode. https://kindlemodding.org/jailbreaking/prevent-auto-update.html.
+
+Q: When copying winterbreak, I recieve "The file name you specified is not valid or too long."
+
+A: Either you have really long file names, or forgot to extract the winterbreak files. Extract them first, and this should be fixed.
+
+Q: Do I need a registered kindle to jailbreak?
+
+A: Varies per-jailbreak. You do, for WinterBreak.
+
+Q: Jailbreaking on a blacklisted Kindle?
+
+A: Only with LanguageBreak for kindles on FW 5.16.2.1.1 or lower. Or WatchThis. Otherwise, wait for the new jailbreak.
+
+Q: My Mac doesn't see my kindle!
+
+A: This is because you have an MTP kindle. Download amazon's software to fix: https://www.amazon.com/sendtokindle/mac?&linkCode=ll2&tag=ter000-20&linkId=07f7c7db67889bf36e836471c479526e&la.
+Q: Kindle store encounters an 'Unexpected Error'
+
+A: Try the below solution:
+
+Factory Reset your Kindle
+Before registering - plug your Kindle into your PC, move the WinterBreak files to the root of your storage space
+Login to your account, and enable Airplane mode as soon as possible
+Connect your Kindle into your PC and delete the cache directory at the path .active_content_sandbox/store/resource/LocalStorage (skip this step if the LocalStorage directory does not exist)
+Reboot your Kindle
+Open the Kindle Store on your Kindle
+When prompted, click Yes to turn off Airplane mode
+
+Still doesn't work?
+
+Force update to your current firmware, even if you have disabled OTA Updates. Quote: "You can also force an update by copying the firmware update file to your Kindle and, while still plugged in, hold down the power button until it restarts." Get the firmware version from here: https://kindlemodding.org/firmware-and-flashing/downloading-updates.html.
+
+Q: PW1 Running KOReader keeps crashing/flashing the default screensaver
+
+A: Run KOReader in frameworkless instead.
+
+Q: How to jailbreak K4/K4 jailbreaking issues
+
+A: Refer to the following reddit thread: https://www.reddit.com/r/kindle/comments/1ipko3u/comment/mcvmj3s/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button.
+
+Q: I cannot load Mesquito
+
+A: If you are on firmwares below 5.16.4, follow the Winterbreak2 guide. Otherwise, force the store to use cache and not the remote by connecting to wifi without a true valid internet connection.
+
+Q: On 5.16.3, Cannot jailbreak, 'WINTERBREAK JAILBREAK' appears at the top of the screen
+
+A: Update manually to 5.16.4, .3 is not supported. It has been reported not to work on .3 in multiple cases.
+Q: How does WinterBreak/Jailbreaking work/What programming languages do I need to know to get into Jailbreaking?
+
+A: 
+
+Look at this. Read it fully to understand. The actual exploit is fully detailed in the "Exploits" section.
+
+Jailbreaking works by finding different ways to run sh as root on the kindle, and on most other devices you can jailbreak.
+
+Many, depending on the exploit. But definetely sh, so you can actually run the jb code.
+
+Q: Illusion isn't working/Illusion 'application error'!
+
+A: Illusion requires LanguageBreak/WinterBreak with scriptlets (Universal Hotfix), and does not currently support 5.6.1.1. Ensure you meet this criteria, and try rebooting and clicking again if you are, indeed, compatible.
+
+Q: Where can I find apps/tweaks?
+
+A: Check out KindleModShelf.
+
+Q: How can I set a custom screensaver?
+
+A: Look at the KOReader Guide. Manually replacing the screensavers/using NiLuJe's screensaver hack is not recommended, highly dangerous as the kindle is very specific around image formatting and type. Could lead to bricks.
+
+Q: Whats SF/HF and why does some software not work on my device?
+
+A: Kindle firmware is SF on 5.16.2.1.1 and below. After 5.16.3, all kindle firmware is HF. SF software may not work on HF, and vice versa. That's why you need to select the correct package for your kindle when installing something.
+
+Q: Can I not do x after jailbreaking?
+
+A: You should still be able to do everything you could do post-jailbreak as you would on an unjailbroken kindle. Jailbreaking itself doesnt visually change anything unless you install apps or tweaks.
+
+Q: Cannot install hotfix, no matter what.
+
+A: You are probably not actually jailbroken!
+
+Q: Any other issues?
+
+A: Ask the discord, or read the guide.
+
+And read it properly this time.

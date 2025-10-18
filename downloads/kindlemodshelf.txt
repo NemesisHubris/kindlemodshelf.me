@@ -1,0 +1,4901 @@
+2048.html
+=========
+
+2048 for Kindle – Addictive Puzzle Game (Illusion App)
+
+← Back to Home
+
+2048 for Kindle
+
+2048
+is the number-merging puzzle where you combine tiles to reach 2048. Built with the Illusion framework and tuned for Kindle’s e-ink display.
+
+Features
+
+Classic 2048 on a 4×4 grid
+
+Arrow-button controls
+(no swipe required)
+
+Score and high-score tracking
+
+Clean e-ink-friendly interface
+
+Endless play—continue past 2048 if you want
+
+Requirements
+
+Jailbroken Kindle with Mesquite support
+
+Illusion framework compatibility
+
+How to Install
+
+Download
+2048.zip
+
+Unzip the file on your computer (uncompressed folder +
+.sh
+script)
+
+Place the
+.sh script
+and the
+folder
+in your Kindle’s
+documents
+folder
+
+Disconnect your Kindle
+
+Tap the new book in your Kindle library to launch
+
+How to Play
+
+Use the on-screen arrow buttons (▲ ◀ ▶ ▼) to slide the board
+
+Equal tiles that collide merge into one (e.g., 2+2→4)
+
+Keep merging tiles to create 2048
+
+The game ends when no moves remain
+
+Enjoy the 2048 puzzle on your Kindle’s e-ink display!
+
+
+adbreak.html
+============
+
+AdBreak – Kindle jailbreak (24 Sep 2025)
+
+← Back to Home
+
+AdBreak
+
+📺 Video Tutorial Available
+
+Before you begin, check out this comprehensive step-by-step video guide on how to jailbreak using AdBreak:
+
+How to Jailbreak Your Kindle Using AdBreak
+by
+Dammit Jeff
+
+Be sure to support Dammit Jeff for creating this detailed walkthrough that makes the jailbreak process much easier to follow!
+
+AdBreak
+is jailbreak released on
+24 Sep 2025
+for ad-enabled Kindle devices on firmware
+5.18.1 → 5.18.5
+. It leverages an exploit related to
+CVE-2012-3748
+. This page gives the essential facts, a compact install checklist, how to enable ads if needed, and key troubleshooting notes.
+Read everything before you begin.
+
+Official release & resources
+
+Release at a glance
+
+Release date:
+24 Sep 2025
+
+Maintainer:
+@hhhhhhhhh
+
+Exploit base:
+CVE-2012-3748
+
+Supported firmware:
+5.18.1 – 5.18.5 (some micro-patches may block the exploit)
+
+Requires:
+Special Offers (ads) active on the lockscreen
+
+Prerequisites
+
+PC + USB cable
+(you will copy/replace the device
+.assets
+folder)
+
+Kindle must be
+registered
+and not blacklisted
+
+Kindle must display
+Special Offers (ads)
+on the lockscreen
+
+Device firmware must be in the supported range (see above). If ≤ 5.18.0.2, use WinterBreak instead.
+
+Do not proceed
+without verifying the above—especially the presence of ads and correct firmware.
+
+Quick install checklist
+
+Download
+the latest AdBreak package from the official release page.
+
+Confirm ads:
+keep the Kindle online until ads appear on the lockscreen. If no ads appear, a factory reset can sometimes help (see Troubleshooting).
+
+Enable airplane mode
+after ads are visible.
+
+Open lockscreen menu →
+View all ads
+to confirm multiple Special Offers are listed.
+
+Copy
+.assets
+– connect Kindle to PC and copy the device's
+.assets
+folder (backup the original).
+
+Unpack AdBreak
+and merge its files into the copied
+.assets
+folder on your PC.
+
+Run replace helper:
+
+Windows – run
+replace.bat
+
+macOS / Linux – run the provided terminal command to place the exploit HTML into matching ad folders (example in the release)
+
+Replace device assets:
+delete the original
+.assets
+on the Kindle and copy the modified folder back.
+
+Trigger exploit:
+unplug the Kindle, tap the modified ad, follow prompts; the jailbreak script should run at the final popup.
+
+Backup your original
+.assets
+folder and any data before modifying anything.
+
+Enable Special Offers (if needed)
+
+If your device shipped without ads you can often re-enable them via your Amazon account:
+
+Amazon →
+Manage Your Content and Devices → Preferences → Country/Region
+: select a supported region (US, UK, DE, FR, IT, ES, JP, CN).
+
+Add a matching billing address and a payment method (card required; usually no charge).
+
+Enable
+Special Offers
+for your device and sync – ads should populate the lockscreen after some time.
+
+Important:
+Kindle Scribe and Colorsoft cannot be made ad-enabled and are not compatible with AdBreak.
+
+Troubleshooting & key cautions
+
+Ad removal:
+AdBreak does not remove Special Offers. Use separate scripts if you want ads removed after jailbreaking.
+
+Unsupported models:
+Scribe & Colorsoft cannot be jailbroken with AdBreak.
+
+Firmware issues:
+some 5.18.5 micro-builds (e.g., 5.18.5.0.1) may block the exploit – check community threads for workarounds.
+
+Hidden system folders:
+mass-storage Kindles may hide the system folder—follow a device-specific guide to reveal it before replacing
+.assets
+.
+
+Factory reset:
+can force ad downloads but will erase personal data—only use if you understand the consequences.
+
+Always keep backups:
+preserve the original
+.assets
+so you can restore the device if needed.
+
+Credits
+
+@hhhhhhhhh
+– release maintainer
+
+Exploit contributions from community members (including work attributed to Chris Evans / @scarybeasts)
+
+Helper / install scripts contributed by community maintainers
+
+Summary:
+AdBreak is a targeted jailbreak for ad-enabled Kindles on firmware 5.18.1–5.18.5. It requires Special Offers and a PC to replace the device
+.assets
+. Verify prerequisites, back up originals, and consult community threads for model-specific advice before you proceed.
+
+
+alpine.html
+===========
+
+Alpine Linux – Run Alpine on Kindle
+
+← Back to Home
+
+ALPINE LINUX
+
+Alpine Kindle
+lets you run Alpine Linux directly on your Kindle e-reader. You can launch a minimal version of Chromium and manage files from a real Alpine Linux UI—right from your Kindle.
+
+MAIN FEATURES
+
+Run a lightweight Alpine Linux environment on your Kindle
+
+Open a basic version of the Chromium web browser
+
+Perform file management from a Linux shell interface
+
+Experience a computer-like Linux desktop—on Kindle’s e-ink display
+
+Primarily for being able to say my Kindle is running Linux
+
+DOWNLOADS
+
+Latest Community Releases:
+
+Alpine Kindle Latest Releases (GitHub)
+
+Original Alpine Kindle Toolkit:
+
+Original Alpine Kindle (GitHub)
+
+
+announcements.html
+==================
+
+KindleModShelf Announcements & Updates
+
+← Back to Home
+
+Announcements & Updates
+
+KindleModShelf changelog, site news, and release highlights—a single feed that captures what changed and why.
+Keep this page handy if you want to know when new jailbreak guides, tools, or showcase posts go live.
+
+Latest Updates
+Newest entries sit at the top
+
+September 2025 — Launching KindleModShelf Announcements
+
+Welcome! This new announcements page gathers every noteworthy change happening across KindleModShelf.
+We’ve added it so you can track fresh jailbreak guides, mod updates, and behind-the-scenes improvements
+without hunting through individual pages.
+
+Here’s what to expect from this feed:
+
+Spotlights on new or overhauled guides, including jailbreak walkthroughs and KOReader plugins.
+
+Heads-up on refreshed downloads, compatibility notes, or breaking firmware news.
+
+Reminders about updated screenshots, assets, or navigation tweaks so the site stays easy to browse on Kindle.
+
+Have something you need us to change? DM
+kindlemodshelfguy
+on the Kindle Modding Discord
+or email
+admin@kindlemodshelf.me
+.
+
+
+audiovideo.html
+===============
+
+Video + Audio Playback (Experimental) – HF & SF Demos
+
+← Back to Home
+
+Video + Audio Playback (Experimental)
+
+Experimental demo
+that pairs
+gmplay
+video with
+SoX
+audio on Kindle.
+
+Not a polished media player—intended for tinkering and proof-of-concept only.
+
+Hardfloat (HF) Demo
+
+Features
+
+Plays
+.gmv.gz
+video via gmplay with separate audio via SoX.
+
+Simple script launcher for quick demos in KTerm.
+
+Works when audio and video files match; bundled demo media is not synchronized.
+
+Requirements
+
+Jailbroken Kindle running hardfloat firmware.
+
+KTerm
+terminal installed.
+
+Download & Install (HF)
+
+Download
+video-audio-all.zip (Google Drive)
+.
+
+Unzip on your computer or Kindle.
+
+Place the
+videos
+folder in your Kindle root (
+/mnt/us
+).
+
+Place the
+vidoe-audio
+folder (typo intentional) into
+/mnt/us/extensions/
+.
+
+How to Run (HF)
+
+cd /mnt/us/extensions/vidoe-audio/
+chmod +x playgmvmp3.sh
+./playgmvmp3.sh
+
+The bundled HF demo uses gmplay’s sample video with a separate audio track (not synchronized).
+
+To create a synced demo, put matching
+.gmv.gz
+and
+.wav
+files in
+/mnt/us/videos/
+with consistent names, and edit the script if necessary.
+
+Softfloat (SF) Demo
+
+Requirements
+
+Jailbroken Kindle with softfloat firmware.
+
+KUAL
+(Kindle Unified Application Launcher) installed.
+
+Download & Install (SF)
+
+Download
+bad_apple.tar.xz
+.
+
+Unzip on your computer or Kindle.
+
+Place the
+bad_apple
+folder into
+/mnt/us/extensions/
+.
+
+How to Run (SF)
+
+Open
+KUAL
+and launch the demo directly from the menu. It plays the included video using gmplay and SoX when supported.
+
+References
+
+gmplay (Geekmaster video):
+MobileRead thread
+
+SoX Media Player:
+local page
+·
+MobileRead thread
+
+Credits
+
+Himbeer
+– SF version
+
+kindlemodshelfguy
+– HF version
+
+gmplay
+by community developers (see thread)
+
+SoX Media Player
+by MobileRead community
+
+
+connect4.html
+=============
+
+Connect 4 for Kindle – Classic Strategy Game (Illusion App)
+
+← Back to Home
+
+Connect 4 for Kindle
+
+Connect 4
+is the classic head-to-head strategy game. Drop checkers into columns and try to make a line of four while blocking your opponent.
+
+Features
+
+7×6 grid, win detection in all directions
+
+Two-player
+(take turns)
+
+Numbered column buttons (1–7) to drop pieces
+
+Score tracking and clear e-ink visuals
+
+Requirements
+
+Jailbroken Kindle with Mesquite support
+
+Illusion framework compatibility
+
+How to Install
+
+Download
+connect4.zip
+
+Unzip the file on your computer (uncompressed folder +
+.sh
+script)
+
+Place the
+.sh script
+and the
+folder
+in your Kindle’s
+documents
+folder
+
+Disconnect your Kindle
+
+Tap the new book in your Kindle library to launch
+
+How to Play
+
+Tap the numbered buttons (1–7) to drop a checker in that column
+
+Players alternate turns
+
+Connect four in a row—horizontal, vertical, or diagonal—to win
+
+Challenge a friend to Connect 4 on Kindle!
+
+
+disableads.html
+===============
+
+Disable Ads % – Enable Custom Screensavers on Kindle
+
+← Back to Home
+
+DISABLE ADS % – ENABLE CUSTOM SCREENSAVERS ON KINDLE
+
+Disable Ads %
+is a lightweight script for jailbroken, ad-supported Kindles. With a single tap it unlocks KOReader’s custom screensavers—book covers and personal images—without touching Amazon’s firmware files.
+
+Download
+
+disable_ads.sh
+
+Features
+
+Disable Ads % enables KOReader custom screensavers on ad-supported Kindles.
+
+Launch it once to switch the device to KOReader’s screensaver pipeline, then manage images directly from KOReader.
+
+Install & Setup
+
+Install through Kindle Forge (recommended):
+
+After installing Kindle Forge, hit the download button for DISABLE ADS %. It will appear in your documents folder automatically.
+
+Manual:
+
+Download the script:
+disable_ads.sh
+
+Copy to Kindle: Place
+disable_ads.sh
+in your Kindle’s
+documents
+folder.
+
+Run the script: On your Kindle, open your library and tap
+disable_ads.sh
+to execute it.
+
+Restart your Kindle so KOReader can take over the lock-screen artwork.
+
+Notes
+
+This script is required for KOReader custom screensaver and book cover features on ad-supported Kindles.
+
+Re-run the script after firmware updates or after toggling Amazon’s stock screensaver settings.
+
+Tested on every major jailbroken Kindle model with ads.
+
+Credit
+
+Marek
+
+MonkeyInPrivite
+
+
+editor.html
+===========
+
+KAnki Editor (Static, No Backend)
+
+KAnki Editor
+
+Import
+
+Export
+
+Decks / Levels
+
++ Add Deck
+
+(no deck selected)
+
++ Add Card
+
+Live Preview
+
+Kindle size:
+
+Basic (340×480)
+
+Paperwhite 3/4 (360×540)
+
+PW5 / Oasis (412×600)
+
+Oasis 3 / Signature (514×660)
+
+Scribe-ish (640×900)
+
+KAnki
+
+Cards: 0/0 (0%)
+
+Current Deck: None
+
+All Levels
+
+★ Star
+
+↔ Flip
+
+Deck
+
+☆
+
+Import a file to start
+
+Show Answer
+
+Again
+<10m
+
+Hard
+1d
+
+Good
+3d
+
+Easy
+7d
+
+v1.1.0
+
+Add/Edit Card
+
+Cancel
+
+Save
+
+Add Deck/Level
+
+Deck/Level name
+
+Cancel
+
+Add
+
+
+faq.html
+========
+
+Kindle Jailbreak FAQ (2025)
+
+← Back to Home
+
+Kindle Jailbreak FAQ (2025)
+
+The latest answers to your Kindle jailbreak questions: compatible firmware, risks, how-tos, downgrading, KUAL, KOReader, and more.
+For real-time help, join the
+Kindle Modding Discord
+.
+
+Is there a jailbreak for the latest Kindle firmware?
+
+Yes. As of September 2025, the new
+AdBreak jailbreak
+works on firmware
+5.18.1 through 5.18.5
+, but only on devices with
+
+Special Offers (ads) enabled
+. It does not remove ads by itself — you still need Amazon to disable them afterward or use scripts.
+
+If your device is on
+5.18.0 or lower
+, use
+WinterBreak
+.
+If you are on
+5.18.1–5.18.3 without ads
+(such as Scribe models or unsupported regions), stay offline and wait for the upcoming
+
+Unnamed Jailbreak (UJ)
+.
+
+AdBreak is very new – what should I know?
+
+AdBreak was released in September 2025 and is still considered experimental. Issues are being discovered as more people try it,
+and solutions will be added here over time. Always read the
+
+official AdBreak guide
+
+before attempting it.
+
+What if my Kindle doesn’t support ads?
+
+Some models, such as the
+Scribe
+, never supported ads at all — AdBreak will not work on them.
+
+In some countries, Amazon does not offer ad-supported Kindles. A workaround is to
+
+switch your Amazon account region
+to a supported country (US, UK, DE, FR, IT, ES, JP, CN).
+
+If you already paid Amazon to remove ads, you can re-enable them for free in your account settings, jailbreak, and then disable them again.
+
+Can I downgrade my Kindle’s firmware?
+
+No, not unless your Kindle is already jailbroken. There’s no official way to downgrade a stock (unjailbroken) Kindle.
+Jailbroken users can sometimes downgrade using custom scripts; see the
+
+downgrade guide
+for more info.
+
+How do I jailbreak my Kindle?
+
+Check your Kindle’s firmware version, then follow the correct guide:
+
+5.18.1–5.18.5 (ads enabled):
+
+AdBreak Jailbreak
+
+5.18.0 and lower:
+
+WinterBreak Jailbreak
+
+5.18.1–5.18.3 without ads:
+Stay offline and wait for the Unnamed Jailbreak (UJ)
+
+Do I need an Amazon account linked to my Kindle to jailbreak?
+
+Yes, for AdBreak and WinterBreak your Kindle must be registered to an Amazon account with WiFi set up to download ads.
+Older legacy jailbreaks sometimes did not require this.
+
+Can I jailbreak a deregistered or blacklisted Kindle?
+
+Usually not—unless your device is on specific old firmware and you use legacy exploits like LanguageBreak or WatchThis.
+See the
+official jailbreak guide
+for details.
+
+Will jailbreaking erase my books or highlights?
+
+No, jailbreaking itself will not erase your books or highlights. Still, always back up your Kindle just in case.
+Note: Amazon may remotely remove some sideloaded books when you reconnect to WiFi, whether your device is jailbroken or not.
+
+Will jailbreaking void my warranty or get my Amazon account banned?
+
+Jailbreaking will likely void your warranty. There are no confirmed cases of Amazon banning accounts for jailbreaking,
+but you should never discuss mods or hacks with Amazon support.
+
+Can I remove the jailbreak and restore my Kindle to stock?
+
+A factory reset will remove most user data and disable jailbreak features, but some traces may remain.
+For a complete restore, update your Kindle to the latest official firmware after resetting.
+
+How can I block Kindle automatic updates?
+
+The safest way is to keep your Kindle in Airplane Mode.
+Some advanced users fill up their Kindle’s storage or use scripts to block updates,
+but Airplane Mode is the easiest and safest for most people.
+
+Can I still use the Amazon Store and all regular Kindle features after jailbreaking?
+
+Yes. Jailbreaking does not remove or break normal Kindle features, including the store, cloud sync, and the built-in Kindle reader.
+
+How do I install KUAL (Kindle Unified Application Launcher)?
+
+Copy the correct
+Update_KUALBooklet*.bin
+or hotfix install file to your Kindle’s root, safely eject,
+then go to Settings → Update Your Kindle. If you get errors after updates, install the KUAL hotfix booklet.
+
+KOReader or KUAL isn’t opening, or throws errors after updating. What should I do?
+
+Make sure you have the correct version for your firmware.
+Some updates require a KUAL hotfix, and KOReader has different builds for different firmware.
+For detailed help, see the
+KOReader thread
+.
+
+Can I sideload books or use the default Kindle reader after jailbreaking?
+
+Yes! Jailbreaking does not affect your ability to sideload books or use the regular Kindle reader.
+Most Kindle and third-party reading functions will work as before.
+
+Can I install Android apps, or use Libby/Goodreads/Send To Kindle after jailbreaking?
+
+You cannot run Android apps unless there is a specific port or extension.
+Built-in Kindle features (Goodreads, Send To Kindle, Kindle Unlimited, etc.) still work after jailbreaking.
+
+What’s the difference between soft-float and hard-float firmware?
+
+Kindles on firmware 5.16.3 and newer use “hard-float” (hardware floating point support);
+older devices use “soft-float.” Some mods or extensions only work on one or the other, so always check compatibility.
+
+How do I know if my Kindle is jailbroken?
+
+Type
+;log
+into the Kindle search bar. If you see a popup message, your device is jailbroken.
+
+What should I do if something goes wrong, or my Kindle is stuck?
+
+Try restarting your Kindle and reinstalling the hotfix and KUAL.
+If that doesn’t work, check this FAQ again, the
+Kindle Modding Wiki
+,
+or ask in the
+Kindle Modding Discord
+for help.
+
+Need more help?
+
+Visit the
+Jailbreaking Guide
+,
+the
+Kindle Modding Wiki
+,
+or join the
+Kindle Modding Discord
+for real-time help and updates.
+
+
+fullscreenweb.html
+==================
+
+Fullscreen Web Browser – Kindle Mod (HF Only)
+
+← Back to Home
+
+FULLSCREEN WEB BROWSER
+
+Fullscreen Web Browser
+turns your Kindle into a clean, distraction-free internet portal.
+Enjoy focused web reading, reference, or web apps in a truly fullscreen experience—right on your e-reader. HF only.
+
+Download
+
+Get it from GitHub Releases
+
+Features
+
+Open any website in a clean, fullscreen view
+
+Easily set your homepage to any site you want
+
+Minimal interface for maximum reading space
+
+Includes a script to stop the browser if needed
+
+Designed for Kindle firmware 5.16.4 and newer
+
+How to Install & Use
+
+Download the latest ZIP:
+Get it from GitHub Releases
+
+Extract the contents: Unzip and copy everything to the
+/
+(root) directory of your Kindle.
+
+Set your website:
+
+Method 1:
+Edit
+index.html
+in the
+fullscreenbrowser
+folder and change the URL to your desired website.
+
+Method 2:
+Edit
+documents/shortcut_browser.sh
+and set the
+FULLSCREEN_SITE
+variable to your preferred URL.
+
+Launch the browser: Open the shortcut script from your Kindle’s library to launch the fullscreen web browser.
+
+(Tip: Rename the script for multiple website shortcuts!)
+
+Options
+
+GO_FULLSCREEN:
+Set this to
+false
+in the script if you want to keep the Kindle’s UI visible instead of true full screen.
+
+Known Issues
+
+Some websites may not load with the
+index.html
+method (iframe limitation). For best results, use the
+FULLSCREEN_SITE
+variable in the script.
+
+If the browser freezes or stops responding, use the Stop Shortcut Browser script or restart your Kindle.
+
+Credit
+
+Hyper
+
+
+gameboy.html
+============
+
+Game Boy Emulators for Kindle – Play Retro Games (Gambatte-K2, Gambatte-K)
+
+← Back to Home
+
+Game Boy Emulators for Kindle
+
+Play Game Boy and Game Boy Color Games on Your Kindle
+
+With
+Gambatte-K2
+and
+Gambatte-K
+, you can turn your Kindle into a retro handheld console. Both emulators let you play your own Game Boy and Game Boy Color ROMs, all from the comfort of your e-reader.
+
+Gambatte-K2 (Recommended for Most Users)
+
+Gambatte-K2
+is a modern, feature-rich Game Boy emulator for Kindle. It supports hardfloat Kindles, offering faster performance, advanced features, and regular updates. It also has improved refresh behavior, making it much more playable. If you have a newer or fully jailbroken Kindle, Gambatte-K2 is your best choice for retro Game Boy and Game Boy Color gaming.
+
+Gambatte-K2 Features
+
+Supports Game Boy (.gb) and Game Boy Color (.gbc) games
+
+Two display modes:
+GTK2
+(standard) and
+FBInk
+(faster, experimental)
+
+On-screen Game Boy controls with multi-touch support
+
+Manual refresh button for e-ink displays
+
+Save and load state support (up to five slots, experimental)
+
+Runs well on modern Kindles (tested on firmware 5.14.3 and 5.17.1+)
+
+Compatible with hardfloat and softfloat firmware
+
+How to Install Gambatte-K2
+
+Download the latest release:
+Gambatte-K2 on MobileRead (HF & SF)
+
+Or use GitHub:
+Gambatte-K2 on GitHub
+
+Unzip the folder and place it in
+/mnt/us/extensions/
+on your Kindle.
+
+Open
+KUAL (Kindle Unified Application Launcher)
+. Gambatte-K2 will appear as an extension.
+
+(Optional) Copy
+shortcut_gambatte-k2.sh
+to your Kindle’s
+documents
+folder for quick access.
+
+How to Use Gambatte-K2
+
+Launch Gambatte-K2 from KUAL or your Kindle’s home screen if you added the shortcut.
+
+Tap
+Open
+and select a Game Boy or Game Boy Color ROM (
+.gb
+or
+.gbc
+).
+
+Use the virtual touchscreen controls to play (supports multi-touch for pressing two buttons at once).
+
+Press the refresh button to clean up the e-ink display as needed.
+
+Use save/load buttons to save or continue your game progress.
+
+Good to Know
+
+Best for slow-paced, puzzle, or RPG games (e-ink refresh is not ideal for fast action)
+
+Multi-touch is supported but may not be as responsive as other devices
+
+Game Boy Advance games are
+not supported
+
+Screen layout may vary on different Kindle models
+
+Gambatte-K (For Older/Softfloat Kindles)
+
+Gambatte-K
+is the original, stable Game Boy emulator for Kindle. Recommended for older models or those running softfloat firmware, it offers simple controls and reliable performance.
+
+Gambatte-K Features
+
+Plays Game Boy and Game Boy Color games
+
+Simple interface and controls
+
+Stable on legacy and softfloat Kindles
+
+No advanced save/load or multitouch features
+
+How to Install Gambatte-K
+
+Visit the
+MobileRead: Gambatte-K thread
+
+Download the Kindle-specific build (
+bin kindle.7z
+) from the attachments
+
+Extract the files to your Kindle’s
+/extensions
+directory
+
+Open
+KUAL
+and launch Gambatte-K from the menu
+
+Usage Notes
+
+Launch Gambatte-K from KUAL
+
+Select your Game Boy or Game Boy Color ROM and start playing
+
+Menu options may be cut off on small screens
+
+Best for slow-paced or puzzle games
+
+Which Emulator Should You Choose?
+
+Use Gambatte-K2
+for most modern Kindles (hardfloat or softfloat firmware).
+
+Choose Gambatte-K
+for older devices or if K2 has compatibility issues.
+
+Note:
+Both emulators require a jailbroken Kindle and your own legally obtained ROM files.
+
+
+gargoyle.html
+=============
+
+Gargoyle Interactive Fiction Interpreter – HF & SF
+
+← Back to Home
+
+Gargoyle Interactive Fiction Interpreter
+
+Experimental interpreter for playing interactive fiction on Kindle.
+
+Supports all major IF formats including Z-Machine, Glulx, TADS, and more.
+
+Hardfloat (HF) Version
+
+Features
+
+Full interactive fiction player for modern Kindles (PW5, firmware 5.16.3+).
+
+Supports multiple IF formats: Z-Machine (.z1-.z8), Glulx (.ulx, .blb), TADS (.gam, .t3), and many more.
+
+On-screen keyboard with gesture controls.
+
+Configurable fonts and typography via garglk.ini.
+
+Available as KUAL extension or booklet launcher; see
+here
+.
+
+Requirements
+
+Jailbroken Kindle running hardfloat firmware (5.16.3 or newer).
+
+KUAL (Kindle Unified Application Launcher) installed for extension method.
+
+Kindle Paperwhite 5 or compatible device.
+
+Download & Install (HF)
+
+Download
+gargoyle.zip from the MobileRead forum thread
+.
+
+Unzip on your computer.
+
+For KUAL: Place the extracted folder into
+/mnt/us/extensions/
+.
+
+How to Run (HF)
+
+Starting Gargoyle: Open KUAL and select Gargoyle from the menu.
+
+Softfloat (SF) Version
+
+Requirements
+
+Jailbroken Kindle with softfloat firmware.
+
+KUAL (Kindle Unified Application Launcher) installed.
+
+Kindle Touch or Paperwhite (older models).
+
+Download & Install (SF)
+
+Download gargoyle 0.2 (5.6.5) zip package from the
+Kindle Gargoyle page
+.
+
+Unzip on your computer or Kindle.
+
+Place the extracted folder into
+/mnt/us/extensions/
+.
+
+How to Run (SF)
+
+Open KUAL and launch Gargoyle from the menu.
+
+Playing Games
+
+Copy your IF game files to the games folder or any folder that you select.
+
+Launch Gargoyle.
+
+Use the menu to navigate to the game you want to play.
+
+Click on the game and press OK.
+
+To save your game, type
+save
+in the menu.
+
+To exit the game, type
+quit
+and confirm with
+Y
+.
+
+Troubleshooting
+
+Gargoyle isn't starting!
+Check firmware is 5.16.2 or newer. Verify files are in the extensions folder.
+
+Keyboard disappeared!
+Two-finger tap on the top right corner of the screen.
+
+Crashes on .dat files
+Rename the file to
+.z5
+to force the glulxe interpreter instead of advsys.
+
+References
+
+Gargoyle HF port
+
+Original Gargoyle project
+
+Source code for Kindle port
+
+Credits
+
+kbarni – HF version (PW5 port)
+
+pete330 – SF version base port
+
+baf – Original patches
+
+Tor Andersson – Original Gargoyle developer
+
+Ben Cressey
+
+
+gnomegames.html
+===============
+
+Gnome Games – Chess & Minesweeper for Kindle
+
+← Back to Home
+
+Gnome Games: Chess & Minesweeper
+
+Gnome Chess
+and
+Gnome Mines
+bring classic chess and Minesweeper gameplay to your Kindle.
+
+Direct ports of the Gnome Games suite, built for Kindle e-readers with smooth, responsive touch controls.
+
+Features
+
+Gnome Chess:
+Challenge the integrated Stockfish chess engine right on your Kindle.
+
+Gnome Mines:
+Play classic Minesweeper with touch controls and fast response.
+
+Direct GTK2 ports — no extra dependencies needed.
+
+Compatible with softfloat and hardfloat firmware (armel/armhf).
+
+Fast, lightweight, and fully offline after installation.
+
+How to Install
+
+Download
+gnomegames.zip
+.
+
+Unpack the ZIP file on your computer.
+
+Connect your Kindle to your computer via USB.
+
+Copy the unpacked folder into the
+/extensions/
+directory on your Kindle.
+
+Open
+KUAL
+— Gnome Games will appear as an extension.
+
+How to Play
+
+Launch
+Gnome Chess
+or
+Gnome Mines
+from KUAL.
+
+Use touch controls to play each game.
+
+Chess uses Stockfish for a strong computer opponent; Minesweeper offers the classic puzzle grid and customization options.
+
+Technical Notes
+
+Direct GTK2 ports — no additional libraries required.
+
+Compatible with both softfloat and hardfloat firmware (armel/armhf).
+
+Project repository:
+GnomeGames4Kindle on GitHub
+.
+
+More GTK2 games may be ported in the future, though the author has indicated limited ongoing development.
+
+Credits
+
+Developed by
+CrazyElectron
+.
+
+
+hangman.html
+============
+
+Hangman for Kindle – Classic Word Game (Illusion App)
+
+← Back to Home
+
+Hangman for Kindle
+
+Hangman
+is the classic word-guessing game. Pick letters and try to solve the hidden word before you run out of chances.
+
+Features
+
+Classic Hangman gameplay
+
+Large word bank
+
+On-screen A–Z keyboard (button layout)
+
+Visual gallows builds with wrong guesses
+
+Tracks guessed letters
+
+Requirements
+
+Jailbroken Kindle with Mesquite support
+
+Illusion framework compatibility
+
+How to Install
+
+Download
+hangman.zip
+
+Unzip the file on your computer (uncompressed folder +
+.sh
+script)
+
+Place the
+.sh script
+and the
+folder
+in your Kindle’s
+documents
+folder
+
+Disconnect your Kindle
+
+Tap the new book in your Kindle library to launch
+
+How to Play
+
+Tap letters on the on-screen keyboard to guess
+
+Correct letters fill the word; wrong letters add to the gallows
+
+Solve the word before you run out of guesses
+
+Test your vocabulary with Hangman on Kindle!
+
+
+images.html
+===========
+
+Kindle Screensaver Image Gallery – Community Collection
+
+← Back to Home
+
+Kindle Screensaver Image Gallery
+
+Browse and download user-contributed Kindle screensaver images, organized by author. Click any image to view it large, or use the download icon in the preview to save.
+
+Search by author:
+
+Loading more authors...
+
+Download
+
+Close
+
+
+index.html
+==========
+
+Kindle Modding Tools & Resources – KOReader, Games, Plugins & More
+
+Kindle Modding Tools & Resources
+
+CRITICAL UPDATE (September 2025)
+
+A new jailbreak called
+AdBreak
+has been released. It works on all current Kindle firmware versions
+5.18.1 through 5.18.5
+, but only on devices with
+Special Offers (ads) enabled
+.
+
+If you are on
+5.18.4 or 5.18.5
+, jailbreak now with
+AdBreak
+. If you are on
+5.18.1–5.18.3
+and cannot enable ads (for example, on Scribe models or in certain countries), remain in airplane mode and wait for the upcoming
+Unnamed Jailbreak (UJ)
+. If you are on
+5.18.0 or lower
+, continue using
+WinterBreak
+.
+
+The most essential Kindle modding tools, plugins, games, and guides for your jailbroken Kindle. Everything here requires a jailbroken Kindle unless stated otherwise.
+
+Get Started
+
+How to Jailbreak Your Kindle
+
+Browse Gallery
+
+Kindle Screensaver Images
+
+See Updates
+
+Announcements & Site Changelog
+
+💬 Ask Questions
+
+Chat About Kindle Modding
+
+Search:
+
+Most Popular & Essential Tools
+
+KindleForge
+
+Essential
+
+App store for jailbroken Kindles with a touch-friendly catalog that installs KOReader, scriptlets, and tweaks directly—no manual USB shuffling.
+
+Install with KindleForge
+
+KOReader
+
+Essential
+
+Free, open-source e-book reader with fast page turns, broad format support (EPUB, PDF, DJVU, CBZ/CBR, TXT, and more), plus advanced customization, dictionaries, and screensaver options not possible with Amazon’s stock app.
+
+Learn more about KOReader
+
+Home Screen Shortcuts
+
+Tool
+
+Drop desired
+.sh
+launcher scripts into
+/mnt/us/documents
+. Tap them on the Home screen to open apps directly—no KUAL required.
+
+Learn more about Shortcuts
+
+KindleFetch
+
+Essential
+
+The simplest way to download e-books straight to your Kindle—no computer or cables needed. Search Anna’s Archive, Library Genesis, and more directly from the KTerm terminal.
+
+Learn more about KindleFetch
+
+KTerm (Terminal Emulator)
+
+Essential
+
+The must-have terminal for jailbroken Kindles. Run shell scripts, install mods, and manage files directly on-device with an on-screen keyboard.
+
+Learn more about KTerm
+
+KOReader Plugins
+
+Featured KOReader Plugins
+
+Plugin
+
+Curated roundup of the most useful KOReader plugins—with quick summaries, download links, and setup notes for each add-on.
+
+Browse KOReader Plugins
+
+Z-Library Plugin
+
+Plugin
+
+Search and download books from Z-Library without leaving KOReader—no computer required.
+
+Z-Library Plugin details
+
+Page Header (Userpatch)
+
+Plugin
+
+Fiction-style header at the top of the page with per-book settings; small-caps-friendly and easy to tune for spacing.
+
+Page Header details
+
+Telegram Highlights
+
+Plugin
+
+Send Kindle highlights and screenshots to your Telegram account instantly via @bookshotsbot.
+
+Telegram Highlights Plugin
+
+KOWeather
+
+Plugin
+
+Live weather forecasts inside KOReader—perfect before an outdoor reading session.
+
+KOWeather Plugin
+
+dtDisplay Clock
+
+Plugin
+
+Fullscreen clock widget (time & date) for a clean e-ink desk or bedside clock while charging.
+
+Clock Plugin details
+
+ProjectTitle
+
+Plugin
+
+Modern KOReader library view with cover-first browsing, progress badges, and gesture resizing—drop-in replacement for Cover Browser.
+
+ProjectTitle guide
+
+Games
+
+Tetris for KTerm (HF)
+
+Game
+
+Play classic Tetris in the terminal on hardfloat-firmware Kindles. Lightweight—no emulator needed.
+
+Play Tetris on Kindle
+
+Gnome Chess & Mines
+
+Game
+
+Touch-friendly ports of Gnome Chess and Minesweeper. Smooth, responsive gameplay on e-ink.
+
+Chess & Mines details
+
+Nine Men’s Morris (SF & HF)
+
+Game
+
+Strategy board game in two editions: softfloat (launches from KUAL) or hardfloat (runs in KTerm).
+
+Nine Men’s Morris info
+
+Gargoyle Interactive Fiction
+
+Game
+
+Play Z-Machine, Glulx, TADS, and other interactive fiction formats on Kindle with dedicated HF and SF builds.
+
+Gargoyle setup guide
+
+KWordle
+
+Game
+
+Offline Wordle-style puzzle for Kindle—multilingual word lists and e-ink-friendly visuals.
+
+Play KWordle
+
+Universal Paperclips
+
+Game
+
+Idle clicker classic as a Mesquite web app—play on any jailbroken Kindle.
+
+Play Paperclips
+
+Game Boy Emulators
+
+Emulator
+
+Gambatte-K2 (modern, HF+SF) and Gambatte-K (legacy, SF) let you play Game Boy/Color ROMs on Kindle.
+
+Game Boy on Kindle
+
+NetHack (Preview)
+
+Game
+
+Classic NetHack port in progress. Track release status, setup notes, and control guidance for the Kindle build.
+
+NetHack project page
+
+TicTacToe
+
+Game
+
+Simple TicTacToe extension launched from KUAL. Install and play quick matches on your Kindle.
+
+TicTacToe guide
+
+Sudoku
+
+Game
+
+Classic 9×9 Sudoku for Kindle. Tap a cell and use on-screen number buttons across multiple difficulties—built on Illusion for crisp e-ink play.
+
+Play Sudoku
+
+2048
+
+Game
+
+Combine tiles to reach 2048 using arrow-button controls. Simple, addictive number gameplay tuned for e-ink.
+
+Play 2048
+
+Snake
+
+Game
+
+Steer with on-screen arrows, eat food to grow, and avoid walls and your tail. A clean, button-controlled classic for Kindle.
+
+Play Snake
+
+Hangman
+
+Game
+
+Guess the hidden word using an on-screen A–Z keyboard. Clear visual feedback and e-ink-friendly layout.
+
+Play Hangman
+
+Connect 4
+
+Game
+
+Two-player classic on a 7×6 grid. Drop checkers via numbered column buttons (1–7) and connect four to win.
+
+Play Connect 4
+
+Tower of Hanoi
+
+Game
+
+Move disks between pegs—one at a time, never larger on smaller. A clean Illusion build that plays perfectly on e-ink.
+
+Tower of Hanoi
+
+Media & Audio
+
+SOX Media Player
+
+Media
+Audio
+
+Bluetooth audio player for music, audiobooks, and internet streams. Supports many popular formats (WAV, MP3, FLAC, OGG, and more). Both softfloat (SF) and hardfloat (HF) versions available.
+
+SOX Player details
+
+Video + Audio Playback (Experimental)
+
+Media
+Experimental
+
+Proof-of-concept that pairs gmplay video with SoX audio on HF Kindles. Demo media not synced; use matching files for proper sync.
+
+Experimental playback details
+
+Drawing Tools
+
+Kreate
+
+Project
+
+Minimal drawing app for Kindle—tap-based modes for dots, lines, and curves (adapted for Kindle’s gesture API).
+
+Learn more about Kreate
+
+KPaint
+
+Project
+
+Game Boy drawing app (ROM) optimized for Kindle display; run the ROM via Gambatte-K2 to draw with the Game Boy 4-color palette tuned for e-ink.
+
+Learn more about KPaint
+
+Other Useful Tools
+
+KindleKraft (Minecraft Server)
+
+Tool
+
+Host a LAN Minecraft server (1.7–1.8) directly on your Kindle. Softfloat by default; HF possible with manual Java.
+
+KindleKraft setup
+
+JarLauncher
+
+Tool
+
+Launch jar files—yes, including Minecraft—on jailbroken Kindles. Built for HF devices; SF support is untested.
+
+JarLauncher guide
+
+Disable Ads %
+
+Tool
+
+Enable KOReader custom screensavers (book covers or images) on ad-supported Kindles using a single script.
+
+Disable Ads %
+
+Fullscreen Web Browser
+
+Tool
+
+Distraction-free, true-fullscreen browser for firmware 5.16.4+. Perfect for reading long articles or running simple web apps.
+
+Fullscreen Browser
+
+Textadept for Kindle
+
+Tool
+
+Desktop-grade editor for HF Kindles: Lua-scriptable, multi-buffer, split view, with both GUI and terminal interfaces.
+
+Textadept details
+
+KAnki
+
+Tool
+
+Spaced-repetition flashcard app for Kindle. Study any language or subject offline with customizable decks.
+
+KAnki flashcards
+
+Ubens
+
+Tool
+
+Web-based flashcard resource that pairs well with Kindle flashcard tools—great for learning with spaced repetition.
+
+Open Ubens (web app)
+
+StorageTool
+
+Tool
+
+Analyze storage usage, find duplicates, and organize your Kindle library with this KUAL extension.
+
+StorageTool guide
+
+Check OTA Status
+
+Tool
+
+One-tap scriptlet that shows whether OTA updates are blocked—keep your jailbreak safe at a glance.
+
+Check OTA script
+
+Alpine Kindle Toolkit
+
+Tool
+
+Run Alpine Linux on Kindle, launch a minimal Chromium build, and explore file management—mostly for experimental fun.
+
+Alpine Kindle info
+
+Development
+
+usbnetlite (HF Only)
+
+Dev
+
+SSH into your Kindle over USB or Wi-Fi with the streamlined hardfloat-only usbnetlite package.
+
+usbnetlite setup
+
+Illusion Framework
+
+Dev
+
+Build Kindle apps with HTML, CSS, and JavaScript (Mesquite web-app engine). Backbone for tools like KAnki and IllusionChess.
+
+Illusion Framework
+
+ScreenControl
+
+Dev
+
+View and control your Kindle screen from a browser, automate taps, and debug layouts over your local network.
+
+ScreenControl guide
+
+Telnet Server (Upgraded)
+
+Dev
+
+Lightweight Telnet server for quick remote CLI access—handy legacy alternative to SSH.
+
+Telnet server
+
+GNU Nano (HF)
+
+Dev
+
+Lightweight terminal editor for HF Kindles—run in KTerm or over SSH; optional syntax highlighting via
+nanorc
+.
+
+Nano editor
+
+KPM – Kindle Package Manager
+
+Dev
+
+On-device package manager. Browse, install, update, and manage Kindle mods without manual downloads.
+
+KPM project
+
+Informational
+
+KUAL Overview
+
+Guide
+
+Why Kindle Unified Application Launcher is required for most mods and how to solve installation issues.
+
+KUAL guide
+
+Jailbreaking on Mac
+
+Guide
+
+Understand USB-C vs micro-USB Kindle requirements on macOS and when you need Amazon’s USB File Transfer utility.
+
+Mac jailbreak prep
+
+×
+
+Stay Updated!
+
+Get the latest Kindle modding tools & updates.
+
+Subscribe
+
+Thanks for subscribing! You'll receive updates about new Kindle mods and tools.
+
+
+jailbreaking.html
+=================
+
+Kindle Jailbreak Guide 2025 – How to Jailbreak Your Kindle for KOReader, Screensavers, and Custom Apps
+
+← Back to Home
+
+Kindle Jailbreak Guide 2025 – How to Jailbreak Your Kindle
+
+Jailbreak your Kindle in 2025
+with this trusted, up-to-date guide from KindleModShelf. Learn how to unlock your Kindle for KOReader, custom screensavers, emulators, and powerful third-party apps. Take control of your Kindle e-reader, protect your books, and explore features Amazon doesn't want you to have.
+
+Why Jailbreak Your Kindle?
+
+Jailbreaking your Kindle gives you the freedom to do more with your device and your books.
+As of September 2025, firmware 5.18.1 through 5.18.5 can be jailbroken with AdBreak (ads required). Firmware 5.18.0 and lower use WinterBreak.
+
+Freedom over your books:
+Keep your e-books and documents truly yours—Amazon cannot change, remove, or restrict your files after jailbreaking.
+
+Install powerful alternative reading apps like
+KOReader
+for EPUB, PDF, CBZ, and more formats plus advanced customization
+
+Personalize your Kindle with custom screensavers or sleep images
+
+Add apps: drawing, notes, audio playback, file manager, terminal, and classic games
+
+Run Python or shell scripts—automate tasks or create your own Kindle tools
+
+Block forced Amazon firmware updates and keep control of your device
+
+Read EPUB and other eBook formats not natively supported by Kindle
+
+Enable features like
+dark mode
+on older Kindles
+
+Access more customization, accessibility, and privacy options
+
+For a video overview, watch
+Why Jailbreak Your Kindle?
+
+Step-by-Step Kindle Jailbreak Instructions (2025)
+
+Note:
+
+Choose the jailbreak based on your firmware:
+
+5.18.1–5.18.5 (ads enabled):
+Use
+AdBreak Jailbreak Guide
+
+5.18.0 and lower:
+Use
+WinterBreak Jailbreak Guide
+
+5.18.1–5.18.3 without ads:
+Stay offline and wait for the upcoming Unnamed Jailbreak (UJ)
+
+After jailbreaking:
+
+Install the Hotfix to protect your jailbreak
+
+Block OTA updates (airplane mode or storage filling method)
+
+Install KOReader, screensavers, and other custom apps
+
+Kindle Jailbreak Community & Support
+
+Visit the
+Kindle Modding Wiki
+for troubleshooting, advanced tips, and the latest Kindle modding tools.
+
+Join the friendly
+Kindle Modding Discord community
+for live help, jailbreak news, and project sharing.
+
+Read the
+KindleModShelf FAQ
+for more jailbreak answers, device compatibility, and up-to-date info.
+
+
+jailbreakonmac.html
+===================
+
+Jailbreaking on Mac – Kindle USB Requirements
+
+← Back to Home
+
+Jailbreaking on Mac
+
+Jailbreaking from macOS depends on a reliable USB connection. Determine whether your Kindle needs extra drivers before you begin so the jailbreak scripts can access the device.
+
+USB Connection Requirements
+
+macOS communicates with Kindles over USB in two distinct ways depending on the device generation. Confirm which workflow applies to you before starting the jailbreak.
+
+Modern Kindle Devices (USB-C)
+
+Recent Kindle models with USB-C ports expose their storage over MTP (Media Transfer Protocol). macOS does not ship with native MTP support, so you must install an additional utility.
+
+Required Software:
+
+Amazon USB File Transfer
+
+Installs Amazon’s Send to Kindle application, which bundles the MTP driver.
+
+Once installed, your Kindle will appear in Finder and is accessible to jailbreak scripts.
+
+Restart both the app and Finder if the Kindle does not mount immediately after installation.
+
+Legacy Kindle Devices
+
+Older Kindles with micro-USB ports expose their storage as classic USB Mass Storage. macOS supports this natively, so no additional software is required.
+
+Connect the Kindle using its micro-USB cable.
+
+The Kindle should mount in Finder automatically.
+
+If Finder does not display the device, try a different cable or USB port.
+
+Testing Your Connection
+
+Plug your Kindle into the Mac with a known-good USB cable.
+
+Open Finder and look for the Kindle in the sidebar.
+
+If it appears, you can proceed directly with the jailbreak instructions.
+
+If it does not appear, install the
+Amazon USB File Transfer
+application and reconnect.
+
+Confirming USB access before starting prevents mid-jailbreak interruptions caused by missing MTP support.
+
+
+jarlauncher.html
+================
+
+JarLauncher – Launch Java Apps on Kindle
+
+← Back to Home
+
+JarLauncher
+
+Launch jar files on your Kindle, including Minecraft.
+
+JarLauncher provides a simple launcher interface for Java applications on jailbroken Kindles.
+
+Download
+
+JarLauncher
+
+Prerequisites
+
+KTerm
+
+Installation
+
+Download the latest
+JarLauncher.zip
+from the
+releases
+.
+
+Unzip it, then copy the
+JarLauncher
+folder into the
+extensions
+folder on your Kindle.
+
+Notes
+
+This is different from
+KINDLEKRAFT (MINECRAFT SERVER)
+because it can launch any jar file and it works on HF.
+
+Should support soft-float OSs but is currently untested.
+
+TODO: nano for SF?
+
+Credits
+
+ThatPotatoDev
+
+
+kanki.html
+==========
+
+KAnki – Flashcards & Spaced Repetition for Kindle
+
+← Back to Home
+
+KANKI
+
+KAnki
+is an open-source flashcard app that brings true spaced repetition learning to Kindle e-readers. Study any language or subject, customize your decks, and track your progress—right from your Kindle.
+
+Download
+
+KAnki on GitHub
+
+ABOUT KANKI
+
+Inspired by Anki, KAnki runs natively on Kindle e-readers, supporting fully customizable vocabulary decks and a spaced repetition system to help you learn faster and remember longer. Use KAnki for Japanese, Spanish, Mandarin, or any subject.
+
+WEB FLASHCARD EDITOR
+
+You can create, import, edit, and organize your KAnki flashcard decks in your browser using our
+KAnki Web Editor
+by KindleModShelf. The editor lets you import your KAnki flashcard file, add and edit cards and decks, and see a live preview of what your cards will look like on your Kindle, with the ability to change the preview to match your Kindle model. For the best experience, use it on desktop or laptop.
+
+KEY FEATURES
+
+Add your own language fonts and vocabulary decks
+
+Spaced repetition system for efficient memorization
+
+Organize by level (JLPT, CEFR, HSK, etc.) and filter cards
+
+Star/favorite important cards and practice both directions
+
+Automatic progress tracking and error review mode
+
+Optimized for e-ink and saves progress locally—no account needed
+
+HOW TO INSTALL
+
+Download the latest release from
+KAnki on GitHub
+.
+
+Connect your Kindle to your computer via USB and unzip the downloaded file.
+
+Customize for your language:
+
+Edit
+kanki/js/kanki_config.js
+to set up your language, levels, and vocabulary. (You can use the
+KAnki Web Editor
+for this step!)
+
+Add a compatible TTF font for your language, rename to
+language.ttf
+, and place in
+kanki/assets/fonts/language.ttf
+if needed.
+
+Copy the
+KAnki
+folder and
+kanki.sh
+script to your Kindle’s
+documents
+folder.
+
+Disconnect your Kindle from the computer.
+
+Find and launch KAnki from your Kindle’s home screen.
+
+HOW TO USE
+
+Study with touch: reveal answers, star key words, and monitor your stats.
+
+Practice both directions (e.g., English↔Spanish).
+
+Filter by proficiency level, and quickly review starred cards.
+
+All stats and progress are saved locally for privacy and portability.
+
+UPDATING KANKI
+
+Back up your vocabulary or config files.
+
+Replace the old KAnki folder with the new version.
+
+Restore your data and fonts if needed.
+
+Launch the app and use the Reload option to apply updates.
+
+CUSTOMIZING FOR YOUR LANGUAGE
+
+Add a TTF font for your language in
+kanki/assets/fonts/language.ttf
+.
+
+Edit
+kanki/js/kanki_config.js
+for your language, levels, and vocabulary. (Tip: Use the
+KAnki Web Editor
+for this!)
+
+For languages with special scripts, add a
+reading
+field as needed.
+
+Example deck setup:
+
+var KANKI_CONFIG = {
+language: "Spanish",
+levels: ["A1", "A2", "B1"]
+};
+var VOCABULARY = {
+"A1": [
+{"front": "hello", "back": "hola", "notes": "Greeting"}
+],
+"A2": [
+{"front": "tomorrow", "back": "mañana", "notes": "Time"}
+]
+};
+
+DATA & TECHNICAL DETAILS
+
+Progress and stats are saved locally—reset any time via the app or by deleting the storage file.
+
+KAnki uses ES5 JavaScript and simple CSS for compatibility.
+
+Some Kindle screen sizes may have layout quirks, but the app works on most models.
+
+CREDITS
+
+Kurizu
+
+
+kindlefetch.html
+================
+
+KindleFetch – Download eBooks Directly to Kindle
+
+← Back to Home
+
+KindleFetch
+
+KindleFetch
+is the simplest way to download eBooks straight to your Kindle—no computer or cables required. Search and download books from Anna’s Archive using
+KTerm
+.
+
+Requirements
+
+KTerm terminal emulator
+(required to run KindleFetch)
+
+Installation
+
+Install through Kindle Forge (Recommended):
+
+After installing Kindle Forge, click the download button for KindleFetch.
+
+It will appear in KUAL automatically after downloading.
+
+Install through KTerm:
+
+Open KTerm on your Kindle.
+
+Type and run:
+curl https://justrals.github.io/KindleFetch/install.sh | sh
+
+Wait for installation to finish and follow the prompts.
+
+Manual Install:
+
+Download from
+KindleFetch GitHub Releases
+.
+
+Unzip and copy the files to your
+/extensions
+folder on your Kindle.
+
+How to Use KindleFetch
+
+Launch KindleFetch from KUAL.
+
+Select options using the number pad.
+
+Search for your book by title, author, or keyword.
+
+Choose your download source.
+
+Your downloaded eBook will appear in your selected library.
+
+Troubleshooting
+
+No search results or errors?
+Book sources may be temporarily unavailable—try again later or use a different source.
+
+“Sign in” or HTML file from Z-Library?
+You have reached the Z-Library download limit—try another source or day. You can also use the Z-Library plug-in for KOReader, which supports signed-in accounts.
+
+Credits
+
+Developed by
+justrals
+.
+
+
+kindleforge.html
+================
+
+Kindle Forge – On-Device Kindle App Store
+
+← Back to Home
+
+Kindle Forge
+
+KindleForge is a GUI app store for Kindles that allows you to download and install tweaks and applications such as KOReader
+directly on your device, without needing to copy files manually. It is the recommended method for downloading the apps it contains.
+
+Download
+
+Kindle Forge
+
+MAIN FEATURES
+
+On-device GUI for discovering and installing packages and scriptlets.
+
+Install/uninstall directly from the app.
+
+Basic version awareness for selecting the correct builds where applicable, so you don't have to worry about downloading the wrong version.
+
+Installation
+
+Download from
+Kindle Forge
+.
+
+Unzip
+KindleForge.zip
+.
+
+Plug in your Kindle to your computer.
+
+Copy
+KindleForge
+and
+KindleForge.sh
+into the
+documents
+folder on your Kindle.
+
+Safely eject your Kindle.
+
+On your Kindle home screen, within a few seconds, you should see Kindle Forge appear as a “book.”
+
+Open the book and install.
+
+Usage & troubleshooting
+
+To reload the app store to see if there are new apps available through Kindle Forge, click the three dots at the top of the page and click reload.
+
+If the UI behaves oddly, try reloading the page (reload several times) and reboot the device.
+
+Some packages install a scriptlet (launcher) by default; others install to KUAL. Behavior varies per package.
+
+Questions and support
+
+Kindle Forge has its own Discord:
+https://discord.gg/aSG3eMsAsW
+
+Note from the kindlemodshelfguy (Author and maintainer)
+
+This is an essential tool for new jailbroken Kindles, especially for those who have not jailbroken before! We HIGHLY recommend you use it!
+Penguins will continue to add mods as people give permission.
+
+CREDITS
+
+Created and maintained by
+Penguins
+.
+
+
+kindlekraft.html
+================
+
+KindleKraft – Minecraft Server on Kindle
+
+← Back to Home
+
+KINDLEKRAFT – MINECRAFT SERVER ON KINDLE
+
+KindleKraft
+turns your Kindle e-reader into a Minecraft multiplayer LAN server for versions 1.7.x and 1.8.x.
+Host and play Minecraft SMP right from your Kindle—no computer required after setup!
+
+Download
+
+KindleKraft on GitHub
+
+Latest Release
+
+Requirements
+
+KTerm
+
+Install & Setup
+
+Install through Kindle Forge (Recommended):
+
+After installing Kindle Forge, click the download button for KINDLEKRAFT.
+
+It will appear in KUAL automatically after downloading.
+
+Download:
+KindleKraft on GitHub
+
+Place the extension in
+/extensions
+and the archive in your Kindle’s root directory (do not extract).
+
+(Optional) Create a 256MB swapfile for better performance.
+
+How to Run
+
+Open KindleKraft in KUAL and select
+Install KindleKraft
+. Wait for installation.
+
+Select
+Launch
+in KUAL. KTerm will open.
+
+In KTerm, start the server with
+kindlekraft
+.
+
+For multiplayer, run
+kindlekraft -s
+. To check your Kindle’s LAN IP, use
+kindlekraft -i
+.
+
+Connect & Play
+
+Join from any device on the same LAN using Minecraft 1.7.x or 1.8.x.
+
+Notes
+
+Fully tested on Kindle 7 (KT2, BASIC). Partially tested on Kindle Paperwhite 7th Gen (PW3) up to 5.16.2.1.1.
+
+UI glitches may occur on newer Kindles or firmware, but server functionality usually works.
+
+Fun, experimental, and open-source—expect quirks and have fun!
+
+Usage subject to the
+Minecraft EULA
+.
+
+Credit
+
+penguins
+
+
+koclock.html
+============
+
+dtDisplay – Clock Plugin for KOReader
+
+← Back to Home
+
+dtDisplay – Clock Plugin for KOReader
+
+dtDisplay
+is a fullscreen clock plugin for KOReader. Instantly turn your Kindle or Kobo into a clean, always-on e-ink desk or bedside clock.
+
+Features
+
+Fullscreen time and date for easy viewing
+
+Perfect while your device is charging or at your desk
+
+Designed specifically for e-ink screens
+
+Tap to exit and return to KOReader instantly
+
+Installation
+
+Download from
+dtDisplay on GitHub
+.
+
+Unzip or clone the repository.
+
+Copy the folder to
+/koreader/plugins/
+on your device.
+
+Restart KOReader.
+
+How to Use
+
+Open KOReader.
+
+Go to
+Plugins → More tools → Time & Day
+.
+
+The fullscreen clock appears. Tap the screen to close.
+
+Credits
+
+Developed by
+kktse
+.
+
+
+koreader.html
+=============
+
+KOReader for Kindle – Powerful eBook Reader App (Official Site & Guide)
+
+← Back to Home
+
+KOReader for Kindle
+
+KOReader
+is a free, open-source eBook reader app designed for e-ink devices. Enjoy fast page turns, broad format support, and advanced customization not possible with Amazon’s stock app.
+
+Main Features
+
+Read all major formats: EPUB, PDF, DJVU, CBZ, MOBI, DOC, TXT, and more
+
+Customize margins, font, contrast, line spacing, and themes
+
+Instant dictionary and translation support
+
+Send books wirelessly, zoom into comics, and use custom screensavers
+
+Designed for e-ink: simple, fast, no unnecessary animations
+
+Allows custom plug-ins
+
+Why Use KOReader?
+
+Open and read virtually any eBook or document that does not have DRM
+
+Personalize your Kindle’s look and feel
+
+Access features the standard Kindle app doesn’t offer
+
+Official KOReader Site & Installation
+
+KOReader Official Site:
+
+https://koreader.rocks/
+(All downloads, install instructions, support, and documentation)
+
+Direct Download (Latest Version):
+
+KOReader GitHub Releases
+
+Summary
+
+Make your Kindle a powerful, flexible reading device with KOReader.
+
+Visit the
+official KOReader website
+to download, install, and get the latest updates and support.
+
+
+koweather.html
+==============
+
+KOWeather – Weather Plugin for KOReader
+
+← Back to Home
+
+KOWeather – Weather Plugin for KOReader
+
+KOWeather
+is a lo-fidelity weather app that delivers current conditions and short forecasts directly to your Kindle in KOReader. Weather information is provided by
+WeatherAPI
+.
+
+Features
+
+Forecast for the current day
+
+Forecast for the next two days
+
+Hourly forecast for the current day
+
+Celsius and Fahrenheit support (note: not fully working yet)
+
+24-hour or 12-hour clock options
+
+Requirements
+
+KOReader
+installed on your Kindle or other e-reader
+
+Installation
+
+Download the latest release from the project’s GitHub:
+roygbyte/weather.koplugin
+.
+
+Unzip the downloaded archive on your computer.
+
+Transfer the
+weather.koplugin
+folder to your KOReader-powered device and place it under
+/koreader/plugins/
+.
+
+Restart KOReader. The plugin should appear under
+Plugins → More tools → Weather
+.
+
+How to Use
+
+Open KOReader.
+
+Navigate to
+Plugins → More tools → Weather
+.
+
+View the current conditions and short forecast. Tap or press the navigation control to return to KOReader.
+
+To change location, open the plugin settings and enter your postal code.
+
+Notes & Troubleshooting
+
+Weather data courtesy of
+WeatherAPI
+. An internet connection is required to fetch updates.
+
+If the Celsius/Fahrenheit toggle isn’t working, try updating to the latest version of the plugin.
+
+Credits
+
+Developed by
+Roygbyte
+.
+
+
+kpaint.html
+===========
+
+KPaint – Game Boy Drawing App for Kindle
+
+← Back to Home
+
+KPAINT
+
+KPaint
+is a Game Boy drawing app optimized for Kindle, inspired by
+GB Paint
+by Bownly.
+Built in C with GBDK, it offers a clean interface, static cursor, and visual color indicators adapted for e-ink screens.
+
+Download
+
+KPaint on GitHub
+
+ROM Downloads
+
+Features
+
+18 × 15 pixel canvas
+
+Game Boy 4-color palette (tuned for Kindle)
+
+Up to 16 canvases
+
+Clear-canvas menu
+
+Visual color indicators when holding
+B
+
+Static, flicker-free cursor
+
+Installation
+
+Install and set up
+Gambatte-K2
+on your Kindle.
+
+Download the
+kpaint.gb
+file from the
+GitHub releases
+.
+
+Copy the ROM to your Kindle.
+
+Open it with Gambatte-K2.
+
+Controls
+
+D-pad:
+Move cursor
+
+A:
+Draw pixel
+
+B + D-pad:
+Switch colors
+
+B + Up:
+Black (white on Kindle)
+
+B + Right:
+Dark Gray
+
+B + Down:
+White (black on Kindle)
+
+B + Left:
+Light Gray
+
+Start:
+Clear canvas menu
+
+Credits
+
+Kurizu
+
+
+kpm.html
+========
+
+KPM – Kindle Package Manager (Install Mods & Apps Easily)
+
+← Back to Home
+
+KPM – Kindle Package Manager
+
+KPM
+is the all-in-one package manager for Kindle. Install, update, and manage Kindle mods, apps, and utilities directly from your device—no more manual downloads or file transfers.
+
+What Does KPM Do?
+
+Browse and install Kindle mods, tools, and scripts with just a few taps
+
+Automatically update installed packages when new versions are available
+
+Remove or manage your installed Kindle software easily
+
+Works with a growing library of Kindle homebrew projects
+
+How to Get KPM
+
+GitHub Project:
+
+github.com/gingrspacecadet/kpm
+
+Official Wiki & Documentation:
+
+kpmwiki.vercel.app/home
+
+Summary
+
+KPM brings true on-device package management to Kindle. Discover new mods, keep your apps up to date, and manage all your Kindle homebrew software easily—all without needing a computer.
+
+
+kreate.html
+===========
+
+Kreate – Minimal Drawing App for Kindle
+
+← Back to Home
+
+Kreate
+
+Kreate
+is a minimal drawing app for Kindle. Unleash your creativity and sketch directly on your e-ink device using tap-based modes.
+See the examples page on GitHub to explore what others have created.
+
+Download
+
+Kreate on GitHub
+
+Installation & Usage
+
+Install through Kindle Forge (recommended):
+
+Click the download button in Kindle Forge for
+Kreate
+once installed.
+
+Manual installation:
+
+Copy the
+/kreate
+folder and
+.sh
+file into
+/mnt/us/documents
+(from root).
+
+Launch
+Kreate
+from your Kindle Home screen by opening the booklet.
+
+Notes
+
+Kindle’s
+kindle.gestures
+API recognizes taps and only coarse swipe directions (up, down, left, right), not precise finger paths or endpoints.
+This makes traditional “press-and-drag to draw” impossible.
+
+To work around this,
+Kreate
+provides multiple drawing modes so you can choose exactly what to place — dots, lines, or curves.
+
+Kreate automatically adapts to any Kindle screen size and model.
+
+Credits
+
+Foskya
+
+
+kterm.html
+==========
+
+KTerm – Terminal Emulator for Kindle
+
+← Back to Home
+
+KTerm
+
+KTerm
+is the essential terminal emulator for jailbroken Kindle e-readers. Access the command line, run shell scripts, and use mods and games directly through it.
+
+Why Use KTerm?
+
+Most Kindle mods, games, and community tools require KTerm. Many will not work unless you have it installed. KTerm is also the recommended way to run shell commands, set up mods, or troubleshoot your Kindle.
+
+Key Features
+
+Touch-friendly terminal interface with on-screen keyboard (two-finger tap to open menu)
+
+Run shell scripts without needing SSH access
+
+Works on most Kindle models and firmware versions
+
+How to Install KTerm
+
+Install through Kindle Forge (Recommended):
+
+After installing Kindle Forge, just click the download button.
+
+It will appear in KUAL automatically after downloading.
+
+Manual Install:
+
+Download the appropriate version for your Kindle from the latest release on
+KTerm on GitHub
+.
+
+Unzip and copy the files to
+/mnt/us/extensions/
+on your Kindle.
+
+Open
+KUAL
+(Kindle Unified Application Launcher) and launch KTerm from the menu.
+
+Use a two-finger tap in KTerm to open the menu or close the app.
+
+Credits
+
+Developed by
+bfabiszewski
+.
+
+
+kual.html
+=========
+
+KUAL – Kindle Unified Application Launcher
+
+← Back to Home
+
+KUAL
+
+Kindle Unified Application Launcher (KUAL) is the essential launcher for Kindle mods.
+
+Most scripts and extensions rely on it, so ensure KUAL is installed before exploring other tools.
+
+Install KUAL
+
+KUAL is marked as part of the installation process on Kindle Mod Wiki. Follow their guide:
+
+Kindle Mod Wiki – Installing KUAL + MRPI
+
+Troubleshooting
+
+The installation of
+Update_KUALBooklet_hotfix_*_install.bin
+may fail if there is not enough free space on your Kindle. If you use the “fill storage” method to block updates, free some space before continuing.
+
+Verify the location of all required folders and files on the Kindle.
+
+Try copying the
+Update_KUALBooklet_hotfix_*_install.bin
+file to the root of your Kindle when connected to your computer, then go to
+Settings > Update Your Kindle
+and resume from step 5 in the Kindle Mod Wiki guide.
+
+Credits
+
+HackerDude
+
+
+kwordle.html
+============
+
+KWordle – Wordle for Kindle (Offline, Multilingual, E-ink Optimized)
+
+← Back to Home
+
+KWordle
+
+KWordle
+brings the classic Wordle puzzle game to your Kindle e-reader. Built for e-ink, KWordle is offline, multilingual, and features clean visuals for black-and-white screens.
+
+Features
+
+Classic Wordle gameplay — guess a 5-letter word in 6 tries
+
+Multilingual: English, French, German, customizable word lists
+
+Statistics: win percentage and streaks saved locally
+
+Simple visuals optimized for e-ink displays
+
+Fully offline — no internet required after installation
+
+Installation
+
+Download the latest release from
+KWordle on GitHub
+.
+
+Connect your Kindle by USB and copy the
+kwordle
+folder and
+kwordle.sh
+script to your
+documents
+folder.
+
+Disconnect, then open the KWordle booklet to launch the game.
+
+How to Play
+
+The game picks a random 5-letter word.
+
+Enter guesses using the on-screen or Kindle keyboard.
+
+After each guess:
+
+■ = correct spot,
+
+□ = wrong spot,
+
+× = not in word.
+
+You have 6 tries. See if you can guess the word!
+
+Customization
+
+To add a new language:
+
+Create lists of guess and valid words, then add them to
+words.js
+.
+
+Update the language selection in
+main.js
+.
+
+Replace accented with unaccented letters.
+
+Credits
+
+Kurizu
+
+
+llusion.html
+============
+
+Illusion – Kindle Mesquite App Toolset
+
+← Back to Home
+
+Illusion: Kindle Mesquite App Toolset
+
+Illusion
+is the core tool for building, launching, and managing custom web apps on jailbroken Kindles, using HTML, CSS, and JavaScript via the Mesquite engine.
+Check out the
+official Illusion project page
+for source code, wiki, and updates.
+
+What is Illusion?
+
+Illusion lets you turn any folder of HTML, CSS, and JavaScript into a real Kindle app—registered natively in the Mesquite launcher (just like the Kindle browser or Store). It’s perfect for making simple games, tools, or utilities using classic web tech. Illusion takes care of registration and launching—just write your app!
+
+Features
+
+Develop Kindle apps using only HTML, CSS, and ES5 JavaScript
+
+Simple scriptlet-based install: just copy your app folder and scriptlet to Kindle
+
+Fully documented—see the official site for a complete wiki, utilities, config guides, and FAQ
+
+Works on all modern jailbroken Kindles with Mesquite support
+
+How to Use
+
+For detailed setup instructions, developer documentation, and examples, visit the
+
+Illusion GitHub page
+.
+Everything you need—including sample projects, install scripts, and a full wiki—is there.
+
+Example: IllusionChess
+
+IllusionChess
+is a real open-source chess web app built using Illusion and Mesquite. Playable on Kindle e-readers.
+See the example at
+IllusionChess on GitHub
+.
+
+
+nano.html
+=========
+
+GNU Nano 8.x for Kindle – Terminal Text Editor (HF)
+
+← Back to Home
+
+GNU Nano 8.x for Kindle (HF)
+
+Nano 8.x
+is a terminal-first text editor packaged for Hardfloat (HF) Kindle builds. The package is available as
+nano.zip
+. Run the provided binary from the extracted folder with
+./nano
+. When connecting over SSH, set the terminal type first (for example
+export TERM=linux
+). Syntax highlighting can be enabled by passing a
+nanorc
+rules file using
+-f nanorc
+.
+
+Features
+
+Familiar terminal editing with standard Nano shortcuts (save, exit, search, cut/paste)
+
+Small, fast binary suitable for quick on-device edits
+
+Optional syntax highlighting via a
+nanorc
+rules file (use
+-f nanorc
+)
+
+Runs in KTerm or over SSH
+
+Requirements
+
+Hardfloat (HF) Kindle build only.
+The provided binary targets armhf/HF runtime.
+
+KTerm
+(on-device terminal) or SSH shell access.
+
+External keyboard (Bluetooth or USB) recommended for comfortable editing.
+
+How to Install
+
+Download:
+nano.zip
+.
+
+Extract the archive on your computer or copy the ZIP to the Kindle and extract it there.
+
+Place the extracted folder on the Kindle (for example under
+/mnt/us
+or
+/mnt/us/documents/nano
+).
+
+Make the binary executable if needed:
+
+chmod +x /path/to/nano
+
+If shared libraries are included, keep them next to the binary or ensure they are discoverable at runtime (rpath or
+LD_LIBRARY_PATH
+).
+
+How to Run
+
+Run locally on the Kindle:
+
+cd /path/to/extracted/folder
+./nano filename.txt
+
+Run over SSH:
+
+When launching from a desktop terminal via SSH, set the terminal type first:
+
+export TERM=linux
+./nano filename.txt
+
+Setting
+TERM
+can help Nano handle control keys correctly in SSH sessions.
+
+Enable syntax highlighting:
+Provide a nanorc rules file and pass it with
+-f
+:
+
+./nano -f nanorc filename.txt
+# or
+./nano -f ./nanorc myfile.c
+
+Troubleshooting
+
+Permission denied
+— possible causes:
+
+File not executable (
+chmod +x ./nano
+).
+
+Execution disabled on the mount being used; move the binary to a writable mount that permits exec (e.g.,
+/mnt/us
+).
+
+Executable ABI incompatible with the device (verify armhf/HF).
+
+Segfaults or immediate exits
+— possible causes and checks:
+
+ABI or shared library mismatches (ncurses or other libs).
+
+Try running with bundled libraries using
+LD_LIBRARY_PATH=./
+so the binary finds local libraries.
+
+Confirm the binary's architecture where possible.
+
+Key/terminal behavior over SSH
+— set
+TERM=linux
+before launching Nano to normalize control-key handling.
+
+Library search path
+— ensure libraries are found via rpath or
+LD_LIBRARY_PATH
+; host-side tools can adjust rpath before transfer if needed.
+
+Notes
+
+The distributed package targets HF (armhf) devices only; it will not work on non-HF/armel builds.
+
+Results may vary across firmware versions; verify compatibility with your device and firmware before use.
+
+An external keyboard greatly improves the editing experience.
+
+
+nethack.html
+============
+
+NetHack for Kindle – Classic Roguelike Port
+
+← Back to Home
+
+NetHack for Kindle
+
+The definitive roguelike is headed to Kindle. This page will track the NetHack port’s downloads, setup steps, and control mappings as soon as the build is ready for public testing.
+
+Project Status
+
+NetHack for Kindle is currently under active development. The installation package and documentation are being finalized before a public release.
+
+Bookmark this page or subscribe to the site updates so you are notified the moment the download becomes available.
+
+What to Expect
+
+Step-by-step installation instructions for hardfloat (HF) and softfloat (SF) Kindles.
+
+Recommended terminal settings and key bindings tailored to Kindle keyboards and touch controls.
+
+Tips for managing save files and backup runs inside KOReader or
+KTerm
+.
+
+Stay Tuned
+
+Have NetHack port updates to share? Reach out through the site’s contact channels and we’ll add the latest instructions here.
+
+In the meantime, explore the other titles in our
+Games collection
+to get your device ready.
+
+
+ninemensmorris.html
+===================
+
+Nine Men’s Morris for Kindle – KUAL (SF) & KTerm (HF)
+
+← Back to Home
+
+Nine Men’s Morris
+
+Enjoy the classic Nine Men’s Morris board game on your Kindle! Choose either the
+KUAL (softfloat)
+app or the
+KTerm (hardfloat)
+terminal-launched version.
+
+Softfloat (SF): KUAL App
+
+Who:
+For jailbroken Kindles with softfloat firmware and KUAL installed.
+
+How to Install (SF/KUAL)
+
+Download:
+
+MobileRead: Nine Men’s Morris (SF/KUAL)
+
+Unzip and place the extension in
+/mnt/us/extensions/
+on your Kindle.
+
+Open KUAL — Nine Men’s Morris will appear in your menu.
+
+How to Play (SF/KUAL)
+
+Launch Nine Men’s Morris directly from the KUAL menu.
+
+Notes (SF/KUAL)
+
+Menu-driven, classic gameplay. Perfect for e-ink!
+
+Hardfloat (HF): KTerm Version
+
+Who:
+For jailbroken Kindles with hardfloat firmware and the KTerm terminal emulator.
+
+How to Install (HF/KTerm)
+
+Download:
+
+morris-kindle.zip
+
+Unzip and copy the files to your Kindle.
+
+How to Play (HF/KTerm)
+
+Open KTerm and navigate (
+cd
+) to the game directory.
+
+Run the game with
+./morris-kindle
+.
+
+Notes (HF/KTerm)
+
+Disclaimer:
+The hardfloat (HF) version is known to be unstable on many devices — it often crashes and was not made as robustly as the softfloat/KUAL version. Use the HF build with caution and prefer the KUAL release if you want a more reliable experience.
+
+Credits
+
+Barna
+
+
+ota.html
+========
+
+Check OTA Status – Kindle Update Protection Tool
+
+← Back to Home
+
+CHECK OTA STATUS
+
+Check OTA Status
+is a quick, read-only script that checks whether Over-The-Air (OTA) updates are blocked on your Kindle. Instantly see if your device is protected from unwanted automatic updates and keep your jailbreak safe.
+
+DOWNLOAD
+
+Download most recent release:
+
+Check OTA Status on GitHub
+
+KEY FEATURES
+
+Instant OTA Checker:
+See at a glance whether your Kindle will auto-update or is protected.
+
+Persistent Status Display:
+Status message stays on screen until you tap to exit.
+
+Safe & Read-Only:
+Does not modify your device—purely informational.
+
+HOW TO INSTALL
+
+Download the most recent release (
+Check OTA Status on GitHub
+).
+
+Add it to the
+documents
+folder on your Kindle.
+
+Unplug your Kindle.
+
+Open the new “book” in your library.
+
+
+pageheader.html
+===============
+
+Page Header (KOReader Userpatch)
+
+← Back to Home
+
+Page Header (KOReader Userpatch)
+
+KOReader userpatch
+that mimics fiction-book page headers at the top of the screen—minimal, elegant, and configurable per book.
+
+Features
+
+Minimal, fiction-style header shown at the top of the screen.
+
+Per-book controls: font, size, margin, letter-spacing, and padding.
+
+Small-caps friendly; choose any installed font by filename.
+
+Chapter-first pages: header hides automatically (like print books).
+
+Cover pages: page number hidden (latest update).
+
+Optional tweak to hide bottom page number on chapter pages.
+
+Requirements
+
+KOReader
+installed on your Kindle.
+
+How to Install
+
+Download
+2-page-header.lua
+.
+
+On your Kindle, open the KOReader folder. If a folder named
+patches
+does not exist, create it.
+
+Place
+2-page-header.lua
+in the
+patches
+folder.
+
+Restart KOReader.
+
+Configure
+
+Open the top menu →
+Settings (cog)
+→
+Status Bar
+→
+Page Header
+.
+
+Set
+font
+(filename only),
+font size
+,
+margin
+,
+letter-spacing
+, and
+padding
+. These are saved per book.
+
+Prefer a small-caps font for the best look. If body text overlaps, increase the book’s
+top margin
+.
+
+Downloads
+
+2-page-header.lua
+
+Technical Notes
+
+Defaults:
+open the Lua file and find
+-- Defaults
+(around line 20) to set default font, size, margin, and letter-spacing.
+
+Font name:
+set the font by filename only (e.g.,
+EBGaramondSC.ttf
+), no paths; some fonts use
+.otf
+.
+
+Missing font:
+if a book references a font you later remove or rename, KOReader will show an error—pick a valid font in settings.
+
+Chapter-first page:
+the header intentionally hides and the page number moves to the bottom. To always hide the bottom page number, change
+if page_bottom or first_page_of_chapter then
+to
+if page_bottom then
+(around line 677).
+
+Cover page tweak:
+ensures the page number no longer shows on cover pages.
+
+Device notes:
+reported working well on Kindle Scribe; adjust margins and font size to taste.
+
+Credits
+
+Author:
+sandcastles
+
+Based on:
+2-reader-header-centered.lua
+by
+joshuacant
+and
+2--ui-font.lua
+by
+sebdelsol
+
+
+parentalcontrols.html
+=====================
+
+Forgot Parental Controls Password (Jailbreak Prep)
+
+← Back to Home
+
+Forgot Parental Controls Password?
+
+If parental controls are enabled and you’ve forgotten the password, you cannot jailbreak until they are disabled. WinterBreak requires access to the Kindle Store, which parental controls block.
+Use the official Amazon reset methods below, then follow the jailbreak precautions.
+
+Resetting Parental Controls — 6th Gen and Newer
+
+Forgot your parental controls password? Reset it using the following steps:
+
+On your Kindle, go to
+Settings
+→
+Parental Controls
+.
+
+Tap the passcode field.
+
+Enter:
+111222777
+and tap
+OK
+.
+
+This will perform a
+factory reset
+, which erases all data including the parental controls password, lock screen passcode, and downloaded content.
+
+Source:
+Amazon Help — Reset Parental Controls (6th Gen and newer)
+
+Resetting Parental Controls — 5th Gen
+
+If you’re using a Kindle 5th Gen model, follow these steps:
+
+On your Kindle, go to
+Settings
+→
+Parental Controls
+.
+
+In the passcode field, type:
+resetmykindle
+
+Press the
+Enter
+key (below the
+Del
+key).
+
+This will also perform a
+factory reset
+, removing all personal information, parental controls, and downloaded content.
+
+Source:
+Amazon Help — Reset Parental Controls (5th Gen)
+
+After the Reset
+
+Once the factory reset is complete:
+
+Your Kindle will be wiped clean.
+
+You’ll need to sign back in with your Amazon account
+later
+.
+
+Re-enter Wi-Fi credentials and re-download your books once it’s safe to connect.
+
+Important: Prevent Automatic Updates
+
+After a reset, as soon as the Kindle connects to Wi-Fi, Amazon will attempt to install the latest firmware update. If that update is applied, it
+will permanently block the jailbreak
+.
+
+Unless you have a very old Kindle that Amazon no longer updates, this step is
+absolutely crucial
+.
+
+Before signing in or connecting to Wi-Fi, completely fill the Kindle’s storage to 100%.
+
+Use dummy files or a storage filler tool to ensure no free space remains.
+
+Only after the Kindle is fully filled should you connect to the Internet and sign in to your Amazon account.
+
+
+plugins.html
+============
+
+KOReader Plugins
+
+← Back to Home
+
+KOReader Plugins
+
+Plugins extend KOReader — add downloaders, sync tools, UI tweaks, clocks, dictionaries, and other handy features.
+
+Cool stuff
+
+ProjectTitle
+
+Notes
+
+Crossword
+
+Anki
+
+Reader Menu Redesign
+
+Digital Clock
+
+Reading Ruler
+
+Calculator
+
+Weight Tracker
+
+Smart Delete
+
+KOWeather (local page)
+
+Web Browser
+
+Assistant
+
+Go To Bed
+
+Reading & Sync Services
+
+Readeck (flip-rossi)
+
+Readeck (iceyear)
+
+Wallabag 2
+
+HardcoverApp
+
+PocketBook Cover
+
+PocketBook Sync
+
+Zotero
+
+Audiobookshelf
+
+WebDAV Highlights Provider
+
+Gota for Raindrop
+
+LibGen OPDS
+
+Z-Library Plugin (local page)
+
+AnnotationSync
+
+SuperSync
+
+Communication
+
+Telegram Downloader
+
+Telegram Highlights
+
+Comics
+
+Comic Meta
+
+Comic Reader
+
+Clocks & Display
+
+dtDisplay (local page)
+
+Clock
+
+dtDisplay (GitHub)
+
+Dictionaries & Vocabulary
+
+Dictionary Mode
+
+WordReference
+
+Vocabulary
+
+Productivity & Utilities
+
+Beeminder
+
+To-Do
+
+KaraKeep
+
+FileBrowser+
+
+Icons Changer
+
+Airplane Mode
+
+CrashLog
+
+Games & Puzzles
+
+Connections
+
+AO3 Tools
+
+AO3 Downloader
+
+AO3 Updater
+
+Reading UI & Enhancements (Local Pages)
+
+Page Header (Userpatch)
+
+ProjectTitle (local page)
+
+Missing something? Ping me and I’ll add it.
+
+
+projecttitle.html
+=================
+
+ProjectTitle – Modern Library View for KOReader
+
+← Back to Home
+
+ProjectTitle
+
+A redesigned KOReader book browser inspired by Cover Browser. ProjectTitle delivers cover-first navigation, smart progress tracking, and gesture-driven layout controls tailored to modern Kindle libraries.
+
+Overview
+
+ProjectTitle replaces KOReader’s default Cover Browser with a polished interface that emphasises library artwork, reading progress, and quick navigation shortcuts.
+
+Download
+
+Releases Page
+– Download the version matching your KOReader build exactly.
+
+Features
+
+Enhanced Title Bar
+– Quick access to Favorites, History, Open Last Book, and Up Folder.
+
+Visual Book Listing
+– Custom fonts, icons for missing covers, and optional progress bars showing book length.
+
+Clean Folders
+– Display as cover images, thumbnails, or icons.
+
+Configurable Footer
+– Show folder paths or device status (time, Wi-Fi, battery, frontlight).
+
+Updated Status Page
+– Stylish screensaver view with book description and completion progress.
+
+Trophy Icons
+– Mark finished books at a glance.
+
+Gesture Controls
+– Pinch or spread to resize items.
+
+Library Mode
+– Long-press the origami bird to view all books sorted by author or series.
+
+Auto-scan
+– Detect new books after USB eject.
+
+Filenames Mode
+– Optional barebones listing (v2025.08v3.5+).
+
+Installation
+
+Kindle Only:
+
+Download the release that matches your KOReader version.
+
+Extract the archive and copy the
+projecttitle.koplugin
+folder to
+koreader/plugins/
+.
+
+Copy the bundled fonts to
+koreader/fonts/
+.
+
+Copy the icons to
+koreader/resources/icons/
+.
+
+Restart KOReader.
+
+Navigate to
+Menu → Tools → Plugin Management
+and disable
+Cover Browser
+.
+
+Restart KOReader again so ProjectTitle becomes the default browser.
+
+Uninstall:
+Re-enable Cover Browser in Plugin Management, then delete the ProjectTitle plugin folder, fonts, and icons.
+
+How to Use
+
+Open ProjectTitle settings in KOReader via
+Menu → Tools → More Tools → Project: Title
+.
+
+Review the full documentation for customization tips:
+ProjectTitle Wiki
+.
+
+Notes
+
+Release versions must match KOReader exactly.
+
+Works best with libraries that have clean metadata and cover images.
+
+Optional Calibre integration powers the reading progress bars.
+
+Links
+
+GitHub
+
+Installation Guide
+
+Calibre Setup
+
+Credits
+
+Based on Cover Browser by @poire-z and the KOReader team
+
+Modified by @joshuacant and @elfbutt
+
+
+screencontrol.html
+==================
+
+screenControl – Remote Control & Automate Your Kindle from Your Computer
+
+← Back to Home
+
+screenControl – Remote Control & Automate Your Kindle
+
+screenControl
+lets you view and interact with your Kindle’s screen remotely, straight from your web browser.
+Adapted from a leaked developer firmware and improved for the Kindle modding community, screenControl enables wireless automation, remote control, and seamless interaction with your e-reader from any computer on your local network.
+
+What Does screenControl Do?
+
+Remote screen viewing:
+See your Kindle’s display in real time through your web browser.
+
+Remote control:
+Send clicks and interact with the Kindle interface from your computer.
+
+Works on both softfloat (SF) and hardfloat (HF) Kindles.
+
+No known risk of bricking your Kindle when used as intended.
+
+Features
+
+Connect from any computer or phone using a web browser
+
+See live updates of your Kindle screen
+
+Click anywhere on the Kindle screen from your browser to interact
+
+Automate tasks by sending clicks or scripts
+
+Supports both SF and HF Kindle firmwares (tested up to 5.18.x)
+
+Perfect for automation, bulk book downloads, or DeDRM workflows
+
+Installation
+
+Download:
+
+screenControl.tar.gz
+
+Extract the archive on your computer.
+
+Copy the extracted files to your Kindle’s
+/mnt/us/extensions/
+directory.
+
+Optional:
+To use from KUAL, make a KUAL-compatible folder/script, or run the .sh script directly in KTerm.
+
+Start the script from KUAL or by running it in your terminal emulator.
+
+How to Use
+
+Find your Kindle’s IP address:
+
+Open KTerm and run
+ip a
+to display your Kindle’s IP address.
+
+Connect from your browser:
+
+On any device on the same network, go to:
+
+http://[your-kindle-ip]:6789
+
+(Example:
+http://192.168.0.69:6789
+)
+
+Interact with your Kindle:
+
+The Kindle screen displays in your browser. Click anywhere to control—tap buttons, turn pages, automate actions, or test scripts.
+
+Tips & Troubleshooting
+
+Not showing up in KUAL?
+Make sure the folder/script is placed in
+/mnt/us/extensions/
+.
+
+Script not appearing as a book?
+Only .sh scripts appear as books—make a KUAL wrapper for easier access if needed.
+
+To stop screenControl:
+Restart your Kindle, or run
+killall screenControlHF
+or
+killall screenControl
+in KTerm.
+
+Lag or slow updates?
+Display speed depends on your network and Kindle model.
+
+Safe to use:
+There are no known risks of bricking your Kindle when using screenControl as intended.
+
+Advanced Uses
+
+Developers can use screenControl to test Kindle apps, debug layouts, or automate repetitive tasks.
+
+The tool supports sending click events programmatically, so you can automate actions or integrate it into scripts.
+
+Notes
+
+Compatible with both softfloat (SF) and hardfloat (HF) Kindle firmware.
+
+Use screenControl for automated workflows: Automate the downloading of multiple books, DeDRM, or complex interactions without manual taps.
+
+screenControl
+is a unique way to interact with and automate your Kindle wirelessly—control it remotely, automate tasks, and streamline your e-reader workflow.
+
+
+shortcuts.html
+==============
+
+Home Screen Shortcuts – Quick Access Launchers for Kindle Mods
+
+← Back to Home
+
+Home Screen Shortcuts
+
+Home Screen Shortcuts
+are a quick and beautiful way to access your Kindle mods directly from the Home screen. Each shortcut launches an installed app or script instantly — no KUAL needed.
+
+Installation Steps
+
+Select the shortcuts you want to add and download them from the list below.
+
+Copy them to the
+/mnt/us/documents
+folder on your Kindle.
+
+Disconnect your Kindle from your computer.
+
+After a few seconds, they will appear like books on your Kindle Home screen.
+
+Shortcut Files
+
+Alpine.sh
+
+Alpine mail client launcher — drop into
+/mnt/us/documents
+.
+
+KOReader.sh
+
+KOReader launcher — opens KOReader directly from the Home screen.
+
+KindleFetch.sh
+
+KindleFetch utility launcher.
+
+Kterm.sh
+
+KTerm terminal launcher.
+
+shortcut_gambatte-k2.sh
+
+Game Boy emulator launcher for hardfloat Kindles.
+
+gargoyle.sh
+
+Text adventure (Infocom) emulator launcher.
+
+koreader_launcher_asap.sh
+
+KOReader ASAP launcher — opens KOReader instantly.
+
+Notes
+
+If a shortcut doesn't run, confirm the file is executable and located in
+/mnt/us/documents
+.
+
+If a shortcut doesn’t appear, restart your Kindle and wait — it should show up within a minute.
+
+These scripts are simple launchers that call the actual app start scripts on your device. You must have the corresponding app installed for them to work.
+
+
+snake.html
+==========
+
+Snake for Kindle – Classic Arcade Game (Illusion App)
+
+← Back to Home
+
+Snake for Kindle
+
+Snake
+brings the classic arcade game to your Kindle e-reader. Eat food to grow, avoid walls and your own tail. Built with Illusion and tuned for e-ink.
+
+Features
+
+Classic Snake gameplay
+
+Arrow-button controls
+(▲ ◀ ▶ ▼)
+
+Score tracking
+
+Progressive difficulty as the snake grows
+
+E-ink-optimized visuals
+
+Requirements
+
+Jailbroken Kindle with Mesquite support
+
+Illusion framework compatibility
+
+How to Install
+
+Download
+snake.zip
+
+Unzip the file on your computer (uncompressed folder +
+.sh
+script)
+
+Place the
+.sh script
+and the
+folder
+in your Kindle’s
+documents
+folder
+
+Disconnect your Kindle
+
+Tap the new book in your Kindle library to launch
+
+How to Play
+
+Use the on-screen arrow buttons to change direction
+
+Eat the food to grow longer and increase your score
+
+Avoid hitting the walls or your own tail
+
+Relive the classic Snake experience on Kindle!
+
+
+sox.html
+========
+
+SOX Media Player for Kindle – Bluetooth Audio Playback
+
+← Back to Home
+
+SOX Media Player
+
+SOX Media Player
+lets you play music, audiobooks, and internet streams over Bluetooth directly on your Kindle. Supports WAV, MP3, FLAC, OGG, and many other audio formats. Versions are available for both
+softfloat (SF)
+and
+hardfloat (HF)
+firmware.
+
+Features
+
+Bluetooth audio playback for music, audiobooks, and internet streams
+
+Supports WAV, MP3, FLAC, OGG, AIFF, AU, GSM, RAW, CAF, VOC, W64, WVE, XA, XI, and more
+
+Playlist support: M3U, PLS
+
+Simple KUAL-based interface
+
+Custom internet radio/stream support via editable
+menu.json
+
+Requirements
+
+Kindle with Bluetooth support
+
+Jailbroken with
+KUAL
+installed
+
+Download either SF (softfloat) or HF (hardfloat) version matching your Kindle firmware
+
+How to Install
+
+Install through Kindle Forge (recommended):
+
+Click the download button in Kindle Forge for SOX once installed. It will appear in KUAL automatically.
+
+Manual installation:
+
+Visit the
+official SOX Media Player thread
+and download the correct zip for your firmware (SF or HF).
+
+Unzip the file on your computer.
+
+Copy the
+SOX
+folder to
+/mnt/us/extensions/
+on your Kindle.
+
+Place your music or audiobooks in
+/mnt/us/music/
+on your Kindle.
+
+Safely eject and disconnect your Kindle.
+
+How to Use
+
+Pair your Bluetooth audio device with your Kindle via Settings.
+
+Open
+KUAL
+on your Kindle.
+
+Launch
+SOX Media Player
+from the KUAL menu.
+
+For internet radio, edit
+menu.json
+to add custom streams (see the README and forum thread for setup details).
+
+Notes & Troubleshooting
+
+All files in a single playlist or call must share the same format, rate, channels, and bit depth.
+
+Bluetooth may sometimes disconnect; if playback freezes, reconnect your device or restart the Kindle.
+
+AAC files are not supported
+— playback attempts will fail.
+
+Ensure your device is properly paired before launching SOX for smoother performance.
+
+Credits
+
+dhdurgee
+
+
+storagetool.html
+================
+
+StorageTool – Kindle Storage Management
+
+← Back to Home
+
+StorageTool
+
+StorageTool is a storage management utility for jailbroken Kindles.
+
+Analyze, visualize, and organize your ebook collection to keep storage under control.
+
+Download
+
+StorageTool on GitHub
+
+Requirements
+
+KTerm
+
+Installation
+
+Method 1: One-Line Install (Recommended)
+
+On your Kindle, open KUAL and launch KTerm.
+
+Run the following command:
+
+curl https://jpt.bio/StorageTool/install.sh | sh
+
+Restart KUAL to see StorageTool in your menu.
+
+Method 2: Direct Installation
+
+Copy the
+storagetool
+folder to your Kindle's
+/mnt/us/extensions/
+directory.
+
+Restart KUAL to see StorageTool in your menu.
+
+Usage
+
+Launch StorageTool from the KUAL menu. From there, you can:
+
+Storage Overview: View your Kindle's overall storage usage.
+
+Scan Books Directory: Analyze your books directory for size and file types.
+
+Analyze by File Type: See a breakdown of book formats and their storage usage.
+
+Recent Files: View recently added or modified books.
+
+Find Duplicates: Identify potential duplicate books.
+
+Settings: Configure StorageTool options and set your books directory.
+
+Check for Updates: Automatically check for and install the latest version of StorageTool.
+
+Credits
+
+Made by
+jkpth
+
+Inspired by
+KindleFetch
+
+
+subscribe.html
+==============
+
+Subscribe – Kindle Modding Tools & Resources
+
+Subscribe for Updates
+
+Get the latest Kindle modding tools, jailbreak guides, and screensaver images right in your inbox.
+
+Subscribe
+
+Thanks for subscribing! You'll receive updates about new Kindle mods and tools.
+
+
+sudoku.html
+===========
+
+Sudoku for Kindle – Classic Puzzle Game (Illusion App)
+
+← Back to Home
+
+Sudoku for Kindle
+
+Sudoku
+brings the classic number puzzle game to your Kindle e-reader. Built with the Illusion framework, enjoy Sudoku puzzles with multiple difficulty levels—optimized for e-ink displays.
+
+Features
+
+Classic 9×9 Sudoku gameplay
+
+Multiple difficulty levels
+
+Touch to select a cell; use on-screen number buttons
+
+Clean interface designed for e-ink
+
+Works offline—no internet required
+
+Requirements
+
+Jailbroken Kindle with Mesquite support
+
+Illusion framework compatibility
+
+How to Install
+
+Download
+sudoku.zip
+
+Unzip the file on your computer (uncompressed folder +
+.sh
+script)
+
+Place the
+.sh script
+and the
+folder
+in your Kindle’s
+documents
+folder
+
+Disconnect your Kindle
+
+Tap the new book in your Kindle library to launch
+
+How to Play
+
+Tap a cell to select it
+
+Use the on-screen number buttons to fill or change a digit
+
+Complete the grid so each row, column, and 3×3 box has 1–9 with no repeats
+
+Challenge your mind with Sudoku on your Kindle!
+
+
+telegram.html
+=============
+
+KOReader Telegram Highlights Plugin – Send Kindle Highlights & Screenshots to Telegram
+
+← Back to Home
+
+KOReader Telegram Highlights Plugin
+
+A beautiful way to instantly send Kindle book highlights and screenshots from
+KOReader
+to your Telegram account using the
+@bookshotsbot
+Telegram bot.
+
+Features
+
+Send highlights and selected text from KOReader directly to Telegram
+
+Share Kindle screenshots to Telegram in seconds
+
+Bulk upload all bookmarks or individual highlights
+
+Auto Wi-Fi toggle: turns Wi-Fi on to send, then off (where supported)
+
+Customize quote images using the Telegram miniapp (backgrounds, colors, Unsplash photos)
+
+Requirements
+
+KOReader
+installed on your Kindle or e-reader
+
+Telegram account
+
+Wi-Fi enabled for sending highlights and screenshots
+
+How to Install
+
+Download the latest release from
+the GitHub repository
+.
+
+Unzip the downloaded file. You’ll get a folder named
+telegramhighlights.koplugin
+.
+
+Copy this folder to your KOReader
+plugins
+directory.
+
+Restart KOReader. The plugin appears under
+Tools → Telegram Highlights
+.
+
+How to Set Up
+
+Start a chat with
+@bookshotsbot
+on Telegram and get your verification code.
+
+In KOReader, open the Telegram Highlights plugin from the
+Tools
+menu and enter your code.
+
+How to Use
+
+Send a highlight:
+Select text, open the highlight menu, and tap
+Send to Bot
+or
+Save & Send
+.
+
+Send a bookmark:
+Long-press a bookmark, then tap
+Send to Bot
+. To send all bookmarks, go to
+Bookmarks → Menu → Send all to Bot
+.
+
+Send a screenshot:
+Swipe diagonally to capture, then select
+Send to Bot
+in the dialog.
+
+Customization
+
+Use the Telegram miniapp to change quote backgrounds, colors, or add Unsplash images. Launch the miniapp from the Highlights screen in KOReader.
+
+Credits
+
+Developed by
+Miki
+.
+
+
+telnet.html
+===========
+
+Telnet for Kindle – Remote Command Line Tool for Jailbroken Kindles
+
+← Back to Home
+
+Telnet for Kindle – Remote Command Line Tool
+
+Telnet for Kindle
+is a lightweight server script that enables remote command-line (CLI) access to your jailbroken Kindle.
+Connect from your computer over a local network to manage your Kindle, debug scripts, or perform quick system operations without USB.
+
+What Is Telnet for Kindle?
+
+This script opens a Telnet server on your Kindle so you can connect to it remotely via any Telnet client. Touching the Kindle screen closes the session.
+A title bar and icon are included for user visibility.
+
+Security Note:
+Telnet is unencrypted. Only use on secure local networks.
+For encrypted access, use
+SSH instead
+.
+
+Features
+
+Remote shell access over your local network
+
+Tap the Kindle screen to close the session
+
+Extremely lightweight and fast to launch
+
+Useful for debugging, recovery, or remote system management
+
+Requirements
+
+Jailbroken Kindle
+
+KUAL or KTerm
+to run scripts
+
+A computer and Kindle on the same Wi-Fi network
+
+Installation & Usage
+
+Download
+Telnet.sh
+from the project repository or release page.
+
+Copy
+Telnet.sh
+to
+/mnt/us/extensions/
+on your Kindle.
+
+Run it via KUAL or with this KTerm command:
+sh /mnt/us/extensions/Telnet.sh
+
+From your computer, use any Telnet client to connect to your Kindle’s IP address.
+
+To end the session, tap the Kindle screen.
+
+Technical Notes
+
+Touchscreen event detection cleanly terminates the Telnet server
+
+No persistent installation—server stops after session ends
+
+Low system resource use, ideal for minimal debugging tasks
+
+Use Telnet for quick, local command-line access to your Kindle without USB or SSH.
+
+
+template.html
+=============
+
+{{Page Title}} – {{Short Tagline}}
+
+← Back to Home
+
+{{Page Title}}
+
+{{Page Keyword}}
+{{Short description or intro sentence about this mod/app/tool.}}
+
+Features
+
+Feature one description
+
+Feature two description
+
+Requirements
+
+Requirement one
+
+How to Install
+
+Download
+{{filename}}.zip
+
+Unzip and place files/folders as needed
+
+How to Use
+
+Usage step or tip #1
+
+Downloads
+
+Latest Release:
+
+Download link
+
+Technical Notes
+
+Technical detail or tip
+
+Credits
+
+Contributor or maintainer name
+
+{{One-sentence wrap-up, encouragement, or call to action.}}
+
+
+tetris.html
+===========
+
+Tetris for KTerm (HF Only) – Classic Tetris for Jailbroken Kindles
+
+← Back to Home
+
+Tetris for KTerm (HF Only)
+
+Play classic
+Tetris
+on your jailbroken Kindle, right in the terminal.
+
+Tetris for KTerm
+is a lightweight terminal-based Tetris game for Kindles running hardfloat (HF) firmware—no emulator needed.
+
+Requirements
+
+Jailbroken Kindle with hardfloat (HF) firmware
+
+KTerm terminal
+installed
+
+How to Install
+
+Download the game:
+
+Download kindletetris.zip
+
+Unzip the file on your computer.
+
+Copy the extracted files to your Kindle. Place them in your preferred directory (e.g.,
+/extensions
+).
+
+Eject and disconnect your Kindle from your computer.
+
+How to Play
+
+Open
+KTerm
+on your Kindle.
+
+Navigate to the directory where you placed the Tetris files using the
+cd
+command.
+
+Start the game by typing:
+./kindletetris
+
+Enjoy classic Tetris directly in the terminal window!
+
+Notes
+
+This version works
+only
+on hardfloat (HF) firmware models. It is not compatible with softfloat (SF) devices.
+
+You must launch Tetris from inside KTerm; it is not a standalone app or menu item.
+
+Want Game Boy Tetris? Use a Game Boy emulator instead for easier playing.
+
+Credits
+
+Developed by
+Barna
+.
+
+
+textadept.html
+==============
+
+Textadept for Kindle – Desktop-grade Text Editor (HF)
+
+← Back to Home
+
+Textadept for Kindle
+
+Textadept
+is a compact, desktop-grade text editor brought to Kindle (HF). Fast, scriptable in Lua, and packed with developer features — multi-buffer, split view, lexer-based highlighting, and a command palette. Includes both a GTK-based graphical interface and a CLI interface for KTerm.
+
+Features
+
+Multi-buffer editing and split views (side-by-side)
+
+Lexer-based syntax highlighting for many languages
+
+Command palette for quick commands and actions
+
+Completely scriptable and extensible in
+Lua
+
+Graphical GTK UI & a lightweight CLI interface that runs in KTerm
+
+Small footprint and fast startup — suited to HF Kindle builds
+
+Requirements
+
+Hardfloat (HF) Kindle build only
+— Textadept requires HF runtime support
+
+Mesquite / Illusion environment for GUI integration (if using GTK frontend)
+
+KTerm
+(terminal) available for CLI usage
+
+External Bluetooth keyboard recommended (see Bugs)
+
+How to Install
+
+Download
+textadept.zip
+
+Either:
+
+Unzip on your computer and copy the resulting folder and any included
+.sh
+launcher to your Kindle's
+documents
+folder, or
+
+Copy the zip to the Kindle and extract it on-device (if you prefer extracting directly on the Kindle).
+
+If there is a launcher script (
+.sh
+), make it executable and place it in
+/mnt/us/documents
+so it appears as a tappable "book" on the Home screen.
+
+To run the terminal interface, open KTerm and launch the included CLI binary or wrapper script from the Textadept folder.
+
+For the GUI, launch the supplied GTK frontend (requires Mesquite / Illusion integration and HF runtime).
+
+How to Use
+
+CLI (KTerm):
+Open KTerm and run the included textadept CLI. Ideal when using the Kindle touchscreen + on-screen keyboard or when GTK is not usable.
+
+GUI (GTK):
+Launch the GTK interface for mouse-like menus, split panes, and the command palette. Best with an external keyboard for shortcuts.
+
+Use the command palette to quickly open files, switch buffers, or run Lua commands.
+
+All editor functionality is scriptable — read the included Lua snippets and the manual to extend behavior and add shortcuts.
+
+Known Issues
+
+Software keyboard bug:
+When using the GTK graphical interface, the Kindle's software keyboard may disappear when a modal dialog opens. This is a known GTK integration issue.
+
+Workaround: use a Bluetooth/external keyboard or use the KTerm CLI interface until the dialog/keyboard issue is resolved.
+
+If you encounter crashes or missing lexers, check the included log or open the CLI to see error output.
+
+Documentation
+
+Read the included
+manual
+and
+API
+files in the Textadept folder for usage, keyboard shortcuts, and Lua extension examples.
+
+Command palette and keybindings are configurable via Lua — the docs show sample bindings for common editing tasks.
+
+Textadept brings a desktop-grade editing experience to HF Kindles. If you use an external keyboard or prefer terminal workflows, it's a powerful and lightweight editor worth learning.
+
+
+tictactoe.html
+==============
+
+TicTacToe – Kindle KUAL Game
+
+← Back to Home
+
+TicTacToe
+
+Classic TicTacToe for Kindle launchable from KUAL.
+
+Install the extension to play quick matches on your jailbroken device.
+
+Download
+
+TicTacToe
+
+Requirements
+
+KUAL
+
+Instructions
+
+Download from
+TicTacToe
+.
+
+Unzip the archive and move the
+tictactoe
+directory to the
+extensions
+folder on your Kindle.
+
+Open KUAL and launch TicTacToe.
+
+Credits
+
+progzone122
+
+
+towerofhanoi.html
+=================
+
+Tower of Hanoi for Kindle – Classic Puzzle Game (Illusion App)
+
+← Back to Home
+
+Tower of Hanoi for Kindle
+
+Tower of Hanoi
+is the classic logic puzzle: move the stack of disks to another peg, one at a time, without placing a larger disk on a smaller one.
+
+Features
+
+Classic Tower of Hanoi gameplay
+
+Multiple difficulty options (vary disk count)
+
+Move counter to track efficiency
+
+E-ink-friendly visuals
+
+Requirements
+
+Jailbroken Kindle with Mesquite support
+
+Illusion framework compatibility
+
+How to Install
+
+Download
+tower-of-hanoi 2.zip
+
+Unzip the file on your computer (uncompressed folder +
+.sh
+script)
+
+Place the
+.sh script
+and the
+folder
+in your Kindle’s
+documents
+folder
+
+Disconnect your Kindle
+
+Tap the new book in your Kindle library to launch
+
+How to Play
+
+Move all disks from the first peg to the last peg
+
+Only one disk may be moved at a time
+
+No larger disk may be placed on a smaller disk
+
+Minimum moves for
+n
+disks is
+2^n − 1
+
+Challenge yourself with the Tower of Hanoi on Kindle!
+
+
+universalpaperclips.html
+========================
+
+Universal Paperclips for Kindle – Idle Clicker Game Webapp
+
+← Back to Home
+
+Universal Paperclips
+
+Universal Paperclips
+is an idle clicker game where you play as an AI obsessed with making paperclips.
+This version runs as a webapp on any jailbroken Kindle e-reader, so you can play right on your device — using the terminal and Mesquite browser.
+
+About the Game
+
+Classic incremental game by Frank Lantz (originally released in 2017)
+
+Start by clicking to make single paperclips, then automate your factory and take over the world — one paperclip at a time!
+
+Inspired by Nick Bostrom’s thought experiment about AI and unintended consequences
+
+Requirements
+
+Jailbroken Kindle e-reader
+
+KTerm terminal
+installed
+
+How to Install
+
+Download the game:
+
+Download Paperclips.zip
+
+Unzip the file on your computer.
+
+Copy the extracted files to your Kindle (place them in your preferred directory, such as
+/extensions
+or
+/documents
+).
+
+Eject and disconnect your Kindle.
+
+How to Play
+
+Open KTerm on your Kindle.
+
+Navigate to the Paperclips directory using
+cd
+.
+
+Run the game with:
+./paperclips
+
+Enjoy turning the world into paperclips — right in your Kindle terminal using the Mesquite browser!
+
+Notes
+
+Works on all modern jailbroken Kindles.
+
+You must launch via KTerm; the game does not appear as a standalone app.
+
+Display and layout are tuned for Kindle PW5 (1200×1600 px) but work on other models as well.
+
+A full playthrough has not been completed — expect possible visual glitches in later stages.
+
+Performance may slow down as more paperclips are produced.
+
+Credits
+
+Barna
+
+
+usbnetlite.html
+===============
+
+usbnetlite (HF Only) — SSH over USB & Wi-Fi
+
+← Back to Home
+
+usbnetlite (HF Only) — SSH over USB & Wi-Fi
+
+SSH into your Kindle via Wi-Fi or a USB cable using the streamlined usbnetlite package for hardfloat devices.
+
+Download
+
+usbnetlite releases on GitHub
+
+Credits
+
+notmarek
+
+Install via MR Package
+
+Download
+the correct
+update_*.bin
+file for your firmware version from the usbnetlite project’s Releases page.
+
+Do not extract or unzip
+anything — you need the raw
+.bin
+file.
+
+Copy
+the
+.bin
+file into the
+mrpackages
+folder on your Kindle’s USB storage (create
+mrpackages
+if it doesn’t exist).
+
+On your Kindle, open
+KUAL
+→ go to
+Helper → Install MR Packages
+. This will install the
+.bin
+you placed in
+mrpackages
+.
+
+Optional: type
+;log mrpi
+in the Kindle search bar to check MR installer logs if troubleshooting is needed.
+
+Once installed, usbnetlite will appear in the KUAL menu and can be launched from there.
+
+Connection Info (default config)
+
+Edit the config file if needed (can be done in KOReader). Default login credentials are:
+
+username: root
+password: kindle
+
+Once usbnetlite is running, you can enable/disable USB networking directly from KUAL.
+
+Quick Launch
+
+Install the MR package as described above.
+
+Open KUAL → find
+usbnetlite
+in the menu → launch.
+
+Use the KUAL interface to toggle USB networking.
+
+Notes
+
+This page contains only the minimal, corrected steps — always follow the project’s Releases for firmware-specific builds.
+
+
+z-library.html
+==============
+
+KOReader Z-Library Plugin – Download Books from Z-Library on Kindle
+
+← Back to Home
+
+KOReader Z-Library Plugin
+
+The
+KOReader Z-Library Plugin
+lets you download books from Z-Library directly on your Kindle, right from within KOReader—no computer needed.
+
+Features
+
+Download books from Z-Library directly in KOReader
+
+Easy, integrated plugin interface—no need to use a separate device
+
+Works with both free and paid Z-Library accounts
+
+How to Set Up
+
+Download the repository as a ZIP:
+
+Download KOReader Z-Library Plugin (GitHub)
+
+Unpack the ZIP file.
+
+Copy the unpacked folder into your Kindle at
+koreader/plugins
+.
+
+Restart KOReader if it's running.
+
+You will need to log in to Z-Library from your Kindle.
+
+Open KOReader, open the Z-Library plugin from the top menu, and enter your Z-Library account details.
+
+Usage Notes
+
+Free Z-Library accounts are limited to 10 downloads per day. Paid accounts have higher limits.
+
+After logging in, you can browse and download books directly using the plugin interface.
+
+Important Safety and Privacy Notice
+
+Always use the real Z-Library website:
+
+Only trust the current, official Z-Library link—get it from their official X account:
+
+https://x.com/z_lib_official
+
+Fake Z-Library sites may contain malware or spyware.
+
+Privacy:
+
+You will log in to Z-Library from your Kindle. Kindles do not have built-in VPN or advanced privacy features—your activity can be tracked.
+
+Summary
+
+The KOReader Z-Library Plugin offers a simple way to expand your Kindle library with books from Z-Library—without leaving KOReader or needing another device.
+
+Always use the official site and keep your account safe.
