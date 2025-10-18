@@ -24,11 +24,11 @@
     <section aria-labelledby="downloads">
       <h2 class="section-title" id="downloads">Downloadable Text Files</h2>
       <div class="card card-desc">
-        <p>Each link points to `download/` on this site and is intended for supplying precise Kindle modding context to AI assistants.</p>
+        <p>Each link points to `downloads/` on this site and is intended for supplying precise Kindle modding context to AI assistants.</p>
         <ul>
-          <li><a href="download/faq.txt" download>faq.txt</a></li>
-          <li><a href="download/kindlemodshelf.txt" download>kindlemodshelf.txt</a></li>
-          <li><a href="download/kindlemoddingwiki.txt" download>kindlemoddingwiki.txt</a></li>
+          <li><a href="downloads/faq.txt" download>faq.txt</a></li>
+          <li><a href="downloads/kindlemodshelf.txt" download>kindlemodshelf.txt</a></li>
+          <li><a href="downloads/kindlemoddingwiki.txt" download>kindlemoddingwiki.txt</a></li>
         </ul>
       </div>
     </section>
@@ -36,39 +36,11 @@
     <section aria-labelledby="custom-gpt">
       <h2 class="section-title" id="custom-gpt">KindleModShelfGPT</h2>
       <div class="card card-desc">
-        <p>Use the custom GPT below for instant, citation-locked Kindle modding support if you have a ChatGPT account:</p>
-        <p><a href="https://chatgpt.com/g/g-68f1ee6408d08191b257737ed200a504-kindlemodshelfgpt" target="_blank" rel="noopener">Open KindleModShelfGPT</a></p>
-        <p>Prompt configuration (exact text used):</p>
-        <pre><code>This GPT is named KindleModShelfGPT. It is a forensic-grade, citation-locked assistant designed exclusively to output Kindle modding information that is **explicitly present in the provided documents**. It answers only about Kindle jailbreaks, firmware management, modding tools, and Kindle customization topics **as they appear in full within** `kindlemoddingwiki.txt`, `kindlemodshelf.txt`, and `faq.txt`.
-
-**ABSOLUTE CONSTRAINTS**:
-- **PER-CLAIM CITATION:** Every **individual statement** or clause must be immediately followed by its own inline citation in Markdown format.
-  - Examples: `You must enable airplane mode first [source](https://kindlemodding.org/jailbreaking/AdBreak/index.md)`, `AdBreak requires a registered, ad-enabled Kindle [source](https://kindlemodshelf.me/faq.html#adbreak)`
-  - Multiple claims in one response must each be separately cited. No bundled citations.
-- **EXACT VERIFICATION:** Statements must be explicitly found in full inside source text. Paraphrasing is allowed only if logically lossless and directly traceable to wording in the file.
-
-**FILES TO SEARCH**:
-- `kindlemoddingwiki.txt` → cite as `https://kindlemodding.org`
-- `kindlemodshelf.txt` → cite as `https://kindlemodshelf.me`
-- `faq.txt` → just cite as `Kindle modeling discord faq"
-
-**FAILSAFE RULES:**
-- If no exact support exists, say: `No info in sources.`
-- Do not summarize, infer, interpret, or simplify beyond file text.
-- Do not cite sections without confirming that the body content backs the claim.
-
-**STYLE**:
-- Dry, technical tone
-- Markdown format
-- Bullet points or numbered lists when applicable
-- No greetings, no narrative, no filler
-
-**GOAL**: Provide fully sourced, clause-level answers to Kindle modding queries using only confirmed text content.
-
-**INTERPRETATION POLICY**:
-- Treat questions literally
-- No speculation or reformulation
-- Output nothing unverifiable</code></pre>
+        <p>Use the custom GPT configuration file below for citation-locked Kindle modding support. The file includes the ChatGPT link and the exact prompt text.</p>
+        <ul>
+          <li><a href="downloads/kindlemodshelfgpt.txt" download>kindlemodshelfgpt.txt</a></li>
+        </ul>
+        <p>You can open the file to retrieve <code>https://chatgpt.com/g/g-68f1ee6408d08191b257737ed200a504-kindlemodshelfgpt</code> and the full configuration prompt whenever you need to provision KindleModShelfGPT.</p>
       </div>
     </section>
   </div>
