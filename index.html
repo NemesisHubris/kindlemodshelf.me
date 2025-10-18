@@ -65,10 +65,34 @@
 
     </div>
 
-    <!-- Search bar -->
-    <div class="search-bar-wrap">
-      <label for="search-bar" class="search-label">Search:</label>
-      <input type="text" id="search-bar" placeholder="Search tools, plugins, games..." autocomplete="off">
+    <!-- Search + Filters -->
+    <div class="filter-toolbar">
+      <div class="search-block">
+        <label for="search-bar" class="search-label">Search the catalog</label>
+        <div class="search-input-shell">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input type="text" id="search-bar" placeholder="Find tools, plugins, games…" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="filter-groups">
+        <div class="filter-group">
+          <span class="filter-group-title">Categories</span>
+          <div class="filter-chips" id="categoryFilters">
+            <button class="filter-chip active" data-category="all" type="button">All Picks</button>
+            <button class="filter-chip" data-category="essential" type="button">Essential Picks</button>
+            <button class="filter-chip" data-category="koreader" type="button">KOReader Plugins</button>
+            <button class="filter-chip" data-category="games" type="button">Games</button>
+            <button class="filter-chip" data-category="media" type="button">Media &amp; Audio</button>
+            <button class="filter-chip" data-category="drawing" type="button">Drawing Tools</button>
+            <button class="filter-chip" data-category="tools" type="button">Utility Tools</button>
+            <button class="filter-chip" data-category="dev" type="button">Development</button>
+            <button class="filter-chip" data-category="guides" type="button">Guides</button>
+          </div>
+        </div>
+
+        <div class="filter-note" id="filterNote" aria-live="polite"></div>
+      </div>
     </div>
 
     <!-- ESSENTIAL TOOLS -->
@@ -679,19 +703,116 @@
       });
     }
 
-    // Simple search filtering for cards
+    // Catalog search + filters
     const searchBar = document.getElementById('search-bar');
     const cards = Array.from(document.getElementsByClassName('card'));
-    const sectionTitles = Array.from(document.getElementsByClassName('section-title'));
+const sectionTitles = Array.from(document.getElementsByClassName('section-title'));
+const categoryButtons = Array.from(document.querySelectorAll('#categoryFilters .filter-chip'));
+const filterNote = document.getElementById('filterNote');
 
-    searchBar.addEventListener('input', function() {
-      const val = this.value.trim().toLowerCase();
+let activeCategory = 'all';
+
+const helperConfigs = [
+  {
+    label: 'KOReader Recommended',
+    link: 'koreader.html',
+    match: (primaryTags, tagTokens) =>
+      (primaryTags.includes('Plugin') || tagTokens.includes('plugin')) && tagTokens.includes('koreader')
+  }
+];
+
+    const categoryFilterConfig = {
+      all: () => true,
+      essential: (primaryTags) => primaryTags.includes('Essential'),
+      koreader: (primaryTags, tagTokens) =>
+        (primaryTags.includes('Plugin') || tagTokens.includes('plugin')) && tagTokens.includes('koreader'),
+      games: (primaryTags) => primaryTags.includes('Game'),
+      media: (_, tagTokens) => tagTokens.some(token => ['media', 'audio', 'player', 'mp3', 'wav', 'flac'].includes(token)),
+      drawing: (_, tagTokens) => tagTokens.some(token => ['drawing', 'paint', 'kpaint', 'sketch'].includes(token)),
+      tools: (primaryTags, tagTokens) => primaryTags.includes('Tool') || tagTokens.includes('tool'),
+      dev: (primaryTags, tagTokens) => primaryTags.includes('Dev') || tagTokens.includes('dev'),
+      guides: (primaryTags, tagTokens) => primaryTags.includes('Guide') || tagTokens.includes('guide')
+    };
+
+    cards.forEach(card => {
+      const tagsAttr = (card.getAttribute('data-tags') || '').toLowerCase();
+      const tokenSet = new Set(tagsAttr.split(/\s+/).filter(Boolean));
+      Array.from(tokenSet).forEach(token => {
+        if (token.endsWith('s')) {
+          tokenSet.add(token.slice(0, -1));
+        }
+      });
+      const tagTokens = Array.from(tokenSet);
+      const primaryTags = Array.from(card.querySelectorAll('.card-tags .tag'))
+        .map(tag => tag.textContent.trim())
+        .filter(Boolean);
+      card.dataset.tagTokens = tagTokens.join(',');
+      card.dataset.primaryTags = primaryTags.join(',');
+      card.dataset.searchCache = card.innerText.toLowerCase() + ' ' + tagsAttr;
+
+      const existingWrap = card.querySelector('.helper-pill-wrap');
+      if (existingWrap) existingWrap.remove();
+
+      const titleText = (card.querySelector('.card-title')?.textContent || '').toLowerCase();
+      card.dataset.titleText = titleText;
+      const helpers = helperConfigs.filter(cfg => {
+        if (titleText.includes('koreader')) return false;
+        return cfg.match(primaryTags, tagTokens);
+      });
+
+      if (helpers.length) {
+        const wrap = document.createElement('div');
+        wrap.className = 'helper-pill-wrap';
+        helpers.forEach(cfg => {
+          const pill = document.createElement('a');
+          pill.className = 'helper-pill';
+          pill.textContent = cfg.label;
+          if (cfg.link) {
+            pill.href = cfg.link;
+            pill.target = '_blank';
+            pill.rel = 'noopener';
+          } else {
+            pill.href = '#';
+            pill.addEventListener('click', ev => ev.preventDefault());
+          }
+          wrap.appendChild(pill);
+        });
+        const header = card.querySelector('.card-header');
+        if (header) {
+          header.insertAdjacentElement('afterend', wrap);
+        } else {
+          card.insertBefore(wrap, card.firstChild);
+        }
+      }
+    });
+
+    function updateFilterNote() {
+      if (!filterNote) return;
+      let message = '';
+      if (activeCategory === 'koreader') {
+        message = 'Tip: Install <a href="koreader.html">KOReader</a> first to make the most of these plugins.';
+      }
+      if (message) {
+        filterNote.innerHTML = message;
+        filterNote.style.display = '';
+      } else {
+        filterNote.innerHTML = '';
+        filterNote.style.display = 'none';
+      }
+    }
+
+    function applyFilters() {
+      const term = (searchBar && searchBar.value ? searchBar.value : '').trim().toLowerCase();
       let visibleCount = 0;
 
       cards.forEach(card => {
-        // Gather card text (title, desc, tags, links) for searching
-        const cardText = card.innerText.toLowerCase() + ' ' + (card.getAttribute('data-tags') || '');
-        if (val === '' || cardText.includes(val)) {
+        const searchMatch = term === '' || (card.dataset.searchCache || '').includes(term);
+        const tagTokens = (card.dataset.tagTokens || '').split(',').filter(Boolean);
+        const primaryTags = (card.dataset.primaryTags || '').split(',').filter(Boolean);
+        const categoryMatcher = categoryFilterConfig[activeCategory] || categoryFilterConfig.all;
+        const categoryMatch = categoryMatcher(primaryTags, tagTokens, card);
+
+        if (searchMatch && categoryMatch) {
           card.style.display = '';
           visibleCount++;
         } else {
@@ -724,17 +845,46 @@
         }
       });
 
-      // Show a "no results" message if nothing visible
       let noRes = document.getElementById('no-results');
       if (!noRes) {
         noRes = document.createElement('div');
         noRes.id = 'no-results';
         noRes.className = 'no-results';
-        noRes.textContent = 'No results found. Try another search term!';
-        document.querySelector('.container').appendChild(noRes);
+        const toolbar = document.querySelector('.filter-toolbar');
+        if (toolbar && toolbar.parentElement) {
+          toolbar.insertAdjacentElement('afterend', noRes);
+        } else {
+          document.querySelector('.container').appendChild(noRes);
+        }
       }
-      noRes.style.display = (visibleCount === 0 && val.length > 0) ? '' : 'none';
+      if (visibleCount === 0) {
+        const termText = term ? ` for "${term}"` : '';
+        noRes.textContent = term
+          ? `No results found${termText}. Try another search or reset filters.`
+          : 'Nothing matches these filters yet — try switching categories or clearing filters.';
+        noRes.style.display = '';
+      } else {
+        noRes.style.display = 'none';
+      }
+
+      updateFilterNote();
+    }
+
+    if (searchBar) {
+      searchBar.addEventListener('input', () => applyFilters());
+    }
+
+    categoryButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.category === activeCategory) return;
+        categoryButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        applyFilters();
+      });
     });
+
+    applyFilters();
     
     // Slide-in animation trigger for email popup
     window.addEventListener('load', () => {
