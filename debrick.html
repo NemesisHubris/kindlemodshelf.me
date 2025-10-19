@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unbricking a Kindle – Recover from a Failed Mod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Step-by-step Kindle unbrick guide: confirm whether it is truly bricked, recover with a computer, and escalate to advanced fixes like serial access.">
+  <link rel="canonical" href="https://kindlemodshelf.me/debrick.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Unbricking a Kindle – Recover from a Failed Mod">
+  <meta property="og:description" content="Diagnose a bricked Kindle, restore it with a factory reset file, and explore advanced serial and Mobileread recovery tools.">
+  <meta property="og:url" content="https://kindlemodshelf.me/debrick.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Unbricking a Kindle",
+    "description": "Diagnose whether your Kindle is bricked and follow recovery paths ranging from soft resets to advanced serial fixes.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Confirm the Kindle is actually bricked",
+        "text": "Hold the power button for 5 seconds to restart; if that fails, hold it for about a minute to force a reboot."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Trigger a factory restore via computer",
+        "text": "Connect your Kindle to a computer, create a file called DO_FACTORY_RESTORE on the root, then restart the Kindle."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Escalate to advanced recovery steps",
+        "text": "If software resets fail, follow serial unbricking guides or community Mobileread tooling at your own risk."
+      }
+    ],
+    "tool": [
+      "USB data cable",
+      "Computer (Windows PC preferred, macOS supported with MTP tools)",
+      "Optional: Serial interface tools or soldering equipment"
+    ]
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+
+    <h1>UNBRICKING A KINDLE</h1>
+
+    <p>Sometimes things go wrong when jailbreaking or messing around. So let's fix it!</p>
+
+    <div class="summary">
+      <b>Unbricking a Kindle</b> walks you through confirming whether the device is truly bricked, reviving it with a simple factory restore trigger, and escalating to advanced recovery options when the basics fail.
+    </div>
+
+    <section aria-labelledby="prerequisites">
+      <h2 class="section-title" id="prerequisites">PREREQUISITES</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Patience—recovery can take time</li>
+          <li>A Windows PC is ideal, but macOS works with the right tools</li>
+          <li>Comfort with basic technical troubleshooting</li>
+          <li>A USB cable that supports data transfer</li>
+          <li><em>Potential experience with soldering and/or disassembling devices</em> <strong>(worst-case scenario)</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="is-it-bricked">
+      <h2 class="section-title" id="is-it-bricked">IS IT ACTUALLY BRICKED?</h2>
+      <div class="card card-desc">
+        <p>Start with the quickest resets before you assume anything is permanently broken:</p>
+        <ol>
+          <li>Hold the power button for about five seconds. If a restart menu appears, use it and let the Kindle reboot fully.</li>
+          <li>If nothing happens—or the Kindle hangs again—press and hold the power button for roughly one minute to force a restart.</li>
+        </ol>
+        <p>If both attempts fail to fix the issue, treat the device as bricked and move to deeper recovery options.</p>
+        <p>You now have a few immediate choices:</p>
+        <ol>
+          <li>Let the battery drain completely, then plug the Kindle back in to trigger a cold start <em>(this could take an <strong>extremely</strong> long time)</em>.</li>
+          <li>If you are comfortable opening the device, disconnect and reconnect the battery connector before powering back on.</li>
+        </ol>
+        <p>Unless something truly impossible is happening with your hardware, one of these should force a fresh boot cycle.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="accessing">
+      <h2 class="section-title" id="accessing">ACCESSING YOUR KINDLE WITH A COMPUTER</h2>
+      <div class="card card-desc legal-warning">
+        <strong>Important:</strong> If your Kindle never appears on the computer after multiple cables and ports, skip ahead to the <a href="#advanced-steps">advanced steps</a>.
+      </div>
+      <div class="card card-desc">
+        <p>The goal here is to reach the Kindle’s storage over USB so you can trigger a factory restore.</p>
+        <h3>PC Instructions</h3>
+        <ol>
+          <li>Use a USB cable that you know supports data, not just charging.</li>
+          <li>Connect the Kindle to your computer and wait for the storage volume to appear.</li>
+          <li>If nothing shows up at first, give it a minute or try a quick restart.</li>
+          <li>Once mounted, open the root of the Kindle (where the <code>documents</code> and <code>audible</code> folders live).</li>
+          <li>Create an empty file named <code>DO_FACTORY_RESTORE</code> with no extension, then eject and restart the Kindle.</li>
+          <li>The device should boot to the initial setup wizard—meaning the brick is cleared.</li>
+        </ol>
+      </div>
+      <div class="card card-desc">
+        <h3>Mac Instructions</h3>
+        <ul>
+          <li>Older, mass-storage Kindles usually behave like on Windows. If yours mounts, follow the PC instructions above.</li>
+          <li>For newer MTP-only devices, install either the <a href="https://www.amazon.com/sendtokindle/mac?&amp;linkCode=ll2&amp;tag=ter000-20&amp;linkId=07f7c7db67889bf36e836471c479526e&amp;la" target="_blank" rel="noopener">Amazon Send to Kindle app</a> or <a href="https://openmtp.ganeshrvel.com/" target="_blank" rel="noopener">OpenMTP</a>.</li>
+          <li>Once the Kindle shows up through that software, you can create <code>DO_FACTORY_RESTORE</code> on the root and restart just like on PC.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="advanced-steps">
+      <h2 class="section-title" id="advanced-steps">ADVANCED STEPS</h2>
+      <div class="warning-banner">
+        <h2 class="warning-title">Proceed entirely at your own risk.</h2>
+        <div class="warning-content">
+          <p>Advanced recovery paths may involve disassembly, serial interfaces, and potential data loss. Double-check every instruction before you act.</p>
+        </div>
+      </div>
+      <div class="card card-desc">
+        <ul>
+          <li>Follow <a href="https://gist.github.com/TobiasWooldridge/22f0cdca75190b9a473f" target="_blank" rel="noopener">Tobias Wooldridge's Paperwhite serial interface guide</a> for hardware-level access.</li>
+          <li>Explore the <a href="https://wiki.mobileread.com/wiki/Kindle_Tools_Index#Debricking" target="_blank" rel="noopener">Mobileread Kindle Tools Index</a> for scripts and recovery utilities.</li>
+        </ul>
+        <p>Take detailed notes as you go—if something goes sideways, the community can help troubleshoot when you can describe the exact steps tried.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="conclusion">
+      <h2 class="section-title" id="conclusion">CONCLUSION</h2>
+      <div class="card card-desc">
+        <p>Hopefully this Debricked your kindle! With any luck your Kindle now boots cleanly. If you are still stuck, hop into the <a href="https://discord.kindlemodding.org/" target="_blank" rel="noopener">Kindle Modding Community Discord</a> and open a ticket in <code>#questions-and-support</code> for live help.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">CREDITS</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><strong>MonkeyInPrivite</strong> – Wrote the original guide</li>
+          <li><strong>Mobileread</strong> – Advanced debricking references</li>
+          <li><strong>Tobias Wooldridge</strong> – Paperwhite serial recovery instructions</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
+</body>
+</html>
