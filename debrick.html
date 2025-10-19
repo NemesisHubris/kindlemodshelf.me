@@ -50,17 +50,16 @@
     <h1>UNBRICKING A KINDLE</h1>
 
     <div class="summary">
-      Sometimes things go wrong when jailbreaking or messing around—so let's fix it. <b>Unbricking a Kindle</b> walks you through confirming whether the device is truly bricked, reviving it with a simple factory restore trigger, and escalating to advanced recovery options when the basics fail.
+      Sometimes things go wrong when jailbreaking or messing around. So let's fix it!
     </div>
     <section aria-labelledby="prerequisites">
       <h2 class="section-title" id="prerequisites">PREREQUISITES</h2>
       <div class="card card-desc">
-        <p>Gather everything you might need before digging into recovery:</p>
         <ul>
-          <li>Patience—recovery can take time</li>
-          <li>A Windows PC is ideal, but macOS works with the right tools</li>
-          <li>Comfort with basic technical troubleshooting</li>
-          <li>A USB cable that supports data transfer</li>
+          <li><strong>Patience</strong></li>
+          <li>Preferably a PC, but a Mac can work</li>
+          <li>Decent technical experience (don't worry, I'll try to make it easy)</li>
+          <li>A cable that supports data transfer</li>
           <li><em>Potential experience with soldering and/or disassembling devices</em> <strong>(worst-case scenario)</strong></li>
         </ul>
       </div>
@@ -69,42 +68,44 @@
     <section aria-labelledby="is-it-bricked">
       <h2 class="section-title" id="is-it-bricked">IS IT ACTUALLY BRICKED?</h2>
       <div class="card card-desc">
-        <p>Start with the quickest resets before you assume anything is permanently broken:</p>
+        <p>First, lets figure out if your Kindle is actually bricked</p>
         <ol>
-          <li>Hold the power button for about five seconds. If a restart menu appears, use it and let the Kindle reboot fully.</li>
-          <li>If nothing happens—or the Kindle hangs again—press and hold the power button for roughly one minute to force a restart.</li>
+          <li>See if holding down the power button for about 5 seconds pops up a screen thats lets you restart and if it does then do so.</li>
+          <li>If it does not or your kindle is still bricked, then hold down the power button for about a minute and it should force restart.</li>
         </ol>
-        <p>If both attempts fail to fix the issue, treat the device as bricked and move to deeper recovery options. You now have a few immediate choices:</p>
+        <p>If this still does not work/did not fix your issue, it is safe to say your Kindle is bricked.<br>
+        You have a few options now:</p>
         <ol>
-          <li>Let the battery drain completely, then plug the Kindle back in to trigger a cold start <em>(this could take an <strong>extremely</strong> long time)</em>.</li>
-          <li>If you are comfortable opening the device, disconnect and reconnect the battery connector before powering back on.</li>
+          <li>Wait for the battery to run out <em>(This could take an <strong>extremely</strong> long time)</em> and then plug it in.</li>
+          <li>If you are comfortable with doing so, open up your Kindle and unplug the battery. Then just plug it back in.</li>
         </ol>
-        <p>Unless something truly impossible is happening with your hardware, one of these should force a fresh boot cycle.</p>
+        <p>Unless the physics that apply everywhere else on Earth are suspended in your house, your Kindle has now restarted</p>
       </div>
     </section>
 
     <section aria-labelledby="accessing">
       <h2 class="section-title" id="accessing">ACCESSING YOUR KINDLE WITH A COMPUTER</h2>
       <div class="card card-desc">
-        <p><strong>Important:</strong> If your Kindle never appears on the computer after multiple cables and ports, skip ahead to the <a href="#advanced-steps">advanced steps</a>.</p>
+        <p><strong>Important:</strong> If you are not able to access your Kindle with a computer, you will have to continue to the <a href="#advanced-steps">advanced steps</a>.</p>
       </div>
       <div class="card card-desc">
-        <p>The goal here is to reach the Kindle’s storage over USB so you can trigger a factory restore.</p>
+        <p>Now, we need to gain access to your Kindle's filesystem with a computer!</p>
         <h3>PC Instructions</h3>
         <ol>
-          <li>Use a USB cable that you know supports data, not just charging.</li>
-          <li>Connect the Kindle to your computer and wait for the storage volume to appear.</li>
-          <li>If nothing shows up at first, give it a minute or try a quick restart.</li>
-          <li>Once mounted, open the root of the Kindle (where the <code>documents</code> and <code>audible</code> folders live).</li>
-          <li>Create an empty file named <code>DO_FACTORY_RESTORE</code> with no extension, then eject and restart the Kindle.</li>
-          <li>The device should boot to the initial setup wizard—meaning the brick is cleared.</li>
+          <li>Grab a data supported USB cable</li>
+          <li>Plug in your Kindle to your computer</li>
+          <li>If it's not showing up, try waiting a bit or restarting your Kindle</li>
+          <li>Once you have access to the Kindle, open the root (where the documents and audible folders are).</li>
+          <li>Create a file on the root <strong><em>with no extension</em></strong> called "DO_FACTORY_RESTORE" and restart your Kindle</li>
+          <li>Your Kindle should now go back to the initial setup, you are officially unbricked!</li>
         </ol>
         <h3>Mac Instructions</h3>
         <ul>
-          <li>Older, mass-storage Kindles usually behave like on Windows. If yours mounts, follow the PC instructions above.</li>
-          <li>For newer MTP-only devices, install either the <a href="https://www.amazon.com/sendtokindle/mac?&amp;linkCode=ll2&amp;tag=ter000-20&amp;linkId=07f7c7db67889bf36e836471c479526e&amp;la" target="_blank" rel="noopener">Amazon Send to Kindle app</a> or <a href="https://openmtp.ganeshrvel.com/" target="_blank" rel="noopener">OpenMTP</a>.</li>
-          <li>Once the Kindle shows up through that software, you can create <code>DO_FACTORY_RESTORE</code> on the root and restart just like on PC.</li>
+          <li>If you are on an older Kindle, you should be able to follow the PC instructions. The instructions below are for newer (MTP) Kindles</li>
+          <li>You can tell if your Kindle is MTP if it does not appear when you plug it in on Mac</li>
         </ul>
+        <p>If your Kindle is MTP, you will need to install either the <a href="https://www.amazon.com/sendtokindle/mac?&amp;linkCode=ll2&amp;tag=ter000-20&amp;linkId=07f7c7db67889bf36e836471c479526e&amp;la" target="_blank" rel="noopener">Amazon Send to Kindle App</a> or <a href="https://openmtp.ganeshrvel.com/" target="_blank" rel="noopener">OpenMTP</a>.<br>
+        You should now be able to follow the PC instructions.</p>
       </div>
     </section>
 
@@ -113,22 +114,22 @@
       <div class="warning-banner">
         <h2 class="warning-title">Proceed entirely at your own risk.</h2>
         <div class="warning-content">
-          <p>Advanced recovery paths may involve disassembly, serial interfaces, and potential data loss. Double-check every instruction before you act.</p>
+          <p><strong>Follow these steps at your own risk</strong></p>
         </div>
       </div>
       <div class="card card-desc">
+        <p>This is where things start to get complicated. You absolutely follow all of these instructions at your own risk and accept the responsibility  for any consequences of messing it up.</p>
         <ul>
-          <li>Follow <a href="https://gist.github.com/TobiasWooldridge/22f0cdca75190b9a473f" target="_blank" rel="noopener">Tobias Wooldridge's Paperwhite serial interface guide</a> for hardware-level access.</li>
-          <li>Explore the <a href="https://wiki.mobileread.com/wiki/Kindle_Tools_Index#Debricking" target="_blank" rel="noopener">Mobileread Kindle Tools Index</a> for scripts and recovery utilities.</li>
+          <li>You could try <a href="https://gist.github.com/TobiasWooldridge/22f0cdca75190b9a473f" target="_blank" rel="noopener">this guide</a> about using the Serial interface if you are on a Paperwhite.</li>
+          <li>Or you could check out the <a href="https://wiki.mobileread.com/wiki/Kindle_Tools_Index#Debricking" target="_blank" rel="noopener">Mobileread Tools</a>.</li>
         </ul>
-        <p>Take detailed notes as you go—if something goes sideways, the community can help troubleshoot when you can describe the exact steps tried.</p>
       </div>
     </section>
 
     <section aria-labelledby="conclusion">
       <h2 class="section-title" id="conclusion">CONCLUSION</h2>
       <div class="card card-desc">
-        <p>Hopefully this Debricked your kindle! With any luck your Kindle now boots cleanly. If you are still stuck, hop into the <a href="https://discord.kindlemodding.org/" target="_blank" rel="noopener">Kindle Modding Community Discord</a> and open a ticket in <code>#questions-and-support</code> for live help.</p>
+        <p>Hopefully this Debricked your kindle! If you still need support, join the <a href="https://discord.kindlemodding.org/" target="_blank" rel="noopener">Kindle Modding Community</a> and open a ticket in #questions-and-support!</p>
       </div>
     </section>
 
