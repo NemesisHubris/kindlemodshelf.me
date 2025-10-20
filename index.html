@@ -82,6 +82,7 @@
             <button class="filter-chip active" data-category="all" type="button">All Picks</button>
             <button class="filter-chip" data-category="essential" type="button">Essential Picks</button>
             <button class="filter-chip" data-category="koreader" type="button">KOReader Plugins</button>
+            <button class="filter-chip" data-category="patches" type="button">KOReader Patches</button>
             <button class="filter-chip" data-category="games" type="button">Games</button>
             <button class="filter-chip" data-category="media" type="button">Media &amp; Audio</button>
             <button class="filter-chip" data-category="drawing" type="button">Drawing Tools</button>
@@ -157,17 +158,6 @@
         <div class="card-links"><a href="plugins.html">More</a></div>
     </div>
 
-      <div class="card" data-tags="page header userpatch plugin koreader typography small caps">
-        <div class="card-header">
-          <div class="card-title">Page Header (Userpatch)</div>
-          <div class="card-tags"><span class="tag">Plugin</span></div>
-        </div>
-        <div class="card-desc">
-        Fiction-style header at the top of the page with per-book settings; small-caps-friendly and easy to tune for spacing.
-      </div>
-        <div class="card-links"><a href="pageheader.html">More</a></div>
-    </div>
-
       <div class="card" data-tags="telegram highlights plugin koreader">
         <div class="card-header">
           <div class="card-title">Telegram Highlights</div>
@@ -210,6 +200,32 @@
         Modern KOReader library view with cover-first browsing, progress badges, and gesture resizing—drop-in replacement for Cover Browser.
       </div>
         <div class="card-links"><a href="projecttitle.html">More</a></div>
+    </div>
+    </div>
+
+    <!-- KOReader PATCHES -->
+    <div class="section-title">KOReader Patches</div>
+    <div class="card-grid">
+      <div class="card" data-tags="patches koreader userpatch collection sebdelsol library tweaks">
+        <div class="card-header">
+          <div class="card-title">KOReader Patches Library</div>
+          <div class="card-tags"><span class="tag">Patch</span></div>
+        </div>
+        <div class="card-desc">
+        Installation guide plus curated user patches—browser, UI, status bar, screensaver, and Project: Title extensions.
+      </div>
+        <div class="card-links"><a href="patches.html">More</a></div>
+    </div>
+
+      <div class="card" data-tags="patches page header userpatch koreader typography small caps project title">
+        <div class="card-header">
+          <div class="card-title">Page Header (Userpatch)</div>
+          <div class="card-tags"><span class="tag">Patch</span></div>
+        </div>
+        <div class="card-desc">
+        Fiction-style page header with per-book configuration—designed to complement Project: Title’s typography.
+      </div>
+        <div class="card-links"><a href="pageheader.html">More</a></div>
     </div>
     </div>
 
@@ -728,6 +744,8 @@ let activeCategory = 'all';
       essential: (primaryTags) => primaryTags.includes('Essential'),
       koreader: (primaryTags, tagTokens) =>
         (primaryTags.includes('Plugin') || tagTokens.includes('plugin')) && tagTokens.includes('koreader'),
+      patches: (primaryTags, tagTokens) =>
+        primaryTags.includes('Patch') || tagTokens.includes('patch') || tagTokens.includes('userpatch'),
       games: (primaryTags) => primaryTags.includes('Game'),
       media: (_, tagTokens) => tagTokens.some(token => ['media', 'audio', 'player', 'mp3', 'wav', 'flac'].includes(token)),
       drawing: (_, tagTokens) => tagTokens.some(token => ['drawing', 'paint', 'kpaint', 'sketch'].includes(token)),
