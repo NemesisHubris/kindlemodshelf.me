@@ -182,6 +182,26 @@ h1 {
   flex-grow: 1;
 }
 
+.intro-text {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 26px;
+  font-size: 1.05em;
+  color: rgba(241, 241, 246, 0.9);
+}
+
+.info-callout {
+  background: linear-gradient(135deg, rgba(70, 60, 140, 0.35) 0%, rgba(108, 90, 200, 0.28) 100%);
+  border: 1px solid rgba(150, 130, 255, 0.4);
+  color: #e7e6ff;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin: 0 0 18px;
+  font-size: 0.96em;
+  line-height: 1.6;
+  box-shadow: 0 12px 26px rgba(18, 14, 40, 0.35);
+}
+
 .legal-warning {
   border: 1px solid rgba(255, 118, 118, 0.45);
   background: rgba(255, 80, 80, 0.12);
