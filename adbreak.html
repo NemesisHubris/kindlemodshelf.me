@@ -23,13 +23,6 @@
   }
   </script>
 
-  <style>
-    /* tiny inline helpers so the new buttons look sensible even before style.css loads */
-    .patreon-btn { cursor: pointer; }
-    .patreon-btn.secondary { background: rgba(255,255,255,0.04); color: var(--primary); border: 1px solid rgba(255,255,255,0.06); }
-    .flow-btns { display:flex; gap:10px; justify-content:center; margin-top:12px; flex-wrap:wrap; }
-    .back-inline { display:inline-flex; align-items:center; gap:8px; }
-  </style>
 </head>
 <body>
   <div class="container">
@@ -39,63 +32,10 @@
 
     <div class="faq-box">
       <div class="faq-title">📺 Free Video Tutorial Available</div>
-      <p style="margin-bottom: 1em;">Comprehensive step-by-step video guide by <strong>Dammit Jeff</strong></p>
-      
-      <!-- Patreon Flow -->
-      <div class="patreon-flow-container" aria-live="polite">
-        <div class="progress-dots" aria-hidden="true">
-          <div class="dot" id="dot1"></div>
-          <div class="dot" id="dot2"></div>
-        </div>
-
-        <!-- Step 1: Generic Patreon signup (not creator specific) -->
-        <div class="step-card-flow active" id="step1" role="region" aria-label="Step 1: Sign up">
-          <div class="step-status">Step 1 of 2</div>
-          <h3>Join Patreon (signup)</h3>
-          <p>Click the button below to open Patreon’s generic signup page in a popup. When you finish or skip signup there, close the popup to continue.</p>
-
-          <div class="flow-btns" style="margin-top:14px;">
-            <button id="open-patreon" class="patreon-btn">Open Patreon signup (popup)</button>
-            <button id="skipBtn" class="patreon-btn secondary" title="Skip this step and continue">Skip</button>
-          </div>
-
-          <div id="popup-blocked-note" style="display:none; margin-top:12px; color:#ffb861;">
-            Pop-up blocked. <a id="fallbackOpen" class="fallback-link" href="https://www.patreon.com/signup" target="_blank" rel="noopener">Open Patreon signup in a new tab</a>
-          </div>
-
-          <div style="margin-top: 16px; padding: 12px; background: rgba(88, 225, 255, 0.08); border-radius: 8px; font-size: 0.85em; text-align: left; line-height: 1.6;">
-            <strong style="color: var(--primary);">📌 What to do:</strong><br>
-            1. Click the button above to open the Patreon signup page.<br>
-            2. Complete or skip the signup there (it’s the generic Patreon signup page).<br>
-            3. Close that window to continue here — the page will automatically advance.
-          </div>
-        </div>
-
-        <!-- Waiting -->
-        <div class="waiting-state" id="waiting" aria-hidden="true" style="display:none;">
-          <div class="spinner-flow" aria-hidden="true"></div>
-          <p><strong id="waitingText">Waiting for you to finish signing up on Patreon…</strong></p>
-          <div class="flow-btns" style="margin-top:12px;">
-            <button id="cancelWait" class="patreon-btn secondary">Cancel</button>
-            <button id="skipWhileWaiting" class="patreon-btn secondary">Skip</button>
-          </div>
-        </div>
-
-        <!-- Step 2: Video link + Back button -->
-        <div class="step-card-flow" id="step2" role="region" aria-label="Step 2: Watch">
-          <div class="step-status">Step 2 of 2</div>
-          <h3>🎉 Watch Your Video</h3>
-          <p>You're ready — click below to view the tutorial video. Use Back to return to the signup step.</p>
-
-          <div class="flow-btns" style="margin-top:14px;">
-            <button id="backBtn" class="patreon-btn secondary">Back</button>
-            <a id="videoLink" class="patreon-btn success" href="https://www.patreon.com/posts/how-to-jailbreak-140311438" target="_blank" rel="noopener">▶️ Watch Video</a>
-          </div>
-        </div>
-
+      <p>Comprehensive step-by-step video guide by <strong>Dammit Jeff</strong>.</p>
+      <div class="responsive-video">
+        <iframe src="https://www.youtube.com/embed/l4ZliC82RtA" title="AdBreak Jailbreak Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
-
-      <p style="margin-top: 1em; color: #6cc29e; font-weight: 600; font-size: 0.9em;">Free access to this helpful walkthrough!</p>
     </div>
 
     <div class="summary card card-desc">
@@ -205,146 +145,5 @@
   </div>
 
   <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
-
-  <script>
-    (function () {
-      // Use Patreon generic signup (not creator-specific)
-      const PATREON_SIGNUP = 'https://www.patreon.com/signup';
-
-      // Elements
-      const openBtn = document.getElementById('open-patreon');
-      const skipBtn = document.getElementById('skipBtn');
-      const skipWhileWaitingBtn = document.getElementById('skipWhileWaiting');
-      const backBtn = document.getElementById('backBtn');
-      const fallbackNote = document.getElementById('popup-blocked-note');
-      const waitingBox = document.getElementById('waiting');
-      const cancelWaitBtn = document.getElementById('cancelWait');
-      const step1 = document.getElementById('step1');
-      const step2 = document.getElementById('step2');
-      const dot1 = document.getElementById('dot1');
-      const dot2 = document.getElementById('dot2');
-
-      // State
-      let popup = null;
-      let pollTimer = null;
-
-      // UI helpers
-      function showStep(n) {
-        // hide all step cards and waiting
-        document.querySelectorAll('.step-card-flow').forEach(el => el.classList.remove('active'));
-        waitingBox.style.display = 'none';
-        dot1.classList.remove('active','completed');
-        dot2.classList.remove('active','completed');
-
-        if (n === 1) {
-          step1.classList.add('active');
-          dot1.classList.add('active');
-        } else if (n === 'waiting') {
-          waitingBox.style.display = 'block';
-          dot1.classList.add('completed');
-        } else if (n === 2) {
-          step2.classList.add('active');
-          dot1.classList.add('completed');
-          dot2.classList.add('active');
-        }
-      }
-
-      // open popup and poll for close
-      function openPatreonPopup() {
-        const width = 1000;
-        const height = 700;
-        const left = Math.max(0, (screen.width - width) / 2);
-        const top = Math.max(0, (screen.height - height) / 2);
-
-        popup = window.open(PATREON_SIGNUP, 'patreon_signup_window',
-          `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,resizable=yes`);
-
-        if (!popup) {
-          // popup blocked
-          fallbackNote.style.display = 'block';
-          showStep(1);
-          return;
-        }
-
-        // popup opened successfully
-        fallbackNote.style.display = 'none';
-        try { popup.focus(); } catch (e) {}
-
-        showStep('waiting');
-
-        // poll for closed
-        pollTimer = setInterval(() => {
-          try {
-            if (!popup || popup.closed) {
-              clearInterval(pollTimer);
-              pollTimer = null;
-              popup = null;
-              onPopupClosed();
-            }
-          } catch (err) {
-            // ignore cross-origin read errors and continue polling
-          }
-        }, 500);
-      }
-
-      // called when popup closed or user skips
-      function onPopupClosed() {
-        setTimeout(() => {
-          showStep(2);
-        }, 250);
-      }
-
-      // Skip to step 2 (clean up any popup/polls)
-      function skipToStep2() {
-        if (pollTimer) {
-          clearInterval(pollTimer);
-          pollTimer = null;
-        }
-        if (popup && !popup.closed) {
-          try { popup.close(); } catch (e) {}
-          popup = null;
-        }
-        onPopupClosed();
-      }
-
-      // Back to step 1 (clean up and show step1)
-      function backToStep1() {
-        if (pollTimer) {
-          clearInterval(pollTimer);
-          pollTimer = null;
-        }
-        if (popup && !popup.closed) {
-          try { popup.close(); } catch (e) {}
-          popup = null;
-        }
-        showStep(1);
-        // bring focus to the open button for convenience
-        try { openBtn.focus(); } catch (e) {}
-      }
-
-      // Cancel waiting (same as back)
-      function cancelWaiting() {
-        backToStep1();
-      }
-
-      // Wire up events
-      openBtn.addEventListener('click', openPatreonPopup);
-      skipBtn.addEventListener('click', skipToStep2);
-      skipWhileWaitingBtn.addEventListener('click', skipToStep2);
-      backBtn.addEventListener('click', backToStep1);
-      cancelWaitBtn.addEventListener('click', cancelWaiting);
-
-      // Clean up on page unload
-      window.addEventListener('beforeunload', () => {
-        if (popup && !popup.closed) {
-          try { popup.close(); } catch (e) {}
-        }
-        if (pollTimer) clearInterval(pollTimer);
-      });
-
-      // Initialize UI
-      showStep(1);
-    })();
-  </script>
 </body>
 </html>

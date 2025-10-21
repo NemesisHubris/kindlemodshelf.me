@@ -203,13 +203,33 @@ h1 {
 }
 
 .legal-warning {
-  border: 1px solid rgba(255, 118, 118, 0.45);
-  background: rgba(255, 80, 80, 0.12);
-  color: rgba(255, 230, 230, 0.92);
+  position: relative;
+  border: 1px solid rgba(255, 125, 92, 0.55);
+  background: linear-gradient(135deg, rgba(255, 105, 78, 0.22) 0%, rgba(255, 68, 47, 0.12) 100%);
+  color: rgba(255, 230, 230, 0.95);
+  border-radius: 14px;
+  padding: 18px 20px 18px 68px;
+  box-shadow: 0 22px 40px rgba(50, 6, 6, 0.35);
+}
+
+.legal-warning::before {
+  content: "⚠";
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.9em;
+  line-height: 1;
+  color: #ffcc84;
+  text-shadow: 0 0 14px rgba(255, 130, 75, 0.45);
 }
 
 .legal-warning strong {
-  color: #ffb8c2;
+  color: #ffd9b3;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 1.02em;
+  display: inline-block;
 }
 
 .card-links {
@@ -1353,42 +1373,6 @@ pre code {
 }
 
 /* Warning banner styles */
-.warning-banner {
-  background: var(--warning-bg);
-  border: 2px solid var(--warning-border);
-  border-radius: 10px;
-  padding: 16px 20px;
-  margin: 0 auto 30px;
-  max-width: 800px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  color: var(--warning-text);
-}
-
-.warning-title {
-  margin: 0 0 12px 0;
-  font-size: 1.3em;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-align: center;
-  color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.warning-content {
-  font-size: 1em;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.warning-content p {
-  margin: 8px 0;
-}
-
-.warning-content strong {
-  color: #ffd54f;
-  font-weight: 700;
-}
-
 /* Top-of-page announcement banner */
 .top-announcement {
   background: linear-gradient(120deg, rgba(32, 6, 6, 0.96) 0%, rgba(62, 12, 12, 0.98) 45%, rgba(24, 4, 4, 0.97) 100%);
