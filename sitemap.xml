@@ -110,11 +110,6 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://kindlemodshelf.me/kindlefetch.html</loc>
-  <lastmod>2025-10-17T00:29:38+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
   <loc>https://kindlemodshelf.me/kindleforge.html</loc>
   <lastmod>2025-10-16T23:49:01+00:00</lastmod>
   <priority>0.80</priority>
@@ -292,11 +287,6 @@
 <url>
   <loc>https://kindlemodshelf.me/usbnetlite.html</loc>
   <lastmod>2025-10-16T23:49:01+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://kindlemodshelf.me/z-library.html</loc>
-  <lastmod>2025-10-17T00:29:42+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 </urlset>
