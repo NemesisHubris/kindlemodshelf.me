@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Boot KOReader Automatically – Autolaunch Utility</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Set up KOReader to start automatically at boot using a KUAL extension that can be installed or removed without manual scripts.">
+  <link rel="canonical" href="https://kindlemodshelf.me/bootkoreader.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Boot KOReader Automatically – Autolaunch Utility">
+  <meta property="og:description" content="Configure KOReader to autorun on boot with a KUAL-driven installer that toggles the autolaunch script and preserves the Kindle UI.">
+  <meta property="og:url" content="https://kindlemodshelf.me/bootkoreader.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>Boot KOReader Automatically</h1>
+
+    <div class="summary">
+      A KUAL extension that installs or removes KOReader autolaunch scripts so the reader starts on boot without disabling the standard Kindle interface.
+    </div>
+
+    <section aria-labelledby="overview">
+      <h2 class="section-title" id="overview">Overview</h2>
+      <div class="card card-desc">
+        <p>The KOReader Autolaunch extension toggles a boot script that opens KOReader as soon as the Kindle finishes starting up. The script leaves Amazon&rsquo;s UI running so the process remains stable, and you can reverse the change at any time from KUAL.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="downloads">
+      <h2 class="section-title" id="downloads">Downloads</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/meepcat55/Kindle-KOReader-On-Boot" target="_blank" rel="noopener">KOReader Autolaunch Extension (GitHub)</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Installs KOReader autostart scripts from KUAL</li>
+          <li>Leaves the Kindle UI running to avoid failed boots</li>
+          <li>Provides removal and recovery options without manual edits</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="requirements">
+      <h2 class="section-title" id="requirements">Requirements</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>KOReader installed</li>
+          <li>KUAL (Kindle Unified Application Launcher)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download the repository archive from GitHub and extract it.</li>
+          <li>Copy the extracted extension folder into the <code>extensions/</code> directory on your Kindle.</li>
+          <li>Eject the Kindle safely and open KUAL.</li>
+          <li>Launch <strong>KOReader Autolaunch</strong> from KUAL and choose <strong>Install</strong>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="uninstall">
+      <h2 class="section-title" id="uninstall">Uninstallation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>In KUAL, open <strong>KOReader Autolaunch</strong> and select <strong>Remove</strong>.</li>
+          <li>Or run <code>bash /mnt/us/KOReader-autolaunch-remove.sh</code> inside KOReader&rsquo;s terminal emulator.</li>
+          <li>Or connect the Kindle over USB, rename <code>koreader.sh</code> in the <code>koreader/</code> folder, perform option 1, then restore the filename.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="notes">
+      <h2 class="section-title" id="notes">Notes</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>The extension keeps Amazon&rsquo;s UI alive to maintain reliable startup.</li>
+          <li>Re-run the installer after KOReader updates if the autolaunch script changes.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="links">
+      <h2 class="section-title" id="links">Links</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/meepcat55/Kindle-KOReader-On-Boot" target="_blank" rel="noopener">Project Repository</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Developed by meepcat55</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
+</body>
+</html>
