@@ -50,6 +50,11 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://kindlemodshelf.me/customscreensavers.html</loc>
+    <lastmod>2025-10-25T01:06:10+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://kindlemodshelf.me/debrick.html</loc>
     <lastmod>2025-10-19T22:20:10+00:00</lastmod>
     <priority>0.80</priority>
@@ -107,6 +112,11 @@
   <url>
     <loc>https://kindlemodshelf.me/images.html</loc>
     <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/imageresources.html</loc>
+    <lastmod>2025-10-25T01:06:12+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
