@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Absolute Legends</title>
+  <link rel="canonical" href="https://kindlemodshelf.me/absolute-legends.html">
   <style>
     :root {
       --hyper-purple: #7f00ff;
@@ -297,6 +298,51 @@
       transform: perspective(1200px) rotateX(2deg) translateY(-10px);
     }
 
+    .legend-card--kurizu {
+      background-image:
+        linear-gradient(rgba(8,0,25,0.95), rgba(12,0,40,0.7)),
+        linear-gradient(150deg, rgba(255, 105, 180, 0.75), rgba(0, 255, 240, 0.55), rgba(255, 215, 0, 0.65));
+      box-shadow:
+        0 65px 140px rgba(10, 0, 30, 0.92),
+        0 0 180px rgba(255, 105, 180, 0.45),
+        inset 0 0 110px rgba(0, 255, 240, 0.4);
+      animation-duration: 9s;
+    }
+
+    .legend-card--kurizu .legend-sigil--one,
+    .legend-card--kurizu .legend-sigil--two {
+      background: linear-gradient(135deg, rgba(255,105,180,0.6), rgba(0,255,240,0.55));
+      opacity: 0.55;
+    }
+
+    .legend-card--kurizu .legend-name {
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow:
+        0 0 35px rgba(255, 105, 180, 0.9),
+        0 18px 48px rgba(0, 0, 0, 0.85),
+        0 -16px 35px rgba(0, 255, 240, 0.6);
+    }
+
+    .legend-card--kurizu .legend-name::after {
+      content: "💎";
+      top: -1.6rem;
+      right: -4.2rem;
+      filter: drop-shadow(0 0 22px rgba(255, 105, 180, 0.8));
+    }
+
+    .legend-card--kurizu .legend-name.glitch span:nth-child(1) {
+      color: rgba(255, 105, 180, 0.85);
+    }
+
+    .legend-card--kurizu .legend-name.glitch span:nth-child(2) {
+      color: rgba(0, 255, 240, 0.85);
+    }
+
+    .legend-card--kurizu .legend-description strong {
+      color: rgba(255, 105, 180, 0.95);
+      text-shadow: 0 0 18px rgba(255, 105, 180, 0.9);
+    }
+
     .legend-card::before {
       content: "";
       position: absolute;
@@ -514,6 +560,66 @@
     .legend-footer span::before {
       content: "⚡";
       filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    }
+
+    .legend-footer.legend-footer--aurora {
+      background: rgba(255, 105, 180, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow:
+        0 0 25px rgba(255, 105, 180, 0.5),
+        0 0 45px rgba(0, 255, 240, 0.45);
+      animation-duration: 3s;
+    }
+
+    .legend-footer.legend-footer--aurora span::before {
+      content: "✨";
+    }
+
+    .legend-donation {
+      margin-top: 2.4rem;
+      padding: 1.4rem 2rem;
+      border-radius: 1.6rem;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 105, 180, 0.45);
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
+      letter-spacing: 0.08em;
+      box-shadow: 0 0 28px rgba(255, 105, 180, 0.35);
+    }
+
+    .legend-donation a {
+      color: rgba(0, 255, 240, 0.95);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 16px rgba(0, 255, 240, 0.65);
+    }
+
+    .legend-donation a:hover,
+    .legend-donation a:focus {
+      text-shadow: 0 0 24px rgba(0, 255, 240, 0.9);
+    }
+
+    .constellation-trail {
+      position: absolute;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,105,180,0.35) 45%, transparent 70%);
+      filter: blur(26px);
+      pointer-events: none;
+      animation: constellationDrift 12s linear infinite;
+      opacity: 0.65;
+    }
+
+    .constellation-trail--one { width: 45%; height: 18%; top: -6%; left: 18%; animation-delay: -3s; }
+    .constellation-trail--two { width: 55%; height: 20%; bottom: -8%; right: 12%; animation-delay: -6s; }
+
+    @keyframes constellationDrift {
+      0% { transform: translate3d(0,0,0) scale(1); opacity: 0.5; }
+      50% { transform: translate3d(12px, -18px, 0) scale(1.08); opacity: 0.9; }
+      100% { transform: translate3d(-10px, 16px, 0) scale(0.98); opacity: 0.55; }
     }
 
     .stellar-radiance {
@@ -762,8 +868,8 @@
   </div>
   <main>
     <div class="galactic-banner" aria-hidden="true">
-      <span>Absolute Legends ✦ Hypernova Honor Roll ✦ MonkeyInPrivite Ascends ✦</span>
-      <span>Absolute Legends ✦ Hypernova Honor Roll ✦ MonkeyInPrivite Ascends ✦</span>
+      <span>Absolute Legends ✦ Hypernova Honor Roll ✦ MonkeyInPrivite Ascends ✦ Kurizu Constellation Keeper ✦</span>
+      <span>Absolute Legends ✦ Hypernova Honor Roll ✦ MonkeyInPrivite Ascends ✦ Kurizu Constellation Keeper ✦</span>
     </div>
     <div class="quantum-flare" aria-hidden="true"></div>
     <div class="portal" aria-hidden="true">
@@ -800,6 +906,45 @@
       <div class="radiance-ring radiance-ring--two"></div>
       <div class="radiance-ring radiance-ring--three"></div>
       <p>MonkeyInPrivite rebooted destiny. The cosmos is still cheering.</p>
+    </div>
+
+    <section class="legend-card legend-card--kurizu">
+      <div class="plasma-cloud" aria-hidden="true"></div>
+      <div class="legend-aurora" aria-hidden="true"></div>
+      <div class="orbit-ring" aria-hidden="true"></div>
+      <div class="legend-sigil legend-sigil--one" aria-hidden="true"></div>
+      <div class="legend-sigil legend-sigil--two" aria-hidden="true"></div>
+      <div class="constellation-trail constellation-trail--one" aria-hidden="true"></div>
+      <div class="constellation-trail constellation-trail--two" aria-hidden="true"></div>
+      <div class="legend-title">Keeper Of Kindle Comets</div>
+      <div class="legend-name glitch" data-text="Kurizu">
+        <span aria-hidden="true">Kurizu</span>
+        <span aria-hidden="true">Kurizu</span>
+        <span>Kurizu</span>
+      </div>
+      <p class="legend-description">
+        The artisan who forged KAnki into a radiant Kindle experience. <strong>Kurizu turned spaced repetition into starlight</strong>, guided every debug session with calm brilliance, and kept the e ink dreams alive when gravity tried to pull them down.
+      </p>
+      <p class="legend-description">
+        When study sessions needed a sparkle, Kurizu dropped shimmering updates, patient walkthroughs, and late night fixes that made every learner feel seen. He is the aurora that dances above our flashcard galaxy.
+      </p>
+      <div class="legend-donation">
+        <span>Love KAnki and KindleModShelf?</span>
+        <span>Beam a thank you:</span>
+        <a href="https://ko-fi.com/kurizu" target="_blank" rel="noopener">Support Kurizu on ko-fi.com/kurizu</a>
+        <span>Fuel more cosmic decks. Keep the constellation humming.</span>
+      </div>
+      <div class="legend-footer legend-footer--aurora">
+        <span>Deck alchemist supreme</span>
+        <span>Debug energy: limitless</span>
+        <span>Legend status: Luminous</span>
+      </div>
+    </section>
+    <div class="stellar-radiance" aria-hidden="true">
+      <div class="radiance-ring radiance-ring--one"></div>
+      <div class="radiance-ring radiance-ring--two"></div>
+      <div class="radiance-ring radiance-ring--three"></div>
+      <p>Kurizu paints constellations onto e ink. The study stars glow brighter because of him.</p>
     </div>
   </main>
   <script>
