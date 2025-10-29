@@ -2,30 +2,28 @@
 (function() {
   'use strict';
 
-  // Get the current theme from localStorage or system preference
+  // Get the current theme from localStorage or default to dark
   function getInitialTheme() {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme;
-    }
-
-    // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      return 'light';
-    }
-
-    return 'dark'; // Default to dark mode
+    return {
+      theme: savedTheme || 'dark',
+      persist: Boolean(savedTheme)
+    };
   }
 
   // Apply theme to the document
-  function applyTheme(theme) {
+  function applyTheme(theme, persist = true) {
     const root = document.documentElement;
     if (theme === 'light') {
       root.setAttribute('data-theme', 'light');
     } else {
       root.removeAttribute('data-theme');
     }
-    localStorage.setItem('theme', theme);
+    if (persist) {
+      localStorage.setItem('theme', theme);
+    } else {
+      localStorage.removeItem('theme');
+    }
   }
 
   // Toggle between themes
@@ -38,8 +36,8 @@
 
   // Initialize theme on page load
   function initTheme() {
-    const theme = getInitialTheme();
-    applyTheme(theme);
+    const { theme, persist } = getInitialTheme();
+    applyTheme(theme, persist);
   }
 
   // Create and insert theme toggle button
@@ -90,7 +88,7 @@
     window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
       // Only apply if user hasn't manually set a theme
       if (!localStorage.getItem('theme')) {
-        applyTheme(e.matches ? 'light' : 'dark');
+        applyTheme(e.matches ? 'light' : 'dark', false);
       }
     });
   }
