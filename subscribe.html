@@ -12,33 +12,50 @@
     .card input[type="email"],
     #subscribeForm input[type="email"] {
       width: 100%;
-      padding: 8px;
-      border-radius: 6px;
-      border: 1px solid #444;
-      background: #1a1d23;
-      color: #fff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--fg);
       margin-bottom: 10px;
       font-size: 0.95em;
       box-sizing: border-box;
       display: block;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
+
+    .card input[type="email"]:focus,
+    #subscribeForm input[type="email"]:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--card-border);
+    }
+
     /* Center the form button */
     #subscribeForm button[type="submit"] {
       width: 100%;
-      background: #67dfff;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      padding: 9px;
+      background: var(--primary);
+      color: var(--bg-base);
+      font-weight: 700;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      padding: 11px;
       cursor: pointer;
       font-size: 0.95em;
       margin-top: 10px;
-      transition: background 0.16s;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
     }
+
     #subscribeForm button[type="submit"]:hover {
-      background: #5ccaf0;
+      background: var(--secondary);
+      border-color: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow-color);
     }
+
     /* Center the card and set max width */
     .container {
       max-width: 400px;
@@ -49,6 +66,7 @@
       margin-top: 0;
     }
   </style>
+  <script src="theme-toggle.js"></script>
 </head>
 <body>
   <div class="container">
