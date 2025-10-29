@@ -504,6 +504,61 @@ h1 {
   box-shadow: 0 4px 12px var(--shadow-color);
 }
 
+.in-dev-banner {
+  background: var(--announcement-bg);
+  border: 1px solid var(--announcement-border);
+  color: var(--announcement-text);
+  padding: 32px 28px;
+  border-radius: 28px;
+  font-size: 1.08em;
+  line-height: 1.6;
+  box-shadow: 0 6px 18px var(--shadow-color);
+  margin: 34px 0 36px;
+  text-align: center;
+}
+
+.in-dev-banner a {
+  color: var(--announcement-strong);
+  border-bottom: 1px solid var(--announcement-action-border);
+}
+
+.in-dev-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--announcement-action-bg);
+  border: 1px solid var(--announcement-action-border);
+  color: var(--announcement-action-text);
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 0.78em;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.in-dev-label::before {
+  content: "🚧";
+  font-size: 1.1em;
+}
+
+.in-dev-points {
+  margin: 16px 0 14px 18px;
+  padding: 0;
+}
+
+.in-dev-points li {
+  margin-bottom: 8px;
+}
+
+.in-dev-cta {
+  font-weight: 600;
+  color: var(--announcement-strong);
+  margin-top: 12px;
+  font-size: 1.02em;
+}
+
 .legal-warning {
   position: relative;
   border: 1px solid var(--legal-warning-border);
