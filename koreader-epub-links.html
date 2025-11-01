@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KOReader EPUB Links – Create Library Links for EPUB Files</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create links in your Kindle library to open EPUBs in your documents folder in KOReader. Uses cover images from EPUBs so they display like Kindle books.">
+  <link rel="canonical" href="https://kindlemodshelf.me/koreader-epub-links.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="KOReader EPUB Links – Create Library Links for EPUB Files">
+  <meta property="og:description" content="Create links in your Kindle library to open EPUBs in your documents folder in KOReader.">
+  <meta property="og:url" content="https://kindlemodshelf.me/koreader-epub-links.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "KOReader EPUB Links",
+    "operatingSystem": "Kindle OS",
+    "applicationCategory": "Utility",
+    "description": "Script which creates links in your Kindle library to open EPUBs in your documents folder in KOReader.",
+    "offers": {"@type": "Offer","price":"0","priceCurrency":"USD"},
+    "url": "https://kindlemodshelf.me/koreader-epub-links.html"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <script src="theme-toggle.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+
+    <h1>KOREADER EPUB LINKS</h1>
+
+    <div class="summary">
+      This is a script which will create links in your kindle library to open epubs in your documents folder in koreader. It will use the cover image from the epubs so they should display just like kindle books
+    </div>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download Link</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/mriscott/KindleKOreaderEpubLinks/blob/main/createEpubLinks.sh" target="_blank" rel="noopener noreferrer">createEpubLinks.sh</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="requirements">
+      <h2 class="section-title" id="requirements">Requirements</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>kterm recommended</li>
+          <li>If Kterm is installed you will see a simple interface to choose which links to create or delete. Otherwise it will create links to all books in your documents folder.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="install">
+      <h2 class="section-title" id="install">Installation Steps</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Ensure you have some epub files in your documents folder, and that koreader is installed to read them</li>
+          <li>Download the script from the link below</li>
+          <li>Optionally edit the file to change configuration (eg if anything is not installed in the standard location)</li>
+          <li>Copy it to the /mnt/us/documents folder on your Kindle.</li>
+          <li>Disconnect your Kindle from your computer.</li>
+          <li>After a few seconds, you will see a new book called "Create Epub Links" which will create links for any epubs in your documents folder</li>
+        </ol>
+      </div>
+    </section>
+  </div>
+    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
+</body>
+</html>
