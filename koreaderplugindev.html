@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Developing Your First KOReader Plugin – Plugin Development Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn to develop your first KOReader plugin using Lua. Step-by-step guide covering setup, _meta.lua, main.lua, and building a Hello World plugin example.">
+  <link rel="canonical" href="https://kindlemodshelf.me/koreaderplugindev.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Developing Your First KOReader Plugin – Plugin Development Guide">
+  <meta property="og:description" content="Learn to develop your first KOReader plugin using Lua with step-by-step instructions.">
+  <meta property="og:url" content="https://kindlemodshelf.me/koreaderplugindev.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Developing Your First KOReader Plugin",
+    "description": "A comprehensive guide to developing your first KOReader plugin using Lua",
+    "url": "https://kindlemodshelf.me/koreaderplugindev.html"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <script src="theme-toggle.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+
+    <h1>DEVELOPING YOUR FIRST PLUGIN FOR KOREADER</h1>
+
+    <div class="summary">
+      So, you've been using KOReader on your phone, jailbroken Kindle, or some other device, and realized you want to have some functionality that's not built into it. You've probably looked around in the #koplugin tags on Github, and there wasn't one that met your needs. Good news: KOReader is easily extendable with Lua, you can make your own plugin somewhat easily, provided you know some Lua or are willing to learn the basics!
+    </div>
+
+    <section aria-labelledby="overview">
+      <h2 class="section-title" id="overview">Overview</h2>
+      <div class="card card-desc">
+        <p>In this guide, we'll go over what you need to set up to make your plugin, and write a basic "Hello World" plugin. For in-depth reference on KOReader's Lua components and examples of more complicated plugins, please look at the <a href="https://github.com/koreader/koreader" target="_blank" rel="noopener">source code over at their github repo</a>. We will briefly go over some basics of Lua here, but this is not a Lua tutorial. Please refer to the <a href="https://www.lua.org/manual/5.3/" target="_blank" rel="noopener">Lua documentation</a> if you want to know more.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="setting-up">
+      <h2 class="section-title" id="setting-up">Setting Up</h2>
+      <div class="card card-desc">
+        <p>Programming without in-editor hints and context-aware autocomplete isn't the best experience, so let's start by setting up our environment. First, let's get the KOReader source code and set up your LSP to properly recognize the require calls.</p>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Create the plugin Git repo</h3>
+      <div class="card card-desc">
+        <p>First, make a directory for your plugin. By convention, that's a directory with the plugin's name and <code>.koplugin</code> at the end of it, for example: <code>HelloWorld.koplugin</code></p>
+        <pre><code>mkdir HelloWorld.koplugin
+cd HelloWorld.koplugin
+git init -b main</code></pre>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Add the KOReader repository as a submodule</h3>
+      <div class="card card-desc">
+        <pre><code>git submodule add https://github.com/koreader/koreader.git</code></pre>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Create the .luarc.json file</h3>
+      <div class="card card-desc">
+        <p>This file will tell your editor the necessary information about your project. For our purposes, we use it to point the LSP to the KOReader Lua source code directories, and to tell it to not scan some directories it doesn't need to:</p>
+        <pre><code>{
+  "workspace": {
+    "library": ["./koreader/frontend"],
+    "ignoreDir": [".vscode", ".git"]
+  }
+}</code></pre>
+        <p style="margin-top: 1rem;">At this point, environment is set up, let's move on to making the actual plugin.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="making-plugin">
+      <h2 class="section-title" id="making-plugin">Making the Plugin</h2>
+      <div class="card card-desc">
+        <p>Every KOReader plugin consists of at least two files:</p>
+        <ul>
+          <li><code>main.lua</code> that is the entrypoint to your plugin;</li>
+          <li><code>_meta.lua</code> that describes your plugin to KOReader's plugin manager.</li>
+        </ul>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">_meta.lua</h3>
+      <div class="card card-desc">
+        <p>This file's structure is extremely simple, it just contains the name and the description of the plugin:</p>
+        <pre><code>local _ = require("gettext")
+return {
+    name = "hello_world",
+    fullname = _("Hello World"),
+    description = _([[This is a Hello World plugin.]]),
+}</code></pre>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">main.lua</h3>
+      <div class="card card-desc">
+        <p>This is your plugin's main entrypoint file. It gets executed when the plugin is loaded, and in simple cases will contain all of the code. In more complex cases, it's recommended to split it into files and require them as needed.</p>
+        <p style="margin: 1rem 0;">This code is taken from KOReader's own hello.koplugin, since it's a great example, and modified slightly.</p>
+        <pre><code>--[[--
+This is a debug plugin to test Plugin functionality.
+
+@module koplugin.HelloWorld
+--]]--
+
+local Dispatcher = require("dispatcher")  -- luacheck:ignore
+local InfoMessage = require("ui/widget/infomessage")
+local UIManager = require("ui/uimanager")
+local WidgetContainer = require("ui/widget/container/widgetcontainer")
+local _ = require("gettext")
+
+local Hello = WidgetContainer:extend{
+    name = "hello_world",
+    is_doc_only = false,
+}
+
+function Hello:onDispatcherRegisterActions()
+    Dispatcher:registerAction("helloworld_action", {category="none", event="HelloWorld", title=_("Hello World"), general=true,})
+end
+
+function Hello:init()
+    self:onDispatcherRegisterActions()
+    self.ui.menu:registerToMainMenu(self)
+end
+
+function Hello:addToMainMenu(menu_items)
+    menu_items.hello_world = {
+        text = _("Hello World"),
+        -- in which menu this should be appended
+        sorting_hint = "more_tools",
+        -- a callback when tapping
+        callback = function()
+            Hello.onHelloWorld(self)
+        end,
+    }
+end
+
+function Hello:onHelloWorld()
+    local popup = InfoMessage:new{
+        text = _("Hello World"),
+    }
+    UIManager:show(popup)
+end
+
+return Hello</code></pre>
+      </div>
+    </section>
+
+    <section aria-labelledby="code-breakdown">
+      <h2 class="section-title" id="code-breakdown">Code Breakdown</h2>
+      <div class="card card-desc">
+        <p>Let's go over the code bit by bit:</p>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">LuaDoc Comment</h3>
+      <div class="card card-desc">
+        <pre><code>--[[--
+This is a debug plugin to test Plugin functionality.
+
+@module koplugin.HelloWorld
+--]]--</code></pre>
+        <p style="margin-top: 1rem;">The LuaDoc comment is partly for human readers, and partly for your IDE: the <code>@module koplugin.HelloWorld</code> is a LuaDoc tag indicating the module name for the documentation.</p>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Module Imports</h3>
+      <div class="card card-desc">
+        <pre><code>local Dispatcher = require("dispatcher")  -- luacheck:ignore
+local InfoMessage = require("ui/widget/infomessage")
+local UIManager = require("ui/uimanager")
+local WidgetContainer = require("ui/widget/container/widgetcontainer")
+local _ = require("gettext")</code></pre>
+        <p style="margin-top: 1rem;">This is the module imports section.</p>
+        <ul>
+          <li><code>Dispatcher</code> is the module responsible for dispatching events. We'll hook into it to register our actions. You can also use it to trigger actions within KOReader, like switching a page, changing the font, etc.</li>
+          <li><code>InfoMessage</code> is the widget we'll display when the user clicks on our menu entry</li>
+          <li><code>UIManager</code> is, as the name suggests, the module that manages widgets. You can use it to show and hide widgets, trigger repaints, and do other things related to the UI.</li>
+          <li><code>WidgetContainer</code> is the base widget for your plugin. It can contain other widgets, and is responsible for event propagation and painting (with different alignments) for its children.</li>
+          <li><code>_</code> is the Lua implementation of a subset of gettext. It's used for translation of your plugin's text strings to different languages and for formatting. Excerpt from gettext's manpage: "The gettext program translates a natural language message into the user's language, by looking up the translation in a message catalog."</li>
+        </ul>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Widget Initialization</h3>
+      <div class="card card-desc">
+        <pre><code>local Hello = WidgetContainer:extend{
+    name = "hello_world",
+    is_doc_only = false,
+}</code></pre>
+        <p style="margin-top: 1rem;">Here we initialize our base widget and give it a name. It should match the name in <code>_meta.lua</code>. <code>is_doc_only = false</code> tells the KOReader plugin loader to register the plugin instance and keep track of it. If it's set to true, the plugin will not be shown in the plugins list, and its constructor won't be called upon load, or receive events.</p>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Dispatcher Registration</h3>
+      <div class="card card-desc">
+        <pre><code>function Hello:onDispatcherRegisterActions()
+    Dispatcher:registerAction("helloworld_action", {category="none", event="HelloWorld", title=_("Hello World"), general=true,})
+end</code></pre>
+        <p style="margin-top: 1rem;">Here we define a method in Hello that we'll call later to register our action in the Dispatcher. Every widget extends EventListener, and when Dispatcher sends an event, <code>on{EventName}</code> is called on each widget the event is propagated to. In our case, that will be <code>Hello:onHelloWorld</code></p>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Initialization Method</h3>
+      <div class="card card-desc">
+        <pre><code>function Hello:init()
+    self:onDispatcherRegisterActions()
+    self.ui.menu:registerToMainMenu(self)
+end</code></pre>
+        <p style="margin-top: 1rem;">Here we call the method we made earlier, and also call <code>registerToMainMenu(self)</code>. That will, in turn, call the method we'll define next:</p>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Main Menu Registration</h3>
+      <div class="card card-desc">
+        <pre><code>function Hello:addToMainMenu(menu_items)
+    menu_items.hello_world = {
+        text = _("Hello World"),
+        -- in which menu this should be appended
+        sorting_hint = "more_tools",
+        -- a callback when tapping
+        callback = function()
+            Hello.onHelloWorld(self)
+        end,
+    }
+end</code></pre>
+        <p style="margin-top: 1rem;">Here we create a menu entry. All the strings that can be shown to a user here are wrapped with gettext so that they can be translated.</p>
+        <ul>
+          <li><code>text</code> is the name of the entry that'll be displayed to the user in the menu</li>
+          <li><code>sorting_hint</code> tells KOReader in which menu or submenu to place this entry. Possible values are (non-exhaustive! Each plugin can add their own menu or submenu):
+            <ul>
+              <li>navi</li>
+              <li>typeset</li>
+              <li>setting</li>
+              <li>tools</li>
+              <li>more_tools</li>
+              <li>search</li>
+              <li>filemanager</li>
+              <li>main</li>
+              <li>screen</li>
+              <li>document</li>
+              <li>device</li>
+              <li>selection_text</li>
+            </ul>
+          </li>
+          <li><code>callback</code> is the function that gets called. In this case it just directly calls our <code>onHelloWorld</code> event handler, bypassing the Dispatcher.</li>
+        </ul>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Event Handler</h3>
+      <div class="card card-desc">
+        <pre><code>function Hello:onHelloWorld()
+    local popup = InfoMessage:new({
+        text = _("Hello World"),
+    })
+    UIManager:show(popup)
+end</code></pre>
+        <p style="margin-top: 1rem;">This is the method that's called when either the user presses the Hello World button we've created, or some other plugin sends the HelloWorld event through the Dispatcher.</p>
+        <p style="margin: 1rem 0;"><code>local popup = InfoMessage:new({text = _("Hello World")})</code> — Here we create an instance of the InfoMessage widget. It's similar in spirit to alert in JavaScript, it's a modal window that closes when you click outside of it. It can also be moved around by the user, have custom height, an icon and you can set a timeout, after which it'll close automatically.</p>
+        <p style="margin: 1rem 0;"><code>UIManager:show(popup)</code> — Here we take the popup instance we've made, and tell UIManager to show it, which it'll do in its own event loop</p>
+      </div>
+
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.1em; font-weight: 600;">Module Return</h3>
+      <div class="card card-desc">
+        <pre><code>return Hello</code></pre>
+        <p style="margin-top: 1rem;">Finally, we return the Hello class so that KOReader can instantiate and use it.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <p>The original guide was created by <a href="https://gist.github.com/consoleaf" target="_blank" rel="noopener">consoleaf</a> and can be found <a href="https://gist.github.com/consoleaf/abbe8449377f1f6ef47b86d6c0d8873d" target="_blank" rel="noopener">here</a>.</p>
+      </div>
+    </section>
+  </div>
+    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
+</body>
+</html>

@@ -154,6 +154,9 @@
   --patreon-success-text: #6cc29e;
   --patreon-success-hover-bg: rgba(108, 194, 158, 0.18);
   --patreon-success-hover-border: rgba(108, 194, 158, 0.45);
+  --slider-track-bg: rgba(255, 180, 87, 0.1);
+  --slider-track-fill: rgba(255, 180, 87, 0.45);
+  --slider-thumb-bg: var(--primary);
 }
 
 /* Light Mode Colors */
@@ -312,6 +315,9 @@
   --patreon-success-text: #065f46;
   --patreon-success-hover-bg: rgba(167, 243, 208, 0.7);
   --patreon-success-hover-border: rgba(16, 185, 129, 0.6);
+  --slider-track-bg: rgba(217, 119, 6, 0.15);
+  --slider-track-fill: rgba(217, 119, 6, 0.5);
+  --slider-thumb-bg: var(--primary);
 }
 
 .legal-disclaimer {
@@ -697,6 +703,33 @@ pre code {
   word-break: normal;
   white-space: pre;
   color: inherit;
+}
+
+/* Scrollbar styling for pre/code blocks */
+pre::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: var(--slider-track-bg);
+  border-radius: 5px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: var(--slider-thumb-bg);
+  border-radius: 5px;
+  transition: background 0.2s ease;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Firefox scrollbar styling */
+pre {
+  scrollbar-width: thin;
+  scrollbar-color: var(--slider-thumb-bg) var(--slider-track-bg);
 }
 
 .zip-link {
@@ -1569,7 +1602,7 @@ pre code {
   -webkit-appearance: none;
   appearance: none;
   height: 6px;
-  background: rgba(255, 180, 87, 0.1);
+  background: var(--slider-track-bg);
   border-radius: 3px;
   outline: none;
   cursor: pointer;
@@ -1580,7 +1613,7 @@ pre code {
   appearance: none;
   width: 16px;
   height: 16px;
-  background: var(--primary);
+  background: var(--slider-thumb-bg);
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1589,7 +1622,7 @@ pre code {
 .video-seeker::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  background: var(--primary);
+  background: var(--slider-thumb-bg);
   border-radius: 50%;
   cursor: pointer;
   border: none;
@@ -1606,9 +1639,22 @@ pre code {
   box-shadow: 0 0 8px rgba(255, 180, 87, 0.55);
 }
 
+.video-seeker::-webkit-slider-track {
+  background: var(--slider-track-bg);
+  border-radius: 3px;
+  height: 6px;
+}
+
+.video-seeker::-moz-range-track {
+  background: var(--slider-track-bg);
+  border-radius: 3px;
+  height: 6px;
+  border: none;
+}
+
 /* Progress fill effect */
 .video-seeker {
-  background: linear-gradient(to right, rgba(255, 180, 87, 0.45) 0%, rgba(255, 180, 87, 0.45) var(--progress, 0%), rgba(255, 180, 87, 0.1) var(--progress, 0%), rgba(255, 180, 87, 0.1) 100%);
+  background: linear-gradient(to right, var(--slider-track-fill) 0%, var(--slider-track-fill) var(--progress, 0%), var(--slider-track-bg) var(--progress, 0%), var(--slider-track-bg) 100%);
 }
 
 .time-display {
