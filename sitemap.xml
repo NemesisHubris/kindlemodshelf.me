@@ -45,6 +45,16 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://kindlemodshelf.me/blockamazon.html</loc>
+    <lastmod>2025-11-03T06:54:16+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/clearadcache.html</loc>
+    <lastmod>2025-11-03T07:07:54+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://kindlemodshelf.me/connect4.html</loc>
     <lastmod>2025-10-16T23:49:01+00:00</lastmod>
     <priority>0.80</priority>
