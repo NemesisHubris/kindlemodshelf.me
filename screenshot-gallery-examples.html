@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screenshot Gallery Examples - KindleModShelf</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
+
+    <h1>Screenshot Gallery Examples</h1>
+
+    <div class="summary">
+      This page demonstrates all the different ways to use the screenshot gallery system.
+      Copy and paste the patterns you need into your pages. Remember to replace placeholder
+      images with actual screenshots from <code>page_images/</code> folder.
+    </div>
+
+    <!-- Example 1: Default Auto-fit Gallery -->
+    <h2 class="section-title">Default Auto-fit Gallery</h2>
+    <div class="card">
+      <p>Automatically adjusts columns based on available space. Good for most use cases.</p>
+
+      <div class="screenshot-gallery">
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=Screenshot+1" alt="Example screenshot 1" />
+          </div>
+          <div class="screenshot-caption">First screenshot with caption</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/4fd1c5?text=Screenshot+2" alt="Example screenshot 2" />
+          </div>
+          <div class="screenshot-caption">Second screenshot with caption</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=Screenshot+3" alt="Example screenshot 3" />
+          </div>
+          <div class="screenshot-caption">Third screenshot with caption</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 2: Dual Column -->
+    <h2 class="section-title">Dual Column Layout</h2>
+    <div class="card">
+      <p>Fixed 2-column layout. Perfect for side-by-side comparisons.</p>
+
+      <div class="screenshot-gallery dual">
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=Left" alt="Left screenshot" />
+          </div>
+          <div class="screenshot-caption">Left side</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/4fd1c5?text=Right" alt="Right screenshot" />
+          </div>
+          <div class="screenshot-caption">Right side</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 3: Triple Column -->
+    <h2 class="section-title">Triple Column Layout</h2>
+    <div class="card">
+      <p>Fixed 3-column layout. Good for showing multiple features.</p>
+
+      <div class="screenshot-gallery triple">
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=Feature+1" alt="Feature 1" />
+          </div>
+          <div class="screenshot-caption">Feature 1</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/4fd1c5?text=Feature+2" alt="Feature 2" />
+          </div>
+          <div class="screenshot-caption">Feature 2</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=Feature+3" alt="Feature 3" />
+          </div>
+          <div class="screenshot-caption">Feature 3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 4: Single Column (Featured) -->
+    <h2 class="section-title">Single Column (Featured)</h2>
+    <div class="card">
+      <p>Large, centered screenshot. Perfect for hero images or main features.</p>
+
+      <div class="screenshot-gallery single">
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/1200x800/1a1a1a/ff9d3d?text=Featured+Screenshot" alt="Featured screenshot" />
+          </div>
+          <div class="screenshot-caption">Large featured screenshot showcasing main interface</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 5: No Captions -->
+    <h2 class="section-title">Without Captions</h2>
+    <div class="card">
+      <p>Clean gallery without text captions. Add <code>no-caption</code> class.</p>
+
+      <div class="screenshot-gallery triple">
+        <div class="screenshot-item no-caption">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=1" alt="Screenshot 1" />
+          </div>
+        </div>
+
+        <div class="screenshot-item no-caption">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/4fd1c5?text=2" alt="Screenshot 2" />
+          </div>
+        </div>
+
+        <div class="screenshot-item no-caption">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=3" alt="Screenshot 3" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 6: With Badges -->
+    <h2 class="section-title">With Badges</h2>
+    <div class="card">
+      <p>Add badges to highlight new features or versions.</p>
+
+      <div class="screenshot-gallery dual">
+        <div class="screenshot-item">
+          <span class="screenshot-badge">NEW</span>
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=New+Feature" alt="New feature" />
+          </div>
+          <div class="screenshot-caption">Newly added feature</div>
+        </div>
+
+        <div class="screenshot-item">
+          <span class="screenshot-badge">v2.0</span>
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/4fd1c5?text=Version+2.0" alt="Version 2.0" />
+          </div>
+          <div class="screenshot-caption">Updated in version 2.0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 7: Different Aspect Ratios -->
+    <h2 class="section-title">Different Aspect Ratios</h2>
+    <div class="card">
+      <p>Use <code>wide</code>, <code>square</code>, or <code>portrait</code> classes on the wrapper.</p>
+
+      <div class="screenshot-gallery triple">
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper wide">
+            <img class="screenshot-img" src="https://via.placeholder.com/1600x900/1a1a1a/ff9d3d?text=16:9+Wide" alt="Wide screenshot" />
+          </div>
+          <div class="screenshot-caption">16:9 Widescreen</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper square">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x800/1a1a1a/4fd1c5?text=1:1+Square" alt="Square screenshot" />
+          </div>
+          <div class="screenshot-caption">1:1 Square</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper portrait">
+            <img class="screenshot-img" src="https://via.placeholder.com/600x800/1a1a1a/ff9d3d?text=3:4+Portrait" alt="Portrait screenshot" />
+          </div>
+          <div class="screenshot-caption">3:4 Portrait</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 8: Lazy Loading -->
+    <h2 class="section-title">Lazy Loading</h2>
+    <div class="card">
+      <p>Use <code>data-src</code> instead of <code>src</code> to lazy load images.</p>
+
+      <div class="screenshot-gallery dual">
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" data-src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=Lazy+1" alt="Lazy loaded 1" />
+          </div>
+          <div class="screenshot-caption">Lazy loaded image 1</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" data-src="https://via.placeholder.com/800x533/1a1a1a/4fd1c5?text=Lazy+2" alt="Lazy loaded 2" />
+          </div>
+          <div class="screenshot-caption">Lazy loaded image 2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 9: Before/After Comparison -->
+    <h2 class="section-title">Before/After Comparison</h2>
+    <div class="card">
+      <p>Side-by-side comparison with labels.</p>
+
+      <div class="screenshot-comparison">
+        <span class="screenshot-comparison-label before">Before</span>
+        <div class="screenshot-item no-caption">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/999999?text=Before" alt="Before" />
+          </div>
+        </div>
+
+        <span class="screenshot-comparison-label after">After</span>
+        <div class="screenshot-item no-caption">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=After" alt="After" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Example 10: Mixed Gallery -->
+    <h2 class="section-title">Mixed Gallery with Multiple Images</h2>
+    <div class="card">
+      <p>Gallery with multiple screenshots that opens in lightbox viewer.</p>
+
+      <div class="screenshot-gallery">
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=Home+Screen" alt="Home screen" />
+          </div>
+          <div class="screenshot-caption">Main home screen interface</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/4fd1c5?text=Settings" alt="Settings screen" />
+          </div>
+          <div class="screenshot-caption">Settings and configuration</div>
+        </div>
+
+        <div class="screenshot-item">
+          <span class="screenshot-badge">NEW</span>
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/ff9d3d?text=New+Feature" alt="New feature" />
+          </div>
+          <div class="screenshot-caption">Newly added dark mode</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/4fd1c5?text=Menu" alt="Menu screen" />
+          </div>
+          <div class="screenshot-caption">Navigation menu</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper wide">
+            <img class="screenshot-img" src="https://via.placeholder.com/1600x900/1a1a1a/ff9d3d?text=Reading+View" alt="Reading view" />
+          </div>
+          <div class="screenshot-caption">Full reading view in widescreen</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-img-wrapper">
+            <img class="screenshot-img" src="https://via.placeholder.com/800x533/1a1a1a/4fd1c5?text=Library" alt="Library view" />
+          </div>
+          <div class="screenshot-caption">Book library organization</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code Examples -->
+    <h2 class="section-title">HTML Code Reference</h2>
+    <div class="card">
+      <h3 style="color: var(--primary); margin-top: 0;">Basic Structure</h3>
+      <pre><code>&lt;div class="screenshot-gallery"&gt;
+  &lt;div class="screenshot-item"&gt;
+    &lt;div class="screenshot-img-wrapper"&gt;
+      &lt;img class="screenshot-img" src="page_images/example-1.jpg" alt="Description" /&gt;
+    &lt;/div&gt;
+    &lt;div class="screenshot-caption"&gt;Caption text here&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+      <h3 style="color: var(--primary);">Layout Classes</h3>
+      <ul>
+        <li><code>.screenshot-gallery</code> - Default auto-fit</li>
+        <li><code>.screenshot-gallery.single</code> - 1 column</li>
+        <li><code>.screenshot-gallery.dual</code> - 2 columns</li>
+        <li><code>.screenshot-gallery.triple</code> - 3 columns</li>
+        <li><code>.screenshot-gallery.quad</code> - 4 columns</li>
+        <li><code>.screenshot-gallery.compact</code> - Smaller thumbnails</li>
+      </ul>
+
+      <h3 style="color: var(--primary);">Aspect Ratio Classes</h3>
+      <ul>
+        <li><code>.screenshot-img-wrapper</code> - Default 3:2</li>
+        <li><code>.screenshot-img-wrapper.wide</code> - 16:9</li>
+        <li><code>.screenshot-img-wrapper.square</code> - 1:1</li>
+        <li><code>.screenshot-img-wrapper.portrait</code> - 3:4</li>
+      </ul>
+
+      <h3 style="color: var(--primary);">Additional Classes</h3>
+      <ul>
+        <li><code>.screenshot-item.no-caption</code> - Hide caption</li>
+        <li><code>.screenshot-item.featured</code> - Larger, featured item</li>
+        <li><code>.screenshot-badge</code> - Badge overlay (NEW, v2.0, etc.)</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Usage Instructions</h2>
+    <div class="card">
+      <h3 style="color: var(--primary); margin-top: 0;">1. Add JavaScript</h3>
+      <p>Include the screenshot gallery script before closing <code>&lt;/body&gt;</code> tag:</p>
+      <pre><code>&lt;script src="screenshots.js"&gt;&lt;/script&gt;</code></pre>
+
+      <h3 style="color: var(--primary);">2. Add Images to page_images Folder</h3>
+      <p>Follow the naming convention: <code>[page-name]-[number].jpg</code></p>
+      <ul>
+        <li>koreader-1.jpg</li>
+        <li>koreader-2.jpg</li>
+        <li>2048-1.png</li>
+      </ul>
+
+      <h3 style="color: var(--primary);">3. Insert Gallery HTML</h3>
+      <p>Copy one of the patterns above and replace placeholder images with your actual images.</p>
+
+      <h3 style="color: var(--primary);">4. Features</h3>
+      <ul>
+        <li>✅ Click any screenshot to open lightbox viewer</li>
+        <li>✅ Use arrow keys (← →) to navigate between images</li>
+        <li>✅ Press ESC to close viewer</li>
+        <li>✅ Fully responsive on all devices</li>
+        <li>✅ Dark/light theme support</li>
+        <li>✅ Lazy loading for better performance</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer class="legal-disclaimer">
+    Screenshot Gallery Examples - KindleModShelf
+  </footer>
+
+  <script src="screenshots.js"></script>
+</body>
+</html>
