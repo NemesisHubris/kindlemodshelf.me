@@ -1277,12 +1277,13 @@ pre {
   position: fixed;
   inset: 0;
   padding: 32px;
-  background: rgba(4, 8, 16, 0.88);
+  background: var(--viewer-modal-bg);
   z-index: 1000;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity 0.25s ease;
+  backdrop-filter: blur(8px);
 }
 
 #img-viewer-modal.active {
@@ -1297,10 +1298,10 @@ pre {
   flex-direction: column;
   gap: 18px;
   padding: 28px 32px 32px;
-  background: rgba(14, 20, 30, 0.96);
+  background: var(--viewer-wrap-bg);
   border-radius: 26px;
-  border: 1px solid rgba(255, 180, 87, 0.2);
-  box-shadow: 0 24px 48px rgba(8, 8, 12, 0.6);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 24px 48px var(--shadow-color);
   overflow: hidden;
 }
 
@@ -1312,7 +1313,7 @@ pre {
   justify-content: space-between;
   gap: 18px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 180, 87, 0.14);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .viewer-info {
@@ -1331,7 +1332,7 @@ pre {
 
 #img-viewer-filename {
   font-size: 0.9em;
-  color: rgba(223, 232, 255, 0.75);
+  color: var(--muted);
   letter-spacing: 0.03em;
 }
 
@@ -1347,9 +1348,9 @@ pre {
   gap: 8px;
   padding: 8px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 180, 87, 0.28);
-  background: rgba(8, 16, 28, 0.6);
-  color: #dff2ff;
+  border: 1px solid var(--button-border);
+  background: var(--viewer-button-bg);
+  color: var(--viewer-button-text);
   font-size: 0.92em;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -1357,7 +1358,7 @@ pre {
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.18s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease, box-shadow 0.25s ease;
-  box-shadow: 0 14px 32px rgba(2, 10, 24, 0.55);
+  box-shadow: 0 4px 12px var(--shadow-color);
   font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
 }
 
@@ -1369,24 +1370,24 @@ pre {
 
 .viewer-button:hover,
 .viewer-button:focus-visible {
-  border-color: rgba(255, 184, 97, 0.42);
-  color: #fff7d6;
-  background: rgba(255, 180, 87, 0.1);
+  border-color: var(--primary);
+  color: var(--viewer-button-hover-text);
+  background: var(--viewer-button-hover-bg);
   transform: translateY(-2px);
-  box-shadow: 0 20px 44px rgba(12, 12, 18, 0.68);
+  box-shadow: 0 6px 16px var(--shadow-color);
   outline: none;
 }
 
 #img-viewer-close {
-  background: rgba(255, 92, 92, 0.15);
-  border-color: rgba(255, 118, 118, 0.32);
+  background: var(--viewer-close-bg);
+  border-color: var(--viewer-close-border);
 }
 
 #img-viewer-close:hover,
 #img-viewer-close:focus-visible {
-  background: rgba(255, 118, 118, 0.18);
-  color: #ffeaea;
-  border-color: rgba(255, 118, 118, 0.5);
+  background: var(--viewer-close-hover-bg);
+  color: var(--viewer-close-hover-text);
+  border-color: var(--viewer-close-border);
 }
 
 .viewer-canvas {
@@ -1396,10 +1397,10 @@ pre {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(160deg, rgba(6, 12, 22, 0.92), rgba(10, 18, 30, 0.9));
-  border: 1px solid rgba(255, 180, 87, 0.14);
+  background: var(--viewer-canvas-bg);
+  border: 1px solid var(--card-border);
   border-radius: 20px;
-  box-shadow: inset 0 0 28px rgba(4, 12, 24, 0.65);
+  box-shadow: inset 0 0 28px var(--shadow-color);
   overflow: hidden;
 }
 
@@ -1409,8 +1410,8 @@ pre {
   max-width: 100%;
   max-height: 74vh;
   border-radius: 18px;
-  box-shadow: 0 28px 58px rgba(2, 10, 22, 0.55);
-  background: radial-gradient(circle at center, rgba(12, 22, 38, 0.95), rgba(6, 12, 22, 0.9));
+  box-shadow: 0 16px 32px var(--shadow-color);
+  background: var(--viewer-img-bg);
 }
 
 #img-viewer-loader {
@@ -1418,7 +1419,7 @@ pre {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.06);
+  border: 3px solid var(--slider-track-bg);
   border-top-color: var(--primary);
   animation: spin 1s linear infinite;
   opacity: 0;
@@ -1528,10 +1529,10 @@ pre {
 .video-container {
   position: relative;
   width: 100%;
-  background: rgba(14, 20, 30, 0.92);
+  background: var(--card-bg);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 18px 36px rgba(8, 8, 12, 0.48);
+  box-shadow: 0 18px 36px var(--shadow-color);
   border: 1px solid var(--card-border);
 }
 
@@ -1546,14 +1547,14 @@ pre {
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  background: rgba(10, 16, 26, 0.92);
-  border-top: 1px solid rgba(255, 180, 87, 0.2);
+  background: var(--video-control-bg);
+  border-top: 1px solid var(--card-border);
 }
 
 .video-btn {
-  background: rgba(255, 180, 87, 0.12);
+  background: var(--video-btn-bg);
   color: var(--primary);
-  border: 1px solid rgba(255, 180, 87, 0.24);
+  border: 1px solid var(--video-btn-border);
   border-radius: 8px;
   padding: 8px 12px;
   font-size: 0.9em;
@@ -1564,15 +1565,15 @@ pre {
   font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  box-shadow: 0 10px 20px rgba(10, 10, 14, 0.3);
+  box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 .video-btn:hover {
-  background: rgba(255, 180, 87, 0.22);
-  border-color: rgba(255, 180, 87, 0.45);
+  background: var(--video-btn-hover-bg);
+  border-color: var(--video-btn-hover-border);
   transform: translateY(-2px);
-  color: #ffffff;
-  box-shadow: 0 16px 30px rgba(12, 12, 18, 0.55);
+  color: var(--primary);
+  box-shadow: 0 6px 16px var(--shadow-color);
 }
 
 .video-btn:active {
@@ -2048,7 +2049,7 @@ pre {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255, 180, 87, 0.2);
+  background: var(--button-border);
   transition: all 0.3s ease;
 }
 
@@ -2058,16 +2059,16 @@ pre {
 }
 
 .dot.completed {
-  background: #6cc29e;
+  background: var(--patreon-success-text);
 }
 
 .step-card-flow {
   display: none;
-  background: rgba(14, 20, 30, 0.92);
+  background: var(--card-bg);
   padding: 22px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 180, 87, 0.18);
-  box-shadow: 0 16px 32px rgba(8, 8, 12, 0.38);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 16px 32px var(--shadow-color);
   text-align: center;
 }
 
@@ -2085,17 +2086,18 @@ pre {
 }
 
 .step-card-flow p {
-  color: rgba(223, 232, 255, 0.85);
+  color: var(--fg);
   margin-bottom: 18px;
   font-size: 0.95em;
   line-height: 1.6;
+  opacity: 0.9;
 }
 
 .patreon-btn {
-  background: rgba(255, 180, 87, 0.12);
+  background: var(--video-btn-bg);
   color: var(--primary);
   padding: 10px 28px;
-  border: 1px solid rgba(255, 180, 87, 0.25);
+  border: 1px solid var(--video-btn-border);
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.9em;
@@ -2109,30 +2111,30 @@ pre {
 }
 
 .patreon-btn:hover {
-  background: rgba(255, 180, 87, 0.18);
-  border-color: rgba(255, 180, 87, 0.4);
+  background: var(--video-btn-hover-bg);
+  border-color: var(--video-btn-hover-border);
   transform: translateY(-1px);
-  color: #ffffff;
+  color: var(--primary);
 }
 
 .patreon-btn.success {
-  background: rgba(108, 194, 158, 0.12);
-  border-color: rgba(108, 194, 158, 0.3);
-  color: #6cc29e;
+  background: var(--patreon-success-bg);
+  border-color: var(--patreon-success-border);
+  color: var(--patreon-success-text);
 }
 
 .patreon-btn.success:hover {
-  background: rgba(108, 194, 158, 0.18);
-  border-color: rgba(108, 194, 158, 0.45);
-  color: #ffffff;
+  background: var(--patreon-success-hover-bg);
+  border-color: var(--patreon-success-hover-border);
+  color: var(--patreon-success-text);
 }
 
 .waiting-state {
   display: none;
   padding: 20px;
-  background: rgba(255, 184, 97, 0.08);
+  background: var(--video-btn-bg);
   border-radius: 12px;
-  border: 1px solid rgba(255, 184, 97, 0.2);
+  border: 1px solid var(--video-btn-border);
   text-align: center;
 }
 
@@ -2141,7 +2143,7 @@ pre {
 }
 
 .spinner-flow {
-  border: 3px solid rgba(255, 180, 87, 0.15);
+  border: 3px solid var(--slider-track-bg);
   border-top: 3px solid var(--primary);
   border-radius: 50%;
   width: 30px;
@@ -2151,7 +2153,7 @@ pre {
 }
 
 .waiting-state p {
-  color: rgba(223, 232, 255, 0.75);
+  color: var(--muted);
   font-size: 0.9em;
   margin: 8px 0;
 }
@@ -2635,7 +2637,7 @@ pre {
   background: var(--viewer-wrap-bg);
   border-radius: 26px;
   border: 1px solid var(--card-border);
-  box-shadow: 0 24px 48px rgba(8, 8, 12, 0.6);
+  box-shadow: 0 24px 48px var(--shadow-color);
   overflow: hidden;
 }
 
