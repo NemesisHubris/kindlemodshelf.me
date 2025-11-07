@@ -599,7 +599,9 @@ h1 {
 .card-links {
   margin-top: auto;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
 }
 
 .card-links a {
@@ -636,6 +638,54 @@ h1 {
 .card-links a:hover::after,
 .card-links a:focus-visible::after {
   transform: translateX(4px);
+}
+
+.card-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  color: var(--bg-base);
+  font-size: 0.88em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: none;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.card-download::before {
+  content: "↓";
+  font-size: 1.1em;
+  transition: transform 0.2s ease;
+}
+
+.card-download:hover,
+.card-download:focus-visible {
+  background: var(--link-hover);
+  border-color: var(--link-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  text-shadow: none;
+}
+
+.card-download:hover::before,
+.card-download:focus-visible::before {
+  transform: translateY(2px);
+}
+
+.card-download.disabled {
+  background: var(--muted);
+  border-color: var(--muted);
+  color: var(--bg-base);
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 a {
