@@ -896,17 +896,16 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 }
 </style>
   <script src="theme-toggle.js"></script>
-  <!-- Libraries for APKG import with SRI integrity checks -->
+  <!-- Libraries for APKG import -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
     integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
+  <!-- sql.js from jsdelivr - latest version with better browser support -->
   <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js"
-    integrity="sha512-EHnJJvBu6FjhcN8S9eGmRUJWzVLz+5B0XU0Hh/aelHs4DCohGCp9+mPPFLj2J6XSZPOmHqIxfCsAEDYqeJdzZA=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"></script>
+    src="https://cdn.jsdelivr.net/npm/sql.js@1.13.0/dist/sql-wasm.js"
+    crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -1348,7 +1347,7 @@ function checkAPKGSupport() {
   }
 
   // Check if sql.js loaded
-  if (typeof initSqlJs === 'undefined') {
+  if (typeof window.initSqlJs === 'undefined') {
     console.warn('sql.js library not loaded');
     return false;
   }
@@ -1479,9 +1478,12 @@ async function importAPKG(f) {
     // FIX #14: Better error handling for WASM load
     let SQL;
     try {
+      if (typeof window.initSqlJs === 'undefined') {
+        throw new Error('initSqlJs is not defined - SQL.js library failed to load');
+      }
       SQL = await withTimeout(
-        initSqlJs({
-          locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/${file}`
+        window.initSqlJs({
+          locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.13.0/dist/${file}`
         }),
         60000,
         'SQLite library initialization timed out. Check internet connection.'
@@ -2715,7 +2717,7 @@ function checkAndUpdateAPKGSupport() {
     console.info('Browser compatibility:');
     console.info('- File.arrayBuffer:', typeof File.prototype.arrayBuffer !== 'undefined' ? '✓' : '✗');
     console.info('- JSZip library:', typeof JSZip !== 'undefined' ? '✓' : '✗');
-    console.info('- sql.js library:', typeof initSqlJs !== 'undefined' ? '✓' : '✗');
+    console.info('- sql.js library:', typeof window.initSqlJs !== 'undefined' ? '✓' : '✗');
     console.info('- WebAssembly:', typeof WebAssembly !== 'undefined' ? '✓' : '✗');
     console.info('Note: .apkg files will still appear in file picker, but will show an error if selected');
   } else {
