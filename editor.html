@@ -906,6 +906,10 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   <script
     src="https://cdn.jsdelivr.net/npm/sql.js@1.13.0/dist/sql-wasm.js"
     crossorigin="anonymous"></script>
+  <!-- fzstd for decompressing modern Anki collection.anki21b files -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/fzstd@0.1.1/umd/index.js"
+    crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -1352,6 +1356,13 @@ function checkAPKGSupport() {
     return false;
   }
 
+  // Check if fzstd loaded (needed for modern .anki21b format)
+  if (typeof fzstd === 'undefined') {
+    console.warn('fzstd library not loaded - modern Anki format (.anki21b) will not be supported');
+    console.warn('Legacy formats (.anki21 and .anki2) will still work');
+    // Don't return false - older formats still work
+  }
+
   // Check WebAssembly support (required by sql.js)
   if (typeof WebAssembly === 'undefined') {
     console.warn('WebAssembly not supported');
@@ -1460,14 +1471,39 @@ async function importAPKG(f) {
     showToast("Importing Anki deck... (40%)", 1000);
 
     // Step 2: Find and extract the SQLite database
+    // Check for database files in order of newest to oldest format
     let dbFile;
-    if (zip.file('collection.anki21')) {
+    let dbFormat = null;
+
+    if (zip.file('collection.anki21b')) {
+      // Latest format: zstd-compressed database
+      dbFormat = 'anki21b';
+      const compressedDb = await zip.file('collection.anki21b').async('uint8array');
+      showToast("Decompressing modern Anki database...", 1000);
+
+      // Decompress using fzstd
+      if (typeof fzstd === 'undefined') {
+        throw new Error('fzstd library not loaded - cannot decompress modern Anki format');
+      }
+      try {
+        dbFile = fzstd.decompress(compressedDb);
+      } catch (decompressErr) {
+        throw new Error('Failed to decompress collection.anki21b: ' + decompressErr.message);
+      }
+    } else if (zip.file('collection.anki21')) {
+      // Legacy 2 format: uncompressed database
+      dbFormat = 'anki21';
       dbFile = await zip.file('collection.anki21').async('arraybuffer');
     } else if (zip.file('collection.anki2')) {
+      // Legacy 1 format: uncompressed database
+      // Note: In newer APKG files, this may be a dummy file with an error message
+      dbFormat = 'anki2';
       dbFile = await zip.file('collection.anki2').async('arraybuffer');
     } else {
       throw new Error('No Anki database found in APKG file. This may not be a valid Anki deck.');
     }
+
+    console.log('Using Anki database format:', dbFormat);
 
     // FIX #9: Clear zip reference
     zip = null;
@@ -1496,7 +1532,9 @@ async function importAPKG(f) {
       throw new Error('Failed to initialize SQLite library');
     }
 
-    db = new SQL.Database(new Uint8Array(dbFile));
+    // Convert dbFile to Uint8Array if needed (already Uint8Array for anki21b)
+    const dbData = dbFile instanceof Uint8Array ? dbFile : new Uint8Array(dbFile);
+    db = new SQL.Database(dbData);
 
     // FIX #9: Clear dbFile reference
     dbFile = null;
@@ -2718,10 +2756,16 @@ function checkAndUpdateAPKGSupport() {
     console.info('- File.arrayBuffer:', typeof File.prototype.arrayBuffer !== 'undefined' ? '✓' : '✗');
     console.info('- JSZip library:', typeof JSZip !== 'undefined' ? '✓' : '✗');
     console.info('- sql.js library:', typeof window.initSqlJs !== 'undefined' ? '✓' : '✗');
+    console.info('- fzstd library (for modern .anki21b):', typeof fzstd !== 'undefined' ? '✓' : '✗');
     console.info('- WebAssembly:', typeof WebAssembly !== 'undefined' ? '✓' : '✗');
     console.info('Note: .apkg files will still appear in file picker, but will show an error if selected');
   } else {
     console.info('✓ APKG import is supported - you can import Anki decks!');
+    if (typeof fzstd !== 'undefined') {
+      console.info('  - Modern Anki format (.anki21b) is supported');
+    } else {
+      console.info('  - Only legacy Anki formats (.anki21/.anki2) are supported');
+    }
   }
 }
 
