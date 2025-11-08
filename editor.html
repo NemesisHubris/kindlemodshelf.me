@@ -646,6 +646,7 @@ let importedLanguage = 'Deck';
 let editingDraft = null; // holds draft data while editing (for live preview)
 let isEditExisting = false;
 let lastVisibleCardIdx = -1; // Track last visible card for scroll sync
+let hasInitialized = false;
 
 /* ===== Dom helpers ===== */
 const $ = sel => document.querySelector(sel);
@@ -1211,13 +1212,51 @@ window.addEventListener('resize', () => {
   updateDeviceSize(w, h);
 });
 
+/* ===== State Persistence ===== */
+function initializeFromStorage() {
+  let raw;
+  try { 
+    raw = localStorage.getItem('kanki_editor_state'); 
+  } catch (e) { 
+    hasInitialized = true; return; 
+  }
+  if (raw) {
+    try { var state = JSON.parse(raw); } catch (e) { hasInitialized = true; return; }
+    allDecks = typeof state.allDecks === 'object' && state.allDecks ? state.allDecks : {};
+    levels = Array.isArray(state.levels) ? state.levels : [];
+    selectedLevel = typeof state.selectedLevel === 'string' && state.selectedLevel ? state.selectedLevel : '';
+    importedFileName = typeof state.importedFileName === 'string' && state.importedFileName ? state.importedFileName : 'kanki_config.js';
+    importedLanguage = typeof state.importedLanguage === 'string' && state.importedLanguage ? state.importedLanguage : 'Deck';
+  }
+  hasInitialized = true;
+}
+
+function saveToStorage() {
+  try {
+    localStorage.setItem('kanki_editor_state', JSON.stringify({
+    allDecks,
+    levels, 
+    selectedLevel,
+    importedFileName,
+    importedLanguage
+  }));
+  } catch (e) {
+    return;
+  }
+}
+
 /* ===== Render root ===== */
 function renderAll() {
+  if (!hasInitialized) {
+    initializeFromStorage();
+  }
+
   renderDecks();
   renderCards();
   renderPreview();
   $('#btnExport').disabled = levels.length === 0;
   $('#btnAddCard').disabled = !selectedLevel;
+  saveToStorage();
   
   // Make sure device size is correct
   const [w, h] = $('#deviceSel').value.split(',').map(x=>parseInt(x, 10));
