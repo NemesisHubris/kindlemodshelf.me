@@ -137,7 +137,8 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 #previewBar { height:56px; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:0 14px; border-bottom:1px solid var(--line); background:var(--panel); position:sticky; top:0; z-index:4; box-shadow: var(--shadow-sm); }
 #deviceSel { padding:6px 10px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--ink); box-shadow: var(--shadow-sm); transition: var(--transition); }
 #deviceSel:hover, #deviceSel:focus { border-color: var(--accent); outline: none; box-shadow: 0 1px 4px rgba(66, 103, 217, 0.2); }
-#previewHost { flex:1; display:flex; align-items:center; justify-content:center; padding:20px; overflow:auto; }
+#previewHost { flex:1; display:flex; align-items:flex-start; justify-content:center; padding:20px; overflow:auto; }
+#previewHost #device { position: sticky; top: 20px; }
 
 /* Kindle Device Styles */
 #device {
