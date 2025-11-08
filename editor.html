@@ -1348,7 +1348,7 @@ function checkAPKGSupport() {
   }
 
   // Check if sql.js loaded
-  if (typeof initSqlJs === 'undefined') {
+  if (typeof window.initSqlJs === 'undefined') {
     console.warn('sql.js library not loaded');
     return false;
   }
@@ -1479,8 +1479,11 @@ async function importAPKG(f) {
     // FIX #14: Better error handling for WASM load
     let SQL;
     try {
+      if (typeof window.initSqlJs === 'undefined') {
+        throw new Error('initSqlJs is not defined - SQL.js library failed to load');
+      }
       SQL = await withTimeout(
-        initSqlJs({
+        window.initSqlJs({
           locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/${file}`
         }),
         60000,
@@ -2715,7 +2718,7 @@ function checkAndUpdateAPKGSupport() {
     console.info('Browser compatibility:');
     console.info('- File.arrayBuffer:', typeof File.prototype.arrayBuffer !== 'undefined' ? '✓' : '✗');
     console.info('- JSZip library:', typeof JSZip !== 'undefined' ? '✓' : '✗');
-    console.info('- sql.js library:', typeof initSqlJs !== 'undefined' ? '✓' : '✗');
+    console.info('- sql.js library:', typeof window.initSqlJs !== 'undefined' ? '✓' : '✗');
     console.info('- WebAssembly:', typeof WebAssembly !== 'undefined' ? '✓' : '✗');
     console.info('Note: .apkg files will still appear in file picker, but will show an error if selected');
   } else {
