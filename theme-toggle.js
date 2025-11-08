@@ -40,13 +40,18 @@
     applyTheme(theme, persist);
   }
 
-  // Create and insert theme toggle button
-  function createToggleButton() {
-    // Check if button already exists
-    if (document.querySelector('.theme-toggle')) {
+  // Setup theme toggle button (either existing or create new one)
+  function setupToggleButton() {
+    // Check if button already exists in HTML
+    const existingButton = document.querySelector('.theme-toggle');
+
+    if (existingButton) {
+      // Attach click handler to existing button
+      existingButton.addEventListener('click', toggleTheme);
       return;
     }
 
+    // Create button if it doesn't exist
     const button = document.createElement('button');
     button.className = 'theme-toggle';
     button.setAttribute('aria-label', 'Toggle theme');
@@ -76,11 +81,11 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       initTheme();
-      createToggleButton();
+      setupToggleButton();
     });
   } else {
     initTheme();
-    createToggleButton();
+    setupToggleButton();
   }
 
   // Listen for system theme changes
