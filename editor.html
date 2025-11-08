@@ -6,30 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 :root {
-  /* Light Mode (Default) */
-  --bg:#f0f2f7;
-  --card:#fff;
-  --ink:#1a2135;
-  --muted:#6b7385;
-  --line:#d7dbea;
-  --accent:#4267d9;
-  --accent-hover:#3555c3;
-  --panel:#f9faff;
-  --kindle-bg: #f5f5f5;
-  --kindle-header: #eaeaea;
-  --kindle-border: #ccc;
-  --kindle-button: #555555;
-  --kindle-hard: #444444;
-  --kindle-good: #666666;
-  --kindle-easy: #888888;
-  --kindle-again: #222222;
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 8px rgba(0,0,0,0.08);
-  --transition: all 0.2s ease-in-out;
-}
-
-/* Dark Mode Colors */
-:root[data-theme="dark"] {
+  /* Dark Mode (Default) */
   --bg: #1a1d2e;
   --card: #252836;
   --ink: #e4e5e9;
@@ -48,6 +25,29 @@
   --kindle-again: #dfe0e5;
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 8px rgba(0,0,0,0.4);
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Light Mode Colors */
+:root[data-theme="light"] {
+  --bg:#f0f2f7;
+  --card:#fff;
+  --ink:#1a2135;
+  --muted:#6b7385;
+  --line:#d7dbea;
+  --accent:#4267d9;
+  --accent-hover:#3555c3;
+  --panel:#f9faff;
+  --kindle-bg: #f5f5f5;
+  --kindle-header: #eaeaea;
+  --kindle-border: #ccc;
+  --kindle-button: #555555;
+  --kindle-hard: #444444;
+  --kindle-good: #666666;
+  --kindle-easy: #888888;
+  --kindle-again: #222222;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.08);
 }
 
 * { box-sizing: border-box; }
@@ -529,7 +529,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 .theme-toggle {
   position: fixed;
   bottom: 24px;
-  left: 24px;
+  right: 24px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -576,23 +576,24 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   stroke: var(--accent-hover);
 }
 
-/* Moon icon for light mode */
+/* Sun icon for dark mode (default) */
+.theme-icon.sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Moon icon for dark mode (default) - hidden */
 .theme-icon.moon {
   opacity: 0;
   transform: rotate(180deg) scale(0.5);
   position: absolute;
 }
 
-/* Sun icon for dark mode */
-.theme-icon.sun {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
 /* When in light mode, show moon and hide sun */
 :root[data-theme="light"] .theme-icon.moon {
   opacity: 1;
   transform: rotate(0deg) scale(1);
+  position: relative;
 }
 
 :root[data-theme="light"] .theme-icon.sun {
@@ -601,34 +602,117 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   position: absolute;
 }
 
-/* When in dark mode, show sun and hide moon */
-:root[data-theme="dark"] .theme-icon.moon {
-  opacity: 0;
-  transform: rotate(180deg) scale(0.5);
+/* Disclaimer Popup */
+.disclaimer-popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 18, 36, 0.75);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.disclaimer-popup.show {
+  display: flex;
+}
+
+.disclaimer-content {
+  background: var(--card);
+  border-radius: 16px;
+  border: 2px solid var(--line);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  padding: 32px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+}
+
+.disclaimer-close {
   position: absolute;
-}
-
-:root[data-theme="dark"] .theme-icon.sun {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-/* Legal Disclaimer Footer */
-.legal-disclaimer {
-  text-align: center;
-  padding: 24px 20px;
-  font-size: 0.85em;
-  color: var(--muted);
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   background: var(--panel);
-  border-top: 1px solid var(--line);
-  margin-top: auto;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.disclaimer-close:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.disclaimer-title {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 16px 0;
+  padding-right: 24px;
+}
+
+.disclaimer-text {
+  font-size: 1em;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.disclaimer-button {
+  width: 100%;
+  padding: 12px 24px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.disclaimer-button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Mobile positioning */
 @media (max-width: 700px) {
   .theme-toggle {
     bottom: 20px;
-    left: 20px;
+    right: 20px;
     width: 50px;
     height: 50px;
   }
@@ -1413,7 +1497,45 @@ window.addEventListener('load', () => {
     renderAll(); // Initialize UI
   }, 400);
 });
+
+/* ===== Disclaimer Popup ===== */
+function showDisclaimerIfNeeded() {
+  // Check if user has already seen the disclaimer
+  const hasSeenDisclaimer = localStorage.getItem('kanki_disclaimer_seen');
+
+  if (!hasSeenDisclaimer) {
+    const popup = $('#disclaimerPopup');
+    if (popup) {
+      popup.classList.add('show');
+    }
+  }
+}
+
+function closeDisclaimer() {
+  const popup = $('#disclaimerPopup');
+  if (popup) {
+    popup.classList.remove('show');
+    localStorage.setItem('kanki_disclaimer_seen', 'true');
+  }
+}
+
+// Show disclaimer on page load
+window.addEventListener('load', () => {
+  showDisclaimerIfNeeded();
+});
 </script>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
+
+<!-- Disclaimer Popup -->
+<div id="disclaimerPopup" class="disclaimer-popup">
+  <div class="disclaimer-content">
+    <button class="disclaimer-close" onclick="closeDisclaimer()" aria-label="Close disclaimer">×</button>
+    <h2 class="disclaimer-title">Important Notice</h2>
+    <p class="disclaimer-text">
+      Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    </p>
+    <button class="disclaimer-button" onclick="closeDisclaimer()">I Understand</button>
+  </div>
+</div>
+
 </body>
 </html>
