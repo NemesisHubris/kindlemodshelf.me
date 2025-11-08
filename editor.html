@@ -191,7 +191,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 }
 
 .card {
-  background-color:white;
+  background-color:var(--kindle-bg);
   border-radius:5px;
   box-shadow:0 2px 4px rgba(0,0,0,0.1);
   padding:20px;
@@ -199,7 +199,8 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   width:80%;
   position:relative;
   min-height:300px;
-  border:1px solid #000;
+  border:1px solid var(--kindle-border);
+  color: var(--kindle-button);
 }
 
 .levelBadge {
@@ -294,9 +295,10 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 .buttonContainer button {
   margin:0 5px;
   padding:5px 10px;
-  border:1px solid #000;
+  border:1px solid var(--kindle-border);
   border-radius:0;
-  background-color:white;
+  background-color:var(--kindle-bg);
+  color: var(--kindle-button);
 }
 
 #showAnswerBtn {
@@ -304,10 +306,12 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   margin:8px auto;
   font-size:1.1em;
   cursor:pointer;
-  border:1px solid #000;
+  border:1px solid var(--kindle-border);
   min-width:80%;
   display:block;
   border-radius:0;
+  background-color:var(--kindle-bg);
+  color: var(--kindle-button);
 }
 
 #intervalButtons {
@@ -321,7 +325,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   margin:0 5px;
   font-size:0.95em;
   cursor:pointer;
-  border:1px solid #000;
+  border:1px solid var(--kindle-border);
   min-width:60px;
   display:inline-block;
   border-radius:0;
@@ -602,112 +606,6 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   position: absolute;
 }
 
-/* Disclaimer Popup */
-.disclaimer-popup {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(14, 18, 36, 0.75);
-  z-index: 10000;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(3px);
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.disclaimer-popup.show {
-  display: flex;
-}
-
-.disclaimer-content {
-  background: var(--card);
-  border-radius: 16px;
-  border: 2px solid var(--line);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  padding: 32px;
-  max-width: 500px;
-  width: 90%;
-  position: relative;
-  animation: slideUp 0.3s ease-out;
-}
-
-.disclaimer-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  color: var(--ink);
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  line-height: 1;
-}
-
-.disclaimer-close:hover {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-  transform: rotate(90deg);
-}
-
-.disclaimer-title {
-  font-size: 1.5em;
-  font-weight: 700;
-  color: var(--ink);
-  margin: 0 0 16px 0;
-  padding-right: 24px;
-}
-
-.disclaimer-text {
-  font-size: 1em;
-  color: var(--muted);
-  line-height: 1.6;
-  margin: 0 0 20px 0;
-}
-
-.disclaimer-button {
-  width: 100%;
-  padding: 12px 24px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.disclaimer-button:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 /* Mobile positioning */
 @media (max-width: 700px) {
   .theme-toggle {
@@ -860,6 +758,28 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 
 <!-- Toast notification -->
 <div id="toast" class="toast"></div>
+
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" aria-label="Toggle light/dark mode">
+  <span class="theme-icon sun">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </span>
+  <span class="theme-icon moon">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </span>
+</button>
 
 <script>
 /* ===== State ===== */
@@ -1497,45 +1417,7 @@ window.addEventListener('load', () => {
     renderAll(); // Initialize UI
   }, 400);
 });
-
-/* ===== Disclaimer Popup ===== */
-function showDisclaimerIfNeeded() {
-  // Check if user has already seen the disclaimer
-  const hasSeenDisclaimer = localStorage.getItem('kanki_disclaimer_seen');
-
-  if (!hasSeenDisclaimer) {
-    const popup = $('#disclaimerPopup');
-    if (popup) {
-      popup.classList.add('show');
-    }
-  }
-}
-
-function closeDisclaimer() {
-  const popup = $('#disclaimerPopup');
-  if (popup) {
-    popup.classList.remove('show');
-    localStorage.setItem('kanki_disclaimer_seen', 'true');
-  }
-}
-
-// Show disclaimer on page load
-window.addEventListener('load', () => {
-  showDisclaimerIfNeeded();
-});
 </script>
-
-<!-- Disclaimer Popup -->
-<div id="disclaimerPopup" class="disclaimer-popup">
-  <div class="disclaimer-content">
-    <button class="disclaimer-close" onclick="closeDisclaimer()" aria-label="Close disclaimer">×</button>
-    <h2 class="disclaimer-title">Important Notice</h2>
-    <p class="disclaimer-text">
-      Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
-    </p>
-    <button class="disclaimer-button" onclick="closeDisclaimer()">I Understand</button>
-  </div>
-</div>
 
 </body>
 </html>
