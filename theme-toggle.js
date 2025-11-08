@@ -46,6 +46,8 @@
     const existingButton = document.querySelector('.theme-toggle');
 
     if (existingButton) {
+      // Mark as initialized to prevent duplicate handlers
+      existingButton.setAttribute('data-theme-initialized', 'true');
       // Attach click handler to existing button
       existingButton.addEventListener('click', toggleTheme);
       return;
