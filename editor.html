@@ -705,8 +705,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   overflow: hidden;
 }
 
-.menu-item:hover .menu-dropdown,
-.menu-dropdown:hover {
+.menu-item.active .menu-dropdown {
   display: block;
 }
 
@@ -1846,6 +1845,22 @@ $('#showAnswerBtn').addEventListener('click', () => {
   $('#intervalButtons').style.display = 'block';
 });
 
+// Interval buttons - these are for the Kindle preview simulation
+$$('.intervalBtn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Hide interval buttons and show answer button again
+    $('#intervalButtons').style.display = 'none';
+    $('#showAnswerBtn').style.display = 'block';
+
+    // In a real app, this would record the interval choice
+    const buttonType = btn.className.includes('againBtn') ? 'Again' :
+                       btn.className.includes('hardBtn') ? 'Hard' :
+                       btn.className.includes('goodBtn') ? 'Good' : 'Easy';
+
+    showToast(`Selected: ${buttonType}`);
+  });
+});
+
 $('#starButton').addEventListener('click', () => {
   const button = $('#starButton');
   if (button.textContent === '☆') {
@@ -2053,6 +2068,44 @@ $('#btnBulkDuplicate').addEventListener('click', bulkDuplicate);
 $('#btnBulkDelete').addEventListener('click', bulkDelete);
 $('#btnDeselectAll').addEventListener('click', deselectAllCards);
 
+// Dropdown menu handling
+(function() {
+  const menuItems = $$('.menu-item');
+
+  menuItems.forEach(menuItem => {
+    const menuTitle = menuItem.querySelector('span');
+
+    menuTitle.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      // Close all other menus
+      menuItems.forEach(item => {
+        if (item !== menuItem) {
+          item.classList.remove('active');
+        }
+      });
+
+      // Toggle this menu
+      menuItem.classList.toggle('active');
+    });
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.menu-item')) {
+      menuItems.forEach(item => item.classList.remove('active'));
+    }
+  });
+
+  // Close dropdown after clicking a menu item
+  const dropdownItems = $$('.menu-dropdown-item');
+  dropdownItems.forEach(item => {
+    item.addEventListener('click', () => {
+      menuItems.forEach(menu => menu.classList.remove('active'));
+    });
+  });
+})();
+
 // Menu bar actions
 $('#menuImport').addEventListener('click', () => $('#fileInput').click());
 $('#menuExport').addEventListener('click', () => $('#btnExport').click());
@@ -2191,6 +2244,38 @@ window.addEventListener('load', () => {
     renderAll(); // Initialize UI
   }, 400);
 });
+
+// Ensure theme toggle button works (fallback if theme-toggle.js fails)
+(function initThemeToggleFallback() {
+  const themeToggleBtn = $('.theme-toggle');
+  if (themeToggleBtn && !themeToggleBtn.hasAttribute('data-initialized')) {
+    themeToggleBtn.setAttribute('data-initialized', 'true');
+
+    // Initialize theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    // Add click handler as fallback
+    const toggleThemeHandler = () => {
+      const root = document.documentElement;
+      const currentTheme = root.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+      if (newTheme === 'light') {
+        root.setAttribute('data-theme', 'light');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+
+      localStorage.setItem('theme', newTheme);
+      showToast(`Switched to ${newTheme} mode`);
+    };
+
+    themeToggleBtn.addEventListener('click', toggleThemeHandler);
+  }
+})();
 </script>
 
 </body>
