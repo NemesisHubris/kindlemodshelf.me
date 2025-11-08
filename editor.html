@@ -2722,12 +2722,7 @@ function checkAndUpdateAPKGSupport() {
     console.info('- JSZip library:', typeof JSZip !== 'undefined' ? '✓' : '✗');
     console.info('- sql.js library:', typeof initSqlJs !== 'undefined' ? '✓' : '✗');
     console.info('- WebAssembly:', typeof WebAssembly !== 'undefined' ? '✓' : '✗');
-
-    // Update file input to only accept .js files
-    const fileInput = $('#fileInput');
-    if (fileInput) {
-      fileInput.setAttribute('accept', '.js');
-    }
+    console.info('Note: .apkg files will still appear in file picker, but will show an error if selected');
   } else {
     console.info('✓ APKG import is supported - you can import Anki decks!');
   }
