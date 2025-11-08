@@ -14,6 +14,7 @@
   --line: #363a4d;
   --accent: #ff9d3d;
   --accent-hover: #ffb366;
+  --accent-text: #ffffff;
   --panel: #2a2d3e;
   --kindle-bg: #2d3142;
   --kindle-header: #353849;
@@ -25,6 +26,7 @@
   --kindle-again: #dfe0e5;
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 8px rgba(0,0,0,0.4);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.2);
   --transition: all 0.2s ease-in-out;
   --device-border: #333;
   --device-shadow: rgba(28, 35, 64, 0.25);
@@ -35,6 +37,12 @@
   --danger-text: #ff6b6b;
   --danger-border: #5a3535;
   --danger-hover-bg: #5a3030;
+  --delete-btn: #cc5555;
+  --modal-backdrop: rgba(14, 18, 36, 0.4);
+  --loading-spinner: #888888;
+  --badge-bg: #ff9d3d;
+  --badge-text: #ffffff;
+  --star-active: #ffb366;
 }
 
 /* Light Mode Colors */
@@ -46,6 +54,7 @@
   --line:#d7dbea;
   --accent:#4267d9;
   --accent-hover:#3555c3;
+  --accent-text: #ffffff;
   --panel:#f9faff;
   --kindle-bg: #f5f5f5;
   --kindle-header: #eaeaea;
@@ -57,6 +66,7 @@
   --kindle-again: #222222;
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
   --shadow-md: 0 4px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
   --device-border: #bbb;
   --device-shadow: rgba(0, 0, 0, 0.15);
   --toast-bg: rgba(26, 33, 53, 0.92);
@@ -66,6 +76,12 @@
   --danger-text: #c53030;
   --danger-border: #feb2b2;
   --danger-hover-bg: #fed7d7;
+  --delete-btn: #dc3545;
+  --modal-backdrop: rgba(0, 0, 0, 0.3);
+  --loading-spinner: #4267d9;
+  --badge-bg: #4267d9;
+  --badge-text: #ffffff;
+  --star-active: #fbbf24;
 }
 
 * { box-sizing: border-box; }
@@ -82,8 +98,8 @@ body { display:flex; min-height:100vh; background:var(--bg); flex-direction: col
 #topbar .actions { display:flex; gap:8px; }
 button { cursor:pointer; border:1px solid var(--line); background:var(--card); color:var(--ink); padding:8px 10px; border-radius:8px; font-weight:600; transition: var(--transition); }
 button:hover { background:var(--panel); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
-.btn-primary { background: var(--accent); color:#fff; border-color:var(--accent); }
-.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); box-shadow: 0 2px 8px rgba(66, 103, 217, 0.25); }
+.btn-primary { background: var(--accent); color:var(--accent-text); border-color:var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); box-shadow: var(--shadow-sm); }
 .btn-danger { background:var(--danger-bg); color:var(--danger-text); border-color:var(--danger-border); }
 .btn-danger:hover { background:var(--danger-hover-bg); }
 .btn-ghost { background:var(--card); color:var(--ink); border-color:var(--line); }
@@ -95,9 +111,9 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 #deckList { list-style:none; margin:0; padding:0; }
 .deckItem { display:flex; align-items:center; gap:6px; padding:9px 12px; border-radius:8px; margin-bottom: 2px; transition: var(--transition); }
 .deckItem:hover { background:var(--panel); }
-.deckItem.selected { background:var(--accent); color:#fff; font-weight:700; }
+.deckItem.selected { background:var(--accent); color:var(--accent-text); font-weight:700; }
 .deckItem .spacer { flex:1; }
-.deckItem .del { color:#b33; border:none; background:none; font-size:1.05em; opacity: 0.7; transition: var(--transition); }
+.deckItem .del { color:var(--delete-btn); border:none; background:none; font-size:1.05em; opacity: 0.7; transition: var(--transition); }
 .deckItem .del:hover { opacity: 1; transform: scale(1.1); }
 .deckFoot { padding:10px; border-top:1px solid var(--line); background: var(--panel); }
 
@@ -107,7 +123,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 #cardsBar { height:56px; display:flex; align-items:center; gap:10px; padding:0 16px; border-bottom:1px solid var(--line); background:var(--card); position:sticky; top:0; z-index:4; box-shadow: var(--shadow-sm); }
 #cardsBar .levelTitle { font-weight:800; color:var(--ink); letter-spacing:.2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 #cardsList { flex:1; overflow:auto; padding:10px; scroll-behavior: smooth; }
-.row { display:grid; grid-template-columns: 1.2fr 1.6fr .8fr .6fr; gap:10px; align-items:center; padding:12px; margin:8px 0; background:var(--card); border:1px solid var(--line); border-radius:10px; transition: var(--transition); box-shadow: var(--shadow-sm); }
+.row { display:grid; grid-template-columns: 30px 30px 1.2fr 1.6fr .8fr .6fr; gap:10px; align-items:center; padding:12px; margin:8px 0; background:var(--card); border:1px solid var(--line); border-radius:10px; transition: var(--transition); box-shadow: var(--shadow-sm); }
 .row:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .row.selected { outline:2px solid var(--accent); background: var(--panel); }
 .row.visible { background: var(--panel); }
@@ -225,8 +241,8 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   position:absolute;
   top:10px;
   right:10px;
-  background-color:#4285f4;
-  color:white;
+  background-color:var(--badge-bg);
+  color:var(--badge-text);
   padding:3px 8px;
   border-radius:3px;
   font-size:0.8em;
@@ -242,10 +258,11 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   cursor:pointer;
   z-index:10;
   padding:5px;
+  color:var(--muted);
 }
 
 .starButton.starred {
-  color:#555;
+  color:var(--star-active);
 }
 
 .cardFront {
@@ -407,8 +424,8 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   height: 0;
   margin: 8px;
   box-sizing: border-box;
-  border: 12px solid #ccc;
-  border-color: #ccc transparent #ccc transparent;
+  border: 12px solid var(--loading-spinner);
+  border-color: var(--loading-spinner) transparent var(--loading-spinner) transparent;
   animation: loading 1.2s infinite;
 }
 @keyframes loading {
@@ -426,7 +443,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   color: var(--toast-text);
   padding: 10px 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow-lg);
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -440,7 +457,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(14,18,36,.4);
+  background:var(--modal-backdrop);
   z-index:10;
   align-items:center;
   justify-content:center;
@@ -569,7 +586,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 
 .theme-toggle:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow-md);
   border-color: var(--accent);
   background: var(--panel);
 }
@@ -638,10 +655,315 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
     height: 20px;
   }
 }
+
+/* Menu Bar */
+.menu-bar {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  box-shadow: var(--shadow-sm);
+  z-index: 10;
+  position: sticky;
+  top: 0;
+}
+
+.menu-item {
+  position: relative;
+  padding: 8px 14px;
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.9em;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.menu-item:hover {
+  background: var(--panel);
+}
+
+.menu-item.active {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  min-width: 200px;
+  margin-top: 4px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.menu-item:hover .menu-dropdown,
+.menu-dropdown:hover {
+  display: block;
+}
+
+.menu-dropdown-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--transition);
+  border-bottom: 1px solid var(--line);
+}
+
+.menu-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.menu-dropdown-item:hover {
+  background: var(--panel);
+}
+
+.menu-dropdown-item .shortcut {
+  color: var(--muted);
+  font-size: 0.85em;
+  margin-left: 20px;
+}
+
+.menu-separator {
+  height: 1px;
+  background: var(--line);
+  margin: 4px 0;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 400px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 0.9em;
+  transition: var(--transition);
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(66, 103, 217, 0.1);
+}
+
+.search-box button {
+  padding: 6px 10px;
+  font-size: 0.85em;
+}
+
+/* Bulk Selection */
+.bulk-actions {
+  display: none;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--accent);
+  color: var(--accent-text);
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+
+.bulk-actions.active {
+  display: flex;
+}
+
+.bulk-actions button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--accent-text);
+  padding: 5px 10px;
+  font-size: 0.85em;
+}
+
+.bulk-actions button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Card Selection */
+.row-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
+.drag-handle {
+  cursor: move;
+  color: var(--muted);
+  font-size: 1.2em;
+  padding: 0 8px;
+  user-select: none;
+}
+
+.drag-handle:hover {
+  color: var(--ink);
+}
+
+.row.dragging {
+  opacity: 0.5;
+}
+
+.row.drag-over {
+  border-top: 3px solid var(--accent);
+}
+
+/* Keyboard Shortcut Indicator */
+.shortcut-help {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: var(--shadow-md);
+  z-index: 998;
+  max-width: 300px;
+  display: none;
+}
+
+.shortcut-help.show {
+  display: block;
+}
+
+.shortcut-help h4 {
+  margin: 0 0 10px 0;
+  color: var(--ink);
+  font-size: 0.95em;
+}
+
+.shortcut-help .shortcut-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 0.85em;
+  color: var(--ink);
+}
+
+.shortcut-help .shortcut-item kbd {
+  background: var(--panel);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+/* Search Highlighting */
+.search-highlight {
+  background: var(--accent);
+  color: var(--accent-text);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* Status Bar */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+.status-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 </style>
   <script src="theme-toggle.js"></script>
 </head>
 <body>
+
+<!-- Menu Bar -->
+<div class="menu-bar">
+  <div class="menu-item">
+    <span>File</span>
+    <div class="menu-dropdown">
+      <div class="menu-dropdown-item" id="menuImport">
+        <span>Import File</span>
+        <span class="shortcut">Ctrl+O</span>
+      </div>
+      <div class="menu-dropdown-item" id="menuExport">
+        <span>Export File</span>
+        <span class="shortcut">Ctrl+S</span>
+      </div>
+    </div>
+  </div>
+  <div class="menu-item">
+    <span>Edit</span>
+    <div class="menu-dropdown">
+      <div class="menu-dropdown-item" id="menuAddCard">
+        <span>Add Card</span>
+        <span class="shortcut">Ctrl+N</span>
+      </div>
+      <div class="menu-dropdown-item" id="menuDuplicateCard">
+        <span>Duplicate Card</span>
+        <span class="shortcut">Ctrl+D</span>
+      </div>
+      <div class="menu-dropdown-item" id="menuDeleteCard">
+        <span>Delete Card</span>
+        <span class="shortcut">Delete</span>
+      </div>
+      <div class="menu-separator"></div>
+      <div class="menu-dropdown-item" id="menuSelectAll">
+        <span>Select All</span>
+        <span class="shortcut">Ctrl+A</span>
+      </div>
+      <div class="menu-dropdown-item" id="menuDeselectAll">
+        <span>Deselect All</span>
+        <span class="shortcut">Esc</span>
+      </div>
+    </div>
+  </div>
+  <div class="menu-item">
+    <span>View</span>
+    <div class="menu-dropdown">
+      <div class="menu-dropdown-item" id="menuToggleTheme">
+        <span>Toggle Theme</span>
+        <span class="shortcut">Ctrl+T</span>
+      </div>
+      <div class="menu-separator"></div>
+      <div class="menu-dropdown-item" id="menuSearch">
+        <span>Search Cards</span>
+        <span class="shortcut">Ctrl+F</span>
+      </div>
+    </div>
+  </div>
+  <div class="menu-item">
+    <span>Help</span>
+    <div class="menu-dropdown">
+      <div class="menu-dropdown-item" id="menuShortcuts">
+        <span>Keyboard Shortcuts</span>
+        <span class="shortcut">?</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="page-wrapper">
 <!-- SIDEBAR -->
@@ -669,12 +991,31 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 <section id="cardsPane">
 <div id="cardsBar">
 <div class="levelTitle" id="levelTitle">(no deck selected)</div>
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search cards..." />
+  <button id="btnClearSearch" class="btn-ghost btn-small" style="display:none;">✕</button>
+</div>
 <div style="margin-left:auto; display:flex; gap:8px;">
 <button id="btnAddCard" class="btn-ghost btn-small" disabled>+ Add Card</button>
 </div>
 </div>
+<div class="bulk-actions" id="bulkActions">
+  <span id="bulkCount">0 selected</span>
+  <button id="btnBulkDuplicate">Duplicate</button>
+  <button id="btnBulkDelete">Delete</button>
+  <button id="btnDeselectAll">Deselect All</button>
+</div>
 <div id="cardsList"></div>
-<div id="cardsFoot"></div>
+<div id="cardsFoot">
+  <div class="status-bar">
+    <div class="status-bar-item">
+      <span id="statusCount">0 cards</span>
+    </div>
+    <div class="status-bar-item">
+      <span id="statusFilter"></span>
+    </div>
+  </div>
+</div>
 </section>
 
 <!-- Preview -->
@@ -799,6 +1140,43 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   </span>
 </button>
 
+<!-- Keyboard Shortcuts Help -->
+<div class="shortcut-help" id="shortcutHelp">
+  <h4>Keyboard Shortcuts</h4>
+  <div class="shortcut-item">
+    <span>New Card</span>
+    <kbd>Ctrl+N</kbd>
+  </div>
+  <div class="shortcut-item">
+    <span>Duplicate Card</span>
+    <kbd>Ctrl+D</kbd>
+  </div>
+  <div class="shortcut-item">
+    <span>Delete Card</span>
+    <kbd>Delete</kbd>
+  </div>
+  <div class="shortcut-item">
+    <span>Search</span>
+    <kbd>Ctrl+F</kbd>
+  </div>
+  <div class="shortcut-item">
+    <span>Select All</span>
+    <kbd>Ctrl+A</kbd>
+  </div>
+  <div class="shortcut-item">
+    <span>Navigate</span>
+    <kbd>↑ ↓</kbd>
+  </div>
+  <div class="shortcut-item">
+    <span>Save/Export</span>
+    <kbd>Ctrl+S</kbd>
+  </div>
+  <div class="shortcut-item">
+    <span>Close/Escape</span>
+    <kbd>Esc</kbd>
+  </div>
+</div>
+
 <script>
 /* ===== State ===== */
 let allDecks = {}; // { level: [ {front, back, ...}, ... ] }
@@ -812,6 +1190,11 @@ let editingDraft = null; // holds draft data while editing (for live preview)
 let isEditExisting = false;
 let lastVisibleCardIdx = -1; // Track last visible card for scroll sync
 let hasInitialized = false;
+
+// New state for search and bulk operations
+let searchQuery = '';
+let selectedCards = new Set(); // indices of selected cards
+let draggedCardIndex = -1;
 
 /* ===== Dom helpers ===== */
 const $ = sel => document.querySelector(sel);
@@ -827,6 +1210,25 @@ function el(tag, props={}, children=[]) {
 }
 function escapeHTML(txt='') {
   return String(txt).replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+}
+
+/* ===== Search Highlighting ===== */
+function highlightText(text, query) {
+  if (!query || !text) return escapeHTML(text);
+  const escapedText = escapeHTML(text);
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  return escapedText.replace(regex, '<span class="search-highlight">$1</span>');
+}
+
+function matchesSearch(card, query) {
+  if (!query) return true;
+  const q = query.toLowerCase();
+  return (
+    (card.front || '').toLowerCase().includes(q) ||
+    (card.back || '').toLowerCase().includes(q) ||
+    (card.notes || '').toLowerCase().includes(q) ||
+    (card.reading || '').toLowerCase().includes(q)
+  );
 }
 
 /* ===== Toast Notification ===== */
@@ -1008,54 +1410,138 @@ function renderCards() {
   $('#levelTitle').textContent = selectedLevel ? `Deck: ${selectedLevel}` : '(no deck selected)';
   const list = $('#cardsList');
   list.innerHTML = '';
-  
+
   if (!selectedLevel) {
     list.appendChild(el('div', {className:'empty'}, [
       el('div', { className: 'empty-icon' }, '📝'),
       el('div', {}, 'Import a file or add a deck to begin.')
     ]));
+    updateStatusBar();
     return;
   }
-  
+
   const cards = allDecks[selectedLevel] || [];
-  
+
   if (!cards.length) {
     list.appendChild(el('div', {className:'empty'}, [
       el('div', { className: 'empty-icon' }, '✨'),
       el('div', {}, 'No cards yet — add your first card.')
     ]));
+    updateStatusBar();
     return;
   }
-  
-  // Create cards
-  cards.forEach((card, i) => {
-    const row = el('div', { className: 'row' + (i === selectedCardIndex ? ' selected' : ''), id: `card-${i}` });
-    row.dataset.index = i;
-    
-    row.addEventListener('click', ()=>{ 
-      selectedCardIndex = i; 
-      editingDraft = null; 
-      renderPreview(); 
-      highlightSelectedRow(); 
+
+  // Filter cards by search
+  const filteredIndices = cards.map((card, i) => ({ card, i }))
+    .filter(({card}) => matchesSearch(card, searchQuery));
+
+  if (filteredIndices.length === 0 && searchQuery) {
+    list.appendChild(el('div', {className:'empty'}, [
+      el('div', { className: 'empty-icon' }, '🔍'),
+      el('div', {}, `No cards match "${searchQuery}"`)
+    ]));
+    updateStatusBar();
+    return;
+  }
+
+  // Create cards with new features
+  filteredIndices.forEach(({card, i}) => {
+    const row = el('div', {
+      className: 'row' + (i === selectedCardIndex ? ' selected' : ''),
+      id: `card-${i}`,
+      draggable: true
     });
-    
-    const c1 = el('div', { className:'cell' }, escapeHTML(card.front || ''));
-    const c2 = el('div', { className:'cell' }, escapeHTML(card.back || ''));
-    const c3 = el('div', { className:'cell muted' }, escapeHTML(card.notes || card.reading || ''));
+    row.dataset.index = i;
+
+    // Drag handle
+    const dragHandle = el('div', { className: 'drag-handle', title: 'Drag to reorder' }, '⋮⋮');
+    dragHandle.addEventListener('mousedown', (e) => e.stopPropagation());
+
+    // Checkbox for bulk selection
+    const checkbox = el('input', {
+      type: 'checkbox',
+      className: 'row-checkbox',
+      checked: selectedCards.has(i)
+    });
+    checkbox.addEventListener('change', (e) => {
+      e.stopPropagation();
+      if (e.target.checked) {
+        selectedCards.add(i);
+      } else {
+        selectedCards.delete(i);
+      }
+      updateBulkActions();
+    });
+
+    row.addEventListener('click', (e)=>{
+      if (e.target.type === 'checkbox') return;
+      selectedCardIndex = i;
+      editingDraft = null;
+      renderPreview();
+      highlightSelectedRow();
+    });
+
+    // Drag and drop handlers
+    row.addEventListener('dragstart', (e) => {
+      draggedCardIndex = i;
+      row.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    row.addEventListener('dragend', () => {
+      row.classList.remove('dragging');
+      $$('#cardsList .row').forEach(r => r.classList.remove('drag-over'));
+    });
+
+    row.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const dragging = $('#cardsList .dragging');
+      if (dragging && dragging !== row) {
+        row.classList.add('drag-over');
+      }
+    });
+
+    row.addEventListener('dragleave', () => {
+      row.classList.remove('drag-over');
+    });
+
+    row.addEventListener('drop', (e) => {
+      e.preventDefault();
+      row.classList.remove('drag-over');
+      if (draggedCardIndex !== -1 && draggedCardIndex !== i) {
+        reorderCard(draggedCardIndex, i);
+      }
+    });
+
+    const c1 = el('div', { className:'cell' });
+    c1.innerHTML = highlightText(card.front || '', searchQuery);
+
+    const c2 = el('div', { className:'cell' });
+    c2.innerHTML = highlightText(card.back || '', searchQuery);
+
+    const c3 = el('div', { className:'cell muted' });
+    c3.innerHTML = highlightText(card.notes || card.reading || '', searchQuery);
+
     const actions = el('div', { className:'actions' }, [
       el('button', { className:'btn-small', onclick:(e)=>{ e.stopPropagation(); openCardModal(i); } }, 'Edit'),
       el('button', { className:'btn-small', onclick:(e)=>{ e.stopPropagation(); duplicateCard(i); } }, 'Dup'),
       el('button', { className:'btn-small btn-danger', onclick:(e)=>{ e.stopPropagation(); deleteCard(i); } }, 'Del')
     ]);
-    row.appendChild(c1); 
-    row.appendChild(c2); 
-    row.appendChild(c3); 
+
+    row.appendChild(dragHandle);
+    row.appendChild(checkbox);
+    row.appendChild(c1);
+    row.appendChild(c2);
+    row.appendChild(c3);
     row.appendChild(actions);
     list.appendChild(row);
   });
-  
+
   // Set up intersection observer to track visible cards
   setupCardVisibilityObserver();
+  updateStatusBar();
+  updateBulkActions();
 }
 
 function setupCardVisibilityObserver() {
@@ -1400,7 +1886,7 @@ function saveToStorage() {
   try {
     localStorage.setItem('kanki_editor_state', JSON.stringify({
     allDecks,
-    levels, 
+    levels,
     selectedLevel,
     importedFileName,
     importedLanguage
@@ -1408,6 +1894,117 @@ function saveToStorage() {
   } catch (e) {
     return;
   }
+}
+
+/* ===== New Helper Functions ===== */
+
+// Update status bar
+function updateStatusBar() {
+  const cards = allDecks[selectedLevel] || [];
+  const total = cards.length;
+  const filtered = cards.filter(card => matchesSearch(card, searchQuery)).length;
+
+  if (searchQuery && filtered < total) {
+    $('#statusCount').textContent = `${filtered} of ${total} cards`;
+    $('#statusFilter').textContent = `Filter: "${searchQuery}"`;
+  } else {
+    $('#statusCount').textContent = `${total} card${total !== 1 ? 's' : ''}`;
+    $('#statusFilter').textContent = '';
+  }
+}
+
+// Update bulk actions bar
+function updateBulkActions() {
+  const bulkBar = $('#bulkActions');
+  const count = selectedCards.size;
+
+  if (count > 0) {
+    bulkBar.classList.add('active');
+    $('#bulkCount').textContent = `${count} selected`;
+  } else {
+    bulkBar.classList.remove('active');
+  }
+}
+
+// Reorder card via drag and drop
+function reorderCard(fromIndex, toIndex) {
+  if (!selectedLevel || fromIndex === toIndex) return;
+
+  const cards = allDecks[selectedLevel];
+  const [movedCard] = cards.splice(fromIndex, 1);
+  cards.splice(toIndex, 0, movedCard);
+
+  // Update selected index if needed
+  if (selectedCardIndex === fromIndex) {
+    selectedCardIndex = toIndex;
+  } else if (fromIndex < selectedCardIndex && toIndex >= selectedCardIndex) {
+    selectedCardIndex--;
+  } else if (fromIndex > selectedCardIndex && toIndex <= selectedCardIndex) {
+    selectedCardIndex++;
+  }
+
+  draggedCardIndex = -1;
+  renderAll();
+  showToast('Card reordered');
+}
+
+// Select all cards
+function selectAllCards() {
+  if (!selectedLevel) return;
+  const cards = allDecks[selectedLevel] || [];
+  selectedCards.clear();
+  cards.forEach((_, i) => selectedCards.add(i));
+  renderCards();
+  showToast(`${selectedCards.size} cards selected`);
+}
+
+// Deselect all cards
+function deselectAllCards() {
+  selectedCards.clear();
+  renderCards();
+}
+
+// Bulk duplicate
+function bulkDuplicate() {
+  if (!selectedLevel || selectedCards.size === 0) return;
+
+  const cards = allDecks[selectedLevel];
+  const toDuplicate = Array.from(selectedCards).sort((a, b) => b - a);
+
+  toDuplicate.forEach(i => {
+    if (i < cards.length) {
+      cards.splice(i + 1, 0, {...cards[i]});
+    }
+  });
+
+  selectedCards.clear();
+  renderAll();
+  showToast(`${toDuplicate.length} card${toDuplicate.length !== 1 ? 's' : ''} duplicated`);
+}
+
+// Bulk delete
+function bulkDelete() {
+  if (!selectedLevel || selectedCards.size === 0) return;
+
+  const count = selectedCards.size;
+  if (!confirm(`Delete ${count} selected card${count !== 1 ? 's' : ''}?`)) return;
+
+  const cards = allDecks[selectedLevel];
+  const toDelete = Array.from(selectedCards).sort((a, b) => b - a);
+
+  toDelete.forEach(i => {
+    if (i < cards.length) {
+      cards.splice(i, 1);
+    }
+  });
+
+  selectedCards.clear();
+  if (selectedCardIndex >= cards.length) {
+    selectedCardIndex = Math.max(0, cards.length - 1);
+  }
+
+  renderAll();
+  showToast(`${count} card${count !== 1 ? 's' : ''} deleted`);
 }
 
 /* ===== Render root ===== */
@@ -1427,6 +2024,165 @@ function renderAll() {
   const [w, h] = $('#deviceSel').value.split(',').map(x=>parseInt(x, 10));
   updateDeviceSize(w, h);
 }
+
+/* ===== Event Listeners ===== */
+
+// Search functionality
+$('#searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value.trim();
+  const clearBtn = $('#btnClearSearch');
+
+  if (searchQuery) {
+    clearBtn.style.display = 'block';
+  } else {
+    clearBtn.style.display = 'none';
+  }
+
+  renderCards();
+});
+
+$('#btnClearSearch').addEventListener('click', () => {
+  searchQuery = '';
+  $('#searchInput').value = '';
+  $('#btnClearSearch').style.display = 'none';
+  renderCards();
+});
+
+// Bulk action buttons
+$('#btnBulkDuplicate').addEventListener('click', bulkDuplicate);
+$('#btnBulkDelete').addEventListener('click', bulkDelete);
+$('#btnDeselectAll').addEventListener('click', deselectAllCards);
+
+// Menu bar actions
+$('#menuImport').addEventListener('click', () => $('#fileInput').click());
+$('#menuExport').addEventListener('click', () => $('#btnExport').click());
+$('#menuAddCard').addEventListener('click', () => {
+  if (!$('#btnAddCard').disabled) $('#btnAddCard').click();
+});
+$('#menuDuplicateCard').addEventListener('click', () => {
+  if (selectedCardIndex >= 0) duplicateCard(selectedCardIndex);
+});
+$('#menuDeleteCard').addEventListener('click', () => {
+  if (selectedCardIndex >= 0) deleteCard(selectedCardIndex);
+});
+$('#menuSelectAll').addEventListener('click', selectAllCards);
+$('#menuDeselectAll').addEventListener('click', deselectAllCards);
+$('#menuToggleTheme').addEventListener('click', () => {
+  $('.theme-toggle').click();
+});
+$('#menuSearch').addEventListener('click', () => {
+  $('#searchInput').focus();
+  $('#searchInput').select();
+});
+$('#menuShortcuts').addEventListener('click', () => {
+  const help = $('#shortcutHelp');
+  help.classList.toggle('show');
+  setTimeout(() => help.classList.remove('show'), 5000);
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  // Don't trigger shortcuts when typing in input fields
+  const isInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA';
+  const modalOpen = document.querySelector('.modalBG.active');
+
+  // Escape key - close modals or clear selection
+  if (e.key === 'Escape') {
+    if (modalOpen) return; // Let modal handlers deal with it
+    deselectAllCards();
+    searchQuery = '';
+    $('#searchInput').value = '';
+    $('#btnClearSearch').style.display = 'none';
+    renderCards();
+    return;
+  }
+
+  // Ctrl/Cmd + N - New card
+  if ((e.ctrlKey || e.metaKey) && e.key === 'n' && !isInput) {
+    e.preventDefault();
+    if (!$('#btnAddCard').disabled) $('#btnAddCard').click();
+    return;
+  }
+
+  // Ctrl/Cmd + D - Duplicate card
+  if ((e.ctrlKey || e.metaKey) && e.key === 'd' && !isInput) {
+    e.preventDefault();
+    if (selectedCardIndex >= 0) duplicateCard(selectedCardIndex);
+    return;
+  }
+
+  // Delete key - Delete card
+  if (e.key === 'Delete' && !isInput) {
+    e.preventDefault();
+    if (selectedCardIndex >= 0) deleteCard(selectedCardIndex);
+    return;
+  }
+
+  // Ctrl/Cmd + S - Export
+  if ((e.ctrlKey || e.metaKey) && e.key === 's' && !isInput) {
+    e.preventDefault();
+    if (!$('#btnExport').disabled) $('#btnExport').click();
+    return;
+  }
+
+  // Ctrl/Cmd + O - Import
+  if ((e.ctrlKey || e.metaKey) && e.key === 'o' && !isInput) {
+    e.preventDefault();
+    $('#fileInput').click();
+    return;
+  }
+
+  // Ctrl/Cmd + F - Search
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    $('#searchInput').focus();
+    $('#searchInput').select();
+    return;
+  }
+
+  // Ctrl/Cmd + A - Select all cards
+  if ((e.ctrlKey || e.metaKey) && e.key === 'a' && !isInput) {
+    e.preventDefault();
+    selectAllCards();
+    return;
+  }
+
+  // Ctrl/Cmd + T - Toggle theme
+  if ((e.ctrlKey || e.metaKey) && e.key === 't' && !isInput) {
+    e.preventDefault();
+    $('.theme-toggle').click();
+    return;
+  }
+
+  // ? - Show shortcuts help
+  if (e.key === '?' && !isInput) {
+    e.preventDefault();
+    const help = $('#shortcutHelp');
+    help.classList.toggle('show');
+    setTimeout(() => help.classList.remove('show'), 5000);
+    return;
+  }
+
+  // Arrow keys - Navigate cards
+  if (!isInput && !modalOpen) {
+    const cards = allDecks[selectedLevel] || [];
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (selectedCardIndex < cards.length - 1) {
+        selectedCardIndex++;
+        renderPreview();
+        highlightSelectedRow();
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (selectedCardIndex > 0) {
+        selectedCardIndex--;
+        renderPreview();
+        highlightSelectedRow();
+      }
+    }
+  }
+});
 
 /* ===== First load: prompt import ===== */
 window.addEventListener('load', () => {
