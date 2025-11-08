@@ -1305,12 +1305,7 @@ $('#fileInput').addEventListener('change', async (e)=>{
     // Detect file type
     const fileName = f.name.toLowerCase();
     if (fileName.endsWith('.apkg')) {
-      // Check browser support before attempting APKG import
-      if (!checkAPKGSupport()) {
-        showToast('APKG import not supported in this browser. Please use .js files instead.', 7000);
-        alert('Your browser does not support APKG import.\n\nRequired features:\n- File API (arrayBuffer)\n- WebAssembly\n- JSZip library\n- sql.js library\n\nPlease use a modern browser (Chrome 85+, Firefox 78+, Safari 14+, Edge 85+) or export your Anki deck as text.');
-        return;
-      }
+      // Try importing - errors will be shown if something fails
       await importAPKG(f);
     } else {
       importKAnkiJS(f);
