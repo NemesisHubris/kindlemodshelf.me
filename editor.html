@@ -2728,8 +2728,8 @@ function checkAndUpdateAPKGSupport() {
 // Ensure theme toggle button works (fallback if theme-toggle.js fails)
 (function initThemeToggleFallback() {
   const themeToggleBtn = $('.theme-toggle');
-  if (themeToggleBtn && !themeToggleBtn.hasAttribute('data-initialized')) {
-    themeToggleBtn.setAttribute('data-initialized', 'true');
+  if (themeToggleBtn && !themeToggleBtn.hasAttribute('data-theme-initialized')) {
+    themeToggleBtn.setAttribute('data-theme-initialized', 'true');
 
     // Initialize theme from localStorage
     const savedTheme = localStorage.getItem('theme');
