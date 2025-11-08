@@ -896,6 +896,9 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 }
 </style>
   <script src="theme-toggle.js"></script>
+  <!-- Libraries for APKG import -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/sql-wasm.js"></script>
 </head>
 <body>
 
@@ -971,7 +974,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 <div id="topbar">
 <div class="title">KAnki Editor</div>
 <div class="actions">
-<input id="fileInput" type="file" accept=".js" style="display:none" />
+<input id="fileInput" type="file" accept=".js,.apkg" style="display:none" />
 <button class="btn-ghost btn-small" id="btnImport">Import</button>
 <button class="btn-primary btn-small" id="btnExport" disabled>Export</button>
 </div>
@@ -1265,9 +1268,24 @@ function closeModal(id) {
 
 /* ===== Import / Parse ===== */
 $('#btnImport').addEventListener('click', ()=> $('#fileInput').click());
-$('#fileInput').addEventListener('change', (e)=>{
+$('#fileInput').addEventListener('change', async (e)=>{
   const f = e.target.files[0];
   if (!f) return;
+
+  // Detect file type
+  const fileName = f.name.toLowerCase();
+  if (fileName.endsWith('.apkg')) {
+    await importAPKG(f);
+  } else {
+    importKAnkiJS(f);
+  }
+
+  // reset input so user can re-import same file later
+  e.target.value = '';
+});
+
+// Import KAnki .js format (original functionality)
+function importKAnkiJS(f) {
   importedFileName = f.name || 'kanki_config.js';
   const reader = new FileReader();
   reader.onload = ev => {
@@ -1308,9 +1326,118 @@ $('#fileInput').addEventListener('change', (e)=>{
     }
   };
   reader.readAsText(f);
-  // reset input so user can re-import same file later
-  e.target.value = '';
-});
+}
+
+// Import Anki .apkg format
+async function importAPKG(f) {
+  try {
+    showToast("Importing Anki deck...");
+    importedFileName = f.name.replace('.apkg', '.js') || 'kanki_config.js';
+
+    // Step 1: Unzip the APKG file
+    const arrayBuffer = await f.arrayBuffer();
+    const zip = await JSZip.loadAsync(arrayBuffer);
+
+    // Step 2: Find and extract the SQLite database
+    let dbFile;
+    if (zip.file('collection.anki21')) {
+      dbFile = await zip.file('collection.anki21').async('arraybuffer');
+    } else if (zip.file('collection.anki2')) {
+      dbFile = await zip.file('collection.anki2').async('arraybuffer');
+    } else {
+      throw new Error('No Anki database found in APKG file');
+    }
+
+    // Step 3: Initialize SQL.js and load the database
+    const SQL = await initSqlJs({
+      locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/${file}`
+    });
+    const db = new SQL.Database(new Uint8Array(dbFile));
+
+    // Step 4: Extract decks and notes
+    // Get deck names
+    const decksResult = db.exec('SELECT id, name FROM decks');
+    const decksMap = {};
+    if (decksResult.length > 0) {
+      decksResult[0].values.forEach(([id, name]) => {
+        const deckData = JSON.parse(name);
+        decksMap[id] = deckData.name || 'Default';
+      });
+    }
+
+    // Get cards and notes
+    const notesResult = db.exec(`
+      SELECT DISTINCT n.flds, n.mid, c.did
+      FROM notes n
+      JOIN cards c ON c.nid = n.id
+      ORDER BY c.did
+    `);
+
+    if (!notesResult.length || !notesResult[0].values.length) {
+      throw new Error('No cards found in APKG file');
+    }
+
+    // Step 5: Convert to KAnki format
+    allDecks = {};
+    levels = [];
+    customFields = new Set(['front','back','notes']);
+    importedLanguage = 'Anki Import';
+
+    notesResult[0].values.forEach(([fields, modelId, deckId]) => {
+      // Fields are separated by \x1f character
+      const fieldArray = fields.split('\x1f');
+      const deckName = decksMap[deckId] || 'Default';
+
+      // Initialize deck if needed
+      if (!allDecks[deckName]) {
+        allDecks[deckName] = [];
+        levels.push(deckName);
+      }
+
+      // Convert to KAnki card format
+      // Anki typically has: [front, back, ...extra fields]
+      const card = {
+        front: stripHTML(fieldArray[0] || ''),
+        back: stripHTML(fieldArray[1] || ''),
+        notes: fieldArray.slice(2).filter(f => f.trim()).map(stripHTML).join(' | ')
+      };
+
+      allDecks[deckName].push(card);
+    });
+
+    // Clean up
+    db.close();
+
+    // Step 6: Update UI
+    if (levels.length === 0) {
+      selectedLevel = '';
+      selectedCardIndex = -1;
+    } else {
+      selectedLevel = levels[0];
+      selectedCardIndex = 0;
+    }
+    editingDraft = null;
+    isEditExisting = false;
+    renderAll();
+    $('#btnExport').disabled = false;
+    $('#btnAddCard').disabled = !selectedLevel;
+
+    const cardCount = Object.values(allDecks).reduce((sum, deck) => sum + deck.length, 0);
+    showToast(`Anki deck imported! ${cardCount} cards in ${levels.length} deck(s)`);
+
+  } catch (err) {
+    showToast("Error: Could not parse APKG file", 5000);
+    alert('Could not parse Anki APKG file:\n' + err.message);
+    console.error(err);
+  }
+}
+
+// Helper function to strip HTML tags
+function stripHTML(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || '';
+}
 
 /* ===== Export ===== */
 $('#btnExport').addEventListener('click', ()=>{
