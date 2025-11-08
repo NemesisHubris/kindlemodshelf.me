@@ -1275,6 +1275,13 @@ $('#fileInput').addEventListener('change', async (e)=>{
   // Detect file type
   const fileName = f.name.toLowerCase();
   if (fileName.endsWith('.apkg')) {
+    // Check browser support before attempting APKG import
+    if (!checkAPKGSupport()) {
+      showToast('APKG import not supported in this browser. Please use a modern browser or import .js files instead.', 7000);
+      alert('Your browser does not support APKG import.\n\nRequired features:\n- File API (arrayBuffer)\n- WebAssembly\n- JSZip library\n- sql.js library\n\nPlease use a modern browser (Chrome 85+, Firefox 78+, Safari 14+, Edge 85+) or export your Anki deck as text and create a .js file instead.');
+      e.target.value = '';
+      return;
+    }
     await importAPKG(f);
   } else {
     importKAnkiJS(f);
@@ -1283,6 +1290,35 @@ $('#fileInput').addEventListener('change', async (e)=>{
   // reset input so user can re-import same file later
   e.target.value = '';
 });
+
+// Check if browser supports APKG import features
+function checkAPKGSupport() {
+  // Check File API arrayBuffer support
+  if (!File.prototype.arrayBuffer) {
+    console.warn('File.arrayBuffer() not supported');
+    return false;
+  }
+
+  // Check if JSZip library loaded
+  if (typeof JSZip === 'undefined') {
+    console.warn('JSZip library not loaded');
+    return false;
+  }
+
+  // Check if sql.js loaded
+  if (typeof initSqlJs === 'undefined') {
+    console.warn('sql.js library not loaded');
+    return false;
+  }
+
+  // Check WebAssembly support (required by sql.js)
+  if (typeof WebAssembly === 'undefined') {
+    console.warn('WebAssembly not supported');
+    return false;
+  }
+
+  return true;
+}
 
 // Import KAnki .js format (original functionality)
 function importKAnkiJS(f) {
@@ -1330,6 +1366,8 @@ function importKAnkiJS(f) {
 
 // Import Anki .apkg format
 async function importAPKG(f) {
+  let db = null; // Track database for cleanup
+
   try {
     showToast("Importing Anki deck...");
     importedFileName = f.name.replace('.apkg', '.js') || 'kanki_config.js';
@@ -1345,36 +1383,60 @@ async function importAPKG(f) {
     } else if (zip.file('collection.anki2')) {
       dbFile = await zip.file('collection.anki2').async('arraybuffer');
     } else {
-      throw new Error('No Anki database found in APKG file');
+      throw new Error('No Anki database found in APKG file. This may not be a valid Anki deck.');
     }
 
     // Step 3: Initialize SQL.js and load the database
     const SQL = await initSqlJs({
       locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.2/${file}`
     });
-    const db = new SQL.Database(new Uint8Array(dbFile));
+
+    if (!SQL) {
+      throw new Error('Failed to initialize SQLite library');
+    }
+
+    db = new SQL.Database(new Uint8Array(dbFile));
 
     // Step 4: Extract decks and notes
-    // Get deck names
-    const decksResult = db.exec('SELECT id, name FROM decks');
+    // Get deck names with error handling
     const decksMap = {};
-    if (decksResult.length > 0) {
-      decksResult[0].values.forEach(([id, name]) => {
-        const deckData = JSON.parse(name);
-        decksMap[id] = deckData.name || 'Default';
-      });
+    try {
+      const decksResult = db.exec('SELECT id, name FROM decks');
+      if (decksResult.length > 0 && decksResult[0].values) {
+        decksResult[0].values.forEach(([id, name]) => {
+          try {
+            if (name && typeof name === 'string') {
+              const deckData = JSON.parse(name);
+              decksMap[id] = (deckData && deckData.name) ? String(deckData.name) : 'Default';
+            } else {
+              decksMap[id] = 'Default';
+            }
+          } catch (parseErr) {
+            console.warn('Failed to parse deck name:', name, parseErr);
+            decksMap[id] = `Deck ${id}`;
+          }
+        });
+      }
+    } catch (sqlErr) {
+      console.warn('Could not read decks table:', sqlErr);
+      // Continue anyway, will use 'Default' for all cards
     }
 
     // Get cards and notes
-    const notesResult = db.exec(`
-      SELECT DISTINCT n.flds, n.mid, c.did
-      FROM notes n
-      JOIN cards c ON c.nid = n.id
-      ORDER BY c.did
-    `);
+    let notesResult;
+    try {
+      notesResult = db.exec(`
+        SELECT DISTINCT n.flds, n.mid, c.did
+        FROM notes n
+        JOIN cards c ON c.nid = n.id
+        ORDER BY c.did
+      `);
+    } catch (sqlErr) {
+      throw new Error('Failed to read cards from database. The APKG file may be corrupted.');
+    }
 
-    if (!notesResult.length || !notesResult[0].values.length) {
-      throw new Error('No cards found in APKG file');
+    if (!notesResult || !notesResult.length || !notesResult[0].values || !notesResult[0].values.length) {
+      throw new Error('No cards found in APKG file. The deck may be empty.');
     }
 
     // Step 5: Convert to KAnki format
@@ -1384,29 +1446,50 @@ async function importAPKG(f) {
     importedLanguage = 'Anki Import';
 
     notesResult[0].values.forEach(([fields, modelId, deckId]) => {
-      // Fields are separated by \x1f character
-      const fieldArray = fields.split('\x1f');
-      const deckName = decksMap[deckId] || 'Default';
+      try {
+        // Ensure fields is a string
+        const fieldsStr = fields ? String(fields) : '';
 
-      // Initialize deck if needed
-      if (!allDecks[deckName]) {
-        allDecks[deckName] = [];
-        levels.push(deckName);
+        // Fields are separated by \x1f character
+        const fieldArray = fieldsStr.split('\x1f');
+        const deckName = decksMap[deckId] || 'Default';
+
+        // Initialize deck if needed
+        if (!allDecks[deckName]) {
+          allDecks[deckName] = [];
+          levels.push(deckName);
+        }
+
+        // Convert to KAnki card format
+        // Anki typically has: [front, back, ...extra fields]
+        const card = {
+          front: stripHTML(fieldArray[0] || ''),
+          back: stripHTML(fieldArray[1] || ''),
+          notes: ''
+        };
+
+        // Add extra fields as notes if they exist
+        if (fieldArray.length > 2) {
+          const extraFields = fieldArray.slice(2)
+            .filter(f => f && f.trim())
+            .map(stripHTML);
+          if (extraFields.length > 0) {
+            card.notes = extraFields.join(' | ');
+          }
+        }
+
+        allDecks[deckName].push(card);
+      } catch (cardErr) {
+        console.warn('Failed to parse card, skipping:', cardErr);
+        // Skip this card and continue
       }
-
-      // Convert to KAnki card format
-      // Anki typically has: [front, back, ...extra fields]
-      const card = {
-        front: stripHTML(fieldArray[0] || ''),
-        back: stripHTML(fieldArray[1] || ''),
-        notes: fieldArray.slice(2).filter(f => f.trim()).map(stripHTML).join(' | ')
-      };
-
-      allDecks[deckName].push(card);
     });
 
-    // Clean up
-    db.close();
+    // Verify we got at least some cards
+    const totalCards = Object.values(allDecks).reduce((sum, deck) => sum + deck.length, 0);
+    if (totalCards === 0) {
+      throw new Error('No valid cards could be imported from the APKG file.');
+    }
 
     // Step 6: Update UI
     if (levels.length === 0) {
@@ -1422,21 +1505,59 @@ async function importAPKG(f) {
     $('#btnExport').disabled = false;
     $('#btnAddCard').disabled = !selectedLevel;
 
-    const cardCount = Object.values(allDecks).reduce((sum, deck) => sum + deck.length, 0);
-    showToast(`Anki deck imported! ${cardCount} cards in ${levels.length} deck(s)`);
+    showToast(`Anki deck imported! ${totalCards} cards in ${levels.length} deck(s)`, 5000);
 
   } catch (err) {
-    showToast("Error: Could not parse APKG file", 5000);
-    alert('Could not parse Anki APKG file:\n' + err.message);
-    console.error(err);
+    console.error('APKG import error:', err);
+    showToast("Error: Could not import APKG file", 5000);
+
+    // Provide helpful error message
+    let errorMsg = 'Could not import Anki APKG file:\n\n' + err.message;
+    if (err.message.includes('not a valid zip')) {
+      errorMsg += '\n\nThe file may be corrupted. Try re-downloading the deck.';
+    } else if (err.message.includes('No Anki database')) {
+      errorMsg += '\n\nThis may not be a valid Anki deck file.';
+    }
+    alert(errorMsg);
+  } finally {
+    // Clean up database connection
+    if (db) {
+      try {
+        db.close();
+      } catch (closeErr) {
+        console.warn('Error closing database:', closeErr);
+      }
+    }
   }
 }
 
-// Helper function to strip HTML tags
+// Helper function to strip HTML tags (with security and efficiency)
+// Create reusable DOM element to avoid repeated allocations
+const _stripHTMLElement = document.createElement('div');
+
 function stripHTML(html) {
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
-  return tmp.textContent || tmp.innerText || '';
+  if (!html || typeof html !== 'string') {
+    return '';
+  }
+
+  try {
+    // Use DOMParser for better security (doesn't execute scripts)
+    if (typeof DOMParser !== 'undefined') {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      return doc.body.textContent || '';
+    } else {
+      // Fallback for older browsers
+      _stripHTMLElement.innerHTML = html;
+      const text = _stripHTMLElement.textContent || _stripHTMLElement.innerText || '';
+      _stripHTMLElement.innerHTML = ''; // Clear for security
+      return text;
+    }
+  } catch (err) {
+    console.warn('Error stripping HTML, returning plain text:', err);
+    // If all else fails, do basic regex strip (not perfect but safe)
+    return String(html).replace(/<[^>]*>/g, '');
+  }
 }
 
 /* ===== Export ===== */
@@ -2370,8 +2491,33 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     $('#fileInput').click();
     renderAll(); // Initialize UI
+
+    // Check APKG support and update UI
+    checkAndUpdateAPKGSupport();
   }, 400);
 });
+
+// Check if APKG import is supported and update UI accordingly
+function checkAndUpdateAPKGSupport() {
+  const isSupported = checkAPKGSupport();
+
+  if (!isSupported) {
+    console.warn('APKG import is not supported in this browser');
+    console.info('Browser compatibility:');
+    console.info('- File.arrayBuffer:', typeof File.prototype.arrayBuffer !== 'undefined' ? '✓' : '✗');
+    console.info('- JSZip library:', typeof JSZip !== 'undefined' ? '✓' : '✗');
+    console.info('- sql.js library:', typeof initSqlJs !== 'undefined' ? '✓' : '✗');
+    console.info('- WebAssembly:', typeof WebAssembly !== 'undefined' ? '✓' : '✗');
+
+    // Update file input to only accept .js files
+    const fileInput = $('#fileInput');
+    if (fileInput) {
+      fileInput.setAttribute('accept', '.js');
+    }
+  } else {
+    console.info('✓ APKG import is supported - you can import Anki decks!');
+  }
+}
 
 // Ensure theme toggle button works (fallback if theme-toggle.js fails)
 (function initThemeToggleFallback() {
