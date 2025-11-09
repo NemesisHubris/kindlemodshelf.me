@@ -28,95 +28,200 @@
     <div class="section-title">Latest Updates <small>Newest entries sit at the top</small></div>
 
     <div class="card card-desc">
-      <div class="card-title">Late October 2025 — KOReader Tools &amp; Extras</div>
+      <div class="card-title">November 8-9, 2025 — KAnki Editor: Major Development &amp; Bug Fixes</div>
 
-      <h3>New Pages</h3>
+      <h3>KAnki Editor Tool — Complete Overhaul</h3>
       <ul>
-        <li><a href="patches.html">patches.html</a> collects KOReader user patches with install steps and compatibility notes.</li>
-        <li><a href="gpt.html">gpt.html</a> ships KindleModShelfGPT context packs and the exact prompt text.</li>
-        <li><a href="peki.html">peki.html</a> and <a href="bootkoreader.html">bootkoreader.html</a> document MRPI-free KUAL installs plus KOReader autostart toggles.</li>
-        <li><a href="timeblock.html">timeblock.html</a> introduces KOReader Time Block parental controls with a downloadable plugin.</li>
-        <li><a href="icon.html">icon.html</a> showcases the hand-drawn KOReader interface pack with matching Project Title icons.</li>
-        <li><a href="debrick.html">debrick.html</a> (by MonkeyInPrivite) breaks down how to recover a “bricked” Kindle step by step.</li>
+        <li><strong>Advanced UI Features:</strong> Menu bar system with File, Edit, View, and Help menus</li>
+        <li><strong>15+ Keyboard Shortcuts:</strong> Ctrl+N (new card), Ctrl+D (duplicate), Del (delete), Ctrl+S (save), Ctrl+O (import), Ctrl+F (search), and more</li>
+        <li><strong>Search &amp; Filter System:</strong> Real-time search across all card fields with highlighting</li>
+        <li><strong>Bulk Operations:</strong> Multi-card selection, bulk duplicate, bulk delete, select all/deselect all</li>
+        <li><strong>Drag-and-Drop Reordering:</strong> Visual drag handles for reordering cards within decks</li>
+        <li><strong>UI Enhancements:</strong> Status bar with card count, toast notifications, responsive grid layout</li>
+        <li><strong>APKG Import Support:</strong> Client-side Anki APKG file parsing using JSZip and sql.js — no backend required</li>
+        <li><strong>Security Hardening:</strong> 25 critical fixes including XSS elimination, race condition protection, memory leak fixes, resource exhaustion protection, CDN integrity checks</li>
+        <li><strong>State Persistence:</strong> LocalStorage integration to auto-save work and prevent data loss</li>
+        <li><strong>787 lines of new functionality</strong> added while maintaining 100% backward compatibility</li>
       </ul>
 
-      <h3>Content Updates</h3>
+      <h3>Editor Bug Fixes</h3>
       <ul>
-        <li><a href="adbreak.html">AdBreak guide</a> tightened its layout and copy so the video, summary, and checklist line up cleanly.</li>
-        <li><a href="kanki.html">KAnki page</a> now includes a personal maintainer note, clearer install guidance, and editor callouts.</li>
-        <li><a href="plugins.html">plugins.html</a>, <a href="storagetool.html">storagetool.html</a>, and <a href="kindleforge.html">kindleforge.html</a> were expanded into deep-dive references with fresh screenshots and download callouts.</li>
-        <li><a href="index.html">Homepage</a> call-to-actions highlight KindleModShelfGPT, new KOReader utilities, and the announcements feed.</li>
+        <li>Fixed theme toggle duplicate handler issue</li>
+        <li>Fixed preview panel dark mode rendering</li>
+        <li>Removed all hardcoded colors, replaced with CSS variables</li>
+        <li>Fixed SQL.js library browser WASM loading</li>
+        <li>Fixed .apkg file picker restrictions</li>
+        <li>Improved browser compatibility with feature detection</li>
+        <li>Fixed dropdown menu hover states and button functionality</li>
       </ul>
 
-      <h3>Downloads &amp; Assets</h3>
+      <h3>Jailbreaking Guide — Complete Rewrite</h3>
       <ul>
-        <li><a href="downloads/timeblock.koplugin.zip">timeblock.koplugin.zip</a> hosts the KOReader Time Block build linked from the new guide.</li>
-        <li><a href="downloads/icons.zip">icons.zip</a> and <a href="downloads/projecttitleicons.zip">projecttitleicons.zip</a> provide the hand-drawn UI assets in one place.</li>
-        <li><a href="downloads/kindlemodshelfgpt.txt">kindlemodshelfgpt.txt</a> packages the KindleModShelfGPT configuration for quick sharing.</li>
+        <li>Added comprehensive "HOW TO JAILBREAK" section with step-by-step instructions</li>
+        <li>Firmware version checking guide</li>
+        <li>Essential post-jailbreak setup steps (KindleForge, KOReader, KTerm, PEKI)</li>
+        <li>Guide to opening apps (scriptlets vs KUAL)</li>
+        <li>Amazon tracking blocking instructions</li>
+        <li>KOReader customization guide</li>
+        <li>Improved organization and navigation</li>
+      </ul>
+
+      <h3>Other Updates</h3>
+      <ul>
+        <li>Removed placeholder screenshots from guide pages</li>
+        <li>Updated sql.js to version 1.13.0 from jsdelivr CDN</li>
+        <li>Cleaned up .DS_Store files from repository</li>
       </ul>
     </div>
 
     <div class="card card-desc">
-      <div class="card-title">October 2025 — Full Site Refresh</div>
-      <h3>Major Updates</h3>
+      <div class="card-title">November 7, 2025 — Critical Updates &amp; New Tools</div>
+
+      <h3>Site-Wide Updates</h3>
       <ul>
-        <li>Completely rebuilt the entire UI from the ground up with a cleaner, more responsive design.</li>
-        <li>Fully rewritten and refreshed all site content — every single page has been updated.</li>
-        <li>Recreated GPT interface: <a href="https://chatgpt.com/g/g-68f1ee6408d08191b257737ed200a504-kindlemodshelfgpt" target="_blank" rel="noopener">Kindle Mod Shelf GPT</a>.</li>
-        <li>Improved the <a href="images.html">screensaver gallery</a> for faster loading and smoother performance.</li>
+        <li><strong>Critical Updates Banner:</strong> Added firmware 5.18.6 warning about AdBreak compatibility with prominent "DO NOT UPDATE" message</li>
+        <li><strong>Download Buttons:</strong> All tool cards now include download buttons for improved user experience</li>
+        <li><strong>Shortcuts Page:</strong> Added new shortcuts (screenControl, USB_Network_Toggle) with compatibility info</li>
+        <li><strong>PEKI Page:</strong> Reorganized with Downloads section moved to top for better flow</li>
       </ul>
 
-      <h3>New Pages Added</h3>
+      <h3>New Pages</h3>
       <ul>
-        <li><a href="plugins.html">plugins.html</a></li>
-        <li><a href="kindleforge.html">kindleforge.html</a></li>
-        <li><a href="projecttitle.html">projecttitle.html</a></li>
-        <li><a href="gargoyle.html">gargoyle.html</a></li>
-        <li><a href="nethack.html">nethack.html</a></li>
-        <li><a href="tictactoe.html">tictactoe.html</a></li>
-        <li><a href="audiovideo.html">audiovideo.html</a></li>
-        <li><a href="jarlauncher.html">jarlauncher.html</a></li>
-        <li><a href="textadept.html">textadept.html</a></li>
-        <li><a href="storagetool.html">storagetool.html</a></li>
-        <li><a href="screencontrol.html">screencontrol.html</a></li>
-        <li><a href="nano.html">nano.html</a></li>
+        <li><a href="ifdb-dl.html">ifdb-dl.html</a> — IFDB download tool for text adventures and interactive fiction</li>
+        <li><a href="helpkindlemodshelf.html">helpkindlemodshelf.html</a> — Community contribution guide for improving the site</li>
+        <li><a href="othercoolstuff.html">othercoolstuff.html</a> — Experimental mods section with Android installation guides, KoChess, and Gargoyle setup</li>
+      </ul>
+    </div>
+
+    <div class="card card-desc">
+      <div class="card-title">November 4-5, 2025 — Screenshot Gallery System &amp; State Persistence</div>
+
+      <h3>Complete Screenshot Gallery Infrastructure</h3>
+      <ul>
+        <li><strong>screenshots.js</strong> (280 lines) — Interactive gallery engine with lightbox modal, keyboard navigation, image counter</li>
+        <li><strong>Gallery CSS Layouts:</strong> Single, dual, triple, and quad column layouts with responsive breakpoints</li>
+        <li><strong>Dark/Light Theme Support:</strong> Gallery fully integrated with site theme system</li>
+        <li><strong>Multiple Layout Options:</strong> Support for various aspect ratios (16:9, 1:1, 3:4), lazy loading, featured images, before/after comparisons</li>
+        <li><strong>Documentation:</strong> screenshot-gallery-examples.html with complete usage reference and page_images/README.md implementation guide</li>
+        <li><strong>Initial Implementations:</strong> Added galleries to KOReader page (4 images) and 2048 game page (3 images)</li>
+        <li><strong>589 new lines of CSS</strong> for gallery system</li>
       </ul>
 
-      <h3>Informational Section Started</h3>
+      <h3>State Persistence Feature</h3>
       <ul>
-        <li><a href="kual.html">kual.html</a></li>
-        <li><a href="jailbreakonmac.html">jailbreakonmac.html</a></li>
+        <li>LocalStorage integration added to KAnki Editor</li>
+        <li>Automatic save of user work to prevent data loss</li>
+        <li>Data survives browser refresh and close</li>
+        <li>Credit to jsprolsson for contribution</li>
       </ul>
 
-      <h3>Notes</h3>
+      <h3>Bug Fixes</h3>
+      <ul>
+        <li>Fixed light mode card and component visibility issues across site</li>
+      </ul>
+    </div>
+
+    <div class="card card-desc">
+      <div class="card-title">November 1-3, 2025 — New Tools &amp; Guides</div>
+
+      <h3>New Tools</h3>
+      <ul>
+        <li><a href="koreader-epub-links.html">KOReader EPUB Links</a> — Create Kindle library links to EPUBs that open directly in KOReader with proper cover images (credit: irongeek)</li>
+        <li><a href="blockamazon.html">Block Amazon Tracking</a> — Network-level blocking configuration to prevent Amazon tracking and ads</li>
+        <li><a href="clearadcache.html">Clear Ads Cache</a> — KUAL utility to remove cached promotional content (credit: GreenCat777)</li>
+      </ul>
+
+      <h3>New Guides</h3>
+      <ul>
+        <li><a href="koreaderplugindev.html">KOReader Plugin Development Guide</a> — Comprehensive 273-line tutorial for creating your first plugin with code examples and best practices</li>
+      </ul>
+
+      <h3>Index Reorganization</h3>
+      <ul>
+        <li>Reorganized and retagged tool cards for better discoverability</li>
+        <li>Improved "Other Useful Tools" section organization</li>
+        <li>Moved tools to more appropriate categories</li>
+      </ul>
+    </div>
+
+    <div class="card card-desc">
+      <div class="card-title">October 25-29, 2025 — Theme System &amp; Educational Content</div>
+
+      <h3>Dark/Light Theme System Implementation</h3>
+      <ul>
+        <li><strong>theme-toggle.js</strong> created with persistent localStorage preference</li>
+        <li><strong>CSS Variable System:</strong> 25+ CSS variables per theme (dark/light) for complete coverage</li>
+        <li><strong>Site-Wide Integration:</strong> Theme toggle added to all 69 HTML pages</li>
+        <li><strong>Default Changed to Dark Mode:</strong> Better for e-ink Kindle displays and reduced eye strain</li>
+        <li><strong>Smooth Transitions:</strong> Polished animations between theme modes</li>
+        <li><strong>Toggle Button:</strong> Positioned at bottom right for accessibility</li>
+      </ul>
+
+      <h3>New Guides</h3>
+      <ul>
+        <li><a href="customscreensavers.html">Custom Screensavers Guide</a> — Step-by-step KOReader setup with YouTube video walkthrough</li>
+        <li><a href="imageresources.html">Image Resources</a> — Curated list of screensaver image sources with resolution and format recommendations</li>
+      </ul>
+
+      <h3>Content Updates</h3>
+      <ul>
+        <li><strong>Absolute Legends:</strong> Added 'lot.polish.airlines' legend card</li>
+        <li><strong>Video Walkthroughs:</strong> YouTube integration for KindleForge guide</li>
+        <li><strong>Featured Video:</strong> AdBreak Jailbreak Walkthrough by Dammit Jeff on homepage</li>
+        <li><strong>AdBreak Page:</strong> Refined layout for better summary presentation</li>
+      </ul>
+    </div>
+
+    <div class="card card-desc">
+      <div class="card-title">October 3-24, 2025 — Initial Site Setup</div>
+
+      <h3>Repository Initialization</h3>
+      <ul>
+        <li>Project structure established with organized directories (/downloads, /images, /page_images)</li>
+        <li>Repository cleanup and anonymization (renamed author folders)</li>
+        <li>Removed deprecated pages (kindlefetch.html, z-library.html)</li>
+        <li>Added sitemap.xml for SEO</li>
+      </ul>
+
+      <h3>Content Creation — 75+ Pages</h3>
+      <ul>
+        <li><strong>Essential Tools:</strong> KUAL, KOReader, KTerm, PEKI, KindleForge</li>
+        <li><strong>KOReader Plugins:</strong> KoWeather, KoClock, Boot KOReader, and more</li>
+        <li><strong>Games:</strong> 2048, Connect4, Hangman, Snake, Sudoku, Tetris, Tic-Tac-Toe, Tower of Hanoi, Nine Men's Morris, Wordle</li>
+        <li><strong>Emulators:</strong> GameBoy (Gambatte), Nethack, Gargoyle</li>
+        <li><strong>Advanced Apps:</strong> Alpine, Telnet, Nano editor, TextAdept, JarLauncher</li>
+        <li><strong>Media Tools:</strong> Audio/Video player, SOX audio utilities</li>
+        <li><strong>Unique Content:</strong> Universal Paperclips, Telegram, ChatGPT access, Illusion</li>
+      </ul>
+
+      <h3>Downloads Added</h3>
+      <ul>
+        <li>50+ downloadable tool packages organized in /downloads directory</li>
+        <li>Clear naming conventions established</li>
+        <li>ZIP archives for all major tools and mods</li>
+      </ul>
+    </div>
+
+    <div class="card card-desc">
+      <div class="card-title">Summary Statistics — October 3 to November 9, 2025</div>
+
+      <h3>Development Highlights</h3>
+      <ul>
+        <li><strong>Content:</strong> 75+ HTML pages, 50+ downloadable tools, 4 major guides</li>
+        <li><strong>Code Written:</strong> ~3,000+ lines of JavaScript, ~1,500+ lines of CSS</li>
+        <li><strong>Major Features:</strong> Complete dark/light theme system, screenshot gallery infrastructure, advanced flashcard editor with APKG import, state persistence, comprehensive keyboard shortcuts, search &amp; filter, bulk operations, drag-and-drop reordering</li>
+        <li><strong>Security:</strong> 25+ critical/severe/moderate issues fixed in APKG import, XSS elimination, CDN integrity checks, memory leak fixes</li>
+        <li><strong>Bug Fixes:</strong> Multiple theme compatibility issues resolved, browser compatibility improvements</li>
+      </ul>
+
+      <h3>Contact</h3>
       <p>
-        If you’d like your content removed, prefer to stay anonymous, or notice missing credit or incorrect links, please reach out:
+        If you'd like your content removed, prefer to stay anonymous, or notice missing credit or incorrect links, please reach out:
       </p>
       <ul>
         <li>Discord: <strong>@kindlemodshelfguy</strong> on the Kindle Modding server</li>
         <li>Email: <a href="mailto:admin@kindlemodshelf.me">admin@kindlemodshelf.me</a> (responses may be slower)</li>
       </ul>
-    </div>
-
-    <div class="card card-desc" id="launching-announcements">
-      <div class="card-title">September 2025 — Launching KindleModShelf Announcements</div>
-      <p>
-        Welcome! This new announcements page gathers every noteworthy change happening across KindleModShelf.
-        We’ve added it so you can track fresh jailbreak guides, mod updates, and behind-the-scenes improvements
-        without hunting through individual pages.
-      </p>
-      <p>
-        Here’s what to expect from this feed:
-      </p>
-      <ul>
-        <li>Spotlights on new or overhauled guides, including jailbreak walkthroughs and KOReader plugins.</li>
-        <li>Heads-up on refreshed downloads, compatibility notes, or breaking firmware news.</li>
-        <li>Reminders about updated screenshots, assets, or navigation tweaks so the site stays easy to browse on Kindle.</li>
-      </ul>
-      <p>
-        Have something you need us to change? DM <strong>kindlemodshelfguy</strong> on the Kindle Modding Discord
-        or email <a href="mailto:admin@kindlemodshelf.me">admin@kindlemodshelf.me</a>.
-      </p>
     </div>
   </div>
     <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
