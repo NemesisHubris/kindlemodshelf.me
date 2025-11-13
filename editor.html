@@ -2724,6 +2724,38 @@ function checkAndUpdateAPKGSupport() {
     console.info('✓ APKG import is supported - you can import Anki decks!');
   }
 }
+
+// Ensure theme toggle button works (fallback if theme-toggle.js fails)
+(function initThemeToggleFallback() {
+  const themeToggleBtn = $('.theme-toggle');
+  if (themeToggleBtn && !themeToggleBtn.hasAttribute('data-theme-initialized')) {
+    themeToggleBtn.setAttribute('data-theme-initialized', 'true');
+
+    // Initialize theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    // Add click handler as fallback
+    const toggleThemeHandler = () => {
+      const root = document.documentElement;
+      const currentTheme = root.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+      if (newTheme === 'light') {
+        root.setAttribute('data-theme', 'light');
+      } else {
+        root.removeAttribute('data-theme');
+      }
+
+      localStorage.setItem('theme', newTheme);
+      showToast(`Switched to ${newTheme} mode`);
+    };
+
+    themeToggleBtn.addEventListener('click', toggleThemeHandler);
+  }
+})();
 </script>
 
 </body>
