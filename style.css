@@ -336,6 +336,11 @@
 
 * { box-sizing: border-box; }
 
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -363,28 +368,99 @@ h1 {
   color: var(--primary);
   font-size: 2.7em;
   font-weight: 700;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
-  text-shadow: 0 2px 12px var(--shadow-color);
+  text-shadow: 0 3px 16px rgba(255, 157, 61, 0.3);
+  position: relative;
+  padding-bottom: 16px;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--secondary) 30%,
+    var(--primary) 50%,
+    var(--secondary) 70%,
+    transparent 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 16px var(--primary);
 }
 
 :root[data-theme="light"] h1 {
-  text-shadow: 0 2px 6px var(--shadow-color);
+  text-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
+}
+
+:root[data-theme="light"] h1::after {
+  box-shadow: 0 0 12px rgba(217, 119, 6, 0.3);
+}
+
+/* Light mode specific enhancements for gallery */
+:root[data-theme="light"] section[data-author] .section-title {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="light"] section[data-author] .section-title::before {
+  filter: drop-shadow(0 0 6px rgba(8, 145, 178, 0.3));
+}
+
+:root[data-theme="light"] .img-thumb-wrap {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme="light"] .img-thumb-wrap:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="light"] .gallery-card {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="light"] .gallery-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="light"] #img-viewer-img-wrap {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2),
+              0 0 80px rgba(217, 119, 6, 0.08);
 }
 
 .summary {
   max-width: 800px;
   margin: 0 auto 34px;
   background: var(--summary-bg);
-  border-radius: 12px;
-  padding: 18px 22px;
-  box-shadow: 0 4px 12px var(--shadow-color);
-  line-height: 1.7;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 16px var(--shadow-color);
+  line-height: 1.75;
   color: var(--fg);
   font-size: 1.06em;
   border: 1px solid var(--summary-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.summary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--secondary) 40%,
+    var(--primary) 60%,
+    transparent 100%);
+  opacity: 0.4;
 }
 
 .section-title {
@@ -928,34 +1004,66 @@ pre {
   }
 }
 
-/* Back to Home button, also ultra subtle and never white */
+/* Back to Home button - Enhanced professional styling */
 .back-home-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 28px;
-  padding: 8px 18px;
+  margin-bottom: 32px;
+  padding: 10px 22px;
   border-radius: 999px;
   background: var(--button-bg);
   color: var(--button-text);
-  border: 1px solid var(--button-border);
-  font-size: 0.98em;
+  border: 1.5px solid var(--button-border);
+  font-size: 0.95em;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 2px 8px var(--shadow-color);
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease;
+  box-shadow: 0 3px 12px var(--shadow-color);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.25s ease;
   vertical-align: middle;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+  position: relative;
+  overflow: hidden;
 }
-.back-home-btn:hover, .back-home-btn:focus {
-  background: var(--primary);
+
+.back-home-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.back-home-btn span,
+.back-home-btn::after {
+  position: relative;
+  z-index: 1;
+}
+
+.back-home-btn:hover,
+.back-home-btn:focus {
   color: var(--bg-base);
   border-color: var(--primary);
-  box-shadow: 0 4px 12px var(--shadow-color);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 157, 61, 0.4);
+  transform: translateY(-3px);
   outline: none;
+}
+
+.back-home-btn:hover::before,
+.back-home-btn:focus::before {
+  opacity: 1;
+}
+
+.back-home-btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
 }
 
 /* On mobile, make back-home-btn static, always at top, and reduce container top padding */
@@ -1275,11 +1383,12 @@ section[data-author] .section-title {
   text-transform: uppercase;
   font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
   border-bottom: 2px solid var(--section-border);
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 section[data-author] .section-title::before {
@@ -1287,6 +1396,19 @@ section[data-author] .section-title::before {
   color: var(--secondary);
   font-size: 1.2em;
   animation: pulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px var(--secondary));
+}
+
+/* Professional badge styling - use with JS to add image count */
+section[data-author] .section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 80px;
+  height: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 12px var(--primary);
 }
 
 @keyframes pulse {
@@ -1305,6 +1427,13 @@ section[data-author] .section-title::before {
   box-shadow: 0 6px 20px var(--shadow-color);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px var(--shadow-color);
 }
 
 .gallery-card::before {
@@ -1313,14 +1442,27 @@ section[data-author] .section-title::before {
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 3px;
   background: linear-gradient(90deg,
     transparent 0%,
     var(--primary) 20%,
     var(--secondary) 50%,
     var(--primary) 80%,
     transparent 100%);
-  opacity: 0.4;
+  opacity: 0.5;
+}
+
+.gallery-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 157, 61, 0.05) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
 }
 
 .gallery-grid {
@@ -1368,8 +1510,54 @@ section[data-author] .section-title::before {
   background: var(--img-thumb-hover-bg);
 }
 
+/* Professional skeleton shimmer effect for loading images */
+.img-thumb:not(.loaded) {
+  background: linear-gradient(
+    110deg,
+    var(--img-thumb-bg) 8%,
+    var(--img-thumb-hover-bg) 18%,
+    var(--img-thumb-bg) 33%
+  );
+  background-size: 200% 100%;
+  animation: shimmerLoad 2s linear infinite;
+  position: relative;
+}
+
+.img-thumb:not(.loaded)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes shimmerLoad {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
+}
+
 .img-thumb.loaded {
   opacity: 1;
+  animation: fadeInImage 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .img-thumb-wrap:hover .img-thumb {
@@ -1459,9 +1647,23 @@ section[data-author] .section-title::before {
 
 .search-bar-wrap #search-bar:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(255, 157, 61, 0.15),
+  box-shadow: 0 0 0 4px rgba(255, 157, 61, 0.2),
               inset 0 2px 6px rgba(0, 0, 0, 0.1);
   transform: translateY(-1px);
+}
+
+/* Professional focus states for accessibility */
+.img-thumb-wrap:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 12px;
+  box-shadow: 0 0 0 6px rgba(255, 157, 61, 0.15);
+}
+
+.load-more-btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgba(255, 157, 61, 0.2);
 }
 
 @keyframes shimmer {
@@ -1480,8 +1682,8 @@ section[data-author] .section-title::before {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.25s ease;
-  backdrop-filter: blur(8px);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(12px);
 }
 
 #img-viewer-modal.active {
@@ -1490,17 +1692,40 @@ section[data-author] .section-title::before {
 
 #img-viewer-img-wrap {
   position: relative;
-  width: min(92vw, 880px);
-  max-height: 88vh;
+  width: min(92vw, 920px);
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 28px 32px 32px;
+  gap: 20px;
+  padding: 32px 36px 36px;
   background: var(--viewer-wrap-bg);
-  border-radius: 26px;
+  border-radius: 28px;
   border: 1px solid var(--card-border);
-  box-shadow: 0 24px 48px var(--shadow-color);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4),
+              0 0 100px rgba(255, 157, 61, 0.1);
   overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#img-viewer-modal.active #img-viewer-img-wrap {
+  transform: scale(1);
+}
+
+#img-viewer-img-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--primary) 30%,
+    var(--secondary) 50%,
+    var(--primary) 70%,
+    transparent 100%);
+  opacity: 0.6;
 }
 
 .viewer-topbar {
@@ -1705,12 +1930,20 @@ section[data-author] .section-title::before {
   .img-thumb-wrap {
     margin-bottom: 12px;
   }
+
+  section[data-author] .section-title {
+    font-size: 1.4em;
+  }
 }
 
 @media (max-width: 992px) {
   .gallery-grid {
     column-count: 4;
     column-gap: 12px;
+  }
+
+  section[data-author] .section-title {
+    font-size: 1.3em;
   }
 }
 
@@ -1728,12 +1961,25 @@ section[data-author] .section-title::before {
   .gallery-card {
     padding: 24px 20px 26px;
   }
+
+  .search-bar-wrap {
+    padding: 20px 24px;
+  }
+
+  section[data-author] .section-title {
+    font-size: 1.2em;
+    gap: 10px;
+  }
 }
 
 @media (max-width: 640px) {
   .gallery-grid {
     column-count: 2;
     column-gap: 10px;
+  }
+
+  section[data-author] .section-title {
+    font-size: 1.1em;
   }
 }
 
@@ -1751,6 +1997,21 @@ section[data-author] .section-title::before {
   .gallery-card {
     padding: 20px 16px 22px;
     gap: 16px;
+    border-radius: 16px;
+  }
+
+  .search-bar-wrap {
+    padding: 18px 20px;
+    border-radius: 16px;
+  }
+
+  section[data-author] .section-title {
+    font-size: 1em;
+    letter-spacing: 0.08em;
+  }
+
+  section[data-author] {
+    margin-bottom: 36px;
   }
 }
 
