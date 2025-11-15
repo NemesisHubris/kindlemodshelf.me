@@ -205,9 +205,7 @@
         section,
         grid: section.querySelector('.gallery-grid'),
         controls: section.querySelector('.gallery-controls'),
-        rendered: false,
-        expanded: false,
-        loadMoreBtn: null
+        rendered: false
       };
 
       sectionsMeta.set(author, meta);
@@ -355,14 +353,8 @@
       const images = allData[meta.author] || [];
       if (!images.length) return;
 
-      const list = meta.expanded ? images : images.slice(0, PREVIEW_IMAGE_COUNT);
-      list.forEach(filename => addImageToGrid(meta.grid, meta.author, filename));
-
-      if (!meta.expanded && images.length > PREVIEW_IMAGE_COUNT) {
-        const btn = createLoadMoreButton(meta, images);
-        meta.controls.appendChild(btn);
-        meta.loadMoreBtn = btn;
-      }
+      // Show all images from the start
+      images.forEach(filename => addImageToGrid(meta.grid, meta.author, filename));
 
       meta.rendered = true;
     }
@@ -387,10 +379,6 @@
       const thumbs = meta.grid.querySelectorAll('.img-thumb');
       thumbs.forEach(img => imageObserver.unobserve(img));
       meta.grid.innerHTML = '';
-      if (meta.loadMoreBtn) {
-        meta.loadMoreBtn.remove();
-        meta.loadMoreBtn = null;
-      }
       meta.rendered = false;
     }
 
