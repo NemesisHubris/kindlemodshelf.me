@@ -1393,10 +1393,8 @@ section[data-author] .section-title {
 
 section[data-author] .section-title::before {
   content: "•";
-  color: var(--secondary);
+  color: var(--primary);
   font-size: 1.2em;
-  animation: pulse 2s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px var(--secondary));
 }
 
 /* Professional badge styling - use with JS to add image count */
@@ -1442,14 +1440,9 @@ section[data-author] .section-title::after {
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    var(--primary) 20%,
-    var(--secondary) 50%,
-    var(--primary) 80%,
-    transparent 100%);
-  opacity: 0.5;
+  height: 2px;
+  background: var(--primary);
+  opacity: 0.3;
 }
 
 .gallery-card::after {
@@ -1466,47 +1459,42 @@ section[data-author] .section-title::after {
 }
 
 .gallery-grid {
-  column-count: 6;
-  column-gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
   padding: 0;
 }
 
 .img-thumb-wrap {
   position: relative;
-  display: inline-block;
+  display: block;
   width: 100%;
-  margin-bottom: 14px;
   overflow: hidden;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
-  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.25s ease,
-              filter 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease;
   border: 1px solid var(--gallery-card-border);
   background: var(--img-thumb-bg);
-  break-inside: avoid;
-  page-break-inside: avoid;
+  aspect-ratio: 1;
 }
 
 .img-thumb-wrap:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   border-color: var(--primary);
-  filter: brightness(1.05) saturate(1.1);
-  z-index: 10;
 }
 
 .img-thumb {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 9px;
   object-fit: cover;
   object-position: center;
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.25;
+  transition: opacity 0.3s ease;
+  opacity: 0.3;
   background: var(--img-thumb-hover-bg);
 }
 
@@ -1552,17 +1540,12 @@ section[data-author] .section-title::after {
 @keyframes fadeInImage {
   from {
     opacity: 0;
-    transform: scale(0.92);
   }
   to {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
-.img-thumb-wrap:hover .img-thumb {
-  transform: scale(1.05);
-}
 
 .img-thumb-wrap::before {
   content: "";
@@ -1606,13 +1589,8 @@ section[data-author] .section-title::after {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    var(--secondary) 20%,
-    var(--primary) 50%,
-    var(--secondary) 80%,
-    transparent 100%);
-  opacity: 0.5;
+  background: var(--primary);
+  opacity: 0.3;
 }
 
 .search-bar-wrap .search-label {
@@ -1923,12 +1901,8 @@ section[data-author] .section-title::after {
 /* Responsive adjustments for gallery */
 @media (max-width: 1200px) {
   .gallery-grid {
-    column-count: 5;
-    column-gap: 12px;
-  }
-
-  .img-thumb-wrap {
-    margin-bottom: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
   }
 
   section[data-author] .section-title {
@@ -1938,8 +1912,8 @@ section[data-author] .section-title::after {
 
 @media (max-width: 992px) {
   .gallery-grid {
-    column-count: 4;
-    column-gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
   }
 
   section[data-author] .section-title {
@@ -1949,13 +1923,8 @@ section[data-author] .section-title::after {
 
 @media (max-width: 768px) {
   .gallery-grid {
-    column-count: 3;
-    column-gap: 10px;
-  }
-
-  .img-thumb-wrap {
-    margin-bottom: 10px;
-    border-radius: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
   }
 
   .gallery-card {
@@ -1974,8 +1943,8 @@ section[data-author] .section-title::after {
 
 @media (max-width: 640px) {
   .gallery-grid {
-    column-count: 2;
-    column-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
   }
 
   section[data-author] .section-title {
@@ -1985,13 +1954,8 @@ section[data-author] .section-title::after {
 
 @media (max-width: 480px) {
   .gallery-grid {
-    column-count: 2;
-    column-gap: 8px;
-  }
-
-  .img-thumb-wrap {
-    margin-bottom: 8px;
-    border-radius: 7px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 
   .gallery-card {
