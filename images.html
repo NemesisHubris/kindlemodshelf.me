@@ -61,9 +61,9 @@
     <script>
     const INITIAL_AUTHORS = 10;
     const LOAD_MORE_AUTHORS = 6;
-    const PREVIEW_IMAGE_COUNT = 8;
-    const THUMBNAIL_WIDTH = 520;
-    const THUMBNAIL_HEIGHT = 520;
+    const PREVIEW_IMAGE_COUNT = 6;
+    const THUMBNAIL_WIDTH = 400;
+    const THUMBNAIL_HEIGHT = 533;
     const THUMBNAIL_QUALITY = 0.82;
     const PLACEHOLDER_SRC = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
     const SECTION_UNLOAD_OFFSET = 1400;
@@ -353,8 +353,16 @@
       const images = allData[meta.author] || [];
       if (!images.length) return;
 
-      // Show all images from the start
-      images.forEach(filename => addImageToGrid(meta.grid, meta.author, filename));
+      // Show only preview images initially
+      const previewImages = images.slice(0, PREVIEW_IMAGE_COUNT);
+      previewImages.forEach(filename => addImageToGrid(meta.grid, meta.author, filename));
+
+      // Add "Show More" button if there are more images
+      if (images.length > PREVIEW_IMAGE_COUNT) {
+        const btn = createLoadMoreButton(meta, images);
+        meta.controls.appendChild(btn);
+        meta.loadMoreBtn = btn;
+      }
 
       meta.rendered = true;
     }
