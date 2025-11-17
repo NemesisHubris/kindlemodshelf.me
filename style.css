@@ -68,9 +68,9 @@
   --filter-chip-border: #3a3a3a;
   --filter-chip-text: #c8c8c8;
   --filter-chip-hover-border: #4a4a4a;
-  --filter-chip-active-bg: #3a2a2a;
-  --filter-chip-active-border: #8a4a4a;
-  --filter-chip-active-text: #ffcccc;
+  --filter-chip-active-bg: #2a3a4a;
+  --filter-chip-active-border: #5b9dd9;
+  --filter-chip-active-text: #b3d9ff;
   --gallery-card-bg: #222222;
   --gallery-card-border: #3a3a3a;
   --morris-bg: #242424;
@@ -229,9 +229,9 @@
   --filter-chip-border: #dddddd;
   --filter-chip-text: #555555;
   --filter-chip-hover-border: #cccccc;
-  --filter-chip-active-bg: #fff0f0;
-  --filter-chip-active-border: #dd8888;
-  --filter-chip-active-text: #883333;
+  --filter-chip-active-bg: #e6f2ff;
+  --filter-chip-active-border: #5b9dd9;
+  --filter-chip-active-text: #2563ab;
   --gallery-card-bg: #f8f8f8;
   --gallery-card-border: #dddddd;
   --morris-bg: #f8f8f8;
@@ -1068,11 +1068,7 @@ pre code {
   box-shadow: 0 2px 4px var(--shadow-color);
 }
 
-.back-home-btn::before {
-  content: "←";
-  font-size: 1.2em;
-  font-weight: 600;
-}
+/* Back arrow removed per user request */
 
 @media (max-width: 700px) {
   .back-home-btn {
@@ -1121,6 +1117,9 @@ pre code {
   left: 14px;
   color: var(--search-icon);
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #search-bar {
@@ -1906,26 +1905,26 @@ pre code {
   display: flex;
 }
 
-/* Dark mode: vibrant gold star with glow */
+/* Dark mode: white circle */
 :root .theme-icon.sun svg {
-  color: #ffd700;
-  filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 6px rgba(255, 215, 0, 0.3));
+  color: #ffffff;
+  filter: none;
 }
 
 :root .theme-toggle:hover .theme-icon.sun svg {
-  color: #ffed4e;
-  filter: drop-shadow(0 0 4px rgba(255, 237, 78, 0.8)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+  color: #ffffff;
+  filter: none;
 }
 
-/* Light mode: rich blue moon with glow */
+/* Light mode: black circle */
 :root[data-theme="light"] .theme-icon.moon svg {
-  color: #4a8fd9;
-  filter: drop-shadow(0 0 3px rgba(74, 143, 217, 0.5)) drop-shadow(0 0 6px rgba(91, 157, 217, 0.25));
+  color: #000000;
+  filter: none;
 }
 
 :root[data-theme="light"] .theme-toggle:hover .theme-icon.moon svg {
-  color: #5b9dd9;
-  filter: drop-shadow(0 0 4px rgba(91, 157, 217, 0.7)) drop-shadow(0 0 8px rgba(74, 143, 217, 0.35));
+  color: #000000;
+  filter: none;
 }
 
 @media (max-width: 700px) {

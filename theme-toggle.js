@@ -59,17 +59,17 @@
     button.setAttribute('aria-label', 'Toggle theme');
     button.setAttribute('title', 'Toggle theme');
 
-    // Create star icon SVG (shows in dark mode - to switch to light)
+    // Create circle icon (shows in dark mode - white circle)
     const starIcon = document.createElement('span');
     starIcon.className = 'theme-icon sun';
     starIcon.setAttribute('aria-hidden', 'true');
-    starIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>';
+    starIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"></circle></svg>';
 
-    // Create moon icon SVG (shows in light mode - to switch to dark)
+    // Create circle icon (shows in light mode - black circle)
     const moonIcon = document.createElement('span');
     moonIcon.className = 'theme-icon moon';
     moonIcon.setAttribute('aria-hidden', 'true');
-    moonIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+    moonIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"></circle></svg>';
 
     button.appendChild(starIcon);
     button.appendChild(moonIcon);
