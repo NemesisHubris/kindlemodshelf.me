@@ -88,13 +88,13 @@ body {
 .wifi-icon {
     width: 12px;
     height: 10px;
-    fill: #666666;
+    fill: var(--kindle-gs-6);
 }
 
 .battery-icon {
     width: 16px;
     height: 8px;
-    fill: #666666;
+    fill: var(--kindle-gs-6);
 }
 
 .time {
@@ -104,7 +104,7 @@ body {
 .sync-icon {
     width: 12px;
     height: 12px;
-    fill: #666666;
+    fill: var(--kindle-gs-6);
 }
 
 .sync-icon.hidden {
@@ -179,7 +179,7 @@ body {
 /* Library Container */
 .library-container {
     padding: 0;
-    background-color: #FFFFFF;
+    background-color: var(--kindle-white);
     min-height: calc(100vh - 20px - 56px - 64px);
     margin-top: 56px;
 }
@@ -202,6 +202,7 @@ body {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 16px;
+    line-height: 1.2;
     color: var(--kindle-gs-0);
 }
 
@@ -245,6 +246,7 @@ body {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 16px;
+    line-height: 1.2;
     color: var(--kindle-gs-0);
 }
 
@@ -390,6 +392,7 @@ body {
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 4px;
+    line-height: 1.2;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -398,6 +401,7 @@ body {
 .book-list-info .book-author {
     font-size: 11px;
     color: var(--kindle-gs-6);
+    line-height: 1.2;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -498,6 +502,7 @@ body {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: var(--spacing-xs);
+    line-height: 1.2;
     color: var(--kindle-text);
 }
 
@@ -505,6 +510,7 @@ body {
     font-size: 13px;
     color: var(--kindle-dark-gray);
     margin-bottom: var(--spacing-xs);
+    line-height: 1.2;
 }
 
 .modal-publisher {
