@@ -30,11 +30,9 @@
     --kindle-light-gray: var(--kindle-gs-13);
     --kindle-gray: var(--kindle-gs-12);
     --kindle-dark-gray: var(--kindle-gs-6);
-    --kindle-black: var(--kindle-gs-0);
     --kindle-text: var(--kindle-gs-1);
     --kindle-border: var(--kindle-gs-13);
     --kindle-accent: #FF9900;  /* Orange accent (not grayscale) */
-    --kindle-hover: var(--kindle-gs-14);
 
     /* Typography */
     --font-amazon-ember: "Amazon Ember", "Open Sans", "Roboto", "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -50,7 +48,6 @@
 
     /* Kindle Screen Dimensions (simulated for web) */
     --kindle-max-width: 1236px;
-    --kindle-aspect-ratio: 1236 / 1648;
 }
 
 body {

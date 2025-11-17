@@ -334,9 +334,6 @@ let currentView = 'grid';
 let showingCollections = false;
 
 // DOM Elements
-const searchContainer = document.getElementById('search-container');
-const searchInput = document.getElementById('search-input');
-const closeSearch = document.getElementById('close-search');
 const libraryGrid = document.getElementById('library-grid');
 const libraryList = document.getElementById('library-list');
 const collectionsGrid = document.getElementById('collections-grid');
