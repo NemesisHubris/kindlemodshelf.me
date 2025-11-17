@@ -198,11 +198,14 @@ body {
 .book-item {
     cursor: pointer;
     width: 100%;
+    aspect-ratio: 2 / 3;
+    position: relative;
 }
 
 .book-cover {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
     border-radius: 0;
     box-shadow: 1px 1px 0 var(--kindle-gs-12);
@@ -274,9 +277,10 @@ body {
 .book-list-item {
     display: flex;
     gap: var(--spacing-lg);
-    padding: var(--spacing-md);
+    padding: var(--spacing-md) 0;
     border-radius: 0;
     cursor: pointer;
+    border-bottom: 0.5px solid var(--kindle-gs-13);
 }
 
 .book-list-item .book-cover-container {
@@ -363,30 +367,30 @@ body {
 
 .modal-close {
     position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
-    background-color: var(--kindle-hover);
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background-color: transparent;
     border: none;
-    border-radius: 50%;
-    font-size: 28px;
-    color: var(--kindle-dark-gray);
+    border-radius: 0;
+    font-size: 32px;
+    color: var(--kindle-gs-6);
     cursor: pointer;
     line-height: 1;
-    padding: 0;
-    width: 36px;
-    height: 36px;
+    padding: var(--spacing-xs);
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .modal-close:active {
-    transform: rotate(90deg) scale(0.95);
+    color: var(--kindle-gs-0);
 }
 
 .modal-close:focus-visible {
-    outline: 2px solid var(--kindle-accent);
-    outline-offset: 2px;
+    outline: 1px solid var(--kindle-gs-10);
+    outline-offset: 1px;
 }
 
 .modal-body {
@@ -396,11 +400,11 @@ body {
 }
 
 .modal-cover {
-    width: 180px;
-    height: 270px;
+    width: 160px;
+    height: 240px;
     object-fit: cover;
     border-radius: 0;
-    box-shadow: 2px 2px 0 var(--kindle-gs-11), 3px 3px 0 var(--kindle-gs-12);
+    box-shadow: 1px 1px 0 var(--kindle-gs-12), 2px 2px 0 var(--kindle-gs-13);
     flex-shrink: 0;
 }
 
@@ -409,44 +413,46 @@ body {
 }
 
 .modal-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
     color: var(--kindle-text);
 }
 
 .modal-author {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--kindle-dark-gray);
     margin-bottom: var(--spacing-xs);
 }
 
 .modal-publisher {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--kindle-gray);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     font-style: italic;
 }
 
 .modal-metadata {
-    background-color: var(--kindle-off-white);
+    background-color: transparent;
     border-radius: 0;
-    padding: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
-    border: 1px solid var(--kindle-light-gray);
+    padding: var(--spacing-sm) 0;
+    margin-bottom: var(--spacing-lg);
+    border: none;
+    border-top: 1px solid var(--kindle-light-gray);
+    border-bottom: 1px solid var(--kindle-light-gray);
 }
 
 .modal-progress {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 500;
     color: var(--kindle-text);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
 }
 
 .modal-location {
     font-size: 10px;
     color: var(--kindle-dark-gray);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
 }
 
 .modal-time-left {
