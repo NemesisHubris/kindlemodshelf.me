@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     /* Kindle Color Palette */
     --kindle-white: #FFFFFF;
@@ -19,8 +23,8 @@
     --kindle-hover: #F5F5F5;
 
     /* Typography */
-    --font-amazon-ember: -apple-system, BlinkMacSystemFont, "Segoe UI", "Amazon Ember", "Helvetica Neue", Arial, sans-serif;
-    --font-bookerly: Georgia, "Bookerly", serif;
+    --font-amazon-ember: "Amazon Ember", "Open Sans", "Roboto", "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-bookerly: "Bookerly", Georgia, "Times New Roman", serif;
 
     /* Spacing */
     --spacing-xs: 4px;
@@ -41,8 +45,10 @@ body {
     color: var(--kindle-text);
     font-size: 14px;
     line-height: 1.5;
+    letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     max-width: var(--kindle-max-width);
     margin: 0 auto;
     min-height: 100vh;
@@ -103,18 +109,27 @@ body {
     cursor: pointer;
     padding: var(--spacing-sm);
     border-radius: 4px;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.15s ease-out 0.05s;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .icon-button:hover {
     background-color: var(--kindle-hover);
+    transition-delay: 0.15s;
 }
 
 .icon-button:active {
     background-color: var(--kindle-light-gray);
+    transition-duration: 0.05s;
+    transition-delay: 0s;
+}
+
+.icon-button:focus-visible {
+    outline: 2px solid var(--kindle-accent);
+    outline-offset: 2px;
 }
 
 .icon-button svg {
@@ -139,18 +154,25 @@ body {
     display: flex;
     align-items: center;
     background-color: var(--kindle-white);
-    border: 1px solid var(--kindle-border);
-    border-radius: 4px;
+    border: 2px solid var(--kindle-border);
+    border-radius: 6px;
     padding: var(--spacing-sm) var(--spacing-md);
     max-width: 600px;
     margin: 0 auto;
+    transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.search-bar:focus-within {
+    border-color: var(--kindle-accent);
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.1);
 }
 
 .search-icon {
     width: 18px;
     height: 18px;
     fill: var(--kindle-dark-gray);
-    margin-right: var(--spacing-sm);
+    margin-right: var(--spacing-md);
+    flex-shrink: 0;
 }
 
 #search-input {
@@ -159,11 +181,14 @@ body {
     outline: none;
     font-family: var(--font-amazon-ember);
     font-size: 14px;
+    letter-spacing: 0.01em;
     color: var(--kindle-text);
+    background: transparent;
 }
 
 #search-input::placeholder {
     color: var(--kindle-gray);
+    font-weight: 400;
 }
 
 .close-search {
@@ -199,27 +224,42 @@ body {
 }
 
 .filter-btn {
-    padding: 6px 14px;
+    padding: 7px 16px;
     background-color: var(--kindle-white);
     border: 1px solid var(--kindle-border);
     border-radius: 20px;
     font-family: var(--font-amazon-ember);
     font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     color: var(--kindle-text);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-out;
     white-space: nowrap;
 }
 
 .filter-btn:hover {
     background-color: var(--kindle-hover);
     border-color: var(--kindle-dark-gray);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.filter-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+    transition-duration: 0.1s;
 }
 
 .filter-btn.active {
     background-color: var(--kindle-text);
     color: var(--kindle-white);
     border-color: var(--kindle-text);
+}
+
+.filter-btn:focus-visible {
+    outline: 2px solid var(--kindle-accent);
+    outline-offset: 2px;
 }
 
 .view-sort-controls {
@@ -229,19 +269,34 @@ body {
 }
 
 .sort-select {
-    padding: 6px 12px;
+    padding: 7px 32px 7px 12px;
     background-color: var(--kindle-white);
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg width="12" height="8" viewBox="0 0 12 8" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l5 5 5-5" stroke="%23666666" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
     border: 1px solid var(--kindle-border);
-    border-radius: 4px;
+    border-radius: 6px;
     font-family: var(--font-amazon-ember);
     font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: var(--kindle-text);
     cursor: pointer;
     outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: all 0.2s ease-out;
 }
 
 .sort-select:hover {
     border-color: var(--kindle-dark-gray);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.sort-select:focus {
+    border-color: var(--kindle-accent);
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.1);
 }
 
 .view-toggle {
@@ -279,26 +334,32 @@ body {
 /* Library Grid */
 .library-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: var(--spacing-xxl) var(--spacing-lg);
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--spacing-xxl) var(--spacing-xl);
     justify-items: center;
 }
 
 /* Book Item */
 .book-item {
     cursor: pointer;
-    transition: transform 0.2s ease;
-    max-width: 160px;
+    transition: transform 0.2s ease-out;
+    max-width: 180px;
+    will-change: transform;
 }
 
 .book-item:hover {
     transform: translateY(-4px);
 }
 
+.book-item:active {
+    transform: translateY(-2px);
+    transition-duration: 0.1s;
+}
+
 .book-cover-container {
     position: relative;
-    width: 140px;
-    height: 210px;
+    width: 160px;
+    height: 240px;
     margin-bottom: var(--spacing-md);
 }
 
@@ -319,15 +380,18 @@ body {
     position: absolute;
     bottom: 8px;
     left: 8px;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.8);
     color: var(--kindle-white);
-    padding: 2px 6px;
-    border-radius: 3px;
+    padding: 3px 7px;
+    border-radius: 4px;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     display: flex;
     align-items: center;
     gap: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
 }
 
 .checkmark {
@@ -355,19 +419,24 @@ body {
 .book-title {
     font-size: 13px;
     font-weight: 600;
+    letter-spacing: 0.01em;
     color: var(--kindle-text);
-    margin-bottom: 2px;
-    line-height: 1.3;
+    margin-bottom: 4px;
+    line-height: 1.4;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    word-break: break-word;
 }
 
 .book-author {
     font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.005em;
     color: var(--kindle-dark-gray);
+    line-height: 1.3;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -413,17 +482,42 @@ body {
 
 .book-list-info .book-title {
     font-size: 14px;
+    font-weight: 600;
     margin-bottom: var(--spacing-xs);
+    -webkit-line-clamp: 1;
 }
 
 .book-list-info .book-author {
     font-size: 13px;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    white-space: normal;
 }
 
 .book-list-progress {
     font-size: 11px;
     color: var(--kindle-dark-gray);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.progress-dots {
+    display: flex;
+    gap: 2px;
+    height: 4px;
+    flex: 1;
+    max-width: 200px;
+}
+
+.progress-dot {
+    flex: 1;
+    height: 4px;
+    background-color: var(--kindle-light-gray);
+    border-radius: 2px;
+}
+
+.progress-dot.filled {
+    background-color: var(--kindle-accent);
 }
 
 /* Modal */
@@ -434,9 +528,10 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
-    animation: fadeIn 0.2s ease;
+    animation: fadeIn 0.25s ease-out;
+    backdrop-filter: blur(2px);
 }
 
 .modal.active {
@@ -448,9 +543,11 @@ body {
 @keyframes fadeIn {
     from {
         opacity: 0;
+        backdrop-filter: blur(0px);
     }
     to {
         opacity: 1;
+        backdrop-filter: blur(2px);
     }
 }
 
@@ -467,11 +564,11 @@ body {
 
 @keyframes slideUp {
     from {
-        transform: translateY(50px);
+        transform: translateY(40px) scale(0.95);
         opacity: 0;
     }
     to {
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
         opacity: 1;
     }
 }
@@ -480,22 +577,35 @@ body {
     position: absolute;
     top: var(--spacing-md);
     right: var(--spacing-md);
-    background: none;
+    background-color: var(--kindle-hover);
     border: none;
-    font-size: 32px;
+    border-radius: 50%;
+    font-size: 28px;
     color: var(--kindle-dark-gray);
     cursor: pointer;
     line-height: 1;
     padding: 0;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s ease-out;
 }
 
 .modal-close:hover {
     color: var(--kindle-text);
+    background-color: var(--kindle-light-gray);
+    transform: rotate(90deg);
+}
+
+.modal-close:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+.modal-close:focus-visible {
+    outline: 2px solid var(--kindle-accent);
+    outline-offset: 2px;
 }
 
 .modal-body {
@@ -553,18 +663,29 @@ body {
     font-family: var(--font-amazon-ember);
     font-size: 14px;
     font-weight: 500;
+    letter-spacing: 0.02em;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-out;
     border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .primary-button {
     background-color: var(--kindle-text);
     color: var(--kindle-white);
+    border: 1px solid transparent;
 }
 
 .primary-button:hover {
     background-color: var(--kindle-dark-gray);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.primary-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition-duration: 0.1s;
 }
 
 .secondary-button {
@@ -576,6 +697,20 @@ body {
 .secondary-button:hover {
     background-color: var(--kindle-hover);
     border-color: var(--kindle-dark-gray);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+.secondary-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    transition-duration: 0.1s;
+}
+
+.primary-button:focus-visible,
+.secondary-button:focus-visible {
+    outline: 2px solid var(--kindle-accent);
+    outline-offset: 2px;
 }
 
 /* Settings Menu */
@@ -584,12 +719,14 @@ body {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 300px;
+    width: 320px;
+    max-width: 90vw;
     background-color: var(--kindle-white);
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
     z-index: 999;
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
 }
 
 .settings-menu.active {
@@ -618,20 +755,78 @@ body {
 .settings-list button {
     width: 100%;
     text-align: left;
-    padding: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
     background-color: var(--kindle-white);
     border: 1px solid var(--kindle-light-gray);
-    border-radius: 4px;
+    border-radius: 6px;
     font-family: var(--font-amazon-ember);
     font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: var(--kindle-text);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease-out;
 }
 
 .settings-list button:hover {
     background-color: var(--kindle-hover);
     border-color: var(--kindle-dark-gray);
+    transform: translateX(4px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.settings-list button:active {
+    transform: translateX(2px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    transition-duration: 0.1s;
+}
+
+.settings-list button:focus-visible {
+    outline: 2px solid var(--kindle-accent);
+    outline-offset: 2px;
+}
+
+/* Additional Badge Styles */
+.book-badge.new-badge {
+    background-color: var(--kindle-accent);
+    left: auto;
+    right: 8px;
+    top: 8px;
+    bottom: auto;
+}
+
+.book-badge.read-badge {
+    background-color: rgba(76, 175, 80, 0.9);
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Smooth Transitions */
+.smooth-appear {
+    animation: smoothAppear 0.3s ease-out;
+}
+
+@keyframes smoothAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Utility Classes */
@@ -642,59 +837,84 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .library-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: var(--spacing-xl) var(--spacing-md);
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: var(--spacing-xl) var(--spacing-lg);
     }
 
     .book-cover-container {
-        width: 120px;
-        height: 180px;
+        width: 130px;
+        height: 195px;
     }
 
     .book-item {
-        max-width: 140px;
+        max-width: 150px;
     }
 
     .modal-body {
         flex-direction: column;
         align-items: center;
+        padding: var(--spacing-xl);
     }
 
     .modal-cover {
-        width: 150px;
-        height: 225px;
+        width: 160px;
+        height: 240px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-controls,
+    .view-sort-controls {
+        width: 100%;
+        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
     .library-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: var(--spacing-lg) var(--spacing-sm);
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: var(--spacing-xl) var(--spacing-md);
     }
 
     .book-cover-container {
-        width: 100px;
-        height: 150px;
+        width: 110px;
+        height: 165px;
     }
 
     .book-item {
-        max-width: 120px;
+        max-width: 130px;
     }
 
     .book-title {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .book-author {
-        font-size: 10px;
+        font-size: 11px;
     }
 
-    .filter-controls {
-        width: 100%;
+    .status-bar {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: 11px;
     }
 
-    .view-sort-controls {
-        width: 100%;
-        justify-content: space-between;
+    .toolbar {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .modal-content {
+        max-width: 95%;
+        margin: var(--spacing-md);
+    }
+
+    .modal-body {
+        padding: var(--spacing-lg);
+    }
+
+    .settings-menu {
+        width: 280px;
     }
 }

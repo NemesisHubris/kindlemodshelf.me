@@ -149,6 +149,38 @@ const booksData = [
         downloaded: true,
         type: "books",
         dateAdded: new Date('2024-09-10')
+    },
+    {
+        id: 16,
+        title: "The Odyssey",
+        author: "Homer",
+        cover: "https://covers.openlibrary.org/b/id/8235143-L.jpg",
+        progress: 0,
+        downloaded: false,
+        type: "books",
+        dateAdded: new Date('2024-09-05'),
+        isNew: true
+    },
+    {
+        id: 17,
+        title: "Wuthering Heights",
+        author: "Emily Brontë",
+        cover: "https://covers.openlibrary.org/b/id/8235621-L.jpg",
+        progress: 62,
+        downloaded: true,
+        type: "books",
+        dateAdded: new Date('2024-08-30')
+    },
+    {
+        id: 18,
+        title: "Dracula",
+        author: "Bram Stoker",
+        cover: "https://covers.openlibrary.org/b/id/8235711-L.jpg",
+        progress: 100,
+        downloaded: true,
+        type: "books",
+        dateAdded: new Date('2024-08-25'),
+        isRead: true
     }
 ];
 
@@ -333,13 +365,20 @@ function renderBooks(books = currentBooks) {
     libraryGrid.innerHTML = '';
     libraryList.innerHTML = '';
 
-    books.forEach(book => {
+    books.forEach((book, index) => {
         // Create grid view item
         const gridItem = createBookGridItem(book);
+        // Add smooth appearance animation with stagger
+        setTimeout(() => {
+            gridItem.classList.add('smooth-appear');
+        }, index * 30);
         libraryGrid.appendChild(gridItem);
 
         // Create list view item
         const listItem = createBookListItem(book);
+        setTimeout(() => {
+            listItem.classList.add('smooth-appear');
+        }, index * 30);
         libraryList.appendChild(listItem);
     });
 }
@@ -363,8 +402,16 @@ function createBookGridItem(book) {
 
     coverContainer.appendChild(cover);
 
+    // Add new badge if applicable
+    if (book.isNew) {
+        const newBadge = document.createElement('div');
+        newBadge.className = 'book-badge new-badge';
+        newBadge.textContent = 'NEW';
+        coverContainer.appendChild(newBadge);
+    }
+
     // Add downloaded badge if applicable
-    if (book.downloaded) {
+    if (book.downloaded && !book.isNew) {
         const badge = document.createElement('div');
         badge.className = 'book-badge';
         badge.innerHTML = `
@@ -374,6 +421,14 @@ function createBookGridItem(book) {
             Downloaded
         `;
         coverContainer.appendChild(badge);
+    }
+
+    // Add read badge if applicable
+    if (book.isRead) {
+        const readBadge = document.createElement('div');
+        readBadge.className = 'book-badge read-badge';
+        readBadge.textContent = 'FINISHED';
+        coverContainer.appendChild(readBadge);
     }
 
     // Add progress bar if book has been started
@@ -436,13 +491,33 @@ function createBookListItem(book) {
 
     const progressText = document.createElement('div');
     progressText.className = 'book-list-progress';
-    if (book.progress === 0) {
-        progressText.textContent = 'Not started';
-    } else if (book.progress === 100) {
-        progressText.textContent = 'Finished';
-    } else {
-        progressText.textContent = `${book.progress}% complete`;
+
+    // Create progress dots (20 dots representing 5% each)
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'progress-dots';
+    const numDots = 20;
+    const filledDots = Math.floor((book.progress / 100) * numDots);
+
+    for (let i = 0; i < numDots; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'progress-dot';
+        if (i < filledDots) {
+            dot.classList.add('filled');
+        }
+        dotsContainer.appendChild(dot);
     }
+
+    const progressLabel = document.createElement('span');
+    if (book.progress === 0) {
+        progressLabel.textContent = 'Not started';
+    } else if (book.progress === 100) {
+        progressLabel.textContent = 'Finished';
+    } else {
+        progressLabel.textContent = `${book.progress}%`;
+    }
+
+    progressText.appendChild(dotsContainer);
+    progressText.appendChild(progressLabel);
 
     info.appendChild(title);
     info.appendChild(author);
