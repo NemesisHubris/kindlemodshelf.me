@@ -1825,9 +1825,9 @@ pre code {
   left: 24px;
   background: var(--button-bg);
   border: 2px solid var(--button-border);
-  border-radius: 50%;
-  width: 54px;
-  height: 54px;
+  border-radius: 6px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1840,24 +1840,37 @@ pre code {
 }
 
 .theme-toggle:hover {
-  background: var(--filter-bg);
-  border-color: var(--filter-border);
-  transform: scale(1.05);
+  background: var(--feature-button-hover-bg);
+  border-color: var(--primary);
+  transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--shadow-color);
 }
 
+.theme-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px var(--shadow-color);
+}
+
 .theme-toggle svg {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(-15deg);
+  color: var(--primary);
 }
 
 .theme-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
-/* Show sun in dark mode (to switch to light) */
+/* Show star in dark mode (to switch to light) */
 .theme-icon.sun {
   display: flex;
 }
@@ -1875,17 +1888,29 @@ pre code {
   display: flex;
 }
 
+/* Dark mode: yellow/gold star */
+:root .theme-icon.sun svg {
+  color: #f4c430;
+  filter: drop-shadow(0 0 2px rgba(244, 196, 48, 0.4));
+}
+
+/* Light mode: blue moon */
+:root[data-theme="light"] .theme-icon.moon svg {
+  color: #5b9dd9;
+  filter: drop-shadow(0 0 2px rgba(91, 157, 217, 0.4));
+}
+
 @media (max-width: 700px) {
   .theme-toggle {
     bottom: 16px;
     left: 16px;
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
   }
 
   .theme-toggle svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 
   #emailPopup {
