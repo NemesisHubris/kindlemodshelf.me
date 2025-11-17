@@ -11,6 +11,9 @@
     <div class="status-bar">
         <div class="status-left">
             <span class="time">12:34 PM</span>
+            <svg class="sync-icon hidden" id="sync-icon" width="16" height="16" viewBox="0 0 24 24">
+                <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+            </svg>
         </div>
         <div class="status-right">
             <svg class="wifi-icon" width="20" height="16" viewBox="0 0 20 16">
@@ -134,6 +137,12 @@
                     <div class="modal-actions">
                         <button class="primary-button">Read Now</button>
                         <button class="secondary-button">Download</button>
+                        <button class="secondary-button" id="xray-button">
+                            <svg class="button-icon" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/>
+                            </svg>
+                            X-Ray
+                        </button>
                         <button class="secondary-button">Add to Collection</button>
                         <button class="secondary-button">Remove from Device</button>
                     </div>

@@ -358,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateTime, 60000); // Update time every minute
     renderBooks();
     setupEventListeners();
+    simulateInitialSync();
 });
 
 // Update Time in Status Bar
@@ -395,6 +396,15 @@ function setupEventListeners() {
         if (e.target === bookModal) closeModal();
     });
 
+    // X-Ray button
+    const xrayButton = document.getElementById('xray-button');
+    if (xrayButton) {
+        xrayButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            alert('X-Ray Feature\n\nExplore characters, places, and terms in this book.\n\nFeatures:\n• People - See all character mentions\n• Terms - Key locations and concepts\n• Notable Clips - Memorable passages');
+        });
+    }
+
     // Settings Menu
     menuBtn.addEventListener('click', toggleSettings);
 
@@ -410,6 +420,18 @@ function setupEventListeners() {
     storeBtn.addEventListener('click', () => {
         alert('Store button clicked - would open Kindle Store');
     });
+}
+
+// Simulate Initial Sync
+function simulateInitialSync() {
+    const syncIcon = document.getElementById('sync-icon');
+    if (syncIcon) {
+        // Show sync icon for 2 seconds to simulate syncing
+        syncIcon.classList.remove('hidden');
+        setTimeout(() => {
+            syncIcon.classList.add('hidden');
+        }, 2000);
+    }
 }
 
 // Toggle Search
