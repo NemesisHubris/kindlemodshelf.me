@@ -106,14 +106,44 @@
 
     <!-- Main Content Area -->
     <main class="library-container">
-        <div class="library-grid" id="library-grid">
-            <!-- Books will be dynamically populated here -->
+        <!-- Home Screen -->
+        <div class="home-screen hidden" id="home-screen">
+            <!-- Continue Reading Carousel -->
+            <div class="book-carousel">
+                <h3>Continue Reading</h3>
+                <div class="carousel-container" id="carousel-container">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+
+            <!-- Books You May Like -->
+            <div class="recommendation-section">
+                <h3>Books You May Like</h3>
+                <div class="recommendation-grid" id="recommendation-grid-1">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+
+            <!-- Recommended For You -->
+            <div class="recommendation-section">
+                <h3>Recommended For You</h3>
+                <div class="recommendation-grid" id="recommendation-grid-2">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
         </div>
-        <div class="library-list hidden" id="library-list">
-            <!-- List view will be populated here -->
-        </div>
-        <div class="collections-grid hidden" id="collections-grid">
-            <!-- Collections will be populated here -->
+
+        <!-- Library Screen -->
+        <div class="library-screen" id="library-screen">
+            <div class="library-grid" id="library-grid">
+                <!-- Books will be dynamically populated here -->
+            </div>
+            <div class="library-list hidden" id="library-list">
+                <!-- List view will be populated here -->
+            </div>
+            <div class="collections-grid hidden" id="collections-grid">
+                <!-- Collections will be populated here -->
+            </div>
         </div>
     </main>
 

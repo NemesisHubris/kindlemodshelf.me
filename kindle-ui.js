@@ -343,14 +343,23 @@ const collectionsGrid = document.getElementById('collections-grid');
 const bookModal = document.getElementById('book-modal');
 const modalClose = document.getElementById('modal-close');
 const settingsMenu = document.getElementById('settings-menu');
+const homeScreen = document.getElementById('home-screen');
+const libraryScreen = document.getElementById('library-screen');
+const carouselContainer = document.getElementById('carousel-container');
+const recommendationGrid1 = document.getElementById('recommendation-grid-1');
+const recommendationGrid2 = document.getElementById('recommendation-grid-2');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     updateTime();
     setInterval(updateTime, 60000); // Update time every minute
     renderBooks();
+    renderHomeScreen();
     setupEventListeners();
     simulateInitialSync();
+
+    // Show library screen by default (Library tab is active)
+    showLibraryScreen();
 });
 
 // Update Time in Status Bar
@@ -395,8 +404,7 @@ function setupEventListeners() {
         homeTab.addEventListener('click', () => {
             homeTab.classList.add('active');
             libraryTab.classList.remove('active');
-            // Home screen functionality (to be implemented with Issue #8)
-            alert('Home Screen\n\nFeature coming soon:\n• Continue Reading carousel\n• Books You May Like recommendations\n• Recommended For You section');
+            showHomeScreen();
         });
     }
 
@@ -404,7 +412,7 @@ function setupEventListeners() {
         libraryTab.addEventListener('click', () => {
             libraryTab.classList.add('active');
             homeTab.classList.remove('active');
-            // Already showing library view
+            showLibraryScreen();
         });
     }
 
@@ -600,6 +608,71 @@ function simulateInitialSync() {
 }
 
 
+
+// Screen Switching (Issue #8)
+function showHomeScreen() {
+    homeScreen.classList.remove('hidden');
+    libraryScreen.classList.add('hidden');
+}
+
+function showLibraryScreen() {
+    homeScreen.classList.add('hidden');
+    libraryScreen.classList.remove('hidden');
+}
+
+// Render Home Screen (Issue #8)
+function renderHomeScreen() {
+    // Populate carousel with books in progress
+    const inProgressBooks = booksData.filter(b => b.progress > 0 && b.progress < 100)
+        .sort((a, b) => b.dateAdded - a.dateAdded)
+        .slice(0, 5);
+
+    carouselContainer.innerHTML = '';
+    inProgressBooks.forEach(book => {
+        const item = createCarouselItem(book);
+        carouselContainer.appendChild(item);
+    });
+
+    // Populate first recommendation grid (Books You May Like)
+    const unreadBooks = booksData.filter(b => b.progress === 0)
+        .sort((a, b) => b.dateAdded - a.dateAdded)
+        .slice(0, 6);
+
+    recommendationGrid1.innerHTML = '';
+    unreadBooks.forEach(book => {
+        const item = createBookGridItem(book);
+        recommendationGrid1.appendChild(item);
+    });
+
+    // Populate second recommendation grid (Recommended For You)
+    const moreBooks = booksData.filter(b => b.progress < 50)
+        .sort(() => 0.5 - Math.random()) // Shuffle
+        .slice(0, 6);
+
+    recommendationGrid2.innerHTML = '';
+    moreBooks.forEach(book => {
+        const item = createBookGridItem(book);
+        recommendationGrid2.appendChild(item);
+    });
+}
+
+// Create Carousel Item
+function createCarouselItem(book) {
+    const item = document.createElement('div');
+    item.className = 'carousel-item';
+    item.onclick = () => openBookModal(book);
+
+    const cover = document.createElement('img');
+    cover.className = 'book-cover';
+    cover.src = book.cover;
+    cover.alt = book.title;
+    cover.onerror = () => {
+        cover.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="280" height="420" viewBox="0 0 280 420"%3E%3Crect width="280" height="420" fill="%23DDDDDD"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="14" fill="%23666666"%3ENo Cover%3C/text%3E%3C/svg%3E';
+    };
+
+    item.appendChild(cover);
+    return item;
+}
 
 // Sort Books
 function sortBooks(sortBy) {

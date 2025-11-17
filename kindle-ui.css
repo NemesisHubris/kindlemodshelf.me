@@ -178,10 +178,97 @@ body {
 
 /* Library Container */
 .library-container {
-    padding: 24px 48px 80px 48px;
+    padding: 0;
     background-color: #FFFFFF;
-    min-height: calc(100vh - 24px - 56px);
+    min-height: calc(100vh - 20px - 56px - 64px);
     margin-top: 56px;
+}
+
+/* Home Screen (Issue #8) */
+.home-screen {
+    padding: 0;
+}
+
+.home-screen.hidden {
+    display: none;
+}
+
+.book-carousel {
+    padding: 24px 24px 16px 24px;
+    margin-bottom: 8px;
+}
+
+.book-carousel h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--kindle-gs-0);
+}
+
+.carousel-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-item {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    cursor: pointer;
+}
+
+.carousel-item .book-cover {
+    width: 280px;
+    height: 420px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 0;
+    box-shadow: 1px 1px 0 var(--kindle-gs-13);
+    background-color: var(--kindle-gs-13);
+}
+
+.recommendation-section {
+    padding: 16px 24px;
+    margin-bottom: 8px;
+}
+
+.recommendation-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--kindle-gs-0);
+}
+
+.recommendation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-column-gap: 16px;
+    grid-row-gap: 20px;
+}
+
+.recommendation-grid .book-item {
+    cursor: pointer;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+}
+
+/* Library Screen */
+.library-screen {
+    padding: 24px 48px 16px 48px;
+}
+
+.library-screen.hidden {
+    display: none;
 }
 
 /* Library Grid */
