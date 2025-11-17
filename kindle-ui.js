@@ -634,72 +634,15 @@ function createBookGridItem(book) {
     item.className = 'book-item';
     item.onclick = () => openBookModal(book);
 
-    const coverContainer = document.createElement('div');
-    coverContainer.className = 'book-cover-container';
-
     const cover = document.createElement('img');
     cover.className = 'book-cover';
     cover.src = book.cover;
     cover.alt = book.title;
     cover.onerror = () => {
-        cover.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="140" height="210" viewBox="0 0 140 210"%3E%3Crect width="140" height="210" fill="%23E0E0E0"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="14" fill="%23666666"%3ENo Cover%3C/text%3E%3C/svg%3E';
+        cover.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="220" height="330" viewBox="0 0 220 330"%3E%3Crect width="220" height="330" fill="%23DDDDDD"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="12" fill="%23666666"%3ENo Cover%3C/text%3E%3C/svg%3E';
     };
 
-    coverContainer.appendChild(cover);
-
-    // Add new badge if applicable
-    if (book.isNew) {
-        const newBadge = document.createElement('div');
-        newBadge.className = 'book-badge new-badge';
-        newBadge.textContent = 'NEW';
-        coverContainer.appendChild(newBadge);
-    }
-
-    // Add downloaded badge if applicable
-    if (book.downloaded && !book.isNew) {
-        const badge = document.createElement('div');
-        badge.className = 'book-badge';
-        badge.innerHTML = `
-            <svg class="checkmark" viewBox="0 0 20 20" fill="white">
-                <path d="M8.5 14l-4-4 1.4-1.4 2.6 2.6 6.6-6.6 1.4 1.4z"/>
-            </svg>
-            Downloaded
-        `;
-        coverContainer.appendChild(badge);
-    }
-
-    // Add read badge if applicable
-    if (book.isRead) {
-        const readBadge = document.createElement('div');
-        readBadge.className = 'book-badge read-badge';
-        readBadge.textContent = 'FINISHED';
-        coverContainer.appendChild(readBadge);
-    }
-
-    // Add progress bar if book has been started
-    if (book.progress > 0 && book.progress < 100) {
-        const progressContainer = document.createElement('div');
-        progressContainer.className = 'progress-bar-container';
-
-        const progressBar = document.createElement('div');
-        progressBar.className = 'progress-bar';
-        progressBar.style.width = `${book.progress}%`;
-
-        progressContainer.appendChild(progressBar);
-        coverContainer.appendChild(progressContainer);
-    }
-
-    const title = document.createElement('div');
-    title.className = 'book-title';
-    title.textContent = book.title;
-
-    const author = document.createElement('div');
-    author.className = 'book-author';
-    author.textContent = book.author;
-
-    item.appendChild(coverContainer);
-    item.appendChild(title);
-    item.appendChild(author);
+    item.appendChild(cover);
 
     return item;
 }
