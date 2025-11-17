@@ -8,7 +8,13 @@ const booksData = [
         progress: 65,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-11-15')
+        dateAdded: new Date('2024-11-15'),
+        publisher: "Scribner",
+        publicationDate: "1925",
+        location: 1245,
+        totalLocations: 1920,
+        timeLeftInBook: "1h 23m",
+        timeLeftInChapter: "12m"
     },
     {
         id: 2,
@@ -18,7 +24,13 @@ const booksData = [
         progress: 42,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-11-10')
+        dateAdded: new Date('2024-11-10'),
+        publisher: "J.B. Lippincott & Co.",
+        publicationDate: "1960",
+        location: 1680,
+        totalLocations: 4000,
+        timeLeftInBook: "3h 45m",
+        timeLeftInChapter: "18m"
     },
     {
         id: 3,
@@ -28,7 +40,13 @@ const booksData = [
         progress: 0,
         downloaded: false,
         type: "books",
-        dateAdded: new Date('2024-11-08')
+        dateAdded: new Date('2024-11-08'),
+        publisher: "Secker & Warburg",
+        publicationDate: "1949",
+        location: 0,
+        totalLocations: 3850,
+        timeLeftInBook: "6h 42m",
+        timeLeftInChapter: "Not started"
     },
     {
         id: 4,
@@ -38,7 +56,13 @@ const booksData = [
         progress: 100,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-11-01')
+        dateAdded: new Date('2024-11-01'),
+        publisher: "T. Egerton",
+        publicationDate: "1813",
+        location: 4500,
+        totalLocations: 4500,
+        timeLeftInBook: "Finished",
+        timeLeftInChapter: "Finished"
     },
     {
         id: 5,
@@ -48,7 +72,13 @@ const booksData = [
         progress: 23,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-10-28')
+        dateAdded: new Date('2024-10-28'),
+        publisher: "Little, Brown",
+        publicationDate: "1951",
+        location: 650,
+        totalLocations: 2850,
+        timeLeftInBook: "3h 12m",
+        timeLeftInChapter: "25m"
     },
     {
         id: 6,
@@ -58,7 +88,13 @@ const booksData = [
         progress: 78,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-10-25')
+        dateAdded: new Date('2024-10-25'),
+        publisher: "Scholastic",
+        publicationDate: "1997",
+        location: 3890,
+        totalLocations: 5000,
+        timeLeftInBook: "52m",
+        timeLeftInChapter: "8m"
     },
     {
         id: 7,
@@ -68,7 +104,13 @@ const booksData = [
         progress: 0,
         downloaded: false,
         type: "books",
-        dateAdded: new Date('2024-10-20')
+        dateAdded: new Date('2024-10-20'),
+        publisher: "George Allen & Unwin",
+        publicationDate: "1937",
+        location: 0,
+        totalLocations: 4200,
+        timeLeftInBook: "7h 15m",
+        timeLeftInChapter: "Not started"
     },
     {
         id: 8,
@@ -78,7 +120,13 @@ const booksData = [
         progress: 56,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-10-15')
+        dateAdded: new Date('2024-10-15'),
+        publisher: "Ballantine Books",
+        publicationDate: "1953",
+        location: 1680,
+        totalLocations: 3000,
+        timeLeftInBook: "2h 5m",
+        timeLeftInChapter: "15m"
     },
     {
         id: 9,
@@ -88,7 +136,13 @@ const booksData = [
         progress: 34,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-10-10')
+        dateAdded: new Date('2024-10-10'),
+        publisher: "George Allen & Unwin",
+        publicationDate: "1954",
+        location: 4250,
+        totalLocations: 12500,
+        timeLeftInBook: "12h 45m",
+        timeLeftInChapter: "32m"
     },
     {
         id: 10,
@@ -98,7 +152,13 @@ const booksData = [
         progress: 0,
         downloaded: false,
         type: "books",
-        dateAdded: new Date('2024-10-05')
+        dateAdded: new Date('2024-10-05'),
+        publisher: "Smith, Elder & Co.",
+        publicationDate: "1847",
+        location: 0,
+        totalLocations: 6800,
+        timeLeftInBook: "9h 30m",
+        timeLeftInChapter: "Not started"
     },
     {
         id: 11,
@@ -108,7 +168,13 @@ const booksData = [
         progress: 88,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-09-30')
+        dateAdded: new Date('2024-09-30'),
+        publisher: "Secker & Warburg",
+        publicationDate: "1945",
+        location: 1496,
+        totalLocations: 1700,
+        timeLeftInBook: "18m",
+        timeLeftInChapter: "6m"
     },
     {
         id: 12,
@@ -118,7 +184,13 @@ const booksData = [
         progress: 15,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-09-25')
+        dateAdded: new Date('2024-09-25'),
+        publisher: "Chatto & Windus",
+        publicationDate: "1932",
+        location: 585,
+        totalLocations: 3900,
+        timeLeftInBook: "4h 52m",
+        timeLeftInChapter: "22m"
     },
     {
         id: 13,
@@ -128,7 +200,13 @@ const booksData = [
         progress: 0,
         downloaded: false,
         type: "books",
-        dateAdded: new Date('2024-09-20')
+        dateAdded: new Date('2024-09-20'),
+        publisher: "HarperCollins",
+        publicationDate: "1988",
+        location: 0,
+        totalLocations: 2450,
+        timeLeftInBook: "4h 15m",
+        timeLeftInChapter: "Not started"
     },
     {
         id: 14,
@@ -138,7 +216,13 @@ const booksData = [
         progress: 45,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-09-15')
+        dateAdded: new Date('2024-09-15'),
+        publisher: "Richard Bentley",
+        publicationDate: "1851",
+        location: 5400,
+        totalLocations: 12000,
+        timeLeftInBook: "10h 22m",
+        timeLeftInChapter: "28m"
     },
     {
         id: 15,
@@ -148,7 +232,13 @@ const booksData = [
         progress: 71,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-09-10')
+        dateAdded: new Date('2024-09-10'),
+        publisher: "Ward, Lock & Co.",
+        publicationDate: "1890",
+        location: 2485,
+        totalLocations: 3500,
+        timeLeftInBook: "1h 35m",
+        timeLeftInChapter: "11m"
     },
     {
         id: 16,
@@ -159,7 +249,13 @@ const booksData = [
         downloaded: false,
         type: "books",
         dateAdded: new Date('2024-09-05'),
-        isNew: true
+        isNew: true,
+        publisher: "Penguin Classics",
+        publicationDate: "800 BC",
+        location: 0,
+        totalLocations: 7500,
+        timeLeftInBook: "11h 20m",
+        timeLeftInChapter: "Not started"
     },
     {
         id: 17,
@@ -169,7 +265,13 @@ const booksData = [
         progress: 62,
         downloaded: true,
         type: "books",
-        dateAdded: new Date('2024-08-30')
+        dateAdded: new Date('2024-08-30'),
+        publisher: "Thomas Cautley Newby",
+        publicationDate: "1847",
+        location: 3100,
+        totalLocations: 5000,
+        timeLeftInBook: "2h 48m",
+        timeLeftInChapter: "16m"
     },
     {
         id: 18,
@@ -180,7 +282,47 @@ const booksData = [
         downloaded: true,
         type: "books",
         dateAdded: new Date('2024-08-25'),
-        isRead: true
+        isRead: true,
+        publisher: "Archibald Constable and Company",
+        publicationDate: "1897",
+        location: 6200,
+        totalLocations: 6200,
+        timeLeftInBook: "Finished",
+        timeLeftInChapter: "Finished"
+    }
+];
+
+// Collections Data
+const collectionsData = [
+    {
+        id: 1,
+        name: "Classics",
+        bookIds: [1, 2, 3, 4, 5, 10, 17],
+        dateCreated: new Date('2024-11-01')
+    },
+    {
+        id: 2,
+        name: "Science Fiction",
+        bookIds: [3, 8, 12],
+        dateCreated: new Date('2024-10-15')
+    },
+    {
+        id: 3,
+        name: "Fantasy",
+        bookIds: [6, 7, 9, 16],
+        dateCreated: new Date('2024-10-20')
+    },
+    {
+        id: 4,
+        name: "Currently Reading",
+        bookIds: [1, 2, 6, 8, 15, 17],
+        dateCreated: new Date('2024-11-10')
+    },
+    {
+        id: 5,
+        name: "To Read",
+        bookIds: [3, 7, 10, 13, 16],
+        dateCreated: new Date('2024-09-01')
     }
 ];
 
@@ -189,6 +331,7 @@ let currentBooks = [...booksData];
 let currentFilter = 'all';
 let currentSort = 'recent';
 let currentView = 'grid';
+let showingCollections = false;
 
 // DOM Elements
 const searchBtn = document.getElementById('search-btn');
@@ -197,6 +340,7 @@ const searchInput = document.getElementById('search-input');
 const closeSearch = document.getElementById('close-search');
 const libraryGrid = document.getElementById('library-grid');
 const libraryList = document.getElementById('library-list');
+const collectionsGrid = document.getElementById('collections-grid');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const sortSelect = document.getElementById('sort-select');
 const viewToggle = document.getElementById('view-toggle');
@@ -303,7 +447,15 @@ function handleFilter(e) {
     e.target.classList.add('active');
 
     currentFilter = e.target.dataset.filter;
-    applyFiltersAndSort();
+
+    // Check if Collections filter was selected
+    if (currentFilter === 'collections') {
+        showingCollections = true;
+        renderCollections();
+    } else {
+        showingCollections = false;
+        applyFiltersAndSort();
+    }
 }
 
 // Handle Sort
@@ -344,6 +496,9 @@ function applyFiltersAndSort() {
 
 // Toggle View
 function toggleView() {
+    // Don't toggle view when showing collections
+    if (showingCollections) return;
+
     if (currentView === 'grid') {
         currentView = 'list';
         libraryGrid.classList.add('hidden');
@@ -357,6 +512,74 @@ function toggleView() {
     }
 
     applyFiltersAndSort();
+}
+
+// Render Collections
+function renderCollections() {
+    // Hide book views
+    libraryGrid.classList.add('hidden');
+    libraryList.classList.add('hidden');
+    // Show collections view
+    collectionsGrid.classList.remove('hidden');
+
+    // Clear collections grid
+    collectionsGrid.innerHTML = '';
+
+    collectionsData.forEach((collection, index) => {
+        const collectionItem = createCollectionItem(collection);
+        // Add smooth appearance animation with stagger
+        setTimeout(() => {
+            collectionItem.classList.add('smooth-appear');
+        }, index * 30);
+        collectionsGrid.appendChild(collectionItem);
+    });
+}
+
+// Create Collection Item
+function createCollectionItem(collection) {
+    const item = document.createElement('div');
+    item.className = 'collection-item';
+    item.onclick = () => openCollection(collection);
+
+    const icon = document.createElement('svg');
+    icon.className = 'collection-icon';
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.innerHTML = `
+        <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+    `;
+
+    const name = document.createElement('div');
+    name.className = 'collection-name';
+    name.textContent = collection.name;
+
+    const count = document.createElement('div');
+    count.className = 'collection-count';
+    const bookCount = collection.bookIds.length;
+    count.textContent = `${bookCount} ${bookCount === 1 ? 'item' : 'items'}`;
+
+    item.appendChild(icon);
+    item.appendChild(name);
+    item.appendChild(count);
+
+    return item;
+}
+
+// Open Collection
+function openCollection(collection) {
+    // Filter books to show only those in this collection
+    currentBooks = booksData.filter(book => collection.bookIds.includes(book.id));
+    currentFilter = 'all';
+    showingCollections = false;
+
+    // Hide collections view, show book view
+    collectionsGrid.classList.add('hidden');
+    libraryGrid.classList.remove('hidden');
+
+    // Update filter buttons
+    filterBtns.forEach(btn => btn.classList.remove('active'));
+    filterBtns[0].classList.add('active'); // Activate "All" button
+
+    renderBooks(currentBooks);
 }
 
 // Render Books
@@ -534,19 +757,50 @@ function openBookModal(book) {
     const modalCover = document.getElementById('modal-cover');
     const modalTitle = document.getElementById('modal-title');
     const modalAuthor = document.getElementById('modal-author');
+    const modalPublisher = document.getElementById('modal-publisher');
     const modalProgress = document.getElementById('modal-progress');
+    const modalLocation = document.getElementById('modal-location');
+    const modalTimeLeft = document.getElementById('modal-time-left');
 
     modalCover.src = book.cover;
     modalCover.alt = book.title;
     modalTitle.textContent = book.title;
     modalAuthor.textContent = `by ${book.author}`;
 
+    // Publisher and publication date
+    if (book.publisher && book.publicationDate) {
+        modalPublisher.textContent = `${book.publisher} (${book.publicationDate})`;
+    } else {
+        modalPublisher.textContent = '';
+    }
+
+    // Progress display
     if (book.progress === 0) {
         modalProgress.textContent = 'Not started';
     } else if (book.progress === 100) {
         modalProgress.textContent = 'Finished reading';
     } else {
         modalProgress.textContent = `${book.progress}% complete`;
+    }
+
+    // Location display (Kindle-style)
+    if (book.location !== undefined && book.totalLocations) {
+        modalLocation.textContent = `Location ${book.location} of ${book.totalLocations}`;
+    } else {
+        modalLocation.textContent = '';
+    }
+
+    // Time left display (Kindle-style)
+    if (book.timeLeftInBook && book.timeLeftInChapter) {
+        if (book.progress === 0) {
+            modalTimeLeft.textContent = `Time to read: ${book.timeLeftInBook}`;
+        } else if (book.progress === 100) {
+            modalTimeLeft.textContent = '';
+        } else {
+            modalTimeLeft.textContent = `Time left in book: ${book.timeLeftInBook} • Time left in chapter: ${book.timeLeftInChapter}`;
+        }
+    } else {
+        modalTimeLeft.textContent = '';
     }
 
     bookModal.classList.add('active');

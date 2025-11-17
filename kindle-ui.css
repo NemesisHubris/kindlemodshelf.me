@@ -10,17 +10,35 @@ html {
 }
 
 :root {
-    /* Kindle Color Palette */
-    --kindle-white: #FFFFFF;
-    --kindle-off-white: #F8F8F8;
-    --kindle-light-gray: #E0E0E0;
-    --kindle-gray: #CCCCCC;
-    --kindle-dark-gray: #666666;
-    --kindle-black: #000000;
-    --kindle-text: #111111;
-    --kindle-border: #D0D0D0;
-    --kindle-accent: #FF9900;
-    --kindle-hover: #F5F5F5;
+    /* Kindle 16-Level Grayscale Palette (E-Ink accurate) */
+    --kindle-gs-0: #000000;  /* Level 0 - Black */
+    --kindle-gs-1: #111111;  /* Level 1 */
+    --kindle-gs-2: #222222;  /* Level 2 */
+    --kindle-gs-3: #333333;  /* Level 3 */
+    --kindle-gs-4: #444444;  /* Level 4 */
+    --kindle-gs-5: #555555;  /* Level 5 */
+    --kindle-gs-6: #666666;  /* Level 6 */
+    --kindle-gs-7: #777777;  /* Level 7 */
+    --kindle-gs-8: #888888;  /* Level 8 */
+    --kindle-gs-9: #999999;  /* Level 9 */
+    --kindle-gs-10: #AAAAAA; /* Level 10 */
+    --kindle-gs-11: #BBBBBB; /* Level 11 */
+    --kindle-gs-12: #CCCCCC; /* Level 12 */
+    --kindle-gs-13: #DDDDDD; /* Level 13 */
+    --kindle-gs-14: #EEEEEE; /* Level 14 */
+    --kindle-gs-15: #FFFFFF; /* Level 15 - White */
+
+    /* Kindle Semantic Colors (mapped to grayscale) */
+    --kindle-white: var(--kindle-gs-15);
+    --kindle-off-white: var(--kindle-gs-14);
+    --kindle-light-gray: var(--kindle-gs-13);
+    --kindle-gray: var(--kindle-gs-12);
+    --kindle-dark-gray: var(--kindle-gs-6);
+    --kindle-black: var(--kindle-gs-0);
+    --kindle-text: var(--kindle-gs-1);
+    --kindle-border: var(--kindle-gs-13);
+    --kindle-accent: #FF9900;  /* Orange accent (not grayscale) */
+    --kindle-hover: var(--kindle-gs-14);
 
     /* Typography */
     --font-amazon-ember: "Amazon Ember", "Open Sans", "Roboto", "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -453,6 +471,64 @@ body {
     display: none;
 }
 
+/* Collections Grid View */
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.collections-grid.hidden {
+    display: none;
+}
+
+.collection-item {
+    background-color: var(--kindle-light-gray);
+    border: 1px solid var(--kindle-border);
+    border-radius: 6px;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    text-align: center;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.collection-item:hover {
+    background-color: var(--kindle-gray);
+    border-color: var(--kindle-dark-gray);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.collection-item:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.collection-icon {
+    width: 48px;
+    height: 48px;
+    fill: var(--kindle-dark-gray);
+}
+
+.collection-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--kindle-text);
+    margin-top: var(--spacing-sm);
+}
+
+.collection-count {
+    font-size: 12px;
+    color: var(--kindle-dark-gray);
+    font-weight: 500;
+}
+
 .book-list-item {
     display: flex;
     gap: var(--spacing-lg);
@@ -641,13 +717,40 @@ body {
 .modal-author {
     font-size: 16px;
     color: var(--kindle-dark-gray);
+    margin-bottom: var(--spacing-xs);
+}
+
+.modal-publisher {
+    font-size: 13px;
+    color: var(--kindle-gray);
     margin-bottom: var(--spacing-lg);
+    font-style: italic;
+}
+
+.modal-metadata {
+    background-color: var(--kindle-off-white);
+    border-radius: 6px;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    border: 1px solid var(--kindle-light-gray);
 }
 
 .modal-progress {
     font-size: 14px;
+    font-weight: 600;
+    color: var(--kindle-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.modal-location {
+    font-size: 12px;
     color: var(--kindle-dark-gray);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.modal-time-left {
+    font-size: 12px;
+    color: var(--kindle-dark-gray);
 }
 
 .modal-actions {
