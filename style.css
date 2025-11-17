@@ -1825,41 +1825,59 @@ pre code {
   left: 24px;
   background: var(--button-bg);
   border: 2px solid var(--button-border);
-  border-radius: 6px;
-  width: 56px;
-  height: 56px;
+  border-radius: 4px;
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--button-text);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   padding: 0;
-  box-shadow: 0 2px 8px var(--shadow-color);
+  box-shadow: 0 2px 4px var(--shadow-color), 0 4px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 .theme-toggle:hover {
-  background: var(--feature-button-hover-bg);
+  background: var(--card-bg);
   border-color: var(--primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--shadow-color);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 8px var(--shadow-color), 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.theme-toggle:hover::before {
+  opacity: 1;
+  background: radial-gradient(circle at center, rgba(91, 157, 217, 0.1) 0%, transparent 70%);
 }
 
 .theme-toggle:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px var(--shadow-color);
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: all 0.1s ease;
 }
 
 .theme-toggle svg {
-  width: 26px;
-  height: 26px;
-  transition: all 0.2s ease;
+  width: 28px;
+  height: 28px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  z-index: 1;
 }
 
 .theme-toggle:hover svg {
-  transform: rotate(-15deg);
-  color: var(--primary);
+  transform: rotate(-20deg) scale(1.1);
 }
 
 .theme-icon {
@@ -1888,34 +1906,62 @@ pre code {
   display: flex;
 }
 
-/* Dark mode: yellow/gold star */
+/* Dark mode: vibrant gold star with glow */
 :root .theme-icon.sun svg {
-  color: #f4c430;
-  filter: drop-shadow(0 0 2px rgba(244, 196, 48, 0.4));
+  color: #ffd700;
+  filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 6px rgba(255, 215, 0, 0.3));
 }
 
-/* Light mode: blue moon */
+:root .theme-toggle:hover .theme-icon.sun svg {
+  color: #ffed4e;
+  filter: drop-shadow(0 0 4px rgba(255, 237, 78, 0.8)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+}
+
+/* Light mode: rich blue moon with glow */
 :root[data-theme="light"] .theme-icon.moon svg {
+  color: #4a8fd9;
+  filter: drop-shadow(0 0 3px rgba(74, 143, 217, 0.5)) drop-shadow(0 0 6px rgba(91, 157, 217, 0.25));
+}
+
+:root[data-theme="light"] .theme-toggle:hover .theme-icon.moon svg {
   color: #5b9dd9;
-  filter: drop-shadow(0 0 2px rgba(91, 157, 217, 0.4));
+  filter: drop-shadow(0 0 4px rgba(91, 157, 217, 0.7)) drop-shadow(0 0 8px rgba(74, 143, 217, 0.35));
 }
 
 @media (max-width: 700px) {
   .theme-toggle {
     bottom: 16px;
     left: 16px;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
   }
 
   .theme-toggle svg {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .theme-toggle:hover {
+    transform: translateY(-1px) scale(1.02);
   }
 
   #emailPopup {
     bottom: 16px;
     right: 16px;
     width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    bottom: 12px;
+    left: 12px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .theme-toggle svg {
+    width: 22px;
+    height: 22px;
   }
 }
