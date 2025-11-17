@@ -133,7 +133,7 @@ body {
     align-items: center;
     background-color: var(--kindle-white);
     border: 2px solid var(--kindle-border);
-    border-radius: 6px;
+    border-radius: 2px;
     padding: var(--spacing-sm) var(--spacing-md);
     max-width: 600px;
     margin: 0 auto;
@@ -235,7 +235,7 @@ body {
 .collection-item {
     background-color: var(--kindle-light-gray);
     border: 1px solid var(--kindle-border);
-    border-radius: 6px;
+    border-radius: 0;
     padding: var(--spacing-xl) var(--spacing-lg);
     cursor: pointer;
     text-align: center;
@@ -275,7 +275,7 @@ body {
     display: flex;
     gap: var(--spacing-lg);
     padding: var(--spacing-md);
-    border-radius: 4px;
+    border-radius: 0;
     cursor: pointer;
 }
 
@@ -353,7 +353,7 @@ body {
 
 .modal-content {
     background-color: var(--kindle-white);
-    border-radius: 8px;
+    border-radius: 2px;
     max-width: 600px;
     width: 90%;
     max-height: 90vh;
@@ -399,7 +399,7 @@ body {
     width: 180px;
     height: 270px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 0;
     box-shadow: 2px 2px 0 var(--kindle-gs-11), 3px 3px 0 var(--kindle-gs-12);
     flex-shrink: 0;
 }
@@ -430,7 +430,7 @@ body {
 
 .modal-metadata {
     background-color: var(--kindle-off-white);
-    border-radius: 6px;
+    border-radius: 0;
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-xl);
     border: 1px solid var(--kindle-light-gray);
@@ -463,7 +463,7 @@ body {
 .primary-button,
 .secondary-button {
     padding: 12px 24px;
-    border-radius: 24px;
+    border-radius: 2px;
     font-family: var(--font-amazon-ember);
     font-size: 12px;
     font-weight: 500;
@@ -555,7 +555,7 @@ body {
     padding: var(--spacing-md) var(--spacing-lg);
     background-color: var(--kindle-white);
     border: 1px solid var(--kindle-light-gray);
-    border-radius: 6px;
+    border-radius: 0;
     font-family: var(--font-amazon-ember);
     font-size: 12px;
     font-weight: 500;
