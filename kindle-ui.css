@@ -1,0 +1,1017 @@
+/* CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Kindle 16-Level Grayscale Palette (E-Ink accurate) */
+    --kindle-gs-0: #000000;  /* Level 0 - Black */
+    --kindle-gs-1: #111111;  /* Level 1 */
+    --kindle-gs-2: #222222;  /* Level 2 */
+    --kindle-gs-3: #333333;  /* Level 3 */
+    --kindle-gs-4: #444444;  /* Level 4 */
+    --kindle-gs-5: #555555;  /* Level 5 */
+    --kindle-gs-6: #666666;  /* Level 6 */
+    --kindle-gs-7: #777777;  /* Level 7 */
+    --kindle-gs-8: #888888;  /* Level 8 */
+    --kindle-gs-9: #999999;  /* Level 9 */
+    --kindle-gs-10: #AAAAAA; /* Level 10 */
+    --kindle-gs-11: #BBBBBB; /* Level 11 */
+    --kindle-gs-12: #CCCCCC; /* Level 12 */
+    --kindle-gs-13: #DDDDDD; /* Level 13 */
+    --kindle-gs-14: #EEEEEE; /* Level 14 */
+    --kindle-gs-15: #FFFFFF; /* Level 15 - White */
+
+    /* Kindle Semantic Colors (mapped to grayscale) */
+    --kindle-white: var(--kindle-gs-15);
+    --kindle-off-white: var(--kindle-gs-14);
+    --kindle-light-gray: var(--kindle-gs-13);
+    --kindle-gray: var(--kindle-gs-12);
+    --kindle-dark-gray: var(--kindle-gs-6);
+    --kindle-text: var(--kindle-gs-1);
+    --kindle-border: var(--kindle-gs-13);
+    --kindle-accent: #FF9900;  /* Orange accent (not grayscale) */
+
+    /* Typography */
+    --font-amazon-ember: "Amazon Ember", "Open Sans", "Roboto", "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-bookerly: "Bookerly", Georgia, "Times New Roman", serif;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-xxl: 32px;
+
+    /* Kindle Screen Dimensions (simulated for web) */
+    --kindle-max-width: 1236px;
+}
+
+body {
+    font-family: var(--font-amazon-ember);
+    background-color: var(--kindle-white);
+    color: var(--kindle-text);
+    font-size: 12px;
+    line-height: 1.3;
+    letter-spacing: 0;
+    max-width: var(--kindle-max-width);
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+/* Status Bar (Issue #9: Reduced height) */
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 12px;
+    background-color: var(--kindle-white);
+    border-bottom: 0.5px solid var(--kindle-light-gray);
+    font-size: 7px;
+    color: var(--kindle-gs-6);
+    height: 20px;
+}
+
+.status-left,
+.status-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wifi-icon {
+    width: 12px;
+    height: 10px;
+    fill: var(--kindle-gs-6);
+}
+
+.battery-icon {
+    width: 16px;
+    height: 8px;
+    fill: var(--kindle-gs-6);
+}
+
+.time {
+    font-weight: 400;
+}
+
+.sync-icon {
+    width: 12px;
+    height: 12px;
+    fill: var(--kindle-gs-6);
+}
+
+.sync-icon.hidden {
+    display: none;
+}
+
+
+
+/* Search Container */
+.search-container {
+    display: none;
+    padding: var(--spacing-lg);
+    background-color: var(--kindle-off-white);
+    border-bottom: 1px solid var(--kindle-light-gray);
+}
+
+.search-container.active {
+    display: block;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--kindle-white);
+    border: 2px solid var(--kindle-border);
+    border-radius: 2px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-bar:focus-within {
+    border-color: var(--kindle-text);
+    box-shadow: none;
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--kindle-dark-gray);
+    margin-right: var(--spacing-md);
+    flex-shrink: 0;
+}
+
+#search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: var(--font-amazon-ember);
+    font-size: 12px;
+    letter-spacing: 0;
+    color: var(--kindle-text);
+    background: transparent;
+}
+
+#search-input::placeholder {
+    color: var(--kindle-gray);
+    font-weight: 400;
+}
+
+.close-search {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--kindle-dark-gray);
+    cursor: pointer;
+    padding: 0 var(--spacing-sm);
+    line-height: 1;
+}
+
+
+/* Library Container */
+.library-container {
+    padding: 0;
+    background-color: var(--kindle-white);
+    min-height: calc(100vh - 20px - 56px - 64px);
+    margin-top: 56px;
+}
+
+/* Home Screen (Issue #8) */
+.home-screen {
+    padding: 0;
+}
+
+.home-screen.hidden {
+    display: none;
+}
+
+.book-carousel {
+    padding: 24px 24px 16px 24px;
+    margin-bottom: 8px;
+}
+
+.book-carousel h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    color: var(--kindle-gs-0);
+}
+
+.carousel-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-item {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    cursor: pointer;
+}
+
+.carousel-item .book-cover {
+    width: 280px;
+    height: 420px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 0;
+    box-shadow: 1px 1px 0 var(--kindle-gs-13);
+    background-color: var(--kindle-gs-13);
+}
+
+.recommendation-section {
+    padding: 16px 24px;
+    margin-bottom: 8px;
+}
+
+.recommendation-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    color: var(--kindle-gs-0);
+}
+
+.recommendation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-column-gap: 16px;
+    grid-row-gap: 20px;
+}
+
+.recommendation-grid .book-item {
+    cursor: pointer;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+}
+
+/* Library Screen */
+.library-screen {
+    padding: 24px 48px 16px 48px;
+}
+
+.library-screen.hidden {
+    display: none;
+}
+
+/* Library Grid */
+.library-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-column-gap: 24px;
+    grid-row-gap: 32px;
+}
+
+/* Book Item */
+.book-item {
+    cursor: pointer;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    position: relative;
+}
+
+.book-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 0;
+    box-shadow: 1px 1px 0 var(--kindle-gs-13);
+    background-color: var(--kindle-gs-13);
+}
+
+
+/* Library List View */
+.library-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.library-list.hidden {
+    display: none;
+}
+
+/* Collections Grid View */
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.collections-grid.hidden {
+    display: none;
+}
+
+.collection-item {
+    background-color: var(--kindle-light-gray);
+    border: 1px solid var(--kindle-border);
+    border-radius: 0;
+    padding: 16px 12px;
+    cursor: pointer;
+    text-align: center;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.collection-item:active {
+    background-color: var(--kindle-gs-13);
+    border-color: var(--kindle-gs-11);
+}
+
+.collection-icon {
+    width: 36px;
+    height: 36px;
+    fill: var(--kindle-dark-gray);
+}
+
+.collection-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--kindle-text);
+    margin-top: var(--spacing-xs);
+}
+
+.collection-count {
+    font-size: 10px;
+    color: var(--kindle-dark-gray);
+    font-weight: 500;
+}
+
+.book-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-radius: 0;
+    cursor: pointer;
+    border-bottom: 0.5px solid var(--kindle-gs-13);
+    height: 88px;
+}
+
+.book-list-item .book-cover-container {
+    width: 50px;
+    height: 75px;
+    flex-shrink: 0;
+}
+
+.book-list-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.book-list-info .book-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.book-list-info .book-author {
+    font-size: 11px;
+    color: var(--kindle-gs-6);
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.book-list-progress {
+    display: none;
+}
+
+.progress-dots {
+    display: none;
+}
+
+.progress-dot {
+    display: none;
+}
+
+.progress-dot.filled {
+    display: none;
+}
+
+/* Modal (Issue #11: Lighter backdrop) */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--kindle-gs-12);
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--kindle-white);
+    border-radius: 2px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 28px;
+    color: var(--kindle-gs-6);
+    cursor: pointer;
+    line-height: 1;
+    padding: var(--spacing-xs);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:active {
+    color: var(--kindle-gs-0);
+}
+
+.modal-close:focus-visible {
+    outline: 1px dotted var(--kindle-gs-11);
+    outline-offset: 0;
+}
+
+.modal-body {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
+}
+
+.modal-cover {
+    width: 160px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: 1px 1px 0 var(--kindle-gs-12), 2px 2px 0 var(--kindle-gs-13);
+    flex-shrink: 0;
+}
+
+.modal-info {
+    flex: 1;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.2;
+    color: var(--kindle-text);
+}
+
+.modal-author {
+    font-size: 13px;
+    color: var(--kindle-dark-gray);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.2;
+}
+
+.modal-publisher {
+    font-size: 10px;
+    color: var(--kindle-gray);
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+}
+
+.modal-metadata {
+    background-color: transparent;
+    border-radius: 0;
+    padding: var(--spacing-sm) 0;
+    margin-bottom: var(--spacing-lg);
+    border: none;
+    border-top: 1px solid var(--kindle-light-gray);
+    border-bottom: 1px solid var(--kindle-light-gray);
+}
+
+.modal-progress {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--kindle-text);
+    margin-bottom: var(--spacing-xs);
+}
+
+.modal-location {
+    font-size: 10px;
+    color: var(--kindle-dark-gray);
+    margin-bottom: var(--spacing-xs);
+}
+
+.modal-time-left {
+    font-size: 10px;
+    color: var(--kindle-dark-gray);
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.primary-button,
+.secondary-button {
+    padding: 10px 20px;
+    border-radius: 2px;
+    font-family: var(--font-amazon-ember);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+}
+
+.button-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.primary-button {
+    background-color: var(--kindle-gs-0);
+    color: var(--kindle-gs-15);
+    border: 1px solid var(--kindle-gs-0);
+}
+
+.primary-button:active {
+    background-color: var(--kindle-gs-2);
+    border-color: var(--kindle-gs-2);
+}
+
+.secondary-button {
+    background-color: var(--kindle-gs-15);
+    color: var(--kindle-gs-0);
+    border: 1px solid var(--kindle-gs-12);
+}
+
+.secondary-button:active {
+    background-color: var(--kindle-gs-14);
+    border-color: var(--kindle-gs-11);
+}
+
+.primary-button:focus-visible,
+.secondary-button:focus-visible {
+    outline: 1px dotted var(--kindle-gs-11);
+    outline-offset: 0;
+}
+
+/* Settings Menu */
+.settings-menu {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    bottom: 0;
+    width: 320px;
+    max-width: 90vw;
+    background-color: var(--kindle-white);
+    box-shadow: -2px 0 0 var(--kindle-gs-13);
+    z-index: 999;
+    overflow-y: auto;
+}
+
+.settings-menu.active {
+    right: 0;
+}
+
+.settings-content {
+    padding: var(--spacing-lg);
+}
+
+.settings-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    color: var(--kindle-text);
+}
+
+.settings-list {
+    list-style: none;
+}
+
+.settings-list li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.settings-list button {
+    width: 100%;
+    text-align: left;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--kindle-white);
+    border: 1px solid var(--kindle-light-gray);
+    border-radius: 0;
+    font-family: var(--font-amazon-ember);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--kindle-text);
+    cursor: pointer;
+}
+
+.settings-list button:active {
+    background-color: var(--kindle-gs-14);
+    border-color: var(--kindle-gs-11);
+}
+
+.settings-list button:focus-visible {
+    outline: 1px dotted var(--kindle-gs-11);
+    outline-offset: 0;
+}
+
+/* Additional Badge Styles */
+.book-badge.new-badge {
+    background-color: var(--kindle-accent);
+    left: auto;
+    right: 8px;
+    top: 8px;
+    bottom: auto;
+}
+
+.book-badge.read-badge {
+    background-color: var(--kindle-gs-7);
+}
+
+/* Loading States (Issue #17: Simplified for e-ink) */
+.loading {
+    opacity: 1;
+}
+
+.skeleton {
+    background-color: var(--kindle-gs-14);
+}
+
+.book-cover.skeleton {
+    width: 100%;
+    height: 100%;
+}
+
+.book-cover-container.loading::after {
+    content: '';
+    position: absolute;
+    top: calc(50% - 5px);
+    left: calc(50% - 10px);
+    font-size: 10px;
+    color: var(--kindle-dark-gray);
+    font-weight: 500;
+}
+
+/* Smooth Transitions */
+.smooth-appear {
+    opacity: 1;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Top Search Bar (Issue #6) */
+.top-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background-color: var(--kindle-gs-15);
+    border-bottom: 0.5px solid var(--kindle-gs-13);
+    position: relative;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: var(--kindle-gs-14);
+    border: 1px solid var(--kindle-gs-13);
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.search-icon-inline {
+    width: 16px;
+    height: 16px;
+    fill: var(--kindle-gs-6);
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.search-input-top {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    color: var(--kindle-gs-0);
+    font-family: var(--font-amazon-ember);
+    outline: none;
+}
+
+.search-input-top::placeholder {
+    color: var(--kindle-gs-9);
+}
+
+.store-button,
+.library-menu-btn {
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: var(--kindle-gs-0);
+}
+
+.store-button:active,
+.library-menu-btn:active {
+    background-color: var(--kindle-gs-14);
+}
+
+.cart-icon,
+.menu-icon {
+    fill: currentColor;
+}
+
+/* Library Dropdown Menu (Issue #5) */
+.library-dropdown {
+    position: absolute;
+    top: 80px;
+    right: 16px;
+    width: 200px;
+    background-color: var(--kindle-gs-15);
+    border: 1px solid var(--kindle-gs-12);
+    z-index: 800;
+}
+
+.library-dropdown.hidden {
+    display: none;
+}
+
+.dropdown-section {
+    padding: 12px;
+    border-bottom: 0.5px solid var(--kindle-gs-13);
+}
+
+.dropdown-section:last-child {
+    border-bottom: none;
+}
+
+.dropdown-section h4 {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--kindle-gs-6);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    color: var(--kindle-gs-0);
+    cursor: pointer;
+    font-family: var(--font-amazon-ember);
+}
+
+.dropdown-item.active {
+    background-color: var(--kindle-gs-14);
+    font-weight: 600;
+}
+
+.dropdown-item:active {
+    background-color: var(--kindle-gs-13);
+}
+
+/* Top Toolbar Overlay (Tap-to-Reveal) */
+.top-toolbar-overlay {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    max-width: 1236px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid var(--kindle-gs-13);
+    z-index: 900;
+}
+
+.top-toolbar-overlay.hidden {
+    display: none;
+}
+
+.toolbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 12px 16px;
+    height: 56px;
+}
+
+.toolbar-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--kindle-gs-0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.toolbar-btn:active {
+    background-color: var(--kindle-gs-14);
+}
+
+.toolbar-btn svg {
+    fill: currentColor;
+}
+
+/* Bottom Navigation */
+.bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 1236px;
+    margin: 0 auto;
+    height: 64px;
+    background-color: var(--kindle-gs-15);
+    border-top: 0.5px solid var(--kindle-gs-13);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+    z-index: 100;
+}
+
+.nav-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    padding: 8px;
+    font-size: 10px;
+    color: var(--kindle-gs-6);
+    cursor: pointer;
+    min-height: 48px;
+}
+
+.nav-tab.active {
+    color: var(--kindle-gs-0);
+}
+
+.nav-tab:active {
+    background-color: var(--kindle-gs-14);
+}
+
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.nav-book-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--kindle-gs-0);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nav-book-icon:active {
+    background-color: var(--kindle-gs-2);
+}
+
+.nav-book-icon .book-icon {
+    width: 20px;
+    height: 20px;
+    fill: var(--kindle-gs-15);
+}
+
+/* Responsive Design (Issue #24: Portrait-optimized) */
+
+/* Basic Kindle (1080 x 1440) */
+@media (max-width: 1080px) {
+    .library-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 16px;
+        grid-row-gap: 24px;
+    }
+}
+
+/* Old Kindles (768 x 1024) - 2 columns */
+@media (max-width: 768px) {
+    .library-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 12px;
+        grid-row-gap: 20px;
+    }
+
+    .modal-body {
+        flex-direction: column;
+        align-items: center;
+        padding: var(--spacing-xl);
+    }
+
+    .modal-cover {
+        width: 140px;
+        height: 210px;
+    }
+
+    .library-container {
+        padding: 16px 24px 80px 24px;
+    }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
+    .library-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 8px;
+        grid-row-gap: 16px;
+    }
+
+    .status-bar {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: 6px;
+    }
+
+    .modal-content {
+        max-width: 95%;
+        margin: var(--spacing-md);
+    }
+
+    .modal-body {
+        padding: var(--spacing-lg);
+    }
+
+    .settings-menu {
+        width: 280px;
+    }
+
+    .library-container {
+        padding: 12px 16px 80px 16px;
+    }
+}
