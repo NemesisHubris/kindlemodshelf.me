@@ -421,6 +421,94 @@ function setupEventListeners() {
         });
     }
 
+    // Library Menu Dropdown (Issue #5)
+    const libraryMenuBtn = document.getElementById('library-menu');
+    const libraryDropdown = document.getElementById('library-dropdown');
+
+    if (libraryMenuBtn && libraryDropdown) {
+        libraryMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            libraryDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!libraryDropdown.contains(e.target) && e.target !== libraryMenuBtn) {
+                libraryDropdown.classList.add('hidden');
+            }
+        });
+
+        // View switching
+        const viewButtons = libraryDropdown.querySelectorAll('[data-view]');
+        viewButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const view = btn.getAttribute('data-view');
+                currentView = view;
+
+                // Update active state
+                viewButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Toggle view
+                if (view === 'grid') {
+                    libraryGrid.classList.remove('hidden');
+                    libraryList.classList.add('hidden');
+                } else if (view === 'list') {
+                    libraryGrid.classList.add('hidden');
+                    libraryList.classList.remove('hidden');
+                }
+
+                libraryDropdown.classList.add('hidden');
+            });
+        });
+
+        // Sort switching
+        const sortButtons = libraryDropdown.querySelectorAll('[data-sort]');
+        sortButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const sort = btn.getAttribute('data-sort');
+                currentSort = sort;
+
+                // Update active state
+                sortButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Sort books
+                sortBooks(sort);
+                renderBooks();
+
+                libraryDropdown.classList.add('hidden');
+            });
+        });
+    }
+
+    // Store button (Issue #6)
+    const storeBtn = document.getElementById('store-btn');
+    if (storeBtn) {
+        storeBtn.addEventListener('click', () => {
+            alert('Kindle Store\n\nBrowse and purchase books from the Kindle Store.\n\nThis would open the store on a real Kindle device.');
+        });
+    }
+
+    // Search functionality (Issue #6)
+    const topSearchInput = document.getElementById('top-search');
+    if (topSearchInput) {
+        topSearchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (query === '') {
+                currentBooks = [...booksData];
+            } else {
+                currentBooks = booksData.filter(book =>
+                    book.title.toLowerCase().includes(query) ||
+                    book.author.toLowerCase().includes(query)
+                );
+            }
+
+            renderBooks();
+        });
+    }
+
     // Tap-to-Reveal Top Toolbar
     const topToolbar = document.getElementById('top-toolbar');
     let toolbarHideTimeout = null;
@@ -512,6 +600,23 @@ function simulateInitialSync() {
 }
 
 
+
+// Sort Books
+function sortBooks(sortBy) {
+    switch (sortBy) {
+        case 'recent':
+            currentBooks.sort((a, b) => b.dateAdded - a.dateAdded);
+            break;
+        case 'title':
+            currentBooks.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'author':
+            currentBooks.sort((a, b) => a.author.localeCompare(b.author));
+            break;
+        default:
+            currentBooks.sort((a, b) => b.dateAdded - a.dateAdded);
+    }
+}
 
 // Render Books
 function renderBooks(books = currentBooks) {

@@ -183,7 +183,8 @@ body {
 .library-container {
     padding: 24px 48px 80px 48px;
     background-color: #FFFFFF;
-    min-height: calc(100vh - 24px);
+    min-height: calc(100vh - 24px - 56px);
+    margin-top: 56px;
 }
 
 /* Library Grid */
@@ -277,16 +278,18 @@ body {
 
 .book-list-item {
     display: flex;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-md) 0;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
     border-radius: 0;
     cursor: pointer;
     border-bottom: 0.5px solid var(--kindle-gs-13);
+    height: 88px;
 }
 
 .book-list-item .book-cover-container {
-    width: 60px;
-    height: 90px;
+    width: 50px;
+    height: 75px;
     flex-shrink: 0;
 }
 
@@ -299,43 +302,36 @@ body {
 }
 
 .book-list-info .book-title {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
-    margin-bottom: var(--spacing-xs);
-    -webkit-line-clamp: 1;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book-list-info .book-author {
     font-size: 11px;
-    margin-bottom: var(--spacing-sm);
-    white-space: normal;
+    color: var(--kindle-gs-6);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .book-list-progress {
-    font-size: 10px;
-    color: var(--kindle-dark-gray);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
+    display: none;
 }
 
 .progress-dots {
-    display: flex;
-    gap: 2px;
-    height: 4px;
-    flex: 1;
-    max-width: 200px;
+    display: none;
 }
 
 .progress-dot {
-    flex: 1;
-    height: 3px;
-    background-color: var(--kindle-gs-13);
-    border-radius: 0;
+    display: none;
 }
 
 .progress-dot.filled {
-    background-color: var(--kindle-gs-3);
+    display: none;
 }
 
 /* Modal */
@@ -629,6 +625,128 @@ body {
 /* Utility Classes */
 .hidden {
     display: none !important;
+}
+
+/* Top Search Bar (Issue #6) */
+.top-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background-color: var(--kindle-gs-15);
+    border-bottom: 0.5px solid var(--kindle-gs-13);
+    position: relative;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: var(--kindle-gs-14);
+    border: 1px solid var(--kindle-gs-13);
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.search-icon-inline {
+    width: 16px;
+    height: 16px;
+    fill: var(--kindle-gs-6);
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.search-input-top {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    color: var(--kindle-gs-0);
+    font-family: var(--font-amazon-ember);
+    outline: none;
+}
+
+.search-input-top::placeholder {
+    color: var(--kindle-gs-9);
+}
+
+.store-button,
+.library-menu-btn {
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: var(--kindle-gs-0);
+}
+
+.store-button:active,
+.library-menu-btn:active {
+    background-color: var(--kindle-gs-14);
+}
+
+.cart-icon,
+.menu-icon {
+    fill: currentColor;
+}
+
+/* Library Dropdown Menu (Issue #5) */
+.library-dropdown {
+    position: absolute;
+    top: 80px;
+    right: 16px;
+    width: 200px;
+    background-color: var(--kindle-gs-15);
+    border: 1px solid var(--kindle-gs-12);
+    z-index: 800;
+}
+
+.library-dropdown.hidden {
+    display: none;
+}
+
+.dropdown-section {
+    padding: 12px;
+    border-bottom: 0.5px solid var(--kindle-gs-13);
+}
+
+.dropdown-section:last-child {
+    border-bottom: none;
+}
+
+.dropdown-section h4 {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--kindle-gs-6);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    color: var(--kindle-gs-0);
+    cursor: pointer;
+    font-family: var(--font-amazon-ember);
+}
+
+.dropdown-item.active {
+    background-color: var(--kindle-gs-14);
+    font-weight: 600;
+}
+
+.dropdown-item:active {
+    background-color: var(--kindle-gs-13);
 }
 
 /* Top Toolbar Overlay (Tap-to-Reveal) */
