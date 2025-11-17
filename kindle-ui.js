@@ -420,6 +420,83 @@ function setupEventListeners() {
             }
         });
     }
+
+    // Tap-to-Reveal Top Toolbar
+    const topToolbar = document.getElementById('top-toolbar');
+    let toolbarHideTimeout = null;
+
+    // Detect tap on top 15% of screen
+    document.addEventListener('click', (e) => {
+        const screenHeight = window.innerHeight;
+        const clickY = e.clientY;
+
+        // Only toggle if clicking in top 15% and not clicking the toolbar itself
+        if (clickY < screenHeight * 0.15 && !topToolbar.contains(e.target)) {
+            topToolbar.classList.toggle('hidden');
+
+            // Clear existing timeout
+            if (toolbarHideTimeout) {
+                clearTimeout(toolbarHideTimeout);
+            }
+
+            // Auto-hide after 4 seconds if visible
+            if (!topToolbar.classList.contains('hidden')) {
+                toolbarHideTimeout = setTimeout(() => {
+                    topToolbar.classList.add('hidden');
+                }, 4000);
+            }
+        }
+    });
+
+    // Toolbar button actions
+    const toolbarHome = document.getElementById('toolbar-home');
+    const toolbarBack = document.getElementById('toolbar-back');
+    const toolbarLight = document.getElementById('toolbar-light');
+    const toolbarStore = document.getElementById('toolbar-store');
+    const toolbarSearch = document.getElementById('toolbar-search');
+    const toolbarMenu = document.getElementById('toolbar-menu');
+
+    if (toolbarHome) {
+        toolbarHome.addEventListener('click', () => {
+            topToolbar.classList.add('hidden');
+            alert('Home\n\nReturn to home screen');
+        });
+    }
+
+    if (toolbarBack) {
+        toolbarBack.addEventListener('click', () => {
+            topToolbar.classList.add('hidden');
+            alert('Back\n\nGo to previous screen');
+        });
+    }
+
+    if (toolbarLight) {
+        toolbarLight.addEventListener('click', () => {
+            topToolbar.classList.add('hidden');
+            alert('Front Light\n\nAdjust screen brightness (1-24 levels)\n\nThis feature would control the front light on a real Kindle.');
+        });
+    }
+
+    if (toolbarStore) {
+        toolbarStore.addEventListener('click', () => {
+            topToolbar.classList.add('hidden');
+            alert('Kindle Store\n\nBrowse and purchase books\n\nThis would open the Kindle Store on a real device.');
+        });
+    }
+
+    if (toolbarSearch) {
+        toolbarSearch.addEventListener('click', () => {
+            topToolbar.classList.add('hidden');
+            alert('Search\n\nSearch your library and the Kindle Store');
+        });
+    }
+
+    if (toolbarMenu) {
+        toolbarMenu.addEventListener('click', () => {
+            topToolbar.classList.add('hidden');
+            alert('Menu\n\nAdditional options:\n• Settings\n• Sync\n• Send to Kindle\n• Manage Your Content\n• Help');
+        });
+    }
 }
 
 // Simulate Initial Sync

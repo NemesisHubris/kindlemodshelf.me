@@ -631,6 +631,52 @@ body {
     display: none !important;
 }
 
+/* Top Toolbar Overlay (Tap-to-Reveal) */
+.top-toolbar-overlay {
+    position: fixed;
+    top: 24px;
+    left: 0;
+    right: 0;
+    max-width: 1236px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid var(--kindle-gs-13);
+    z-index: 900;
+}
+
+.top-toolbar-overlay.hidden {
+    display: none;
+}
+
+.toolbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 12px 16px;
+    height: 56px;
+}
+
+.toolbar-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--kindle-gs-0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.toolbar-btn:active {
+    background-color: var(--kindle-gs-14);
+}
+
+.toolbar-btn svg {
+    fill: currentColor;
+}
+
 /* Bottom Navigation */
 .bottom-navigation {
     position: fixed;
