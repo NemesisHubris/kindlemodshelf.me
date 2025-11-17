@@ -6,7 +6,6 @@
 }
 
 html {
-    scroll-behavior: smooth;
 }
 
 :root {
@@ -61,12 +60,9 @@ body {
     font-family: var(--font-amazon-ember);
     background-color: var(--kindle-white);
     color: var(--kindle-text);
-    font-size: 14px;
-    line-height: 1.5;
-    letter-spacing: 0.01em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 0;
     max-width: var(--kindle-max-width);
     margin: 0 auto;
     min-height: 100vh;
@@ -80,8 +76,8 @@ body {
     padding: 4px 12px;
     background-color: var(--kindle-white);
     border-bottom: 0.5px solid var(--kindle-light-gray);
-    font-size: 9px;
-    color: #666666;
+    font-size: 8px;
+    color: var(--kindle-gs-6);
     height: 24px;
 }
 
@@ -112,21 +108,12 @@ body {
     width: 12px;
     height: 12px;
     fill: #666666;
-    animation: rotate 1.5s linear infinite;
 }
 
 .sync-icon.hidden {
     display: none;
 }
 
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
 
 
 /* Search Container */
@@ -150,12 +137,11 @@ body {
     padding: var(--spacing-sm) var(--spacing-md);
     max-width: 600px;
     margin: 0 auto;
-    transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
 .search-bar:focus-within {
-    border-color: var(--kindle-accent);
-    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.1);
+    border-color: var(--kindle-text);
+    box-shadow: none;
 }
 
 .search-icon {
@@ -171,8 +157,8 @@ body {
     border: none;
     outline: none;
     font-family: var(--font-amazon-ember);
-    font-size: 14px;
-    letter-spacing: 0.01em;
+    font-size: 12px;
+    letter-spacing: 0;
     color: var(--kindle-text);
     background: transparent;
 }
@@ -190,10 +176,6 @@ body {
     cursor: pointer;
     padding: 0 var(--spacing-sm);
     line-height: 1;
-}
-
-.close-search:hover {
-    color: var(--kindle-text);
 }
 
 
@@ -223,8 +205,8 @@ body {
     height: auto;
     display: block;
     border-radius: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #DDDDDD;
+    box-shadow: 1px 1px 0 var(--kindle-gs-12);
+    background-color: var(--kindle-gs-13);
 }
 
 
@@ -256,7 +238,6 @@ body {
     border-radius: 6px;
     padding: var(--spacing-xl) var(--spacing-lg);
     cursor: pointer;
-    transition: all 0.2s ease-out;
     text-align: center;
     min-height: 160px;
     display: flex;
@@ -266,16 +247,9 @@ body {
     gap: var(--spacing-md);
 }
 
-.collection-item:hover {
-    background-color: var(--kindle-gray);
-    border-color: var(--kindle-dark-gray);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-}
-
 .collection-item:active {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 2px var(--kindle-gs-10);
 }
 
 .collection-icon {
@@ -285,14 +259,14 @@ body {
 }
 
 .collection-name {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--kindle-text);
     margin-top: var(--spacing-sm);
 }
 
 .collection-count {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--kindle-dark-gray);
     font-weight: 500;
 }
@@ -303,11 +277,6 @@ body {
     padding: var(--spacing-md);
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.book-list-item:hover {
-    background-color: var(--kindle-hover);
 }
 
 .book-list-item .book-cover-container {
@@ -325,20 +294,20 @@ body {
 }
 
 .book-list-info .book-title {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     margin-bottom: var(--spacing-xs);
     -webkit-line-clamp: 1;
 }
 
 .book-list-info .book-author {
-    font-size: 13px;
+    font-size: 11px;
     margin-bottom: var(--spacing-sm);
     white-space: normal;
 }
 
 .book-list-progress {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--kindle-dark-gray);
     display: flex;
     align-items: center;
@@ -372,27 +341,14 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--kindle-gs-8);
     z-index: 1000;
-    animation: fadeIn 0.25s ease-out;
-    backdrop-filter: blur(2px);
 }
 
 .modal.active {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        backdrop-filter: blur(0px);
-    }
-    to {
-        opacity: 1;
-        backdrop-filter: blur(2px);
-    }
 }
 
 .modal-content {
@@ -403,18 +359,6 @@ body {
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
-    animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(40px) scale(0.95);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
 }
 
 .modal-close {
@@ -434,13 +378,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease-out;
-}
-
-.modal-close:hover {
-    color: var(--kindle-text);
-    background-color: var(--kindle-light-gray);
-    transform: rotate(90deg);
 }
 
 .modal-close:active {
@@ -463,11 +400,7 @@ body {
     height: 270px;
     object-fit: cover;
     border-radius: 4px;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.04),
-                3px 3px 0 rgba(0, 0, 0, 0.03),
-                4px 4px 0 rgba(0, 0, 0, 0.02),
-                0 4px 16px rgba(0, 0, 0, 0.2),
-                0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 2px 2px 0 var(--kindle-gs-11), 3px 3px 0 var(--kindle-gs-12);
     flex-shrink: 0;
 }
 
@@ -476,20 +409,20 @@ body {
 }
 
 .modal-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: var(--spacing-sm);
     color: var(--kindle-text);
 }
 
 .modal-author {
-    font-size: 16px;
+    font-size: 14px;
     color: var(--kindle-dark-gray);
     margin-bottom: var(--spacing-xs);
 }
 
 .modal-publisher {
-    font-size: 13px;
+    font-size: 11px;
     color: var(--kindle-gray);
     margin-bottom: var(--spacing-lg);
     font-style: italic;
@@ -504,20 +437,20 @@ body {
 }
 
 .modal-progress {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--kindle-text);
     margin-bottom: var(--spacing-sm);
 }
 
 .modal-location {
-    font-size: 12px;
+    font-size: 10px;
     color: var(--kindle-dark-gray);
     margin-bottom: var(--spacing-sm);
 }
 
 .modal-time-left {
-    font-size: 12px;
+    font-size: 10px;
     color: var(--kindle-dark-gray);
 }
 
@@ -532,13 +465,12 @@ body {
     padding: 12px 24px;
     border-radius: 24px;
     font-family: var(--font-amazon-ember);
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
     cursor: pointer;
-    transition: all 0.2s ease-out;
     border: none;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    box-shadow: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -557,16 +489,9 @@ body {
     border: 1px solid transparent;
 }
 
-.primary-button:hover {
-    background-color: var(--kindle-dark-gray);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transform: translateY(-1px);
-}
-
 .primary-button:active {
     transform: translateY(0);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    transition-duration: 0.1s;
+    box-shadow: none;
 }
 
 .secondary-button {
@@ -575,17 +500,9 @@ body {
     border: 1px solid var(--kindle-border);
 }
 
-.secondary-button:hover {
-    background-color: var(--kindle-hover);
-    border-color: var(--kindle-dark-gray);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-    transform: translateY(-1px);
-}
-
 .secondary-button:active {
     transform: translateY(0);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-    transition-duration: 0.1s;
+    box-shadow: none;
 }
 
 .primary-button:focus-visible,
@@ -603,10 +520,9 @@ body {
     width: 320px;
     max-width: 90vw;
     background-color: var(--kindle-white);
-    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+    box-shadow: -2px 0 0 var(--kindle-gs-13);
     z-index: 999;
     transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
 }
 
@@ -619,7 +535,7 @@ body {
 }
 
 .settings-content h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: var(--spacing-lg);
     color: var(--kindle-text);
@@ -641,25 +557,16 @@ body {
     border: 1px solid var(--kindle-light-gray);
     border-radius: 6px;
     font-family: var(--font-amazon-ember);
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
     color: var(--kindle-text);
     cursor: pointer;
-    transition: all 0.2s ease-out;
-}
-
-.settings-list button:hover {
-    background-color: var(--kindle-hover);
-    border-color: var(--kindle-dark-gray);
-    transform: translateX(4px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .settings-list button:active {
     transform: translateX(2px);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
-    transition-duration: 0.1s;
+    box-shadow: none;
 }
 
 .settings-list button:focus-visible {
@@ -677,43 +584,18 @@ body {
 }
 
 .book-badge.read-badge {
-    background-color: rgba(76, 175, 80, 0.9);
+    background-color: var(--kindle-gs-7);
 }
 
 /* Loading Animation */
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
-}
-
 .loading {
-    animation: pulse 1.5s ease-in-out infinite;
+    opacity: 1;
 }
 
 /* Skeleton Loading States */
 .skeleton {
-    background: linear-gradient(
-        90deg,
-        var(--kindle-light-gray) 0%,
-        var(--kindle-gray) 50%,
-        var(--kindle-light-gray) 100%
-    );
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s ease-in-out infinite;
+    background-color: var(--kindle-light-gray);
     border-radius: 2px;
-}
-
-@keyframes skeleton-loading {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
 }
 
 .book-cover.skeleton {
@@ -734,18 +616,7 @@ body {
 
 /* Smooth Transitions */
 .smooth-appear {
-    animation: smoothAppear 0.3s ease-out;
-}
-
-@keyframes smoothAppear {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    opacity: 1;
 }
 
 /* Utility Classes */
