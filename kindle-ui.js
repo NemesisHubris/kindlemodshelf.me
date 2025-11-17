@@ -334,23 +334,15 @@ let currentView = 'grid';
 let showingCollections = false;
 
 // DOM Elements
-const searchBtn = document.getElementById('search-btn');
 const searchContainer = document.getElementById('search-container');
 const searchInput = document.getElementById('search-input');
 const closeSearch = document.getElementById('close-search');
 const libraryGrid = document.getElementById('library-grid');
 const libraryList = document.getElementById('library-list');
 const collectionsGrid = document.getElementById('collections-grid');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const sortSelect = document.getElementById('sort-select');
-const viewToggle = document.getElementById('view-toggle');
 const bookModal = document.getElementById('book-modal');
 const modalClose = document.getElementById('modal-close');
-const menuBtn = document.getElementById('menu-btn');
 const settingsMenu = document.getElementById('settings-menu');
-const homeBtn = document.getElementById('home-btn');
-const backBtn = document.getElementById('back-btn');
-const storeBtn = document.getElementById('store-btn');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -374,27 +366,16 @@ function updateTime() {
 
 // Setup Event Listeners
 function setupEventListeners() {
-    // Search
-    searchBtn.addEventListener('click', toggleSearch);
-    closeSearch.addEventListener('click', toggleSearch);
-    searchInput.addEventListener('input', handleSearch);
-
-    // Filters
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', handleFilter);
-    });
-
-    // Sort
-    sortSelect.addEventListener('change', handleSort);
-
-    // View Toggle
-    viewToggle.addEventListener('click', toggleView);
-
     // Modal
-    modalClose.addEventListener('click', closeModal);
-    bookModal.addEventListener('click', (e) => {
-        if (e.target === bookModal) closeModal();
-    });
+    if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+    }
+
+    if (bookModal) {
+        bookModal.addEventListener('click', (e) => {
+            if (e.target === bookModal) closeModal();
+        });
+    }
 
     // X-Ray button
     const xrayButton = document.getElementById('xray-button');
@@ -404,22 +385,6 @@ function setupEventListeners() {
             alert('X-Ray Feature\n\nExplore characters, places, and terms in this book.\n\nFeatures:\n• People - See all character mentions\n• Terms - Key locations and concepts\n• Notable Clips - Memorable passages');
         });
     }
-
-    // Settings Menu
-    menuBtn.addEventListener('click', toggleSettings);
-
-    // Navigation buttons
-    homeBtn.addEventListener('click', () => {
-        alert('Home button clicked - would navigate to home');
-    });
-
-    backBtn.addEventListener('click', () => {
-        alert('Back button clicked - would navigate back');
-    });
-
-    storeBtn.addEventListener('click', () => {
-        alert('Store button clicked - would open Kindle Store');
-    });
 }
 
 // Simulate Initial Sync
@@ -434,175 +399,7 @@ function simulateInitialSync() {
     }
 }
 
-// Toggle Search
-function toggleSearch() {
-    searchContainer.classList.toggle('active');
-    if (searchContainer.classList.contains('active')) {
-        searchInput.focus();
-    } else {
-        searchInput.value = '';
-        currentBooks = [...booksData];
-        applyFiltersAndSort();
-    }
-}
 
-// Handle Search
-function handleSearch(e) {
-    const searchTerm = e.target.value.toLowerCase().trim();
-
-    if (searchTerm === '') {
-        currentBooks = [...booksData];
-    } else {
-        currentBooks = booksData.filter(book =>
-            book.title.toLowerCase().includes(searchTerm) ||
-            book.author.toLowerCase().includes(searchTerm)
-        );
-    }
-
-    applyFiltersAndSort();
-}
-
-// Handle Filter
-function handleFilter(e) {
-    // Update active button
-    filterBtns.forEach(btn => btn.classList.remove('active'));
-    e.target.classList.add('active');
-
-    currentFilter = e.target.dataset.filter;
-
-    // Check if Collections filter was selected
-    if (currentFilter === 'collections') {
-        showingCollections = true;
-        renderCollections();
-    } else {
-        showingCollections = false;
-        applyFiltersAndSort();
-    }
-}
-
-// Handle Sort
-function handleSort(e) {
-    currentSort = e.target.value;
-    applyFiltersAndSort();
-}
-
-// Apply Filters and Sort
-function applyFiltersAndSort() {
-    let filtered = [...currentBooks];
-
-    // Apply filter
-    if (currentFilter !== 'all') {
-        if (currentFilter === 'downloaded') {
-            filtered = filtered.filter(book => book.downloaded);
-        } else {
-            filtered = filtered.filter(book => book.type === currentFilter);
-        }
-    }
-
-    // Apply sort
-    switch (currentSort) {
-        case 'title':
-            filtered.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-        case 'author':
-            filtered.sort((a, b) => a.author.localeCompare(b.author));
-            break;
-        case 'recent':
-        default:
-            filtered.sort((a, b) => b.dateAdded - a.dateAdded);
-            break;
-    }
-
-    renderBooks(filtered);
-}
-
-// Toggle View
-function toggleView() {
-    // Don't toggle view when showing collections
-    if (showingCollections) return;
-
-    if (currentView === 'grid') {
-        currentView = 'list';
-        libraryGrid.classList.add('hidden');
-        libraryList.classList.remove('hidden');
-        viewToggle.classList.add('list-active');
-    } else {
-        currentView = 'grid';
-        libraryGrid.classList.remove('hidden');
-        libraryList.classList.add('hidden');
-        viewToggle.classList.remove('list-active');
-    }
-
-    applyFiltersAndSort();
-}
-
-// Render Collections
-function renderCollections() {
-    // Hide book views
-    libraryGrid.classList.add('hidden');
-    libraryList.classList.add('hidden');
-    // Show collections view
-    collectionsGrid.classList.remove('hidden');
-
-    // Clear collections grid
-    collectionsGrid.innerHTML = '';
-
-    collectionsData.forEach((collection, index) => {
-        const collectionItem = createCollectionItem(collection);
-        // Add smooth appearance animation with stagger
-        setTimeout(() => {
-            collectionItem.classList.add('smooth-appear');
-        }, index * 30);
-        collectionsGrid.appendChild(collectionItem);
-    });
-}
-
-// Create Collection Item
-function createCollectionItem(collection) {
-    const item = document.createElement('div');
-    item.className = 'collection-item';
-    item.onclick = () => openCollection(collection);
-
-    const icon = document.createElement('svg');
-    icon.className = 'collection-icon';
-    icon.setAttribute('viewBox', '0 0 24 24');
-    icon.innerHTML = `
-        <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
-    `;
-
-    const name = document.createElement('div');
-    name.className = 'collection-name';
-    name.textContent = collection.name;
-
-    const count = document.createElement('div');
-    count.className = 'collection-count';
-    const bookCount = collection.bookIds.length;
-    count.textContent = `${bookCount} ${bookCount === 1 ? 'item' : 'items'}`;
-
-    item.appendChild(icon);
-    item.appendChild(name);
-    item.appendChild(count);
-
-    return item;
-}
-
-// Open Collection
-function openCollection(collection) {
-    // Filter books to show only those in this collection
-    currentBooks = booksData.filter(book => collection.bookIds.includes(book.id));
-    currentFilter = 'all';
-    showingCollections = false;
-
-    // Hide collections view, show book view
-    collectionsGrid.classList.add('hidden');
-    libraryGrid.classList.remove('hidden');
-
-    // Update filter buttons
-    filterBtns.forEach(btn => btn.classList.remove('active'));
-    filterBtns[0].classList.add('active'); // Activate "All" button
-
-    renderBooks(currentBooks);
-}
 
 // Render Books
 function renderBooks(books = currentBooks) {
@@ -610,20 +407,13 @@ function renderBooks(books = currentBooks) {
     libraryGrid.innerHTML = '';
     libraryList.innerHTML = '';
 
-    books.forEach((book, index) => {
+    books.forEach((book) => {
         // Create grid view item
         const gridItem = createBookGridItem(book);
-        // Add smooth appearance animation with stagger
-        setTimeout(() => {
-            gridItem.classList.add('smooth-appear');
-        }, index * 30);
         libraryGrid.appendChild(gridItem);
 
         // Create list view item
         const listItem = createBookListItem(book);
-        setTimeout(() => {
-            listItem.classList.add('smooth-appear');
-        }, index * 30);
         libraryList.appendChild(listItem);
     });
 }
@@ -776,34 +566,10 @@ function closeModal() {
     bookModal.classList.remove('active');
 }
 
-// Toggle Settings Menu
-function toggleSettings() {
-    settingsMenu.classList.toggle('active');
-}
-
-// Close settings menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!settingsMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-        settingsMenu.classList.remove('active');
-    }
-});
-
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
-    // Escape key closes modal and search
+    // Escape key closes modal
     if (e.key === 'Escape') {
         closeModal();
-        if (searchContainer.classList.contains('active')) {
-            toggleSearch();
-        }
-        settingsMenu.classList.remove('active');
-    }
-
-    // Ctrl/Cmd + F opens search
-    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-        e.preventDefault();
-        if (!searchContainer.classList.contains('active')) {
-            toggleSearch();
-        }
     }
 });
