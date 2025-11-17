@@ -5,9 +5,6 @@
     box-sizing: border-box;
 }
 
-html {
-}
-
 :root {
     /* Kindle 16-Level Grayscale Palette (E-Ink accurate) */
     --kindle-gs-0: #000000;  /* Level 0 - Black */
@@ -61,7 +58,7 @@ body {
     background-color: var(--kindle-white);
     color: var(--kindle-text);
     font-size: 12px;
-    line-height: 1.4;
+    line-height: 1.3;
     letter-spacing: 0;
     max-width: var(--kindle-max-width);
     margin: 0 auto;
@@ -370,13 +367,13 @@ body {
     background-color: transparent;
     border: none;
     border-radius: 0;
-    font-size: 32px;
+    font-size: 28px;
     color: var(--kindle-gs-6);
     cursor: pointer;
     line-height: 1;
     padding: var(--spacing-xs);
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -519,19 +516,18 @@ body {
 .settings-menu {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -320px;
     bottom: 0;
     width: 320px;
     max-width: 90vw;
     background-color: var(--kindle-white);
     box-shadow: -2px 0 0 var(--kindle-gs-13);
     z-index: 999;
-    transform: translateX(100%);
     overflow-y: auto;
 }
 
 .settings-menu.active {
-    transform: translateX(0);
+    right: 0;
 }
 
 .settings-content {
@@ -591,15 +587,13 @@ body {
     background-color: var(--kindle-gs-7);
 }
 
-/* Loading Animation */
+/* Loading States (Issue #17: Simplified for e-ink) */
 .loading {
     opacity: 1;
 }
 
-/* Skeleton Loading States */
 .skeleton {
-    background-color: var(--kindle-light-gray);
-    border-radius: 2px;
+    background-color: var(--kindle-gs-14);
 }
 
 .book-cover.skeleton {
@@ -610,9 +604,8 @@ body {
 .book-cover-container.loading::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: calc(50% - 5px);
+    left: calc(50% - 10px);
     font-size: 10px;
     color: var(--kindle-dark-gray);
     font-weight: 500;
@@ -867,20 +860,23 @@ body {
     fill: var(--kindle-gs-15);
 }
 
-/* Responsive Design */
+/* Responsive Design (Issue #24: Portrait-optimized) */
+
+/* Basic Kindle (1080 x 1440) */
+@media (max-width: 1080px) {
+    .library-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 16px;
+        grid-row-gap: 24px;
+    }
+}
+
+/* Old Kindles (768 x 1024) - 2 columns */
 @media (max-width: 768px) {
     .library-grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: var(--spacing-xl) var(--spacing-lg);
-    }
-
-    .book-cover-container {
-        width: 130px;
-        height: 195px;
-    }
-
-    .book-item {
-        max-width: 150px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 12px;
+        grid-row-gap: 20px;
     }
 
     .modal-body {
@@ -890,52 +886,26 @@ body {
     }
 
     .modal-cover {
-        width: 160px;
-        height: 240px;
+        width: 140px;
+        height: 210px;
     }
 
-    .controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .filter-controls,
-    .view-sort-controls {
-        width: 100%;
-        justify-content: center;
+    .library-container {
+        padding: 16px 24px 80px 24px;
     }
 }
 
+/* Very small devices */
 @media (max-width: 480px) {
     .library-grid {
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-        gap: var(--spacing-xl) var(--spacing-md);
-    }
-
-    .book-cover-container {
-        width: 110px;
-        height: 165px;
-    }
-
-    .book-item {
-        max-width: 130px;
-    }
-
-    .book-title {
-        font-size: 12px;
-    }
-
-    .book-author {
-        font-size: 11px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 8px;
+        grid-row-gap: 16px;
     }
 
     .status-bar {
         padding: var(--spacing-xs) var(--spacing-md);
-        font-size: 11px;
-    }
-
-    .toolbar {
-        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 6px;
     }
 
     .modal-content {
@@ -949,5 +919,9 @@ body {
 
     .settings-menu {
         width: 280px;
+    }
+
+    .library-container {
+        padding: 12px 16px 80px 16px;
     }
 }
