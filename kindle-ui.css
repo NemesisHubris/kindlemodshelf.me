@@ -52,8 +52,8 @@ html {
     --spacing-xxl: 32px;
 
     /* Kindle Screen Dimensions (simulated for web) */
-    --kindle-max-width: 1648px;
-    --kindle-aspect-ratio: 1648 / 1236;
+    --kindle-max-width: 1236px;
+    --kindle-aspect-ratio: 1236 / 1648;
 }
 
 body {
@@ -181,7 +181,7 @@ body {
 
 /* Library Container */
 .library-container {
-    padding: 24px 48px;
+    padding: 24px 48px 80px 48px;
     background-color: #FFFFFF;
     min-height: calc(100vh - 24px);
 }
@@ -189,9 +189,10 @@ body {
 /* Library Grid */
 .library-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 20px;
-    grid-row-gap: 28px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-column-gap: 24px;
+    grid-row-gap: 32px;
 }
 
 /* Book Item */
@@ -628,6 +629,77 @@ body {
 /* Utility Classes */
 .hidden {
     display: none !important;
+}
+
+/* Bottom Navigation */
+.bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 1236px;
+    margin: 0 auto;
+    height: 64px;
+    background-color: var(--kindle-gs-15);
+    border-top: 0.5px solid var(--kindle-gs-13);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+    z-index: 100;
+}
+
+.nav-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    padding: 8px;
+    font-size: 10px;
+    color: var(--kindle-gs-6);
+    cursor: pointer;
+    min-height: 48px;
+}
+
+.nav-tab.active {
+    color: var(--kindle-gs-0);
+}
+
+.nav-tab:active {
+    background-color: var(--kindle-gs-14);
+}
+
+.nav-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.nav-book-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--kindle-gs-0);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nav-book-icon:active {
+    background-color: var(--kindle-gs-2);
+}
+
+.nav-book-icon .book-icon {
+    width: 20px;
+    height: 20px;
+    fill: var(--kindle-gs-15);
 }
 
 /* Responsive Design */

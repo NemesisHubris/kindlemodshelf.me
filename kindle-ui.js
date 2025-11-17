@@ -385,6 +385,41 @@ function setupEventListeners() {
             alert('X-Ray Feature\n\nExplore characters, places, and terms in this book.\n\nFeatures:\n• People - See all character mentions\n• Terms - Key locations and concepts\n• Notable Clips - Memorable passages');
         });
     }
+
+    // Bottom Navigation
+    const homeTab = document.getElementById('home-tab');
+    const libraryTab = document.getElementById('library-tab');
+    const currentBookButton = document.getElementById('current-book');
+
+    if (homeTab) {
+        homeTab.addEventListener('click', () => {
+            homeTab.classList.add('active');
+            libraryTab.classList.remove('active');
+            // Home screen functionality (to be implemented with Issue #8)
+            alert('Home Screen\n\nFeature coming soon:\n• Continue Reading carousel\n• Books You May Like recommendations\n• Recommended For You section');
+        });
+    }
+
+    if (libraryTab) {
+        libraryTab.addEventListener('click', () => {
+            libraryTab.classList.add('active');
+            homeTab.classList.remove('active');
+            // Already showing library view
+        });
+    }
+
+    if (currentBookButton) {
+        currentBookButton.addEventListener('click', () => {
+            // Open the most recently read book
+            const recentBooks = [...currentBooks].filter(b => b.progress > 0 && b.progress < 100);
+            if (recentBooks.length > 0) {
+                recentBooks.sort((a, b) => b.dateAdded - a.dateAdded);
+                openBookModal(recentBooks[0]);
+            } else {
+                alert('No book currently being read.\n\nStart reading a book to use this feature.');
+            }
+        });
+    }
 }
 
 // Simulate Initial Sync
