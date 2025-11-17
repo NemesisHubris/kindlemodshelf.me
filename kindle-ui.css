@@ -68,17 +68,17 @@ body {
     min-height: 100vh;
 }
 
-/* Status Bar */
+/* Status Bar (Issue #9: Reduced height) */
 .status-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 12px;
+    padding: 2px 12px;
     background-color: var(--kindle-white);
     border-bottom: 0.5px solid var(--kindle-light-gray);
-    font-size: 8px;
+    font-size: 7px;
     color: var(--kindle-gs-6);
-    height: 24px;
+    height: 20px;
 }
 
 .status-left,
@@ -89,14 +89,14 @@ body {
 }
 
 .wifi-icon {
-    width: 14px;
-    height: 12px;
+    width: 12px;
+    height: 10px;
     fill: #666666;
 }
 
 .battery-icon {
-    width: 18px;
-    height: 10px;
+    width: 16px;
+    height: 8px;
     fill: #666666;
 }
 
@@ -208,9 +208,10 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
     border-radius: 0;
-    box-shadow: 1px 1px 0 var(--kindle-gs-12);
+    box-shadow: 1px 1px 0 var(--kindle-gs-13);
     background-color: var(--kindle-gs-13);
 }
 
@@ -241,15 +242,15 @@ body {
     background-color: var(--kindle-light-gray);
     border: 1px solid var(--kindle-border);
     border-radius: 0;
-    padding: var(--spacing-xl) var(--spacing-lg);
+    padding: 16px 12px;
     cursor: pointer;
     text-align: center;
-    min-height: 160px;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-md);
+    gap: 8px;
 }
 
 .collection-item:active {
@@ -258,20 +259,20 @@ body {
 }
 
 .collection-icon {
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
     fill: var(--kindle-dark-gray);
 }
 
 .collection-name {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--kindle-text);
-    margin-top: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
 }
 
 .collection-count {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--kindle-dark-gray);
     font-weight: 500;
 }
@@ -334,7 +335,7 @@ body {
     display: none;
 }
 
-/* Modal */
+/* Modal (Issue #11: Lighter backdrop) */
 .modal {
     display: none;
     position: fixed;
@@ -342,7 +343,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--kindle-gs-8);
+    background-color: var(--kindle-gs-12);
     z-index: 1000;
 }
 
@@ -386,8 +387,8 @@ body {
 }
 
 .modal-close:focus-visible {
-    outline: 1px solid var(--kindle-gs-10);
-    outline-offset: 1px;
+    outline: 1px dotted var(--kindle-gs-11);
+    outline-offset: 0;
 }
 
 .modal-body {
@@ -510,8 +511,8 @@ body {
 
 .primary-button:focus-visible,
 .secondary-button:focus-visible {
-    outline: 1px solid var(--kindle-gs-8);
-    outline-offset: 1px;
+    outline: 1px dotted var(--kindle-gs-11);
+    outline-offset: 0;
 }
 
 /* Settings Menu */
@@ -573,8 +574,8 @@ body {
 }
 
 .settings-list button:focus-visible {
-    outline: 1px solid var(--kindle-gs-8);
-    outline-offset: 1px;
+    outline: 1px dotted var(--kindle-gs-11);
+    outline-offset: 0;
 }
 
 /* Additional Badge Styles */
@@ -752,7 +753,7 @@ body {
 /* Top Toolbar Overlay (Tap-to-Reveal) */
 .top-toolbar-overlay {
     position: fixed;
-    top: 24px;
+    top: 20px;
     left: 0;
     right: 0;
     max-width: 1236px;
