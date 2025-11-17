@@ -355,6 +355,115 @@ body {
   overflow-x: hidden;
 }
 
+/* Critical Updates Banner */
+.top-announcement {
+  background: var(--announcement-bg);
+  border-bottom: 2px solid var(--announcement-border);
+  padding: 0;
+  position: relative;
+  z-index: 100;
+}
+
+.top-announcement__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.top-announcement__text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.top-announcement__label {
+  font-weight: 700;
+  font-size: 0.95em;
+  color: var(--announcement-label);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.top-announcement__message {
+  color: var(--announcement-text);
+  font-size: 0.9em;
+  line-height: 1.6;
+  display: block;
+}
+
+.top-announcement__message strong {
+  font-weight: 700;
+  color: var(--announcement-strong);
+}
+
+.top-announcement__message a {
+  color: var(--announcement-action-text);
+  font-weight: 600;
+  border-bottom: 1px solid var(--announcement-action-border);
+  transition: all 0.2s ease;
+}
+
+.top-announcement__message a:hover {
+  color: var(--announcement-action-hover-text);
+  border-bottom-color: var(--announcement-action-hover-border);
+  border-bottom-width: 2px;
+}
+
+.top-announcement__close {
+  background: var(--card-bg);
+  border: 2px solid var(--announcement-close-border);
+  border-radius: 4px;
+  color: var(--announcement-close-text);
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 4px 10px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-announcement__close:hover {
+  background: var(--announcement-close-hover-bg);
+  border-color: var(--announcement-close-hover-border);
+  color: var(--announcement-strong);
+  transform: scale(1.05);
+}
+
+.top-announcement__close:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .top-announcement__inner {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .top-announcement__text {
+    text-align: left;
+  }
+
+  .top-announcement__close {
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -448,6 +557,91 @@ h1::after {
   height: 0;
   background: transparent;
   opacity: 0;
+}
+
+/* Action Buttons Section */
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 32px 0;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.action-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--feature-button-bg);
+  border: 1px solid var(--feature-button-border);
+  border-radius: 6px;
+  padding: 24px 20px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-align: center;
+  min-height: 120px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.feature-button:hover {
+  background: var(--feature-button-hover-bg);
+  border-color: var(--feature-button-hover-border);
+  box-shadow: 0 2px 8px var(--feature-button-hover-shadow);
+  transform: translateY(-2px);
+}
+
+.feature-button .button-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.feature-button .button-desc {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.feature-button.chat-button {
+  border-color: var(--primary);
+  background: transparent;
+}
+
+.feature-button.chat-button:hover {
+  background: var(--feature-button-hover-bg);
+  border-color: var(--secondary);
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+
+  .feature-button {
+    padding: 20px 16px;
+    min-height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .action-buttons {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
 
 .section-title {
@@ -602,32 +796,62 @@ h1::after {
 
 .card-links {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   margin-top: auto;
+  align-items: stretch;
 }
 
-.card-download {
-  display: flex;
+.card-links a {
+  flex: 1;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   background: var(--card-link-bg);
   border: 1px solid var(--card-link-border);
   border-radius: 4px;
-  padding: 10px 16px;
+  padding: 10px 14px;
   color: var(--card-link-text);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.95em;
+  font-size: 0.9em;
   transition: all 0.2s ease;
   letter-spacing: 0;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.card-download:hover {
+.card-links a:hover {
   background: var(--card-link-hover-bg);
   border-color: var(--card-link-hover-border);
   color: var(--card-link-text);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.card-download {
+  border-color: var(--primary) !important;
+  background: var(--primary) !important;
+  color: var(--bg-base) !important;
+}
+
+.card-download::before {
+  content: "↓";
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.card-download:hover {
+  background: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+  color: var(--bg-base) !important;
+}
+
+.card-links a:not(.card-download)::after {
+  content: "→";
+  font-size: 1.1em;
+  font-weight: 600;
 }
 
 .card-download.disabled {
@@ -639,13 +863,39 @@ h1::after {
 a {
   color: var(--link-color);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid var(--link-border);
   transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 a:hover {
   color: var(--link-hover);
   border-bottom-color: var(--link-hover-border);
+  border-bottom-width: 2px;
+}
+
+/* Remove underline for button-style links */
+.card-links a,
+.feature-button,
+.kindle-btn,
+.back-home-btn,
+.support-cta__button,
+.filter-chip,
+.helper-pill,
+button a {
+  border-bottom: none !important;
+}
+
+/* General Button Styling */
+button {
+  font-family: 'IBM Plex Sans', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 code {
@@ -766,12 +1016,15 @@ pre code {
   transition: all 0.2s ease;
   cursor: pointer;
   letter-spacing: 0;
+  box-shadow: 0 1px 3px var(--shadow-color);
 }
 
 .kindle-btn:hover {
   background: var(--filter-bg);
   border-color: var(--filter-border);
   color: var(--fg);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -804,12 +1057,21 @@ pre code {
   z-index: 1000;
   cursor: pointer;
   letter-spacing: 0;
+  box-shadow: 0 1px 3px var(--shadow-color);
 }
 
 .back-home-btn:hover {
   background: var(--filter-bg);
   border-color: var(--filter-border);
   color: var(--fg);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.back-home-btn::before {
+  content: "←";
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 @media (max-width: 700px) {
@@ -1398,33 +1660,308 @@ pre code {
   border-radius: 3px;
 }
 
-/* Theme toggle button */
+/* Support CTA */
+.support-cta {
+  max-width: 800px;
+  margin: 48px auto;
+  background: var(--support-cta-bg);
+  border: 1px solid var(--support-cta-border);
+  border-radius: 6px;
+  padding: 32px 28px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+  text-align: center;
+}
+
+.support-cta__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.support-cta__title {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--support-cta-title);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.support-cta__text {
+  font-size: 1em;
+  color: var(--support-cta-text);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.support-cta__button {
+  background: var(--support-button-bg);
+  border: 1px solid var(--support-button-border);
+  border-radius: 4px;
+  padding: 12px 24px;
+  color: var(--support-button-text);
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.support-cta__button:hover:not(:disabled) {
+  background: var(--feature-button-hover-bg);
+  border-color: var(--feature-button-hover-border);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.support-cta__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Email Popup */
+#emailPopup {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 340px;
+  max-width: calc(100vw - 48px);
+  background: var(--email-popup-bg);
+  border: 1px solid var(--email-popup-border);
+  border-radius: 6px;
+  padding: 24px;
+  box-shadow: 0 4px 16px var(--shadow-color);
+  z-index: 999;
+}
+
+.popup-title {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.popup-desc {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+}
+
+#subscribeForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#subscribeForm input[type="email"] {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--email-input-bg);
+  border: 1px solid var(--email-input-border);
+  border-radius: 4px;
+  color: var(--fg);
+  font-size: 0.95em;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+#subscribeForm input[type="email"]:focus {
+  border-color: var(--primary);
+}
+
+#subscribeForm button[type="submit"] {
+  padding: 10px 16px;
+  background: var(--email-submit-bg);
+  border: 1px solid var(--email-submit-border);
+  border-radius: 4px;
+  color: var(--email-submit-text);
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#subscribeForm button[type="submit"]:hover {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--email-close-text);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: var(--fg);
+}
+
+#thankYouMessage {
+  text-align: center;
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+/* Theme toggle button - Bottom Left */
 .theme-toggle {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  bottom: 24px;
+  left: 24px;
   background: var(--button-bg);
-  border: 1px solid var(--button-border);
+  border: 2px solid var(--button-border);
   border-radius: 4px;
-  padding: 10px 16px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--button-text);
   cursor: pointer;
-  font-size: 0.95em;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
+  padding: 0;
+  box-shadow: 0 2px 4px var(--shadow-color), 0 4px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 .theme-toggle:hover {
-  background: var(--filter-bg);
-  border-color: var(--filter-border);
+  background: var(--card-bg);
+  border-color: var(--primary);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 8px var(--shadow-color), 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.theme-toggle:hover::before {
+  opacity: 1;
+  background: radial-gradient(circle at center, rgba(91, 157, 217, 0.1) 0%, transparent 70%);
+}
+
+.theme-toggle:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: all 0.1s ease;
+}
+
+.theme-toggle svg {
+  width: 28px;
+  height: 28px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  z-index: 1;
+}
+
+.theme-toggle:hover svg {
+  transform: rotate(-20deg) scale(1.1);
+}
+
+.theme-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Show star in dark mode (to switch to light) */
+.theme-icon.sun {
+  display: flex;
+}
+
+.theme-icon.moon {
+  display: none;
+}
+
+/* Show moon in light mode (to switch to dark) */
+:root[data-theme="light"] .theme-icon.sun {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-icon.moon {
+  display: flex;
+}
+
+/* Dark mode: vibrant gold star with glow */
+:root .theme-icon.sun svg {
+  color: #ffd700;
+  filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 6px rgba(255, 215, 0, 0.3));
+}
+
+:root .theme-toggle:hover .theme-icon.sun svg {
+  color: #ffed4e;
+  filter: drop-shadow(0 0 4px rgba(255, 237, 78, 0.8)) drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+}
+
+/* Light mode: rich blue moon with glow */
+:root[data-theme="light"] .theme-icon.moon svg {
+  color: #4a8fd9;
+  filter: drop-shadow(0 0 3px rgba(74, 143, 217, 0.5)) drop-shadow(0 0 6px rgba(91, 157, 217, 0.25));
+}
+
+:root[data-theme="light"] .theme-toggle:hover .theme-icon.moon svg {
+  color: #5b9dd9;
+  filter: drop-shadow(0 0 4px rgba(91, 157, 217, 0.7)) drop-shadow(0 0 8px rgba(74, 143, 217, 0.35));
 }
 
 @media (max-width: 700px) {
   .theme-toggle {
-    position: static;
-    display: flex;
-    margin: 0 auto 20px;
-    width: fit-content;
+    bottom: 16px;
+    left: 16px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .theme-toggle svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .theme-toggle:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+
+  #emailPopup {
+    bottom: 16px;
+    right: 16px;
+    width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    bottom: 12px;
+    left: 12px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .theme-toggle svg {
+    width: 22px;
+    height: 22px;
   }
 }
