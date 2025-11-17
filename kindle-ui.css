@@ -190,8 +190,8 @@ body {
 .library-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 16px;
-    grid-row-gap: 24px;
+    grid-column-gap: 20px;
+    grid-row-gap: 28px;
 }
 
 /* Book Item */
@@ -251,8 +251,8 @@ body {
 }
 
 .collection-item:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 2px var(--kindle-gs-10);
+    background-color: var(--kindle-gs-13);
+    border-color: var(--kindle-gs-11);
 }
 
 .collection-icon {
@@ -328,13 +328,13 @@ body {
 
 .progress-dot {
     flex: 1;
-    height: 4px;
-    background-color: var(--kindle-light-gray);
-    border-radius: 2px;
+    height: 3px;
+    background-color: var(--kindle-gs-13);
+    border-radius: 0;
 }
 
 .progress-dot.filled {
-    background-color: var(--kindle-accent);
+    background-color: var(--kindle-gs-3);
 }
 
 /* Modal */
@@ -490,31 +490,31 @@ body {
 }
 
 .primary-button {
-    background-color: var(--kindle-text);
-    color: var(--kindle-white);
-    border: 1px solid transparent;
+    background-color: var(--kindle-gs-0);
+    color: var(--kindle-gs-15);
+    border: 1px solid var(--kindle-gs-0);
 }
 
 .primary-button:active {
-    transform: translateY(0);
-    box-shadow: none;
+    background-color: var(--kindle-gs-2);
+    border-color: var(--kindle-gs-2);
 }
 
 .secondary-button {
-    background-color: var(--kindle-white);
-    color: var(--kindle-text);
-    border: 1px solid var(--kindle-border);
+    background-color: var(--kindle-gs-15);
+    color: var(--kindle-gs-0);
+    border: 1px solid var(--kindle-gs-12);
 }
 
 .secondary-button:active {
-    transform: translateY(0);
-    box-shadow: none;
+    background-color: var(--kindle-gs-14);
+    border-color: var(--kindle-gs-11);
 }
 
 .primary-button:focus-visible,
 .secondary-button:focus-visible {
-    outline: 2px solid var(--kindle-accent);
-    outline-offset: 2px;
+    outline: 1px solid var(--kindle-gs-8);
+    outline-offset: 1px;
 }
 
 /* Settings Menu */
@@ -571,13 +571,13 @@ body {
 }
 
 .settings-list button:active {
-    transform: translateX(2px);
-    box-shadow: none;
+    background-color: var(--kindle-gs-14);
+    border-color: var(--kindle-gs-11);
 }
 
 .settings-list button:focus-visible {
-    outline: 2px solid var(--kindle-accent);
-    outline-offset: 2px;
+    outline: 1px solid var(--kindle-gs-8);
+    outline-offset: 1px;
 }
 
 /* Additional Badge Styles */
