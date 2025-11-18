@@ -1837,7 +1837,6 @@ pre code {
   padding: 0;
   box-shadow: 0 2px 4px var(--shadow-color), 0 4px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  position: relative;
 }
 
 .theme-toggle::before {
@@ -1905,10 +1904,22 @@ pre code {
   display: flex;
 }
 
-/* Dark mode: white circle */
+/* Dark mode: white sun icon */
 :root .theme-icon.sun svg {
   color: #ffffff;
   filter: none;
+}
+
+:root .theme-icon.sun svg path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+:root .theme-icon.sun svg circle {
+  fill: currentColor;
 }
 
 :root .theme-toggle:hover .theme-icon.sun svg {
@@ -1916,10 +1927,14 @@ pre code {
   filter: none;
 }
 
-/* Light mode: black circle */
+/* Light mode: black moon icon */
 :root[data-theme="light"] .theme-icon.moon svg {
   color: #000000;
   filter: none;
+}
+
+:root[data-theme="light"] .theme-icon.moon svg path {
+  fill: currentColor;
 }
 
 :root[data-theme="light"] .theme-toggle:hover .theme-icon.moon svg {
