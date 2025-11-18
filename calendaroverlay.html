@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendar Overlay for KOReader – Display Calendar Events on Kindle Sleep Screen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calendar Overlay is a KOReader patch that displays your upcoming calendar events directly on your Kindle's sleep screen. Shows next events, today's schedule, or tomorrow's schedule.">
+  <link rel="canonical" href="https://kindlemodshelf.me/calendaroverlay.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Calendar Overlay for KOReader – Display Calendar Events on Kindle Sleep Screen">
+  <meta property="og:description" content="Display your upcoming calendar events directly on your Kindle's sleep screen with this KOReader patch. Works with any ICS calendar feed.">
+  <meta property="og:url" content="https://kindlemodshelf.me/calendaroverlay.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Calendar Overlay for KOReader",
+    "operatingSystem": "Kindle OS (jailbroken)",
+    "applicationCategory": "Utility",
+    "description": "Calendar Overlay is a KOReader patch that displays your upcoming calendar events directly on your Kindle's sleep screen.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://kindlemodshelf.me/calendaroverlay.html"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <script src="theme-toggle.js"></script>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>Calendar Overlay for KOReader</h1>
+
+    <div class="summary">
+      <p><b>Calendar Overlay</b> is a KOReader patch that displays your upcoming calendar events directly on your Kindle's sleep screen. Shows next events, today's schedule, or tomorrow's schedule — all overlaid beautifully on your screensaver.</p>
+    </div>
+
+    <div class="card card-desc">
+      <div class="card-links">
+        <a href="downloads/2-zzz-calendar-overlay.lua" class="card-download" download>Calendar Overlay Patch</a>
+      </div>
+    </div>
+
+    <h2 class="section-title">Main Features</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>Displays upcoming calendar events on sleep screen</li>
+        <li>Multiple display styles: Minimal, Today's Schedule, Tomorrow's Schedule, Full Day</li>
+        <li>Auto-refresh every 30 minutes</li>
+        <li>Works with any ICS calendar feed (Google Calendar, Proton Calendar, iCloud)</li>
+        <li>Configurable through KOReader menu</li>
+        <li>Smart caching prevents excessive network requests</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Installation</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>Get an ICS link from your calendar provider (<a href="https://www.onecal.io/blog/how-to-get-an-ics-url-for-your-calendar" target="_blank" rel="noopener">How to get an ICS URL</a>)</li>
+        <li>For Proton Calendar users: <a href="https://proton.me/support/share-calendar-via-link" target="_blank" rel="noopener">Share calendar via link</a></li>
+        <li>Download <code>2-zzz-calendar-overlay.lua</code></li>
+        <li>Open the file in a text editor</li>
+        <li>Paste your ICS link into the <code>PUT_YOUR_ICS_URL_HERE</code> spot (line 13)</li>
+        <li>Plug in your Kindle to your computer</li>
+        <li>Move the file to <code>/mnt/us/koreader/patches/</code> (create the <code>patches</code> folder if it doesn't exist)</li>
+        <li>Safely eject your Kindle</li>
+        <li>Open KOReader</li>
+        <li>Go to KOReader and swipe down → Tools → More tools → Calendar Overlay to open menu and enable patch.</li>
+      </ol>
+    </div>
+
+    <h2 class="section-title">Notes</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>Basically all calendars can be exported as an ICS. Personally tested with Proton Calendar but all others should work.</li>
+        <li>Obviously, you have to have WiFi on to make this work</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Credits</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><a href="https://kindlemodshelf.me" target="_blank" rel="noopener">kindlemodshelfguy</a></li>
+        <li>Inspiration from: <a href="https://github.com/loeffner/WeatherLockscreen" target="_blank" rel="noopener">WeatherLockscreen</a></li>
+      </ul>
+    </div>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
+</body>
+</html>
