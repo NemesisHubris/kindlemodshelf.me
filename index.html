@@ -1104,7 +1104,10 @@ let activeCategory = 'all';
       if (!filterNote) return;
       let message = '';
       if (activeCategory === 'koreader') {
-        message = 'Tip: Install <a href="koreader.html">KOReader</a> first to make the most of these plugins.';
+        message = 'Tip: Install <a href="koreader.html">KOReader</a> to use these plug-ins.';
+      }
+      if (activeCategory === 'patches') {
+        message = 'Tip: Install <a href="koreader.html">KOReader</a> to use these patches.';
       }
       if (message) {
         filterNote.innerHTML = message;
