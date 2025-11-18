@@ -1432,26 +1432,54 @@ pre code {
   background: var(--viewer-button-bg);
   border: 1px solid var(--card-border);
   border-radius: 4px;
-  padding: 6px 12px;
+  padding: 8px 14px;
   color: var(--viewer-button-text);
   cursor: pointer;
   font-size: 0.9em;
+  font-weight: 500;
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .viewer-button:hover {
   background: var(--viewer-button-hover-bg);
   color: var(--viewer-button-hover-text);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.viewer-download {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--bg-base) !important;
+  font-weight: 600;
+}
+
+.viewer-download:hover {
+  background: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+  color: var(--bg-base) !important;
+}
+
+.viewer-download svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 #img-viewer-close {
   background: var(--viewer-close-bg);
   border-color: var(--viewer-close-border);
-  color: var(--viewer-close-text);
+  color: var(--viewer-button-text);
 }
 
 #img-viewer-close:hover {
   background: var(--viewer-close-hover-bg);
+  color: var(--viewer-close-hover-text);
 }
 
 .viewer-canvas {
@@ -1488,13 +1516,29 @@ pre code {
 
   .viewer-topbar {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     align-items: flex-start;
+    padding: 14px;
+  }
+
+  .viewer-info {
+    width: 100%;
   }
 
   .viewer-actions {
     width: 100%;
-    justify-content: flex-end;
+    justify-content: stretch;
+    gap: 10px;
+  }
+
+  .viewer-button {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .viewer-download span,
+  #img-viewer-close {
+    font-size: 0.85em;
   }
 }
 
