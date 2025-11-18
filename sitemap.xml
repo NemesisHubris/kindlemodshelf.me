@@ -50,6 +50,11 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://kindlemodshelf.me/calendaroverlay.html</loc>
+    <lastmod>2025-11-18T15:30:48+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://kindlemodshelf.me/clearadcache.html</loc>
     <lastmod>2025-11-03T07:07:54+00:00</lastmod>
     <priority>0.80</priority>
@@ -72,6 +77,11 @@
   <url>
     <loc>https://kindlemodshelf.me/disableads.html</loc>
     <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/download.html</loc>
+    <lastmod>2025-11-18T15:30:48+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
@@ -115,8 +125,18 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://kindlemodshelf.me/helpkindlemodshelf.html</loc>
+    <lastmod>2025-11-18T15:30:48+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://kindlemodshelf.me/icon.html</loc>
     <lastmod>2025-10-23T18:13:39+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/ifdb-dl.html</loc>
+    <lastmod>2025-11-18T15:30:48+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
@@ -165,6 +185,16 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://kindlemodshelf.me/kindle-ui.html</loc>
+    <lastmod>2025-11-18T15:30:52+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/knotes.html</loc>
+    <lastmod>2025-11-18T15:31:35+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://kindlemodshelf.me/koclock.html</loc>
     <lastmod>2025-10-16T23:49:01+00:00</lastmod>
     <priority>0.80</priority>
@@ -172,6 +202,16 @@
   <url>
     <loc>https://kindlemodshelf.me/koreader.html</loc>
     <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/koreader-epub-links.html</loc>
+    <lastmod>2025-11-18T15:30:52+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/koreaderplugindev.html</loc>
+    <lastmod>2025-11-18T15:30:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
@@ -235,6 +275,11 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://kindlemodshelf.me/othercoolstuff.html</loc>
+    <lastmod>2025-11-18T15:30:52+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://kindlemodshelf.me/pageheader.html</loc>
     <lastmod>2025-10-16T23:49:01+00:00</lastmod>
     <priority>0.80</priority>
@@ -267,6 +312,11 @@
   <url>
     <loc>https://kindlemodshelf.me/screencontrol.html</loc>
     <lastmod>2025-10-16T23:49:01+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/screenshot-gallery-examples.html</loc>
+    <lastmod>2025-11-18T15:30:52+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
