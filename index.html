@@ -109,6 +109,7 @@
             <button class="filter-chip" data-category="media" type="button">Media &amp; Audio</button>
             <button class="filter-chip" data-category="drawing" type="button">Drawing Tools</button>
             <button class="filter-chip" data-category="tools" type="button">Utility Tools</button>
+            <button class="filter-chip" data-category="converters" type="button">Converters</button>
             <button class="filter-chip" data-category="dev" type="button">Development</button>
             <button class="filter-chip" data-category="guides" type="button">Guides</button>
           </div>
@@ -837,6 +838,38 @@
           <a href="alpine.html">More</a>
         </div>
     </div>
+
+      <div class="card" data-tags="tailscale vpn network ssh remote tool kual">
+        <div class="card-header">
+          <div class="card-title">Tailscale VPN for Kindle</div>
+          <div class="card-tags"><span class="tag">Tool</span></div>
+        </div>
+        <div class="card-desc">
+        KUAL Tailscale VPN Extension. Connect your jailbroken Kindle to your Tailscale network for secure SSH access and remote management.
+      </div>
+        <div class="card-links">
+          <a href="https://github.com/mitanshu7/tailscale_kual/releases" class="card-download" target="_blank" rel="noopener">Download</a>
+          <a href="tailscale.html">More</a>
+        </div>
+    </div>
+    </div>
+
+    <!-- CONVERTERS -->
+    <div class="section-title">Converters</div>
+    <div class="card-grid">
+      <div class="card" data-tags="k2pdfopt pdf djvu converter optimizer tool">
+        <div class="card-header">
+          <div class="card-title">K2pdfopt</div>
+          <div class="card-tags"><span class="tag">Converter</span></div>
+        </div>
+        <div class="card-desc">
+        K2pdfopt is a widely-used tool that optimizes PDF and DJVU files for reading on Kindle devices. It adjusts document layout and formatting to make them more readable on smaller screens.
+      </div>
+        <div class="card-links">
+          <a href="https://www.willus.com/k2pdfopt/download/" class="card-download" target="_blank" rel="noopener">Download</a>
+          <a href="k2pdfopt.html">More</a>
+        </div>
+    </div>
     </div>
 
     <!-- DEVELOPMENT -->
@@ -1121,6 +1154,7 @@ let activeCategory = 'all';
       media: (_, tagTokens) => tagTokens.some(token => ['media', 'audio', 'player', 'mp3', 'wav', 'flac'].includes(token)),
       drawing: (_, tagTokens) => tagTokens.some(token => ['drawing', 'paint', 'kpaint', 'sketch'].includes(token)),
       tools: (primaryTags, tagTokens) => primaryTags.includes('Tool') || tagTokens.includes('tool'),
+      converters: (primaryTags, tagTokens) => primaryTags.includes('Converter') || tagTokens.includes('converter'),
       dev: (primaryTags, tagTokens) => primaryTags.includes('Dev') || tagTokens.includes('dev'),
       guides: (primaryTags, tagTokens) => primaryTags.includes('Guide') || tagTokens.includes('guide')
     };
