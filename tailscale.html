@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tailscale VPN for Kindle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="KUAL Tailscale VPN Extension for Kindle. Connect your jailbroken Kindle to your Tailscale network for secure SSH access and remote management.">
+  <link rel="canonical" href="https://kindlemodshelf.me/tailscale.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Tailscale VPN for Kindle">
+  <meta property="og:description" content="KUAL Tailscale VPN Extension for Kindle. Connect your Kindle to your Tailscale network for secure remote access.">
+  <meta property="og:url" content="https://kindlemodshelf.me/tailscale.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Tailscale VPN for Kindle",
+    "operatingSystem": "Kindle OS (jailbroken)",
+    "applicationCategory": "Utility",
+    "description": "KUAL Tailscale VPN Extension for connecting Kindle devices to Tailscale networks for secure remote access.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://kindlemodshelf.me/tailscale.html"
+  }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <script src="theme-toggle.js"></script>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
+    <h1>Tailscale VPN for Kindle</h1>
+
+    <div class="summary">
+      <p><b>KUAL Tailscale VPN Extension</b> allows you to connect your jailbroken Kindle to your Tailscale network, enabling secure SSH access and remote management.</p>
+    </div>
+
+    <h2 class="section-title">Download</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><a href="https://github.com/mitanshu7/tailscale_kual/releases" target="_blank" rel="noopener">Download Tailscale KUAL Extension</a></li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Requirements</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><a href="kual.html">KUAL (Kindle Unified Application Launcher)</a></li>
+        <li><a href="https://www.mobileread.com/forums/showthread.php?t=225030" target="_blank" rel="noopener">USBNetwork Hack</a> installed and enabled</li>
+        <li>Set up SSH keys for ease of use</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Installation</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>Download the repository from the link above.</li>
+        <li>Get the latest tailscale binaries for the ARM architecture from <a href="https://pkgs.tailscale.com/stable/#static" target="_blank" rel="noopener">Tailscale's official package repository</a>. Or see the releases page for a version that worked for the developer.</li>
+        <li>Place the <code>tailscale</code> and <code>tailscaled</code> binaries in the <code>tailscale/bin/</code> folder of the downloaded repository.</li>
+        <li>Fill the empty <code>auth.key</code> file in the <code>tailscale/bin/</code> folder with your <a href="https://tailscale.com/kb/1085/auth-keys" target="_blank" rel="noopener">Tailscale Auth Key</a> to login.</li>
+        <li>Place the <code>tailscale</code> folder (not the <code>tailscale_kual</code> folder) into the <code>extensions</code> folder on your Kindle.</li>
+        <li>In the KUAL menu, start <b>tailscaled</b> first, wait for about 10 seconds, then start <b>tailscale</b>.</li>
+        <li>After this, Tailscale should add the Kindle to your <a href="https://login.tailscale.com/admin/machines" target="_blank" rel="noopener">Machines page</a> on <a href="https://login.tailscale.com/welcome" target="_blank" rel="noopener">Tailscale admin console</a>.</li>
+        <li>Now you can see the (fairly static) IP address assigned by Tailscale for your Kindle. You can use this IP to SSH: <code>ssh root@&lt;kindle-ip&gt;</code></li>
+      </ol>
+      <p><b>Note:</b> Make sure the Kindle screen is on, else the Kindle sleeps the WiFi. You also cannot connect to Kindle via SSH when it is connected to PC using the cable.</p>
+      <p><b>To reset:</b> In case you want to restart fresh, remove Kindle from Tailscale admin console, stop Tailscale and tailscaled in KUAL, and delete the logs and new files created in <code>/extensions/tailscale/bin</code>. This will reset the state of Tailscale on your Kindle.</p>
+    </div>
+
+    <h2 class="section-title">Links</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><a href="https://github.com/mitanshu7/tailscale_kual?tab=readme-ov-file" target="_blank" rel="noopener">Full guide on GitHub</a></li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Credits</h2>
+    <div class="card card-desc">
+      <p>Developed by <b><a href="https://github.com/mitanshu7" target="_blank" rel="noopener">mitanshu7</a></b>.</p>
+    </div>
+  </div>
+    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
+</body>
+</html>
