@@ -3,1045 +3,569 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Absolute Legends</title>
+  <title>Absolute Legends - KindleModShelf Honor Roll</title>
   <link rel="canonical" href="https://kindlemodshelf.me/absolute-legends.html">
   <style>
     :root {
-      --hyper-purple: #7f00ff;
-      --neon-pink: #ff00d4;
-      --laser-cyan: #00fff0;
-      --galaxy-gold: #ffd700;
-      --deep-space: #020015;
-      --void: #050116;
+      --gold: #d4af37;
+      --gold-light: #f4d467;
+      --gold-dark: #b8941f;
+      --cream: #fef9f0;
+      --warm-white: #fffbf5;
+      --deep-navy: #1a2332;
+      --soft-navy: #2a3849;
+      --text-dark: #2c2c2c;
+      --text-medium: #5a5a5a;
+      --accent-blue: #4a90e2;
+      --accent-pink: #e85d9f;
+      --accent-cyan: #5ec4cd;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html, body {
       height: 100%;
-      margin: 0;
-      font-family: 'Orbitron', 'Montserrat', 'Segoe UI', sans-serif;
-      color: white;
-      overflow-x: hidden;
-      background: radial-gradient(circle at 10% 20%, rgba(255, 0, 212, 0.4), transparent 28%),
-                  radial-gradient(circle at 90% 80%, rgba(0, 255, 240, 0.35), transparent 35%),
-                  linear-gradient(135deg, #01000f 0%, #0c0030 25%, #050018 55%, #1a0045 100%);
-      position: relative;
-      animation: cosmicShift 22s linear infinite alternate;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: var(--text-dark);
+      background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
+      line-height: 1.6;
     }
 
-    body::before,
-    body::after {
+    body::before {
       content: "";
       position: fixed;
-      inset: -35vmax;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08), transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(74, 144, 226, 0.05), transparent 50%);
       pointer-events: none;
-      background: conic-gradient(from 65deg, rgba(127, 0, 255, 0.14), rgba(0, 255, 240, 0.05), rgba(255, 215, 0, 0.2), rgba(255, 0, 212, 0.08));
-      filter: blur(130px);
-      mix-blend-mode: screen;
-      animation: auroraSpin 40s linear infinite;
+      z-index: 0;
     }
 
-    body::after {
-      animation-duration: 55s;
-      animation-direction: reverse;
-      opacity: 0.55;
-    }
-
-    .starfield {
+    /* Subtle decorative pattern */
+    .page-pattern {
       position: fixed;
       inset: 0;
-      pointer-events: none;
+      opacity: 0.03;
       background-image:
-        radial-gradient(1px 1px at 8% 18%, rgba(255,255,255,0.85), transparent),
-        radial-gradient(2px 2px at 78% 16%, rgba(127,0,255,0.9), transparent),
-        radial-gradient(1px 1px at 52% 74%, rgba(0,255,240,0.65), transparent),
-        radial-gradient(1px 1px at 26% 44%, rgba(255,255,255,0.75), transparent),
-        radial-gradient(1px 1px at 94% 58%, rgba(255,255,255,0.55), transparent),
-        radial-gradient(1px 2px at 35% 82%, rgba(255,215,0,0.75), transparent);
-      animation: twinkle 5s linear infinite alternate;
-      opacity: 0.7;
-    }
-
-    .cosmic-grid {
-      position: fixed;
-      inset: 0;
+        repeating-linear-gradient(45deg, transparent, transparent 10px, var(--gold) 10px, var(--gold) 11px);
       pointer-events: none;
-      background-image:
-        repeating-linear-gradient(90deg, rgba(0, 255, 240, 0.04) 0, rgba(0, 255, 240, 0.04) 1px, transparent 1px, transparent 90px),
-        repeating-linear-gradient(0deg, rgba(127, 0, 255, 0.06) 0, rgba(127, 0, 255, 0.06) 1px, transparent 1px, transparent 90px);
-      mix-blend-mode: screen;
-      mask-image: radial-gradient(circle at center, rgba(0,0,0,0.92) 40%, transparent 85%);
-      animation: gridPulse 14s ease-in-out infinite;
+      z-index: 0;
     }
-
-    .meteor-shower {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .meteor-shower span {
-      --len: 120px;
-      position: absolute;
-      top: -20vh;
-      width: 3px;
-      height: var(--len);
-      border-radius: 20px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(0,255,240,0.75));
-      filter: drop-shadow(0 0 10px rgba(0,255,240,0.65));
-      animation: meteorFall 9s linear infinite;
-    }
-
-    .meteor-shower span:nth-child(1) { left: 10%; animation-delay: -1s; animation-duration: 8s; }
-    .meteor-shower span:nth-child(2) { left: 28%; animation-delay: -4s; --len: 160px; }
-    .meteor-shower span:nth-child(3) { left: 55%; animation-delay: -6s; animation-duration: 7s; }
-    .meteor-shower span:nth-child(4) { left: 72%; animation-delay: -2.5s; --len: 190px; }
-    .meteor-shower span:nth-child(5) { left: 88%; animation-delay: -5.5s; animation-duration: 6.5s; }
-    .meteor-shower span:nth-child(6) { left: 40%; animation-delay: -7.2s; }
-    .meteor-shower span:nth-child(7) { left: 64%; animation-delay: -3.6s; --len: 140px; }
 
     main {
       position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 7vmin 5vmin 10vmin;
-      gap: 5vmin;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
     }
 
-    .galactic-banner {
+    /* Header Section */
+    .header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 2px solid var(--gold);
+      position: relative;
+    }
+
+    .header::after {
+      content: "✦";
       position: absolute;
-      top: 8vmin;
+      bottom: -0.9rem;
       left: 50%;
       transform: translateX(-50%);
-      display: flex;
-      gap: 5rem;
-      width: 140%;
-      overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%);
-      font-size: clamp(1rem, 2.2vw, 1.6rem);
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
+      background: var(--cream);
+      padding: 0 1rem;
+      color: var(--gold);
+      font-size: 1.5rem;
     }
 
-    .galactic-banner span {
-      flex-shrink: 0;
-      white-space: nowrap;
-      animation: bannerScroll 18s linear infinite;
-      text-shadow:
-        0 0 12px rgba(0, 255, 240, 0.45),
-        0 0 30px rgba(127, 0, 255, 0.3);
+    .page-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--gold-dark);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 0 rgba(212, 175, 55, 0.1);
     }
 
-    .galactic-banner span:nth-child(2) {
-      animation-delay: -9s;
+    .page-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--text-medium);
+      font-style: italic;
+      letter-spacing: 0.03em;
     }
 
-    .quantum-flare {
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      width: 70vmin;
-      height: 70vmin;
-      background: radial-gradient(circle, rgba(0,255,240,0.28) 0%, rgba(127,0,255,0.08) 40%, transparent 70%);
-      filter: blur(70px);
-      transform: translate(-50%, -50%);
-      mix-blend-mode: screen;
-      animation: flarePulse 6s ease-in-out infinite alternate;
-      pointer-events: none;
+    .intro-text {
+      max-width: 700px;
+      margin: 2rem auto 0;
+      font-size: 1.1rem;
+      color: var(--text-medium);
+      line-height: 1.8;
     }
 
-    .portal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: min(70vmin, 540px);
-      height: min(70vmin, 540px);
-      transform: translate(-50%, -55%);
-      display: grid;
-      place-items: center;
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-
-    .portal-core {
-      width: 60%;
-      height: 60%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,215,0,0.5) 0%, rgba(127,0,255,0.3) 40%, rgba(0,0,0,0) 70%);
-      filter: blur(25px);
-      animation: portalPulse 5s ease-in-out infinite;
-    }
-
-    .portal-ring,
-    .portal-ring--secondary {
-      position: absolute;
-      border-radius: 50%;
-      border: 6px solid transparent;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(0,255,240,0.1) 10%, rgba(255,0,212,0.18) 45%, transparent 60%);
-      box-shadow:
-        0 0 40px rgba(0, 255, 240, 0.35),
-        inset 0 0 35px rgba(127, 0, 255, 0.25);
-      animation: portalSpin 16s linear infinite;
-    }
-
-    .portal-ring--secondary {
-      width: 78%;
-      height: 78%;
-      animation-duration: 10s;
-      animation-direction: reverse;
-      opacity: 0.65;
-    }
-
-    h1 {
-      margin: 0;
-    }
-
-    .glitch-title {
-      position: relative;
-      font-size: clamp(4rem, 8vw, 8.5rem);
-      text-transform: uppercase;
-      letter-spacing: 0.55rem;
-      color: rgba(255, 255, 255, 0.85);
-      text-shadow:
-        0 0 18px rgba(0, 255, 240, 0.6),
-        0 0 45px rgba(127, 0, 255, 0.5),
-        0 0 90px rgba(255, 0, 212, 0.45);
-      mix-blend-mode: lighten;
-      animation: legendVibe 6s ease-in-out infinite alternate;
-    }
-
-    .glitch-title::before,
-    .glitch-title::after {
-      content: attr(data-text);
-      position: absolute;
-      inset: 0;
-      mix-blend-mode: screen;
-      opacity: 0.6;
-    }
-
-    .glitch-title::before {
-      color: var(--laser-cyan);
-      transform: translate(-6px, -4px);
-      animation: glitchShift 3s infinite;
-    }
-
-    .glitch-title::after {
-      color: var(--neon-pink);
-      transform: translate(5px, 3px);
-      animation: glitchShift 3.6s infinite reverse;
-    }
-
-    .subtitle {
-      display: inline-flex;
-      align-items: center;
-      gap: 1.1rem;
-      padding: 1rem 2.5rem;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.25);
-      border: 2px solid rgba(255, 255, 255, 0.18);
-      box-shadow:
-        0 0 40px rgba(127, 0, 255, 0.35),
-        inset 0 0 45px rgba(0, 255, 240, 0.2);
-      font-size: clamp(1rem, 2.5vw, 1.7rem);
-      text-transform: uppercase;
-      letter-spacing: 0.35rem;
-      animation: badgePulse 3.5s ease-in-out infinite;
-    }
-
-    .subtitle::before,
-    .subtitle::after {
-      content: "✶";
-      font-size: 1.6em;
-      color: var(--galaxy-gold);
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
-      animation: sparkle 2s infinite ease-in-out alternate;
-    }
-
+    /* Legend Cards */
     .legend-card {
-      position: relative;
-      max-width: min(880px, 92vw);
-      padding: clamp(2.4rem, 5.5vw, 4.4rem);
-      border-radius: 48px;
-      background: linear-gradient(130deg, rgba(8,0,35,0.82), rgba(8,0,60,0.68));
-      border: 3px solid transparent;
-      background-image:
-        linear-gradient(rgba(8,0,35,0.92), rgba(8,0,35,0.65)),
-        linear-gradient(140deg, rgba(0, 255, 240, 0.7), rgba(127, 0, 255, 0.45), rgba(255, 215, 0, 0.55));
-      background-origin: border-box;
-      background-clip: content-box, border-box;
+      background: white;
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 3rem;
       box-shadow:
-        0 45px 110px rgba(0, 0, 0, 0.8),
-        0 0 140px rgba(0, 255, 240, 0.35),
-        inset 0 0 80px rgba(127, 0, 255, 0.4);
-      overflow: visible;
-      transform: perspective(1300px) rotateX(6deg);
-      transform-style: preserve-3d;
-      backdrop-filter: blur(14px);
-      animation: hoverFloat 7s ease-in-out infinite alternate;
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(212, 175, 55, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .legend-card:hover {
-      animation-play-state: paused;
-      transform: perspective(1200px) rotateX(2deg) translateY(-10px);
-    }
-
-    .legend-card--kurizu {
-      background-image:
-        linear-gradient(rgba(8,0,25,0.95), rgba(12,0,40,0.7)),
-        linear-gradient(150deg, rgba(255, 105, 180, 0.75), rgba(0, 255, 240, 0.55), rgba(255, 215, 0, 0.65));
+      transform: translateY(-4px);
       box-shadow:
-        0 65px 140px rgba(10, 0, 30, 0.92),
-        0 0 180px rgba(255, 105, 180, 0.45),
-        inset 0 0 110px rgba(0, 255, 240, 0.4);
-      animation-duration: 9s;
+        0 8px 30px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(212, 175, 55, 0.4);
     }
 
-    .legend-card--kurizu .legend-sigil--one,
-    .legend-card--kurizu .legend-sigil--two {
-      background: linear-gradient(135deg, rgba(255,105,180,0.6), rgba(0,255,240,0.55));
-      opacity: 0.55;
-    }
-
-    .legend-card--kurizu .legend-name {
-      color: rgba(255, 255, 255, 0.95);
-      text-shadow:
-        0 0 35px rgba(255, 105, 180, 0.9),
-        0 18px 48px rgba(0, 0, 0, 0.85),
-        0 -16px 35px rgba(0, 255, 240, 0.6);
-    }
-
-    .legend-card--kurizu .legend-name::after {
-      content: "💎";
-      top: -1.6rem;
-      right: -4.2rem;
-      filter: drop-shadow(0 0 22px rgba(255, 105, 180, 0.8));
-    }
-
-    .legend-card--kurizu .legend-name.glitch span:nth-child(1) {
-      color: rgba(255, 105, 180, 0.85);
-    }
-
-    .legend-card--kurizu .legend-name.glitch span:nth-child(2) {
-      color: rgba(0, 255, 240, 0.85);
-    }
-
-    .legend-card--kurizu .legend-description strong {
-      color: rgba(255, 105, 180, 0.95);
-      text-shadow: 0 0 18px rgba(255, 105, 180, 0.9);
-    }
-
-    .legend-card--lpa {
-      background-image:
-        linear-gradient(rgba(4, 10, 45, 0.94), rgba(5, 8, 24, 0.78)),
-        linear-gradient(160deg, rgba(0, 255, 166, 0.7), rgba(0, 120, 255, 0.55), rgba(255, 215, 0, 0.55));
-      box-shadow:
-        0 70px 150px rgba(0, 12, 35, 0.95),
-        0 0 180px rgba(0, 255, 166, 0.45),
-        inset 0 0 110px rgba(0, 120, 255, 0.45);
-      animation-duration: 8s;
-    }
-
-    .legend-card--lpa .legend-sigil--one,
-    .legend-card--lpa .legend-sigil--two {
-      background: linear-gradient(135deg, rgba(0, 255, 166, 0.55), rgba(0, 120, 255, 0.5));
-      opacity: 0.5;
-    }
-
-    .legend-card--lpa .legend-name {
-      color: rgba(255, 255, 255, 0.92);
-      text-shadow:
-        0 0 35px rgba(0, 255, 166, 0.85),
-        0 18px 48px rgba(0, 0, 0, 0.8),
-        0 -16px 35px rgba(0, 120, 255, 0.6);
-    }
-
-    .legend-card--lpa .legend-name::after {
-      content: "✈";
-      top: -1.4rem;
-      right: -3.6rem;
-      filter: drop-shadow(0 0 22px rgba(0, 255, 207, 0.8));
-    }
-
-    .legend-card--lpa .legend-name.glitch span:nth-child(1) {
-      color: rgba(0, 255, 166, 0.85);
-    }
-
-    .legend-card--lpa .legend-name.glitch span:nth-child(2) {
-      color: rgba(0, 120, 255, 0.85);
-    }
-
-    .legend-card--lpa .legend-name.glitch span:nth-child(3) {
-      color: rgba(255, 255, 255, 0.95);
-    }
-
-    .legend-card--lpa .legend-description strong {
-      color: rgba(0, 255, 207, 0.95);
-      text-shadow: 0 0 18px rgba(0, 255, 207, 0.85);
-    }
-
-    .legend-card::before {
-      content: "";
-      position: absolute;
-      inset: 2rem;
-      border-radius: 35px;
-      background: linear-gradient(135deg, rgba(0, 255, 240, 0.15), rgba(127, 0, 255, 0.12), rgba(255, 215, 0, 0.15));
-      opacity: 0.4;
-      filter: blur(45px);
-    }
-
+    /* Decorative corner accents */
+    .legend-card::before,
     .legend-card::after {
       content: "";
       position: absolute;
-      inset: -120px;
-      background: conic-gradient(from 120deg, rgba(0,255,240,0.15), rgba(255,0,212,0.12), rgba(255,215,0,0.18), transparent 70%);
-      animation: haloSpin 24s linear infinite;
-      mix-blend-mode: screen;
-      opacity: 0.5;
+      width: 60px;
+      height: 60px;
+      border: 2px solid var(--gold);
+      opacity: 0.3;
     }
 
-    .legend-aurora {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 20% 20%, rgba(0, 255, 240, 0.22), transparent 55%),
-                  radial-gradient(circle at 80% 35%, rgba(255, 0, 212, 0.18), transparent 60%);
-      mix-blend-mode: screen;
-      opacity: 0.8;
-      animation: auroraDrift 10s ease-in-out infinite alternate;
+    .legend-card::before {
+      top: 0;
+      left: 0;
+      border-right: none;
+      border-bottom: none;
+      border-top-left-radius: 16px;
     }
 
-    .plasma-cloud {
+    .legend-card::after {
+      bottom: 0;
+      right: 0;
+      border-left: none;
+      border-top: none;
+      border-bottom-right-radius: 16px;
+    }
+
+    /* Subtle shine effect */
+    .legend-card .shine {
       position: absolute;
-      inset: -30%;
-      background: radial-gradient(circle, rgba(127,0,255,0.12) 15%, transparent 70%);
-      filter: blur(70px);
-      animation: plasmaDrift 15s ease-in-out infinite alternate;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%
+      );
+      transform: translateX(-100%) translateY(-100%);
+      transition: transform 0.8s ease;
       pointer-events: none;
     }
 
-    .orbit-ring {
-      position: absolute;
-      inset: 12%;
-      border-radius: 50%;
-      border: 4px dashed rgba(0, 255, 240, 0.25);
-      animation: orbitPulse 10s linear infinite alternate;
+    .legend-card:hover .shine {
+      transform: translateX(100%) translateY(100%);
     }
 
-    .legend-sigil {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(0,255,240,0.55), rgba(127,0,255,0.45));
-      opacity: 0.4;
-      filter: blur(8px);
-      animation: sigilFloat 8s ease-in-out infinite alternate;
+    .legend-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
     }
 
-    .legend-sigil--one {
-      top: 15%;
-      left: -4%;
+    .legend-medal {
+      font-size: 3rem;
+      flex-shrink: 0;
+      filter: drop-shadow(2px 2px 4px rgba(212, 175, 55, 0.3));
     }
 
-    .legend-sigil--two {
-      bottom: 10%;
-      right: -3%;
-      animation-direction: reverse;
+    .legend-title-group {
+      flex: 1;
     }
 
-    .legend-title {
-      position: relative;
-      font-size: clamp(1.4rem, 3.2vw, 2rem);
-      letter-spacing: 0.45em;
+    .legend-badge {
+      display: inline-block;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.75);
-      margin-bottom: 2.5rem;
-      text-shadow: 0 0 12px rgba(0, 255, 240, 0.5);
-    }
-
-    .legend-title::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -1.2rem;
-      width: 160px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 240, 0.8), transparent);
-      transform: translateX(-50%);
-      animation: beamBlink 2.5s linear infinite;
+      letter-spacing: 0.1em;
+      color: var(--gold-dark);
+      background: rgba(212, 175, 55, 0.15);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      font-family: 'Arial', sans-serif;
+      font-weight: 600;
     }
 
     .legend-name {
-      position: relative;
-      font-size: clamp(3.1rem, 5.8vw, 5.4rem);
-      margin: 0 0 1.5rem;
-      color: var(--galaxy-gold);
-      text-transform: uppercase;
-      letter-spacing: 0.32em;
-      text-shadow:
-        0 0 25px rgba(255, 215, 0, 0.9),
-        0 18px 40px rgba(0, 0, 0, 0.85),
-        0 -10px 35px rgba(127, 0, 255, 0.45);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.85rem 3rem;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 215, 0, 0.4);
-      animation: legendRamp 5.5s ease-in-out infinite alternate;
-      white-space: nowrap;
-      overflow: visible;
-      max-width: 100%;
-    }
-
-    .legend-name.glitch span {
-      display: block;
-      position: absolute;
-      inset: 0;
-    }
-
-    .legend-name.glitch span:nth-child(1) {
-      animation: nameGlitchTop 2.6s infinite;
-      color: var(--laser-cyan);
-      opacity: 0.7;
-      mix-blend-mode: screen;
-    }
-
-    .legend-name.glitch span:nth-child(2) {
-      animation: nameGlitchBottom 2.1s infinite;
-      color: var(--neon-pink);
-      opacity: 0.7;
-      mix-blend-mode: screen;
-    }
-
-    .legend-name.glitch span:nth-child(3) {
-      position: relative;
-      color: var(--galaxy-gold);
-    }
-
-    .legend-name::after {
-      content: "🚀";
-      position: absolute;
-      top: -1.2rem;
-      right: -3.4rem;
-      font-size: 2.3rem;
-      filter: drop-shadow(0 0 18px rgba(0, 255, 240, 0.8));
-      animation: rocketZoom 1.9s ease-in-out infinite;
-    }
-
-    .legend-description {
-      font-size: clamp(1.2rem, 2.6vw, 1.65rem);
-      line-height: 1.95;
-      color: rgba(255, 255, 255, 0.96);
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-      margin: 0;
-    }
-
-    .legend-description strong {
-      color: var(--laser-cyan);
-      text-shadow: 0 0 14px rgba(0, 255, 240, 0.95);
-    }
-
-    .quote {
-      margin-top: 3.3rem;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-style: italic;
-      letter-spacing: 0.12em;
-      color: rgba(255, 255, 255, 0.9);
-      position: relative;
-    }
-
-    .quote::before,
-    .quote::after {
-      content: "“";
-      position: absolute;
-      font-size: 7rem;
-      color: rgba(255, 255, 255, 0.14);
-    }
-
-    .quote::before {
-      top: -3.5rem;
-      left: -2.2rem;
-    }
-
-    .quote::after {
-      content: "”";
-      bottom: -3.5rem;
-      right: -2.2rem;
-    }
-
-    .legend-footer {
-      display: inline-flex;
-      align-items: center;
-      gap: 1.3rem;
-      padding: 1.1rem 2.6rem;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 0 28px rgba(255, 0, 212, 0.35);
-      font-size: clamp(1rem, 2.3vw, 1.3rem);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      margin-top: 2.8rem;
-      animation: footerFlash 4s ease-in-out infinite;
-    }
-
-    .legend-footer span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      white-space: nowrap;
-    }
-
-    .legend-footer span::before {
-      content: "⚡";
-      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
-    }
-
-    .legend-footer.legend-footer--aurora {
-      background: rgba(255, 105, 180, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      box-shadow:
-        0 0 25px rgba(255, 105, 180, 0.5),
-        0 0 45px rgba(0, 255, 240, 0.45);
-      animation-duration: 3s;
-    }
-
-    .legend-footer.legend-footer--aurora span::before {
-      content: "✨";
-    }
-
-    .legend-donation {
-      margin-top: 2.4rem;
-      padding: 1.4rem 2rem;
-      border-radius: 1.6rem;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 105, 180, 0.45);
-      display: inline-flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      color: rgba(255, 255, 255, 0.92);
-      font-size: clamp(1rem, 2.2vw, 1.3rem);
-      letter-spacing: 0.08em;
-      box-shadow: 0 0 28px rgba(255, 105, 180, 0.35);
-    }
-
-    .legend-donation a {
-      color: rgba(0, 255, 240, 0.95);
-      text-decoration: none;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--deep-navy);
       font-weight: 700;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 16px rgba(0, 255, 240, 0.65);
-    }
-
-    .legend-donation a:hover,
-    .legend-donation a:focus {
-      text-shadow: 0 0 24px rgba(0, 255, 240, 0.9);
-    }
-
-    .constellation-trail {
-      position: absolute;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,105,180,0.35) 45%, transparent 70%);
-      filter: blur(26px);
-      pointer-events: none;
-      animation: constellationDrift 12s linear infinite;
-      opacity: 0.65;
-    }
-
-    .constellation-trail--one { width: 45%; height: 18%; top: -6%; left: 18%; animation-delay: -3s; }
-    .constellation-trail--two { width: 55%; height: 20%; bottom: -8%; right: 12%; animation-delay: -6s; }
-
-    @keyframes constellationDrift {
-      0% { transform: translate3d(0,0,0) scale(1); opacity: 0.5; }
-      50% { transform: translate3d(12px, -18px, 0) scale(1.08); opacity: 0.9; }
-      100% { transform: translate3d(-10px, 16px, 0) scale(0.98); opacity: 0.55; }
-    }
-
-    .stellar-radiance {
-      position: relative;
-      margin-top: 4rem;
-      padding: 2rem 3rem;
-      border-radius: 2rem;
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(0, 255, 240, 0.25);
-      text-transform: uppercase;
-      letter-spacing: 0.35em;
-      font-size: clamp(1rem, 2.1vw, 1.3rem);
-      color: rgba(255, 255, 255, 0.85);
-      overflow: hidden;
-    }
-
-    .stellar-radiance p {
       margin: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .legend-content {
       position: relative;
       z-index: 1;
     }
 
-    .radiance-ring {
+    .legend-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .legend-description strong {
+      color: var(--gold-dark);
+      font-weight: 700;
+    }
+
+    .legend-description em {
+      font-style: italic;
+      color: var(--text-medium);
+    }
+
+    .legend-quote {
+      margin-top: 2rem;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(74, 144, 226, 0.05));
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: var(--text-medium);
+      position: relative;
+    }
+
+    .legend-quote::before {
+      content: """;
+      font-size: 3rem;
+      color: var(--gold);
+      opacity: 0.3;
       position: absolute;
-      border-radius: 50%;
-      border: 2px solid rgba(0, 255, 240, 0.2);
-      box-shadow: 0 0 25px rgba(0, 255, 240, 0.32);
-      animation: radiancePulse 11s ease-in-out infinite;
-      pointer-events: none;
+      top: 0.5rem;
+      left: 0.5rem;
+      font-family: Georgia, serif;
     }
 
-    .radiance-ring--one { width: 140%; height: 140%; top: -20%; left: -20%; }
-    .radiance-ring--two { width: 180%; height: 180%; top: -40%; left: -40%; animation-delay: -4s; }
-    .radiance-ring--three { width: 115%; height: 115%; top: -7%; left: -7%; animation-delay: -7s; }
-
-    @keyframes cosmicShift {
-      0% { background-position: 0% 50%, 100% 50%, 0% 0%; }
-      50% { background-position: 50% 100%, 0% 50%, 60% 40%; }
-      100% { background-position: 100% 50%, 50% 0%, 100% 100%; }
+    .legend-footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-medium);
     }
 
-    @keyframes auroraSpin {
-      to { transform: rotate(360deg); }
+    .legend-footer-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    @keyframes twinkle {
-      0% { transform: translate3d(0,0,0) scale(1); opacity: 0.4; }
-      50% { transform: translate3d(-3px, -4px, 0) scale(1.1); opacity: 0.78; }
-      100% { transform: translate3d(3px, 4px, 0) scale(1); opacity: 0.52; }
+    .legend-footer-item::before {
+      content: "★";
+      color: var(--gold);
     }
 
-    @keyframes gridPulse {
-      0% { transform: scale(1) rotate(0deg); opacity: 0.42; }
-      50% { transform: scale(1.04) rotate(0.35deg); opacity: 0.7; }
-      100% { transform: scale(1) rotate(-0.35deg); opacity: 0.42; }
+    /* Special styling for Kurizu card */
+    .legend-card--kurizu {
+      box-shadow:
+        0 4px 20px rgba(232, 93, 159, 0.12),
+        0 0 0 1px rgba(232, 93, 159, 0.25);
     }
 
-    @keyframes meteorFall {
-      0% { transform: translateY(0) translateX(0); opacity: 0; }
-      10% { opacity: 1; }
-      100% { transform: translateY(120vh) translateX(-40vw); opacity: 0; }
+    .legend-card--kurizu::before,
+    .legend-card--kurizu::after {
+      border-color: var(--accent-pink);
     }
 
-    @keyframes bannerScroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+    .legend-card--kurizu .legend-badge {
+      background: rgba(232, 93, 159, 0.15);
+      color: #c44d83;
     }
 
-    @keyframes flarePulse {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-      50% { transform: translate(-48%, -52%) scale(1.15); opacity: 0.85; }
-      100% { transform: translate(-50%, -50%) scale(1.02); opacity: 0.7; }
+    .legend-card--kurizu .legend-quote {
+      background: linear-gradient(135deg, rgba(232, 93, 159, 0.08), rgba(94, 196, 205, 0.05));
+      border-left-color: var(--accent-pink);
     }
 
-    @keyframes portalPulse {
-      0% { transform: scale(0.9); opacity: 0.6; }
-      50% { transform: scale(1.05); opacity: 0.95; }
-      100% { transform: scale(1); opacity: 0.7; }
+    /* Special styling for LPA card */
+    .legend-card--lpa {
+      box-shadow:
+        0 4px 20px rgba(74, 144, 226, 0.12),
+        0 0 0 1px rgba(74, 144, 226, 0.25);
     }
 
-    @keyframes portalSpin {
-      to { transform: rotate(360deg); }
+    .legend-card--lpa::before,
+    .legend-card--lpa::after {
+      border-color: var(--accent-blue);
     }
 
-    @keyframes legendVibe {
-      0% { transform: scale(1) translateY(0); }
-      50% { transform: scale(1.03) translateY(-8px); }
-      100% { transform: scale(1) translateY(0); }
+    .legend-card--lpa .legend-badge {
+      background: rgba(74, 144, 226, 0.15);
+      color: #3670b8;
     }
 
-    @keyframes glitchShift {
-      0% { clip-path: inset(0 0 0 0); }
-      20% { clip-path: inset(10% 0 15% 0); }
-      40% { clip-path: inset(0 0 20% 0); }
-      60% { clip-path: inset(12% 0 0 0); }
-      80% { clip-path: inset(5% 0 25% 0); }
-      100% { clip-path: inset(0 0 0 0); }
+    .legend-card--lpa .legend-quote {
+      background: linear-gradient(135deg, rgba(74, 144, 226, 0.08), rgba(94, 196, 205, 0.05));
+      border-left-color: var(--accent-blue);
     }
 
-    @keyframes badgePulse {
-      0% { box-shadow: 0 0 40px rgba(127,0,255,0.3), inset 0 0 30px rgba(0,255,240,0.18); }
-      50% { box-shadow: 0 0 70px rgba(127,0,255,0.65), inset 0 0 55px rgba(0,255,240,0.25); }
-      100% { box-shadow: 0 0 40px rgba(127,0,255,0.3), inset 0 0 30px rgba(0,255,240,0.18); }
+    /* Donation box */
+    .legend-donation {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(232, 93, 159, 0.1), rgba(94, 196, 205, 0.1));
+      border: 2px solid rgba(232, 93, 159, 0.3);
+      border-radius: 12px;
+      text-align: center;
     }
 
-    @keyframes sparkle {
-      0% { transform: scale(1) rotate(0deg); opacity: 0.85; color: var(--neon-pink); }
-      100% { transform: scale(1.4) rotate(22deg); opacity: 1; color: var(--laser-cyan); }
+    .legend-donation-title {
+      font-weight: 700;
+      color: var(--deep-navy);
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
     }
 
-    @keyframes hoverFloat {
-      0% { transform: perspective(1300px) rotateX(6deg) translateY(0); }
-      50% { transform: perspective(1300px) rotateX(1deg) translateY(-16px); }
-      100% { transform: perspective(1300px) rotateX(6deg) translateY(0); }
+    .legend-donation-text {
+      color: var(--text-medium);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
     }
 
-    @keyframes haloSpin {
-      to { transform: rotate(360deg); }
+    .legend-donation-link {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(135deg, var(--accent-pink), #c44d83);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 12px rgba(232, 93, 159, 0.3);
     }
 
-    @keyframes auroraDrift {
-      0% { transform: translate(-3%, -4%) scale(1); }
-      50% { transform: translate(4%, 3%) scale(1.05); }
-      100% { transform: translate(-2%, 5%) scale(1); }
+    .legend-donation-link:hover,
+    .legend-donation-link:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(232, 93, 159, 0.4);
     }
 
-    @keyframes plasmaDrift {
-      0% { transform: translate(-5%, -5%) scale(1); opacity: 0.6; }
-      50% { transform: translate(4%, 6%) scale(1.25); opacity: 0.85; }
-      100% { transform: translate(-3%, -4%) scale(1.05); opacity: 0.65; }
+    /* Footer message */
+    .page-footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--gold);
+      position: relative;
     }
 
-    @keyframes orbitPulse {
-      0% { transform: scale(1); opacity: 0.45; border-color: rgba(0, 255, 240, 0.2); }
-      50% { transform: scale(1.08); opacity: 0.8; border-color: rgba(0, 255, 240, 0.45); }
-      100% { transform: scale(1); opacity: 0.45; border-color: rgba(0, 255, 240, 0.2); }
+    .page-footer::before {
+      content: "✦";
+      position: absolute;
+      top: -0.9rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--cream);
+      padding: 0 1rem;
+      color: var(--gold);
+      font-size: 1.5rem;
     }
 
-    @keyframes sigilFloat {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(6deg); }
-      100% { transform: translateY(0) rotate(-4deg); }
+    .page-footer p {
+      font-size: 1rem;
+      color: var(--text-medium);
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    @keyframes beamBlink {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.9; }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      main {
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      .legend-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .legend-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      .legend-footer {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .legend-quote {
+        padding: 1rem 1.5rem;
+      }
     }
 
-    @keyframes legendRamp {
-      0% { transform: translateZ(0) scale(1); }
-      50% { transform: translateZ(55px) scale(1.12); }
-      100% { transform: translateZ(0) scale(1); }
-    }
-
-    @keyframes nameGlitchTop {
-      0% { clip-path: inset(0 0 60% 0); transform: translate(-4px, -2px); }
-      20% { clip-path: inset(0 0 30% 0); transform: translate(4px, -4px); }
-      40% { clip-path: inset(0 0 70% 0); transform: translate(-3px, 1px); }
-      60% { clip-path: inset(0 0 40% 0); transform: translate(3px, -2px); }
-      80% { clip-path: inset(0 0 50% 0); transform: translate(-5px, 1px); }
-      100% { clip-path: inset(0 0 60% 0); transform: translate(0, 0); }
-    }
-
-    @keyframes nameGlitchBottom {
-      0% { clip-path: inset(60% 0 0 0); transform: translate(4px, 2px); }
-      20% { clip-path: inset(30% 0 0 0); transform: translate(-4px, 2px); }
-      40% { clip-path: inset(70% 0 0 0); transform: translate(3px, 0); }
-      60% { clip-path: inset(40% 0 0 0); transform: translate(-2px, 3px); }
-      80% { clip-path: inset(50% 0 0 0); transform: translate(5px, -1px); }
-      100% { clip-path: inset(60% 0 0 0); transform: translate(0, 0); }
-    }
-
-    @keyframes rocketZoom {
-      0% { transform: translateY(0) rotate(-12deg) scale(1); }
-      50% { transform: translateY(-18px) rotate(10deg) scale(1.15); }
-      100% { transform: translateY(0) rotate(-12deg) scale(1); }
-    }
-
-    @keyframes footerFlash {
-      0% { background: rgba(0,0,0,0.45); box-shadow: 0 0 25px rgba(255,0,212,0.3); }
-      50% { background: rgba(127,0,255,0.45); box-shadow: 0 0 45px rgba(0,255,240,0.45); }
-      100% { background: rgba(0,0,0,0.45); box-shadow: 0 0 25px rgba(255,0,212,0.3); }
-    }
-
-    @keyframes radiancePulse {
-      0% { transform: rotate(0deg) scale(1); opacity: 0.35; }
-      50% { transform: rotate(5deg) scale(1.1); opacity: 0.8; }
-      100% { transform: rotate(-5deg) scale(1); opacity: 0.35; }
-    }
-
-    body.legend-low-power {
-      background: #050017;
-      animation: none !important;
-    }
-
-    body.legend-low-power .starfield,
-    body.legend-low-power .cosmic-grid,
-    body.legend-low-power .meteor-shower,
-    body.legend-low-power .portal,
-    body.legend-low-power .quantum-flare,
-    body.legend-low-power .galactic-banner,
-    body.legend-low-power .legend-card,
-    body.legend-low-power .legend-card * {
-      animation: none !important;
-      transition: none !important;
-    }
-
-    body.legend-low-power .legend-card {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-      transform: none;
-    }
-
-    body.legend-low-power .legend-name {
-      text-shadow: 0 0 18px rgba(255, 215, 0, 0.6);
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    body.legend-low-power .legend-footer {
-      box-shadow: none;
-      background: rgba(0, 0, 0, 0.6);
-    }
-
-
+    /* Reduced motion support */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.001ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
-        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+      }
+
+      .legend-card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
       }
     }
   </style>
   <script src="theme-toggle.js"></script>
 </head>
 <body>
-  <div class="starfield" aria-hidden="true"></div>
-  <div class="cosmic-grid" aria-hidden="true"></div>
-  <div class="meteor-shower" aria-hidden="true">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+  <div class="page-pattern" aria-hidden="true"></div>
+
   <main>
-    <div class="galactic-banner" aria-hidden="true">
-      <span>Absolute Legends ✦ Hypernova Honor Roll ✦ MonkeyInPrivite Ascends ✦ Kurizu Constellation Keeper ✦ lot.polish.airlines Origin Navigator ✦</span>
-      <span>Absolute Legends ✦ Hypernova Honor Roll ✦ MonkeyInPrivite Ascends ✦ Kurizu Constellation Keeper ✦ lot.polish.airlines Origin Navigator ✦</span>
-    </div>
-    <div class="quantum-flare" aria-hidden="true"></div>
-    <div class="portal" aria-hidden="true">
-      <div class="portal-core"></div>
-      <div class="portal-ring"></div>
-      <div class="portal-ring portal-ring--secondary"></div>
-    </div>
-    <h1 class="glitch-title" data-text="Absolute Legends">Absolute Legends</h1>
-    <div class="subtitle">Hypergalactic Honor Roll</div>
-    <section class="legend-card">
-      <div class="plasma-cloud" aria-hidden="true"></div>
-      <div class="legend-aurora" aria-hidden="true"></div>
-      <div class="orbit-ring" aria-hidden="true"></div>
-      <div class="legend-sigil legend-sigil--one" aria-hidden="true"></div>
-      <div class="legend-sigil legend-sigil--two" aria-hidden="true"></div>
-      <div class="legend-title">First To The Pantheon</div>
-      <div class="legend-name glitch" data-text="MonkeyInPrivite">
-        <span aria-hidden="true">MonkeyInPrivite</span>
-        <span aria-hidden="true">MonkeyInPrivite</span>
-        <span>MonkeyInPrivite</span>
+    <header class="header">
+      <h1 class="page-title">Absolute Legends</h1>
+      <p class="page-subtitle">An Honor Roll of Extraordinary Contributors</p>
+      <div class="intro-text">
+        <p>This page celebrates the incredible individuals who have gone above and beyond to help build, maintain, and support the Kindle modding community. Their contributions have transformed countless devices and helped thousands of users unlock the full potential of their Kindles.</p>
       </div>
-      <p class="legend-description">
-        This guy is the best ever. <strong>Walked me through coming back from a bricked Kindle</strong> and turned despair into digital fireworks. Certified cosmic resurrector, guardian of every gadget's second chance, and the undisputed sovereign of the Kindle comeback saga.
-      </p>
-      <p class="quote">“When the Kindle flatlined, MonkeyInPrivite rewrote the fate of firmware itself.”</p>
-      <div class="legend-footer">
-        <span>All hail the reboot whisperer</span>
-        <span>Signal strength: ∞</span>
-        <span>Legend status: Eternal</span>
-      </div>
-    </section>
-    <div class="stellar-radiance" aria-hidden="true">
-      <div class="radiance-ring radiance-ring--one"></div>
-      <div class="radiance-ring radiance-ring--two"></div>
-      <div class="radiance-ring radiance-ring--three"></div>
-      <p>MonkeyInPrivite rebooted destiny. The cosmos is still cheering.</p>
-    </div>
+    </header>
 
-    <section class="legend-card legend-card--kurizu">
-      <div class="plasma-cloud" aria-hidden="true"></div>
-      <div class="legend-aurora" aria-hidden="true"></div>
-      <div class="orbit-ring" aria-hidden="true"></div>
-      <div class="legend-sigil legend-sigil--one" aria-hidden="true"></div>
-      <div class="legend-sigil legend-sigil--two" aria-hidden="true"></div>
-      <div class="constellation-trail constellation-trail--one" aria-hidden="true"></div>
-      <div class="constellation-trail constellation-trail--two" aria-hidden="true"></div>
-      <div class="legend-title">Keeper Of Kindle Comets</div>
-      <div class="legend-name glitch" data-text="Kurizu">
-        <span aria-hidden="true">Kurizu</span>
-        <span aria-hidden="true">Kurizu</span>
-        <span>Kurizu</span>
+    <!-- MonkeyInPrivite -->
+    <article class="legend-card">
+      <div class="shine" aria-hidden="true"></div>
+      <div class="legend-header">
+        <div class="legend-medal" aria-hidden="true">🏆</div>
+        <div class="legend-title-group">
+          <span class="legend-badge">First to the Pantheon</span>
+          <h2 class="legend-name">MonkeyInPrivite</h2>
+        </div>
       </div>
-      <p class="legend-description">
-        The artisan who forged KAnki into a radiant Kindle experience. <strong>Kurizu turned spaced repetition into starlight</strong>, guided every debug session with calm brilliance, and kept the e ink dreams alive when gravity tried to pull them down.
-      </p>
-      <p class="legend-description">
-        When study sessions needed a sparkle, Kurizu dropped shimmering updates, patient walkthroughs, and late night fixes that made every learner feel seen. He is the aurora that dances above our flashcard galaxy.
-      </p>
-      <div class="legend-donation">
-        <span>Love KAnki and KindleModShelf?</span>
-        <span>Beam a thank you:</span>
-        <a href="https://ko-fi.com/kurizu" target="_blank" rel="noopener">Support Kurizu on ko-fi.com/kurizu</a>
-        <span>Fuel more cosmic decks. Keep the constellation humming.</span>
+      <div class="legend-content">
+        <p class="legend-description">
+          When a bricked Kindle seemed like the end of the road, <strong>MonkeyInPrivite stepped in with patience, expertise, and unwavering support</strong>. He walked through every step of the recovery process, turning what felt like a catastrophic failure into a successful restoration.
+        </p>
+        <p class="legend-description">
+          His deep knowledge of Kindle internals and firmware recovery procedures helped resurrect a device that seemed beyond saving. More importantly, he provided calm guidance and encouragement throughout the entire process, proving that the Kindle community is built on genuine care and mutual support.
+        </p>
+        <div class="legend-quote">
+          The difference between a paperweight and a working Kindle is often just one person willing to help. MonkeyInPrivite is that person.
+        </div>
+        <div class="legend-footer">
+          <span class="legend-footer-item">Kindle Recovery Specialist</span>
+          <span class="legend-footer-item">Patient Troubleshooter</span>
+          <span class="legend-footer-item">Community Guardian</span>
+        </div>
       </div>
-      <div class="legend-footer legend-footer--aurora">
-        <span>Deck alchemist supreme</span>
-        <span>Debug energy: limitless</span>
-        <span>Legend status: Luminous</span>
-      </div>
-    </section>
-    <div class="stellar-radiance" aria-hidden="true">
-      <div class="radiance-ring radiance-ring--one"></div>
-      <div class="radiance-ring radiance-ring--two"></div>
-      <div class="radiance-ring radiance-ring--three"></div>
-      <p>Kurizu paints constellations onto e ink. The study stars glow brighter because of him.</p>
-    </div>
+    </article>
 
-    <section class="legend-card legend-card--lpa">
-      <div class="plasma-cloud" aria-hidden="true"></div>
-      <div class="legend-aurora" aria-hidden="true"></div>
-      <div class="orbit-ring" aria-hidden="true"></div>
-      <div class="legend-sigil legend-sigil--one" aria-hidden="true"></div>
-      <div class="legend-sigil legend-sigil--two" aria-hidden="true"></div>
-      <div class="legend-title">Prime Architect Of Kindle Tweaks</div>
-      <div class="legend-name glitch" data-text="lot.polish.airlines">
-        <span aria-hidden="true">lot.polish.airlines</span>
-        <span aria-hidden="true">lot.polish.airlines</span>
-        <span>lot.polish.airlines</span>
+    <!-- Kurizu -->
+    <article class="legend-card legend-card--kurizu">
+      <div class="shine" aria-hidden="true"></div>
+      <div class="legend-header">
+        <div class="legend-medal" aria-hidden="true">💎</div>
+        <div class="legend-title-group">
+          <span class="legend-badge">Creator & Maintainer</span>
+          <h2 class="legend-name">Kurizu</h2>
+        </div>
       </div>
-      <p class="legend-description">
-        Before most of us even knew what a scriptlet was, <strong>lot.polish.airlines was wiring the runway lights</strong>. Original admin of Kindle Tweaks, keeper of the chaos, and the quiet force that charted the flight plan for an entire modding scene.
-      </p>
-      <p class="legend-description">
-        He logs in, turbulence quits. He speaks, IRC hushes. People strive to match the chill, precision, and kindness he brings to every late night rescue. Coolest of the cool, cabin pressure of confidence set to max.
-      </p>
-      <div class="legend-footer">
-        <span>Runway status: forever clear</span>
-        <span>Airspace authority: total</span>
-        <span>Legend status: Absolute</span>
+      <div class="legend-content">
+        <p class="legend-description">
+          <strong>Kurizu is the creator of KAnki</strong>, bringing Anki's powerful spaced repetition system to Kindle devices in a way that feels natural and elegant on e-ink screens. His development work combines technical excellence with thoughtful user experience design.
+        </p>
+        <p class="legend-description">
+          Beyond creating the software, Kurizu provides <em>consistent, patient support</em> to users troubleshooting issues, implements feature requests, and continuously refines KAnki based on community feedback. His dedication to making learning accessible on Kindle devices has helped countless students and language learners.
+        </p>
+        <p class="legend-description">
+          The care and attention he brings to every bug report, feature discussion, and support thread exemplifies what makes open-source communities thrive.
+        </p>
+        <div class="legend-donation">
+          <div class="legend-donation-title">Support Kurizu's Work</div>
+          <p class="legend-donation-text">
+            If KAnki or KindleModShelf has enhanced your Kindle experience, consider supporting Kurizu's continued development and maintenance of these projects.
+          </p>
+          <a href="https://ko-fi.com/kurizu" target="_blank" rel="noopener" class="legend-donation-link">
+            Support on Ko-fi ☕
+          </a>
+        </div>
+        <div class="legend-footer">
+          <span class="legend-footer-item">KAnki Creator</span>
+          <span class="legend-footer-item">Responsive Developer</span>
+          <span class="legend-footer-item">Community Supporter</span>
+        </div>
       </div>
-    </section>
-    <div class="stellar-radiance" aria-hidden="true">
-      <div class="radiance-ring radiance-ring--one"></div>
-      <div class="radiance-ring radiance-ring--two"></div>
-      <div class="radiance-ring radiance-ring--three"></div>
-      <p>lot.polish.airlines routes possibility like traffic control for dreams. We just enjoy the smooth landing.</p>
-    </div>
+    </article>
+
+    <!-- lot.polish.airlines -->
+    <article class="legend-card legend-card--lpa">
+      <div class="shine" aria-hidden="true"></div>
+      <div class="legend-header">
+        <div class="legend-medal" aria-hidden="true">✈️</div>
+        <div class="legend-title-group">
+          <span class="legend-badge">Founding Administrator</span>
+          <h2 class="legend-name">lot.polish.airlines</h2>
+        </div>
+      </div>
+      <div class="legend-content">
+        <p class="legend-description">
+          <strong>Long before many of us discovered Kindle modding, lot.polish.airlines was laying the foundation</strong>. As the original administrator of the Kindle Tweaks community, he established the infrastructure, culture, and knowledge base that thousands of users rely on today.
+        </p>
+        <p class="legend-description">
+          His <em>technical expertise, calm problem-solving approach, and welcoming attitude</em> set the tone for an entire community. Whether helping newcomers understand their first scriptlet or guiding experienced modders through complex challenges, he brings clarity and kindness to every interaction.
+        </p>
+        <p class="legend-description">
+          The Kindle modding scene exists as it does today in large part because lot.polish.airlines created a space where knowledge could be shared freely, questions could be asked safely, and experimentation was encouraged.
+        </p>
+        <div class="legend-quote">
+          Great communities aren't built overnight—they're cultivated by people who care enough to show up, day after day, to help others succeed.
+        </div>
+        <div class="legend-footer">
+          <span class="legend-footer-item">Kindle Tweaks Founder</span>
+          <span class="legend-footer-item">Community Architect</span>
+          <span class="legend-footer-item">Patient Mentor</span>
+        </div>
+      </div>
+    </article>
+
+    <footer class="page-footer">
+      <p>
+        Thank you to these incredible individuals, and to all the contributors, testers, and community members who make Kindle modding possible. Your generosity and expertise inspire us all.
+      </p>
+    </footer>
   </main>
-  <script>
-    (function () {
-      try {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const prefersReducedData = window.matchMedia('(prefers-reduced-data: reduce)').matches;
-        const hardwareHint = navigator.userAgent && /mobi|lite|lowpower|kindle/i.test(navigator.userAgent);
-
-        if (prefersReducedMotion || prefersReducedData || hardwareHint) {
-          document.body.classList.add('legend-low-power');
-        }
-      } catch (error) {
-        document.body.classList.add('legend-low-power');
-      }
-    }());
-  </script>
 </body>
 </html>
