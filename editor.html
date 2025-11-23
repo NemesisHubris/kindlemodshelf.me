@@ -45,44 +45,6 @@
   --star-active: #ffb366;
 }
 
-/* Light Mode Colors */
-:root[data-theme="light"] {
-  --bg:#f0f2f7;
-  --card:#fff;
-  --ink:#1a2135;
-  --muted:#6b7385;
-  --line:#d7dbea;
-  --accent:#4267d9;
-  --accent-hover:#3555c3;
-  --accent-text: #ffffff;
-  --panel:#f9faff;
-  --kindle-bg: #f5f5f5;
-  --kindle-header: #eaeaea;
-  --kindle-border: #ccc;
-  --kindle-button: #555555;
-  --kindle-hard: #444444;
-  --kindle-good: #666666;
-  --kindle-easy: #888888;
-  --kindle-again: #222222;
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 8px rgba(0,0,0,0.08);
-  --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
-  --device-border: #bbb;
-  --device-shadow: rgba(0, 0, 0, 0.15);
-  --toast-bg: rgba(26, 33, 53, 0.92);
-  --toast-text: #ffffff;
-  --edit-highlight: #e3f2fd;
-  --danger-bg: #fff5f5;
-  --danger-text: #c53030;
-  --danger-border: #feb2b2;
-  --danger-hover-bg: #fed7d7;
-  --delete-btn: #dc3545;
-  --modal-backdrop: rgba(0, 0, 0, 0.3);
-  --loading-spinner: #4267d9;
-  --badge-bg: #4267d9;
-  --badge-text: #ffffff;
-  --star-active: #fbbf24;
-}
 
 * { box-sizing: border-box; }
 html, body { margin:0; padding:0; height:100%; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color:var(--ink); }
@@ -565,97 +527,6 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   }
 }
 
-/* Theme Toggle Button */
-.theme-toggle {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--card);
-  border: 2px solid var(--line);
-  box-shadow: var(--shadow-md);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-  z-index: 999;
-  backdrop-filter: blur(6px);
-}
-
-.theme-toggle:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent);
-  background: var(--panel);
-}
-
-.theme-toggle:active {
-  transform: translateY(-2px) scale(1.02);
-}
-
-.theme-icon {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-}
-
-.theme-icon svg {
-  width: 24px;
-  height: 24px;
-  stroke: var(--accent);
-  transition: stroke 0.3s ease;
-}
-
-.theme-toggle:hover .theme-icon svg {
-  stroke: var(--accent-hover);
-}
-
-/* Sun icon for dark mode (default) */
-.theme-icon.sun {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-}
-
-/* Moon icon for dark mode (default) - hidden */
-.theme-icon.moon {
-  opacity: 0;
-  transform: rotate(180deg) scale(0.5);
-  position: absolute;
-}
-
-/* When in light mode, show moon and hide sun */
-:root[data-theme="light"] .theme-icon.moon {
-  opacity: 1;
-  transform: rotate(0deg) scale(1);
-  position: relative;
-}
-
-:root[data-theme="light"] .theme-icon.sun {
-  opacity: 0;
-  transform: rotate(-180deg) scale(0.5);
-  position: absolute;
-}
-
-/* Mobile positioning */
-@media (max-width: 700px) {
-  .theme-toggle {
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-  }
-
-  .theme-icon svg {
-    width: 20px;
-    height: 20px;
-  }
-}
 
 /* Menu Bar */
 .menu-bar {
@@ -729,11 +600,6 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   background: var(--panel);
 }
 
-.menu-dropdown-item .shortcut {
-  color: var(--muted);
-  font-size: 0.85em;
-  margin-left: 20px;
-}
 
 .menu-separator {
   height: 1px;
@@ -827,47 +693,6 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   border-top: 3px solid var(--accent);
 }
 
-/* Keyboard Shortcut Indicator */
-.shortcut-help {
-  position: fixed;
-  bottom: 80px;
-  right: 24px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 12px 16px;
-  box-shadow: var(--shadow-md);
-  z-index: 998;
-  max-width: 300px;
-  display: none;
-}
-
-.shortcut-help.show {
-  display: block;
-}
-
-.shortcut-help h4 {
-  margin: 0 0 10px 0;
-  color: var(--ink);
-  font-size: 0.95em;
-}
-
-.shortcut-help .shortcut-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
-  font-size: 0.85em;
-  color: var(--ink);
-}
-
-.shortcut-help .shortcut-item kbd {
-  background: var(--panel);
-  padding: 2px 6px;
-  border-radius: 4px;
-  border: 1px solid var(--line);
-  font-family: monospace;
-  font-size: 0.9em;
-}
 
 /* Search Highlighting */
 .search-highlight {
@@ -895,7 +720,6 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   gap: 6px;
 }
 </style>
-  <script src="theme-toggle.js"></script>
   <!-- Libraries for APKG import -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
@@ -916,11 +740,9 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
     <div class="menu-dropdown">
       <div class="menu-dropdown-item" id="menuImport">
         <span>Import File</span>
-        <span class="shortcut">Ctrl+O</span>
       </div>
       <div class="menu-dropdown-item" id="menuExport">
         <span>Export File</span>
-        <span class="shortcut">Ctrl+S</span>
       </div>
     </div>
   </div>
@@ -929,47 +751,27 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
     <div class="menu-dropdown">
       <div class="menu-dropdown-item" id="menuAddCard">
         <span>Add Card</span>
-        <span class="shortcut">Ctrl+N</span>
       </div>
       <div class="menu-dropdown-item" id="menuDuplicateCard">
         <span>Duplicate Card</span>
-        <span class="shortcut">Ctrl+D</span>
       </div>
       <div class="menu-dropdown-item" id="menuDeleteCard">
         <span>Delete Card</span>
-        <span class="shortcut">Delete</span>
       </div>
       <div class="menu-separator"></div>
       <div class="menu-dropdown-item" id="menuSelectAll">
         <span>Select All</span>
-        <span class="shortcut">Ctrl+A</span>
       </div>
       <div class="menu-dropdown-item" id="menuDeselectAll">
         <span>Deselect All</span>
-        <span class="shortcut">Esc</span>
       </div>
     </div>
   </div>
   <div class="menu-item">
     <span>View</span>
     <div class="menu-dropdown">
-      <div class="menu-dropdown-item" id="menuToggleTheme">
-        <span>Toggle Theme</span>
-        <span class="shortcut">Ctrl+T</span>
-      </div>
-      <div class="menu-separator"></div>
       <div class="menu-dropdown-item" id="menuSearch">
         <span>Search Cards</span>
-        <span class="shortcut">Ctrl+F</span>
-      </div>
-    </div>
-  </div>
-  <div class="menu-item">
-    <span>Help</span>
-    <div class="menu-dropdown">
-      <div class="menu-dropdown-item" id="menuShortcuts">
-        <span>Keyboard Shortcuts</span>
-        <span class="shortcut">?</span>
       </div>
     </div>
   </div>
@@ -1127,65 +929,6 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 
 <!-- Toast notification -->
 <div id="toast" class="toast"></div>
-
-<!-- Theme Toggle Button -->
-<button class="theme-toggle" aria-label="Toggle light/dark mode">
-  <span class="theme-icon sun">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-  </span>
-  <span class="theme-icon moon">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-  </span>
-</button>
-
-<!-- Keyboard Shortcuts Help -->
-<div class="shortcut-help" id="shortcutHelp">
-  <h4>Keyboard Shortcuts</h4>
-  <div class="shortcut-item">
-    <span>New Card</span>
-    <kbd>Ctrl+N</kbd>
-  </div>
-  <div class="shortcut-item">
-    <span>Duplicate Card</span>
-    <kbd>Ctrl+D</kbd>
-  </div>
-  <div class="shortcut-item">
-    <span>Delete Card</span>
-    <kbd>Delete</kbd>
-  </div>
-  <div class="shortcut-item">
-    <span>Search</span>
-    <kbd>Ctrl+F</kbd>
-  </div>
-  <div class="shortcut-item">
-    <span>Select All</span>
-    <kbd>Ctrl+A</kbd>
-  </div>
-  <div class="shortcut-item">
-    <span>Navigate</span>
-    <kbd>↑ ↓</kbd>
-  </div>
-  <div class="shortcut-item">
-    <span>Save/Export</span>
-    <kbd>Ctrl+S</kbd>
-  </div>
-  <div class="shortcut-item">
-    <span>Close/Escape</span>
-    <kbd>Esc</kbd>
-  </div>
-</div>
 
 <script>
 /* ===== State ===== */
@@ -2580,17 +2323,9 @@ $('#menuDeleteCard').addEventListener('click', () => {
 });
 $('#menuSelectAll').addEventListener('click', selectAllCards);
 $('#menuDeselectAll').addEventListener('click', deselectAllCards);
-$('#menuToggleTheme').addEventListener('click', () => {
-  $('.theme-toggle').click();
-});
 $('#menuSearch').addEventListener('click', () => {
   $('#searchInput').focus();
   $('#searchInput').select();
-});
-$('#menuShortcuts').addEventListener('click', () => {
-  const help = $('#shortcutHelp');
-  help.classList.toggle('show');
-  setTimeout(() => help.classList.remove('show'), 5000);
 });
 
 // Keyboard shortcuts
@@ -2660,21 +2395,6 @@ document.addEventListener('keydown', (e) => {
     return;
   }
 
-  // Ctrl/Cmd + T - Toggle theme
-  if ((e.ctrlKey || e.metaKey) && e.key === 't' && !isInput) {
-    e.preventDefault();
-    $('.theme-toggle').click();
-    return;
-  }
-
-  // ? - Show shortcuts help
-  if (e.key === '?' && !isInput) {
-    e.preventDefault();
-    const help = $('#shortcutHelp');
-    help.classList.toggle('show');
-    setTimeout(() => help.classList.remove('show'), 5000);
-    return;
-  }
 
   // Arrow keys - Navigate cards
   if (!isInput && !modalOpen) {
@@ -2725,37 +2445,6 @@ function checkAndUpdateAPKGSupport() {
   }
 }
 
-// Ensure theme toggle button works (fallback if theme-toggle.js fails)
-(function initThemeToggleFallback() {
-  const themeToggleBtn = $('.theme-toggle');
-  if (themeToggleBtn && !themeToggleBtn.hasAttribute('data-theme-initialized')) {
-    themeToggleBtn.setAttribute('data-theme-initialized', 'true');
-
-    // Initialize theme from localStorage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-
-    // Add click handler as fallback
-    const toggleThemeHandler = () => {
-      const root = document.documentElement;
-      const currentTheme = root.getAttribute('data-theme');
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-      if (newTheme === 'light') {
-        root.setAttribute('data-theme', 'light');
-      } else {
-        root.removeAttribute('data-theme');
-      }
-
-      localStorage.setItem('theme', newTheme);
-      showToast(`Switched to ${newTheme} mode`);
-    };
-
-    themeToggleBtn.addEventListener('click', toggleThemeHandler);
-  }
-})();
 </script>
 
 </body>
