@@ -2136,3 +2136,35 @@ pre code {
     height: 22px;
   }
 }
+
+/* ===== Banner Styles ===== */
+.banner {
+  padding: 1.25em 1.5em;
+  border-radius: 6px;
+  margin: 1em 0;
+  border: 1px solid;
+}
+
+.banner-info {
+  background: var(--info-bg);
+  border-color: var(--info-border);
+  color: var(--info-text);
+}
+
+.banner-warning {
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+  color: var(--warning-text);
+}
+
+.banner-success {
+  background: var(--helper-pill-bg);
+  border-color: var(--helper-pill-border);
+  color: var(--helper-pill-text);
+}
+
+.banner-danger {
+  background: var(--announcement-bg);
+  border-color: var(--announcement-border);
+  color: var(--announcement-text);
+}

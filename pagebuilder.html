@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KindleModShelf Page Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create Kindle modding guide pages with KindleModShelf Page Builder">
+  <link rel="canonical" href="https://kindlemodshelf.me/pagebuilder.html">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pagebuilder.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <script src="theme-toggle.js"></script>
+</head>
+<body>
+  <div class="builder-wrapper">
+    <!-- Main Builder Container -->
+    <div class="builder-container">
+      <!-- Left Sidebar - Block Palette -->
+      <aside class="builder-sidebar builder-sidebar-left">
+        <div class="builder-section">
+          <h3>Page Settings</h3>
+          <form class="builder-meta-form" id="metaForm">
+            <div class="form-group">
+              <label for="pageTitle">Page Title</label>
+              <input type="text" id="pageTitle" placeholder="e.g., KOReader Installation" required>
+            </div>
+            <div class="form-group">
+              <label for="metaDescription">Meta Description</label>
+              <textarea id="metaDescription" placeholder="Brief description for search engines" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="keywords">Keywords (optional)</label>
+              <input type="text" id="keywords" placeholder="comma, separated, keywords">
+            </div>
+          </form>
+        </div>
+
+        <div class="builder-divider"></div>
+
+        <div class="builder-section">
+          <h3>Add Blocks</h3>
+          <div class="builder-block-palette">
+            <button class="builder-add-block" data-block-type="summary" aria-label="Add summary block">
+              + Summary
+            </button>
+            <button class="builder-add-block" data-block-type="section" aria-label="Add section block">
+              + Section
+            </button>
+            <button class="builder-add-block" data-block-type="list" aria-label="Add list block">
+              + List
+            </button>
+            <button class="builder-add-block" data-block-type="text" aria-label="Add text block">
+              + Text
+            </button>
+            <button class="builder-add-block" data-block-type="video" aria-label="Add video block">
+              + Video
+            </button>
+            <button class="builder-add-block" data-block-type="code" aria-label="Add code block">
+              + Code
+            </button>
+            <button class="builder-add-block" data-block-type="banner" aria-label="Add banner block">
+              + Banner
+            </button>
+            <button class="builder-add-block" data-block-type="credit" aria-label="Add credit block">
+              + Credit
+            </button>
+          </div>
+        </div>
+
+        <div class="builder-spacer"></div>
+      </aside>
+
+      <!-- Center Canvas - Live Preview -->
+      <main class="builder-canvas">
+        <div class="builder-canvas-header">
+          <h2>Live Preview</h2>
+          <div class="builder-toolbar">
+            <button id="exportBtn" class="builder-toolbar-btn builder-toolbar-btn-primary" aria-label="Export as HTML">
+              Export HTML
+            </button>
+            <button id="clearAllBtn" class="builder-toolbar-btn builder-toolbar-btn-danger" aria-label="Clear all blocks">
+              Clear All
+            </button>
+          </div>
+        </div>
+
+        <div class="builder-preview-container">
+          <div class="builder-preview" id="preview">
+            <!-- Preview will be rendered here -->
+          </div>
+        </div>
+      </main>
+
+      <!-- Right Sidebar - Properties Panel -->
+      <aside class="builder-sidebar builder-sidebar-right">
+        <div class="builder-section">
+          <h3>Block Properties</h3>
+          <div id="propertiesPanel" class="builder-properties-empty">
+            <p>Select a block to edit its properties</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Notification (hidden) -->
+  <div id="copyNotification" class="builder-copy-notification" style="display:none;">
+    HTML copied to clipboard!
+  </div>
+
+  <script src="pagebuilder.js"></script>
+</body>
+</html>
