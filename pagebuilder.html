@@ -13,20 +13,22 @@
 </head>
 <body>
   <div class="builder-wrapper">
-    <!-- Main Builder Container -->
     <div class="builder-container">
-      <!-- Left Sidebar - Block Palette -->
       <aside class="builder-sidebar builder-sidebar-left">
         <div class="builder-section">
           <h3>Page Settings</h3>
           <form class="builder-meta-form" id="metaForm">
             <div class="form-group">
-              <label for="pageTitle">Page Title</label>
+              <label for="pageTitle">Page Title (H1)</label>
               <input type="text" id="pageTitle" placeholder="e.g., KOReader Installation" required>
             </div>
             <div class="form-group">
-              <label for="metaDescription">Meta Description</label>
-              <textarea id="metaDescription" placeholder="Brief description for search engines" rows="2"></textarea>
+              <label for="headerDescription">Header Description</label>
+              <textarea id="headerDescription" placeholder="The visual summary box displayed immediately below the title." rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="metaDescription">SEO Meta Description</label>
+              <textarea id="metaDescription" placeholder="Brief description for search engines (hidden)" rows="2"></textarea>
             </div>
             <div class="form-group">
               <label for="keywords">Keywords (optional)</label>
@@ -41,7 +43,7 @@
           <h3>Add Blocks</h3>
           <div class="builder-block-palette">
             <button class="builder-add-block" data-block-type="summary" aria-label="Add summary block">
-              + Summary
+              + Summary Box
             </button>
             <button class="builder-add-block" data-block-type="section" aria-label="Add section block">
               + Section
@@ -70,7 +72,6 @@
         <div class="builder-spacer"></div>
       </aside>
 
-      <!-- Center Canvas - Live Preview -->
       <main class="builder-canvas">
         <div class="builder-canvas-header">
           <h2>Live Preview</h2>
@@ -86,12 +87,10 @@
 
         <div class="builder-preview-container">
           <div class="builder-preview" id="preview">
-            <!-- Preview will be rendered here -->
-          </div>
+            </div>
         </div>
       </main>
 
-      <!-- Right Sidebar - Properties Panel -->
       <aside class="builder-sidebar builder-sidebar-right">
         <div class="builder-section">
           <h3>Block Properties</h3>
@@ -103,7 +102,6 @@
     </div>
   </div>
 
-  <!-- Notification (hidden) -->
   <div id="copyNotification" class="builder-copy-notification" style="display:none;">
     HTML copied to clipboard!
   </div>

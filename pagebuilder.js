@@ -9,6 +9,7 @@ class PageBuilder {
     this.meta = {
       h1Title: 'Untitled Page',
       pageTitle: 'Untitled Page – KindleModShelf',
+      summary: '', // New field for the visual header description
       description: 'A Kindle modding guide',
       keywords: 'kindle, mods, guide'
     };
@@ -447,6 +448,7 @@ class PageBuilder {
   loadMetaFromForm() {
     this.meta.h1Title = document.getElementById('pageTitle').value || 'Untitled Page';
     this.meta.pageTitle = this.meta.h1Title + ' – KindleModShelf';
+    this.meta.summary = document.getElementById('headerDescription').value || '';
     this.meta.description = document.getElementById('metaDescription').value || 'A Kindle modding guide';
     this.meta.keywords = document.getElementById('keywords').value || '';
   }
@@ -490,6 +492,11 @@ class PageBuilder {
   generatePreviewHTML() {
     let html = '<div class="container">';
     html += `<h1>${this.escapeHtml(this.meta.h1Title)}</h1>`;
+
+    // Render the visual Header Description (Summary)
+    if (this.meta.summary) {
+      html += `<div class="summary">${this.escapeHtml(this.meta.summary)}</div>`;
+    }
 
     this.blocks.forEach(block => {
       html += `<div class="builder-block-wrapper" data-block-id="${block.id}">
@@ -642,6 +649,11 @@ class PageBuilder {
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
     <h1>${this.escapeHtml(this.meta.h1Title)}</h1>
 `;
+
+    // Render the visual Header Description (Summary) in export
+    if (this.meta.summary) {
+      html += `\n    <div class="summary">${this.escapeHtml(this.meta.summary)}</div>`;
+    }
 
     this.blocks.forEach(block => {
       html += '\n    ' + this.renderBlockForExport(block);
