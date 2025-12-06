@@ -47,6 +47,12 @@ class PageBuilder {
     previewEl.addEventListener('click', (e) => {
       if (e.target.closest('.builder-block-control-btn')) return;
 
+      const h1 = e.target.closest('h1');
+      if (h1 && e.target === h1) {
+        this.selectPageTitle();
+        return;
+      }
+
       const wrapper = e.target.closest('.builder-block-wrapper');
       if (!wrapper) {
         this.deselectAll();
@@ -170,6 +176,12 @@ class PageBuilder {
     this.showPartEditor(blockId, `item-${itemId}`);
   }
 
+  selectPageTitle() {
+    this.selectedBlockId = 'page-title';
+    this.selectedPart = 'title';
+    this.showPageTitleEditor();
+  }
+
   showBlockOverview(blockId) {
     const block = this.blocks.find(b => b.id === blockId);
     if (!block) return;
@@ -209,7 +221,6 @@ class PageBuilder {
           <label>Banner Style</label>
           <select id="bannerType" class="builder-select">
             <option value="info" ${block.properties.bannerType === 'info' ? 'selected' : ''}>Info (Blue)</option>
-            <option value="warning" ${block.properties.bannerType === 'warning' ? 'selected' : ''}>Warning (Yellow)</option>
             <option value="success" ${block.properties.bannerType === 'success' ? 'selected' : ''}>Success (Green)</option>
             <option value="danger" ${block.properties.bannerType === 'danger' ? 'selected' : ''}>Danger (Red)</option>
           </select>
@@ -238,7 +249,7 @@ class PageBuilder {
       editorType = 'plain';
     } else if (part === 'title') {
       content = block.properties.title || '';
-      editorType = 'title';
+      editorType = block.type === 'section' ? 'rich' : 'title';
     } else if (part === 'content') {
       content = block.properties.content || '';
       editorType = block.type === 'code' ? 'code' : 'rich';
@@ -264,6 +275,37 @@ class PageBuilder {
     // Focus
     setTimeout(() => {
       const editor = panel.querySelector('#richEditor, #codeEditor, #titleEditor, #plainEditor');
+      if (editor) editor.focus();
+    }, 50);
+  }
+
+  showPageTitleEditor() {
+    const panel = document.getElementById('propertiesPanel');
+    panel.classList.remove('builder-properties-empty');
+
+    const content = this.meta.h1Title;
+    let html = `<div class="builder-properties-form">
+      <div class="builder-part-header">Edit Page Title</div>
+      <input type="text" id="titleEditor" class="builder-title-input" value="${this.escapeHtml(content)}">
+      <button type="button" class="builder-apply-btn">Apply</button>
+    </div>`;
+
+    panel.innerHTML = html;
+
+    const applyBtn = panel.querySelector('.builder-apply-btn');
+    if (applyBtn) {
+      applyBtn.addEventListener('click', () => {
+        const editor = document.getElementById('titleEditor');
+        const newValue = editor ? editor.value : '';
+        this.meta.h1Title = newValue;
+        this.meta.pageTitle = newValue + ' – KindleModShelf';
+        document.getElementById('pageTitle').value = newValue;
+        this.renderPreview();
+      });
+    }
+
+    setTimeout(() => {
+      const editor = panel.querySelector('#titleEditor');
       if (editor) editor.focus();
     }, 50);
   }
@@ -522,7 +564,7 @@ class PageBuilder {
 
       case 'section':
         return `
-          <h2 class="section-title" data-editable-part="title">${this.escapeHtml(properties.title)}</h2>
+          <h2 class="section-title" data-editable-part="title">${properties.title}</h2>
           <div class="card card-desc" data-editable-part="content">${properties.content}</div>`;
 
       case 'list':
@@ -543,9 +585,10 @@ class PageBuilder {
           </div>`;
         }
         return `<div class="responsive-video" data-editable-part="video">
-          <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1"
+          <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"
             title="${this.escapeHtml(properties.title)}" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            sandbox="allow-same-origin allow-scripts allow-presentation"
             allowfullscreen></iframe>
         </div>`;
 
@@ -676,7 +719,7 @@ class PageBuilder {
         return `<div class="summary">${properties.content}</div>`;
 
       case 'section':
-        return `<h2 class="section-title">${this.escapeHtml(properties.title)}</h2>
+        return `<h2 class="section-title">${properties.title}</h2>
     <div class="card card-desc">${properties.content}</div>`;
 
       case 'list':
@@ -693,9 +736,10 @@ class PageBuilder {
         const videoId = this.extractYouTubeId(properties.videoId);
         if (!videoId) return '';
         return `<div class="responsive-video">
-      <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1&origin=https://kindlemodshelf.me"
+      <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"
         title="${this.escapeHtml(properties.title)}" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        sandbox="allow-same-origin allow-scripts allow-presentation"
         allowfullscreen></iframe>
     </div>`;
 
