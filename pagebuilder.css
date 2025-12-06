@@ -235,6 +235,27 @@
   padding: 1.5em;
 }
 
+/* Summary (Header Description) */
+.builder-preview .summary {
+  text-align: center;
+}
+
+/* Card Styles in Preview */
+.builder-preview .card {
+  background: var(--card-bg);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+  padding: 18px;
+  margin: 0;
+  border: 1px solid var(--card-border);
+  height: auto;
+  display: block;
+}
+
+.builder-preview .card-desc {
+  margin-bottom: 0;
+}
+
 /* Block Wrapper */
 .builder-block-wrapper {
   position: relative;
@@ -546,11 +567,28 @@
 /* List (no card wrapper) */
 .builder-list {
   padding-left: 1.5em;
-  margin: 0;
+  margin: 0 !important;
+  list-style-position: outside;
 }
 
 .builder-list-item-editable {
   padding: 0.25em 0;
+  margin: 0 !important;
+}
+
+ul.builder-list,
+ol.builder-list {
+  margin: 0 !important;
+}
+
+.builder-preview ul,
+.builder-preview ol {
+  margin: 0 !important;
+  padding-left: 1.5em;
+}
+
+.builder-preview li {
+  margin: 0 !important;
 }
 
 /* Credit */

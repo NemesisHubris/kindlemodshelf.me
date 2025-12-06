@@ -496,6 +496,16 @@ h1::after {
   border-radius: 2px;
 }
 
+ul,
+ol {
+  margin: 0;
+  padding-left: 1.5em;
+}
+
+li {
+  margin: 0;
+}
+
 :root[data-theme="light"] h1 {
   color: var(--primary);
 }

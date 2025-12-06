@@ -19,8 +19,58 @@ class PageBuilder {
 
   init() {
     this.setupEventListeners();
+    this.loadFromLocalStorage();
     this.renderPreview();
     this.loadMetaFromForm();
+  }
+
+  saveToLocalStorage() {
+    const data = {
+      meta: this.meta,
+      blocks: this.blocks
+    };
+    localStorage.setItem('kindlePageBuilderData', JSON.stringify(data));
+  }
+
+  loadFromLocalStorage() {
+    const saved = localStorage.getItem('kindlePageBuilderData');
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        this.meta = data.meta || this.meta;
+        this.blocks = data.blocks || [];
+
+        // Restore form values
+        document.getElementById('pageTitle').value = this.meta.h1Title || '';
+        document.getElementById('headerDescription').value = this.meta.summary || '';
+        document.getElementById('metaDescription').value = this.meta.description || '';
+        document.getElementById('keywords').value = this.meta.keywords || '';
+      } catch (e) {
+        console.error('Failed to load from local storage:', e);
+      }
+    }
+  }
+
+  clearLocalStorage() {
+    if (confirm('Clear all saved data? This will remove the draft you are working on.')) {
+      localStorage.removeItem('kindlePageBuilderData');
+      this.blocks = [];
+      this.meta = {
+        h1Title: 'Untitled Page',
+        pageTitle: 'Untitled Page – KindleModShelf',
+        summary: '',
+        description: 'A Kindle modding guide',
+        keywords: 'kindle, mods, guide'
+      };
+      document.getElementById('pageTitle').value = '';
+      document.getElementById('headerDescription').value = '';
+      document.getElementById('metaDescription').value = '';
+      document.getElementById('keywords').value = '';
+      this.selectedBlockId = null;
+      this.selectedPart = null;
+      this.clearBlockProperties();
+      this.renderPreview();
+    }
   }
 
   setupEventListeners() {
@@ -36,11 +86,13 @@ class PageBuilder {
     document.getElementById('metaForm').addEventListener('input', () => {
       this.loadMetaFromForm();
       this.renderPreview();
+      this.saveToLocalStorage();
     });
 
     // Toolbar buttons
     document.getElementById('exportBtn').addEventListener('click', () => this.exportHTML());
     document.getElementById('clearAllBtn').addEventListener('click', () => this.showClearConfirmation());
+    document.getElementById('clearStorageBtn').addEventListener('click', () => this.clearLocalStorage());
 
     // Preview click handler
     const previewEl = document.getElementById('preview');
@@ -91,6 +143,7 @@ class PageBuilder {
     const block = this.createBlockTemplate(type, id);
     this.blocks.push(block);
     this.renderPreview();
+    this.saveToLocalStorage();
     this.selectBlock(id);
   }
 
@@ -410,6 +463,20 @@ class PageBuilder {
       });
     });
 
+    // Handle paste events to strip formatting
+    const richEditor = document.getElementById('richEditor');
+    if (richEditor) {
+      richEditor.addEventListener('paste', (e) => {
+        e.preventDefault();
+
+        // Get pasted text
+        const text = e.clipboardData.getData('text/plain');
+
+        // Insert as plain text
+        document.execCommand('insertText', false, text);
+      });
+    }
+
     const formatSelect = document.getElementById('formatBlock');
     if (formatSelect) {
       formatSelect.addEventListener('change', () => {
@@ -461,6 +528,7 @@ class PageBuilder {
         }
 
         this.renderPreview();
+        this.saveToLocalStorage();
         this.selectBlock(block.id);
       });
     }
@@ -572,7 +640,7 @@ class PageBuilder {
         const items = (properties.items || []).map(item =>
           `<li class="builder-list-item-editable" data-item-id="${item.id}">${this.escapeHtml(item.content)}</li>`
         ).join('');
-        return `<${tag} class="builder-list" data-editable-part="list">${items}</${tag}>`;
+        return `<div class="card card-desc"><${tag} class="builder-list" data-editable-part="list">${items}</${tag}></div>`;
 
       case 'text':
         return `<div class="card card-desc" data-editable-part="content">${properties.content}</div>`;
@@ -614,6 +682,7 @@ class PageBuilder {
       this.clearBlockProperties();
     }
     this.renderPreview();
+    this.saveToLocalStorage();
   }
 
   moveBlockUp(blockId) {
@@ -621,6 +690,7 @@ class PageBuilder {
     if (idx > 0) {
       [this.blocks[idx], this.blocks[idx - 1]] = [this.blocks[idx - 1], this.blocks[idx]];
       this.renderPreview();
+      this.saveToLocalStorage();
     }
   }
 
@@ -629,6 +699,7 @@ class PageBuilder {
     if (idx < this.blocks.length - 1) {
       [this.blocks[idx], this.blocks[idx + 1]] = [this.blocks[idx + 1], this.blocks[idx]];
       this.renderPreview();
+      this.saveToLocalStorage();
     }
   }
 
@@ -640,6 +711,7 @@ class PageBuilder {
       this.selectedPart = null;
       this.clearBlockProperties();
       this.renderPreview();
+      this.saveToLocalStorage();
     }
   }
 
@@ -725,9 +797,11 @@ class PageBuilder {
       case 'list':
         const tag = properties.listType || 'ul';
         const items = (properties.items || []).map(i => `<li>${this.escapeHtml(i.content)}</li>`).join('\n      ');
-        return `<${tag}>
-      ${items}
-    </${tag}>`;
+        return `<div class="card card-desc">
+      <${tag}>
+        ${items}
+      </${tag}>
+    </div>`;
 
       case 'text':
         return `<div class="card card-desc">${properties.content}</div>`;
