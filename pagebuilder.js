@@ -767,7 +767,7 @@ class PageBuilder {
 
     // Render the visual Header Description (Summary) in export
     if (this.meta.summary) {
-      html += `\n    <div class="summary">${this.escapeHtml(this.meta.summary)}</div>`;
+      html += `\n    <div class="summary">\n      <p>${this.escapeHtml(this.meta.summary)}</p>\n    </div>`;
     }
 
     this.blocks.forEach(block => {
@@ -788,39 +788,26 @@ class PageBuilder {
 
     switch (type) {
       case 'summary':
-        return `<div class="summary">${properties.content}</div>`;
+        return `<div class="summary">\n      ${properties.content}\n    </div>`;
 
       case 'section':
-        return `<h2 class="section-title">${properties.title}</h2>
-    <div class="card card-desc">${properties.content}</div>`;
+        return `<h2 class="section-title">${properties.title}</h2>\n    <div class="card card-desc">\n      ${properties.content}\n    </div>`;
 
       case 'list':
         const tag = properties.listType || 'ul';
-        const items = (properties.items || []).map(i => `<li>${this.escapeHtml(i.content)}</li>`).join('\n      ');
-        return `<div class="card card-desc">
-      <${tag}>
-        ${items}
-      </${tag}>
-    </div>`;
+        const items = (properties.items || []).map(i => `<li>${this.escapeHtml(i.content)}</li>`).join('\n        ');
+        return `<div class="card card-desc">\n      <${tag}>\n        ${items}\n      </${tag}>\n    </div>`;
 
       case 'text':
-        return `<div class="card card-desc">${properties.content}</div>`;
+        return `<div class="card card-desc">\n      ${properties.content}\n    </div>`;
 
       case 'video':
         const videoId = this.extractYouTubeId(properties.videoId);
         if (!videoId) return '';
-        return `<div class="responsive-video">
-      <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"
-        title="${this.escapeHtml(properties.title)}" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        sandbox="allow-same-origin allow-scripts allow-presentation"
-        allowfullscreen></iframe>
-    </div>`;
+        return `<div class="responsive-video">\n      <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"\n        title="${this.escapeHtml(properties.title)}" frameborder="0"\n        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"\n        sandbox="allow-same-origin allow-scripts allow-presentation"\n        allowfullscreen></iframe>\n    </div>`;
 
       case 'code':
-        return `<div class="card card-desc">
-      <pre><code>${this.escapeHtml(properties.content)}</code></pre>
-    </div>`;
+        return `<div class="card card-desc">\n      <pre><code>${this.escapeHtml(properties.content)}</code></pre>\n    </div>`;
 
       case 'banner':
         return `<div class="banner banner-${properties.bannerType || 'info'}">${properties.content}</div>`;
