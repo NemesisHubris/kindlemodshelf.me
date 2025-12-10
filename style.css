@@ -1088,7 +1088,7 @@ pre code {
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95em;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
   z-index: 1000;
   cursor: pointer;
   letter-spacing: 0;
@@ -1101,6 +1101,14 @@ pre code {
   color: var(--fg);
   transform: translateY(-1px);
   box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.back-home-btn.scrolled {
+  border-radius: 50%;
+  padding: 10px !important;
+  width: 44px !important;
+  height: 44px !important;
+  gap: 0 !important;
 }
 
 /* Back arrow removed per user request */
