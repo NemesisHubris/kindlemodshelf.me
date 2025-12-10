@@ -12,6 +12,13 @@
   <meta property="og:url" content="https://kindlemodshelf.me/images.html">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
   <script src="theme-toggle.js"></script>
+  <script>
+    // Detect mobile and redirect to mobile version
+    const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile && !window.location.href.includes('images-mobile')) {
+      window.location.href = 'images-mobile.html';
+    }
+  </script>
 </head>
 <body>
   <div class="container">

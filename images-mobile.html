@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kindle Screensaver Image Gallery – Mobile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mobile-optimized gallery of community Kindle screensaver images. Browse and download creative Kindle backgrounds.">
+  <link rel="canonical" href="https://kindlemodshelf.me/images-mobile.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Kindle Screensaver Images – Mobile Gallery">
+  <meta property="og:description" content="Mobile-optimized gallery of community Kindle screensaver images.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+  <script src="theme-toggle.js"></script>
+  <style>
+    .mobile-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0;
+    }
+
+    .mobile-gallery-item {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      background: var(--img-thumb-bg);
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-gallery-item:active {
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+
+    .mobile-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mobile-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      flex-direction: column;
+      z-index: 2000;
+      overflow: auto;
+    }
+
+    .mobile-modal.active {
+      display: flex;
+    }
+
+    .mobile-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--card-border);
+      flex-shrink: 0;
+    }
+
+    .mobile-modal-header h3 {
+      margin: 0;
+      font-size: 1.1em;
+      color: var(--fg);
+    }
+
+    .mobile-modal-close {
+      background: none;
+      border: none;
+      color: var(--fg);
+      font-size: 28px;
+      cursor: pointer;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-modal-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .mobile-modal-img {
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .mobile-modal-info {
+      width: 100%;
+      margin-top: 16px;
+      text-align: center;
+      color: var(--fg);
+    }
+
+    .mobile-modal-info p {
+      margin: 8px 0;
+      font-size: 0.9em;
+    }
+
+    .mobile-modal-buttons {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      margin-top: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .mobile-modal-buttons a,
+    .mobile-modal-buttons button {
+      flex: 1;
+      min-width: 120px;
+      padding: 12px 16px;
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      color: var(--button-text);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 500;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-modal-buttons a:active,
+    .mobile-modal-buttons button:active {
+      background: var(--filter-bg);
+      transform: scale(0.98);
+    }
+
+    .mobile-search-wrap {
+      margin: 20px 0;
+    }
+
+    .mobile-search-wrap input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      background: var(--input-bg);
+      color: var(--fg);
+    }
+
+    .mobile-no-results {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--fg-secondary);
+      font-size: 1em;
+    }
+
+    .mobile-loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--fg-secondary);
+    }
+
+    .loader {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 16px;
+      border: 3px solid var(--card-border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 480px) {
+      .mobile-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="images.html" class="back-home-btn" aria-label="Back to Home">← Back</a>
+    <h1>Gallery</h1>
+
+    <div class="mobile-search-wrap">
+      <input type="text" id="mobile-search" placeholder="Search by author…" autocomplete="off">
+    </div>
+
+    <div id="mobile-gallery-root" class="mobile-gallery"></div>
+
+    <div id="mobile-loading" class="mobile-loading" style="display: none;">
+      <div class="loader"></div>
+      <p>Loading images...</p>
+    </div>
+
+    <div id="mobile-no-results" class="mobile-no-results" style="display: none;">
+      No images found
+    </div>
+  </div>
+
+  <!-- Mobile Modal Viewer -->
+  <div id="mobile-modal" class="mobile-modal">
+    <div class="mobile-modal-header">
+      <h3 id="mobile-modal-title"></h3>
+      <button class="mobile-modal-close" type="button">&times;</button>
+    </div>
+    <div class="mobile-modal-content">
+      <img id="mobile-modal-img" class="mobile-modal-img" src="" alt="">
+      <div class="mobile-modal-info">
+        <p id="mobile-modal-author"></p>
+        <p id="mobile-modal-filename" style="font-size: 0.85em; color: var(--fg-secondary);"></p>
+      </div>
+      <div class="mobile-modal-buttons">
+        <a id="mobile-modal-download" href="#" download>Download</a>
+        <button id="mobile-modal-prev" type="button">← Prev</button>
+        <button id="mobile-modal-next" type="button">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
+  <script src="images-mobile.js"></script>
+  <script src="back-button.js"></script>
+</body>
+</html>
