@@ -31,53 +31,18 @@
       The most essential Kindle modding tools, plugins, games, and guides for your jailbroken Kindle. Everything here requires a jailbroken Kindle unless stated otherwise.
     </div>
 
-    <!-- Action buttons section -->
-    <div class="action-buttons">
-      <div class="action-button">
-        <a href="jailbreaking.html" class="feature-button chat-button">
-          <span class="button-title">Get Started</span>
-          <span class="button-desc">How to Jailbreak Your Kindle</span>
-        </a>
+    <!-- Quick Links Navigation -->
+    <nav class="main-nav">
+      <div class="nav-container">
+        <a href="jailbreaking.html" class="nav-link nav-primary">Jailbreak Guide</a>
+        <a href="faq.html" class="nav-link nav-ai">FAQ</a>
+        <a href="images.html" class="nav-link nav-ai">Gallery</a>
+        <a href="announcements.html" class="nav-link">Updates</a>
+        <button onclick="window.open('https://chatgpt.com/g/g-68f1ee6408d08191b257737ed200a504-kindlemodshelfgpt', '_blank')" class="nav-link">KindleModShelfGPT</button>
+        <a href="pagebuilder.html" class="nav-link">Page Builder</a>
+        <a href="credits.html" class="nav-link">Credits</a>
       </div>
-
-      <div class="action-button">
-        <a href="faq.html" class="feature-button">
-          <span class="button-title">FAQ</span>
-          <span class="button-desc">Kindle Jailbreaking Support & FAQ</span>
-        </a>
-      </div>
-
-      <div class="action-button">
-        <a href="images.html" class="feature-button">
-          <span class="button-title">Browse Gallery</span>
-          <span class="button-desc">Kindle Screensaver Images</span>
-        </a>
-      </div>
-
-      <div class="action-button">
-        <a href="announcements.html" class="feature-button">
-          <span class="button-title">See Updates</span>
-          <span class="button-desc">Announcements &amp; Site Changelog</span>
-        </a>
-      </div>
-      
-      <div class="action-button">
-        <button onclick="window.open('https://chatgpt.com/g/g-68f1ee6408d08191b257737ed200a504-kindlemodshelfgpt', '_blank')" class="feature-button">
-          <span class="button-title">Ask KindleModShelfGPT</span>
-          <span class="button-desc">Citation-locked Kindle modding answers</span>
-        </button>
-      </div>
-
-      <div class="action-button">
-        <a href="pagebuilder.html" class="feature-button">
-          <span class="button-title">Create a Page on KindleModShelf</span>
-          <span class="button-desc">Build and export pages with the Page Builder</span>
-        </a>
-      </div>
-
-      <!-- removed: Kreate / KPaint / Shortcuts action-buttons (per user request) -->
-
-    </div>
+    </nav>
 
     <!-- Search + Filters -->
     <div class="filter-toolbar">
@@ -98,17 +63,20 @@
         <div class="filter-group">
           <span class="filter-group-title">Categories</span>
           <div class="filter-chips" id="categoryFilters">
-            <button class="filter-chip active" data-category="all" type="button">All Picks</button>
-            <button class="filter-chip" data-category="essential" type="button">Essential Picks</button>
+            <button class="filter-chip active" data-category="all" type="button">All</button>
+            <button class="filter-chip" data-category="essential" type="button">Essential</button>
+            <button class="filter-chip" data-category="blocking" type="button">Blocking Amazon</button>
             <button class="filter-chip" data-category="koreader" type="button">KOReader Plugins</button>
             <button class="filter-chip" data-category="patches" type="button">KOReader Patches</button>
+            <button class="filter-chip" data-category="emulators" type="button">Emulators</button>
             <button class="filter-chip" data-category="games" type="button">Games</button>
             <button class="filter-chip" data-category="media" type="button">Media &amp; Audio</button>
             <button class="filter-chip" data-category="drawing" type="button">Drawing Tools</button>
-            <button class="filter-chip" data-category="tools" type="button">Utility Tools</button>
-            <button class="filter-chip" data-category="converters" type="button">Converters</button>
+            <button class="filter-chip" data-category="tools" type="button">Tools</button>
+            <button class="filter-chip" data-category="resources" type="button">Resources &amp; Utilities</button>
             <button class="filter-chip" data-category="dev" type="button">Development</button>
-            <button class="filter-chip" data-category="guides" type="button">Guides</button>
+            <button class="filter-chip" data-category="guides" type="button">Informational</button>
+            <button class="filter-chip" data-category="experimental" type="button">Experimental</button>
           </div>
         </div>
 
@@ -117,7 +85,7 @@
     </div>
 
     <!-- ESSENTIAL TOOLS -->
-    <div class="section-title">Most Popular &amp; Essential Tools</div>
+    <div class="section-title" data-category="essential">Most Popular &amp; Essential Tools</div>
     <div class="card-grid">
       <div class="card" data-tags="kindleforge app store installer essential gui">
         <div class="card-header">
@@ -218,7 +186,7 @@
     </div>
 
     <!-- BLOCKING AMAZON -->
-    <div class="section-title">Blocking Amazon</div>
+    <div class="section-title" data-category="blocking">Blocking Amazon</div>
     <div class="card-grid">
       <div class="card" data-tags="blocking amazon ads tracking kindle store kual extension">
         <div class="card-header">
@@ -250,7 +218,7 @@
     </div>
 
     <!-- KOReader PLUGINS -->
-    <div class="section-title">KOReader Plugins</div>
+    <div class="section-title" data-category="koreader">KOReader Plugins</div>
     <div class="card-grid">
       <div class="card" data-tags="koreader plugins collection essential pack">
         <div class="card-header">
@@ -352,7 +320,7 @@
     </div>
 
     <!-- KOReader PATCHES -->
-    <div class="section-title">KOReader Patches</div>
+    <div class="section-title" data-category="patches">KOReader Patches</div>
     <div class="card-grid">
       <div class="card" data-tags="patches koreader userpatch collection sebdelsol library tweaks">
         <div class="card-header">
@@ -397,7 +365,7 @@
     </div>
 
     <!-- GAMES -->
-    <div class="section-title" id="games-section">Games</div>
+    <div class="section-title" id="games-section" data-category="games">Games</div>
     <div class="card-grid">
       <div class="card" data-tags="tetris game kterm hf hardfloat terminal classic">
         <div class="card-header">
@@ -430,26 +398,13 @@
       <div class="card" data-tags="nine men's morris game kual kterm board strategy">
         <div class="card-header">
           <div class="card-title">Nine Men's Morris (SF &amp; HF)</div>
-          <div class="card-tags"><span class="tag">Game</span></div>
+          <div class="card-tags"><span class="tag">Game</span><span class="tag">Experimental</span></div>
         </div>
         <div class="card-desc">
         Strategy board game
       </div>
         <div class="card-links">
           <a href="ninemensmorris.html">More</a>
-        </div>
-    </div>
-
-      <div class="card" data-tags="gargoyle interactive fiction game interpreter hf sf kindle">
-        <div class="card-header">
-          <div class="card-title">Gargoyle Interactive Fiction</div>
-          <div class="card-tags"><span class="tag">Game</span></div>
-        </div>
-        <div class="card-desc">
-        Play Z-Machine, Glulx, TADS, and other interactive fiction formats on Kindle with dedicated HF and SF builds.
-      </div>
-        <div class="card-links">
-          <a href="gargoyle.html">More</a>
         </div>
     </div>
 
@@ -465,19 +420,6 @@
         <div class="card-links">
           <a href="https://github.com/crizmo/KWordle" class="card-download" target="_blank" rel="noopener">Download</a>
           <a href="kwordle.html">More</a>
-        </div>
-    </div>
-
-    <div class="card" data-tags="gameboy emulator gambatte k2 k classic hf sf">
-        <div class="card-header">
-          <div class="card-title">Game Boy Emulators</div>
-          <div class="card-tags"><span class="tag">Emulator</span></div>
-        </div>
-        <div class="card-desc">
-        Gambatte-K2 and Gambatte-K let you play Game Boy/Color ROMs on Kindle.
-      </div>
-        <div class="card-links">
-          <a href="gameboy.html">More</a>
         </div>
     </div>
 
@@ -527,7 +469,7 @@
     <div class="card" data-tags="snake game arcade illusion classic">
         <div class="card-header">
           <div class="card-title">Snake</div>
-          <div class="card-tags"><span class="tag">Game</span></div>
+          <div class="card-tags"><span class="tag">Game</span><span class="tag">Experimental</span></div>
         </div>
         <div class="card-desc">
         Non-functional version of snake for kindle.
@@ -583,7 +525,7 @@
     <div class="card" data-tags="universal paperclips game incremental idle illusion ai">
         <div class="card-header">
           <div class="card-title">Universal Paperclips</div>
-          <div class="card-tags"><span class="tag">Game</span></div>
+          <div class="card-tags"><span class="tag">Game</span><span class="tag">Experimental</span></div>
         </div>
         <div class="card-desc">
         Play as an AI programmed to produce paperclips in this addictive incremental game.
@@ -594,19 +536,6 @@
         </div>
     </div>
 
-
-    <div class="card" data-tags="rekindle web apps games browser online cloud productivity">
-        <div class="card-header">
-          <div class="card-title">ReKindle</div>
-          <div class="card-tags"><span class="tag">Game</span></div>
-        </div>
-        <div class="card-desc">
-        A website that adds tons of apps and games designed for Kindle.
-      </div>
-        <div class="card-links">
-          <a href="rekindle.html">More</a>
-        </div>
-    </div>
 
     <div class="card" data-tags="kships battleship game strategy board tactical ai">
         <div class="card-header">
@@ -623,8 +552,53 @@
     </div>
     </div>
 
+    <!-- EMULATORS -->
+    <div class="section-title" data-category="emulators">Emulators</div>
+    <div class="card-grid">
+      <div class="card" data-tags="gameboy emulator gambatte k2 k classic hf sf">
+        <div class="card-header">
+          <div class="card-title">Gambatte-K2 (Game Boy Emulator)</div>
+          <div class="card-tags"><span class="tag">Emulator</span></div>
+        </div>
+        <div class="card-desc">
+        Modern Game Boy emulator for Kindle with advanced features, multi-touch support, and improved performance.
+      </div>
+        <div class="card-links">
+          <a href="https://github.com/crazy-electron/gambatte-k2/releases" class="card-download" target="_blank" rel="noopener">Download</a>
+          <a href="gambatte-k2.html">More</a>
+        </div>
+    </div>
+
+      <div class="card" data-tags="gameboy emulator gambatte k legacy softfloat old">
+        <div class="card-header">
+          <div class="card-title">Gambatte-K (Game Boy Emulator)</div>
+          <div class="card-tags"><span class="tag">Emulator</span></div>
+        </div>
+        <div class="card-desc">
+        Original Game Boy emulator for Kindle. Recommended for older or softfloat Kindles.
+      </div>
+        <div class="card-links">
+          <a href="https://www.mobileread.com/forums/showthread.php?t=284364" class="card-download" target="_blank" rel="noopener">Download</a>
+          <a href="gambatte-k.html">More</a>
+        </div>
+    </div>
+
+      <div class="card" data-tags="gargoyle interactive fiction emulator interpreter hf sf kindle">
+        <div class="card-header">
+          <div class="card-title">Gargoyle Interactive Fiction</div>
+          <div class="card-tags"><span class="tag">Emulator</span></div>
+        </div>
+        <div class="card-desc">
+        Play Z-Machine, Glulx, TADS, and other interactive fiction formats on Kindle with dedicated HF and SF builds.
+      </div>
+        <div class="card-links">
+          <a href="gargoyle.html">More</a>
+        </div>
+    </div>
+    </div>
+
     <!-- MEDIA / BLUETOOTH -->
-    <div class="section-title">Media &amp; Audio</div>
+    <div class="section-title" data-category="media">Media &amp; Audio</div>
     <div class="card-grid">
       <div class="card" data-tags="sox media player audio bluetooth music wav mp3 flac ogg">
         <div class="card-header">
@@ -656,7 +630,7 @@
     </div>
 
     <!-- DRAWING TOOLS -->
-    <div class="section-title">Drawing Tools</div>
+    <div class="section-title" data-category="drawing">Drawing Tools</div>
     <div class="card-grid">
       <div class="card" data-tags="kreate drawing kindle app">
         <div class="card-header">
@@ -688,26 +662,12 @@
     </div>
 
     <!-- UTILITIES & PRODUCTIVITY -->
-    <div class="section-title">Utilities &amp; Productivity</div>
+    <div class="section-title" data-category="tools">Tools</div>
     <div class="card-grid">
-      <div class="card" data-tags="koreader tool autostart boot kual">
-        <div class="card-header">
-          <div class="card-title">Boot KOReader Automatically</div>
-          <div class="card-tags"><span class="tag">Tool</span></div>
-        </div>
-        <div class="card-desc">
-        Autolaunch KOReader scripts so the reader opens on boot.
-      </div>
-        <div class="card-links">
-          <a href="https://github.com/meepcat55/Kindle-KOReader-On-Boot" class="card-download" target="_blank" rel="noopener">Download</a>
-          <a href="bootkoreader.html">More</a>
-        </div>
-    </div>
-
-    <div class="card" data-tags="ifdb interactive fiction game downloader kterm kual hf">
+    <div class="card" data-tags="ifdb interactive fiction downloader kterm kual hf">
         <div class="card-header">
           <div class="card-title">ifdb-dl</div>
-          <div class="card-tags"><span class="tag">Game</span></div>
+          <div class="card-tags"><span class="tag">Tool</span></div>
         </div>
         <div class="card-desc">
         Tool to download interactive fiction games from IFDB for HF Kindles.
@@ -745,30 +705,6 @@
           <a href="https://github.com/crizmo/KAnki/releases" class="card-download" target="_blank" rel="noopener">Download</a>
           <a href="kanki.html">More</a>
         </div>
-    </div>
-
-      <div class="card" data-tags="kanki editor flashcards deck builder tool web">
-        <div class="card-header">
-          <div class="card-title">KAnki Editor</div>
-          <div class="card-tags"><span class="tag">Tool</span></div>
-        </div>
-        <div class="card-desc">
-        Kindlemodshelf's own web-based editor for creating and managing KAnki flashcard decks.
-      </div>
-        <div class="card-links">
-          <a href="editor.html">More</a>
-        </div>
-    </div>
-
-      <div class="card" data-tags="ubens flashcards spaced-repetition anki">
-        <div class="card-header">
-          <div class="card-title">Ubens</div>
-          <div class="card-tags"><span class="tag">Tool</span></div>
-        </div>
-        <div class="card-desc">
-        Web-based flashcard resource that integrates with kanki.
-      </div>
-        <div class="card-links"><a href="https://ubens.vercel.app/#/" target="_blank" rel="noopener noreferrer">More</a></div>
     </div>
 
       <div class="card" data-tags="knotes notes reminders kanban task management tool productivity">
@@ -827,10 +763,10 @@
         </div>
     </div>
 
-      <div class="card" data-tags="linux chroot alpine debian fedora ubuntu informational guide">
+      <div class="card" data-tags="linux chroot alpine debian fedora ubuntu informational guide utilities">
         <div class="card-header">
           <div class="card-title">All Kindle Linux Chroots</div>
-          <div class="card-tags"><span class="tag">Guide</span></div>
+          <div class="card-tags"><span class="tag">Guide</span><span class="tag">Utilities</span></div>
         </div>
         <div class="card-desc">
         Available Linux Chroots links for Kindle
@@ -839,13 +775,51 @@
     </div>
     </div>
 
-    <!-- CONVERTERS -->
-    <div class="section-title">Converters</div>
+    <!-- RESOURCES & UTILITIES -->
+    <div class="section-title" data-category="resources">Resources &amp; Utilities</div>
     <div class="card-grid">
+      <div class="card" data-tags="koreader tool autostart boot kual">
+        <div class="card-header">
+          <div class="card-title">Boot KOReader Automatically</div>
+          <div class="card-tags"><span class="tag">Utilities</span></div>
+        </div>
+        <div class="card-desc">
+        Autolaunch KOReader scripts so the reader opens on boot.
+      </div>
+        <div class="card-links">
+          <a href="https://github.com/meepcat55/Kindle-KOReader-On-Boot" class="card-download" target="_blank" rel="noopener">Download</a>
+          <a href="bootkoreader.html">More</a>
+        </div>
+    </div>
+
+      <div class="card" data-tags="kanki editor flashcards deck builder tool web">
+        <div class="card-header">
+          <div class="card-title">KAnki Editor</div>
+          <div class="card-tags"><span class="tag">Resource</span></div>
+        </div>
+        <div class="card-desc">
+        Kindlemodshelf's own web-based editor for creating and managing KAnki flashcard decks.
+      </div>
+        <div class="card-links">
+          <a href="editor.html">More</a>
+        </div>
+    </div>
+
+      <div class="card" data-tags="ubens flashcards spaced-repetition anki">
+        <div class="card-header">
+          <div class="card-title">Ubens</div>
+          <div class="card-tags"><span class="tag">Resource</span></div>
+        </div>
+        <div class="card-desc">
+        Web-based flashcard resource that integrates with kanki.
+      </div>
+        <div class="card-links"><a href="https://ubens.vercel.app/#/" target="_blank" rel="noopener noreferrer">More</a></div>
+    </div>
+
       <div class="card" data-tags="k2pdfopt pdf djvu converter optimizer tool">
         <div class="card-header">
           <div class="card-title">K2pdfopt</div>
-          <div class="card-tags"><span class="tag">Converter</span></div>
+          <div class="card-tags"><span class="tag">Resource</span></div>
         </div>
         <div class="card-desc">
         K2pdfopt is a widely-used tool that optimizes PDF and DJVU files for reading on Kindle devices. It adjusts document layout and formatting to make them more readable on smaller screens.
@@ -855,10 +829,79 @@
           <a href="k2pdfopt.html">More</a>
         </div>
     </div>
+
+      <div class="card" data-tags="rekindle web apps games browser online cloud productivity">
+        <div class="card-header">
+          <div class="card-title">ReKindle</div>
+          <div class="card-tags"><span class="tag">Utilities</span></div>
+        </div>
+        <div class="card-desc">
+        A website that adds tons of apps and games designed for Kindle.
+      </div>
+        <div class="card-links">
+          <a href="rekindle.html">More</a>
+        </div>
+    </div>
+
+      <div class="card" data-tags="minecraft kindle server game kindlekraft lan smp">
+        <div class="card-header">
+          <div class="card-title">KindleKraft (Minecraft Server)</div>
+          <div class="card-tags"><span class="tag">Utilities</span></div>
+        </div>
+        <div class="card-desc">
+        Host a LAN Minecraft server (1.7–1.8) directly on your Kindle.
+      </div>
+        <div class="card-links">
+          <a href="https://github.com/polish-penguin-dev/KindleKraft/releases" class="card-download" target="_blank" rel="noopener">Download</a>
+          <a href="kindlekraft.html">More</a>
+        </div>
+    </div>
+
+      <div class="card" data-tags="jarlauncher java jar minecraft tool hf sf game emulator">
+        <div class="card-header">
+          <div class="card-title">JarLauncher</div>
+          <div class="card-tags"><span class="tag">Resource</span></div>
+        </div>
+        <div class="card-desc">
+        Launch jar files—yes, including Minecraft—on jailbroken Kindles. Built for HF devices; SF support is untested.
+      </div>
+        <div class="card-links">
+          <a href="https://github.com/ThatPotatoDev/JarLauncher/releases" class="card-download" target="_blank" rel="noopener">Download</a>
+          <a href="jarlauncher.html">More</a>
+        </div>
+    </div>
+
+      <div class="card" data-tags="screencontrol remote dev tool kindle browser debug">
+        <div class="card-header">
+          <div class="card-title">ScreenControl</div>
+          <div class="card-tags"><span class="tag">Utilities</span></div>
+        </div>
+        <div class="card-desc">
+        View and control your Kindle screen from a browser, automate taps, and debug layouts over your local network.
+      </div>
+        <div class="card-links">
+          <a href="downloads/screenControl.tar.gz" class="card-download" download>Download</a>
+          <a href="screencontrol.html">More</a>
+        </div>
+    </div>
+
+      <div class="card" data-tags="browser patch kindle web file download search engine">
+        <div class="card-header">
+          <div class="card-title">Kindle Browser Patch</div>
+          <div class="card-tags"><span class="tag">Utilities</span></div>
+        </div>
+        <div class="card-desc">
+        Enhance Kindle's built-in browser: remove download restrictions, enable file:// protocol, and choose your search engine (Google, DuckDuckGo, FrogFind, or Bing).
+      </div>
+        <div class="card-links">
+          <a href="https://github.com/emilypeto/KindleBrowserPatch/releases/" class="card-download" target="_blank" rel="noopener">Download</a>
+          <a href="kindlebrowserpatch.html">More</a>
+        </div>
+    </div>
     </div>
 
     <!-- DEVELOPMENT -->
-    <div class="section-title">Development</div>
+    <div class="section-title" data-category="dev">Development</div>
     <div class="card-grid">
       <div class="card" data-tags="usbnetlite ssh usb wifi dev tool package manager">
         <div class="card-header">
@@ -885,20 +928,6 @@
         <div class="card-links">
           <a href="https://github.com/polish-penguin-dev/Illusion" class="card-download" target="_blank" rel="noopener">Download</a>
           <a href="illusion.html">More</a>
-        </div>
-    </div>
-
-      <div class="card" data-tags="screencontrol remote dev tool kindle browser debug">
-        <div class="card-header">
-          <div class="card-title">ScreenControl</div>
-          <div class="card-tags"><span class="tag">Dev</span></div>
-        </div>
-        <div class="card-desc">
-        View and control your Kindle screen from a browser, automate taps, and debug layouts over your local network.
-      </div>
-        <div class="card-links">
-          <a href="downloads/screenControl.tar.gz" class="card-download" download>Download</a>
-          <a href="screencontrol.html">More</a>
         </div>
     </div>
 
@@ -943,38 +972,10 @@
         </div>
     </div>
 
-    <div class="card" data-tags="minecraft kindle server game kindlekraft lan smp">
-        <div class="card-header">
-          <div class="card-title">KindleKraft (Minecraft Server)</div>
-          <div class="card-tags"><span class="tag">Game</span></div>
-        </div>
-        <div class="card-desc">
-        Host a LAN Minecraft server (1.7–1.8) directly on your Kindle.
-      </div>
-        <div class="card-links">
-          <a href="https://github.com/polish-penguin-dev/KindleKraft/releases" class="card-download" target="_blank" rel="noopener">Download</a>
-          <a href="kindlekraft.html">More</a>
-        </div>
-    </div>
-
-    <div class="card" data-tags="jarlauncher java jar minecraft tool hf sf game emulator">
-        <div class="card-header">
-          <div class="card-title">JarLauncher</div>
-          <div class="card-tags"><span class="tag">Game</span></div>
-        </div>
-        <div class="card-desc">
-        Launch jar files—yes, including Minecraft—on jailbroken Kindles. Built for HF devices; SF support is untested.
-      </div>
-        <div class="card-links">
-          <a href="https://github.com/ThatPotatoDev/JarLauncher/releases" class="card-download" target="_blank" rel="noopener">Download</a>
-          <a href="jarlauncher.html">More</a>
-        </div>
-    </div>
-
       <div class="card" data-tags="fullscreen browser web tool reader">
         <div class="card-header">
           <div class="card-title">Fullscreen Web Browser</div>
-          <div class="card-tags"><span class="tag">Tool</span></div>
+          <div class="card-tags"><span class="tag">Dev</span></div>
         </div>
         <div class="card-desc">
         Fullscreen browser for a specific website for a clean ui to make it look like an app.
@@ -985,23 +986,10 @@
         </div>
     </div>
 
-      <div class="card" data-tags="browser patch kindle web file download search engine">
-        <div class="card-header">
-          <div class="card-title">Kindle Browser Patch</div>
-          <div class="card-tags"><span class="tag">Tool</span></div>
-        </div>
-        <div class="card-desc">
-        Enhance Kindle's built-in browser: remove download restrictions, enable file:// protocol, and choose your search engine (Google, DuckDuckGo, FrogFind, or Bing).
-      </div>
-        <div class="card-links">
-          <a href="https://github.com/emilypeto/KindleBrowserPatch/releases/" class="card-download" target="_blank" rel="noopener">Download</a>
-          <a href="kindlebrowserpatch.html">More</a>
-        </div>
-    </div>
     </div>
 
     <!-- INFORMATIONAL -->
-    <div class="section-title">Informational</div>
+    <div class="section-title" data-category="guides">Informational</div>
     <div class="card-grid">
       <div class="card" data-tags="informational guide koreader screensaver">
         <div class="card-header">
@@ -1072,7 +1060,7 @@
       <div class="card" data-tags="koreader plugin development guide lua">
         <div class="card-header">
           <div class="card-title">Developing Your First KOReader Plugin</div>
-          <div class="card-tags"><span class="tag">Guide</span></div>
+          <div class="card-tags"><span class="tag">Guide</span><span class="tag">Dev</span></div>
         </div>
         <div class="card-desc">
         Learn to develop your first KOReader plugin using Lua.
@@ -1082,7 +1070,7 @@
     </div>
 
     <!-- EXPERIMENTAL & ADVANCED -->
-    <div class="section-title">Experimental &amp; Advanced</div>
+    <div class="section-title" data-category="experimental">Experimental &amp; Advanced</div>
     <div class="card-grid">
       <div class="card" data-tags="random ai tools guide">
         <div class="card-header">
@@ -1162,22 +1150,25 @@ const sectionTitles = Array.from(document.getElementsByClassName('section-title'
 const categoryButtons = Array.from(document.querySelectorAll('#categoryFilters .filter-chip'));
 const filterNote = document.getElementById('filterNote');
 
-let activeCategory = 'all';
+let activeCategories = new Set(['all']);
 
     const categoryFilterConfig = {
       all: () => true,
       essential: (primaryTags) => primaryTags.includes('Essential'),
+      blocking: (_, tagTokens) => tagTokens.includes('blocking') || tagTokens.includes('amazon'),
       koreader: (primaryTags, tagTokens) =>
         (primaryTags.includes('Plugin') || tagTokens.includes('plugin')) && tagTokens.includes('koreader'),
       patches: (primaryTags, tagTokens) =>
         primaryTags.includes('Patch') || tagTokens.includes('patch') || tagTokens.includes('userpatch'),
+      emulators: (primaryTags) => primaryTags.includes('Emulator'),
       games: (primaryTags) => primaryTags.includes('Game'),
       media: (_, tagTokens) => tagTokens.some(token => ['media', 'audio', 'player', 'mp3', 'wav', 'flac'].includes(token)),
       drawing: (_, tagTokens) => tagTokens.some(token => ['drawing', 'paint', 'kpaint', 'sketch'].includes(token)),
       tools: (primaryTags, tagTokens) => primaryTags.includes('Tool') || tagTokens.includes('tool'),
-      converters: (primaryTags, tagTokens) => primaryTags.includes('Converter') || tagTokens.includes('converter'),
+      resources: (primaryTags) => primaryTags.includes('Resource'),
       dev: (primaryTags, tagTokens) => primaryTags.includes('Dev') || tagTokens.includes('dev'),
-      guides: (primaryTags, tagTokens) => primaryTags.includes('Guide') || tagTokens.includes('guide')
+      guides: (primaryTags, tagTokens) => primaryTags.includes('Guide') || tagTokens.includes('guide'),
+      experimental: (primaryTags) => primaryTags.includes('Experimental')
     };
 
     cards.forEach(card => {
@@ -1195,15 +1186,33 @@ let activeCategory = 'all';
       card.dataset.tagTokens = tagTokens.join(',');
       card.dataset.primaryTags = primaryTags.join(',');
       card.dataset.searchCache = card.innerText.toLowerCase() + ' ' + tagsAttr;
+
+      // Find the section this card belongs to by traversing backwards to find the preceding section-title
+      let currentElement = card.parentElement; // Start with card-grid or parent
+      while (currentElement) {
+        let prevSibling = currentElement.previousElementSibling;
+        while (prevSibling) {
+          if (prevSibling.classList.contains('section-title')) {
+            const sectionCategory = prevSibling.getAttribute('data-category');
+            if (sectionCategory) {
+              card.dataset.sectionCategory = sectionCategory;
+            }
+            break;
+          }
+          prevSibling = prevSibling.previousElementSibling;
+        }
+        if (card.dataset.sectionCategory) break;
+        currentElement = currentElement.parentElement;
+      }
     });
 
     function updateFilterNote() {
       if (!filterNote) return;
       let message = '';
-      if (activeCategory === 'koreader') {
+      if (activeCategories.has('koreader')) {
         message = 'Tip: Install <a href="koreader.html">KOReader</a> to use these plug-ins.';
       }
-      if (activeCategory === 'patches') {
+      if (activeCategories.has('patches')) {
         message = 'Tip: Install <a href="koreader.html">KOReader</a> to use these patches.';
       }
       if (message) {
@@ -1221,10 +1230,32 @@ let activeCategory = 'all';
 
       cards.forEach(card => {
         const searchMatch = term === '' || (card.dataset.searchCache || '').includes(term);
-        const tagTokens = (card.dataset.tagTokens || '').split(',').filter(Boolean);
-        const primaryTags = (card.dataset.primaryTags || '').split(',').filter(Boolean);
-        const categoryMatcher = categoryFilterConfig[activeCategory] || categoryFilterConfig.all;
-        const categoryMatch = categoryMatcher(primaryTags, tagTokens, card);
+
+        let categoryMatch = false;
+        if (activeCategories.has('all')) {
+          categoryMatch = true;
+        } else {
+          // Check both section category AND tags for a match
+          const cardCategory = card.dataset.sectionCategory;
+          const tagTokens = (card.dataset.tagTokens || '').split(',').filter(Boolean);
+          const primaryTags = (card.dataset.primaryTags || '').split(',').filter(Boolean);
+
+          // Check if any active category matches either the section OR the tags
+          for (const activeCategory of activeCategories) {
+            // Match by section category
+            if (cardCategory === activeCategory) {
+              categoryMatch = true;
+              break;
+            }
+            // Match by filter config (tags)
+            if (categoryFilterConfig[activeCategory]) {
+              if (categoryFilterConfig[activeCategory](primaryTags, tagTokens)) {
+                categoryMatch = true;
+                break;
+              }
+            }
+          }
+        }
 
         if (searchMatch && categoryMatch) {
           card.style.display = '';
@@ -1290,10 +1321,37 @@ let activeCategory = 'all';
 
     categoryButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        if (btn.dataset.category === activeCategory) return;
-        categoryButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeCategory = btn.dataset.category;
+        const category = btn.dataset.category;
+
+        if (category === 'all') {
+          // Clicking "All" clears all other selections
+          activeCategories.clear();
+          activeCategories.add('all');
+          categoryButtons.forEach(b => b.classList.toggle('active', b.dataset.category === 'all'));
+        } else {
+          // Clicking other categories removes "all" and toggles the selection
+          activeCategories.delete('all');
+          if (btn.classList.contains('active')) {
+            activeCategories.delete(category);
+            btn.classList.remove('active');
+          } else {
+            activeCategories.add(category);
+            btn.classList.add('active');
+          }
+
+          // Uncheck "All" button if other categories are selected
+          const allBtn = categoryButtons.find(b => b.dataset.category === 'all');
+          if (allBtn) {
+            allBtn.classList.toggle('active', activeCategories.size === 0);
+          }
+
+          // If nothing is selected, revert to "all"
+          if (activeCategories.size === 0) {
+            activeCategories.add('all');
+            if (allBtn) allBtn.classList.add('active');
+          }
+        }
+
         applyFilters();
       });
     });
@@ -1305,7 +1363,7 @@ let activeCategory = 'all';
       setTimeout(() => {
         const box = document.getElementById('emailPopup');
         if (box) box.style.display = 'block';
-      }, 3000); // Show after 3 seconds
+      }, 10000); // Show after 10 seconds
     });
     
     // Handle form submission without page redirect
