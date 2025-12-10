@@ -21,28 +21,39 @@
     <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
     <h1>Kindle Screensaver Image Gallery</h1>
     <div class="summary">
-      Browse and download user-contributed Kindle screensaver images, organized by author. Click any image to view it large, or use the download icon in the preview to save.
+      Browse and download user-contributed Kindle screensaver images. Click any image to view it large, or use the download icon in the preview to save. Search by author name to see all images organized by author.
     </div>
     <div class="search-bar-wrap">
-      <label for="search-bar" class="search-label">Search by author:</label>
+      <label for="search-bar" class="search-label">Search authors (optional):</label>
       <input type="text" id="search-bar" placeholder="Type an author name…" autocomplete="off">
     </div>
-    <div id="gallery-root"></div>
-    <div id="loading-indicator" style="text-align: center; margin: 20px 0; display: none;">
-      <div class="loader"></div>
-      <p>Loading more authors...</p>
+
+    <!-- Normal Stream View (default) -->
+    <div id="stream-view" class="stream-view">
+      <div id="gallery-root" class="gallery-stream"></div>
+      <div id="loading-indicator" style="text-align: center; margin: 20px 0; display: none;">
+        <div class="loader"></div>
+        <p>Loading more images...</p>
+      </div>
+    </div>
+
+    <!-- Search Results View (organized by author) -->
+    <div id="search-view" class="search-view" style="display: none;">
+      <div id="search-results"></div>
     </div>
 
     <!-- Hidden canvas for thumbnail generation -->
     <canvas id="thumbnail-canvas" width="300" height="300"></canvas>
 
-    <!-- Modal Viewer -->
+    <!-- Modal Viewer with Side Panel -->
     <div id="img-viewer-modal">
       <div id="img-viewer-img-wrap">
         <div class="viewer-topbar">
           <div class="viewer-info">
-            <span id="img-viewer-author"></span>
-            <span id="img-viewer-filename"></span>
+            <div class="viewer-author-header">
+              <div id="img-viewer-author" class="author-name"></div>
+              <div id="img-viewer-filename" class="filename"></div>
+            </div>
           </div>
           <div class="viewer-actions">
             <a id="img-viewer-download" class="viewer-button viewer-download" href="#" download>
@@ -54,9 +65,15 @@
             <button id="img-viewer-close" class="viewer-button viewer-close" type="button">Close</button>
           </div>
         </div>
-        <div class="viewer-canvas">
-          <div id="img-viewer-loader"></div>
-          <img id="img-viewer-img" src="" alt="Large view" draggable="false" loading="lazy">
+        <div class="viewer-content">
+          <div class="viewer-canvas">
+            <div id="img-viewer-loader"></div>
+            <img id="img-viewer-img" src="" alt="Large view" draggable="false" loading="lazy">
+          </div>
+          <div id="viewer-sidebar" class="viewer-sidebar">
+            <div class="sidebar-header">Other images by this author</div>
+            <div id="sidebar-images" class="sidebar-images"></div>
+          </div>
         </div>
       </div>
     </div>

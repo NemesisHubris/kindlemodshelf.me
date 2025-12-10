@@ -1,26 +1,26 @@
-const INITIAL_AUTHORS = 10;
-const LOAD_MORE_AUTHORS = 6;
-const PREVIEW_IMAGE_COUNT = 6;
+const IMAGES_PER_LOAD = 30;
 const THUMBNAIL_WIDTH = 400;
 const THUMBNAIL_HEIGHT = 533;
 const THUMBNAIL_QUALITY = 0.82;
 const PLACEHOLDER_SRC = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
-const SECTION_UNLOAD_OFFSET = 1400;
-const MAX_CACHE_ITEMS = 60;
-const PLACEHOLDER_BACKGROUND = 'linear-gradient(160deg, rgba(88, 225, 255, 0.18), rgba(12, 20, 34, 0.92))';
 const CANVAS_BACKGROUND = '#081524';
+const RANDOMIZATION_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+const RANDOMIZED_ORDER_KEY = 'gallery_randomized_order';
+const RANDOMIZATION_TIMESTAMP_KEY = 'gallery_randomization_time';
 
-let allAuthors = [];
 let allData = null;
-let loadedAuthors = 0;
+let allImages = []; // Flat list of all {author, filename} objects
+let loadedCount = 0;
 let isLoading = false;
 let isSearchMode = false;
 
 const thumbnailCache = new Map();
-const sectionsMeta = new Map();
 
 const galleryRoot = document.getElementById('gallery-root');
 const loadingIndicator = document.getElementById('loading-indicator');
+const streamView = document.getElementById('stream-view');
+const searchView = document.getElementById('search-view');
+const searchResults = document.getElementById('search-results');
 const thumbnailCanvas = document.getElementById('thumbnail-canvas');
 const thumbnailCtx = thumbnailCanvas.getContext('2d');
 
@@ -30,13 +30,46 @@ const imageObserver = new IntersectionObserver(handleImageIntersection, {
   threshold: 0.1
 });
 
-const sectionObserver = new IntersectionObserver(handleSectionIntersection, {
-  root: null,
-  rootMargin: '800px 0px 800px 0px',
-  threshold: 0.05
-});
-
 let scrollEnabled = false;
+
+function getPlaceholderBackground() {
+  return getComputedStyle(document.documentElement).getPropertyValue('--placeholder-bg').trim();
+}
+
+function shouldRandomizeOrder() {
+  const lastRandomTime = localStorage.getItem(RANDOMIZATION_TIMESTAMP_KEY);
+  if (!lastRandomTime) return true;
+
+  const timeSinceLastRandom = Date.now() - parseInt(lastRandomTime);
+  return timeSinceLastRandom > RANDOMIZATION_INTERVAL;
+}
+
+function getRandomizedOrder() {
+  // Check if we should use cached randomized order
+  if (!shouldRandomizeOrder()) {
+    const cached = localStorage.getItem(RANDOMIZED_ORDER_KEY);
+    if (cached) {
+      try {
+        return JSON.parse(cached);
+      } catch (e) {
+        console.warn('Could not parse cached randomized order');
+      }
+    }
+  }
+
+  // Create new randomized order
+  const randomized = [...allImages].sort(() => Math.random() - 0.5);
+
+  // Save to localStorage
+  try {
+    localStorage.setItem(RANDOMIZED_ORDER_KEY, JSON.stringify(randomized));
+    localStorage.setItem(RANDOMIZATION_TIMESTAMP_KEY, Date.now().toString());
+  } catch (e) {
+    console.warn('Could not save randomized order to localStorage:', e);
+  }
+
+  return randomized;
+}
 
 fetch('images.json')
   .then(res => {
@@ -45,13 +78,27 @@ fetch('images.json')
   })
   .then(data => {
     allData = data;
-    allAuthors = Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }));
-    if (allAuthors.length === 0) {
+
+    // Flatten all images into a single array with author info
+    Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })).forEach(author => {
+      const images = data[author];
+      if (Array.isArray(images)) {
+        images.forEach(filename => {
+          allImages.push({ author, filename });
+        });
+      }
+    });
+
+    if (allImages.length === 0) {
       galleryRoot.textContent = 'No images found.';
       return;
     }
+
+    // Randomize the order
+    allImages = getRandomizedOrder();
+
     enableScrollLoading();
-    loadMoreAuthors(INITIAL_AUTHORS);
+    loadMoreImages(IMAGES_PER_LOAD);
 
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('input', handleSearch);
@@ -63,100 +110,125 @@ fetch('images.json')
 
 function handleSearch(event) {
   const query = event.target.value.trim().toLowerCase();
-  resetGallery();
-  loadingIndicator.style.display = 'none';
 
   if (query === '') {
+    // Show stream view, hide search view
     isSearchMode = false;
+    streamView.style.display = '';
+    searchView.style.display = 'none';
     enableScrollLoading();
-    loadMoreAuthors(INITIAL_AUTHORS);
+    loadedCount = 0;
+    resetGallery();
+    loadMoreImages(IMAGES_PER_LOAD);
     return;
   }
 
+  // Show search view, hide stream view
   isSearchMode = true;
+  streamView.style.display = 'none';
+  searchView.style.display = '';
   disableScrollLoading();
 
-  const matches = allAuthors.filter(author => author.toLowerCase().includes(query));
+  const matches = allImages.filter(img => img.author.toLowerCase().includes(query));
+
+  searchResults.innerHTML = '';
+
   if (matches.length === 0) {
     const msg = document.createElement('div');
     msg.className = 'no-results';
     msg.textContent = 'No authors match your search.';
-    galleryRoot.appendChild(msg);
+    searchResults.appendChild(msg);
     return;
   }
 
-  matches.forEach(author => createSection(author));
+  // Group images by author for search results
+  const authorGroups = {};
+  matches.forEach(imgData => {
+    if (!authorGroups[imgData.author]) {
+      authorGroups[imgData.author] = [];
+    }
+    authorGroups[imgData.author].push(imgData);
+  });
+
+  // Display search results with author headers - COMPLETELY SEPARATE LAYOUT
+  Object.keys(authorGroups).sort().forEach(author => {
+    // Author header
+    const authorHeader = document.createElement('div');
+    authorHeader.className = 'search-author-header';
+    authorHeader.textContent = author;
+    searchResults.appendChild(authorHeader);
+
+    // Author's images grid
+    const imagesGrid = document.createElement('div');
+    imagesGrid.className = 'search-images-grid';
+
+    authorGroups[author].forEach(imgData => {
+      const imgWrapper = document.createElement('div');
+      imgWrapper.className = 'search-image-card';
+
+      const img = document.createElement('img');
+      img.className = 'search-image';
+      img.alt = imgData.filename;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.dataset.loaded = '0';
+      img.dataset.loading = '0';
+      img.dataset.fullPath = `images/${author}/${imgData.filename}`;
+      img.dataset.author = author;
+      img.dataset.filename = imgData.filename;
+      img.src = PLACEHOLDER_SRC;
+      img.style.background = getPlaceholderBackground();
+
+      img.addEventListener('click', function () {
+        if (this.dataset.loaded !== '1') {
+          loadImage(this);
+        }
+        openViewer(this);
+      });
+
+      imgWrapper.appendChild(img);
+      imagesGrid.appendChild(imgWrapper);
+      imageObserver.observe(img);
+    });
+
+    searchResults.appendChild(imagesGrid);
+  });
 }
 
 function handleScroll() {
-  if (isSearchMode || isLoading || loadedAuthors >= allAuthors.length) return;
+  if (isSearchMode || isLoading || loadedCount >= allImages.length) return;
   const scrollY = window.scrollY;
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   if (scrollY + windowHeight > documentHeight - 200) {
-    loadMoreAuthors(LOAD_MORE_AUTHORS);
+    loadMoreImages(IMAGES_PER_LOAD);
   }
 }
 
-function loadMoreAuthors(count) {
-  if (isSearchMode || isLoading || loadedAuthors >= allAuthors.length) return;
+function loadMoreImages(count) {
+  if (isSearchMode || isLoading || loadedCount >= allImages.length) return;
 
   isLoading = true;
   loadingIndicator.style.display = 'block';
 
-  const endIndex = Math.min(loadedAuthors + count, allAuthors.length);
+  const endIndex = Math.min(loadedCount + count, allImages.length);
   setTimeout(() => {
-    for (let i = loadedAuthors; i < endIndex; i++) {
-      const author = allAuthors[i];
-      const images = allData[author];
-      if (!Array.isArray(images) || images.length === 0) continue;
-      createSection(author);
+    for (let i = loadedCount; i < endIndex; i++) {
+      addImageToStream(allImages[i]);
     }
-    loadedAuthors = endIndex;
+    loadedCount = endIndex;
     isLoading = false;
     loadingIndicator.style.display = 'none';
-    if (loadedAuthors >= allAuthors.length) {
+    if (loadedCount >= allImages.length) {
       disableScrollLoading();
     }
   }, 40);
 }
 
-function createSection(author) {
-  const images = allData[author];
-  if (!Array.isArray(images) || images.length === 0) return;
-
-  const sectionId = sanitizeId(author);
-  const section = document.createElement('section');
-  section.dataset.author = author;
-  section.setAttribute('aria-labelledby', sectionId);
-  section.innerHTML = `
-    <h2 class="section-title" id="${sectionId}">${author}</h2>
-    <div class="card card-desc gallery-card">
-      <div class="gallery-grid" id="grid-${sectionId}"></div>
-      <div class="gallery-controls" id="controls-${sectionId}"></div>
-    </div>
-  `;
-
-  galleryRoot.appendChild(section);
-
-  const meta = {
-    author,
-    section,
-    grid: section.querySelector('.gallery-grid'),
-    controls: section.querySelector('.gallery-controls'),
-    rendered: false
-  };
-
-  sectionsMeta.set(author, meta);
-  sectionObserver.observe(section);
-
-  if (isSectionNearViewport(section) || isSearchMode) {
-    ensureSectionRendered(meta);
-  }
-}
-
-function addImageToGrid(grid, author, filename) {
+function addImageToStream(imgData) {
+  const { author, filename } = imgData;
   const imgFullPath = `images/${author}/${filename}`;
+
   const cell = document.createElement('div');
   cell.className = 'img-thumb-wrap';
 
@@ -171,7 +243,7 @@ function addImageToGrid(grid, author, filename) {
   img.dataset.author = author;
   img.dataset.filename = filename;
   img.src = PLACEHOLDER_SRC;
-  img.style.background = PLACEHOLDER_BACKGROUND;
+  img.style.background = getPlaceholderBackground();
 
   img.addEventListener('click', function () {
     if (this.dataset.loaded !== '1') {
@@ -181,7 +253,7 @@ function addImageToGrid(grid, author, filename) {
   });
 
   cell.appendChild(img);
-  grid.appendChild(cell);
+  galleryRoot.appendChild(cell);
   imageObserver.observe(img);
 }
 
@@ -220,7 +292,7 @@ function createThumbnail(imgPath, callback) {
     try {
       const thumbnailUrl = thumbnailCanvas.toDataURL('image/jpeg', THUMBNAIL_QUALITY);
       thumbnailCache.set(imgPath, thumbnailUrl);
-      if (thumbnailCache.size > MAX_CACHE_ITEMS) {
+      if (thumbnailCache.size > 60) {
         const oldestKey = thumbnailCache.keys().next().value;
         thumbnailCache.delete(oldestKey);
       }
@@ -278,8 +350,8 @@ function handleImageIntersection(entries) {
     }
 
     const rect = entry.boundingClientRect;
-    const aboveThreshold = rect.bottom < -SECTION_UNLOAD_OFFSET;
-    const belowThreshold = rect.top > viewportHeight + SECTION_UNLOAD_OFFSET;
+    const aboveThreshold = rect.bottom < -1400;
+    const belowThreshold = rect.top > viewportHeight + 1400;
 
     if (aboveThreshold || belowThreshold) {
       unloadImage(img);
@@ -287,88 +359,11 @@ function handleImageIntersection(entries) {
   });
 }
 
-function ensureSectionRendered(meta) {
-  if (meta.rendered) return;
-  const images = allData[meta.author] || [];
-  if (!images.length) return;
-
-  // Show only preview images initially
-  const previewImages = images.slice(0, PREVIEW_IMAGE_COUNT);
-  previewImages.forEach(filename => addImageToGrid(meta.grid, meta.author, filename));
-
-  // Add "Show More" button if there are more images
-  if (images.length > PREVIEW_IMAGE_COUNT) {
-    const btn = createLoadMoreButton(meta, images);
-    meta.controls.appendChild(btn);
-    meta.loadMoreBtn = btn;
-  }
-
-  meta.rendered = true;
-}
-
-function createLoadMoreButton(meta, images) {
-  const btn = document.createElement('button');
-  btn.className = 'load-more-btn';
-  btn.type = 'button';
-  btn.textContent = `Show all ${images.length} images`;
-  btn.addEventListener('click', () => {
-    const currentCount = meta.grid.querySelectorAll('.img-thumb-wrap').length;
-    images.slice(currentCount).forEach(filename => addImageToGrid(meta.grid, meta.author, filename));
-    meta.expanded = true;
-    btn.remove();
-    meta.loadMoreBtn = null;
-  });
-  return btn;
-}
-
-function teardownSection(meta) {
-  if (!meta.rendered) return;
-  const thumbs = meta.grid.querySelectorAll('.img-thumb');
-  thumbs.forEach(img => imageObserver.unobserve(img));
-  meta.grid.innerHTML = '';
-  meta.rendered = false;
-}
-
-function handleSectionIntersection(entries) {
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  entries.forEach(entry => {
-    const author = entry.target.dataset.author;
-    const meta = sectionsMeta.get(author);
-    if (!meta) return;
-
-    if (entry.isIntersecting) {
-      ensureSectionRendered(meta);
-      return;
-    }
-
-    const rect = entry.boundingClientRect;
-    if (rect.bottom < -SECTION_UNLOAD_OFFSET || rect.top > viewportHeight + SECTION_UNLOAD_OFFSET) {
-      teardownSection(meta);
-    }
-  });
-}
-
-function isSectionNearViewport(section) {
-  const buffer = 800;
-  const rect = section.getBoundingClientRect();
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  return rect.top <= viewportHeight + buffer && rect.bottom >= -buffer;
-}
-
-function sanitizeId(str) {
-  return str.replace(/[^a-zA-Z0-9_\-.]/g, '_');
-}
-
 function resetGallery() {
-  sectionsMeta.forEach(meta => {
-    sectionObserver.unobserve(meta.section);
-    teardownSection(meta);
-  });
-  sectionsMeta.clear();
+  const thumbs = galleryRoot.querySelectorAll('.img-thumb');
+  thumbs.forEach(img => imageObserver.unobserve(img));
   galleryRoot.innerHTML = '';
-  imageObserver.disconnect();
-  sectionObserver.disconnect();
-  loadedAuthors = 0;
+  loadedCount = 0;
   isLoading = false;
 }
 
@@ -384,6 +379,7 @@ function disableScrollLoading() {
   scrollEnabled = false;
 }
 
+// Modal Viewer
 const modal = document.getElementById('img-viewer-modal');
 const modalImg = document.getElementById('img-viewer-img');
 const modalDownload = document.getElementById('img-viewer-download');
@@ -391,16 +387,24 @@ const modalClose = document.getElementById('img-viewer-close');
 const modalAuthor = document.getElementById('img-viewer-author');
 const modalFilename = document.getElementById('img-viewer-filename');
 const modalLoader = document.getElementById('img-viewer-loader');
+const sidebarImages = document.getElementById('sidebar-images');
+
+let currentAuthor = null;
+let currentImageIndex = null;
 
 function openViewer(thumbnail) {
+  const author = thumbnail.dataset.author;
+  const filename = thumbnail.dataset.filename;
+
+  currentAuthor = author;
+  currentImageIndex = allImages.findIndex(img => img.author === author && img.filename === filename);
+
   modal.style.display = 'flex';
   modal.classList.remove('active');
   modalLoader.classList.add('active');
   modalImg.style.opacity = '0';
 
   const src = thumbnail.dataset.fullPath;
-  const author = thumbnail.dataset.author || 'Unknown Author';
-  const filename = thumbnail.dataset.filename || '';
 
   modalAuthor.textContent = author;
   modalFilename.textContent = filename;
@@ -408,6 +412,9 @@ function openViewer(thumbnail) {
   if (filename) {
     modalDownload.download = filename;
   }
+
+  // Load sidebar images for this author
+  loadSidebarImages(author);
 
   modalImg.onload = function () {
     modalLoader.classList.remove('active');
@@ -424,6 +431,43 @@ function openViewer(thumbnail) {
   requestAnimationFrame(() => modal.classList.add('active'));
 }
 
+function loadSidebarImages(author) {
+  const authorImages = allImages.filter(img => img.author === author);
+  sidebarImages.innerHTML = '';
+
+  authorImages.forEach(imgData => {
+    const sidebarItem = document.createElement('div');
+    sidebarItem.className = 'sidebar-image-item';
+    sidebarItem.title = imgData.filename;
+
+    const sidebarThumb = document.createElement('img');
+    sidebarThumb.className = 'sidebar-thumb';
+    sidebarThumb.alt = imgData.filename;
+    sidebarThumb.dataset.fullPath = `images/${author}/${imgData.filename}`;
+    sidebarThumb.dataset.author = author;
+    sidebarThumb.dataset.filename = imgData.filename;
+    sidebarThumb.src = PLACEHOLDER_SRC;
+    sidebarThumb.style.background = getPlaceholderBackground();
+
+    // Check if this is the currently viewed image
+    if (imgData.filename === modalFilename.textContent) {
+      sidebarItem.classList.add('active');
+      // Scroll into view
+      setTimeout(() => {
+        sidebarItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+
+    sidebarThumb.addEventListener('click', () => {
+      openViewer(sidebarThumb);
+    });
+
+    sidebarItem.appendChild(sidebarThumb);
+    sidebarImages.appendChild(sidebarItem);
+    imageObserver.observe(sidebarThumb);
+  });
+}
+
 function closeViewer() {
   modal.classList.remove('active');
   setTimeout(() => {
@@ -431,6 +475,7 @@ function closeViewer() {
     modalImg.src = '';
     modalDownload.href = '#';
     modalLoader.classList.remove('active');
+    sidebarImages.innerHTML = '';
   }, 200);
 }
 

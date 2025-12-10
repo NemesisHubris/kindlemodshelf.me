@@ -120,6 +120,7 @@
   --img-thumb-bg: #2a2a2a;
   --img-thumb-hover-bg: #323232;
   --img-thumb-overlay: rgba(0, 0, 0, 0.6);
+  --placeholder-bg: linear-gradient(160deg, rgba(88, 225, 255, 0.18), rgba(12, 20, 34, 0.92));
   --viewer-modal-bg: rgba(0, 0, 0, 0.9);
   --viewer-wrap-bg: #1a1a1a;
   --viewer-canvas-bg: #1a1a1a;
@@ -281,6 +282,7 @@
   --img-thumb-bg: #f0f0f0;
   --img-thumb-hover-bg: #e8e8e8;
   --img-thumb-overlay: rgba(0, 0, 0, 0.4);
+  --placeholder-bg: linear-gradient(160deg, rgba(235, 165, 80, 0.15), rgba(240, 230, 200, 0.85));
   --viewer-modal-bg: rgba(0, 0, 0, 0.8);
   --viewer-wrap-bg: #ffffff;
   --viewer-canvas-bg: #f8f8f8;
@@ -1361,6 +1363,13 @@ pre code {
   font-weight: 600;
 }
 
+.gallery-stream {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  padding: 0;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -1435,6 +1444,14 @@ pre code {
   overflow: hidden;
   align-items: center;
   justify-content: center;
+}
+
+#img-viewer-modal.active {
+  overflow: hidden;
+}
+
+body:has(#img-viewer-modal.active) {
+  overflow: hidden;
 }
 
 #img-viewer-img-wrap {
@@ -1566,6 +1583,117 @@ pre code {
   font-size: 1.2em;
 }
 
+.viewer-content {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  gap: 0;
+}
+
+.viewer-sidebar {
+  width: 200px;
+  background: var(--viewer-wrap-bg);
+  border-left: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 12px 10px;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 1px solid var(--card-border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-images {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: max-content;
+  gap: 8px;
+  padding: 8px 6px;
+  min-height: 0;
+  align-content: start;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+.sidebar-images::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-images::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-images::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+.sidebar-images::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+.sidebar-image-item {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--img-thumb-bg);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  border: 2px solid transparent;
+  width: 100%;
+}
+
+.sidebar-image-item.active {
+  border-color: var(--primary);
+}
+
+.sidebar-image-item:hover {
+  background: var(--img-thumb-hover-bg);
+}
+
+.sidebar-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-thumb.loaded {
+  opacity: 1;
+}
+
+.viewer-author-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.author-name {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.filename {
+  font-size: 0.85em;
+  color: var(--muted);
+  word-break: break-all;
+}
+
 @media (max-width: 768px) {
   #img-viewer-img-wrap {
     width: 95vw;
@@ -1623,6 +1751,72 @@ pre code {
     flex: 1;
     justify-content: center;
   }
+
+  .viewer-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .viewer-sidebar {
+    width: 150px;
+  }
+
+  .sidebar-header {
+    padding: 10px 8px;
+    font-size: 0.8em;
+  }
+}
+
+/* SEARCH RESULTS VIEW - COMPLETELY SEPARATE LAYOUT */
+.search-view {
+  width: 100%;
+}
+
+.search-author-header {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--fg);
+  margin: 32px 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--card-border);
+}
+
+.search-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.search-image-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--img-thumb-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--card-border);
+}
+
+.search-image-card:hover {
+  background: var(--img-thumb-hover-bg);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.search-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.search-image.loaded {
+  opacity: 1;
 }
 
 /* Download List Styling for Shortcuts and Files */
