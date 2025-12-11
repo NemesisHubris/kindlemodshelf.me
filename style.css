@@ -888,6 +888,24 @@ li {
   pointer-events: none;
 }
 
+.card-open {
+  border-color: var(--primary) !important;
+  background: var(--primary) !important;
+  color: var(--bg-base) !important;
+}
+
+.card-open::before {
+  content: "↓";
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.card-open:hover {
+  background: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+  color: var(--bg-base) !important;
+}
+
 a {
   color: var(--link-color);
   text-decoration: none;
