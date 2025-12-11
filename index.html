@@ -24,6 +24,46 @@
     </div>
   </div>
 
+  <!-- Settings Wheel Button -->
+  <button class="settings-wheel" id="settingsWheel" aria-label="Open settings" title="Settings">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66z"/>
+    </svg>
+  </button>
+
+  <!-- Settings Modal -->
+  <div class="settings-modal" id="settingsModal">
+    <div class="settings-modal-content">
+      <div class="settings-modal-header">
+        <h2>Settings</h2>
+        <button class="settings-modal-close" id="settingsModalClose" aria-label="Close settings">×</button>
+      </div>
+      <div class="settings-modal-body">
+        <div class="settings-option">
+          <div class="settings-option-label">
+            <span class="settings-option-title">Show Newsletter Pop-up</span>
+            <span class="settings-option-desc">Display newsletter subscription popup on page load</span>
+          </div>
+          <label class="settings-toggle">
+            <input type="checkbox" id="newsletterToggle" class="settings-toggle-input">
+            <span class="settings-toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="settings-option" style="margin-top: 20px;">
+          <div class="settings-option-label">
+            <span class="settings-option-title">Show Warning Banner</span>
+            <span class="settings-option-desc">Display critical update notifications at the top</span>
+          </div>
+          <label class="settings-toggle">
+            <input type="checkbox" id="warningBannerToggle" class="settings-toggle-input">
+            <span class="settings-toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <h1>Kindle Modding Tools &amp; Resources</h1>
 
@@ -1422,17 +1462,46 @@ let activeCategories = new Set(['all']);
     window.addEventListener('load', () => {
       setTimeout(() => {
         const box = document.getElementById('emailPopup');
-        if (box) box.style.display = 'block';
-      }, 10000); // Show after 10 seconds
+        // Only show popup if user hasn't already subscribed
+        if (box && !hasUserSubscribed()) {
+          box.style.display = 'block';
+        }
+      }, 3000); // Show after 3 seconds
     });
     
     // Handle form submission without page redirect
+    // Utility function to set a cookie
+    function setCookie(name, value, days = 365) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax";
+    }
+
+    // Utility function to get a cookie
+    function getCookie(name) {
+      const nameEQ = name + "=";
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        cookie = cookie.trim();
+        if (cookie.indexOf(nameEQ) === 0) {
+          return cookie.substring(nameEQ.length);
+        }
+      }
+      return null;
+    }
+
+    // Check if user has already subscribed (cookie takes priority, then localStorage)
+    function hasUserSubscribed() {
+      return getCookie('kindleModsSubscribed') === 'true' || localStorage.getItem('kindleModsSubscribed') === 'true';
+    }
+
     document.getElementById('subscribeForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       const form = this;
       const formData = new FormData(form);
-      
+
       // Submit the form using fetch API
       fetch('https://api.staticforms.xyz/submit', {
         method: 'POST',
@@ -1443,11 +1512,14 @@ let activeCategories = new Set(['all']);
           // Hide the form and show thank you message
           form.style.display = 'none';
           document.getElementById('thankYouMessage').style.display = 'block';
-          
-          // Store in localStorage that user has subscribed
+
+          // Set cookie that persists for 1 year
+          setCookie('kindleModsSubscribed', 'true', 365);
+
+          // Also store in localStorage as fallback
           localStorage.setItem('kindleModsSubscribed', 'true');
-          
-          // Optional: close the popup after a few seconds
+
+          // Close the popup after a few seconds
           setTimeout(() => {
             document.getElementById('emailPopup').style.display = 'none';
           }, 5000);
@@ -1460,14 +1532,190 @@ let activeCategories = new Set(['all']);
         alert('Something went wrong. Please try again.');
       });
     });
-    
+
     // Don't show popup if already subscribed
-    if (localStorage.getItem('kindleModsSubscribed') === 'true') {
-      // Don't show the popup again if already subscribed
+    if (hasUserSubscribed()) {
       window.addEventListener('load', () => {
         const popup = document.getElementById('emailPopup');
         if (popup) popup.style.display = 'none';
       });
+    }
+
+    // Settings Modal Functionality
+    function initSettingsModal() {
+      const settingsWheel = document.getElementById('settingsWheel');
+      const settingsModal = document.getElementById('settingsModal');
+      const settingsModalClose = document.getElementById('settingsModalClose');
+      const newsletterToggle = document.getElementById('newsletterToggle');
+      const warningBannerToggle = document.getElementById('warningBannerToggle');
+
+      console.log('Initializing settings modal');
+      console.log('  settingsWheel:', settingsWheel);
+      console.log('  settingsModal:', settingsModal);
+      console.log('  settingsModalClose:', settingsModalClose);
+
+    // Function to check if warning banner is hidden
+    function isBannerHidden() {
+      try {
+        return localStorage.getItem('hideTopAnnouncement') === '1';
+      } catch (err) {
+        return false;
+      }
+    }
+
+    // Function to update toggle state based on current subscription
+    function updateToggleState() {
+      const isSubscribed = hasUserSubscribed();
+      const cookieValue = getCookie('kindleModsSubscribed');
+      const localStorageValue = localStorage.getItem('kindleModsSubscribed');
+      console.log('Updating toggle state:');
+      console.log('  - isSubscribed:', isSubscribed);
+      console.log('  - cookie value:', cookieValue);
+      console.log('  - localStorage value:', localStorageValue);
+      console.log('  - all cookies:', document.cookie);
+      // Toggle is ON if user has NOT subscribed (show popup)
+      // Toggle is OFF if user HAS subscribed (hide popup)
+      newsletterToggle.checked = !isSubscribed;
+
+      // Warning banner toggle - ON means SHOW banner, OFF means HIDE banner
+      const bannerHidden = isBannerHidden();
+      console.log('  - banner hidden:', bannerHidden);
+      warningBannerToggle.checked = !bannerHidden;
+    }
+
+    // Open settings modal
+    if (settingsWheel) {
+      settingsWheel.addEventListener('click', () => {
+        if (settingsModal) {
+          settingsModal.classList.add('active');
+          // Update toggle to reflect current subscription status
+          updateToggleState();
+        }
+      });
+    }
+
+    // Close settings modal
+    if (settingsModalClose) {
+      settingsModalClose.addEventListener('click', () => {
+        if (settingsModal) {
+          settingsModal.classList.remove('active');
+        }
+      });
+    }
+
+    // Close modal when clicking outside the modal content
+    if (settingsModal) {
+      settingsModal.addEventListener('click', (e) => {
+        if (e.target === settingsModal) {
+          settingsModal.classList.remove('active');
+        }
+      });
+    }
+
+    // Handle newsletter toggle
+    if (newsletterToggle) {
+      newsletterToggle.addEventListener('change', (e) => {
+        console.log('Newsletter toggle changed to:', e.target.checked);
+        if (e.target.checked) {
+          // User wants to SHOW the popup (remove subscription cookie)
+          console.log('Enabling newsletter popup - removing subscription cookie');
+          // Remove cookie by setting expiry to past date
+          document.cookie = 'kindleModsSubscribed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax;';
+          localStorage.removeItem('kindleModsSubscribed');
+        } else {
+          // User wants to HIDE the popup (set subscription cookie)
+          console.log('Disabling newsletter popup - setting subscription cookie');
+          setCookie('kindleModsSubscribed', 'true', 365);
+          localStorage.setItem('kindleModsSubscribed', 'true');
+        }
+
+        // Verify the change took effect
+        setTimeout(() => {
+          console.log('After newsletter toggle change:');
+          console.log('  - cookie:', getCookie('kindleModsSubscribed'));
+          console.log('  - localStorage:', localStorage.getItem('kindleModsSubscribed'));
+          console.log('  - hasUserSubscribed:', hasUserSubscribed());
+          console.log('  - popup will show:', !hasUserSubscribed());
+        }, 100);
+      });
+    }
+
+    // Handle warning banner toggle
+    if (warningBannerToggle) {
+      warningBannerToggle.addEventListener('change', (e) => {
+        console.log('Warning banner toggle changed to:', e.target.checked);
+        const topAnnouncement = document.querySelector('.top-announcement');
+
+        if (e.target.checked) {
+          // User wants to SHOW the banner
+          console.log('Showing warning banner');
+          if (topAnnouncement) {
+            topAnnouncement.style.display = 'block';
+          }
+          try {
+            localStorage.removeItem('hideTopAnnouncement');
+          } catch (err) {
+            console.error('Failed to update localStorage:', err);
+          }
+        } else {
+          // User wants to HIDE the banner
+          console.log('Hiding warning banner');
+          if (topAnnouncement) {
+            topAnnouncement.style.display = 'none';
+          }
+          try {
+            localStorage.setItem('hideTopAnnouncement', '1');
+          } catch (err) {
+            console.error('Failed to update localStorage:', err);
+          }
+        }
+
+        // Verify the change took effect
+        setTimeout(() => {
+          console.log('After banner toggle change:');
+          console.log('  - hideTopAnnouncement:', localStorage.getItem('hideTopAnnouncement'));
+          console.log('  - banner will show:', !isBannerHidden());
+        }, 100);
+      });
+    }
+
+    // Close modal on Escape key
+    if (settingsModal) {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && settingsModal.classList.contains('active')) {
+          settingsModal.classList.remove('active');
+        }
+      });
+    }
+
+    // Position settings wheel dynamically based on banner visibility
+    function updateSettingsWheelPosition() {
+      const topAnnouncement = document.querySelector('.top-announcement');
+      if (!topAnnouncement || !settingsWheel) return;
+
+      const bannerHeight = topAnnouncement.style.display !== 'none' ? topAnnouncement.offsetHeight : 0;
+      const bannerPadding = 20; // padding below banner
+      settingsWheel.style.top = (bannerHeight + bannerPadding) + 'px';
+      console.log('Settings wheel position updated:', bannerHeight, 'px banner +', bannerPadding, 'px padding =', (bannerHeight + bannerPadding) + 'px');
+    }
+
+      // Update on load and when banner visibility changes
+      setTimeout(updateSettingsWheelPosition, 100);
+
+      const topAnnouncement = document.querySelector('.top-announcement');
+      if (topAnnouncement) {
+        const observer = new MutationObserver(() => {
+          setTimeout(updateSettingsWheelPosition, 50);
+        });
+        observer.observe(topAnnouncement, { attributes: true, attributeFilter: ['style'] });
+      }
+    }
+
+    // Call the initialization function
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSettingsModal);
+    } else {
+      initSettingsModal();
     }
   </script>
   <script src="back-button.js"></script>

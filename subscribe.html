@@ -87,6 +87,14 @@
     </div>
   </div>
   <script>
+    // Utility function to set a cookie
+    function setCookie(name, value, days = 365) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + date.toUTCString();
+      document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=Lax";
+    }
+
     // Handle form submission without redirect
     document.getElementById('subscribeForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -100,6 +108,12 @@
         if (response.ok) {
           form.style.display = 'none';
           document.getElementById('thankYouMessage').style.display = 'block';
+
+          // Set cookie that persists for 1 year
+          setCookie('kindleModsSubscribed', 'true', 365);
+
+          // Also store in localStorage as fallback
+          localStorage.setItem('kindleModsSubscribed', 'true');
         } else {
           throw new Error('Form submission failed');
         }

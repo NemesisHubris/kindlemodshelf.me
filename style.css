@@ -2244,53 +2244,89 @@ body:has(#img-viewer-modal.active) {
   line-height: 1.6;
 }
 
-/* Theme toggle button - Bottom Left */
+/* Theme toggle button - Bottom Left - Glass Morphism */
 .theme-toggle {
   position: fixed;
   bottom: 24px;
   left: 24px;
-  background: var(--button-bg);
-  border: 2px solid var(--button-border);
-  border-radius: 4px;
-  width: 52px;
-  height: 52px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--button-text);
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   padding: 0;
-  box-shadow: 0 2px 4px var(--shadow-color), 0 4px 8px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   overflow: hidden;
+  opacity: 1;
+}
+
+:root[data-theme="light"] .theme-toggle {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .theme-toggle::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 0%, transparent 100%);
+  background: radial-gradient(circle at 30% 30%, rgba(91, 157, 217, 0.2) 0%, transparent 70%);
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.3s ease;
+  border-radius: 16px;
+  pointer-events: none;
 }
 
 .theme-toggle:hover {
-  background: var(--card-bg);
-  border-color: var(--primary);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 4px 8px var(--shadow-color), 0 8px 16px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 8px 12px rgba(0, 0, 0, 0.15),
+    0 16px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+:root[data-theme="light"] .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .theme-toggle:hover::before {
   opacity: 1;
-  background: radial-gradient(circle at center, rgba(91, 157, 217, 0.1) 0%, transparent 70%);
 }
 
 .theme-toggle:active {
   transform: translateY(-1px) scale(0.98);
-  box-shadow: 0 2px 4px var(--shadow-color);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transition: all 0.1s ease;
+}
+
+.theme-toggle.scrolled {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  bottom: 20px;
+  left: 20px;
+}
+
+@supports (backdrop-filter: none) {
+  .theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .theme-toggle svg {
@@ -2373,8 +2409,15 @@ body:has(#img-viewer-modal.active) {
   .theme-toggle {
     bottom: 16px;
     left: 16px;
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .theme-toggle.scrolled {
+    width: 44px;
+    height: 44px;
+    bottom: 14px;
+    left: 14px;
   }
 
   .theme-toggle svg {
@@ -2383,7 +2426,7 @@ body:has(#img-viewer-modal.active) {
   }
 
   .theme-toggle:hover {
-    transform: translateY(-1px) scale(1.02);
+    transform: translateY(-2px) scale(1.05);
   }
 
   #emailPopup {
@@ -2397,13 +2440,24 @@ body:has(#img-viewer-modal.active) {
   .theme-toggle {
     bottom: 12px;
     left: 12px;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .theme-toggle.scrolled {
+    width: 42px;
+    height: 42px;
+    bottom: 10px;
+    left: 10px;
   }
 
   .theme-toggle svg {
     width: 22px;
     height: 22px;
+  }
+
+  .theme-toggle:hover {
+    transform: translateY(-2px) scale(1.05);
   }
 }
 
@@ -2437,4 +2491,253 @@ body:has(#img-viewer-modal.active) {
   background: var(--announcement-bg);
   border-color: var(--announcement-border);
   color: var(--announcement-text);
+}
+
+/* ===== Settings Wheel & Modal Styles ===== */
+.settings-wheel {
+  position: absolute;
+  top: 100px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--button-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 998;
+  padding: 0;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  overflow: hidden;
+}
+
+.settings-wheel:hover {
+  background: var(--card-bg);
+  border-color: var(--primary);
+  transform: scale(1.05) rotate(90deg);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.settings-wheel:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: all 0.1s ease;
+}
+
+.settings-wheel svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+/* Settings Modal Styles */
+.settings-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 1001;
+  animation: fadeIn 0.2s ease;
+}
+
+.settings-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.settings-modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.settings-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.settings-modal-header h2 {
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.settings-modal-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-modal-close:hover {
+  color: var(--fg);
+}
+
+.settings-modal-body {
+  padding: 24px;
+}
+
+.settings-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.settings-option-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.settings-option-title {
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--fg);
+  display: block;
+}
+
+.settings-option-desc {
+  font-size: 0.85em;
+  color: var(--muted);
+  display: block;
+}
+
+/* Toggle Switch Styles */
+.settings-toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.settings-toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.settings-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--input-border);
+  transition: all 0.3s ease;
+  border-radius: 28px;
+}
+
+.settings-toggle-slider::before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+
+.settings-toggle-input:checked + .settings-toggle-slider {
+  background-color: var(--primary);
+}
+
+.settings-toggle-input:checked + .settings-toggle-slider::before {
+  transform: translateX(22px);
+}
+
+.settings-toggle-input:focus + .settings-toggle-slider {
+  box-shadow: 0 0 0 3px rgba(91, 157, 217, 0.2);
+}
+
+/* Responsive Settings Wheel */
+@media (max-width: 700px) {
+  .settings-wheel {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .settings-wheel svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .settings-modal-content {
+    width: 95%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .settings-wheel {
+    top: 14px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .settings-wheel svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .settings-modal-header {
+    padding: 16px 20px;
+  }
+
+  .settings-modal-body {
+    padding: 16px 20px;
+  }
+
+  .settings-modal-header h2 {
+    font-size: 1.1em;
+  }
 }

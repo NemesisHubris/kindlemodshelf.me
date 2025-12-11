@@ -50,6 +50,7 @@
       existingButton.setAttribute('data-theme-initialized', 'true');
       // Attach click handler to existing button
       existingButton.addEventListener('click', toggleTheme);
+      attachScrollBehavior(existingButton);
       return;
     }
 
@@ -77,6 +78,54 @@
     button.addEventListener('click', toggleTheme);
 
     document.body.appendChild(button);
+    attachScrollBehavior(button);
+  }
+
+  // Add scroll behavior for progressive disclosure
+  function attachScrollBehavior(button) {
+    let hideTimeout;
+    let isScrolled = false;
+
+    const handleScroll = () => {
+      const scrollPos = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrollPos > 100) {
+        if (!isScrolled) {
+          button.classList.add('scrolled');
+          button.style.opacity = '1';
+          isScrolled = true;
+        }
+        // Reset hide timeout on scroll
+        clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => {
+          button.style.opacity = '0.4';
+        }, 3000);
+      } else {
+        if (isScrolled) {
+          button.classList.remove('scrolled');
+          button.style.opacity = '1';
+          isScrolled = false;
+        }
+        clearTimeout(hideTimeout);
+      }
+    };
+
+    const handleMouseEnter = () => {
+      clearTimeout(hideTimeout);
+      button.style.opacity = '1';
+    };
+
+    const handleMouseLeave = () => {
+      if (isScrolled) {
+        hideTimeout = setTimeout(() => {
+          button.style.opacity = '0.4';
+        }, 3000);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    button.addEventListener('mouseenter', handleMouseEnter);
+    button.addEventListener('mouseleave', handleMouseLeave);
   }
 
   // Initialize when DOM is ready
