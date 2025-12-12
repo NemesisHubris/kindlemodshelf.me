@@ -186,7 +186,7 @@ class PageBuilder {
       },
       credit: {
         id, type,
-        properties: { content: 'Credit: Author Name' }
+        properties: { content: 'Credits: <a href="https://github.com/username">Author Name</a>' }
       }
     };
     return templates[type];
@@ -305,7 +305,13 @@ class PageBuilder {
       editorType = block.type === 'section' ? 'rich' : 'title';
     } else if (part === 'content') {
       content = block.properties.content || '';
-      editorType = block.type === 'code' ? 'code' : 'rich';
+      if (block.type === 'code') {
+        editorType = 'code';
+      } else if (block.type === 'credit') {
+        editorType = 'rich';
+      } else {
+        editorType = 'rich';
+      }
     }
 
     let html = `<div class="builder-properties-form">
@@ -369,7 +375,7 @@ class PageBuilder {
     if (part === 'content') {
       if (blockType === 'code') return 'Edit Code';
       if (blockType === 'banner') return 'Edit Banner Text';
-      if (blockType === 'credit') return 'Edit Credit';
+      if (blockType === 'credit') return 'Edit Credits (HTML allowed)';
       return 'Edit Content';
     }
     return 'Edit';
@@ -667,7 +673,7 @@ class PageBuilder {
         return `<div class="banner banner-${properties.bannerType || 'info'}" data-editable-part="content">${properties.content}</div>`;
 
       case 'credit':
-        return `<p class="builder-credit" data-editable-part="content">${properties.content}</p>`;
+        return `<p class="credit" data-editable-part="content">${properties.content}</p>`;
 
       default:
         return '<p>Unknown block</p>';
@@ -788,7 +794,11 @@ class PageBuilder {
 
     switch (type) {
       case 'summary':
-        return `<div class="summary">\n      ${properties.content}\n    </div>`;
+        // If content doesn't start with a tag, wrap in <p>
+        const summaryContent = properties.content.trim().startsWith('<')
+          ? properties.content
+          : `<p>${properties.content}</p>`;
+        return `<div class="summary">\n      ${summaryContent}\n    </div>`;
 
       case 'section':
         return `<h2 class="section-title">${properties.title}</h2>\n    <div class="card card-desc">\n      ${properties.content}\n    </div>`;
@@ -813,7 +823,7 @@ class PageBuilder {
         return `<div class="banner banner-${properties.bannerType || 'info'}">${properties.content}</div>`;
 
       case 'credit':
-        return `<p class="credit">${properties.content}</p>`;
+        return `<p class="credit">\n      ${properties.content}\n    </p>`;
 
       default:
         return '';

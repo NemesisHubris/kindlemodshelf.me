@@ -592,10 +592,10 @@ ol.builder-list {
 }
 
 /* Credit */
-.builder-credit {
+.builder-preview .credit {
   color: var(--muted);
   font-size: 0.9em;
-  margin: 0.5em 0;
+  margin: 1em 0;
 }
 
 /* Copy Notification */
