@@ -91,7 +91,7 @@
       display: none;
       width: 100%;
       height: 100vh;
-      display: none; /* Explicitly hidden initially */
+      display: none;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -124,9 +124,7 @@
     <div id="error-msg">Incorrect password. Access denied.</div>
   </div>
 
-  <div id="secret-content">
-    <!-- Content injected via JS -->
-  </div>
+  <div id="secret-content"></div>
 
   <script>
     const passwordInput = document.getElementById('password');
@@ -134,46 +132,51 @@
     const secretContent = document.getElementById('secret-content');
     const errorMsg = document.getElementById('error-msg');
 
-    // Payload: hash('kindle') -> Base64(XOR('Elaine', 'kindle'))
-    const payloads = {
-      "3163665421": "LgUPDQIA"
+    const config = {
+      iv: "e082cef8db370da2253842ad",
+      ciphertext: "983365c53ed8",
+      tag: "24b61d8cd1c6cce0fd79812b7b86b078"
     };
 
-    function simpleHash(s) {
-      let hash = 0;
-      for (let i = 0; i < s.length; i++) {
-        const char = s.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash >>> 0; // Ensure unsigned 32-bit integer
+    function hexToBytes(hex) {
+      const bytes = new Uint8Array(hex.length / 2);
+      for (let i = 0; i < bytes.length; i++) {
+        bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
       }
-      return hash.toString();
+      return bytes;
     }
 
-    function xorDecrypt(encryptedBase64, key) {
-      const encrypted = atob(encryptedBase64);
-      let output = '';
-      for (let i = 0; i < encrypted.length; i++) {
-        output += String.fromCharCode(encrypted.charCodeAt(i) ^ key.charCodeAt(i % key.length));
-      }
-      return output;
-    }
-
-    function unlock() {
+    async function unlock() {
       const pass = passwordInput.value.trim();
-      const hash = simpleHash(pass);
+      const enc = new TextEncoder();
 
-      if (payloads[hash]) {
-        try {
-          const decrypted = xorDecrypt(payloads[hash], pass);
-          modal.style.display = 'none';
-          secretContent.style.display = 'flex';
-          secretContent.innerHTML = `<div class="huge-text">${decrypted}</div>`;
-          document.body.style.overflow = 'hidden';
-        } catch (e) {
-          console.error('Decryption failed', e);
-          showError();
-        }
-      } else {
+      try {
+        const hashBuffer = await crypto.subtle.digest('SHA-512', enc.encode(pass));
+        const keyBuffer = hashBuffer.slice(0, 32); 
+        const key = await crypto.subtle.importKey(
+          "raw", 
+          keyBuffer, 
+          "AES-GCM", 
+          false, 
+          ["decrypt"]
+        );
+
+        const ivBytes = hexToBytes(config.iv);
+        const encryptedBytes = hexToBytes(config.ciphertext + config.tag);
+
+        const decryptedBuffer = await crypto.subtle.decrypt(
+          { name: "AES-GCM", iv: ivBytes },
+          key,
+          encryptedBytes
+        );
+
+        const decryptedText = new TextDecoder().decode(decryptedBuffer);
+        modal.style.display = 'none';
+        secretContent.style.display = 'flex';
+        secretContent.innerHTML = `<div class="huge-text">${decryptedText}</div>`;
+        document.body.style.overflow = 'hidden';
+
+      } catch (e) {
         showError();
       }
     }
@@ -191,7 +194,6 @@
       if (e.key === 'Enter') unlock();
     });
 
-    // Focus input on load
     window.onload = () => passwordInput.focus();
   </script>
 
