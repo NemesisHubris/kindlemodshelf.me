@@ -125,7 +125,7 @@
   </div>
 
   <div id="secret-content">
-    <div class="huge-text">Elaine</div>
+    <!-- Content injected via JS -->
   </div>
 
   <script>
@@ -134,21 +134,59 @@
     const secretContent = document.getElementById('secret-content');
     const errorMsg = document.getElementById('error-msg');
 
+    // Payloads map: simpleHash(password) -> Base64(XOR(secret, password))
+    const payloads = {
+      "3163665421": "LgUPDQIA",
+      "2078145830": "AAAAAAAA",
+      "2994278662": "IAAAAAAA",
+    };
+
+    function simpleHash(s) {
+      let hash = 0;
+      for (let i = 0; i < s.length; i++) {
+        const char = s.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & 0xFFFFFFFF; // Convert to 32bit integer
+      }
+      return hash.toString();
+    }
+
+    function xorDecrypt(encryptedBase64, key) {
+      const encrypted = atob(encryptedBase64);
+      let output = '';
+      for (let i = 0; i < encrypted.length; i++) {
+        output += String.fromCharCode(encrypted.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+      }
+      return output;
+    }
+
     function unlock() {
       const pass = passwordInput.value.trim();
-      // Simple client-side check as requested
-      if (pass === 'kindle' || pass === 'Elaine' || pass === 'elaine') {
-        modal.style.display = 'none';
-        secretContent.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Lock scroll for the huge text effect
+      const hash = simpleHash(pass);
+
+      if (payloads[hash]) {
+        try {
+          const decrypted = xorDecrypt(payloads[hash], pass);
+          modal.style.display = 'none';
+          secretContent.style.display = 'flex';
+          secretContent.innerHTML = `<div class="huge-text">${decrypted}</div>`;
+          document.body.style.overflow = 'hidden';
+        } catch (e) {
+          console.error('Decryption failed', e);
+          showError();
+        }
       } else {
-        errorMsg.style.opacity = '1';
-        passwordInput.value = '';
-        passwordInput.focus();
-        setTimeout(() => {
-          errorMsg.style.opacity = '0';
-        }, 3000);
+        showError();
       }
+    }
+
+    function showError() {
+      errorMsg.style.opacity = '1';
+      passwordInput.value = '';
+      passwordInput.focus();
+      setTimeout(() => {
+        errorMsg.style.opacity = '0';
+      }, 3000);
     }
 
     passwordInput.addEventListener('keypress', (e) => {
