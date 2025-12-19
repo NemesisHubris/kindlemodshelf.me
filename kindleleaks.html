@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kindle Leaks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script src="theme-toggle.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    .leak-container {
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      padding: 1rem;
+    }
+
+    #password-modal {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px var(--shadow-color);
+    }
+
+    #password-modal h2 {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      color: var(--card-title);
+    }
+
+    .input-group {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    input[type="password"] {
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--input-border);
+      background-color: var(--input-bg);
+      color: var(--fg);
+      font-size: 1rem;
+      outline: none;
+      width: 60%;
+    }
+
+    input[type="password"]:focus {
+      border-color: var(--primary);
+    }
+
+    button {
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: 1px solid var(--button-border);
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background-color: var(--link-hover);
+      color: #fff;
+      border-color: var(--link-hover);
+    }
+
+    #error-msg {
+      color: #ff6b6b;
+      margin-top: 1rem;
+      min-height: 1.5em;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    #secret-content {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      display: none; /* Explicitly hidden initially */
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .huge-text {
+      font-size: 20vw;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--fg);
+      text-transform: uppercase;
+      text-shadow: 0 0 30px rgba(91, 157, 217, 0.3);
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(0.98); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="password-modal" class="leak-container">
+    <h2>Restricted Access</h2>
+    <div class="input-group">
+      <input type="password" id="password" placeholder="Enter password" autocomplete="off">
+      <button onclick="unlock()">Unlock</button>
+    </div>
+    <div id="error-msg">Incorrect password. Access denied.</div>
+  </div>
+
+  <div id="secret-content">
+    <div class="huge-text">Elaine</div>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const modal = document.getElementById('password-modal');
+    const secretContent = document.getElementById('secret-content');
+    const errorMsg = document.getElementById('error-msg');
+
+    function unlock() {
+      const pass = passwordInput.value.trim();
+      // Simple client-side check as requested
+      if (pass === 'kindle' || pass === 'Elaine' || pass === 'elaine') {
+        modal.style.display = 'none';
+        secretContent.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Lock scroll for the huge text effect
+      } else {
+        errorMsg.style.opacity = '1';
+        passwordInput.value = '';
+        passwordInput.focus();
+        setTimeout(() => {
+          errorMsg.style.opacity = '0';
+        }, 3000);
+      }
+    }
+
+    passwordInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') unlock();
+    });
+
+    // Focus input on load
+    window.onload = () => passwordInput.focus();
+  </script>
+
+</body>
+</html>
