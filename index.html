@@ -1517,6 +1517,30 @@ let activeCategories = new Set(['all']);
       });
     });
 
+    // Update button text when a category is clicked
+    categoryButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // If "All" is active, show "Select Category" (or "All Categories")
+        // If a specific category is active, show its name
+        // Since the existing logic allows multi-select but "All" clears others,
+        // we can check if "All" is active.
+        
+        let label = "Select Category";
+        if (activeCategories.has('all')) {
+          label = "All Categories";
+        } else if (activeCategories.size === 1) {
+          // Find the name of the single active category
+          const activeBtn = categoryButtons.find(b => b.classList.contains('active'));
+          if (activeBtn) label = activeBtn.textContent;
+        } else if (activeCategories.size > 1) {
+          label = `${activeCategories.size} Categories Selected`;
+        }
+        
+        const toggleBtnSpan = filterToggleBtn.querySelector('span');
+        if (toggleBtnSpan) toggleBtnSpan.textContent = label;
+      });
+    });
+
     applyFilters();
     
     // Slide-in animation trigger for email popup
