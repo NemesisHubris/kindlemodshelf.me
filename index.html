@@ -60,6 +60,17 @@
             <span class="settings-toggle-slider"></span>
           </label>
         </div>
+
+        <div class="settings-option" style="margin-top: 20px;">
+          <div class="settings-option-label">
+            <span class="settings-option-title">Show Gallery Popup</span>
+            <span class="settings-option-desc">Show the popup tooltip under the Gallery link</span>
+          </div>
+          <label class="settings-toggle">
+            <input type="checkbox" id="galleryPopupToggle" class="settings-toggle-input">
+            <span class="settings-toggle-slider"></span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
@@ -76,7 +87,16 @@
       <div class="nav-container">
         <a href="jailbreaking.html" class="nav-link nav-primary">Jailbreak Guide</a>
         <a href="faq.html" class="nav-link nav-ai">FAQ</a>
-        <a href="images.html" class="nav-link nav-ai">Gallery</a>
+        <div class="nav-item-wrapper">
+          <a href="images.html" class="nav-link nav-ai">Gallery</a>
+          <div id="galleryPopup" class="gallery-popup hidden">
+            <div class="popup-arrow"></div>
+            <div class="popup-content">
+              <button class="popup-close-btn" onclick="closeGalleryPopup()">×</button>
+              <p>Check out our collection of community-sourced screensavers. Credit to their respective creators.</p>
+            </div>
+          </div>
+        </div>
         <a href="announcements.html" class="nav-link">Updates</a>
         <button onclick="window.open('https://chatgpt.com/g/g-68f1ee6408d08191b257737ed200a504-kindlemodshelfgpt', '_blank')" class="nav-link">KindleModShelfGPT</button>
         <a href="pagebuilder.html" class="nav-link">Page Builder</a>
@@ -1541,6 +1561,21 @@ let activeCategories = new Set(['all']);
       });
     }
 
+    // Gallery Popup Logic
+    function closeGalleryPopup() {
+      const popup = document.getElementById('galleryPopup');
+      if (popup) {
+        popup.classList.add('hidden');
+        // Save state to cookies/localStorage
+        setCookie('hideGalleryPopup', 'true', 365);
+        localStorage.setItem('hideGalleryPopup', 'true');
+        
+        // Update toggle if settings modal is open
+        const toggle = document.getElementById('galleryPopupToggle');
+        if (toggle) toggle.checked = false;
+      }
+    }
+
     // Settings Modal Functionality
     function initSettingsModal() {
       const settingsWheel = document.getElementById('settingsWheel');
@@ -1548,6 +1583,8 @@ let activeCategories = new Set(['all']);
       const settingsModalClose = document.getElementById('settingsModalClose');
       const newsletterToggle = document.getElementById('newsletterToggle');
       const warningBannerToggle = document.getElementById('warningBannerToggle');
+      const galleryPopupToggle = document.getElementById('galleryPopupToggle');
+      const galleryPopup = document.getElementById('galleryPopup');
 
       console.log('Initializing settings modal');
       console.log('  settingsWheel:', settingsWheel);
@@ -1563,6 +1600,20 @@ let activeCategories = new Set(['all']);
       }
     }
 
+    // Function to check if gallery popup is hidden
+    function isGalleryPopupHidden() {
+      return getCookie('hideGalleryPopup') === 'true' || localStorage.getItem('hideGalleryPopup') === 'true';
+    }
+
+    // Initialize Gallery Popup State
+    if (galleryPopup) {
+      if (!isGalleryPopupHidden()) {
+        galleryPopup.classList.remove('hidden');
+      } else {
+        galleryPopup.classList.add('hidden');
+      }
+    }
+
     // Function to update toggle state based on current subscription
     function updateToggleState() {
       const isSubscribed = hasUserSubscribed();
@@ -1575,12 +1626,16 @@ let activeCategories = new Set(['all']);
       console.log('  - all cookies:', document.cookie);
       // Toggle is ON if user has NOT subscribed (show popup)
       // Toggle is OFF if user HAS subscribed (hide popup)
-      newsletterToggle.checked = !isSubscribed;
+      if (newsletterToggle) newsletterToggle.checked = !isSubscribed;
 
       // Warning banner toggle - ON means SHOW banner, OFF means HIDE banner
       const bannerHidden = isBannerHidden();
       console.log('  - banner hidden:', bannerHidden);
-      warningBannerToggle.checked = !bannerHidden;
+      if (warningBannerToggle) warningBannerToggle.checked = !bannerHidden;
+
+      // Gallery Popup toggle
+      const galleryHidden = isGalleryPopupHidden();
+      if (galleryPopupToggle) galleryPopupToggle.checked = !galleryHidden;
     }
 
     // Open settings modal
@@ -1676,6 +1731,24 @@ let activeCategories = new Set(['all']);
           console.log('  - hideTopAnnouncement:', localStorage.getItem('hideTopAnnouncement'));
           console.log('  - banner will show:', !isBannerHidden());
         }, 100);
+      });
+    }
+
+    // Handle Gallery Popup toggle
+    if (galleryPopupToggle) {
+      galleryPopupToggle.addEventListener('change', (e) => {
+        const galleryPopup = document.getElementById('galleryPopup');
+        if (e.target.checked) {
+          // Show popup
+          if (galleryPopup) galleryPopup.classList.remove('hidden');
+          document.cookie = 'hideGalleryPopup=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax;';
+          localStorage.removeItem('hideGalleryPopup');
+        } else {
+          // Hide popup
+          if (galleryPopup) galleryPopup.classList.add('hidden');
+          setCookie('hideGalleryPopup', 'true', 365);
+          localStorage.setItem('hideGalleryPopup', 'true');
+        }
       });
     }
 
