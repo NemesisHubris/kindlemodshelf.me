@@ -122,22 +122,32 @@
       <div class="filter-groups">
         <div class="filter-group">
           <span class="filter-group-title">Categories</span>
-          <div class="filter-chips" id="categoryFilters">
-            <button class="filter-chip active" data-category="all" type="button">All</button>
-            <button class="filter-chip" data-category="essential" type="button">Essential</button>
-            <button class="filter-chip" data-category="blocking" type="button">Blocking Amazon</button>
-            <button class="filter-chip" data-category="koreader" type="button">KOReader Plugins</button>
-            <button class="filter-chip" data-category="patches" type="button">KOReader Patches</button>
-            <button class="filter-chip" data-category="other-koreader" type="button">Other KOReader</button>
-            <button class="filter-chip" data-category="emulators" type="button">Emulators</button>
-            <button class="filter-chip" data-category="games" type="button">Games</button>
-            <button class="filter-chip" data-category="media" type="button">Media &amp; Audio</button>
-            <button class="filter-chip" data-category="drawing" type="button">Drawing Tools</button>
-            <button class="filter-chip" data-category="tools" type="button">Tools</button>
-            <button class="filter-chip" data-category="resources" type="button">Resources &amp; Utilities</button>
-            <button class="filter-chip" data-category="dev" type="button">Development</button>
-            <button class="filter-chip" data-category="guides" type="button">Informational</button>
-            <button class="filter-chip" data-category="experimental" type="button">Experimental</button>
+          
+          <button class="filter-toggle-btn" id="filterToggleBtn" type="button" aria-expanded="false" aria-controls="filterChipsWrapper">
+            <span>Select Category</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          <div class="filter-chips-wrapper" id="filterChipsWrapper">
+            <div class="filter-chips" id="categoryFilters">
+              <button class="filter-chip active" data-category="all" type="button">All</button>
+              <button class="filter-chip" data-category="essential" type="button">Essential</button>
+              <button class="filter-chip" data-category="blocking" type="button">Blocking Amazon</button>
+              <button class="filter-chip" data-category="koreader" type="button">KOReader Plugins</button>
+              <button class="filter-chip" data-category="patches" type="button">KOReader Patches</button>
+              <button class="filter-chip" data-category="other-koreader" type="button">Other KOReader</button>
+              <button class="filter-chip" data-category="emulators" type="button">Emulators</button>
+              <button class="filter-chip" data-category="games" type="button">Games</button>
+              <button class="filter-chip" data-category="media" type="button">Media &amp; Audio</button>
+              <button class="filter-chip" data-category="drawing" type="button">Drawing Tools</button>
+              <button class="filter-chip" data-category="tools" type="button">Tools</button>
+              <button class="filter-chip" data-category="resources" type="button">Resources &amp; Utilities</button>
+              <button class="filter-chip" data-category="dev" type="button">Development</button>
+              <button class="filter-chip" data-category="guides" type="button">Informational</button>
+              <button class="filter-chip" data-category="experimental" type="button">Experimental</button>
+            </div>
           </div>
         </div>
 
@@ -1122,6 +1132,17 @@
         <div class="card-links"><a href="customscreensavers.html">More</a></div>
     </div>
 
+      <div class="card" data-tags="informational images guide resources gallery">
+        <div class="card-header">
+          <div class="card-title">Image Gallery</div>
+          <div class="card-tags"><span class="tag">Guide</span></div>
+        </div>
+        <div class="card-desc">
+        Our collection of community-sourced screensavers.
+      </div>
+        <div class="card-links"><a href="images.html">Open</a></div>
+    </div>
+
       <div class="card" data-tags="informational images guide resources">
         <div class="card-header">
           <div class="card-title">Image Resource Hub</div>
@@ -1290,6 +1311,26 @@ let activeCategories = new Set(['all']);
       guides: (primaryTags, tagTokens) => primaryTags.includes('Guide') || tagTokens.includes('guide'),
       experimental: (primaryTags) => primaryTags.includes('Experimental')
     };
+
+    // Filter Toggle Logic
+    const filterToggleBtn = document.getElementById('filterToggleBtn');
+    const filterChipsWrapper = document.getElementById('filterChipsWrapper');
+
+    if (filterToggleBtn && filterChipsWrapper) {
+      filterToggleBtn.addEventListener('click', () => {
+        const isExpanded = filterToggleBtn.classList.contains('expanded');
+        
+        if (isExpanded) {
+          filterToggleBtn.classList.remove('expanded');
+          filterChipsWrapper.classList.remove('expanded');
+          filterToggleBtn.setAttribute('aria-expanded', 'false');
+        } else {
+          filterToggleBtn.classList.add('expanded');
+          filterChipsWrapper.classList.add('expanded');
+          filterToggleBtn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
 
     cards.forEach(card => {
       const tagsAttr = (card.getAttribute('data-tags') || '').toLowerCase();
