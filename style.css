@@ -2249,10 +2249,8 @@ body:has(#img-viewer-modal.active) {
   position: fixed;
   bottom: 24px;
   left: 24px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
   border-radius: 16px;
   width: 56px;
   height: 56px;
@@ -2264,18 +2262,14 @@ body:has(#img-viewer-modal.active) {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   padding: 0;
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.1),
+  box-shadow: 0 1px 3px var(--shadow-color);
     0 10px 20px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   overflow: hidden;
   opacity: 1;
 }
 
-:root[data-theme="light"] .theme-toggle {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
+
 
 .theme-toggle::before {
   content: '';
@@ -2289,19 +2283,14 @@ body:has(#img-viewer-modal.active) {
 }
 
 .theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--filter-bg);
+  border-color: var(--filter-border);
+  color: var(--fg);
   transform: translateY(-3px) scale(1.05);
-  box-shadow:
-    0 8px 12px rgba(0, 0, 0, 0.15),
-    0 16px 32px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
-:root[data-theme="light"] .theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(255, 255, 255, 0.4);
-}
+
 
 .theme-toggle:hover::before {
   opacity: 1;
@@ -2323,11 +2312,7 @@ body:has(#img-viewer-modal.active) {
   left: 20px;
 }
 
-@supports (backdrop-filter: none) {
-  .theme-toggle {
-    background: rgba(255, 255, 255, 0.1);
-  }
-}
+
 
 .theme-toggle svg {
   width: 28px;
@@ -2385,10 +2370,7 @@ body:has(#img-viewer-modal.active) {
   fill: currentColor;
 }
 
-:root .theme-toggle:hover .theme-icon.sun svg {
-  color: #ffffff;
-  filter: none;
-}
+
 
 /* Light mode: black moon icon */
 :root[data-theme="light"] .theme-icon.moon svg {
@@ -2400,10 +2382,7 @@ body:has(#img-viewer-modal.active) {
   fill: currentColor;
 }
 
-:root[data-theme="light"] .theme-toggle:hover .theme-icon.moon svg {
-  color: #000000;
-  filter: none;
-}
+
 
 @media (max-width: 700px) {
   .theme-toggle {

@@ -98,7 +98,7 @@
         // Reset hide timeout on scroll
         clearTimeout(hideTimeout);
         hideTimeout = setTimeout(() => {
-          button.style.opacity = '0.4';
+          button.style.opacity = '0.3';
         }, 3000);
       } else {
         if (isScrolled) {
@@ -118,7 +118,7 @@
     const handleMouseLeave = () => {
       if (isScrolled) {
         hideTimeout = setTimeout(() => {
-          button.style.opacity = '0.4';
+          button.style.opacity = '0.3';
         }, 3000);
       }
     };
