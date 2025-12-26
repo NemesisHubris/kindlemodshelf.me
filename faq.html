@@ -10,21 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
   <script src="theme-toggle.js"></script>
   <style>
-    .faq-search-wrap {
-      margin: 24px 0 32px 0;
-    }
-    .faq-search-wrap input {
-      width: 100%;
-      padding: 12px 16px;
-      font-size: 1rem;
-      border: 1px solid var(--card-border);
-      border-radius: 4px;
-      background: var(--input-bg);
-      color: var(--fg);
-    }
-    .faq-search-wrap input::placeholder {
-      color: var(--fg-secondary);
-    }
     .faq-item {
       margin-bottom: 24px;
     }
@@ -47,8 +32,19 @@
       <p>Common questions and answers about Kindle jailbreaking, troubleshooting, and modding.</p>
     </div>
 
-    <div class="faq-search-wrap">
-      <input type="text" id="faq-search" placeholder="Search FAQ...">
+    <div class="filter-toolbar">
+      <div class="search-block" style="margin-bottom: 0;">
+        <label for="search-bar" class="search-label">Search FAQ</label>
+        <div class="search-input-shell">
+          <span class="search-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </span>
+          <input type="text" id="search-bar" placeholder="Search for answers..." autocomplete="off">
+        </div>
+      </div>
     </div>
 
     <div id="faq-list">
@@ -594,7 +590,7 @@
   </div>
   <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
   <script>
-    const searchInput = document.getElementById('faq-search');
+    const searchInput = document.getElementById('search-bar');
     const faqList = document.getElementById('faq-list');
     const faqItems = faqList.querySelectorAll('.faq-item');
 
