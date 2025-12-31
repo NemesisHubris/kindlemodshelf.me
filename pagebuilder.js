@@ -762,7 +762,6 @@ class PageBuilder {
     }
 
     html += `
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
   <script src="theme-toggle.js"></script>
 </head>
 <body>

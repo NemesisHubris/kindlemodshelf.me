@@ -2842,3 +2842,194 @@ body:has(#img-viewer-modal.active) {
   border-color: var(--primary);
   transform: scale(1.1);
 }
+
+/* Screenshot Viewer Styles (Added to fix missing CSS) */
+#screenshot-viewer-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--viewer-modal-bg);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+#screenshot-viewer-modal.active {
+  opacity: 1;
+}
+
+#screenshot-viewer-content {
+  position: relative;
+  width: 90vw;
+  max-width: 1200px;
+  height: 90vh;
+  max-height: 900px;
+  background: var(--viewer-wrap-bg);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.screenshot-viewer-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--viewer-wrap-bg);
+  border-bottom: 1px solid var(--card-border);
+  flex-shrink: 0;
+  min-height: 60px;
+  gap: 12px;
+}
+
+.screenshot-viewer-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#screenshot-viewer-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0;
+}
+
+#screenshot-viewer-caption {
+  font-size: 0.9em;
+  color: var(--muted);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.screenshot-viewer-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+#screenshot-viewer-close {
+  background: var(--viewer-close-bg);
+  border: 1px solid var(--viewer-close-border);
+  color: var(--viewer-close-text);
+  border-radius: 4px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#screenshot-viewer-close:hover {
+  background: var(--viewer-close-hover-bg);
+  color: var(--viewer-close-hover-text);
+}
+
+.screenshot-viewer-canvas {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--viewer-canvas-bg);
+  position: relative;
+  padding: 20px;
+}
+
+#screenshot-viewer-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.screenshot-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+
+.screenshot-nav:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.screenshot-nav.prev {
+  left: 20px;
+}
+
+.screenshot-nav.next {
+  right: 20px;
+}
+
+.screenshot-nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+  display: none;
+}
+
+.viewer-keyboard-hint {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-size: 0.8em;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 12px;
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  #screenshot-viewer-content {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    max-height: none;
+  }
+  
+  .screenshot-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+  
+  .screenshot-nav.prev { left: 10px; }
+  .screenshot-nav.next { right: 10px; }
+  
+  .viewer-keyboard-hint {
+    display: none;
+  }
+}
