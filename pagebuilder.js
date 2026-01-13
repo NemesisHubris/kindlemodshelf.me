@@ -781,7 +781,7 @@ class PageBuilder {
 
     html += `
   </div>
-  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.</footer>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
 </body>
 </html>`;
 
@@ -813,7 +813,7 @@ class PageBuilder {
       case 'video':
         const videoId = this.extractYouTubeId(properties.videoId);
         if (!videoId) return '';
-        return `<div class="responsive-video">\n      <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"\n        title="${this.escapeHtml(properties.title)}" frameborder="0"\n        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"\n        sandbox="allow-same-origin allow-scripts allow-presentation"\n        allowfullscreen></iframe>\n    </div>`;
+        return `<div class="responsive-video">\n      <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"\n        title="${this.escapeHtml(properties.title)}" frameborder="0"\n        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"\n        sandbox="allow-same-origin allow-scripts allow-presentation"\n        allowfullscreen></iframe>\n    </div>`;
 
       case 'code':
         return `<div class="card card-desc">\n      <pre><code>${this.escapeHtml(properties.content)}</code></pre>\n    </div>`;
