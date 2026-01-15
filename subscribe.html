@@ -76,7 +76,6 @@
         Get the latest Kindle modding tools, jailbreak guides, and screensaver images right in your inbox.
       </div>
       <form id="subscribeForm" style="margin-bottom: 0;">
-        <input type="hidden" name="accessKey" value="sf_2bjm74inh9ald1i63b5lefie">
         <input type="email" name="email" placeholder="you@example.com" required>
         <button type="submit">Subscribe</button>
       </form>
@@ -99,9 +98,15 @@
       e.preventDefault();
       const form = this;
       const formData = new FormData(form);
-      fetch('https://api.staticforms.xyz/submit', {
+      const payload = Object.fromEntries(formData.entries());
+      
+      fetch('https://submit-form.com/2iG0zCawO', {
         method: 'POST',
-        body: formData
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
       })
       .then(response => {
         if (response.ok) {
