@@ -671,7 +671,7 @@ class PageBuilder {
 
       case 'banner':
         const bannerClass = properties.bannerType === 'danger' ? 'legal-warning' : 'info-callout';
-        return `<div class="card card-desc ${bannerClass}" data-editable-part="content">${properties.content}</div>`;
+        return `<div class="${bannerClass}" data-editable-part="content">${properties.content}</div>`;
 
       case 'credit':
         return `<div class="card card-desc" data-editable-part="content">${properties.content}</div>`;

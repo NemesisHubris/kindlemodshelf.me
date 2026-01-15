@@ -591,13 +591,6 @@ ol.builder-list {
   margin: 0 !important;
 }
 
-/* Credit */
-.builder-preview .credit {
-  color: var(--muted);
-  font-size: 0.9em;
-  margin: 1em 0;
-}
-
 /* Copy Notification */
 .builder-copy-notification {
   position: fixed;
