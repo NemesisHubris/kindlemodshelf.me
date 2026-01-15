@@ -670,10 +670,11 @@ class PageBuilder {
         return `<div class="card card-desc"><pre data-editable-part="content"><code>${this.escapeHtml(properties.content)}</code></pre></div>`;
 
       case 'banner':
-        return `<div class="banner banner-${properties.bannerType || 'info'}" data-editable-part="content">${properties.content}</div>`;
+        const bannerClass = properties.bannerType === 'danger' ? 'legal-warning' : 'info-callout';
+        return `<div class="card card-desc ${bannerClass}" data-editable-part="content">${properties.content}</div>`;
 
       case 'credit':
-        return `<p class="credit" data-editable-part="content">${properties.content}</p>`;
+        return `<div class="card card-desc" data-editable-part="content">${properties.content}</div>`;
 
       default:
         return '<p>Unknown block</p>';
@@ -782,6 +783,7 @@ class PageBuilder {
     html += `
   </div>
   <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
+  <script src="back-button.js"></script>
 </body>
 </html>`;
 
@@ -819,10 +821,11 @@ class PageBuilder {
         return `<div class="card card-desc">\n      <pre><code>${this.escapeHtml(properties.content)}</code></pre>\n    </div>`;
 
       case 'banner':
-        return `<div class="banner banner-${properties.bannerType || 'info'}">${properties.content}</div>`;
+        const bannerClass = properties.bannerType === 'danger' ? 'legal-warning' : 'info-callout';
+        return `<div class="${bannerClass}">\n      ${properties.content}\n    </div>`;
 
       case 'credit':
-        return `<p class="credit">\n      ${properties.content}\n    </p>`;
+        return `<div class="card card-desc">\n      ${properties.content}\n    </div>`;
 
       default:
         return '';
