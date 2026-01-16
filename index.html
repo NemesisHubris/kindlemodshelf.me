@@ -1691,11 +1691,6 @@ let activeCategories = new Set(['all']);
       const galleryPopupToggle = document.getElementById('galleryPopupToggle');
       const galleryPopup = document.getElementById('galleryPopup');
 
-      console.log('Initializing settings modal');
-      console.log('  settingsWheel:', settingsWheel);
-      console.log('  settingsModal:', settingsModal);
-      console.log('  settingsModalClose:', settingsModalClose);
-
     // Function to check if warning banner is hidden
     function isBannerHidden() {
       try {
@@ -1724,18 +1719,13 @@ let activeCategories = new Set(['all']);
       const isSubscribed = hasUserSubscribed();
       const cookieValue = getCookie('kindleModsSubscribed');
       const localStorageValue = localStorage.getItem('kindleModsSubscribed');
-      console.log('Updating toggle state:');
-      console.log('  - isSubscribed:', isSubscribed);
-      console.log('  - cookie value:', cookieValue);
-      console.log('  - localStorage value:', localStorageValue);
-      console.log('  - all cookies:', document.cookie);
+      
       // Toggle is ON if user has NOT subscribed (show popup)
       // Toggle is OFF if user HAS subscribed (hide popup)
       if (newsletterToggle) newsletterToggle.checked = !isSubscribed;
 
       // Warning banner toggle - ON means SHOW banner, OFF means HIDE banner
       const bannerHidden = isBannerHidden();
-      console.log('  - banner hidden:', bannerHidden);
       if (warningBannerToggle) warningBannerToggle.checked = !bannerHidden;
 
       // Gallery Popup toggle
@@ -1775,40 +1765,26 @@ let activeCategories = new Set(['all']);
     // Handle newsletter toggle
     if (newsletterToggle) {
       newsletterToggle.addEventListener('change', (e) => {
-        console.log('Newsletter toggle changed to:', e.target.checked);
         if (e.target.checked) {
           // User wants to SHOW the popup (remove subscription cookie)
-          console.log('Enabling newsletter popup - removing subscription cookie');
           // Remove cookie by setting expiry to past date
           document.cookie = 'kindleModsSubscribed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax;';
           localStorage.removeItem('kindleModsSubscribed');
         } else {
           // User wants to HIDE the popup (set subscription cookie)
-          console.log('Disabling newsletter popup - setting subscription cookie');
           setCookie('kindleModsSubscribed', 'true', 365);
           localStorage.setItem('kindleModsSubscribed', 'true');
         }
-
-        // Verify the change took effect
-        setTimeout(() => {
-          console.log('After newsletter toggle change:');
-          console.log('  - cookie:', getCookie('kindleModsSubscribed'));
-          console.log('  - localStorage:', localStorage.getItem('kindleModsSubscribed'));
-          console.log('  - hasUserSubscribed:', hasUserSubscribed());
-          console.log('  - popup will show:', !hasUserSubscribed());
-        }, 100);
       });
     }
 
     // Handle warning banner toggle
     if (warningBannerToggle) {
       warningBannerToggle.addEventListener('change', (e) => {
-        console.log('Warning banner toggle changed to:', e.target.checked);
         const topAnnouncement = document.querySelector('.top-announcement');
 
         if (e.target.checked) {
           // User wants to SHOW the banner
-          console.log('Showing warning banner');
           if (topAnnouncement) {
             topAnnouncement.style.display = 'block';
           }
@@ -1819,7 +1795,6 @@ let activeCategories = new Set(['all']);
           }
         } else {
           // User wants to HIDE the banner
-          console.log('Hiding warning banner');
           if (topAnnouncement) {
             topAnnouncement.style.display = 'none';
           }
@@ -1829,13 +1804,6 @@ let activeCategories = new Set(['all']);
             console.error('Failed to update localStorage:', err);
           }
         }
-
-        // Verify the change took effect
-        setTimeout(() => {
-          console.log('After banner toggle change:');
-          console.log('  - hideTopAnnouncement:', localStorage.getItem('hideTopAnnouncement'));
-          console.log('  - banner will show:', !isBannerHidden());
-        }, 100);
       });
     }
 
@@ -1874,7 +1842,6 @@ let activeCategories = new Set(['all']);
       const bannerHeight = topAnnouncement.style.display !== 'none' ? topAnnouncement.offsetHeight : 0;
       const bannerPadding = 20; // padding below banner
       settingsWheel.style.top = (bannerHeight + bannerPadding) + 'px';
-      console.log('Settings wheel position updated:', bannerHeight, 'px banner +', bannerPadding, 'px padding =', (bannerHeight + bannerPadding) + 'px');
     }
 
       // Update on load and when banner visibility changes

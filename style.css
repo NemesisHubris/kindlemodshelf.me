@@ -3102,3 +3102,56 @@ body:has(#img-viewer-modal.active) {
   max-width: 900px;
   padding: 0 20px;
 }
+
+
+/* Footer Settings Button */
+.footer-settings-btn {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--muted);
+  font-size: 0.8em;
+  padding: 4px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.footer-settings-btn:hover {
+  background: var(--card-bg);
+  color: var(--fg);
+  border-color: var(--primary);
+}
+
+/* Emulator Section Styles */
+.emulator-section {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.emulator-header {
+  background: var(--primary);
+  color: white;
+  padding: 12px 20px;
+  font-weight: 700;
+  font-size: 1.1em;
+  letter-spacing: 0.02em;
+}
+
+.emulator-header.k {
+  background: linear-gradient(135deg, #6a4a4a 0%, #8a4a4a 100%);
+}
+
+.emulator-body {
+  padding: 20px;
+}
+
+.emulator-body .section-title {
+  font-size: 1.3em;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--card-border);
+}
