@@ -48,9 +48,9 @@
           </div>
         </div>
         <div class="screenshot-viewer-canvas">
-          <button class="screenshot-nav prev" id="screenshot-nav-prev" aria-label="Previous image">‹</button>
+          <button class="screenshot-nav prev" id="screenshot-nav-prev" aria-label="Previous image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
           <img id="screenshot-viewer-img" alt="Screenshot" />
-          <button class="screenshot-nav next" id="screenshot-nav-next" aria-label="Next image">›</button>
+          <button class="screenshot-nav next" id="screenshot-nav-next" aria-label="Next image"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
           <div class="viewer-keyboard-hint">Use ← → keys to navigate • ESC to close</div>
         </div>
       </div>

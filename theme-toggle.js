@@ -104,14 +104,13 @@
     window.addEventListener('scroll', handleScroll, { passive: true });
   }
 
-  // Initialize when DOM is ready
+  // Initialize theme immediately to prevent FOUC
+  initTheme();
+
+  // Initialize button when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      initTheme();
-      setupToggleButton();
-    });
+    document.addEventListener('DOMContentLoaded', setupToggleButton);
   } else {
-    initTheme();
     setupToggleButton();
   }
 
