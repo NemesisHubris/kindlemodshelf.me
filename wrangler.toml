@@ -1,6 +1,5 @@
 name = "kindlemodshelf"
-compatibility_date = "2024-09-23"
+compatibility_date = "2024-11-12"
 
-[site]
-bucket = "./public"
-entry-point = "."
+[assets]
+directory = "./public"
