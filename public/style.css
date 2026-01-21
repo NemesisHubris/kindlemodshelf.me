@@ -619,6 +619,7 @@ li {
   border: 2px solid var(--summary-border);
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 
 .summary::before {
