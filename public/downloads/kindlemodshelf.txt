@@ -2486,7 +2486,7 @@ Resource
 
 Web-based flashcard resource that integrates with kanki.
 
-Open (https://ubens.vercel.app/#/)
+Open (https://www.uben.online/)
 
 K2pdfopt
 
@@ -2864,7 +2864,7 @@ Available in the KindleForge app store.
 Deck Management Tools:
 
 - → KAnki Deck Editor (editor.html) - Create and manage decks easily
-- → Ubens (https://ubens.vercel.app/) - Anki-like experience with easy Kindle syncing (by the same developer)
+- → Ubens (https://www.uben.online/) - Anki-like experience with easy Kindle syncing (by the same developer)
 
 # Kindle Jailbreak Community & Support
 

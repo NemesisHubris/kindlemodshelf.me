@@ -7,46 +7,8 @@
   <meta name="description" content="The page you're looking for doesn't exist.">
   <link rel="stylesheet" href="style.css">
   <script src="theme-toggle.js"></script>
-  <style>
-    /* Inline overrides for 404 specific layout tweaks */
-    .error-card {
-      max-width: 800px;
-      margin: 40px auto;
-      overflow: hidden;
-    }
-    .error-img {
-      max-width: 100%;
-      width: 400px;
-      height: auto;
-      border-radius: var(--radius-md);
-      margin: 0 auto 32px;
-      display: block;
-      box-shadow: 0 4px 20px var(--shadow-color);
-    }
-    .error-actions {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    /* Ensure footer stays at bottom if content is short */
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    .container {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .legal-disclaimer {
-      margin-top: auto;
-    }
-  </style>
 </head>
-<body>
+<body class="page-404">
   <div class="container">
     <div class="card error-card">
       <div class="error-page" style="padding: 40px 24px;"> <!-- Override padding to fit card better -->

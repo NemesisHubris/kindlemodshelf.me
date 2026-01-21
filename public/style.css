@@ -3040,12 +3040,44 @@ body:has(#img-viewer-modal.active) {
   color: var(--fg);
 }
 
-.error-summary {
-  max-width: 600px;
+.error-card {
+  max-width: 800px;
   margin: 40px auto;
+  overflow: hidden;
+}
+
+.error-img {
+  max-width: 100%;
+  width: 400px;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: 0 auto 32px;
+  display: block;
+  box-shadow: 0 4px 20px var(--shadow-color);
 }
 
 .error-actions {
   max-width: 600px;
   margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* 404 Page Specific Layout */
+body.page-404 {
+  display: flex;
+  flex-direction: column;
+}
+
+body.page-404 .container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.page-404 .legal-disclaimer {
+  margin-top: auto;
 }
