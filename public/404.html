@@ -7,42 +7,74 @@
   <meta name="description" content="The page you're looking for doesn't exist.">
   <link rel="stylesheet" href="style.css">
   <script src="theme-toggle.js"></script>
+  <style>
+    /* Inline overrides for 404 specific layout tweaks */
+    .error-card {
+      max-width: 800px;
+      margin: 40px auto;
+      overflow: hidden;
+    }
+    .error-img {
+      max-width: 100%;
+      width: 400px;
+      height: auto;
+      border-radius: var(--radius-md);
+      margin: 0 auto 32px;
+      display: block;
+      box-shadow: 0 4px 20px var(--shadow-color);
+    }
+    .error-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    /* Ensure footer stays at bottom if content is short */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .legal-disclaimer {
+      margin-top: auto;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <div class="error-page">
-      <h1 class="error-title">404</h1>
-      <h2 class="error-subtitle">Page Not Found</h2>
+    <div class="card error-card">
+      <div class="error-page" style="padding: 40px 24px;"> <!-- Override padding to fit card better -->
+        <h1 class="error-title">404</h1>
+        <h2 class="error-subtitle">Page Not Found</h2>
 
-      <div class="summary error-summary">
-        <p>The page you're looking for doesn't exist. It may have been moved, renamed, or removed.</p>
-      </div>
+        <img src="page_images/broken-kindle.png" alt="Broken Kindle Screen" class="error-img">
 
-      <div class="action-buttons error-actions">
-        <div class="action-button">
-          <a href="index.html" class="feature-button">
+        <div class="intro-text" style="margin-bottom: 40px;">
+          <p>The page you're looking for doesn't exist. It may have been moved, renamed, or removed.</p>
+        </div>
+
+        <div class="error-actions">
+          <a href="index.html" class="kindle-btn">
             <span class="button-title">Browse Catalog</span>
-            <span class="button-desc">View all Kindle mods and tools</span>
           </a>
-        </div>
 
-        <div class="action-button">
-          <a href="jailbreaking.html" class="feature-button">
+          <a href="jailbreaking.html" class="kindle-btn">
             <span class="button-title">Jailbreak Guide</span>
-            <span class="button-desc">Learn how to jailbreak your Kindle</span>
           </a>
-        </div>
 
-        <div class="action-button">
-          <a href="faq.html" class="feature-button">
+          <a href="faq.html" class="kindle-btn">
             <span class="button-title">FAQ & Support</span>
-            <span class="button-desc">Get help with common issues</span>
           </a>
         </div>
       </div>
     </div>
   </div>
   <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
-  <script src="navigation.js"></script>
 </body>
 </html>
