@@ -296,7 +296,7 @@
   --img-thumb-hover-bg: #e8e8e8;
   --img-thumb-overlay: rgba(0, 0, 0, 0.4);
   --placeholder-bg: linear-gradient(160deg, rgba(235, 165, 80, 0.15), rgba(240, 230, 200, 0.85));
-  --viewer-modal-bg: rgba(0, 0, 0, 0.8);
+  --viewer-modal-bg: rgba(255, 255, 255, 0.85);
   --viewer-wrap-bg: #ffffff;
   --viewer-canvas-bg: #f8f8f8;
   --viewer-img-bg: #ffffff;
@@ -830,6 +830,7 @@ li {
   margin: 20px 0;
   color: var(--info-text);
   line-height: 1.6;
+  text-align: center;
 }
 
 .legal-warning {
@@ -1184,6 +1185,8 @@ pre code {
 .search-icon {
   position: absolute;
   left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--primary);
   pointer-events: none;
   display: flex;
@@ -1194,21 +1197,342 @@ pre code {
 
 #search-bar {
   width: 100%;
-  padding: 14px 18px 14px 48px;
-  font-size: 1.05em;
+  padding: 12px 16px 12px 48px;
+  padding-right: 40px; /* Space for clear button */
+  font-size: 1rem;
   background: var(--input-bg);
-  border: 2px solid var(--input-border);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-lg);
   color: var(--fg);
   outline: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  font-weight: 400;
+}
+
+/* Cropper Modal Styles */
+.cropper-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--viewer-modal-bg);
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cropper-container {
+  width: 95vw;
+  height: 95vh;
+  max-width: 1200px;
+  background: var(--bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cropper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.cropper-header h2 {
+  margin: 0;
+  font-size: 1.2em;
+  color: var(--fg);
+}
+
+.cropper-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.cropper-close-btn:hover {
+  color: var(--warning-text);
+}
+
+.cropper-controls {
+  display: flex;
+  gap: 20px;
+  padding: 12px 20px;
+  background: var(--bg-base);
+  border-bottom: 1px solid var(--card-border);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-group label {
+  font-size: 0.9em;
+  color: var(--muted);
+}
+
+.cropper-canvas-wrapper {
+  flex: 1;
+  background: var(--viewer-canvas-bg);
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.cropper-canvas-wrapper:active {
+  cursor: grabbing;
+}
+
+.cropper-overlay-text {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  pointer-events: none;
+}
+
+.cropper-footer {
+  padding: 12px 20px;
+  background: var(--card-bg);
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--fg);
+  font-size: 0.9em;
+}
+
+/* Resize Button specific */
+.viewer-resize {
+  /* Inherits viewer-button styles */
+}
+
+@media (max-width: 768px) {
+  .cropper-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .control-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .builder-select, .builder-input {
+    width: 100%;
+  }
+}
+
+/* Missing Builder Classes for Cropper */
+.builder-select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  padding: 0.5em 0.65em;
+  font-size: 0.9em;
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.builder-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.builder-input {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  padding: 0.5em 0.65em;
+  font-size: 0.9em;
+  color: var(--fg);
+}
+
+.builder-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.builder-apply-btn {
+  width: 100%;
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 0.7em 1em;
+  border-radius: 4px;
+  font-size: 0.9em;
   font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.builder-apply-btn:hover {
+  background: var(--secondary);
+}
+
+/* Cropper Tool Sliders & Inputs */
+.slider-group {
+  margin-bottom: 15px;
+}
+
+.slider-group label {
+  display: block;
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+input[type=range] {
+  -webkit-appearance: none; 
+  width: 100%; 
+  background: transparent; 
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  margin-top: -6px; 
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  flex: 1;
+  font-size: 0.85em;
+  padding: 8px;
+}
+
+.input-warning {
+  font-size: 0.8em;
+  color: var(--warning-text);
+  margin-top: 5px;
+  font-weight: 500;
+  display: none;
+}
+
+.dim-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dim-inputs span {
+  color: var(--muted);
+}
+
+.control-divider {
+  height: 1px;
+  background: var(--card-border);
+  margin: 15px 0;
+}
+
+.cropper-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  flex-direction: row;
+}
+
+.cropper-sidebar {
+  width: 260px;
+  background: var(--bg-base);
+  border-left: 1px solid var(--card-border);
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.cropper-canvas-wrapper {
+  flex: 1;
+  background: var(--viewer-canvas-bg);
+  position: relative;
+  overflow: hidden;
+  min-width: 0; /* Important for flex */
+}
+
+/* Cropper Toast */
+.cropper-toast {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 165, 0, 0.9);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.cropper-toast.visible {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .cropper-body {
+    flex-direction: column;
+  }
+  .cropper-sidebar {
+    width: 100%;
+    height: 40%;
+    border-left: none;
+    border-top: 1px solid var(--card-border);
+  }
 }
 
 #search-bar:focus {
   border-color: var(--primary);
-  transform: translateY(-2px);
+  box-shadow: 0 0 0 4px rgba(91, 157, 217, 0.25);
+  transform: none;
 }
 
 #search-bar::placeholder {
@@ -1608,9 +1932,9 @@ body:has(#img-viewer-modal.active) {
   font-weight: 600;
   color: var(--muted);
   border-bottom: 1px solid var(--card-border);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  line-height: 1.4;
 }
 
 .sidebar-images {
@@ -2171,7 +2495,7 @@ body:has(#img-viewer-modal.active) {
   color: var(--button-text);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1000;
+  z-index: 20001;
   padding: 0;
   box-shadow: 0 1px 3px var(--shadow-color),
     0 10px 20px rgba(0, 0, 0, 0.08),
@@ -2358,7 +2682,7 @@ body:has(#img-viewer-modal.active) {
   justify-content: space-between;
   width: 100%;
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--input-border);
   padding: 12px 16px;
   border-radius: var(--radius-md);
   color: var(--fg);
@@ -3081,4 +3405,181 @@ body.page-404 .container {
 
 body.page-404 .legal-disclaimer {
   margin-top: auto;
+}
+
+/* Search Clear Button */
+.search-clear {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--muted);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.search-clear:hover {
+  background: var(--card-bg);
+  color: var(--primary);
+}
+
+.search-clear svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Cropper Tool Sliders & Inputs */
+.slider-group {
+  margin-bottom: 15px;
+}
+
+.slider-group label {
+  display: block;
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+input[type=range] {
+  -webkit-appearance: none; 
+  width: 100%; 
+  background: transparent; 
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  margin-top: -6px; 
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: var(--input-border);
+  border-radius: 2px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button-group button {
+  flex: 1;
+  font-size: 0.85em;
+  padding: 8px;
+}
+
+.input-warning {
+  font-size: 0.8em;
+  color: var(--warning-text);
+  margin-top: 5px;
+  font-weight: 500;
+  display: none;
+}
+
+/* Number Input Styling - Hide Spinners */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.dim-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dim-inputs span {
+  color: var(--muted);
+}
+
+.control-divider {
+  height: 1px;
+  background: var(--card-border);
+  margin: 15px 0;
+}
+
+.cropper-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  flex-direction: row;
+}
+
+.cropper-sidebar {
+  width: 320px;
+  background: var(--bg-base);
+  border-left: 1px solid var(--card-border);
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.cropper-canvas-wrapper {
+  flex: 1;
+  background: var(--bg-base);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .cropper-body {
+    flex-direction: column;
+  }
+  .cropper-sidebar {
+    width: 100%;
+    height: 40%;
+    border-left: none;
+    border-top: 1px solid var(--card-border);
+  }
+}
+
+.builder-apply-btn {
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  color: var(--bg-base);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.builder-apply-btn:hover {
+  background: var(--secondary);
+  border-color: var(--secondary);
+}
+
+.builder-secondary-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--fg);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.builder-secondary-btn:hover {
+  background: var(--card-link-hover-bg);
 }

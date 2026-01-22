@@ -56,4 +56,41 @@ document.addEventListener('DOMContentLoaded', () => {
   backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  // 4. Global Search Logic (Clear Button & Shortcut)
+  const searchBar = document.getElementById('search-bar');
+  const searchClearBtn = document.getElementById('search-clear');
+
+  if (searchBar && searchClearBtn) {
+    // Toggle button visibility based on input
+    const toggleClear = () => {
+      searchClearBtn.style.display = searchBar.value.trim() ? 'flex' : 'none';
+    };
+    
+    searchBar.addEventListener('input', toggleClear);
+    
+    // Initial check
+    toggleClear();
+
+    // Clear search handler
+    searchClearBtn.addEventListener('click', () => {
+      searchBar.value = '';
+      searchBar.focus();
+      toggleClear();
+      // Trigger input event to notify listeners (main.js, images-gallery.js, or inline scripts)
+      searchBar.dispatchEvent(new Event('input'));
+    });
+  }
+
+  // Global Keyboard Shortcut '/'
+  document.addEventListener('keydown', (e) => {
+    // Focus search on '/' if not already in an input/textarea
+    if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      const sb = document.getElementById('search-bar'); // Re-query in case it wasn't there at load (unlikely but safe)
+      if (sb) {
+        sb.focus();
+      }
+    }
+  });
 });

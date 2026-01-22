@@ -383,6 +383,7 @@ function disableScrollLoading() {
 const modal = document.getElementById('img-viewer-modal');
 const modalImg = document.getElementById('img-viewer-img');
 const modalDownload = document.getElementById('img-viewer-download');
+const modalResize = document.getElementById('img-viewer-resize'); // NEW
 const modalClose = document.getElementById('img-viewer-close');
 const modalAuthor = document.getElementById('img-viewer-author');
 const modalFilename = document.getElementById('img-viewer-filename');
@@ -488,3 +489,27 @@ document.addEventListener('keydown', event => {
     closeViewer();
   }
 });
+
+// Direct Resize Listener
+const resizeButton = document.getElementById('img-viewer-resize');
+if (resizeButton) {
+  resizeButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const img = document.getElementById('img-viewer-img');
+    if (!img || !img.src) {
+        console.error('No image source found');
+        return;
+    }
+
+    if (typeof openCropper === 'function') {
+        openCropper(img.src);
+    } else {
+        console.error('openCropper is not defined');
+        alert('Cropper tool not ready. Please refresh the page.');
+    }
+  });
+} else {
+    console.error('Resize button element not found in DOM');
+}
