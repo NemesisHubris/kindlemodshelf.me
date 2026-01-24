@@ -86,3 +86,8 @@ You can also reach us on the [Kindle Modding Discord](https://dsc.gg/kindle-modd
 
 This project is maintained by the Kindle modding community.
 Special thanks to all contributors and open-source Kindle tool authors.
+
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=NemesisHubris/kindlemodshelf.me&type=date&legend=top-left)](https://www.star-history.com/#NemesisHubris/kindlemodshelf.me&type=date&legend=top-left)
