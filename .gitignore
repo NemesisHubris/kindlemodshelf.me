@@ -2,3 +2,5 @@
 ._*
 .Spotlight-V100
 .Trashes
+server.log
+server.pid
