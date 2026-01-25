@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Debug Nav</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Debug Navigation Page</h1>
+    <p>This page exists to test the back button injection.</p>
+  </div>
+  <script>
+    console.log('Debug Page Loaded');
+    console.log('Pathname:', window.location.pathname);
+    console.log('Container exists:', !!document.querySelector('.container'));
+  </script>
+  <script src="navigation.js?v=2"></script>
+</body>
+</html>

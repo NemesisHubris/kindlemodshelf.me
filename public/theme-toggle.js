@@ -4,7 +4,12 @@
 
   // Get the current theme from localStorage or default to dark
   function getInitialTheme() {
-    const savedTheme = localStorage.getItem('theme');
+    let savedTheme = null;
+    try {
+      savedTheme = localStorage.getItem('theme');
+    } catch (e) {
+      console.warn('LocalStorage access denied, using default theme.');
+    }
     return {
       theme: savedTheme || 'dark',
       persist: Boolean(savedTheme)
@@ -20,9 +25,13 @@
       root.removeAttribute('data-theme');
     }
     if (persist) {
-      localStorage.setItem('theme', theme);
+      try {
+        localStorage.setItem('theme', theme);
+      } catch (e) {}
     } else {
-      localStorage.removeItem('theme');
+      try {
+        localStorage.removeItem('theme');
+      } catch (e) {}
     }
   }
 

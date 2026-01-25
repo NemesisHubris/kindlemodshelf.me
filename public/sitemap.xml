@@ -20,12 +20,8 @@
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/alpine.html</loc>
-    <lastmod>2025-12-06T10:43:00+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    P26-01-15T12:20:00+00:00</lastmod>
+    <loc>https://kindlemodshelf.me/announcements.html</loc>
+    <lastmod>2026-01-15T12:20:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
@@ -443,11 +439,6 @@
   </url>
   <url>
     <loc>https://kindlemodshelf.me/universalpaperclips.html</loc>
-    <lastmod>2025-12-06T10:43:00+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/usbnetlite.html</loc>
     <lastmod>2025-12-06T10:43:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>

@@ -128,9 +128,98 @@ function updateFilterNote() {
   }
 }
 
+// Initialize category buttons with original labels for count updates
+categoryButtons.forEach(btn => {
+  if (!btn.dataset.originalLabel) {
+    btn.dataset.originalLabel = btn.textContent.trim();
+  }
+});
+
+function updateCategoryCounts(searchTerm) {
+  const term = searchTerm.trim().toLowerCase();
+  
+  categoryButtons.forEach(btn => {
+    const category = btn.dataset.category;
+    let count = 0;
+
+    cards.forEach(card => {
+      // Check search match
+      const searchMatch = term === '' || (card.dataset.searchCache || '').includes(term);
+      if (!searchMatch) return;
+
+      // Check category match
+      if (category === 'all') {
+        count++;
+      } else {
+        const cardCategory = card.dataset.sectionCategory;
+        const tagTokens = (card.dataset.tagTokens || '').split(',').filter(Boolean);
+        const primaryTags = (card.dataset.primaryTags || '').split(',').filter(Boolean);
+
+        if (cardCategory === category || (categoryFilterConfig[category] && categoryFilterConfig[category](primaryTags, tagTokens))) {
+          count++;
+        }
+      }
+    });
+
+    const originalLabel = btn.dataset.originalLabel;
+    if (count > 0 || term === '') {
+      btn.textContent = `${originalLabel} (${count})`;
+    } else {
+      btn.textContent = originalLabel;
+    }
+  });
+}
+
+function updatePageTitle(term) {
+  const baseTitle = "KindleModShelf";
+  let parts = [];
+  if (term) parts.push(`"${term}"`);
+  if (!activeCategories.has('all')) {
+    if (activeCategories.size === 1) {
+      const activeBtn = categoryButtons.find(b => b.classList.contains('active'));
+      if (activeBtn) parts.push(activeBtn.dataset.originalLabel);
+    } else {
+      parts.push(`${activeCategories.size} Categories`);
+    }
+  }
+  if (parts.length > 0) {
+    document.title = `${parts.join(' in ')} - ${baseTitle}`;
+  } else {
+    document.title = "Kindle Modding Tools & Resources – KindleModShelf";
+  }
+}
+
+function updateURL(term) {
+  const params = new URLSearchParams(window.location.search);
+  
+  if (term) {
+    params.set('q', term);
+  } else {
+    params.delete('q');
+  }
+  
+  if (!activeCategories.has('all')) {
+    // For now, we only sync the first selected category if multiple are selected, 
+    // or we could sync all. Let's keep it simple and sync the first one.
+    const firstCategory = Array.from(activeCategories)[0];
+    params.set('category', firstCategory);
+  } else {
+    params.delete('category');
+  }
+  
+  const newRelativePathQuery = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+  history.replaceState(null, '', newRelativePathQuery);
+}
+
 function applyFilters() {
   const term = (searchBar && searchBar.value ? searchBar.value : '').trim().toLowerCase();
   let visibleCount = 0;
+
+  // Update UI and URL
+  updateCategoryCounts(term);
+  updateCategoryLabel();
+  updatePageTitle(term);
+  updateURL(term);
 
   cards.forEach(card => {
     const searchMatch = term === '' || (card.dataset.searchCache || '').includes(term);
@@ -164,8 +253,16 @@ function applyFilters() {
     if (searchMatch && categoryMatch) {
       card.style.display = '';
       visibleCount++;
+      
+      // Highlight matching terms
+      if (term && term.length > 1) {
+        highlightCardText(card, term);
+      } else {
+        removeHighlights(card);
+      }
     } else {
       card.style.display = 'none';
+      removeHighlights(card); // Clean up if hidden
     }
   });
 
@@ -219,8 +316,233 @@ function applyFilters() {
   updateFilterNote();
 }
 
+// Helper to highlight text safely using DOM manipulation
+function highlightCardText(card, term) {
+  // console.log(`Highlighting '${term}' in card`); // Debug
+  const textElements = Array.from(card.querySelectorAll('.card-title, .card-desc, .tag'));
+  
+  textElements.forEach(el => {
+    // Reset to original state first
+    if (!el.dataset.originalText) {
+      el.dataset.originalText = el.innerHTML;
+    } else {
+      el.innerHTML = el.dataset.originalText;
+    }
+
+    // Optimization: check if element contains term at all
+    if (el.textContent.toLowerCase().includes(term)) {
+      // Traverse child nodes to find text nodes
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+      const textNodes = [];
+      while (walker.nextNode()) {
+        textNodes.push(walker.currentNode);
+      }
+
+      // Process text nodes
+      textNodes.forEach(node => {
+        const text = node.nodeValue;
+        const lowerText = text.toLowerCase();
+        const indices = [];
+        let idx = lowerText.indexOf(term);
+        
+        // Find all occurrences
+        while (idx !== -1) {
+          indices.push(idx);
+          idx = lowerText.indexOf(term, idx + term.length);
+        }
+
+        if (indices.length > 0) {
+          const fragment = document.createDocumentFragment();
+          let lastIdx = 0;
+          
+          indices.forEach(start => {
+            // Append text before match
+            if (start > lastIdx) {
+              fragment.appendChild(document.createTextNode(text.substring(lastIdx, start)));
+            }
+            
+            // Append highlighted match
+            const mark = document.createElement('mark');
+            mark.className = 'search-highlight';
+            mark.textContent = text.substring(start, start + term.length);
+            fragment.appendChild(mark);
+            
+            lastIdx = start + term.length;
+          });
+          
+          // Append remaining text
+          if (lastIdx < text.length) {
+            fragment.appendChild(document.createTextNode(text.substring(lastIdx)));
+          }
+          
+          node.parentNode.replaceChild(fragment, node);
+        }
+      });
+    }
+  });
+}
+
+function removeHighlights(card) {
+  const textElements = Array.from(card.querySelectorAll('.card-title, .card-desc, .tag'));
+  textElements.forEach(el => {
+    if (el.dataset.originalText) {
+      el.innerHTML = el.dataset.originalText;
+      // Optional: delete el.dataset.originalText if memory is a concern, 
+      // but keeping it makes re-typing faster.
+    }
+  });
+}
+
+// Debounce helper
+function debounce(func, wait) {
+  let timeout;
+  return function(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
+}
+
+function updateCategoryLabel() {
+  if (!filterToggleBtn) return;
+  const toggleBtnSpan = filterToggleBtn.querySelector('span');
+  if (!toggleBtnSpan) return;
+
+  let label = "Select Category";
+  if (activeCategories.has('all')) {
+    label = "All Categories";
+  } else if (activeCategories.size === 1) {
+    const activeBtn = categoryButtons.find(b => b.classList.contains('active'));
+    if (activeBtn) label = activeBtn.textContent;
+  } else if (activeCategories.size > 1) {
+    label = `${activeCategories.size} Categories Selected`;
+  }
+  toggleBtnSpan.textContent = label;
+}
+
+function applyFilters() {
+  const term = (searchBar && searchBar.value ? searchBar.value : '').trim().toLowerCase();
+  let visibleCount = 0;
+
+  // Update counts before applying visibility
+  updateCategoryCounts(term);
+  updateCategoryLabel();
+
+  cards.forEach(card => {
+    const searchMatch = term === '' || (card.dataset.searchCache || '').includes(term);
+
+    let categoryMatch = false;
+    if (activeCategories.has('all')) {
+      categoryMatch = true;
+    } else {
+      // Check both section category AND tags for a match
+      const cardCategory = card.dataset.sectionCategory;
+      const tagTokens = (card.dataset.tagTokens || '').split(',').filter(Boolean);
+      const primaryTags = (card.dataset.primaryTags || '').split(',').filter(Boolean);
+
+      // Check if any active category matches either the section OR the tags
+      for (const activeCategory of activeCategories) {
+        // Match by section category
+        if (cardCategory === activeCategory) {
+          categoryMatch = true;
+          break;
+        }
+        // Match by filter config (tags)
+        if (categoryFilterConfig[activeCategory]) {
+          if (categoryFilterConfig[activeCategory](primaryTags, tagTokens)) {
+            categoryMatch = true;
+            break;
+          }
+        }
+      }
+    }
+
+    if (searchMatch && categoryMatch) {
+      card.style.display = '';
+      visibleCount++;
+      
+      // Highlight matching terms
+      if (term && term.length > 1) {
+        highlightCardText(card, term);
+      } else {
+        removeHighlights(card);
+      }
+    } else {
+      card.style.display = 'none';
+      removeHighlights(card); // Clean up if hidden
+    }
+  });
+
+  // Hide section titles if no visible cards follow them
+  sectionTitles.forEach(title => {
+    let nextElem = title.nextElementSibling;
+    let foundVisible = false;
+    while (nextElem && !nextElem.classList.contains('section-title')) {
+      if (nextElem.classList.contains('card') && nextElem.style.display !== 'none') {
+        foundVisible = true;
+        break;
+      }
+      if (nextElem.classList.contains('card-grid')) {
+        const innerCards = Array.from(nextElem.getElementsByClassName('card'));
+        if (innerCards.some(card => card.style.display !== 'none')) {
+          foundVisible = true;
+          break;
+        }
+      }
+      nextElem = nextElem.nextElementSibling;
+    }
+    title.style.display = foundVisible ? '' : 'none';
+    const associatedGrid = title.nextElementSibling;
+    if (associatedGrid && associatedGrid.classList.contains('card-grid')) {
+      associatedGrid.style.display = foundVisible ? '' : 'none';
+    }
+  });
+
+  let noRes = document.getElementById('no-results');
+  if (!noRes) {
+    noRes = document.createElement('div');
+    noRes.id = 'no-results';
+    noRes.className = 'no-results';
+    const toolbar = document.querySelector('.filter-toolbar');
+    if (toolbar && toolbar.parentElement) {
+      toolbar.insertAdjacentElement('afterend', noRes);
+    } else {
+      document.querySelector('.container').appendChild(noRes);
+    }
+  }
+  if (visibleCount === 0) {
+    const termText = term ? ` for "${term}"` : '';
+    noRes.innerHTML = `
+      <h2>No matches found</h2>
+      <p>${term ? `No results found for "<strong>${escapeHTML(term)}</strong>".` : 'Nothing matches these filters yet.'}</p>
+      <button class="kindle-btn" id="resetFiltersBtn" style="margin-top: 10px;">Clear all search & filters</button>
+    `;
+    noRes.style.display = 'block';
+    
+    document.getElementById('resetFiltersBtn')?.addEventListener('click', () => {
+      if (searchBar) searchBar.value = '';
+      activeCategories.clear();
+      activeCategories.add('all');
+      categoryButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.category === 'all');
+      });
+      applyFilters();
+    });
+  } else {
+    noRes.style.display = 'none';
+  }
+
+  updateFilterNote();
+}
+
+function escapeHTML(str) {
+  const p = document.createElement('p');
+  p.textContent = str;
+  return p.innerHTML;
+}
+
 if (searchBar) {
-  searchBar.addEventListener('input', () => applyFilters());
+  searchBar.addEventListener('input', debounce(() => applyFilters(), 300));
 }
 
 categoryButtons.forEach(btn => {
@@ -260,43 +582,72 @@ categoryButtons.forEach(btn => {
   });
 });
 
-// Update button text when a category is clicked
-categoryButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // If "All" is active, show "Select Category" (or "All Categories")
-    // If a specific category is active, show its name
-    // Since the existing logic allows multi-select but "All" clears others,
-    // we can check if "All" is active.
-    
-    let label = "Select Category";
-    if (activeCategories.has('all')) {
-      label = "All Categories";
-    } else if (activeCategories.size === 1) {
-      // Find the name of the single active category
-      const activeBtn = categoryButtons.find(b => b.classList.contains('active'));
-      if (activeBtn) label = activeBtn.textContent;
-    } else if (activeCategories.size > 1) {
-      label = `${activeCategories.size} Categories Selected`;
-    }
-    
-    const toggleBtnSpan = filterToggleBtn.querySelector('span');
-    if (toggleBtnSpan) toggleBtnSpan.textContent = label;
-  });
-});
+// REMOVE the old click listener that was updating labels redundantely
+// It's now handled inside applyFilters() via updateCategoryLabel()
+
 
 // NEW: Check URL params on load
 const urlParams = new URLSearchParams(window.location.search);
 const query = urlParams.get('q');
 if (query && searchBar) {
   searchBar.value = query;
-  // Also scroll to search bar if there's a query
   const toolbar = document.querySelector('.filter-toolbar');
   if (toolbar) {
       toolbar.scrollIntoView({ behavior: 'smooth' });
   }
 }
 
+// Deep Linking for Categories
+const categoryParam = urlParams.get('category');
+if (categoryParam) {
+  const targetBtn = categoryButtons.find(btn => btn.dataset.category === categoryParam);
+  if (targetBtn) {
+    // We simulate a click to reuse the existing toggle/all logic
+    targetBtn.click();
+    
+    // Also scroll to toolbar if filtered
+    const toolbar = document.querySelector('.filter-toolbar');
+    if (toolbar) {
+        toolbar.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+}
+
 applyFilters();
+
+// Global Keyboard Shortcut: Escape to clear search and filters
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    let changed = false;
+    
+    // Clear search
+    if (searchBar && searchBar.value) {
+      searchBar.value = '';
+      changed = true;
+    }
+    
+    // Reset categories to "All" if not already
+    if (!activeCategories.has('all')) {
+      activeCategories.clear();
+      activeCategories.add('all');
+      categoryButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.category === 'all');
+      });
+      
+      // Update label
+      const toggleBtnSpan = filterToggleBtn.querySelector('span');
+      if (toggleBtnSpan) toggleBtnSpan.textContent = "All Categories";
+      
+      changed = true;
+    }
+    
+    if (changed) {
+      applyFilters();
+      // Blur search bar if it was focused
+      if (searchBar) searchBar.blur();
+    }
+  }
+});
 
 // Slide-in animation trigger for email popup
 window.addEventListener('load', () => {
@@ -556,32 +907,40 @@ function initSettingsModal() {
       }
     });
   }
+}
 
-  // Position settings wheel dynamically based on banner visibility
-  function updateSettingsWheelPosition() {
-    const topAnnouncement = document.querySelector('.top-announcement');
-    if (!topAnnouncement || !settingsWheel) return;
+// Helper to highlight text safely using DOM manipulation
+function highlightCardText(card, term) {
+  // ... existing implementation ...
+}
 
-    const bannerHeight = topAnnouncement.style.display !== 'none' ? topAnnouncement.offsetHeight : 0;
-    const bannerPadding = 20; // padding below banner
-    settingsWheel.style.top = (bannerHeight + bannerPadding) + 'px';
-  }
-
-  // Update on load and when banner visibility changes
-  setTimeout(updateSettingsWheelPosition, 100);
-
-  const topAnnouncement = document.querySelector('.top-announcement');
-  if (topAnnouncement) {
-    const observer = new MutationObserver(() => {
-      setTimeout(updateSettingsWheelPosition, 50);
-    });
-    observer.observe(topAnnouncement, { attributes: true, attributeFilter: ['style'] });
-  }
+// Make tags clickable for filtering
+function initClickableTags() {
+  document.addEventListener('click', (e) => {
+    const tag = e.target.closest('.tag');
+    if (tag && !tag.closest('.filter-chip')) { // Don't trigger on filter chips themselves
+      const tagName = tag.textContent.trim();
+      if (searchBar) {
+        searchBar.value = tagName;
+        // Trigger search
+        applyFilters();
+        // Scroll to search bar
+        const toolbar = document.querySelector('.filter-toolbar');
+        if (toolbar) {
+          toolbar.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  });
 }
 
 // Call the initialization function
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initSettingsModal);
+  document.addEventListener('DOMContentLoaded', () => {
+    initSettingsModal();
+    initClickableTags();
+  });
 } else {
   initSettingsModal();
+  initClickableTags();
 }

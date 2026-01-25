@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Determine if we are on the home page
+  // Determine if we are on the home page or excluded pages
   const path = window.location.pathname;
-  const isHome = path.endsWith('index.html') || path.endsWith('/') || path === '/kindlemodshelf.me/';
+  const isHome = path === '/' || path.endsWith('/index.html') || path.endsWith('/kindlemodshelf.me/') || path === '/kindlemodshelf.me';
+  const isExcluded = path.endsWith('editor.html') || path.endsWith('pagebuilder.html');
   
   const container = document.querySelector('.container') || document.body;
 
-  // 1. Inject Back Button (if not home and not already present)
-  if (!isHome && !document.querySelector('.back-home-btn')) {
+  // 1. Inject Back Button (if not home, not excluded, and not already present)
+  if (!isHome && !isExcluded && !document.querySelector('.back-home-btn')) {
     const backBtn = document.createElement('a');
     backBtn.href = 'index.html';
     backBtn.className = 'back-home-btn';
@@ -14,7 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     backBtn.innerHTML = '← Back to Home';
     
     // Prepend to container
-    container.prepend(backBtn);
+    if (container.firstChild) {
+      container.insertBefore(backBtn, container.firstChild);
+    } else {
+      container.appendChild(backBtn);
+    }
   }
 
   // 2. Scroll Logic for Back Button
@@ -38,18 +43,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 3. Back to Top Button
-  const backToTopBtn = document.createElement('button');
-  backToTopBtn.className = 'back-to-top-btn';
-  backToTopBtn.setAttribute('aria-label', 'Back to Top');
-  // SVG for Up Arrow
-  backToTopBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>';
-  document.body.appendChild(backToTopBtn);
+  let backToTopBtn = document.getElementById('backToTop');
+  
+  // If not in HTML, create it dynamically
+  if (!backToTopBtn) {
+    backToTopBtn = document.createElement('button');
+    backToTopBtn.id = 'backToTop';
+    backToTopBtn.className = 'back-to-top-btn';
+    backToTopBtn.setAttribute('aria-label', 'Back to Top');
+    backToTopBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>';
+    document.body.appendChild(backToTopBtn);
+  }
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
       backToTopBtn.classList.add('visible');
+      backToTopBtn.style.display = 'flex'; // Ensure display is flex when visible
     } else {
       backToTopBtn.classList.remove('visible');
+      backToTopBtn.style.display = 'none'; // Hide when not visible
     }
   }, { passive: true });
 
@@ -57,11 +69,29 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // 4. Global Search Logic (Clear Button & Shortcut)
+  // 4. Reading Progress Bar
+  const progressBar = document.createElement('div');
+  progressBar.className = 'reading-progress-bar';
+  document.body.appendChild(progressBar);
+
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    progressBar.style.width = scrolled + "%";
+  }, { passive: true });
+
+  // 5. Global Search Logic (Clear Button & Shortcut)
   const searchBar = document.getElementById('search-bar');
   const searchClearBtn = document.getElementById('search-clear');
 
-  if (searchBar && searchClearBtn) {
+  if (searchBar) {
+    // Add keyboard shortcut hint to placeholder
+    if (!searchBar.placeholder.includes('/')) {
+      searchBar.placeholder += ' (Press / to search)';
+    }
+    
+    if (searchClearBtn) {
     // Toggle button visibility based on input
     const toggleClear = () => {
       searchClearBtn.style.display = searchBar.value.trim() ? 'flex' : 'none';
@@ -80,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Trigger input event to notify listeners (main.js, images-gallery.js, or inline scripts)
       searchBar.dispatchEvent(new Event('input'));
     });
+  }
   }
 
   // Global Keyboard Shortcut '/'
