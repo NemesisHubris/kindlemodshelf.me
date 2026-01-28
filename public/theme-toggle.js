@@ -33,6 +33,10 @@
         localStorage.removeItem('theme');
       } catch (e) {}
     }
+
+    // Dispatch custom event for theme change
+    const event = new CustomEvent('themechange', { detail: { theme } });
+    document.dispatchEvent(event);
   }
 
   // Toggle between themes

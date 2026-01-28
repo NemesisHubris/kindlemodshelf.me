@@ -3,7 +3,8 @@ const THUMBNAIL_WIDTH = 400;
 const THUMBNAIL_HEIGHT = 533;
 const THUMBNAIL_QUALITY = 0.82;
 const PLACEHOLDER_SRC = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
-const CANVAS_BACKGROUND = '#081524';
+const CANVAS_BACKGROUND_DARK = '#081524';
+const CANVAS_BACKGROUND_LIGHT = '#e8e8e8';
 const RANDOMIZATION_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 const RANDOMIZED_ORDER_KEY = 'gallery_randomized_order';
 const RANDOMIZATION_TIMESTAMP_KEY = 'gallery_randomization_time';
@@ -34,6 +35,11 @@ let scrollEnabled = false;
 
 function getPlaceholderBackground() {
   return getComputedStyle(document.documentElement).getPropertyValue('--placeholder-bg').trim();
+}
+
+function getCanvasBackground() {
+  const theme = document.documentElement.getAttribute('data-theme');
+  return theme === 'light' ? CANVAS_BACKGROUND_LIGHT : CANVAS_BACKGROUND_DARK;
 }
 
 function shouldRandomizeOrder() {
@@ -272,7 +278,7 @@ function createThumbnail(imgPath, callback) {
     thumbnailCtx.imageSmoothingEnabled = true;
     thumbnailCtx.imageSmoothingQuality = 'high';
 
-    thumbnailCtx.fillStyle = CANVAS_BACKGROUND;
+    thumbnailCtx.fillStyle = getCanvasBackground();
     thumbnailCtx.fillRect(0, 0, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
 
     const aspectRatio = originalImg.width / originalImg.height;
@@ -513,3 +519,19 @@ if (resizeButton) {
 } else {
     console.error('Resize button element not found in DOM');
 }
+
+// Listen for theme changes and regenerate thumbnails
+document.addEventListener('themechange', () => {
+  // Clear the thumbnail cache so images regenerate with new background
+  thumbnailCache.clear();
+
+  // Regenerate visible images
+  const allGalleryImages = document.querySelectorAll('.gallery-img[data-src]');
+  allGalleryImages.forEach(img => {
+    const src = img.getAttribute('data-src');
+    if (src && img.src !== PLACEHOLDER_SRC) {
+      // Force regeneration by loading the image again
+      loadImage(img);
+    }
+  });
+});

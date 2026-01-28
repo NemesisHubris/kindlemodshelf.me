@@ -300,15 +300,33 @@ function applyFilters() {
     if (toolbar && toolbar.parentElement) {
       toolbar.insertAdjacentElement('afterend', noRes);
     } else {
-      document.querySelector('.container').appendChild(noRes);
+      const container = document.querySelector('.container');
+      if (container) {
+        container.appendChild(noRes);
+      }
     }
   }
   if (visibleCount === 0) {
-    const termText = term ? ` for "${term}"` : '';
-    noRes.textContent = term
-      ? `No results found${termText}. Try another search or reset filters.`
-      : 'Nothing matches these filters yet — try switching categories or clearing filters.';
-    noRes.style.display = '';
+    noRes.innerHTML = `
+      <h2>No matches found</h2>
+      <p>${term ? `No results found for "<strong>${escapeHTML(term)}</strong>".` : 'Nothing matches these filters yet.'}</p>
+      <button class="kindle-btn" id="resetFiltersBtn" style="margin-top: 10px;">Clear all search & filters</button>
+    `;
+    noRes.style.display = 'block';
+
+    // Add event listener to reset button
+    const resetBtn = document.getElementById('resetFiltersBtn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (searchBar) searchBar.value = '';
+        activeCategories.clear();
+        activeCategories.add('all');
+        categoryButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.category === 'all');
+        });
+        applyFilters();
+      });
+    }
   } else {
     noRes.style.display = 'none';
   }
@@ -403,6 +421,13 @@ function debounce(func, wait) {
   };
 }
 
+// Escape HTML helper
+function escapeHTML(str) {
+  const p = document.createElement('p');
+  p.textContent = str;
+  return p.innerHTML;
+}
+
 function updateCategoryLabel() {
   if (!filterToggleBtn) return;
   const toggleBtnSpan = filterToggleBtn.querySelector('span');
@@ -413,132 +438,11 @@ function updateCategoryLabel() {
     label = "All Categories";
   } else if (activeCategories.size === 1) {
     const activeBtn = categoryButtons.find(b => b.classList.contains('active'));
-    if (activeBtn) label = activeBtn.textContent;
+    if (activeBtn) label = activeBtn.dataset.originalLabel || activeBtn.textContent;
   } else if (activeCategories.size > 1) {
     label = `${activeCategories.size} Categories Selected`;
   }
   toggleBtnSpan.textContent = label;
-}
-
-function applyFilters() {
-  const term = (searchBar && searchBar.value ? searchBar.value : '').trim().toLowerCase();
-  let visibleCount = 0;
-
-  // Update counts before applying visibility
-  updateCategoryCounts(term);
-  updateCategoryLabel();
-
-  cards.forEach(card => {
-    const searchMatch = term === '' || (card.dataset.searchCache || '').includes(term);
-
-    let categoryMatch = false;
-    if (activeCategories.has('all')) {
-      categoryMatch = true;
-    } else {
-      // Check both section category AND tags for a match
-      const cardCategory = card.dataset.sectionCategory;
-      const tagTokens = (card.dataset.tagTokens || '').split(',').filter(Boolean);
-      const primaryTags = (card.dataset.primaryTags || '').split(',').filter(Boolean);
-
-      // Check if any active category matches either the section OR the tags
-      for (const activeCategory of activeCategories) {
-        // Match by section category
-        if (cardCategory === activeCategory) {
-          categoryMatch = true;
-          break;
-        }
-        // Match by filter config (tags)
-        if (categoryFilterConfig[activeCategory]) {
-          if (categoryFilterConfig[activeCategory](primaryTags, tagTokens)) {
-            categoryMatch = true;
-            break;
-          }
-        }
-      }
-    }
-
-    if (searchMatch && categoryMatch) {
-      card.style.display = '';
-      visibleCount++;
-      
-      // Highlight matching terms
-      if (term && term.length > 1) {
-        highlightCardText(card, term);
-      } else {
-        removeHighlights(card);
-      }
-    } else {
-      card.style.display = 'none';
-      removeHighlights(card); // Clean up if hidden
-    }
-  });
-
-  // Hide section titles if no visible cards follow them
-  sectionTitles.forEach(title => {
-    let nextElem = title.nextElementSibling;
-    let foundVisible = false;
-    while (nextElem && !nextElem.classList.contains('section-title')) {
-      if (nextElem.classList.contains('card') && nextElem.style.display !== 'none') {
-        foundVisible = true;
-        break;
-      }
-      if (nextElem.classList.contains('card-grid')) {
-        const innerCards = Array.from(nextElem.getElementsByClassName('card'));
-        if (innerCards.some(card => card.style.display !== 'none')) {
-          foundVisible = true;
-          break;
-        }
-      }
-      nextElem = nextElem.nextElementSibling;
-    }
-    title.style.display = foundVisible ? '' : 'none';
-    const associatedGrid = title.nextElementSibling;
-    if (associatedGrid && associatedGrid.classList.contains('card-grid')) {
-      associatedGrid.style.display = foundVisible ? '' : 'none';
-    }
-  });
-
-  let noRes = document.getElementById('no-results');
-  if (!noRes) {
-    noRes = document.createElement('div');
-    noRes.id = 'no-results';
-    noRes.className = 'no-results';
-    const toolbar = document.querySelector('.filter-toolbar');
-    if (toolbar && toolbar.parentElement) {
-      toolbar.insertAdjacentElement('afterend', noRes);
-    } else {
-      document.querySelector('.container').appendChild(noRes);
-    }
-  }
-  if (visibleCount === 0) {
-    const termText = term ? ` for "${term}"` : '';
-    noRes.innerHTML = `
-      <h2>No matches found</h2>
-      <p>${term ? `No results found for "<strong>${escapeHTML(term)}</strong>".` : 'Nothing matches these filters yet.'}</p>
-      <button class="kindle-btn" id="resetFiltersBtn" style="margin-top: 10px;">Clear all search & filters</button>
-    `;
-    noRes.style.display = 'block';
-    
-    document.getElementById('resetFiltersBtn')?.addEventListener('click', () => {
-      if (searchBar) searchBar.value = '';
-      activeCategories.clear();
-      activeCategories.add('all');
-      categoryButtons.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.category === 'all');
-      });
-      applyFilters();
-    });
-  } else {
-    noRes.style.display = 'none';
-  }
-
-  updateFilterNote();
-}
-
-function escapeHTML(str) {
-  const p = document.createElement('p');
-  p.textContent = str;
-  return p.innerHTML;
 }
 
 if (searchBar) {
@@ -907,11 +811,6 @@ function initSettingsModal() {
       }
     });
   }
-}
-
-// Helper to highlight text safely using DOM manipulation
-function highlightCardText(card, term) {
-  // ... existing implementation ...
 }
 
 // Make tags clickable for filtering
