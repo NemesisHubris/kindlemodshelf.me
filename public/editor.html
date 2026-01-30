@@ -1487,8 +1487,8 @@ function createHTMLStripper() {
           // FIX #17: Safe regex with non-greedy match to prevent catastrophic backtracking
           // Limit iterations and use simpler pattern
           return String(html)
-            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove scripts first
-            .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')   // Remove styles
+            .replace(/<script\b[^<]*(?:(?!<\/script[^>]*>)<[^<]*)*<\/script[^>]*>/gi, '') // Remove scripts first (handles </script foo="bar">)
+            .replace(/<style\b[^<]*(?:(?!<\/style[^>]*>)<[^<]*)*<\/style[^>]*>/gi, '')   // Remove styles (handles </style foo="bar">)
             .replace(/<[^>]{1,1000}>/g, ''); // Remove tags (limit to 1000 chars per tag)
         }
       } catch (err) {
