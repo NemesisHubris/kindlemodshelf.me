@@ -1484,17 +1484,14 @@ function createHTMLStripper() {
 
           return text;
         } else {
-          // FIX #17: Safe regex with non-greedy match to prevent catastrophic backtracking
-          // Limit iterations and use simpler pattern
-          return String(html)
-            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove scripts first
-            .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')   // Remove styles
-            .replace(/<[^>]{1,1000}>/g, ''); // Remove tags (limit to 1000 chars per tag)
+          // Fallback when DOMParser is unavailable: remove all angle brackets
+          // to ensure no HTML tags (including <script>) remain.
+          return String(html).replace(/[<>]/g, '');
         }
       } catch (err) {
         console.warn('Error stripping HTML, using safe fallback:', err);
-        // Safe fallback - just remove anything that looks like a tag
-        return String(html).replace(/<[^>]{1,1000}>/g, '');
+        // Safe fallback - remove all angle brackets to strip any HTML tags
+        return String(html).replace(/[<>]/g, '');
       }
     },
 
