@@ -1,10 +1,6 @@
 /* KindleModShelf Page Builder Styles */
 /* Builder UI only - not exported */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
 /* Main Layout */
 .builder-wrapper {
   display: flex;
@@ -81,7 +77,7 @@
   border: 1px solid var(--card-border);
   color: var(--fg);
   padding: 0.6em 0.75em;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.8em;
   font-weight: 500;
   cursor: pointer;
@@ -119,16 +115,17 @@
   border: 1px solid var(--input-border);
   color: var(--fg);
   padding: 0.5em 0.65em;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 0.85em;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
+.form-group input:focus-visible,
+.form-group textarea:focus-visible,
+.form-group select:focus-visible {
   outline: none;
   border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.25);
 }
 
 .form-group textarea {
@@ -171,7 +168,7 @@
   border: 1px solid var(--card-border);
   color: var(--fg);
   padding: 0.5em 1em;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.8em;
   font-weight: 500;
   cursor: pointer;
@@ -185,7 +182,7 @@
 .builder-toolbar-btn-primary {
   background: var(--primary);
   border-color: var(--primary);
-  color: white;
+  color: var(--overlay-text);
 }
 
 .builder-toolbar-btn-primary:hover {
@@ -227,7 +224,7 @@
   margin: 0 auto;
   background: var(--bg);
   border: 1px solid var(--card-border);
-  border-radius: 6px;
+  border-radius: var(--radius-base);
   box-shadow: 0 2px 12px var(--shadow-color);
 }
 
@@ -243,7 +240,7 @@
 /* Card Styles in Preview */
 .builder-preview .card {
   background: var(--card-bg);
-  border-radius: 6px;
+  border-radius: var(--radius-base);
   box-shadow: 0 1px 3px var(--shadow-color);
   padding: 18px;
   margin: 0;
@@ -261,7 +258,7 @@
   position: relative;
   margin-bottom: 0.75em;
   border: 2px solid transparent;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   transition: all 0.15s ease;
 }
 
@@ -291,7 +288,7 @@
 .builder-block-control-btn {
   background: var(--primary);
   border: none;
-  color: white;
+  color: var(--overlay-text);
   width: 24px;
   height: 24px;
   border-radius: 3px;
@@ -370,7 +367,7 @@
 /* New Professional Editor */
 .builder-editor {
   border: 1px solid var(--input-border);
-  border-radius: 6px;
+  border-radius: var(--radius-base);
   overflow: hidden;
   background: var(--input-bg);
 }
@@ -390,22 +387,23 @@
   border: 1px solid var(--input-border);
   color: var(--fg);
   padding: 0.35em 0.5em;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.8em;
   cursor: pointer;
   min-width: 70px;
 }
 
-.builder-toolbar-select:focus {
+.builder-toolbar-select:focus-visible {
   outline: none;
   border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.25);
 }
 
 .builder-toolbar-group {
   display: flex;
   gap: 2px;
   border: 1px solid var(--input-border);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
@@ -426,7 +424,7 @@
 
 .builder-editor-toolbar .builder-toolbar-btn:hover {
   background: var(--primary);
-  color: white;
+  color: var(--overlay-text);
 }
 
 .builder-editor-content {
@@ -448,7 +446,7 @@
   min-height: 150px;
   background: var(--pre-bg);
   border: 1px solid var(--input-border);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 0.75em;
   font-family: 'SF Mono', Monaco, 'Courier New', monospace;
   font-size: 0.85em;
@@ -457,9 +455,10 @@
   line-height: 1.5;
 }
 
-.builder-code-editor:focus {
+.builder-code-editor:focus-visible {
   outline: none;
   border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.25);
 }
 
 /* Title Input */
@@ -467,93 +466,32 @@
   width: 100%;
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 0.65em 0.75em;
   font-size: 1em;
   font-weight: 600;
   color: var(--fg);
 }
 
-.builder-title-input:focus {
+.builder-title-input:focus-visible {
   outline: none;
   border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.25);
 }
 
-/* Generic Input */
-.builder-input {
-  width: 100%;
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: 4px;
-  padding: 0.5em 0.65em;
-  font-size: 0.9em;
-  color: var(--fg);
-}
+/* Generic Input - base styles in style.css */
 
-.builder-input:focus {
-  outline: none;
-  border-color: var(--primary);
-}
+/* Select - base styles in style.css */
 
-/* Select */
-.builder-select {
-  width: 100%;
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: 4px;
-  padding: 0.5em 0.65em;
-  font-size: 0.9em;
-  color: var(--fg);
-  cursor: pointer;
-}
+/* Apply Button - base styles in style.css */
 
-.builder-select:focus {
-  outline: none;
-  border-color: var(--primary);
-}
-
-/* Apply Button */
-.builder-apply-btn {
-  width: 100%;
-  background: var(--primary);
-  border: none;
-  color: white;
-  padding: 0.7em 1em;
-  border-radius: 4px;
-  font-size: 0.9em;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-
-.builder-apply-btn:hover {
-  background: var(--secondary);
-}
-
-/* Secondary Button */
-.builder-secondary-btn {
-  width: 100%;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  color: var(--fg);
-  padding: 0.6em 1em;
-  border-radius: 4px;
-  font-size: 0.85em;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.builder-secondary-btn:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
+/* Secondary Button - base styles in style.css */
 
 /* Video Placeholder */
 .builder-video-placeholder {
   background: var(--card-bg);
   border: 2px dashed var(--card-border);
-  border-radius: 6px;
+  border-radius: var(--radius-base);
   padding: 2.5em;
   text-align: center;
   color: var(--muted);
@@ -597,9 +535,9 @@ ol.builder-list {
   bottom: 1.5em;
   right: 1.5em;
   background: var(--primary);
-  color: white;
+  color: var(--overlay-text);
   padding: 0.75em 1.25em;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.9em;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   z-index: 1000;

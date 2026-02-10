@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>KinAMP – Native Music Player for Kindle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KinAMP is a native music player for jailbroken Kindles (FW 5.16+). Supports MP3, FLAC, and WAV.">
+  <meta name="description" content="KinAMP is a native music and internet radio player for jailbroken Kindles (FW 5.16+). Supports MP3, AAC, FLAC, and WAV with KOReader integration.">
   <link rel="canonical" href="https://kindlemodshelf.me/kinamp.html">
   <link rel="stylesheet" href="style.css">
   <meta property="og:title" content="KinAMP – Native Music Player for Kindle">
-  <meta property="og:description" content="Native music player for jailbroken Kindles (FW 5.16+). Supports MP3, FLAC, and WAV.">
+  <meta property="og:description" content="Native music and internet radio player for jailbroken Kindles (FW 5.16+). Supports MP3, AAC, FLAC, and WAV with KOReader integration.">
   <meta property="og:url" content="https://kindlemodshelf.me/kinamp.html">
   <script src="theme-toggle.js"></script>
 </head>
@@ -18,7 +18,7 @@
     <h1>KinAMP</h1>
 
     <div class="summary">
-      <b>KinAMP</b> is a native music player developed for jailbroken Kindles (Firmware 5.16+). It features a fast, native interface optimized for e-ink displays.
+      <b>KinAMP</b> is a native music and internet radio player for jailbroken Kindles (Firmware 5.16+). It features a fast, native interface optimized for e-ink displays with KOReader plugin support.
     </div>
 
     <h2 class="section-title">Download</h2>
@@ -33,7 +33,9 @@
           <li>Fully native, fast interface (C++ and GTK2)</li>
           <li>Optimized for e-ink displays to save battery</li>
           <li>Fast access to Bluetooth and frontlight settings</li>
-          <li>Supports MP3, FLAC, and WAV formats</li>
+          <li>Supports MP3, AAC, FLAC, and WAV formats</li>
+          <li>Internet radio mode (MP3 streams)</li>
+          <li>KOReader plugin — access playlists, songs, and radio from the Tools menu</li>
           <li>Uses miniaudio for decoding and GStreamer backend</li>
         </ul>
       </div>
@@ -45,8 +47,19 @@
         <ol>
           <li>Download the latest release from the link above.</li>
           <li>Unzip the archive to the root of your Kindle.</li>
-          <li>Start KinAMP from <b>KUAL</b> or from the home screen.</li>
+          <li>Start KinAMP from <b>KUAL</b>, the home screen, or via the <b>KOReader Tools menu</b>.</li>
         </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="radio">
+      <h2 class="section-title" id="radio">Internet Radio</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Tap the radio icon in the bottom left corner to switch to radio mode</li>
+          <li>Add or remove stations via the <b>KinAMP Radio List Editor</b> in KUAL</li>
+          <li>Currently supports MP3 streams only (no MPEG1/2 or AAC streams)</li>
+        </ul>
       </div>
     </section>
 

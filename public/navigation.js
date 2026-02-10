@@ -42,44 +42,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // 3. Back to Top Button
-  let backToTopBtn = document.getElementById('backToTop');
-  
-  // If not in HTML, create it dynamically
-  if (!backToTopBtn) {
-    backToTopBtn = document.createElement('button');
-    backToTopBtn.id = 'backToTop';
-    backToTopBtn.className = 'back-to-top-btn';
-    backToTopBtn.setAttribute('aria-label', 'Back to Top');
-    backToTopBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>';
-    document.body.appendChild(backToTopBtn);
-  }
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backToTopBtn.classList.add('visible');
-      backToTopBtn.style.display = 'flex'; // Ensure display is flex when visible
-    } else {
-      backToTopBtn.classList.remove('visible');
-      backToTopBtn.style.display = 'none'; // Hide when not visible
+  // 3. Back to Top Button (skip on excluded pages like editor/pagebuilder)
+  if (!isExcluded) {
+    let backToTopBtn = document.getElementById('backToTop');
+    
+    // If not in HTML, create it dynamically
+    if (!backToTopBtn) {
+      backToTopBtn = document.createElement('button');
+      backToTopBtn.id = 'backToTop';
+      backToTopBtn.className = 'back-to-top-btn';
+      backToTopBtn.setAttribute('aria-label', 'Back to Top');
+      backToTopBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>';
+      document.body.appendChild(backToTopBtn);
     }
-  }, { passive: true });
 
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+        backToTopBtn.style.display = 'flex'; // Ensure display is flex when visible
+      } else {
+        backToTopBtn.classList.remove('visible');
+        backToTopBtn.style.display = 'none'; // Hide when not visible
+      }
+    }, { passive: true });
 
-  // 4. Reading Progress Bar
-  const progressBar = document.createElement('div');
-  progressBar.className = 'reading-progress-bar';
-  document.body.appendChild(progressBar);
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-  window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    progressBar.style.width = scrolled + "%";
-  }, { passive: true });
+    // 4. Reading Progress Bar
+    const progressBar = document.createElement('div');
+    progressBar.className = 'reading-progress-bar';
+    document.body.appendChild(progressBar);
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      progressBar.style.width = scrolled + "%";
+    }, { passive: true });
+  }
 
   // 5. Global Search Logic (Clear Button & Shortcut)
   const searchBar = document.getElementById('search-bar');

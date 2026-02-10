@@ -8,7 +8,7 @@ class PageBuilder {
     this.selectedPart = null;
     this.meta = {
       h1Title: 'Untitled Page',
-      pageTitle: 'Untitled Page – KindleModShelf',
+      pageTitle: 'Untitled Page',
       summary: '', // New field for the visual header description
       description: 'A Kindle modding guide',
       keywords: 'kindle, mods, guide'
@@ -57,7 +57,7 @@ class PageBuilder {
       this.blocks = [];
       this.meta = {
         h1Title: 'Untitled Page',
-        pageTitle: 'Untitled Page – KindleModShelf',
+        pageTitle: 'Untitled Page',
         summary: '',
         description: 'A Kindle modding guide',
         keywords: 'kindle, mods, guide'
@@ -357,7 +357,7 @@ class PageBuilder {
         const editor = document.getElementById('titleEditor');
         const newValue = editor ? editor.value : '';
         this.meta.h1Title = newValue;
-        this.meta.pageTitle = newValue + ' – KindleModShelf';
+        this.meta.pageTitle = newValue;
         document.getElementById('pageTitle').value = newValue;
         this.renderPreview();
       });
@@ -563,7 +563,7 @@ class PageBuilder {
 
   loadMetaFromForm() {
     this.meta.h1Title = document.getElementById('pageTitle').value || 'Untitled Page';
-    this.meta.pageTitle = this.meta.h1Title + ' – KindleModShelf';
+    this.meta.pageTitle = this.meta.h1Title;
     this.meta.summary = document.getElementById('headerDescription').value || '';
     this.meta.description = document.getElementById('metaDescription').value || 'A Kindle modding guide';
     this.meta.keywords = document.getElementById('keywords').value || '';
@@ -658,19 +658,20 @@ class PageBuilder {
             <p>Enter YouTube ID in properties panel →</p>
           </div>`;
         }
-        return `<div class="responsive-video" data-editable-part="video">
-          <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"
+        return `<div class="card card-desc"><div class="responsive-video" data-editable-part="video">
+          <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1"
             title="${this.escapeHtml(properties.title)}" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            sandbox="allow-same-origin allow-scripts allow-presentation"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
-        </div>`;
+        </div></div>`;
 
       case 'code':
         return `<div class="card card-desc"><pre data-editable-part="content"><code>${this.escapeHtml(properties.content)}</code></pre></div>`;
 
       case 'banner':
-        const bannerClass = properties.bannerType === 'danger' ? 'legal-warning' : 'info-callout';
+        const bannerClass = properties.bannerType === 'danger' ? 'legal-warning'
+          : properties.bannerType === 'success' ? 'success-callout'
+          : 'info-callout';
         return `<div class="${bannerClass}" data-editable-part="content">${properties.content}</div>`;
 
       case 'credit':
@@ -743,6 +744,9 @@ class PageBuilder {
   }
 
   generateExportHTML() {
+    const filename = this.getExportFilename();
+    const hasSummaryBlock = this.blocks.some(b => b.type === 'summary');
+
     let html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -750,11 +754,11 @@ class PageBuilder {
   <title>${this.escapeHtml(this.meta.pageTitle)}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${this.escapeHtml(this.meta.description)}">
-  <link rel="canonical" href="https://kindlemodshelf.me/${this.getExportFilename()}">
+  <link rel="canonical" href="https://kindlemodshelf.me/${filename}">
   <link rel="stylesheet" href="style.css">
-  <meta property="og:title" content="${this.escapeHtml(this.meta.h1Title)}">
+  <meta property="og:title" content="${this.escapeHtml(this.meta.pageTitle)}">
   <meta property="og:description" content="${this.escapeHtml(this.meta.description)}">
-  <meta property="og:url" content="https://kindlemodshelf.me/${this.getExportFilename()}">
+  <meta property="og:url" content="https://kindlemodshelf.me/${filename}">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="KindleModShelf">`;
 
@@ -762,17 +766,29 @@ class PageBuilder {
       html += `\n  <meta name="keywords" content="${this.escapeHtml(this.meta.keywords)}">`;
     }
 
+    // Structured data (ld+json)
+    html += `
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "name": "${this.escapeHtml(this.meta.h1Title)}",
+    "description": "${this.escapeHtml(this.meta.description)}",
+    "url": "https://kindlemodshelf.me/${filename}"
+  }
+  </script>`;
+
     html += `
   <script src="theme-toggle.js"></script>
 </head>
 <body>
   <div class="container">
-    <a href="index.html" class="back-home-btn" aria-label="Back to Home">← Back to Home</a>
     <h1>${this.escapeHtml(this.meta.h1Title)}</h1>
 `;
 
     // Render the visual Header Description (Summary) in export
-    if (this.meta.summary) {
+    // Skip if there's already a summary block to avoid duplicates
+    if (this.meta.summary && !hasSummaryBlock) {
       html += `\n    <div class="summary">\n      <p>${this.escapeHtml(this.meta.summary)}</p>\n    </div>`;
     }
 
@@ -783,7 +799,7 @@ class PageBuilder {
     html += `
   </div>
   <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
-  <script src="back-button.js"></script>
+  <script src="navigation.js?v=2"></script>
 </body>
 </html>`;
 
@@ -801,8 +817,10 @@ class PageBuilder {
           : `<p>${properties.content}</p>`;
         return `<div class="summary">\n      ${summaryContent}\n    </div>`;
 
-      case 'section':
-        return `<h2 class="section-title">${properties.title}</h2>\n    <div class="card card-desc">\n      ${properties.content}\n    </div>`;
+      case 'section': {
+        const sectionId = properties.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        return `<section aria-labelledby="${sectionId}">\n      <h2 class="section-title" id="${sectionId}">${properties.title}</h2>\n      <div class="card card-desc">\n        ${properties.content}\n      </div>\n    </section>`;
+      }
 
       case 'list':
         const tag = properties.listType || 'ul';
@@ -815,14 +833,17 @@ class PageBuilder {
       case 'video':
         const videoId = this.extractYouTubeId(properties.videoId);
         if (!videoId) return '';
-        return `<div class="responsive-video">\n      <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"\n        title="${this.escapeHtml(properties.title)}" frameborder="0"\n        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"\n        sandbox="allow-same-origin allow-scripts allow-presentation"\n        allowfullscreen></iframe>\n    </div>`;
+        return `<div class="card card-desc">\n      <div class="responsive-video">\n        <iframe\n          src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1"\n          title="${this.escapeHtml(properties.title)}" frameborder="0"\n          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"\n          allowfullscreen>\n        </iframe>\n      </div>\n    </div>`;
 
       case 'code':
         return `<div class="card card-desc">\n      <pre><code>${this.escapeHtml(properties.content)}</code></pre>\n    </div>`;
 
-      case 'banner':
-        const bannerClass = properties.bannerType === 'danger' ? 'legal-warning' : 'info-callout';
+      case 'banner': {
+        const bannerClass = properties.bannerType === 'danger' ? 'legal-warning'
+          : properties.bannerType === 'success' ? 'success-callout'
+          : 'info-callout';
         return `<div class="${bannerClass}">\n      ${properties.content}\n    </div>`;
+      }
 
       case 'credit':
         return `<div class="card card-desc">\n      ${properties.content}\n    </div>`;

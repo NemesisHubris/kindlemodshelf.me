@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kindle Comic Converter (KCC) – Optimized Manga & Comics for E-ink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kindle Comic Converter optimizes manga and comics for e-ink devices. True fullscreen, deeper blacks, and better image quality on Kindle, Kobo, and ReMarkable.">
+  <link rel="canonical" href="https://kindlemodshelf.me/kcc.html">
+  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Kindle Comic Converter (KCC) – Optimized Manga & Comics for E-ink">
+  <meta property="og:description" content="Optimize manga and comics for e-ink with true fullscreen display, deeper blacks, and better image quality on Kindle, Kobo, and ReMarkable.">
+  <meta property="og:url" content="https://kindlemodshelf.me/kcc.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kindle Comic Converter (KCC)",
+    "operatingSystem": "Windows, macOS, Linux",
+    "applicationCategory": "Utility",
+    "description": "Kindle Comic Converter optimizes manga and comics for e-ink ereaders with fullscreen display, improved contrast, and device-specific resolution scaling.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://kindlemodshelf.me/kcc.html"
+  }
+  </script>
+  <script src="theme-toggle.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Kindle Comic Converter</h1>
+
+    <div class="summary">
+      <p><b>Kindle Comic Converter (KCC)</b> optimizes manga and comics for e-ink ereaders. True fullscreen display without margins, deeper blacks, and better image quality than the Kindle Store — on Kindle, Kobo, ReMarkable, and more.</p>
+    </div>
+
+    <div class="card card-desc">
+      <div class="responsive-video">
+        <iframe
+          src="https://www.youtube.com/embed/QQ6zJcMF2Iw?rel=0&modestbranding=1&playsinline=1"
+          title="Kindle Comic Converter usage tutorial"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <h2 class="section-title">Download</h2>
+    <div class="card card-desc">
+      <p><a href="https://github.com/ciromattia/kcc/releases" target="_blank" rel="noopener"><strong>Download KCC on GitHub</strong></a></p>
+      <p>Under "Assets" of the latest release, grab:</p>
+      <ul>
+        <li><b>Windows:</b> <code>KCC_*.*.*.exe</code></li>
+        <li><b>Mac (Apple Silicon):</b> <code>kcc_macos_arm_*.*.*.dmg</code></li>
+        <li><b>Mac (Intel):</b> <code>kcc_macos_i386_*.*.*.dmg</code></li>
+      </ul>
+      <p>Legacy Windows 7 and older macOS versions are also available. For Flatpak, Docker, and AppImage, see the <a href="https://github.com/ciromattia/kcc/wiki/Installation" target="_blank" rel="noopener">installation wiki</a>.</p>
+    </div>
+
+    <h2 class="section-title">Key Features</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>Fullscreen pages without margins on e-ink devices</li>
+        <li>Image processing tuned for e-ink: deeper blacks, better contrast, gamma correction</li>
+        <li>Downscales to your device's exact resolution — smaller files with no visible quality loss</li>
+        <li>Right-to-left manga reading with correct page turn direction</li>
+        <li>Proper two-page spread alignment in landscape mode</li>
+        <li>Built-in profiles for 35+ devices (Kindle, Kobo, ReMarkable)</li>
+        <li>Supports webtoon processing mode</li>
+        <li>GUI (Qt6) with drag-and-drop, plus CLI tools for power users</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Supported Formats</h2>
+    <div class="card card-desc">
+      <p><b>Input:</b> JPG, PNG, GIF, WebP (in folders), CBZ, CBR, CB7, ZIP, RAR, 7Z, PDF</p>
+      <p><b>Output:</b> MOBI/AZW3, EPUB, KEPUB, CBZ, PDF</p>
+    </div>
+
+    <h2 class="section-title">What It Fixes</h2>
+    <div class="card card-desc">
+      <p>KCC avoids common formatting issues — including ones found in Kindle Store purchases:</p>
+      <ul>
+        <li>Faded black levels causing low contrast and eyestrain</li>
+        <li>Unnecessary margins at the bottom of the screen</li>
+        <li>Not utilizing the full resolution of larger devices (e.g. Kindle Scribe)</li>
+        <li>Incorrect page turn direction for right-to-left manga</li>
+        <li>Misaligned two-page spreads shifted by 1 pixel in landscape</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">How to Use</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>Drag and drop your files/folders into the KCC window</li>
+        <li>Select your device profile and adjust settings (hover for tooltips)</li>
+        <li>Click Convert (hold Shift to change output directory)</li>
+        <li>Transfer the output file to your device's documents folder via USB</li>
+      </ol>
+      <p>On macOS with a 2022+ Kindle, you may need <a href="https://amazon.com/sendtokindle/mac" target="_blank" rel="noopener">Amazon USB File Manager for Mac</a>.</p>
+    </div>
+
+    <h2 class="section-title">Prerequisites</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><b>KindleGen:</b> On Windows/macOS, install <a href="https://www.amazon.com/Kindle-Previewer/b?ie=UTF8&node=21381691011" target="_blank" rel="noopener">Kindle Previewer</a> and KindleGen will be auto-detected. See the <a href="https://github.com/ciromattia/kcc/wiki/Installation#kindlegen" target="_blank" rel="noopener">wiki</a> for Linux/troubleshooting.</li>
+        <li><b>7-Zip:</b> Optional but recommended for faster conversions and required for CBR/RAR/7Z input. KCC will prompt you to install if needed.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Output Format Guide</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><b>Kindle:</b> MOBI (the .mobi file is actually dual MOBI/AZW3)</li>
+        <li><b>Kindle DX:</b> CBZ</li>
+        <li><b>KOReader:</b> CBZ</li>
+        <li><b>Kobo:</b> KEPUB</li>
+        <li><b>ReMarkable:</b> PDF</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">FAQ</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><b>Should I use Calibre?</b> No. Calibre doesn't properly support fixed layout EPUB/MOBI. Even modifying metadata in Calibre can break KCC formatting. Transfer files directly via USB instead.</li>
+        <li><b>Blank pages?</b> May happen with PNG on Kindle Scribe or any format on Kindle Colorsoft. Use JPG output for Kindle Scribe.</li>
+        <li><b>Panel view not working?</b> Virtual panel view is enabled in the Aa menu on your Kindle, not in KCC.</li>
+        <li><b>Colors inverted?</b> Disable Kindle dark mode.</li>
+        <li><b>Image too dark?</b> Gamma defaults to 1.8 (darkens). Set gamma to 1.0 to disable.</li>
+        <li><b>Huge margins / slow page turns?</b> You likely modified the file during transfer with a 3rd party app. Drag and drop the final file directly via USB.</li>
+        <li><b>macOS can't see Kindle?</b> Use the official <a href="https://amazon.com/sendtokindle/mac" target="_blank" rel="noopener">Amazon USB File Transfer app</a>.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Tutorials</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=IR2Fhcm9658" target="_blank" rel="noopener">Installation Tutorial (YouTube)</a></li>
+        <li><a href="https://github.com/ciromattia/kcc/wiki" target="_blank" rel="noopener">KCC Wiki</a></li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Important Notes</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>KCC is <b>not</b> Amazon's Kindle Comic Creator and is not endorsed by Amazon</li>
+        <li>No jailbreak required — this is a desktop application (Windows, macOS, Linux)</li>
+        <li>The best source files are print-quality DRM-free PDFs (e.g. from Kodansha/Humble Bundle)</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Credits</h2>
+    <div class="card card-desc">
+      <p>
+        <a href="https://github.com/ciromattia" target="_blank" rel="noopener">Ciro Mattia Gonano</a> (founder),
+        Pawe&#322; Jastrzębski,
+        Darodi,
+        <a href="https://github.com/ciromattia/kcc" target="_blank" rel="noopener">Alex Xu</a> (active maintainer)
+      </p>
+    </div>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
+  <script src="navigation.js?v=2"></script>
+</body>
+</html>
