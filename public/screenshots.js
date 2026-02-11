@@ -10,6 +10,8 @@
   let currentGallery = null;
   let currentIndex = 0;
   let images = [];
+  let closeViewerTimer = null;
+  let listenersAttached = false;
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
@@ -60,6 +62,8 @@
 
   // Attach event listeners to screenshot items
   function attachEventListeners() {
+    if (listenersAttached) return;
+    listenersAttached = true;
     // Handle clicks on screenshot items
     document.addEventListener('click', function(e) {
       const item = e.target.closest('.screenshot-item');
@@ -125,6 +129,12 @@
 
     if (!modal || !img) return;
 
+    // Cancel any pending close animation
+    if (closeViewerTimer) {
+      clearTimeout(closeViewerTimer);
+      closeViewerTimer = null;
+    }
+
     // Get the gallery this item belongs to
     currentGallery = item.closest('.screenshot-gallery');
     if (currentGallery) {
@@ -152,8 +162,9 @@
     if (!modal) return;
 
     modal.classList.remove('active');
-    setTimeout(() => {
+    closeViewerTimer = setTimeout(() => {
       modal.style.display = 'none';
+      closeViewerTimer = null;
     }, 250);
 
     // Restore body scroll
@@ -192,7 +203,7 @@
     const prevBtn = document.getElementById('screenshot-nav-prev');
     const nextBtn = document.getElementById('screenshot-nav-next');
 
-    if (!viewerImg) return;
+    if (!viewerImg || !img) return;
 
     // Update image
     const imgSrc = img.dataset.src || img.src;
@@ -264,7 +275,7 @@
 
     img.addEventListener('load', function() {
       img.classList.add('loaded');
-    });
+    }, { once: true });
 
     img.src = src;
     img.removeAttribute('data-src');

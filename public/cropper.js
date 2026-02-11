@@ -38,6 +38,9 @@ let cropperState = {
   viewScale: 1
 };
 
+let canvasInitialized = false;
+let cropperResizeObserver = null;
+
 // Initialize the Cropper Modal HTML
 function initCropperHTML() {
   if (document.getElementById('cropper-modal')) return;
@@ -164,6 +167,11 @@ function openCropper(imageSrc) {
     fitImageToCrop();
     draw();
   };
+
+  cropperState.img.onerror = () => {
+    closeCropper();
+    showToast('Could not load image');
+  };
 }
 
 function closeCropper() {
@@ -228,28 +236,33 @@ function initCanvas() {
   cropperState.ctx = canvas.getContext('2d');
   cropperState.ctx.imageSmoothingQuality = 'high';
 
-  // Handle Resize
-  const resizeObserver = new ResizeObserver(() => {
-    if (!wrapper.clientWidth || !wrapper.clientHeight) return;
-    canvas.width = wrapper.clientWidth;
-    canvas.height = wrapper.clientHeight;
-    if (cropperState.img) {
-      calculateLayout();
-      constrain();
-      draw();
-    }
-  });
-  resizeObserver.observe(wrapper);
+  // Only set up listeners and observer once
+  if (!canvasInitialized) {
+    canvasInitialized = true;
 
-  // Mouse Events
-  canvas.addEventListener('mousedown', startDrag);
-  window.addEventListener('mousemove', drag);
-  window.addEventListener('mouseup', endDrag);
-  
-  // Touch Events
-  canvas.addEventListener('touchstart', handleTouchStart, {passive: false});
-  canvas.addEventListener('touchmove', handleTouchMove, {passive: false});
-  canvas.addEventListener('touchend', endDrag);
+    // Handle Resize
+    cropperResizeObserver = new ResizeObserver(() => {
+      if (!wrapper.clientWidth || !wrapper.clientHeight) return;
+      canvas.width = wrapper.clientWidth;
+      canvas.height = wrapper.clientHeight;
+      if (cropperState.img) {
+        calculateLayout();
+        constrain();
+        draw();
+      }
+    });
+    cropperResizeObserver.observe(wrapper);
+
+    // Mouse Events
+    canvas.addEventListener('mousedown', startDrag);
+    window.addEventListener('mousemove', drag);
+    window.addEventListener('mouseup', endDrag);
+    
+    // Touch Events
+    canvas.addEventListener('touchstart', handleTouchStart, {passive: false});
+    canvas.addEventListener('touchmove', handleTouchMove, {passive: false});
+    canvas.addEventListener('touchend', endDrag);
+  }
 }
 
 // Calculate layout metrics (Min Scale, View Scale)
@@ -442,8 +455,8 @@ function handleTouchStart(e) {
 }
 
 function handleTouchMove(e) {
-  e.preventDefault();
   if (e.touches.length === 1 && cropperState.isDragging) {
+    e.preventDefault();
     const dx = e.touches[0].clientX - cropperState.lastMouseX;
     const dy = e.touches[0].clientY - cropperState.lastMouseY;
     
@@ -491,9 +504,14 @@ function downloadCroppedImage() {
   ctx.drawImage(img, sourceX, sourceY, sourceW, sourceH, 0, 0, targetWidth, targetHeight);
   
   // Trigger Download
-  const link = document.createElement('a');
-  const baseName = "kindle_screensaver"; 
-  link.download = `${baseName}_${targetWidth}x${targetHeight}.png`;
-  link.href = exportCanvas.toDataURL('image/png', 0.9);
-  link.click();
+  try {
+    const link = document.createElement('a');
+    const baseName = "kindle_screensaver"; 
+    link.download = `${baseName}_${targetWidth}x${targetHeight}.png`;
+    link.href = exportCanvas.toDataURL('image/png', 0.9);
+    link.click();
+  } catch (e) {
+    console.error('Could not export image:', e);
+    showToast('Could not export image (cross-origin restriction)');
+  }
 }

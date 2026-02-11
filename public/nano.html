@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Nano 8.x packaged for Hardfloat (HF) Kindles. Run ./nano on-device; in SSH set TERM=linux. Use -f nanorc to enable syntax highlighting.">
   <link rel="canonical" href="https://kindlemodshelf.me/nano.html">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
   <meta property="og:title" content="GNU Nano 8.x for Kindle – Terminal Text Editor (HF)">
   <meta property="og:description" content="Nano 8.x for HF Kindles. Run ./nano on-device; set TERM=linux for SSH sessions; use -f nanorc to enable syntax highlighting.">
   <meta property="og:url" content="https://kindlemodshelf.me/nano.html">
@@ -22,7 +22,7 @@
     "url": "https://kindlemodshelf.me/nano.html"
   }
   </script>
-  <script src="theme-toggle.js"></script>
+  <script src="theme-toggle.js?v=3"></script>
 </head>
 <body>
   <div class="container">
@@ -89,10 +89,10 @@
           </li>
 
           <li><b>Run over SSH:</b>
-            <p>When launching from a desktop terminal via SSH, set the terminal type first:
+            <p>When launching from a desktop terminal via SSH, set the terminal type first:</p>
             <pre><code>export TERM=linux
 ./nano filename.txt</code></pre>
-            Setting <code>TERM</code> can help Nano handle control keys correctly in SSH sessions.</p>
+            <p>Setting <code>TERM</code> can help Nano handle control keys correctly in SSH sessions.</p>
           </li>
 
           <li><b>Enable syntax highlighting:</b> Provide a nanorc rules file and pass it with <code>-f</code>:
@@ -143,6 +143,6 @@
     </section>
   </div>
     <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=2"></script>
+  <script src="navigation.js?v=3"></script>
 </body>
 </html>

@@ -29,11 +29,12 @@ class PageBuilder {
       meta: this.meta,
       blocks: this.blocks
     };
-    localStorage.setItem('kindlePageBuilderData', JSON.stringify(data));
+    try { localStorage.setItem('kindlePageBuilderData', JSON.stringify(data)); } catch(e) { console.warn('Could not save to localStorage:', e); }
   }
 
   loadFromLocalStorage() {
-    const saved = localStorage.getItem('kindlePageBuilderData');
+    let saved;
+    try { saved = localStorage.getItem('kindlePageBuilderData'); } catch(e) { console.warn('Could not read from localStorage:', e); }
     if (saved) {
       try {
         const data = JSON.parse(saved);
@@ -53,7 +54,7 @@ class PageBuilder {
 
   clearLocalStorage() {
     if (confirm('Clear all saved data? This will remove the draft you are working on.')) {
-      localStorage.removeItem('kindlePageBuilderData');
+      try { localStorage.removeItem('kindlePageBuilderData'); } catch(e) {}
       this.blocks = [];
       this.meta = {
         h1Title: 'Untitled Page',
@@ -77,7 +78,7 @@ class PageBuilder {
     // Block palette buttons
     document.querySelectorAll('.builder-add-block').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        const type = e.target.dataset.blockType;
+        const type = e.currentTarget.dataset.blockType;
         this.addBlock(type);
       });
     });
@@ -139,8 +140,9 @@ class PageBuilder {
   }
 
   addBlock(type) {
-    const id = 'block-' + Date.now() + Math.random().toString(36).substr(2, 9);
+    const id = 'block-' + Date.now() + Math.random().toString(36).substring(2, 11);
     const block = this.createBlockTemplate(type, id);
+    if (!block) return;
     this.blocks.push(block);
     this.renderPreview();
     this.saveToLocalStorage();
@@ -755,7 +757,7 @@ class PageBuilder {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${this.escapeHtml(this.meta.description)}">
   <link rel="canonical" href="https://kindlemodshelf.me/${filename}">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
   <meta property="og:title" content="${this.escapeHtml(this.meta.pageTitle)}">
   <meta property="og:description" content="${this.escapeHtml(this.meta.description)}">
   <meta property="og:url" content="https://kindlemodshelf.me/${filename}">
@@ -779,7 +781,7 @@ class PageBuilder {
   </script>`;
 
     html += `
-  <script src="theme-toggle.js"></script>
+  <script src="theme-toggle.js?v=3"></script>
 </head>
 <body>
   <div class="container">
@@ -799,7 +801,7 @@ class PageBuilder {
     html += `
   </div>
   <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
-  <script src="navigation.js?v=2"></script>
+  <script src="navigation.js?v=3"></script>
 </body>
 </html>`;
 

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Get the latest Kindle modding tools and updates delivered to your inbox. Subscribe to our newsletter for jailbreak tools, plugins, guides, and more.">
   <link rel="canonical" href="https://kindlemodshelf.me/subscribe.html">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
   <style>
     /* Make the email input match your site's style and fill the card width */
     .card input[type="email"],
@@ -28,7 +28,7 @@
     #subscribeForm input[type="email"]:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--card-border);
+      box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.25);
     }
 
     /* Center the form button */
@@ -66,7 +66,7 @@
       margin-top: 0;
     }
   </style>
-  <script src="theme-toggle.js"></script>
+  <script src="theme-toggle.js?v=3"></script>
 </head>
 <body>
   <div class="container">
@@ -76,7 +76,7 @@
         Get the latest Kindle modding tools, jailbreak guides, and screensaver images right in your inbox.
       </div>
       <form id="subscribeForm" style="margin-bottom: 0;">
-        <input type="email" name="email" placeholder="you@example.com" required>
+        <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address">
         <button type="submit">Subscribe</button>
       </form>
       <div id="thankYouMessage" style="display:none; text-align:center; margin-top:20px;">
@@ -117,7 +117,7 @@
           setCookie('kindleModsSubscribed', 'true', 365);
 
           // Also store in localStorage as fallback
-          localStorage.setItem('kindleModsSubscribed', 'true');
+          try { localStorage.setItem('kindleModsSubscribed', 'true'); } catch(e) {}
         } else {
           throw new Error('Form submission failed');
         }
@@ -128,5 +128,5 @@
     });
   </script>
     <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-<script src="navigation.js?v=2"></script></body>
+<script src="navigation.js?v=3"></script></body>
 </html>

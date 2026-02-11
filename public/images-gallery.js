@@ -43,7 +43,8 @@ function getCanvasBackground() {
 }
 
 function shouldRandomizeOrder() {
-  const lastRandomTime = localStorage.getItem(RANDOMIZATION_TIMESTAMP_KEY);
+  let lastRandomTime = null;
+  try { lastRandomTime = localStorage.getItem(RANDOMIZATION_TIMESTAMP_KEY); } catch(e) {}
   if (!lastRandomTime) return true;
 
   const timeSinceLastRandom = Date.now() - parseInt(lastRandomTime);
@@ -53,7 +54,8 @@ function shouldRandomizeOrder() {
 function getRandomizedOrder() {
   // Check if we should use cached randomized order
   if (!shouldRandomizeOrder()) {
-    const cached = localStorage.getItem(RANDOMIZED_ORDER_KEY);
+    let cached = null;
+    try { cached = localStorage.getItem(RANDOMIZED_ORDER_KEY); } catch(e) {}
     if (cached) {
       try {
         return JSON.parse(cached);
@@ -63,8 +65,12 @@ function getRandomizedOrder() {
     }
   }
 
-  // Create new randomized order
-  const randomized = [...allImages].sort(() => Math.random() - 0.5);
+  // Create new randomized order (Fisher-Yates shuffle)
+  const randomized = [...allImages];
+  for (let i = randomized.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [randomized[i], randomized[j]] = [randomized[j], randomized[i]];
+  }
 
   // Save to localStorage
   try {
@@ -398,8 +404,15 @@ const sidebarImages = document.getElementById('sidebar-images');
 
 let currentAuthor = null;
 let currentImageIndex = null;
+let closeViewerTimer = null;
 
 function openViewer(thumbnail) {
+  // Cancel any pending close cleanup
+  if (closeViewerTimer) {
+    clearTimeout(closeViewerTimer);
+    closeViewerTimer = null;
+  }
+
   const author = thumbnail.dataset.author;
   const filename = thumbnail.dataset.filename;
 
@@ -477,7 +490,8 @@ function loadSidebarImages(author) {
 
 function closeViewer() {
   modal.classList.remove('active');
-  setTimeout(() => {
+  closeViewerTimer = setTimeout(() => {
+    closeViewerTimer = null;
     modal.style.display = 'none';
     modalImg.src = '';
     modalDownload.href = '#';
@@ -526,12 +540,10 @@ document.addEventListener('themechange', () => {
   thumbnailCache.clear();
 
   // Regenerate visible images
-  const allGalleryImages = document.querySelectorAll('.gallery-img[data-src]');
+  const allGalleryImages = document.querySelectorAll('.img-thumb[data-loaded="1"], .search-image[data-loaded="1"]');
   allGalleryImages.forEach(img => {
-    const src = img.getAttribute('data-src');
-    if (src && img.src !== PLACEHOLDER_SRC) {
-      // Force regeneration by loading the image again
-      loadImage(img);
-    }
+    img.dataset.loaded = '0';
+    img.dataset.loading = '0';
+    loadImage(img);
   });
 });

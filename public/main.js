@@ -52,7 +52,9 @@ const categoryFilterConfig = {
   resources: (primaryTags) => primaryTags.includes('Resource'),
   dev: (primaryTags, tagTokens) => primaryTags.includes('Dev') || tagTokens.includes('dev'),
   guides: (primaryTags, tagTokens) => primaryTags.includes('Guide') || tagTokens.includes('guide'),
-  experimental: (primaryTags) => primaryTags.includes('Experimental')
+  experimental: (primaryTags) => primaryTags.includes('Experimental'),
+  'other-koreader': (primaryTags, tagTokens) =>
+    tagTokens.includes('koreader') && !primaryTags.includes('Plugin') && !primaryTags.includes('Patch')
 };
 
 // Filter Toggle Logic
@@ -588,7 +590,9 @@ function getCookie(name) {
 
 // Check if user has already subscribed (cookie takes priority, then localStorage)
 function hasUserSubscribed() {
-  return getCookie('kindleModsSubscribed') === 'true' || localStorage.getItem('kindleModsSubscribed') === 'true';
+  let stored = false;
+  try { stored = localStorage.getItem('kindleModsSubscribed') === 'true'; } catch(e) {}
+  return getCookie('kindleModsSubscribed') === 'true' || stored;
 }
 
 const subscribeForm = document.getElementById('subscribeForm');
@@ -620,7 +624,7 @@ if (subscribeForm) {
         setCookie('kindleModsSubscribed', 'true', 365);
 
         // Also store in localStorage as fallback
-        localStorage.setItem('kindleModsSubscribed', 'true');
+        try { localStorage.setItem('kindleModsSubscribed', 'true'); } catch(e) {}
 
         // Close the popup after a few seconds
         setTimeout(() => {
@@ -653,7 +657,7 @@ window.closeGalleryPopup = function() {
     popup.classList.add('hidden');
     // Save state to cookies/localStorage
     setCookie('hideGalleryPopup', 'true', 365);
-    localStorage.setItem('hideGalleryPopup', 'true');
+    try { localStorage.setItem('hideGalleryPopup', 'true'); } catch(e) {}
     
     // Update toggle if settings modal is open
     const toggle = document.getElementById('galleryPopupToggle');
@@ -682,7 +686,7 @@ function initSettingsModal() {
 
   // Function to check if gallery popup is hidden
   function isGalleryPopupHidden() {
-    return getCookie('hideGalleryPopup') === 'true' || localStorage.getItem('hideGalleryPopup') === 'true';
+    try { return getCookie('hideGalleryPopup') === 'true' || localStorage.getItem('hideGalleryPopup') === 'true'; } catch(e) { return getCookie('hideGalleryPopup') === 'true'; }
   }
 
   // Initialize Gallery Popup State
@@ -747,11 +751,11 @@ function initSettingsModal() {
         // User wants to SHOW the popup (remove subscription cookie)
         // Remove cookie by setting expiry to past date
         document.cookie = 'kindleModsSubscribed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax;';
-        localStorage.removeItem('kindleModsSubscribed');
+        try { localStorage.removeItem('kindleModsSubscribed'); } catch(e) {}
       } else {
         // User wants to HIDE the popup (set subscription cookie)
         setCookie('kindleModsSubscribed', 'true', 365);
-        localStorage.setItem('kindleModsSubscribed', 'true');
+        try { localStorage.setItem('kindleModsSubscribed', 'true'); } catch(e) {}
       }
     });
   }
@@ -793,12 +797,12 @@ function initSettingsModal() {
         // Show popup
         if (galleryPopup) galleryPopup.classList.remove('hidden');
         document.cookie = 'hideGalleryPopup=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax;';
-        localStorage.removeItem('hideGalleryPopup');
+        try { localStorage.removeItem('hideGalleryPopup'); } catch(e) {}
       } else {
         // Hide popup
         if (galleryPopup) galleryPopup.classList.add('hidden');
         setCookie('hideGalleryPopup', 'true', 365);
-        localStorage.setItem('hideGalleryPopup', 'true');
+        try { localStorage.setItem('hideGalleryPopup', 'true'); } catch(e) {}
       }
     });
   }

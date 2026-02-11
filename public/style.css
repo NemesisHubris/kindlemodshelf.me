@@ -308,7 +308,9 @@
   --emulator-header-text: #ffffff;
 }
 
-* { box-sizing: border-box; }
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
 .legal-disclaimer {
   margin: 48px auto 24px;
@@ -389,7 +391,7 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--fg);
-  font-family: 'IBM Plex Sans', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   font-size: 1.125rem;
   line-height: 1.6;
   position: relative;
@@ -651,7 +653,7 @@ li {
   color: var(--primary);
   font-weight: 700;
   letter-spacing: -0.01em;
-  font-family: 'IBM Plex Sans', 'Inter', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
   border-bottom: 1px solid var(--section-border);
   padding-bottom: 12px;
 }
@@ -896,7 +898,7 @@ button a {
 
 /* General Button Styling */
 button {
-  font-family: 'IBM Plex Sans', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -1053,7 +1055,7 @@ pre code {
   font-weight: 500;
   font-size: 0.95em;
   transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  z-index: 99999;
+  z-index: 999;
   cursor: pointer;
   letter-spacing: 0;
   box-shadow: 0 1px 3px var(--shadow-color);
@@ -1155,7 +1157,7 @@ pre code {
   width: 100%;
   height: 100%;
   background: var(--viewer-modal-bg);
-  z-index: 20000;
+  z-index: 3000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1336,13 +1338,15 @@ pre code {
 }
 
 input[type=range] {
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%; 
   background: transparent; 
 }
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
+  appearance: none;
   height: 16px;
   width: 16px;
   border-radius: 50%;
@@ -1352,6 +1356,23 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: var(--input-border);
+  border-radius: 2px;
+}
+
+input[type=range]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: none;
+}
+
+input[type=range]::-moz-range-track {
   width: 100%;
   height: 4px;
   cursor: pointer;
@@ -1491,6 +1512,7 @@ input[type=range]::-webkit-slider-runnable-track {
   color: var(--filter-chip-text);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-user-select: none;
   user-select: none;
   font-weight: 500;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -1621,6 +1643,21 @@ input[type=range]::-webkit-slider-runnable-track {
   padding: 0;
 }
 
+/* Loading Spinner */
+.loader {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--card-border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .img-thumb-wrap {
   position: relative;
   aspect-ratio: 3 / 4;
@@ -1663,7 +1700,7 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 100%;
   background: var(--viewer-modal-bg);
-  z-index: 10000;
+  z-index: 2000;
   overflow: hidden;
   align-items: center;
   justify-content: center;
@@ -2122,10 +2159,6 @@ body:has(#img-viewer-modal.active) {
   }
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 #thumbnail-canvas {
   display: none;
 }
@@ -2337,10 +2370,6 @@ body:has(#img-viewer-modal.active) {
   box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.25);
 }
 
-#subscribeForm input[type="email"]:focus {
-  border-color: var(--primary);
-}
-
 #subscribeForm button[type="submit"] {
   padding: 10px 16px;
   background: var(--email-submit-bg);
@@ -2400,7 +2429,7 @@ body:has(#img-viewer-modal.active) {
   color: var(--button-text);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 20001;
+  z-index: 999;
   padding: 0;
   box-shadow: 0 1px 3px var(--shadow-color),
     0 10px 20px rgba(0, 0, 0, 0.08),
@@ -2689,44 +2718,7 @@ body:has(#img-viewer-modal.active) {
   margin-top: 12px;
 }
 
-/* ===== Settings Wheel & Modal Styles ===== */
-.settings-wheel {
-  position: absolute;
-  top: 100px;
-  right: 24px;
-  width: 44px;
-  height: 44px;
-  background: var(--button-bg);
-  border: 1px solid var(--button-border);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--button-text);
-  cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  z-index: 998;
-  padding: 0;
-  box-shadow: 0 2px 4px var(--shadow-color);
-  overflow: hidden;
-}
-
-.settings-wheel:hover {
-  background: var(--card-bg);
-  border-color: var(--primary);
-  box-shadow: 0 4px 8px var(--shadow-color);
-}
-
-.settings-wheel:active {
-  transform: rotate(45deg);
-  box-shadow: 0 2px 4px var(--shadow-color);
-}
-
-.settings-wheel svg {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.3s ease;
-}
+/* ===== Settings Modal Styles ===== */
 
 /* Settings Modal Styles */
 .settings-modal {
@@ -2734,6 +2726,7 @@ body:has(#img-viewer-modal.active) {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   z-index: 1001;
   animation: fadeIn 0.2s ease;
@@ -2879,20 +2872,8 @@ body:has(#img-viewer-modal.active) {
   box-shadow: 0 0 0 3px rgba(91, 157, 217, 0.2);
 }
 
-/* Responsive Settings Wheel */
+/* Responsive Settings Modal */
 @media (max-width: 700px) {
-  .settings-wheel {
-    top: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
-  }
-
-  .settings-wheel svg {
-    width: 22px;
-    height: 22px;
-  }
-
   .settings-modal-content {
     width: 95%;
     max-width: none;
@@ -2900,18 +2881,6 @@ body:has(#img-viewer-modal.active) {
 }
 
 @media (max-width: 480px) {
-  .settings-wheel {
-    top: 14px;
-    right: 12px;
-    width: 38px;
-    height: 38px;
-  }
-
-  .settings-wheel svg {
-    width: 20px;
-    height: 20px;
-  }
-
   .settings-modal-header {
     padding: 16px 20px;
   }
@@ -3025,7 +2994,7 @@ body:has(#img-viewer-modal.active) {
   width: 100%;
   height: 100%;
   background: var(--viewer-modal-bg);
-  z-index: 10000;
+  z-index: 2000;
   align-items: center;
   justify-content: center;
   opacity: 0;
@@ -3221,7 +3190,7 @@ body:has(#img-viewer-modal.active) {
   width: 0%;
   height: 4px;
   background: linear-gradient(to right, var(--primary), var(--secondary));
-  z-index: 9999;
+  z-index: 950;
   transition: width 0.1s ease-out;
 }
 
@@ -3303,7 +3272,7 @@ body:has(#img-viewer-modal.active) {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 20000;
+  z-index: 900;
   pointer-events: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
@@ -3411,11 +3380,14 @@ body.page-404 .legal-disclaimer {
 /* Number Input Styling - Hide Spinners */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
+  appearance: none;
   margin: 0; 
 }
 input[type=number] {
+  -webkit-appearance: textfield;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .builder-secondary-btn {

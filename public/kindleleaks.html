@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <title>Kindle Leaks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
-  <script src="theme-toggle.js"></script>
+  <meta name="description" content="Restricted access page for Kindle leaks.">
+  <link rel="canonical" href="https://kindlemodshelf.me/kindleleaks.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="theme-toggle.js?v=3"></script>
   <style>
     body {
       display: flex;
@@ -61,7 +63,7 @@
       border-color: var(--primary);
     }
 
-    button {
+    .kindleleaks-page button {
       padding: 12px 24px;
       border-radius: 6px;
       border: 1px solid var(--button-border);
@@ -73,7 +75,7 @@
       transition: all 0.2s ease;
     }
 
-    button:hover {
+    .kindleleaks-page button:hover {
       background-color: var(--link-hover);
       color: #fff;
       border-color: var(--link-hover);
@@ -91,7 +93,6 @@
       display: none;
       width: 100%;
       height: 100vh;
-      display: none;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -113,12 +114,12 @@
     }
   </style>
 </head>
-<body>
+<body class="kindleleaks-page">
 
   <div id="password-modal" class="leak-container">
     <h2>Restricted Access</h2>
     <div class="input-group">
-      <input type="password" id="password" placeholder="Enter password" autocomplete="off">
+      <input type="password" id="password" placeholder="Enter password" autocomplete="off" aria-label="Password">
       <button onclick="unlock()">Unlock</button>
     </div>
     <div id="error-msg">Incorrect password. Access denied.</div>
@@ -197,5 +198,5 @@
     window.onload = () => passwordInput.focus();
   </script>
 
-<script src="navigation.js?v=2"></script></body>
+<script src="navigation.js?v=3"></script></body>
 </html>

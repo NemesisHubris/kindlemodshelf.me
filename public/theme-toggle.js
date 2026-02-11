@@ -131,7 +131,9 @@
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
       // Only apply if user hasn't manually set a theme
-      if (!localStorage.getItem('theme')) {
+      let hasManualTheme = false;
+      try { hasManualTheme = !!localStorage.getItem('theme'); } catch(e) {}
+      if (!hasManualTheme) {
         applyTheme(e.matches ? 'light' : 'dark', false);
       }
     });
