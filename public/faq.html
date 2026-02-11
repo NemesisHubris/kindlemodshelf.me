@@ -599,11 +599,13 @@
   <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
   <script>
     const searchInput = document.getElementById('search-bar');
+    const searchClear = document.getElementById('search-clear');
     const faqList = document.getElementById('faq-list');
     const faqItems = faqList.querySelectorAll('.faq-item');
 
-    searchInput.addEventListener('input', function() {
-      const query = this.value.toLowerCase().trim();
+    function filterFaq() {
+      const query = searchInput.value.toLowerCase().trim();
+      searchClear.style.display = query.length > 0 ? '' : 'none';
 
       let visibleCount = 0;
       faqItems.forEach(item => {
@@ -634,6 +636,13 @@
           noResultsMsg.style.display = 'none';
         }
       }
+    }
+
+    searchInput.addEventListener('input', filterFaq);
+    searchClear.addEventListener('click', function() {
+      searchInput.value = '';
+      filterFaq();
+      searchInput.focus();
     });
   </script>
   <script src="navigation.js?v=3"></script>
