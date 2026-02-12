@@ -1,89 +1,183 @@
 const IMAGES_PER_LOAD = 30;
-const THUMBNAIL_WIDTH = 400;
-const THUMBNAIL_HEIGHT = 533;
-const THUMBNAIL_QUALITY = 0.82;
 const PLACEHOLDER_SRC = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
-const CANVAS_BACKGROUND_DARK = '#081524';
-const CANVAS_BACKGROUND_LIGHT = '#e8e8e8';
-const RANDOMIZATION_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+const RANDOMIZATION_INTERVAL = 24 * 60 * 60 * 1000;
 const RANDOMIZED_ORDER_KEY = 'gallery_randomized_order';
 const RANDOMIZATION_TIMESTAMP_KEY = 'gallery_randomization_time';
+const SEARCH_DEBOUNCE_MS = 150;
+
+// Concurrency control — limit simultaneous image downloads
+const MAX_CONCURRENT_LOADS = 4;
+let activeLoads = 0;
+const loadQueue = [];
 
 let allData = null;
-let allImages = []; // Flat list of all {author, filename} objects
+let allImages = [];
+let authorIndex = {};
 let loadedCount = 0;
 let isLoading = false;
 let isSearchMode = false;
-
-const thumbnailCache = new Map();
+let cachedPlaceholderBg = '';
+let searchDebounceTimer = null;
 
 const galleryRoot = document.getElementById('gallery-root');
 const loadingIndicator = document.getElementById('loading-indicator');
 const streamView = document.getElementById('stream-view');
 const searchView = document.getElementById('search-view');
 const searchResults = document.getElementById('search-results');
-const thumbnailCanvas = document.getElementById('thumbnail-canvas');
-const thumbnailCtx = thumbnailCanvas.getContext('2d');
 
 const imageObserver = new IntersectionObserver(handleImageIntersection, {
   root: null,
-  rootMargin: '600px 0px 600px 0px',
-  threshold: 0.1
+  rootMargin: '300px 0px 300px 0px',
+  threshold: 0.01
 });
 
 let scrollEnabled = false;
 
 function getPlaceholderBackground() {
-  return getComputedStyle(document.documentElement).getPropertyValue('--placeholder-bg').trim();
-}
-
-function getCanvasBackground() {
-  const theme = document.documentElement.getAttribute('data-theme');
-  return theme === 'light' ? CANVAS_BACKGROUND_LIGHT : CANVAS_BACKGROUND_DARK;
+  if (!cachedPlaceholderBg) {
+    cachedPlaceholderBg = getComputedStyle(document.documentElement).getPropertyValue('--placeholder-bg').trim();
+  }
+  return cachedPlaceholderBg;
 }
 
 function shouldRandomizeOrder() {
   let lastRandomTime = null;
   try { lastRandomTime = localStorage.getItem(RANDOMIZATION_TIMESTAMP_KEY); } catch(e) {}
   if (!lastRandomTime) return true;
-
   const timeSinceLastRandom = Date.now() - parseInt(lastRandomTime);
   return timeSinceLastRandom > RANDOMIZATION_INTERVAL;
 }
 
 function getRandomizedOrder() {
-  // Check if we should use cached randomized order
   if (!shouldRandomizeOrder()) {
     let cached = null;
     try { cached = localStorage.getItem(RANDOMIZED_ORDER_KEY); } catch(e) {}
     if (cached) {
       try {
-        return JSON.parse(cached);
+        const indices = JSON.parse(cached);
+        if (Array.isArray(indices) && indices.length === allImages.length) {
+          return indices.map(i => allImages[i]);
+        }
       } catch (e) {
         console.warn('Could not parse cached randomized order');
       }
     }
   }
 
-  // Create new randomized order (Fisher-Yates shuffle)
-  const randomized = [...allImages];
-  for (let i = randomized.length - 1; i > 0; i--) {
+  const indices = Array.from({ length: allImages.length }, (_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [randomized[i], randomized[j]] = [randomized[j], randomized[i]];
+    [indices[i], indices[j]] = [indices[j], indices[i]];
   }
 
-  // Save to localStorage
   try {
-    localStorage.setItem(RANDOMIZED_ORDER_KEY, JSON.stringify(randomized));
+    localStorage.setItem(RANDOMIZED_ORDER_KEY, JSON.stringify(indices));
     localStorage.setItem(RANDOMIZATION_TIMESTAMP_KEY, Date.now().toString());
   } catch (e) {
     console.warn('Could not save randomized order to localStorage:', e);
   }
 
-  return randomized;
+  return indices.map(i => allImages[i]);
 }
 
-fetch('images.json')
+function buildAuthorIndex() {
+  authorIndex = {};
+  for (let i = 0; i < allImages.length; i++) {
+    const img = allImages[i];
+    if (!authorIndex[img.author]) {
+      authorIndex[img.author] = [];
+    }
+    authorIndex[img.author].push(img);
+  }
+}
+
+// --- Concurrent load queue ---
+
+function enqueueLoad(img) {
+  // Don't double-queue
+  if (img.dataset.loaded === '1' || img.dataset.queued === '1') return;
+  img.dataset.queued = '1';
+  loadQueue.push(img);
+  drainQueue();
+}
+
+function dequeueLoad(img) {
+  if (img.dataset.queued !== '1') return;
+  img.dataset.queued = '0';
+  const idx = loadQueue.indexOf(img);
+  if (idx !== -1) loadQueue.splice(idx, 1);
+}
+
+function drainQueue() {
+  while (activeLoads < MAX_CONCURRENT_LOADS && loadQueue.length > 0) {
+    const img = loadQueue.shift();
+    // Skip if unloaded while waiting in queue
+    if (!img.isConnected || img.dataset.queued !== '1') {
+      img.dataset.queued = '0';
+      continue;
+    }
+    img.dataset.queued = '0';
+    startLoad(img);
+  }
+}
+
+function startLoad(img) {
+  activeLoads++;
+  const imgPath = img.dataset.fullPath;
+
+  const loader = new Image();
+  loader.decoding = 'async';
+
+  loader.onload = function() {
+    if (img.isConnected && img.dataset.loaded !== '1') {
+      img.src = imgPath;
+      img.dataset.loaded = '1';
+      img.classList.add('loaded');
+    }
+    activeLoads--;
+    drainQueue();
+  };
+
+  loader.onerror = function() {
+    img.dataset.loaded = '0';
+    activeLoads--;
+    drainQueue();
+  };
+
+  loader.src = imgPath;
+}
+
+function unloadImage(img) {
+  if (img.dataset.loaded !== '1' && img.dataset.queued !== '1') return;
+  dequeueLoad(img);
+  if (img.dataset.loaded === '1') {
+    img.dataset.loaded = '0';
+    img.src = PLACEHOLDER_SRC;
+    img.classList.remove('loaded');
+  }
+}
+
+// --- Intersection Observer ---
+
+function handleImageIntersection(entries) {
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  entries.forEach(entry => {
+    const img = entry.target;
+    if (entry.isIntersecting) {
+      enqueueLoad(img);
+      return;
+    }
+
+    const rect = entry.boundingClientRect;
+    if (rect.bottom < -1200 || rect.top > viewportHeight + 1200) {
+      unloadImage(img);
+    }
+  });
+}
+
+// --- Data loading ---
+
+fetch('/images.json')
   .then(res => {
     if (!res.ok) throw new Error('Could not load images.json');
     return res.json();
@@ -91,7 +185,6 @@ fetch('images.json')
   .then(data => {
     allData = data;
 
-    // Flatten all images into a single array with author info
     Object.keys(data).sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' })).forEach(author => {
       const images = data[author];
       if (Array.isArray(images)) {
@@ -106,25 +199,46 @@ fetch('images.json')
       return;
     }
 
-    // Randomize the order
     allImages = getRandomizedOrder();
-
+    buildAuthorIndex();
     enableScrollLoading();
     loadMoreImages(IMAGES_PER_LOAD);
 
     const searchBar = document.getElementById('search-bar');
-    searchBar.addEventListener('input', handleSearch);
+    searchBar.addEventListener('input', handleSearchInput);
   })
   .catch(error => {
     console.error('Error loading gallery:', error);
     galleryRoot.textContent = 'Could not load image list. Please contact the site owner.';
   });
 
-function handleSearch(event) {
+// Event delegation for image clicks
+document.addEventListener('click', function(event) {
+  const img = event.target.closest('.img-thumb, .search-image');
+  if (img) {
+    openViewer(img);
+  }
+});
+
+// --- Search ---
+
+function handleSearchInput(event) {
+  if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
   const query = event.target.value.trim().toLowerCase();
 
   if (query === '') {
-    // Show stream view, hide search view
+    handleSearch('');
+    return;
+  }
+
+  searchDebounceTimer = setTimeout(() => {
+    searchDebounceTimer = null;
+    handleSearch(query);
+  }, SEARCH_DEBOUNCE_MS);
+}
+
+function handleSearch(query) {
+  if (query === '') {
     isSearchMode = false;
     streamView.style.display = '';
     searchView.style.display = 'none';
@@ -135,17 +249,18 @@ function handleSearch(event) {
     return;
   }
 
-  // Show search view, hide stream view
   isSearchMode = true;
   streamView.style.display = 'none';
   searchView.style.display = '';
   disableScrollLoading();
 
-  const matches = allImages.filter(img => img.author.toLowerCase().includes(query));
+  const matchingAuthors = Object.keys(authorIndex)
+    .filter(author => author.toLowerCase().includes(query))
+    .sort();
 
   searchResults.innerHTML = '';
 
-  if (matches.length === 0) {
+  if (matchingAuthors.length === 0) {
     const msg = document.createElement('div');
     msg.className = 'no-results';
     msg.textContent = 'No authors match your search.';
@@ -153,28 +268,19 @@ function handleSearch(event) {
     return;
   }
 
-  // Group images by author for search results
-  const authorGroups = {};
-  matches.forEach(imgData => {
-    if (!authorGroups[imgData.author]) {
-      authorGroups[imgData.author] = [];
-    }
-    authorGroups[imgData.author].push(imgData);
-  });
+  const fragment = document.createDocumentFragment();
+  const bg = getPlaceholderBackground();
 
-  // Display search results with author headers - COMPLETELY SEPARATE LAYOUT
-  Object.keys(authorGroups).sort().forEach(author => {
-    // Author header
+  matchingAuthors.forEach(author => {
     const authorHeader = document.createElement('div');
     authorHeader.className = 'search-author-header';
     authorHeader.textContent = author;
-    searchResults.appendChild(authorHeader);
+    fragment.appendChild(authorHeader);
 
-    // Author's images grid
     const imagesGrid = document.createElement('div');
     imagesGrid.className = 'search-images-grid';
 
-    authorGroups[author].forEach(imgData => {
+    authorIndex[author].forEach(imgData => {
       const imgWrapper = document.createElement('div');
       imgWrapper.className = 'search-image-card';
 
@@ -184,35 +290,32 @@ function handleSearch(event) {
       img.loading = 'lazy';
       img.decoding = 'async';
       img.dataset.loaded = '0';
-      img.dataset.loading = '0';
+      img.dataset.queued = '0';
       img.dataset.fullPath = `images/${author}/${imgData.filename}`;
       img.dataset.author = author;
       img.dataset.filename = imgData.filename;
       img.src = PLACEHOLDER_SRC;
-      img.style.background = getPlaceholderBackground();
-
-      img.addEventListener('click', function () {
-        if (this.dataset.loaded !== '1') {
-          loadImage(this);
-        }
-        openViewer(this);
-      });
+      img.style.background = bg;
 
       imgWrapper.appendChild(img);
       imagesGrid.appendChild(imgWrapper);
       imageObserver.observe(img);
     });
 
-    searchResults.appendChild(imagesGrid);
+    fragment.appendChild(imagesGrid);
   });
+
+  searchResults.appendChild(fragment);
 }
+
+// --- Infinite scroll ---
 
 function handleScroll() {
   if (isSearchMode || isLoading || loadedCount >= allImages.length) return;
   const scrollY = window.scrollY;
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
-  if (scrollY + windowHeight > documentHeight - 200) {
+  if (scrollY + windowHeight > documentHeight - 400) {
     loadMoreImages(IMAGES_PER_LOAD);
   }
 }
@@ -224,22 +327,25 @@ function loadMoreImages(count) {
   loadingIndicator.style.display = 'block';
 
   const endIndex = Math.min(loadedCount + count, allImages.length);
-  setTimeout(() => {
-    for (let i = loadedCount; i < endIndex; i++) {
-      addImageToStream(allImages[i]);
-    }
-    loadedCount = endIndex;
-    isLoading = false;
-    loadingIndicator.style.display = 'none';
-    if (loadedCount >= allImages.length) {
-      disableScrollLoading();
-    }
-  }, 40);
+  const fragment = document.createDocumentFragment();
+  const bg = getPlaceholderBackground();
+
+  for (let i = loadedCount; i < endIndex; i++) {
+    fragment.appendChild(createImageCell(allImages[i], bg));
+  }
+
+  galleryRoot.appendChild(fragment);
+  loadedCount = endIndex;
+  isLoading = false;
+  loadingIndicator.style.display = 'none';
+
+  if (loadedCount >= allImages.length) {
+    disableScrollLoading();
+  }
 }
 
-function addImageToStream(imgData) {
+function createImageCell(imgData, bg) {
   const { author, filename } = imgData;
-  const imgFullPath = `images/${author}/${filename}`;
 
   const cell = document.createElement('div');
   cell.className = 'img-thumb-wrap';
@@ -250,130 +356,24 @@ function addImageToStream(imgData) {
   img.loading = 'lazy';
   img.decoding = 'async';
   img.dataset.loaded = '0';
-  img.dataset.loading = '0';
-  img.dataset.fullPath = imgFullPath;
+  img.dataset.queued = '0';
+  img.dataset.fullPath = `images/${author}/${filename}`;
   img.dataset.author = author;
   img.dataset.filename = filename;
   img.src = PLACEHOLDER_SRC;
-  img.style.background = getPlaceholderBackground();
-
-  img.addEventListener('click', function () {
-    if (this.dataset.loaded !== '1') {
-      loadImage(this);
-    }
-    openViewer(this);
-  });
+  img.style.background = bg;
 
   cell.appendChild(img);
-  galleryRoot.appendChild(cell);
   imageObserver.observe(img);
-}
-
-function createThumbnail(imgPath, callback) {
-  if (thumbnailCache.has(imgPath)) {
-    callback(thumbnailCache.get(imgPath));
-    return;
-  }
-
-  const originalImg = new Image();
-  originalImg.crossOrigin = 'anonymous';
-
-  originalImg.onload = function () {
-    thumbnailCanvas.width = THUMBNAIL_WIDTH;
-    thumbnailCanvas.height = THUMBNAIL_HEIGHT;
-    thumbnailCtx.imageSmoothingEnabled = true;
-    thumbnailCtx.imageSmoothingQuality = 'high';
-
-    thumbnailCtx.fillStyle = getCanvasBackground();
-    thumbnailCtx.fillRect(0, 0, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
-
-    const aspectRatio = originalImg.width / originalImg.height;
-    let drawWidth = THUMBNAIL_WIDTH;
-    let drawHeight = THUMBNAIL_WIDTH / aspectRatio;
-
-    if (drawHeight > THUMBNAIL_HEIGHT) {
-      drawHeight = THUMBNAIL_HEIGHT;
-      drawWidth = THUMBNAIL_HEIGHT * aspectRatio;
-    }
-
-    const x = (THUMBNAIL_WIDTH - drawWidth) / 2;
-    const y = (THUMBNAIL_HEIGHT - drawHeight) / 2;
-
-    thumbnailCtx.drawImage(originalImg, x, y, drawWidth, drawHeight);
-
-    try {
-      const thumbnailUrl = thumbnailCanvas.toDataURL('image/jpeg', THUMBNAIL_QUALITY);
-      thumbnailCache.set(imgPath, thumbnailUrl);
-      if (thumbnailCache.size > 60) {
-        const oldestKey = thumbnailCache.keys().next().value;
-        thumbnailCache.delete(oldestKey);
-      }
-      callback(thumbnailUrl);
-    } catch (e) {
-      console.warn('Could not generate thumbnail for', imgPath, e);
-      callback(imgPath);
-    }
-  };
-
-  originalImg.onerror = function () {
-    console.warn('Could not load image:', imgPath);
-    callback(imgPath);
-  };
-
-  originalImg.src = imgPath;
-}
-
-function loadImage(img) {
-  if (img.dataset.loaded === '1' || img.dataset.loading === '1') return;
-  img.dataset.loading = '1';
-  const imgPath = img.dataset.fullPath;
-
-  const applyThumbnail = thumbnailUrl => {
-    if (!img.isConnected || img.dataset.loading !== '1') return;
-    img.src = thumbnailUrl;
-    img.dataset.loaded = '1';
-    img.dataset.loading = '0';
-    img.classList.add('loaded');
-  };
-
-  if (thumbnailCache.has(imgPath)) {
-    applyThumbnail(thumbnailCache.get(imgPath));
-    return;
-  }
-
-  createThumbnail(imgPath, applyThumbnail);
-}
-
-function unloadImage(img) {
-  if (img.dataset.loaded !== '1') return;
-  img.dataset.loaded = '0';
-  img.dataset.loading = '0';
-  img.src = PLACEHOLDER_SRC;
-  img.classList.remove('loaded');
-}
-
-function handleImageIntersection(entries) {
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  entries.forEach(entry => {
-    const img = entry.target;
-    if (entry.isIntersecting) {
-      loadImage(img);
-      return;
-    }
-
-    const rect = entry.boundingClientRect;
-    const aboveThreshold = rect.bottom < -1400;
-    const belowThreshold = rect.top > viewportHeight + 1400;
-
-    if (aboveThreshold || belowThreshold) {
-      unloadImage(img);
-    }
-  });
+  return cell;
 }
 
 function resetGallery() {
   const thumbs = galleryRoot.querySelectorAll('.img-thumb');
-  thumbs.forEach(img => imageObserver.unobserve(img));
+  thumbs.forEach(img => {
+    dequeueLoad(img);
+    imageObserver.unobserve(img);
+  });
   galleryRoot.innerHTML = '';
   loadedCount = 0;
   isLoading = false;
@@ -381,7 +381,7 @@ function resetGallery() {
 
 function enableScrollLoading() {
   if (scrollEnabled) return;
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll, { passive: true });
   scrollEnabled = true;
 }
 
@@ -391,11 +391,12 @@ function disableScrollLoading() {
   scrollEnabled = false;
 }
 
-// Modal Viewer
+// --- Modal Viewer ---
+
 const modal = document.getElementById('img-viewer-modal');
 const modalImg = document.getElementById('img-viewer-img');
 const modalDownload = document.getElementById('img-viewer-download');
-const modalResize = document.getElementById('img-viewer-resize'); // NEW
+const modalResize = document.getElementById('img-viewer-resize');
 const modalClose = document.getElementById('img-viewer-close');
 const modalAuthor = document.getElementById('img-viewer-author');
 const modalFilename = document.getElementById('img-viewer-filename');
@@ -403,11 +404,9 @@ const modalLoader = document.getElementById('img-viewer-loader');
 const sidebarImages = document.getElementById('sidebar-images');
 
 let currentAuthor = null;
-let currentImageIndex = null;
 let closeViewerTimer = null;
 
 function openViewer(thumbnail) {
-  // Cancel any pending close cleanup
   if (closeViewerTimer) {
     clearTimeout(closeViewerTimer);
     closeViewerTimer = null;
@@ -415,9 +414,7 @@ function openViewer(thumbnail) {
 
   const author = thumbnail.dataset.author;
   const filename = thumbnail.dataset.filename;
-
   currentAuthor = author;
-  currentImageIndex = allImages.findIndex(img => img.author === author && img.filename === filename);
 
   modal.style.display = 'flex';
   modal.classList.remove('active');
@@ -433,7 +430,6 @@ function openViewer(thumbnail) {
     modalDownload.download = filename;
   }
 
-  // Load sidebar images for this author
   loadSidebarImages(author);
 
   modalImg.onload = function () {
@@ -452,8 +448,11 @@ function openViewer(thumbnail) {
 }
 
 function loadSidebarImages(author) {
-  const authorImages = allImages.filter(img => img.author === author);
+  const authorImages = authorIndex[author] || [];
   sidebarImages.innerHTML = '';
+
+  const fragment = document.createDocumentFragment();
+  const bg = getPlaceholderBackground();
 
   authorImages.forEach(imgData => {
     const sidebarItem = document.createElement('div');
@@ -463,16 +462,18 @@ function loadSidebarImages(author) {
     const sidebarThumb = document.createElement('img');
     sidebarThumb.className = 'sidebar-thumb';
     sidebarThumb.alt = imgData.filename;
+    sidebarThumb.loading = 'lazy';
+    sidebarThumb.decoding = 'async';
     sidebarThumb.dataset.fullPath = `images/${author}/${imgData.filename}`;
     sidebarThumb.dataset.author = author;
     sidebarThumb.dataset.filename = imgData.filename;
+    sidebarThumb.dataset.loaded = '0';
+    sidebarThumb.dataset.queued = '0';
     sidebarThumb.src = PLACEHOLDER_SRC;
-    sidebarThumb.style.background = getPlaceholderBackground();
+    sidebarThumb.style.background = bg;
 
-    // Check if this is the currently viewed image
     if (imgData.filename === modalFilename.textContent) {
       sidebarItem.classList.add('active');
-      // Scroll into view
       setTimeout(() => {
         sidebarItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 100);
@@ -483,9 +484,11 @@ function loadSidebarImages(author) {
     });
 
     sidebarItem.appendChild(sidebarThumb);
-    sidebarImages.appendChild(sidebarItem);
+    fragment.appendChild(sidebarItem);
     imageObserver.observe(sidebarThumb);
   });
+
+  sidebarImages.appendChild(fragment);
 }
 
 function closeViewer() {
@@ -510,40 +513,34 @@ document.addEventListener('keydown', event => {
   }
 });
 
-// Direct Resize Listener
+// Resize button
 const resizeButton = document.getElementById('img-viewer-resize');
 if (resizeButton) {
   resizeButton.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
     const img = document.getElementById('img-viewer-img');
     if (!img || !img.src) {
-        console.error('No image source found');
-        return;
+      console.error('No image source found');
+      return;
     }
-
     if (typeof openCropper === 'function') {
-        openCropper(img.src);
+      openCropper(img.src);
     } else {
-        console.error('openCropper is not defined');
-        alert('Cropper tool not ready. Please refresh the page.');
+      console.error('openCropper is not defined');
+      alert('Cropper tool not ready. Please refresh the page.');
     }
   });
 } else {
-    console.error('Resize button element not found in DOM');
+  console.error('Resize button element not found in DOM');
 }
 
-// Listen for theme changes and regenerate thumbnails
+// Theme changes — invalidate cached placeholder color
 document.addEventListener('themechange', () => {
-  // Clear the thumbnail cache so images regenerate with new background
-  thumbnailCache.clear();
-
-  // Regenerate visible images
-  const allGalleryImages = document.querySelectorAll('.img-thumb[data-loaded="1"], .search-image[data-loaded="1"]');
-  allGalleryImages.forEach(img => {
-    img.dataset.loaded = '0';
-    img.dataset.loading = '0';
-    loadImage(img);
+  cachedPlaceholderBg = '';
+  const bg = getPlaceholderBackground();
+  const unloadedImages = document.querySelectorAll('.img-thumb[data-loaded="0"], .search-image[data-loaded="0"], .sidebar-thumb[data-loaded="0"]');
+  unloadedImages.forEach(img => {
+    img.style.background = bg;
   });
 });

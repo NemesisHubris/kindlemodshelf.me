@@ -2159,10 +2159,6 @@ body:has(#img-viewer-modal.active) {
   }
 }
 
-#thumbnail-canvas {
-  display: none;
-}
-
 .video-container {
   position: relative;
   max-width: 800px;

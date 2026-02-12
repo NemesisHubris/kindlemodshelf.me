@@ -1485,17 +1485,25 @@ function createHTMLStripper() {
 
           return text;
         } else {
-          // FIX #17: Safe regex with non-greedy match to prevent catastrophic backtracking
-          // Limit iterations and use simpler pattern
-          return String(html)
-            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove scripts first
-            .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')   // Remove styles
-            .replace(/<[^>]{1,1000}>/g, ''); // Remove tags (limit to 1000 chars per tag)
+          // Fallback: iteratively strip all tags until none remain.
+          // Loop prevents incomplete sanitization from nested/crafted inputs.
+          let str = String(html);
+          let prev;
+          do {
+            prev = str;
+            str = str.replace(/<[^>]*>/g, '');
+          } while (str !== prev);
+          return str;
         }
       } catch (err) {
-        console.warn('Error stripping HTML, using safe fallback:', err);
-        // Safe fallback - just remove anything that looks like a tag
-        return String(html).replace(/<[^>]{1,1000}>/g, '');
+        // Safe fallback - iteratively remove anything that looks like a tag
+        let str = String(html);
+        let prev;
+        do {
+          prev = str;
+          str = str.replace(/<[^>]*>/g, '');
+        } while (str !== prev);
+        return str;
       }
     },
 
