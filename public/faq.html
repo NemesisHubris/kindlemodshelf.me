@@ -69,7 +69,7 @@
       <h2 class="section-title">Q: Can I downgrade my Kindle?</h2>
     <div class="card card-desc">
       <p>
-        A: Only if you are jailbroken first. See <a href="https://kindlemodding.org/firmware-and-flashing/downgrading/#downgrading" target="_blank" rel="noopener">kindlemodding.org/firmware-and-flashing/downgrading/#downgrading</a>.
+        A: Only if you are jailbroken first. See <a href="https://kindlemodding.org/firmware-and-flashing/downgrading/#downgrading" target="_blank" rel="noopener">kindlemodding.org/firmware-and-flashing/downgrading/#downgrading</a>. Note that you cannot downgrade below 5.18.1.
       </p>
     </div>
     </div>
@@ -90,8 +90,12 @@
       <h2 class="section-title">Q: ;log mrpi fails</h2>
     <div class="card card-desc">
       <p>
-        A: Drag the .bin file to the root of your kindle and press update your kindle in settings. This works functionally the same.
+        A: You have 2 options. Either:
       </p>
+      <ol>
+        <li>Drag the .bin file to the root of your kindle and press update your kindle in settings. This works functionally the same.</li>
+        <li>Install <a href="https://github.com/KindleTweaks/PEKI" target="_blank" rel="noopener">PEKI</a> instead of MRPI.</li>
+      </ol>
       <p>
         Note: Ensure to delete any .partial.tmp.bin files or something of that sort when completing this step to prevent updates if you are susceptible to them.
       </p>
@@ -319,6 +323,77 @@
       <div class="card card-desc">
         <p>
           A: You are probably not actually jailbroken!
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <h2 class="section-title">Q: Are there video guides available?</h2>
+      <div class="card card-desc">
+        <p>
+          A: Yes! <a href="https://youtube.com/@dammitjeff" target="_blank" rel="noopener">Dammit Jeff</a> has made plenty of videos covering jailbreaking or installing utilities. Just always make sure to use up to date guides!
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <h2 class="section-title">Q: How can I develop (GUI apps) for Kindles?</h2>
+      <div class="card card-desc">
+        <p>
+          A: You have 3 options:
+        </p>
+        <ul>
+          <li><a href="https://kindlemodding.org/kindle-dev/gtk-tutorial/" target="_blank" rel="noopener">GTK</a>. Usually done with C(++), or <a href="https://github.com/clintharrison/template-kindle-gtk/tree/clint/go-gtk" target="_blank" rel="noopener">Golang</a>.</li>
+          <li><a href="https://github.com/polish-penguin-dev/Penguins-Kindle-Wiki/" target="_blank" rel="noopener">Mesquite</a>. HTML, CSS, JS.</li>
+          <li>React Native (5.13.7+). Undocumented, but check out <a href="https://github.com/Lukas1h/KPPLauncher" target="_blank" rel="noopener">KPPLauncher</a> and <a href="https://github.com/Lukas1h/react-native-kindle" target="_blank" rel="noopener">React-native-kindle</a>.</li>
+        </ul>
+        <p>
+          Note: For React Native, using KPPSimpleLauncher + Scriptlets instead of KPPLauncher is recommended.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <h2 class="section-title">Q: Whats 'UJ'?</h2>
+      <div class="card card-desc">
+        <p>
+          A: Unnamed Jailbreak - the upcoming one. That's what it's referred to commonly in chat, remember that!
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <h2 class="section-title">Q: Can I get a different OS on my kindle?</h2>
+      <div class="card card-desc">
+        <p>
+          A: Theoretically, yes, if your kindle's secure boot is off (older devices). Otherwise, look at Alpine on Kindles, which doesn't fully replace your kindle's actual OS.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <h2 class="section-title">Q: Stuck on 'Jailbreaking - Please Wait...' indefinitely?</h2>
+      <div class="card card-desc">
+        <p>
+          A: <strong>Make sure your storage is filled.</strong> Turn off Airplane Mode.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <h2 class="section-title">Q: Can I help with the jailbreak?</h2>
+      <div class="card card-desc">
+        <p>
+          A: There is nothing you can do at this time, except be helpful in the community and spread this information.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <h2 class="section-title">Q: The MRPI website is down. What should I do?</h2>
+      <div class="card card-desc">
+        <p>
+          A: Install KUAL using <a href="https://github.com/KindleTweaks/PEKI" target="_blank" rel="noopener">PEKI</a>, once you see the KUAL booklet on your homescreen you can move on to the other post jailbreak steps!
         </p>
       </div>
     </div>
@@ -592,7 +667,7 @@
     <h2 class="section-title">Credits</h2>
     <div class="card card-desc">
       <p>
-        PENGUINS184, USERNAME99
+        PENGUINS184, USERNAME99, MONKEYINPRIVITE
       </p>
     </div>
   </div>
