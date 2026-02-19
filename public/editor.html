@@ -783,6 +783,10 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
         <span>Delete Card</span>
       </div>
       <div class="menu-separator"></div>
+      <div class="menu-dropdown-item" id="menuClearAll">
+        <span>Clear All Decks</span>
+      </div>
+      <div class="menu-separator"></div>
       <div class="menu-dropdown-item" id="menuSelectAll">
         <span>Select All</span>
       </div>
@@ -2345,6 +2349,7 @@ $('#btnDeselectAll').addEventListener('click', deselectAllCards);
 // Menu bar actions
 $('#menuImport').addEventListener('click', () => $('#fileInput').click());
 $('#menuExport').addEventListener('click', () => $('#btnExport').click());
+$('#menuClearAll').addEventListener('click', () => clearAllDecks());
 $('#menuAddCard').addEventListener('click', () => {
   if (!$('#btnAddCard').disabled) $('#btnAddCard').click();
 });
@@ -2360,6 +2365,55 @@ $('#menuSearch').addEventListener('click', () => {
   $('#searchInput').focus();
   $('#searchInput').select();
 });
+
+function clearAllDecks() {
+  const totalCards = Object.values(allDecks || {}).reduce((sum, cards) => {
+    return sum + (Array.isArray(cards) ? cards.length : 0);
+  }, 0);
+  const totalDecks = levels.length;
+
+  if (!totalDecks) {
+    showToast('No decks to clear.');
+    return;
+  }
+
+  const ok = confirm(
+    `Clear all data?\n\nThis will remove ${totalDecks} deck(s) and ${totalCards} card(s) from the editor and local storage.`
+  );
+  if (!ok) return;
+
+  if (window.cardObserver) {
+    window.cardObserver.disconnect();
+    window.cardObserver = null;
+  }
+
+  allDecks = {};
+  levels = [];
+  selectedLevel = '';
+  selectedCardIndex = -1;
+  customFields = new Set(['front','back','notes','reading']);
+  importedFileName = 'kanki_config.js';
+  importedLanguage = 'Deck';
+  editingDraft = null;
+  isEditExisting = false;
+  lastVisibleCardIdx = -1;
+  searchQuery = '';
+  selectedCards.clear();
+  draggedCardIndex = -1;
+
+  $('#searchInput').value = '';
+  $('#btnClearSearch').style.display = 'none';
+  $('#fileInput').value = '';
+  $('#btnExport').disabled = true;
+  $('#btnAddCard').disabled = true;
+
+  try {
+    localStorage.removeItem('kanki_editor_state');
+  } catch (e) {}
+
+  renderAll();
+  showToast('All decks cleared and memory reset.');
+}
 
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {

@@ -55,32 +55,37 @@ document.addEventListener('DOMContentLoaded', () => {
       backToTopBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>';
       document.body.appendChild(backToTopBtn);
     }
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backToTopBtn.classList.add('visible');
-        backToTopBtn.style.display = 'flex'; // Ensure display is flex when visible
-      } else {
-        backToTopBtn.classList.remove('visible');
-        backToTopBtn.style.display = 'none'; // Hide when not visible
-      }
-    }, { passive: true });
+    backToTopBtn.style.display = 'none';
 
     backToTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // 4. Reading Progress Bar
-    const progressBar = document.createElement('div');
-    progressBar.className = 'reading-progress-bar';
-    document.body.appendChild(progressBar);
+    let progressBar = document.querySelector('.reading-progress-bar');
+    if (!progressBar) {
+      progressBar = document.createElement('div');
+      progressBar.className = 'reading-progress-bar';
+      document.body.appendChild(progressBar);
+    }
 
-    window.addEventListener('scroll', () => {
+    const handleGlobalScroll = () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+        backToTopBtn.style.display = 'flex';
+      } else {
+        backToTopBtn.classList.remove('visible');
+        backToTopBtn.style.display = 'none';
+      }
+
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-      progressBar.style.width = scrolled + "%";
-    }, { passive: true });
+      progressBar.style.width = scrolled + '%';
+    };
+
+    window.addEventListener('scroll', handleGlobalScroll, { passive: true });
+    handleGlobalScroll();
   }
 
   // 5. Global Search Logic (Clear Button & Shortcut)
@@ -89,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (searchBar) {
     // Add keyboard shortcut hint to placeholder
-    if (!searchBar.placeholder.includes('/')) {
+    if (!searchBar.placeholder.includes('Press / to search')) {
       searchBar.placeholder += ' (Press / to search)';
     }
     
@@ -117,13 +122,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Global Keyboard Shortcut '/'
   document.addEventListener('keydown', (e) => {
-    // Focus search on '/' if not already in an input/textarea
-    if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-      e.preventDefault();
-      const sb = document.getElementById('search-bar'); // Re-query in case it wasn't there at load (unlikely but safe)
-      if (sb) {
-        sb.focus();
-      }
-    }
+    if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || e.defaultPrevented) return;
+
+    const active = document.activeElement;
+    const isTypingField = active && (
+      active.tagName === 'INPUT' ||
+      active.tagName === 'TEXTAREA' ||
+      active.tagName === 'SELECT' ||
+      active.isContentEditable
+    );
+    if (isTypingField) return;
+
+    const sb = document.getElementById('search-bar');
+    if (!sb) return;
+
+    e.preventDefault();
+    sb.focus();
   });
 });

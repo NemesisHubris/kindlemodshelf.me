@@ -6,13 +6,12 @@ class PageBuilder {
     this.blocks = [];
     this.selectedBlockId = null;
     this.selectedPart = null;
-    this.meta = {
-      h1Title: 'Untitled Page',
-      pageTitle: 'Untitled Page',
-      summary: '', // New field for the visual header description
-      description: 'A Kindle modding guide',
-      keywords: 'kindle, mods, guide'
-    };
+    this.meta = this.getDefaultMeta();
+    this.history = [];
+    this.pendingMetaSnapshot = null;
+    this.pendingOverviewSnapshot = null;
+    this.pendingPartSnapshot = null;
+    this.pendingTitleSnapshot = null;
 
     this.init();
   }
@@ -22,6 +21,103 @@ class PageBuilder {
     this.loadFromLocalStorage();
     this.renderPreview();
     this.loadMetaFromForm();
+    this.updateBackButton();
+  }
+
+  getDefaultMeta() {
+    return {
+      h1Title: 'Untitled Page',
+      pageTitle: 'Untitled Page',
+      summary: '',
+      description: 'A Kindle modding guide',
+      keywords: 'kindle, mods, guide'
+    };
+  }
+
+  serializeState() {
+    return JSON.stringify({
+      meta: this.meta,
+      blocks: this.blocks,
+      ui: {
+        selectedBlockId: this.selectedBlockId,
+        selectedPart: this.selectedPart
+      }
+    });
+  }
+
+  pushSnapshot(snapshot) {
+    if (!snapshot) return;
+    const current = this.serializeState();
+    if (snapshot === current) return;
+
+    const last = this.history[this.history.length - 1];
+    if (last !== snapshot) {
+      this.history.push(snapshot);
+      if (this.history.length > 100) {
+        this.history.shift();
+      }
+    }
+
+    this.updateBackButton();
+  }
+
+  applyStateSnapshot(snapshot) {
+    let restoredUi = null;
+    try {
+      const data = JSON.parse(snapshot);
+      this.meta = data.meta || this.getDefaultMeta();
+      this.blocks = Array.isArray(data.blocks) ? data.blocks : [];
+      restoredUi = data.ui || null;
+    } catch (e) {
+      return;
+    }
+
+    document.getElementById('pageTitle').value = this.meta.h1Title || '';
+    document.getElementById('headerDescription').value = this.meta.summary || '';
+    document.getElementById('metaDescription').value = this.meta.description || '';
+    document.getElementById('keywords').value = this.meta.keywords || '';
+
+    this.selectedBlockId = null;
+    this.selectedPart = null;
+    this.pendingMetaSnapshot = null;
+    this.pendingOverviewSnapshot = null;
+    this.pendingPartSnapshot = null;
+    this.pendingTitleSnapshot = null;
+    this.renderPreview();
+
+    if (restoredUi && restoredUi.selectedBlockId) {
+      if (restoredUi.selectedBlockId === 'page-title') {
+        this.selectPageTitle();
+      } else if (restoredUi.selectedPart && restoredUi.selectedPart.startsWith('item-')) {
+        const itemId = parseInt(restoredUi.selectedPart.split('-')[1], 10);
+        if (!Number.isNaN(itemId)) {
+          this.selectListItem(restoredUi.selectedBlockId, itemId);
+        } else {
+          this.selectBlock(restoredUi.selectedBlockId);
+        }
+      } else if (restoredUi.selectedPart) {
+        this.selectBlockPart(restoredUi.selectedBlockId, restoredUi.selectedPart);
+      } else {
+        this.selectBlock(restoredUi.selectedBlockId);
+      }
+    } else {
+      this.clearBlockProperties();
+    }
+
+    this.saveToLocalStorage();
+  }
+
+  undoLastEdit() {
+    if (this.history.length === 0) return;
+    const previous = this.history.pop();
+    this.applyStateSnapshot(previous);
+    this.updateBackButton();
+  }
+
+  updateBackButton() {
+    const backBtn = document.getElementById('backBtn');
+    if (!backBtn) return;
+    backBtn.disabled = this.history.length === 0;
   }
 
   saveToLocalStorage() {
@@ -54,15 +150,10 @@ class PageBuilder {
 
   clearLocalStorage() {
     if (confirm('Clear all saved data? This will remove the draft you are working on.')) {
+      this.pushSnapshot(this.serializeState());
       try { localStorage.removeItem('kindlePageBuilderData'); } catch(e) {}
       this.blocks = [];
-      this.meta = {
-        h1Title: 'Untitled Page',
-        pageTitle: 'Untitled Page',
-        summary: '',
-        description: 'A Kindle modding guide',
-        keywords: 'kindle, mods, guide'
-      };
+      this.meta = this.getDefaultMeta();
       document.getElementById('pageTitle').value = '';
       document.getElementById('headerDescription').value = '';
       document.getElementById('metaDescription').value = '';
@@ -71,6 +162,7 @@ class PageBuilder {
       this.selectedPart = null;
       this.clearBlockProperties();
       this.renderPreview();
+      this.updateBackButton();
     }
   }
 
@@ -84,13 +176,28 @@ class PageBuilder {
     });
 
     // Meta form
-    document.getElementById('metaForm').addEventListener('input', () => {
+    const metaForm = document.getElementById('metaForm');
+    metaForm.addEventListener('focusin', () => {
+      if (!this.pendingMetaSnapshot) {
+        this.pendingMetaSnapshot = this.serializeState();
+      }
+    });
+
+    metaForm.addEventListener('focusout', (e) => {
+      const next = e.relatedTarget;
+      if (next && metaForm.contains(next)) return;
+      this.pushSnapshot(this.pendingMetaSnapshot);
+      this.pendingMetaSnapshot = null;
+    });
+
+    metaForm.addEventListener('input', () => {
       this.loadMetaFromForm();
       this.renderPreview();
       this.saveToLocalStorage();
     });
 
     // Toolbar buttons
+    document.getElementById('backBtn').addEventListener('click', () => this.undoLastEdit());
     document.getElementById('exportBtn').addEventListener('click', () => this.exportHTML());
     document.getElementById('clearAllBtn').addEventListener('click', () => this.showClearConfirmation());
     document.getElementById('clearStorageBtn').addEventListener('click', () => this.clearLocalStorage());
@@ -98,15 +205,20 @@ class PageBuilder {
     // Preview click handler
     const previewEl = document.getElementById('preview');
     previewEl.addEventListener('click', (e) => {
-      if (e.target.closest('.builder-block-control-btn')) return;
+      const target = e.target && e.target.nodeType === Node.ELEMENT_NODE
+        ? e.target
+        : e.target.parentElement;
+      if (!target) return;
 
-      const h1 = e.target.closest('h1');
-      if (h1 && e.target === h1) {
+      if (target.closest('.builder-block-control-btn')) return;
+
+      const h1 = target.closest('h1');
+      if (h1 && target === h1) {
         this.selectPageTitle();
         return;
       }
 
-      const wrapper = e.target.closest('.builder-block-wrapper');
+      const wrapper = target.closest('.builder-block-wrapper');
       if (!wrapper) {
         this.deselectAll();
         return;
@@ -116,15 +228,23 @@ class PageBuilder {
       const blockId = wrapper.dataset.blockId;
 
       if (this.selectedBlockId === blockId) {
-        // Already selected - check for part click
-        const editableEl = e.target.closest('[data-editable-part]');
-        if (editableEl) {
-          this.selectBlockPart(blockId, editableEl.dataset.editablePart);
+        const listItem = target.closest('.builder-list-item-editable');
+        if (listItem) {
+          this.selectListItem(blockId, parseInt(listItem.dataset.itemId, 10));
           return;
         }
-        const listItem = e.target.closest('.builder-list-item-editable');
-        if (listItem) {
-          this.selectListItem(blockId, parseInt(listItem.dataset.itemId));
+
+        // Already selected - check for part click
+        const editableEl = target.closest('[data-editable-part]');
+        if (editableEl) {
+          const part = editableEl.dataset.editablePart;
+          const block = this.blocks.find(b => b.id === blockId);
+
+          if (block && this.shouldEditPartInline(block, part)) {
+            this.selectBlockPart(blockId, part);
+          } else {
+            this.selectBlock(blockId);
+          }
           return;
         }
       } else {
@@ -139,7 +259,26 @@ class PageBuilder {
     });
   }
 
+  shouldEditPartInline(block, part) {
+    if (!block || !part) return false;
+
+    const inlinePartsByType = {
+      summary: new Set(['content']),
+      section: new Set(['title', 'content']),
+      text: new Set(['content']),
+      list: new Set(),
+      video: new Set(),
+      code: new Set(['content']),
+      banner: new Set(['content']),
+      credit: new Set(['content'])
+    };
+
+    const allowedParts = inlinePartsByType[block.type] || new Set();
+    return allowedParts.has(part);
+  }
+
   addBlock(type) {
+    this.pushSnapshot(this.serializeState());
     const id = 'block-' + Date.now() + Math.random().toString(36).substring(2, 11);
     const block = this.createBlockTemplate(type, id);
     if (!block) return;
@@ -208,15 +347,22 @@ class PageBuilder {
       el.classList.remove('selected');
     });
 
-    if (blockId) {
-      const wrapper = document.querySelector(`[data-block-id="${blockId}"]`);
-      if (wrapper) {
-        wrapper.classList.add('selected');
-        this.selectedBlockId = blockId;
-        this.selectedPart = null;
-        this.showBlockOverview(blockId);
-      }
+    if (!blockId) return;
+
+    const block = this.blocks.find(b => b.id === blockId);
+    if (!block) {
+      this.deselectAll();
+      return;
     }
+
+    const wrapper = document.querySelector(`[data-block-id="${blockId}"]`);
+    if (wrapper) {
+      wrapper.classList.add('selected');
+    }
+
+    this.selectedBlockId = blockId;
+    this.selectedPart = null;
+    this.showBlockOverview(blockId);
   }
 
   selectBlockPart(blockId, part) {
@@ -284,12 +430,25 @@ class PageBuilder {
 
     html += `<button type="button" class="builder-apply-btn">Apply</button></div>`;
     panel.innerHTML = html;
+    this.pendingOverviewSnapshot = this.serializeState();
     this.setupOverviewHandlers(block);
+
+    if (block.type === 'list') {
+      const help = panel.querySelector('.builder-help-text');
+      if (help) {
+        help.textContent = 'Click a bullet item in preview to edit its text';
+      }
+    }
   }
 
   showPartEditor(blockId, part) {
     const block = this.blocks.find(b => b.id === blockId);
     if (!block) return;
+
+    if (!this.shouldEditPartInline(block, part) && !part.startsWith('item-')) {
+      this.showBlockOverview(blockId);
+      return;
+    }
 
     const panel = document.getElementById('propertiesPanel');
     panel.classList.remove('builder-properties-empty');
@@ -301,7 +460,7 @@ class PageBuilder {
       const itemId = parseInt(part.split('-')[1]);
       const item = block.properties.items?.find(i => i.id === itemId);
       content = item?.content || '';
-      editorType = 'plain';
+      editorType = 'list-item';
     } else if (part === 'title') {
       content = block.properties.title || '';
       editorType = block.type === 'section' ? 'rich' : 'title';
@@ -316,13 +475,17 @@ class PageBuilder {
       }
     }
 
+    const blockTypeLabel = this.getBlockTypeLabel(block.type);
     let html = `<div class="builder-properties-form">
+      <button type="button" class="builder-secondary-btn builder-panel-back">Back to ${blockTypeLabel}</button>
       <div class="builder-part-header">${this.getPartLabel(part, block.type)}</div>`;
 
     if (editorType === 'rich') {
       html += this.getRichEditor(content);
     } else if (editorType === 'code') {
       html += `<textarea id="codeEditor" class="builder-code-editor">${this.escapeHtml(content)}</textarea>`;
+    } else if (editorType === 'list-item') {
+      html += `<textarea id="plainEditor" class="builder-code-editor" rows="6">${this.escapeHtml(content)}</textarea>`;
     } else if (editorType === 'title') {
       html += `<input type="text" id="titleEditor" class="builder-title-input" value="${this.escapeHtml(content)}">`;
     } else {
@@ -331,6 +494,17 @@ class PageBuilder {
 
     html += `<button type="button" class="builder-apply-btn">Apply</button></div>`;
     panel.innerHTML = html;
+    this.pendingPartSnapshot = this.serializeState();
+
+    const panelBackBtn = panel.querySelector('.builder-panel-back');
+    if (panelBackBtn) {
+      panelBackBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.selectBlock(blockId);
+      });
+    }
+
     this.setupPartEditorHandlers(block, part, editorType);
 
     // Focus
@@ -352,16 +526,21 @@ class PageBuilder {
     </div>`;
 
     panel.innerHTML = html;
+    this.pendingTitleSnapshot = this.serializeState();
 
     const applyBtn = panel.querySelector('.builder-apply-btn');
     if (applyBtn) {
       applyBtn.addEventListener('click', () => {
+        this.pushSnapshot(this.pendingTitleSnapshot);
+        this.pendingTitleSnapshot = null;
+
         const editor = document.getElementById('titleEditor');
         const newValue = editor ? editor.value : '';
         this.meta.h1Title = newValue;
         this.meta.pageTitle = newValue;
         document.getElementById('pageTitle').value = newValue;
         this.renderPreview();
+        this.saveToLocalStorage();
       });
     }
 
@@ -372,7 +551,7 @@ class PageBuilder {
   }
 
   getPartLabel(part, blockType) {
-    if (part.startsWith('item-')) return 'Edit List Item';
+    if (part.startsWith('item-')) return 'Edit List Item Text';
     if (part === 'title') return 'Edit Title';
     if (part === 'content') {
       if (blockType === 'code') return 'Edit Code';
@@ -381,6 +560,20 @@ class PageBuilder {
       return 'Edit Content';
     }
     return 'Edit';
+  }
+
+  getBlockTypeLabel(blockType) {
+    const names = {
+      summary: 'Summary',
+      section: 'Section',
+      list: 'List',
+      text: 'Text',
+      video: 'Video',
+      code: 'Code',
+      banner: 'Banner',
+      credit: 'Credit'
+    };
+    return names[blockType] || 'Block';
   }
 
   getRichEditor(content) {
@@ -441,8 +634,10 @@ class PageBuilder {
     const addItemBtn = document.querySelector('.builder-add-list-item');
     if (addItemBtn) {
       addItemBtn.addEventListener('click', () => {
+        this.pushSnapshot(this.pendingOverviewSnapshot);
         this.addListItem(block.id);
         this.renderPreview();
+        this.saveToLocalStorage();
         this.selectBlock(block.id);
       });
     }
@@ -450,17 +645,52 @@ class PageBuilder {
     const applyBtn = document.querySelector('.builder-apply-btn');
     if (applyBtn) {
       applyBtn.addEventListener('click', () => {
+        this.pushSnapshot(this.pendingOverviewSnapshot);
+        this.pendingOverviewSnapshot = null;
         this.renderPreview();
+        this.saveToLocalStorage();
         this.selectBlock(block.id);
       });
     }
   }
 
   setupPartEditorHandlers(block, part, editorType) {
+    const richEditor = document.getElementById('richEditor');
+    let savedRange = null;
+
+    const saveSelection = () => {
+      if (!richEditor) return;
+      const sel = window.getSelection();
+      if (!sel || sel.rangeCount === 0) return;
+      const range = sel.getRangeAt(0);
+      if (richEditor.contains(range.commonAncestorContainer)) {
+        savedRange = range.cloneRange();
+      }
+    };
+
+    const restoreSelection = () => {
+      if (!richEditor || !savedRange) return;
+      const sel = window.getSelection();
+      if (!sel) return;
+      sel.removeAllRanges();
+      sel.addRange(savedRange);
+    };
+
     // Rich editor toolbar
     document.querySelectorAll('.builder-toolbar-btn').forEach(btn => {
+      btn.addEventListener('mousedown', (e) => {
+        // Keep focus/selection in editor while using toolbar
+        e.preventDefault();
+      });
+
       btn.addEventListener('click', (e) => {
         e.preventDefault();
+
+        if (richEditor) {
+          richEditor.focus();
+          restoreSelection();
+        }
+
         const cmd = btn.dataset.cmd;
         if (cmd === 'createLink') {
           const url = prompt('Enter URL:', 'https://');
@@ -468,11 +698,12 @@ class PageBuilder {
         } else {
           document.execCommand(cmd, false, null);
         }
+
+        saveSelection();
       });
     });
 
     // Handle paste events to strip formatting
-    const richEditor = document.getElementById('richEditor');
     if (richEditor) {
       richEditor.addEventListener('paste', (e) => {
         e.preventDefault();
@@ -482,15 +713,25 @@ class PageBuilder {
 
         // Insert as plain text
         document.execCommand('insertText', false, text);
+        saveSelection();
       });
+
+      richEditor.addEventListener('keyup', saveSelection);
+      richEditor.addEventListener('mouseup', saveSelection);
+      richEditor.addEventListener('blur', saveSelection);
     }
 
     const formatSelect = document.getElementById('formatBlock');
     if (formatSelect) {
       formatSelect.addEventListener('change', () => {
         if (formatSelect.value) {
+          if (richEditor) {
+            richEditor.focus();
+            restoreSelection();
+          }
           document.execCommand('formatBlock', false, formatSelect.value);
           formatSelect.value = '';
+          saveSelection();
         }
       });
     }
@@ -499,8 +740,13 @@ class PageBuilder {
     if (alignSelect) {
       alignSelect.addEventListener('change', () => {
         if (alignSelect.value) {
+          if (richEditor) {
+            richEditor.focus();
+            restoreSelection();
+          }
           document.execCommand(alignSelect.value, false, null);
           alignSelect.value = '';
+          saveSelection();
         }
       });
     }
@@ -509,6 +755,9 @@ class PageBuilder {
     const applyBtn = document.querySelector('.builder-apply-btn');
     if (applyBtn) {
       applyBtn.addEventListener('click', () => {
+        this.pushSnapshot(this.pendingPartSnapshot);
+        this.pendingPartSnapshot = null;
+
         let newValue = '';
 
         if (editorType === 'rich') {
@@ -538,6 +787,23 @@ class PageBuilder {
         this.renderPreview();
         this.saveToLocalStorage();
         this.selectBlock(block.id);
+      });
+    }
+
+    const inputEditor = document.getElementById('plainEditor') || document.getElementById('codeEditor') || document.getElementById('titleEditor');
+    const editorForShortcuts = richEditor || inputEditor;
+    if (editorForShortcuts && applyBtn) {
+      editorForShortcuts.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          e.preventDefault();
+          applyBtn.click();
+          return;
+        }
+
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          this.selectBlock(block.id);
+        }
       });
     }
   }
@@ -607,6 +873,10 @@ class PageBuilder {
     }
   }
 
+  getLegalFooterHTML() {
+    return 'Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>';
+  }
+
   generatePreviewHTML() {
     let html = '<div class="container">';
     html += `<h1>${this.escapeHtml(this.meta.h1Title)}</h1>`;
@@ -627,7 +897,7 @@ class PageBuilder {
       </div>`;
     });
 
-    html += '</div>';
+    html += `</div><footer class="legal-disclaimer">${this.getLegalFooterHTML()}</footer>`;
     return html;
   }
 
@@ -656,11 +926,11 @@ class PageBuilder {
       case 'video':
         const videoId = this.extractYouTubeId(properties.videoId);
         if (!videoId) {
-          return `<div class="builder-video-placeholder" data-editable-part="video">
+          return `<div class="builder-video-placeholder">
             <p>Enter YouTube ID in properties panel →</p>
           </div>`;
         }
-        return `<div class="card card-desc"><div class="responsive-video" data-editable-part="video">
+        return `<div class="card card-desc"><div class="responsive-video">
           <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1"
             title="${this.escapeHtml(properties.title)}" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -685,6 +955,7 @@ class PageBuilder {
   }
 
   deleteBlock(blockId) {
+    this.pushSnapshot(this.serializeState());
     this.blocks = this.blocks.filter(b => b.id !== blockId);
     if (this.selectedBlockId === blockId) {
       this.selectedBlockId = null;
@@ -698,6 +969,7 @@ class PageBuilder {
   moveBlockUp(blockId) {
     const idx = this.blocks.findIndex(b => b.id === blockId);
     if (idx > 0) {
+      this.pushSnapshot(this.serializeState());
       [this.blocks[idx], this.blocks[idx - 1]] = [this.blocks[idx - 1], this.blocks[idx]];
       this.renderPreview();
       this.saveToLocalStorage();
@@ -707,6 +979,7 @@ class PageBuilder {
   moveBlockDown(blockId) {
     const idx = this.blocks.findIndex(b => b.id === blockId);
     if (idx < this.blocks.length - 1) {
+      this.pushSnapshot(this.serializeState());
       [this.blocks[idx], this.blocks[idx + 1]] = [this.blocks[idx + 1], this.blocks[idx]];
       this.renderPreview();
       this.saveToLocalStorage();
@@ -716,6 +989,7 @@ class PageBuilder {
   showClearConfirmation() {
     if (this.blocks.length === 0) return;
     if (confirm('Delete all blocks?')) {
+      this.pushSnapshot(this.serializeState());
       this.blocks = [];
       this.selectedBlockId = null;
       this.selectedPart = null;
@@ -800,7 +1074,7 @@ class PageBuilder {
 
     html += `
   </div>
-  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
+  <footer class="legal-disclaimer">${this.getLegalFooterHTML()}</footer>
   <script src="navigation.js?v=3"></script>
 </body>
 </html>`;

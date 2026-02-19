@@ -179,6 +179,16 @@
   border-color: var(--muted);
 }
 
+#backBtn {
+  min-width: 72px;
+  font-weight: 600;
+}
+
+.builder-canvas-header .builder-toolbar-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .builder-toolbar-btn-primary {
   background: var(--primary);
   border-color: var(--primary);
@@ -229,7 +239,11 @@
 }
 
 .builder-preview .container {
-  padding: 1.5em;
+  padding: 40px 24px 48px;
+}
+
+.builder-preview h1 {
+  text-wrap: balance;
 }
 
 /* Summary (Header Description) */
@@ -339,6 +353,12 @@
 .builder-properties-form {
   display: grid;
   gap: 1em;
+}
+
+.builder-panel-back {
+  justify-self: start;
+  font-size: 0.82em;
+  padding: 0.45em 0.7em;
 }
 
 .builder-block-type-header {

@@ -59,6 +59,9 @@
     const existingButton = document.querySelector('.theme-toggle');
 
     if (existingButton) {
+      if (existingButton.getAttribute('data-theme-initialized') === 'true') {
+        return;
+      }
       // Mark as initialized to prevent duplicate handlers
       existingButton.setAttribute('data-theme-initialized', 'true');
       // Attach click handler to existing button
@@ -70,6 +73,7 @@
     // Create button if it doesn't exist
     const button = document.createElement('button');
     button.className = 'theme-toggle';
+    button.setAttribute('data-theme-initialized', 'true');
     button.setAttribute('aria-label', 'Toggle theme');
     button.setAttribute('title', 'Toggle theme');
 
@@ -96,6 +100,11 @@
 
   // Add scroll behavior for progressive disclosure
   function attachScrollBehavior(button) {
+    if (button.getAttribute('data-theme-scroll-bound') === 'true') {
+      return;
+    }
+    button.setAttribute('data-theme-scroll-bound', 'true');
+
     let isScrolled = false;
 
     const handleScroll = () => {
