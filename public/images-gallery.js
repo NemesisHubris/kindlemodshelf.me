@@ -205,7 +205,7 @@ fetch('/images.json')
     loadMoreImages(IMAGES_PER_LOAD);
 
     const searchBar = document.getElementById('search-bar');
-    searchBar.addEventListener('input', handleSearchInput);
+    if (searchBar) searchBar.addEventListener('input', handleSearchInput);
   })
   .catch(error => {
     console.error('Error loading gallery:', error);

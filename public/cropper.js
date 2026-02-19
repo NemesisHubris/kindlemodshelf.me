@@ -169,8 +169,8 @@ function openCropper(imageSrc) {
   };
 
   cropperState.img.onerror = () => {
-    closeCropper();
     showToast('Could not load image');
+    setTimeout(() => closeCropper(), 2000);
   };
 }
 

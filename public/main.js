@@ -541,8 +541,10 @@ document.addEventListener('keydown', (e) => {
       });
       
       // Update label
-      const toggleBtnSpan = filterToggleBtn.querySelector('span');
-      if (toggleBtnSpan) toggleBtnSpan.textContent = "All Categories";
+      if (filterToggleBtn) {
+        const toggleBtnSpan = filterToggleBtn.querySelector('span');
+        if (toggleBtnSpan) toggleBtnSpan.textContent = "All Categories";
+      }
       
       changed = true;
     }
