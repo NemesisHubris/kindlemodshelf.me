@@ -47,14 +47,28 @@
 
 
 * { box-sizing: border-box; }
-html, body { margin:0; padding:0; height:100%; font-family: 'Inter', system-ui, -apple-system, sans-serif; color:var(--ink); }
-body { display:flex; min-height:100vh; background:var(--bg); flex-direction: column; }
+html, body {
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  overscroll-behavior:none;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color:var(--ink);
+}
+body {
+  display:flex;
+  height:100vh;
+  background:var(--bg);
+  flex-direction: column;
+}
 
 /* Page Wrapper */
-.page-wrapper { display:flex; flex:1; min-width:0; }
+.page-wrapper { display:flex; flex:1; min-width:0; min-height:0; overflow:hidden; }
 
 /* Layout */
-#sidebar { width:250px; min-width:200px; background:var(--card); border-right:1px solid var(--line); display:flex; flex-direction:column; box-shadow: var(--shadow-sm); z-index: 2; }
+#sidebar { width:250px; min-width:200px; min-height:0; background:var(--card); border-right:1px solid var(--line); display:flex; flex-direction:column; box-shadow: var(--shadow-sm); z-index: 2; }
 #topbar { height:56px; display:flex; align-items:center; justify-content:space-between; padding:0 14px; border-bottom:1px solid var(--line); background:var(--panel); position:sticky; top:0; z-index:5; box-shadow: var(--shadow-sm); }
 #topbar .title { font-weight:700; color:var(--ink); letter-spacing:.2px; }
 #topbar .actions { display:flex; gap:8px; }
@@ -80,11 +94,11 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 .deckFoot { padding:10px; border-top:1px solid var(--line); background: var(--panel); }
 
 /* Main */
-#main { flex:1; display:grid; grid-template-columns: 1fr 1fr; gap:0; min-width:0; }
-#cardsPane { display:flex; flex-direction:column; min-width:0; box-shadow: var(--shadow-sm); z-index: 1; background: var(--bg); }
+#main { flex:1; display:grid; grid-template-columns: 1fr 1fr; gap:0; min-width:0; min-height:0; overflow:hidden; }
+#cardsPane { display:flex; flex-direction:column; min-width:0; min-height:0; overflow:hidden; box-shadow: var(--shadow-sm); z-index: 1; background: var(--bg); }
 #cardsBar { height:56px; display:flex; align-items:center; gap:10px; padding:0 16px; border-bottom:1px solid var(--line); background:var(--card); position:sticky; top:0; z-index:4; box-shadow: var(--shadow-sm); }
 #cardsBar .levelTitle { font-weight:800; color:var(--ink); letter-spacing:.2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-#cardsList { flex:1; overflow:auto; padding:10px; scroll-behavior: smooth; }
+#cardsList { flex:1; overflow:auto; padding:10px; scroll-behavior: smooth; overscroll-behavior: contain; }
 .row { display:grid; grid-template-columns: 30px 30px 1.2fr 1.6fr .8fr .6fr; gap:10px; align-items:center; padding:12px; margin:8px 0; background:var(--card); border:1px solid var(--line); border-radius:10px; transition: var(--transition); box-shadow: var(--shadow-sm); }
 .row:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .row.selected { outline:2px solid var(--accent); background: var(--panel); }
@@ -95,11 +109,11 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
 #cardsFoot { padding:12px 16px; border-top:1px solid var(--line); background:var(--card); }
 
 /* Preview */
-#previewPane { border-left:1px solid var(--line); background:var(--bg); display:flex; flex-direction:column; min-width:0; overflow:hidden; box-shadow: var(--shadow-sm) inset; }
+#previewPane { border-left:1px solid var(--line); background:var(--bg); display:flex; flex-direction:column; min-width:0; min-height:0; overflow:hidden; box-shadow: var(--shadow-sm) inset; }
 #previewBar { height:56px; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:0 14px; border-bottom:1px solid var(--line); background:var(--panel); position:sticky; top:0; z-index:4; box-shadow: var(--shadow-sm); }
 #deviceSel { padding:6px 10px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--ink); box-shadow: var(--shadow-sm); transition: var(--transition); }
 #deviceSel:hover, #deviceSel:focus { border-color: var(--accent); outline: none; box-shadow: 0 1px 4px rgba(66, 103, 217, 0.2); }
-#previewHost { flex:1; display:flex; align-items:flex-start; justify-content:center; padding:20px; overflow:auto; }
+#previewHost { flex:1; display:flex; align-items:flex-start; justify-content:center; padding:20px; overflow:auto; overscroll-behavior: contain; }
 #previewHost #device { position: sticky; top: 20px; }
 
 /* Kindle Device Styles */
@@ -720,6 +734,15 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
   align-items: center;
   gap: 6px;
 }
+
+/* Keep editor isolated from global nav widgets */
+#backToTop,
+.back-to-top-btn,
+.back-home-btn,
+.reading-progress-bar,
+.theme-toggle {
+  display: none !important;
+}
 </style>
   <!-- Libraries for APKG import -->
   <script
@@ -866,7 +889,7 @@ button:hover { background:var(--panel); transform: translateY(-1px); box-shadow:
     <div class="menuDivider"></div>
     <div id="toolButtons" class="menuSection">
       <button id="starredFilterBtn">★ Star</button>
-      <button id="reverseToggleBtn">↔ Flip</button>
+      <button id="reverseToggleBtn">Flip</button>
     </div>
   </div>
 </div>
@@ -2457,5 +2480,5 @@ function checkAndUpdateAPKGSupport() {
 
 </script>
 
-<script src="navigation.js?v=3"></script></body>
+</body>
 </html>
