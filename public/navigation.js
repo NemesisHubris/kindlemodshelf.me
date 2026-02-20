@@ -11,8 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const backBtn = document.createElement('a');
     backBtn.href = 'index.html';
     backBtn.className = 'back-home-btn';
-    backBtn.setAttribute('aria-label', 'Back to Home');
-    backBtn.innerHTML = '← Back to Home';
+    backBtn.setAttribute('aria-label', 'Back');
+    backBtn.innerHTML = '← Back';
+
+    backBtn.addEventListener('click', (e) => {
+      const sameOriginReferrer = document.referrer && document.referrer.startsWith(window.location.origin);
+      if (sameOriginReferrer && window.history.length > 1) {
+        e.preventDefault();
+        window.history.back();
+      }
+    });
     
     // Prepend to container
     if (container.firstChild) {
@@ -25,18 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Scroll Logic for Back Button
   const backBtn = document.querySelector('.back-home-btn');
   if (backBtn) {
-    const fullText = backBtn.innerHTML;
-    // SVG for Left Arrow
-    const iconHtml = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>';
+    backBtn.setAttribute('aria-label', 'Back');
+    const fullText = '← Back';
+    const compactText = '←';
+    if (!backBtn.dataset.lockedText) {
+      backBtn.innerHTML = fullText;
+    }
 
     window.addEventListener('scroll', () => {
       const isScrolled = window.scrollY > 100;
+      const hadScrolled = backBtn.classList.contains('scrolled');
+      backBtn.classList.toggle('scrolled', isScrolled);
 
-      if (isScrolled && !backBtn.classList.contains('scrolled')) {
-        backBtn.classList.add('scrolled');
-        backBtn.innerHTML = iconHtml;
-      } else if (!isScrolled && backBtn.classList.contains('scrolled')) {
-        backBtn.classList.remove('scrolled');
+      if (isScrolled && !hadScrolled) {
+        backBtn.innerHTML = compactText;
+      } else if (!isScrolled && hadScrolled) {
         backBtn.innerHTML = fullText;
       }
     }, { passive: true });

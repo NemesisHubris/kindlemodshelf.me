@@ -579,3 +579,50 @@ ol.builder-list {
     display: none;
   }
 }
+
+/* Fluent-inspired non-destructive builder layer */
+.builder-container {
+  border-top-width: 2px;
+}
+
+.builder-sidebar,
+.builder-sidebar-right,
+.builder-canvas-header,
+.builder-preview,
+.builder-add-block,
+.builder-canvas-header .builder-toolbar-btn,
+.builder-editor,
+.builder-editor-toolbar,
+.builder-toolbar-select,
+.builder-code-editor,
+.builder-title-input,
+.builder-video-placeholder {
+  border-width: 2px;
+  box-shadow: none;
+}
+
+.builder-section h3,
+.builder-canvas-header h2,
+.builder-block-type-header {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.builder-add-block:hover,
+.builder-canvas-header .builder-toolbar-btn:hover,
+.builder-block-control-btn:hover,
+.builder-editor-toolbar .builder-toolbar-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: -2px -2px 0 var(--card-border);
+}
+
+.builder-block-wrapper.selected {
+  background: transparent;
+  border-width: 2px;
+}
+
+.builder-help-text {
+  border-left-width: 4px;
+  background: var(--filter-bg);
+}

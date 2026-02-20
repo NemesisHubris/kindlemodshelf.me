@@ -46,7 +46,7 @@
       transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Libre Baskerville', Georgia, serif;
     }
 
     #subscribeForm button[type="submit"]:hover {
@@ -68,18 +68,18 @@
   </style>
   <script src="theme-toggle.js?v=3"></script>
 </head>
-<body>
+<body class="page-subscribe">
   <div class="container">
     <div class="card">
-      <div class="card-title" style="text-align:center;">Subscribe for Updates</div>
-      <div class="card-desc" style="text-align:center; margin-bottom: 18px;">
+      <div class="card-title subscribe-title">Subscribe for Updates</div>
+      <div class="card-desc subscribe-desc">
         Get the latest Kindle modding tools, jailbreak guides, and screensaver images right in your inbox.
       </div>
-      <form id="subscribeForm" style="margin-bottom: 0;">
+      <form id="subscribeForm" class="subscribe-form">
         <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address">
         <button type="submit">Subscribe</button>
       </form>
-      <div id="thankYouMessage" style="display:none; text-align:center; margin-top:20px;">
+      <div id="thankYouMessage" class="subscribe-thanks" style="display:none;">
         <p>Thanks for subscribing! You'll receive updates about new Kindle mods and tools.</p>
       </div>
     </div>
