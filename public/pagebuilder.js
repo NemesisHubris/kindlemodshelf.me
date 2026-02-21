@@ -257,6 +257,25 @@ class PageBuilder {
         this.deselectAll();
       }
     });
+
+    document.addEventListener('keydown', (e) => {
+      if (!((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'z')) {
+        return;
+      }
+
+      const active = document.activeElement;
+      const isTypingField = active && (
+        active.tagName === 'INPUT' ||
+        active.tagName === 'TEXTAREA' ||
+        active.tagName === 'SELECT' ||
+        active.isContentEditable
+      );
+
+      if (isTypingField) return;
+
+      e.preventDefault();
+      this.undoLastEdit();
+    });
   }
 
   shouldEditPartInline(block, part) {

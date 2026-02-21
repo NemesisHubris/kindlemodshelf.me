@@ -2,12 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Determine if we are on the home page or excluded pages
   const path = window.location.pathname;
   const isHome = path === '/' || path.endsWith('/index.html') || path.endsWith('/kindlemodshelf.me/') || path === '/kindlemodshelf.me';
-  const isExcluded = path.endsWith('editor.html') || path.endsWith('pagebuilder.html');
+  const isEditorPage = path.endsWith('editor.html');
+  const isPageBuilder = path.endsWith('pagebuilder.html');
+  const isExcluded = isEditorPage || isPageBuilder;
+  const isBackButtonExcluded = isEditorPage;
   
   const container = document.querySelector('.container') || document.body;
 
   // 1. Inject Back Button (if not home, not excluded, and not already present)
-  if (!isHome && !isExcluded && !document.querySelector('.back-home-btn')) {
+  if (!isHome && !isBackButtonExcluded && !document.querySelector('.back-home-btn')) {
     const backBtn = document.createElement('a');
     backBtn.href = 'index.html';
     backBtn.className = 'back-home-btn';
