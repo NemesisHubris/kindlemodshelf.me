@@ -614,8 +614,8 @@ class PageBuilder {
             <button type="button" class="builder-toolbar-btn" data-cmd="insertOrderedList" title="Numbered List">1.</button>
           </div>
           <div class="builder-toolbar-group">
-            <button type="button" class="builder-toolbar-btn" data-cmd="createLink" title="Insert Link">🔗</button>
-            <button type="button" class="builder-toolbar-btn" data-cmd="unlink" title="Remove Link">⛓</button>
+            <button type="button" class="builder-toolbar-btn" data-cmd="createLink" title="Insert Link">Link</button>
+            <button type="button" class="builder-toolbar-btn" data-cmd="unlink" title="Remove Link">Unlink</button>
           </div>
           <select class="builder-toolbar-select" id="textAlign">
             <option value="">Align</option>

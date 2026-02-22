@@ -866,7 +866,7 @@ li {
 }
 
 .card-links a.card-open::before {
-  content: "↗";
+  content: "\2197\FE0E";
   font-size: 1.1em;
   font-weight: 600;
 }

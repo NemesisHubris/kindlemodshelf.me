@@ -1584,7 +1584,7 @@ function renderDecks() {
   
   if (!levels.length) {
     ul.appendChild(el('li', { className: 'empty' }, [
-      el('div', { className: 'empty-icon' }, '📚'),
+      el('div', { className: 'empty-icon' }, ''),
       el('div', {}, 'No decks yet. Import a file or add a deck to begin.')
     ]));
     return;
@@ -1652,7 +1652,7 @@ function renderCards() {
 
   if (!selectedLevel) {
     list.appendChild(el('div', {className:'empty'}, [
-      el('div', { className: 'empty-icon' }, '📝'),
+      el('div', { className: 'empty-icon' }, ''),
       el('div', {}, 'Import a file or add a deck to begin.')
     ]));
     updateStatusBar();
@@ -1663,7 +1663,7 @@ function renderCards() {
 
   if (!cards.length) {
     list.appendChild(el('div', {className:'empty'}, [
-      el('div', { className: 'empty-icon' }, '✨'),
+      el('div', { className: 'empty-icon' }, ''),
       el('div', {}, 'No cards yet — add your first card.')
     ]));
     updateStatusBar();
@@ -1676,7 +1676,7 @@ function renderCards() {
 
   if (filteredIndices.length === 0 && searchQuery) {
     list.appendChild(el('div', {className:'empty'}, [
-      el('div', { className: 'empty-icon' }, '🔍'),
+      el('div', { className: 'empty-icon' }, ''),
       el('div', {}, `No cards match "${searchQuery}"`)
     ]));
     updateStatusBar();
