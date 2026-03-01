@@ -1232,6 +1232,14 @@ pre code {
   overflow: hidden;
   cursor: grab;
   min-width: 0;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+#cropper-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .cropper-canvas-wrapper:active {
@@ -1433,6 +1441,7 @@ input[type=range]::-moz-range-track {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Cropper Toast */

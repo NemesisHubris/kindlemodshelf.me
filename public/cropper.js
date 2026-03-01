@@ -227,6 +227,9 @@ function handleCustomDims() {
 function initCanvas() {
   const canvas = document.getElementById('cropper-canvas');
   const wrapper = document.getElementById('cropper-wrapper');
+
+  canvas.style.touchAction = 'none';
+  wrapper.style.touchAction = 'none';
   
   // Initial size
   canvas.width = wrapper.clientWidth;
@@ -260,8 +263,9 @@ function initCanvas() {
     
     // Touch Events
     canvas.addEventListener('touchstart', handleTouchStart, {passive: false});
-    canvas.addEventListener('touchmove', handleTouchMove, {passive: false});
-    canvas.addEventListener('touchend', endDrag);
+    window.addEventListener('touchmove', handleTouchMove, {passive: false});
+    window.addEventListener('touchend', handleTouchEnd, {passive: false});
+    window.addEventListener('touchcancel', handleTouchEnd, {passive: false});
   }
 }
 
@@ -413,6 +417,8 @@ function draw() {
 
 // Interaction Handlers
 function startDrag(e) {
+  if (typeof e.button === 'number' && e.button !== 0) return;
+  e.preventDefault();
   cropperState.isDragging = true;
   cropperState.lastMouseX = e.clientX;
   cropperState.lastMouseY = e.clientY;
@@ -444,6 +450,7 @@ function endDrag() {
 }
 
 function handleTouchStart(e) {
+  e.preventDefault();
   if (e.touches.length === 1) {
     cropperState.isDragging = true;
     cropperState.lastMouseX = e.touches[0].clientX;
@@ -455,8 +462,10 @@ function handleTouchStart(e) {
 }
 
 function handleTouchMove(e) {
+  if (!cropperState.isDragging) return;
+  e.preventDefault();
+
   if (e.touches.length === 1 && cropperState.isDragging) {
-    e.preventDefault();
     const dx = e.touches[0].clientX - cropperState.lastMouseX;
     const dy = e.touches[0].clientY - cropperState.lastMouseY;
     
@@ -468,7 +477,17 @@ function handleTouchMove(e) {
     cropperState.lastMouseX = e.touches[0].clientX;
     cropperState.lastMouseY = e.touches[0].clientY;
     draw();
+    return;
   }
+
+  if (e.touches.length !== 1) {
+    cropperState.isDragging = false;
+  }
+}
+
+function handleTouchEnd(e) {
+  if (e.touches && e.touches.length > 0) return;
+  endDrag();
 }
 
 // Export

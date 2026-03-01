@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RAnki - Minimal Anki Reviewer for Kindle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RAnki is a minimal flashcard reviewer for Kindle e-readers that uses the real Anki backend. Login, sync decks, and review cards directly on-device.">
+  <link rel="canonical" href="https://kindlemodshelf.me/ranki.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="RAnki - Minimal Anki Reviewer for Kindle">
+  <meta property="og:description" content="Minimal Kindle flashcard reviewer powered by the real Anki backend. Sync decks, review cards, and bury cards.">
+  <meta property="og:url" content="https://kindlemodshelf.me/ranki.html">
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>RAnki</h1>
+
+    <div class="summary">
+      <b>RAnki</b> is a minimal flashcard reviewer for Kindle e-readers, powered by the real Anki backend.
+    </div>
+
+    <div class="legal-warning" role="alert" style="text-align: center;">
+      <strong>Beta warning:</strong> Experimental software. Back up your Anki data before use.
+    </div>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/crazy-electron/ranki/releases" target="_blank" rel="noopener">Download RAnki</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Current Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Login support that stores an auth token only (never your password)</li>
+          <li>Deck sync with Anki backend</li>
+          <li>Media download from synced decks</li>
+          <li>Card review flow on Kindle</li>
+          <li>Bury cards while reviewing</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download <code>ranki.zip</code> from the releases page and unzip it.</li>
+          <li>Copy the extracted files to <code>/mnt/us/extensions</code> like any other KUAL extension.</li>
+          <li>Launch RAnki from KUAL.</li>
+          <li>Optional: copy <code>shortcut_ranki.sh</code> to <code>/mnt/us/documents</code> so it also shows in your Kindle library.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="warnings">
+      <h2 class="section-title" id="warnings">Important Warnings</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Sync downloads all media linked to your decks.</li>
+          <li>If your decks contain large image or audio sets, check media size first.</li>
+          <li>This is experimental software and behavior may change between releases.</li>
+          <li>Always keep external backups of your Anki collection and media.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="notes">
+      <h2 class="section-title" id="notes">Notes</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Technical details and project notes: <a href="https://github.com/crazy-electron/ranki" target="_blank" rel="noopener">github.com/crazy-electron/ranki</a></li>
+          <li>Audio support has not been tested yet.</li>
+          <li>Only normal/basic card types were tested.</li>
+          <li>Image Occlusion cards are not supported.</li>
+          <li>Kindle WebKit is old, so advanced CSS/layout-heavy card templates may render incorrectly.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credit</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/crazy-electron" target="_blank" rel="noopener">crazy-electron</a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>

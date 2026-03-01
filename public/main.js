@@ -52,7 +52,8 @@ const categoryFilterConfig = {
   resources: (primaryTags) => primaryTags.includes('Resource'),
   dev: (primaryTags, tagTokens) => primaryTags.includes('Dev') || tagTokens.includes('dev'),
   guides: (primaryTags, tagTokens) => primaryTags.includes('Guide') || tagTokens.includes('guide'),
-  experimental: (primaryTags) => primaryTags.includes('Experimental'),
+  beta: (primaryTags) => primaryTags.includes('Experimental') || primaryTags.includes('Beta'),
+  experimental: (primaryTags) => primaryTags.includes('Experimental') || primaryTags.includes('Beta'),
   'other-koreader': (primaryTags, tagTokens) =>
     tagTokens.includes('koreader') && !primaryTags.includes('Plugin') && !primaryTags.includes('Patch')
 };
@@ -506,7 +507,8 @@ if (query && searchBar) {
 // Deep Linking for Categories
 const categoryParam = urlParams.get('category');
 if (categoryParam) {
-  const targetBtn = categoryButtons.find(btn => btn.dataset.category === categoryParam);
+  const normalizedCategory = categoryParam === 'experimental' ? 'beta' : categoryParam;
+  const targetBtn = categoryButtons.find(btn => btn.dataset.category === normalizedCategory);
   if (targetBtn) {
     // We simulate a click to reuse the existing toggle/all logic
     targetBtn.click();
