@@ -1,10 +1,4 @@
 {
-  "trashcatt": [
-    "scottPilgrimDoorBlackFixed.png",
-    "scottPilgrimDoorTransparentFixed.png",
-    "scottPilgrimSnowBlack.png",
-    "scottPilgrimSnowTransparent.png"
-  ],
   "216321": [
     "bg_ss00-47995.png"
   ],
@@ -1452,6 +1446,12 @@
   ],
   "trash.gremlin": [
     "gooose-C64B3.png"
+  ],
+  "trashcatt": [
+    "scottPilgrimDoorBlackFixed.png",
+    "scottPilgrimDoorTransparentFixed.png",
+    "scottPilgrimSnowBlack.png",
+    "scottPilgrimSnowTransparent.png"
   ],
   "troublehelix": [
     "81Qol3G-4C800.png",
