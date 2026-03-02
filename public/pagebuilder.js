@@ -197,7 +197,10 @@ class PageBuilder {
     });
 
     // Toolbar buttons
-    document.getElementById('backBtn').addEventListener('click', () => this.undoLastEdit());
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+      backBtn.addEventListener('click', () => this.undoLastEdit());
+    }
     document.getElementById('exportBtn').addEventListener('click', () => this.exportHTML());
     document.getElementById('clearAllBtn').addEventListener('click', () => this.showClearConfirmation());
     document.getElementById('clearStorageBtn').addEventListener('click', () => this.clearLocalStorage());
@@ -473,13 +476,13 @@ class PageBuilder {
     panel.classList.remove('builder-properties-empty');
 
     let content = '';
-    let editorType = 'rich'; // rich, plain, or title
+    let editorType = 'rich'; // rich, plain, code, or title
 
     if (part.startsWith('item-')) {
       const itemId = parseInt(part.split('-')[1]);
       const item = block.properties.items?.find(i => i.id === itemId);
       content = item?.content || '';
-      editorType = 'list-item';
+      editorType = 'rich';
     } else if (part === 'title') {
       content = block.properties.title || '';
       editorType = block.type === 'section' ? 'rich' : 'title';
@@ -494,17 +497,13 @@ class PageBuilder {
       }
     }
 
-    const blockTypeLabel = this.getBlockTypeLabel(block.type);
     let html = `<div class="builder-properties-form">
-      <button type="button" class="builder-secondary-btn builder-panel-back">Back to ${blockTypeLabel}</button>
       <div class="builder-part-header">${this.getPartLabel(part, block.type)}</div>`;
 
     if (editorType === 'rich') {
       html += this.getRichEditor(content);
     } else if (editorType === 'code') {
       html += `<textarea id="codeEditor" class="builder-code-editor">${this.escapeHtml(content)}</textarea>`;
-    } else if (editorType === 'list-item') {
-      html += `<textarea id="plainEditor" class="builder-code-editor" rows="6">${this.escapeHtml(content)}</textarea>`;
     } else if (editorType === 'title') {
       html += `<input type="text" id="titleEditor" class="builder-title-input" value="${this.escapeHtml(content)}">`;
     } else {
@@ -514,15 +513,6 @@ class PageBuilder {
     html += `<button type="button" class="builder-apply-btn">Apply</button></div>`;
     panel.innerHTML = html;
     this.pendingPartSnapshot = this.serializeState();
-
-    const panelBackBtn = panel.querySelector('.builder-panel-back');
-    if (panelBackBtn) {
-      panelBackBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        this.selectBlock(blockId);
-      });
-    }
 
     this.setupPartEditorHandlers(block, part, editorType);
 
@@ -581,20 +571,6 @@ class PageBuilder {
     return 'Edit';
   }
 
-  getBlockTypeLabel(blockType) {
-    const names = {
-      summary: 'Summary',
-      section: 'Section',
-      list: 'List',
-      text: 'Text',
-      video: 'Video',
-      code: 'Code',
-      banner: 'Banner',
-      credit: 'Credit'
-    };
-    return names[blockType] || 'Block';
-  }
-
   getRichEditor(content) {
     return `
       <div class="builder-editor">
@@ -614,8 +590,8 @@ class PageBuilder {
             <button type="button" class="builder-toolbar-btn" data-cmd="insertOrderedList" title="Numbered List">1.</button>
           </div>
           <div class="builder-toolbar-group">
-            <button type="button" class="builder-toolbar-btn" data-cmd="createLink" title="Insert Link">Link</button>
-            <button type="button" class="builder-toolbar-btn" data-cmd="unlink" title="Remove Link">Unlink</button>
+            <button type="button" class="builder-toolbar-btn" data-cmd="createLink" title="Insert Link">&#128279;</button>
+            <button type="button" class="builder-toolbar-btn" data-cmd="unlink" title="Remove Link">&#10006;</button>
           </div>
           <select class="builder-toolbar-select" id="textAlign">
             <option value="">Align</option>
@@ -695,32 +671,32 @@ class PageBuilder {
       sel.addRange(savedRange);
     };
 
-    // Rich editor toolbar
-    document.querySelectorAll('.builder-toolbar-btn').forEach(btn => {
-      btn.addEventListener('mousedown', (e) => {
-        // Keep focus/selection in editor while using toolbar
-        e.preventDefault();
-      });
+    // Rich editor toolbar (scope to editor toolbar only)
+    if (richEditor) {
+      document.querySelectorAll('#propertiesPanel .builder-editor-toolbar .builder-toolbar-btn').forEach(btn => {
+        btn.addEventListener('mousedown', (e) => {
+          // Keep focus/selection in editor while using toolbar
+          e.preventDefault();
+        });
 
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
 
-        if (richEditor) {
           richEditor.focus();
           restoreSelection();
-        }
 
-        const cmd = btn.dataset.cmd;
-        if (cmd === 'createLink') {
-          const url = prompt('Enter URL:', 'https://');
-          if (url) document.execCommand('createLink', false, url);
-        } else {
-          document.execCommand(cmd, false, null);
-        }
+          const cmd = btn.dataset.cmd;
+          if (cmd === 'createLink') {
+            const url = prompt('Enter URL:', 'https://');
+            if (url) document.execCommand('createLink', false, url);
+          } else {
+            document.execCommand(cmd, false, null);
+          }
 
-        saveSelection();
+          saveSelection();
+        });
       });
-    });
+    }
 
     // Handle paste events to strip formatting
     if (richEditor) {
@@ -935,7 +911,7 @@ class PageBuilder {
       case 'list':
         const tag = properties.listType || 'ul';
         const items = (properties.items || []).map(item =>
-          `<li class="builder-list-item-editable" data-item-id="${item.id}">${this.escapeHtml(item.content)}</li>`
+          `<li class="builder-list-item-editable" data-item-id="${item.id}">${item.content}</li>`
         ).join('');
         return `<div class="card card-desc"><${tag} class="builder-list" data-editable-part="list">${items}</${tag}></div>`;
 
@@ -1119,7 +1095,7 @@ class PageBuilder {
 
       case 'list':
         const tag = properties.listType || 'ul';
-        const items = (properties.items || []).map(i => `<li>${this.escapeHtml(i.content)}</li>`).join('\n        ');
+        const items = (properties.items || []).map(i => `<li>${i.content}</li>`).join('\n        ');
         return `<div class="card card-desc">\n      <${tag}>\n        ${items}\n      </${tag}>\n    </div>`;
 
       case 'text':
@@ -1149,8 +1125,12 @@ class PageBuilder {
   }
 
   getExportFilename() {
-    const slug = this.meta.h1Title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').substring(0, 50);
-    return slug ? `${slug}.html` : 'page.html';
+    const compact = this.meta.h1Title
+      .toLowerCase()
+      .replace(/\s+/g, '')
+      .replace(/[^a-z0-9]/g, '')
+      .substring(0, 50);
+    return compact ? `${compact}.html` : 'page.html';
   }
 
   extractYouTubeId(input) {

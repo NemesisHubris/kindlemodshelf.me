@@ -355,12 +355,6 @@
   gap: 1em;
 }
 
-.builder-panel-back {
-  justify-self: start;
-  font-size: 0.82em;
-  padding: 0.45em 0.7em;
-}
-
 .builder-block-type-header {
   font-size: 1em;
   font-weight: 700;
