@@ -122,6 +122,49 @@
       </div>
     </section>
 
+    <section aria-labelledby="fakereg-header">
+      <h2 class="section-title" id="fakereg-header">Fake Registration</h2>
+      <div class="card card-desc">
+        <p>Spoof Kindle registration info locally so you can use your Kindle without an Amazon account and without nagging pop-ups.</p>
+        <p><strong>Download:</strong> <a href="downloads/fakereg.sh" download>fakereg.sh</a></p>
+        <p><strong>Features:</strong></p>
+        <ul>
+          <li>Writes fake registration info to your Kindle locally.</li>
+          <li>Blocks Amazon's registration server via the hosts file.</li>
+          <li>Prevents content deletion on deregistration.</li>
+          <li>No Amazon account required after running.</li>
+          <li>Runs as a KUAL booklet.</li>
+        </ul>
+        <p><strong>Requirements:</strong></p>
+        <ul>
+          <li>Jailbroken Kindle</li>
+          <li><a href="kual.html">KUAL</a> installed</li>
+        </ul>
+        <p><strong>Installation:</strong></p>
+        <ol>
+          <li>Download <code>fakereg.sh</code> from the link above.</li>
+          <li>Copy it to the <code>Documents</code> folder on your Kindle.</li>
+          <li>Open the booklet from your Kindle library.</li>
+          <li>You will see a lot of text output; this is normal and means it is working.</li>
+          <li>Your Kindle will reboot automatically when done.</li>
+        </ol>
+        <p><strong>Usage:</strong> Run the booklet once. After the reboot your Kindle will show as registered locally and Amazon registration pop-ups will no longer appear.</p>
+        <p><strong>Notes:</strong></p>
+        <ul>
+          <li>The fake registration info written to your device is: name <code>Myorivate</code>, device name <code>My private kindle</code>, email <code>myprivatekindle@kindle.com</code>.</li>
+          <li>These values are hardcoded in the script but can be edited before running.</li>
+          <li>The script also blocks <code>firs-ta-g7g.amazon.com</code> via <code>/etc/hosts</code> to prevent re-registration checks.</li>
+          <li>A log of the process is written to <code>/mnt/us/extensions/fakereg/bin/fake.log</code>.</li>
+          <li>Original script by GC777, adapted into a booklet scriptlet by Greetcat.</li>
+        </ul>
+        <p><strong>Credits:</strong></p>
+        <ul>
+          <li>Original script by GC777</li>
+          <li>Booklet adaptation by Greetcat</li>
+        </ul>
+      </div>
+    </section>
+
     <section aria-labelledby="easybrick-header">
       <h2 class="section-title" id="easybrick-header">EasyBrick</h2>
       <div class="card card-desc legal-warning">

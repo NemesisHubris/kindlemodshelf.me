@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kandle Downloader - Download Manga from Kindle Web Reader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Download manga from your own Amazon Kindle library through the Kindle Web Reader with Kandle Downloader.">
+  <link rel="canonical" href="https://kindlemodshelf.me/kandle-downloader.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="Kandle Downloader - Download Manga from Kindle Web Reader">
+  <meta property="og:description" content="Userscript for downloading manga you own from the Kindle Web Reader as ZIP, CBZ, or EPUB.">
+  <meta property="og:url" content="https://kindlemodshelf.me/kandle-downloader.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Kandle Downloader",
+    "operatingSystem": "Web Browser",
+    "applicationCategory": "Utility",
+    "description": "Userscript that downloads manga you own from the Amazon Kindle Web Reader and packages them as ZIP, CBZ, or EPUB.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://kindlemodshelf.me/kandle-downloader.html"
+  }
+  </script>
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Kandle Downloader</h1>
+
+    <div class="summary">
+      <p><b>Kandle Downloader</b> lets you download manga from your own Amazon Kindle library through the Kindle Web Reader.</p>
+    </div>
+
+    <h2 class="section-title">Status</h2>
+    <div class="card card-desc">
+      <p>Initial Alpha Testing Release.</p>
+    </div>
+
+    <h2 class="section-title">Download</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><a href="https://github.com/Alexia/kandle-downloader/releases/latest/download/kandle-downloader.js" target="_blank" rel="noopener">Download kandle-downloader.js</a></li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Features</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>Downloads manga from your Kindle library via <code>read.amazon.co.jp</code> and <code>read.amazon.com</code>.</li>
+        <li>Extracts high quality images from the Kindle Renderer API.</li>
+        <li>Packages downloads into ZIP, CBZ, and EPUB formats.</li>
+        <li>Works as a Tampermonkey or Greasemonkey userscript.</li>
+        <li>Full book support for text and glyphs is planned for a future release.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Requirements</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>A Tampermonkey or Greasemonkey browser extension.</li>
+        <li>An Amazon account with owned Kindle books.</li>
+        <li>Access to the Kindle Web Reader at <code>read.amazon.com</code> or <code>read.amazon.co.jp</code>.</li>
+        <li>You must own the books you wish to download, including titles marked "free to read for a limited time".</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Installation</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>Install <a href="https://www.tampermonkey.net/" target="_blank" rel="noopener">Tampermonkey</a> or Greasemonkey in your browser.</li>
+        <li>Download <a href="https://github.com/Alexia/kandle-downloader/releases/latest/download/kandle-downloader.js" target="_blank" rel="noopener">kandle-downloader.js</a>.</li>
+        <li>Open your Tampermonkey or Greasemonkey dashboard and import or drag in the <code>.js</code> file.</li>
+        <li>Navigate to <code>read.amazon.com</code> or <code>read.amazon.co.jp</code> and open a manga you own.</li>
+        <li>The downloader interface will appear, then select your desired output format and begin.</li>
+      </ol>
+    </div>
+
+    <h2 class="section-title">Usage</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>Open the Kindle Web Reader and navigate to a manga you own.</li>
+        <li>The script injects a download interface into the page.</li>
+        <li>Select your preferred format: ZIP, CBZ, or EPUB.</li>
+        <li>Start the download and let the script extract images and package them automatically.</li>
+      </ol>
+    </div>
+
+    <h2 class="section-title">Known Issues</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>If an image fails to download, the process continues and may produce an archive with missing or improperly numbered images.</li>
+        <li>RTL handling in EPUB may be incorrect and is likely a reader compatibility issue rather than a script bug.</li>
+        <li>Chapter names are present in the generated EPUB XML, but page indexes are currently incorrect.</li>
+      </ol>
+    </div>
+
+    <h2 class="section-title">Credits</h2>
+    <div class="card card-desc">
+      <p>Developed by <b><a href="https://github.com/Alexia" target="_blank" rel="noopener">Alexia</a></b>.</p>
+    </div>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>

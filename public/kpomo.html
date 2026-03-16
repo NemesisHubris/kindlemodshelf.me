@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KPomo - Pomodoro Focus Timer for Kindle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A lightweight Pomodoro focus timer for Kindle that runs entirely in the browser with no dependencies.">
+  <link rel="canonical" href="https://kindlemodshelf.me/kpomo.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="KPomo - Pomodoro Focus Timer for Kindle">
+  <meta property="og:description" content="Lightweight Kindle Pomodoro timer built with pure HTML, CSS, and vanilla JavaScript.">
+  <meta property="og:url" content="https://kindlemodshelf.me/kpomo.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "KPomo",
+    "operatingSystem": "Kindle OS",
+    "applicationCategory": "ProductivityApplication",
+    "description": "A lightweight Pomodoro timer for Kindle that runs entirely in the browser with no dependencies.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "https://kindlemodshelf.me/kpomo.html"
+  }
+  </script>
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>KPomo</h1>
+
+    <div class="summary">
+      <p><b>KPomo</b> is a lightweight Pomodoro focus timer for Kindle that runs entirely in the browser with no dependencies.</p>
+    </div>
+
+    <h2 class="section-title">Download</h2>
+    <div class="card card-desc">
+      <ul>
+        <li><a href="https://github.com/crizmo/KPomo/releases" target="_blank" rel="noopener">KPomo GitHub Releases</a></li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Features</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>25-minute work sessions with 5-minute short breaks, configurable in the UI.</li>
+        <li>Start, pause, and reset controls.</li>
+        <li>Simple countdown display tuned for Kindle screen size.</li>
+        <li>No external dependencies, just pure HTML, CSS, and vanilla JavaScript.</li>
+        <li>Installs as a Kindle booklet using the same packaging pattern as KWordle.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Requirements</h2>
+    <div class="card card-desc">
+      <ul>
+        <li>A Kindle with booklet or KUAL support.</li>
+        <li>A USB connection to your computer.</li>
+        <li>For older Kindles on firmware <code>5.6.1.1</code>, use the <code>-legacy</code> zip.</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Installation</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>Download the latest release from the <a href="https://github.com/crizmo/KPomo/releases" target="_blank" rel="noopener">KPomo GitHub releases page</a>, or build it yourself.</li>
+        <li>Connect your Kindle to your computer via USB.</li>
+        <li>Copy the entire <code>kpomo</code> folder and <code>kpomo.sh</code> file into the <code>Documents</code> folder on your Kindle.</li>
+        <li>Safely eject your Kindle.</li>
+        <li>Open the KPomo booklet from your library to launch the timer.</li>
+      </ol>
+    </div>
+
+    <h2 class="section-title">Usage</h2>
+    <div class="card card-desc">
+      <ol>
+        <li>Tap <b>Start</b> to begin a 25-minute work session.</li>
+        <li>When the session ends, tap <b>Start Break</b> to begin a 5-minute break.</li>
+        <li>Use <b>Pause</b> to pause or <b>Reset</b> to restart the current session.</li>
+        <li>Adjust work and break durations directly in the center of the UI.</li>
+      </ol>
+    </div>
+
+    <h2 class="section-title">Notes</h2>
+    <div class="card card-desc">
+      <p>Optionally disable the screensaver to keep the timer visible:</p>
+      <pre><code>lipc-set-prop com.lab126.powerd preventScreenSaver 1</code></pre>
+      <p>The timer may continue running in the background during screensaver mode, but this is not fully tested.</p>
+    </div>
+
+    <h2 class="section-title">Credits</h2>
+    <div class="card card-desc">
+      <p>Developed by <b><a href="https://github.com/crizmo" target="_blank" rel="noopener">crizmo</a></b>.</p>
+    </div>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>
