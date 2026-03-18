@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Script to generate images.json file from subdirectories.
-Scans all subdirectories for image files and creates a JSON file
-with the format: {"folder_name": ["image1.png", "image2.jpg", ...]}
+Script to generate ../images.json from author subdirectories.
+Scans all direct subdirectories in public/images/ for image files and creates
+the gallery index with the format:
+{"author_name": ["image1.png", "image2.jpg", ...]}
 """
 
-import os
 import json
 from pathlib import Path
 
@@ -16,16 +16,25 @@ def is_image_file(filename):
     """Check if a file is an image based on its extension."""
     return Path(filename).suffix.lower() in IMAGE_EXTENSIONS
 
-def scan_subdirectories():
+def is_author_directory(path):
+    """Return True for author folders that should appear in the gallery."""
+    if not path.is_dir():
+        return False
+
+    # Keep hidden author names like `.buoyancy`, but ignore tool/cache dirs.
+    ignored = {"__pycache__"}
+    return path.name not in ignored
+
+
+def scan_subdirectories(base_dir):
     """
-    Scan all subdirectories in the current directory for image files.
+    Scan all direct subdirectories in base_dir for image files.
     Returns a dictionary with folder names as keys and lists of image filenames as values.
     """
-    current_dir = Path.cwd()
     images_by_folder = {}
 
-    # Get all subdirectories (only direct subdirectories, not nested)
-    subdirs = [d for d in current_dir.iterdir() if d.is_dir() and not d.name.startswith('.')]
+    # Get all author subdirectories (only direct subdirectories, not nested)
+    subdirs = [d for d in base_dir.iterdir() if is_author_directory(d)]
 
     # Sort subdirectories by name for consistent output
     subdirs.sort(key=lambda x: x.name)
@@ -56,22 +65,23 @@ def scan_subdirectories():
 
 def main():
     """Main function to generate images.json file."""
-    print("Scanning subdirectories for image files...")
+    script_dir = Path(__file__).resolve().parent
+    output_file = script_dir.parent / "images.json"
+
+    print(f"Scanning author folders in '{script_dir}' for image files...")
     print("-" * 50)
 
     # Scan for images
-    images_data = scan_subdirectories()
+    images_data = scan_subdirectories(script_dir)
 
     print("-" * 50)
     print(f"\nTotal folders with images: {len(images_data)}")
     total_images = sum(len(files) for files in images_data.values())
     print(f"Total images found: {total_images}")
 
-    # Write to images.json
-    output_file = Path.cwd() / "images.json"
-
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(images_data, f, indent=2, ensure_ascii=False)
+        f.write("\n")
 
     print(f"\n✓ Successfully created '{output_file}'")
 

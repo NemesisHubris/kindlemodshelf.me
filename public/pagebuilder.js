@@ -28,9 +28,16 @@ class PageBuilder {
     return {
       h1Title: 'Untitled Page',
       pageTitle: 'Untitled Page',
+      slug: '',
+      pagePreset: 'tool',
       summary: '',
       description: 'A Kindle modding guide',
-      keywords: 'kindle, mods, guide'
+      keywords: 'kindle, mods, guide',
+      cardTitle: '',
+      cardDescription: '',
+      cardTags: '',
+      cardBadges: 'Tool',
+      cardDownloadUrl: ''
     };
   }
 
@@ -73,9 +80,16 @@ class PageBuilder {
     }
 
     document.getElementById('pageTitle').value = this.meta.h1Title || '';
+    document.getElementById('pageSlug').value = this.meta.slug || '';
+    document.getElementById('pagePreset').value = this.meta.pagePreset || 'tool';
     document.getElementById('headerDescription').value = this.meta.summary || '';
     document.getElementById('metaDescription').value = this.meta.description || '';
     document.getElementById('keywords').value = this.meta.keywords || '';
+    document.getElementById('cardTitle').value = this.meta.cardTitle || '';
+    document.getElementById('cardDescription').value = this.meta.cardDescription || '';
+    document.getElementById('cardTags').value = this.meta.cardTags || '';
+    document.getElementById('cardBadges').value = this.meta.cardBadges || '';
+    document.getElementById('cardDownloadUrl').value = this.meta.cardDownloadUrl || '';
 
     this.selectedBlockId = null;
     this.selectedPart = null;
@@ -139,9 +153,16 @@ class PageBuilder {
 
         // Restore form values
         document.getElementById('pageTitle').value = this.meta.h1Title || '';
+        document.getElementById('pageSlug').value = this.meta.slug || '';
+        document.getElementById('pagePreset').value = this.meta.pagePreset || 'tool';
         document.getElementById('headerDescription').value = this.meta.summary || '';
         document.getElementById('metaDescription').value = this.meta.description || '';
         document.getElementById('keywords').value = this.meta.keywords || '';
+        document.getElementById('cardTitle').value = this.meta.cardTitle || '';
+        document.getElementById('cardDescription').value = this.meta.cardDescription || '';
+        document.getElementById('cardTags').value = this.meta.cardTags || '';
+        document.getElementById('cardBadges').value = this.meta.cardBadges || '';
+        document.getElementById('cardDownloadUrl').value = this.meta.cardDownloadUrl || '';
       } catch (e) {
         console.error('Failed to load from local storage:', e);
       }
@@ -155,9 +176,16 @@ class PageBuilder {
       this.blocks = [];
       this.meta = this.getDefaultMeta();
       document.getElementById('pageTitle').value = '';
+      document.getElementById('pageSlug').value = '';
+      document.getElementById('pagePreset').value = 'tool';
       document.getElementById('headerDescription').value = '';
       document.getElementById('metaDescription').value = '';
       document.getElementById('keywords').value = '';
+      document.getElementById('cardTitle').value = '';
+      document.getElementById('cardDescription').value = '';
+      document.getElementById('cardTags').value = '';
+      document.getElementById('cardBadges').value = 'Tool';
+      document.getElementById('cardDownloadUrl').value = '';
       this.selectedBlockId = null;
       this.selectedPart = null;
       this.clearBlockProperties();
@@ -191,8 +219,28 @@ class PageBuilder {
     });
 
     metaForm.addEventListener('input', () => {
+      this.syncDerivedFields();
       this.loadMetaFromForm();
       this.renderPreview();
+      this.saveToLocalStorage();
+    });
+
+    const cardForm = document.getElementById('cardForm');
+    cardForm.addEventListener('focusin', () => {
+      if (!this.pendingMetaSnapshot) {
+        this.pendingMetaSnapshot = this.serializeState();
+      }
+    });
+
+    cardForm.addEventListener('focusout', (e) => {
+      const next = e.relatedTarget;
+      if (next && cardForm.contains(next)) return;
+      this.pushSnapshot(this.pendingMetaSnapshot);
+      this.pendingMetaSnapshot = null;
+    });
+
+    cardForm.addEventListener('input', () => {
+      this.loadMetaFromForm();
       this.saveToLocalStorage();
     });
 
@@ -202,8 +250,11 @@ class PageBuilder {
       backBtn.addEventListener('click', () => this.undoLastEdit());
     }
     document.getElementById('exportBtn').addEventListener('click', () => this.exportHTML());
+    document.getElementById('copyCardBtn').addEventListener('click', () => this.copyIndexCardHTML());
     document.getElementById('clearAllBtn').addEventListener('click', () => this.showClearConfirmation());
     document.getElementById('clearStorageBtn').addEventListener('click', () => this.clearLocalStorage());
+    document.getElementById('toolTemplateBtn').addEventListener('click', () => this.applyPageTemplate('tool'));
+    document.getElementById('guideTemplateBtn').addEventListener('click', () => this.applyPageTemplate('guide'));
 
     // Preview click handler
     const previewEl = document.getElementById('preview');
@@ -827,9 +878,41 @@ class PageBuilder {
   loadMetaFromForm() {
     this.meta.h1Title = document.getElementById('pageTitle').value || 'Untitled Page';
     this.meta.pageTitle = this.meta.h1Title;
+    this.meta.slug = this.normalizeSlug(document.getElementById('pageSlug').value || '');
+    this.meta.pagePreset = document.getElementById('pagePreset').value || 'tool';
     this.meta.summary = document.getElementById('headerDescription').value || '';
     this.meta.description = document.getElementById('metaDescription').value || 'A Kindle modding guide';
     this.meta.keywords = document.getElementById('keywords').value || '';
+    this.meta.cardTitle = document.getElementById('cardTitle').value || this.meta.h1Title;
+    this.meta.cardDescription = document.getElementById('cardDescription').value || '';
+    this.meta.cardTags = document.getElementById('cardTags').value || '';
+    this.meta.cardBadges = document.getElementById('cardBadges').value || '';
+    this.meta.cardDownloadUrl = document.getElementById('cardDownloadUrl').value || '';
+  }
+
+  syncDerivedFields() {
+    const titleInput = document.getElementById('pageTitle');
+    const slugInput = document.getElementById('pageSlug');
+    const cardTitleInput = document.getElementById('cardTitle');
+
+    const suggestedSlug = this.slugify(titleInput.value || '');
+    if (!slugInput.value || slugInput.dataset.auto === 'true') {
+      slugInput.value = suggestedSlug;
+      slugInput.dataset.auto = 'true';
+    }
+
+    if (!cardTitleInput.value || cardTitleInput.dataset.auto === 'true') {
+      cardTitleInput.value = titleInput.value || '';
+      cardTitleInput.dataset.auto = 'true';
+    }
+
+    if (slugInput.value && slugInput.value !== suggestedSlug) {
+      slugInput.dataset.auto = 'false';
+    }
+
+    if (cardTitleInput.value && cardTitleInput.value !== titleInput.value) {
+      cardTitleInput.dataset.auto = 'false';
+    }
   }
 
   renderPreview() {
@@ -1014,9 +1097,37 @@ class PageBuilder {
     setTimeout(() => notification.style.display = 'none', 3000);
   }
 
+  async copyIndexCardHTML() {
+    const snippet = this.generateIndexCardHTML();
+    const notification = document.getElementById('copyNotification');
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(snippet);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = snippet;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+
+      notification.textContent = 'Index card HTML copied to clipboard';
+      notification.style.display = 'block';
+      setTimeout(() => notification.style.display = 'none', 3000);
+    } catch (e) {
+      notification.textContent = 'Could not copy index card HTML';
+      notification.style.display = 'block';
+      setTimeout(() => notification.style.display = 'none', 3000);
+    }
+  }
+
   generateExportHTML() {
     const filename = this.getExportFilename();
     const hasSummaryBlock = this.blocks.some(b => b.type === 'summary');
+    const preset = this.meta.pagePreset || 'tool';
+    const metaProfile = this.getMetadataProfile(filename, preset);
 
     let html = `<!DOCTYPE html>
 <html lang="en">
@@ -1030,7 +1141,7 @@ class PageBuilder {
   <meta property="og:title" content="${this.escapeHtml(this.meta.pageTitle)}">
   <meta property="og:description" content="${this.escapeHtml(this.meta.description)}">
   <meta property="og:url" content="https://kindlemodshelf.me/${filename}">
-  <meta property="og:type" content="article">
+  <meta property="og:type" content="${metaProfile.ogType}">
   <meta property="og:site_name" content="KindleModShelf">`;
 
     if (this.meta.keywords) {
@@ -1040,13 +1151,7 @@ class PageBuilder {
     // Structured data (ld+json)
     html += `
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "name": "${this.escapeHtml(this.meta.h1Title)}",
-    "description": "${this.escapeHtml(this.meta.description)}",
-    "url": "https://kindlemodshelf.me/${filename}"
-  }
+  ${metaProfile.jsonLd}
   </script>`;
 
     html += `
@@ -1125,12 +1230,153 @@ class PageBuilder {
   }
 
   getExportFilename() {
-    const compact = this.meta.h1Title
+    const slug = this.normalizeSlug(this.meta.slug || this.slugify(this.meta.h1Title));
+    return slug ? `${slug}.html` : 'page.html';
+  }
+
+  slugify(text) {
+    return (text || '')
       .toLowerCase()
-      .replace(/\s+/g, '')
-      .replace(/[^a-z0-9]/g, '')
-      .substring(0, 50);
-    return compact ? `${compact}.html` : 'page.html';
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .substring(0, 80);
+  }
+
+  normalizeSlug(text) {
+    return this.slugify((text || '').replace(/\.html$/i, ''));
+  }
+
+  getMetadataProfile(filename, preset) {
+    const escapedTitle = this.escapeHtml(this.meta.h1Title);
+    const escapedDescription = this.escapeHtml(this.meta.description);
+    const url = `https://kindlemodshelf.me/${filename}`;
+
+    if (preset === 'guide') {
+      return {
+        ogType: 'article',
+        jsonLd: `{
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "${escapedTitle}",
+    "description": "${escapedDescription}",
+    "url": "${url}"
+  }`
+      };
+    }
+
+    if (preset === 'reference') {
+      return {
+        ogType: 'website',
+        jsonLd: `{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "name": "${escapedTitle}",
+    "description": "${escapedDescription}",
+    "url": "${url}"
+  }`
+      };
+    }
+
+    return {
+      ogType: 'website',
+      jsonLd: `{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "${escapedTitle}",
+    "operatingSystem": "Kindle OS / Web Browser",
+    "applicationCategory": "Utility",
+    "description": "${escapedDescription}",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "url": "${url}"
+  }`
+    };
+  }
+
+  createBlock(type, properties) {
+    const id = 'block-' + Date.now() + Math.random().toString(36).substring(2, 11);
+    return { id, type, properties };
+  }
+
+  createStandardSection(title, content) {
+    return this.createBlock('section', { title, content });
+  }
+
+  applyPageTemplate(type) {
+    const hasContent = this.blocks.length > 0;
+    if (hasContent && !confirm('Replace the current blocks with a standard template?')) {
+      return;
+    }
+
+    this.pushSnapshot(this.serializeState());
+    document.getElementById('pagePreset').value = type;
+
+    const toolBlocks = [
+      this.createStandardSection('Download', '<ul>\n          <li><a href="https://example.com" target="_blank" rel="noopener">Download</a></li>\n        </ul>'),
+      this.createStandardSection('Features', '<ul>\n          <li>Feature one</li>\n          <li>Feature two</li>\n        </ul>'),
+      this.createStandardSection('Requirements', '<ul>\n          <li>Requirement one</li>\n        </ul>'),
+      this.createStandardSection('Installation', '<ol>\n          <li>Step one</li>\n          <li>Step two</li>\n        </ol>'),
+      this.createStandardSection('Usage', '<ol>\n          <li>How to use it</li>\n        </ol>'),
+      this.createStandardSection('Notes', '<p>Optional caveats and compatibility notes.</p>'),
+      this.createStandardSection('Credits', '<p>Developed by <b>Name</b>.</p>')
+    ];
+
+    const guideBlocks = [
+      this.createStandardSection('Overview', '<p>Explain what this guide covers and who it is for.</p>'),
+      this.createStandardSection('Requirements', '<ul>\n          <li>Requirement one</li>\n        </ul>'),
+      this.createStandardSection('Steps', '<ol>\n          <li>Step one</li>\n          <li>Step two</li>\n        </ol>'),
+      this.createStandardSection('Notes', '<p>Add caveats, warnings, or optional follow-up steps here.</p>'),
+      this.createStandardSection('Credits', '<p>Guide by <b>Name</b>.</p>')
+    ];
+
+    this.blocks = type === 'guide' ? guideBlocks : toolBlocks;
+
+    const badgesInput = document.getElementById('cardBadges');
+    if (!badgesInput.value || badgesInput.dataset.auto === 'true') {
+      badgesInput.value = type === 'guide' ? 'Guide' : 'Tool';
+      badgesInput.dataset.auto = 'true';
+    }
+
+    this.syncDerivedFields();
+    this.loadMetaFromForm();
+    this.renderPreview();
+    this.saveToLocalStorage();
+  }
+
+  generateIndexCardHTML() {
+    const filename = this.getExportFilename();
+    const cardTitle = this.escapeHtml(this.meta.cardTitle || this.meta.h1Title);
+    const cardDescription = this.escapeHtml(this.meta.cardDescription || this.meta.description || '');
+    const tagAttr = this.escapeHtml((this.meta.cardTags || this.meta.h1Title).trim());
+    const badges = (this.meta.cardBadges || '')
+      .split(',')
+      .map(tag => tag.trim())
+      .filter(Boolean)
+      .map(tag => `<span class="tag">${this.escapeHtml(tag)}</span>`)
+      .join('');
+    const downloadUrl = (this.meta.cardDownloadUrl || '').trim();
+
+    let links = '';
+    if (downloadUrl) {
+      links += `\n          <a href="${this.escapeHtml(downloadUrl)}" class="card-download" target="_blank" rel="noopener">Download</a>`;
+    }
+    links += `\n          <a href="${filename}">More</a>`;
+
+    return `      <div class="card" data-tags="${tagAttr}">
+        <div class="card-header">
+          <div class="card-title">${cardTitle}</div>
+          <div class="card-tags">${badges}</div>
+        </div>
+        <div class="card-desc">
+          ${cardDescription}
+        </div>
+        <div class="card-links">${links}
+        </div>
+    </div>`;
   }
 
   extractYouTubeId(input) {

@@ -20,9 +20,78 @@ We credit creators by including usernames/handles when known.
 
 ---
 
+## Adding Your Own Images Through GitHub
+
+If you want to add your own gallery images yourself, use a GitHub pull request.
+
+### How the Gallery Works
+
+The gallery is built from two things:
+
+- image files stored in `public/images/<author-name>/`
+- the index file `public/images.json`
+
+`public/images.html` loads `public/images.json`, and `public/images-gallery.js` turns that into the gallery view.
+
+The JSON format is simple:
+
+```json
+{
+  "author-name": [
+    "image1.png",
+    "image2.jpg"
+  ]
+}
+```
+
+Each top-level key is an author name, and each value is a list of filenames inside that author's folder.
+
+### What to Add
+
+To add your own images:
+
+1. Create a folder in `public/images/` using the name you want credited under
+2. Put your image files in that folder
+3. Add or update that author entry in `public/images.json`
+4. Open a pull request
+
+Example:
+
+- folder: `public/images/yourname/`
+- files:
+  - `public/images/yourname/example-1.png`
+  - `public/images/yourname/example-2.jpg`
+- JSON entry:
+
+```json
+"yourname": [
+  "example-1.png",
+  "example-2.jpg"
+]
+```
+
+
+### Important Rules
+
+- only add images you made yourself, or have permission to share
+- keep images inside a single author folder
+- make sure filenames in `public/images.json` exactly match the real files
+- do not add nested folders inside an author folder if you want them to appear in the gallery
+
+### If You Do Not Want To Use GitHub
+
+You can still send images directly:
+
+- Email: `admin@kindlemodshelf.me`
+- Discord: `@kindlemodshelfguy`
+
+Include your credited name and images.
+
+---
+
 ## Why We Host Them
 
-15+ years of Kindle modding knowledge is disappearing:
+10+ years of Kindle modding knowledge is disappearing:
 - Discord deletes old messages
 - Forums shut down
 - Image hosts expire

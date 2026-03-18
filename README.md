@@ -16,7 +16,9 @@ You'll find pages for games, apps, mod tools, image galleries, install guides, a
 
 ## Creating Pages with the Page Builder
 
-The easiest way to add a new guide is using the Page Builder. No coding required.
+Use the Page Builder for regular pages.
+
+Only skip it if you are editing an existing page or creating a custom page with special behavior, custom layout, gallery logic, app logic, or something else that does not fit the normal site pattern.
 
 Visit: [kindlemodshelf.me/pagebuilder.html](https://kindlemodshelf.me/pagebuilder.html)
 
@@ -30,10 +32,10 @@ Visit: [kindlemodshelf.me/pagebuilder.html](https://kindlemodshelf.me/pagebuilde
 
 **How to create a page:**
 1. Go to the Page Builder
-2. Enter your page title and description
-3. Add blocks and fill in content
-4. Format text using the editor toolbar
-5. Click Export when done
+2. Choose the normal page layout for the kind of page you are making
+3. Fill in the sections
+4. Click `Export HTML` when done
+5. Click `Copy Index Card` if the page should appear on the homepage
 6. Send the HTML file to us
 
 ---
@@ -79,6 +81,15 @@ You can also reach us on the [Kindle Modding Discord](https://dsc.gg/kindle-modd
 - `images.json` – Image gallery manifest
 - `/downloads/` – Downloadable assets and scripts
 - `/images/` – Community screensaver images
+
+## Page Authoring Guide
+
+For the real-world page structure used across `public/*.html`, see `PAGE_FORMAT.md`.
+For most normal pages, the Page Builder is the recommended starting point.
+
+## Image Submission Guide
+
+If you want to add your own screenshots or Kindle-related images, see `IMAGES.md`.
 
 ---
 

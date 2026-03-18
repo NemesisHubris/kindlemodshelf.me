@@ -22,6 +22,18 @@
               <input type="text" id="pageTitle" placeholder="e.g., KOReader Installation" required>
             </div>
             <div class="form-group">
+              <label for="pageSlug">Page Slug</label>
+              <input type="text" id="pageSlug" placeholder="e.g., kandle-downloader">
+            </div>
+            <div class="form-group">
+              <label for="pagePreset">Page Preset</label>
+              <select id="pagePreset">
+                <option value="tool">Regular Tool / Mod Page</option>
+                <option value="guide">Guide / How-To Page</option>
+                <option value="reference">Reference / Resource Page</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="headerDescription">Header Description</label>
               <textarea id="headerDescription" placeholder="The visual summary box displayed immediately below the title." rows="4"></textarea>
             </div>
@@ -32,6 +44,38 @@
             <div class="form-group">
               <label for="keywords">Keywords (optional)</label>
               <input type="text" id="keywords" placeholder="comma, separated, keywords">
+            </div>
+          </form>
+          <div class="builder-preset-actions">
+            <button id="toolTemplateBtn" class="builder-secondary-btn" type="button">Make Standard Tool Page</button>
+            <button id="guideTemplateBtn" class="builder-secondary-btn" type="button">Make Standard Guide Page</button>
+          </div>
+        </div>
+
+        <div class="builder-divider"></div>
+
+        <div class="builder-section">
+          <h3>Homepage Card</h3>
+          <form class="builder-meta-form" id="cardForm">
+            <div class="form-group">
+              <label for="cardTitle">Card Title</label>
+              <input type="text" id="cardTitle" placeholder="Shown on index.html cards">
+            </div>
+            <div class="form-group">
+              <label for="cardDescription">Card Description</label>
+              <textarea id="cardDescription" placeholder="Short one-line homepage description." rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="cardTags">Search Tags</label>
+              <input type="text" id="cardTags" placeholder="kindle tool mod utility reader">
+            </div>
+            <div class="form-group">
+              <label for="cardBadges">Visible Badges</label>
+              <input type="text" id="cardBadges" placeholder="Tool, Resource, Beta">
+            </div>
+            <div class="form-group">
+              <label for="cardDownloadUrl">Card Download URL (optional)</label>
+              <input type="text" id="cardDownloadUrl" placeholder="https://github.com/example/project/releases">
             </div>
           </form>
         </div>
@@ -77,6 +121,9 @@
           <div class="builder-toolbar">
             <button id="exportBtn" class="builder-toolbar-btn builder-toolbar-btn-primary" aria-label="Export as HTML">
               Export HTML
+            </button>
+            <button id="copyCardBtn" class="builder-toolbar-btn" aria-label="Copy index card HTML">
+              Copy Index Card
             </button>
             <button id="clearAllBtn" class="builder-toolbar-btn builder-toolbar-btn-danger" aria-label="Clear all blocks">
               Clear All
