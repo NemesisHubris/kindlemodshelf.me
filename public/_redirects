@@ -1,2 +1,1 @@
-# Redirect every request on the site to the Rickroll video.
-/* https://www.youtube.com/watch?v=dQw4w9WgXcQ 302
+# No global redirect; serve pages normally.
