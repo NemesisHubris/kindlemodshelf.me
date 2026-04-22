@@ -16,77 +16,46 @@
 <meta name="description" content="Create Kindle modding guide pages with KindleModShelf Page Builder">
   <link rel="canonical" href="https://kindlemodshelf.me/pagebuilder.html">
   <link rel="stylesheet" href="style.css?v=3">
-  <link rel="stylesheet" href="pagebuilder.css?v=4">
+  <link rel="stylesheet" href="pagebuilder.css?v=9">
   <script src="theme-toggle.js?v=3"></script>
 </head>
 <body>
   <div class="builder-wrapper">
-    <div class="builder-container">
+    <div class="builder-container" id="builderContainer">
       <aside class="builder-sidebar builder-sidebar-left">
         <div class="builder-section">
-          <h3>Page Settings</h3>
+          <h3>Page Basics</h3>
           <form class="builder-meta-form" id="metaForm">
             <div class="form-group">
               <label for="pageTitle">Page Title (H1)</label>
               <input type="text" id="pageTitle" placeholder="e.g., KOReader Installation" required>
             </div>
             <div class="form-group">
-              <label for="pageSlug">Page Slug</label>
-              <input type="text" id="pageSlug" placeholder="e.g., kandle-downloader">
-            </div>
-            <div class="form-group">
-              <label for="pagePreset">Page Preset</label>
-              <select id="pagePreset">
-                <option value="tool">Regular Tool / Mod Page</option>
-                <option value="guide">Guide / How-To Page</option>
-                <option value="reference">Reference / Resource Page</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="headerDescription">Header Description</label>
-              <textarea id="headerDescription" placeholder="The visual summary box displayed immediately below the title." rows="4"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="metaDescription">SEO Meta Description</label>
-              <textarea id="metaDescription" placeholder="Brief description for search engines (hidden)" rows="2"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="keywords">Keywords (optional)</label>
-              <input type="text" id="keywords" placeholder="comma, separated, keywords">
+              <label for="headerDescription">Header Summary</label>
+              <textarea id="headerDescription" placeholder="Shown in the summary box directly below the page title." rows="4"></textarea>
+              <p class="builder-form-hint">Use this for the short visual intro at the top of the page.</p>
             </div>
           </form>
-          <div class="builder-preset-actions">
-            <button id="toolTemplateBtn" class="builder-secondary-btn" type="button">Make Standard Tool Page</button>
-            <button id="guideTemplateBtn" class="builder-secondary-btn" type="button">Make Standard Guide Page</button>
-          </div>
         </div>
 
         <div class="builder-divider"></div>
 
         <div class="builder-section">
-          <h3>Homepage Card</h3>
-          <form class="builder-meta-form" id="cardForm">
-            <div class="form-group">
-              <label for="cardTitle">Card Title</label>
-              <input type="text" id="cardTitle" placeholder="Shown on index.html cards">
+          <h3>Extra Setup</h3>
+          <div class="builder-action-list">
+            <div class="builder-action-card">
+              <button id="openTemplateDialogBtn" class="builder-secondary-btn builder-action-btn" type="button">Starter Templates</button>
+              <p class="builder-action-copy">Insert a ready-made tool, guide, or reference structure.</p>
             </div>
-            <div class="form-group">
-              <label for="cardDescription">Card Description</label>
-              <textarea id="cardDescription" placeholder="Short one-line homepage description." rows="3"></textarea>
+            <div class="builder-action-card">
+              <button id="openCardDialogBtn" class="builder-secondary-btn builder-action-btn" type="button">Homepage Card</button>
+              <p class="builder-action-copy">Edit the card content used when you copy the snippet for <code>index.html</code>.</p>
             </div>
-            <div class="form-group">
-              <label for="cardTags">Search Tags</label>
-              <input type="text" id="cardTags" placeholder="kindle tool mod utility reader">
+            <div class="builder-action-card">
+              <button id="openSeoDialogBtn" class="builder-secondary-btn builder-action-btn" type="button">SEO &amp; Sharing</button>
+              <p class="builder-action-copy">Set the hidden meta description and keywords for the exported page.</p>
             </div>
-            <div class="form-group">
-              <label for="cardBadges">Visible Badges</label>
-              <input type="text" id="cardBadges" placeholder="Tool, Resource, Beta">
-            </div>
-            <div class="form-group">
-              <label for="cardDownloadUrl">Card Download URL (optional)</label>
-              <input type="text" id="cardDownloadUrl" placeholder="https://github.com/example/project/releases">
-            </div>
-          </form>
+          </div>
         </div>
 
         <div class="builder-divider"></div>
@@ -124,15 +93,20 @@
         <div class="builder-spacer"></div>
       </aside>
 
+      <div class="builder-resizer builder-resizer-left" data-resizer="left" aria-hidden="true"></div>
+
       <main class="builder-canvas">
         <div class="builder-canvas-header">
           <h2>Live Preview</h2>
           <div class="builder-toolbar">
+            <button id="toggleLeftSidebarBtn" class="builder-toolbar-btn builder-toolbar-btn-panel" type="button" aria-label="Toggle page setup panel">
+              Page Setup
+            </button>
+            <button id="toggleRightSidebarBtn" class="builder-toolbar-btn builder-toolbar-btn-panel" type="button" aria-label="Toggle block properties panel">
+              Block Properties
+            </button>
             <button id="exportBtn" class="builder-toolbar-btn builder-toolbar-btn-primary" aria-label="Export as HTML">
               Export HTML
-            </button>
-            <button id="copyCardBtn" class="builder-toolbar-btn" aria-label="Copy index card HTML">
-              Copy Index Card
             </button>
             <button id="clearAllBtn" class="builder-toolbar-btn builder-toolbar-btn-danger" aria-label="Clear all blocks">
               Clear All
@@ -149,6 +123,8 @@
         </div>
       </main>
 
+      <div class="builder-resizer builder-resizer-right" data-resizer="right" aria-hidden="true"></div>
+
       <aside class="builder-sidebar builder-sidebar-right">
         <div class="builder-section">
           <h3>Block Properties</h3>
@@ -164,7 +140,105 @@
     HTML copied to clipboard!
   </div>
 
-  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="pagebuilder.js?v=4"></script>
-<script src="navigation.js?v=3"></script></body>
+  <dialog id="templateDialog" class="builder-dialog" aria-labelledby="templateDialogTitle">
+    <div class="builder-dialog-header">
+      <div>
+        <h3 id="templateDialogTitle">Starter Templates</h3>
+        <p>Use one of these when you want a ready-made page structure. Applying a template replaces the current block list.</p>
+      </div>
+      <button type="button" class="builder-dialog-close" data-close-dialog="templateDialog" aria-label="Close starter templates dialog">Close</button>
+    </div>
+    <div class="builder-dialog-body">
+      <div class="builder-template-grid">
+        <article class="builder-template-card">
+          <h4>Tool Page</h4>
+          <p>Best for mods, utilities, and downloads.</p>
+          <p class="builder-template-sections">Sections: Download, Features, Requirements, Installation, Usage, Notes, Credits.</p>
+          <button id="toolTemplateBtn" class="builder-secondary-btn" type="button">Use Tool Template</button>
+        </article>
+        <article class="builder-template-card">
+          <h4>Guide Page</h4>
+          <p>Best for step-by-step walkthroughs and tutorials.</p>
+          <p class="builder-template-sections">Sections: Overview, Requirements, Steps, Notes, Credits.</p>
+          <button id="guideTemplateBtn" class="builder-secondary-btn" type="button">Use Guide Template</button>
+        </article>
+        <article class="builder-template-card">
+          <h4>Reference Page</h4>
+          <p>Best for resource lists, compatibility notes, and documentation hubs.</p>
+          <p class="builder-template-sections">Sections: Overview, Resources, Compatibility, Links, Credits.</p>
+          <button id="referenceTemplateBtn" class="builder-secondary-btn" type="button">Use Reference Template</button>
+        </article>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="cardDialog" class="builder-dialog" aria-labelledby="cardDialogTitle">
+    <div class="builder-dialog-header">
+      <div>
+        <h3 id="cardDialogTitle">Homepage Card</h3>
+        <p>This content is only used for the homepage card snippet that gets copied into <code>index.html</code>.</p>
+      </div>
+      <button type="button" class="builder-dialog-close" data-close-dialog="cardDialog" aria-label="Close homepage card dialog">Close</button>
+    </div>
+        <div class="builder-dialog-body">
+          <form class="builder-meta-form" id="cardForm">
+            <div class="form-group">
+              <label for="cardTitle">Card Title</label>
+              <input type="text" id="cardTitle" placeholder="Auto-filled from the page title">
+            </div>
+            <div class="form-group">
+              <label for="cardDescription">Card Description</label>
+              <textarea id="cardDescription" placeholder="Auto-filled from the header summary." rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="cardTags">Search Tags</label>
+              <input type="text" id="cardTags" placeholder="kindle tool mod utility reader">
+            </div>
+            <div class="form-group">
+              <label>Homepage Badges</label>
+              <input type="hidden" id="cardBadges">
+              <details id="cardBadgePicker" class="builder-badge-picker">
+                <summary id="cardBadgePickerLabel">Select badges</summary>
+                <div id="cardBadgeOptions" class="builder-badge-picker-menu"></div>
+              </details>
+              <p class="builder-form-hint">These are the little labels shown on the homepage card, like Tool, Game, or Beta.</p>
+            </div>
+            <div class="form-group">
+              <label for="cardDownloadUrl">Card Download URL (optional)</label>
+              <input type="url" id="cardDownloadUrl" placeholder="https://github.com/example/project/releases">
+            </div>
+      </form>
+    </div>
+    <div class="builder-dialog-footer">
+      <button id="copyCardBtn" class="builder-toolbar-btn builder-toolbar-btn-primary" type="button">Copy Homepage Card HTML</button>
+    </div>
+  </dialog>
+
+  <dialog id="seoDialog" class="builder-dialog" aria-labelledby="seoDialogTitle">
+    <div class="builder-dialog-header">
+      <div>
+        <h3 id="seoDialogTitle">SEO &amp; Sharing</h3>
+        <p>These fields are hidden in the page itself, but they are included in the exported HTML for search engines and previews.</p>
+      </div>
+      <button type="button" class="builder-dialog-close" data-close-dialog="seoDialog" aria-label="Close SEO and sharing dialog">Close</button>
+    </div>
+    <div class="builder-dialog-body">
+      <form class="builder-meta-form" id="seoForm">
+        <div class="form-group">
+          <label for="metaDescription">SEO Meta Description</label>
+          <textarea id="metaDescription" placeholder="Brief description for search engines and link previews." rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="keywords">Keywords (optional)</label>
+          <input type="text" id="keywords" placeholder="comma, separated, keywords">
+        </div>
+      </form>
+    </div>
+    <div class="builder-dialog-footer">
+      <button type="button" class="builder-secondary-btn" data-close-dialog="seoDialog">Done</button>
+    </div>
+  </dialog>
+
+  <script src="pagebuilder.js?v=9"></script>
+</body>
 </html>

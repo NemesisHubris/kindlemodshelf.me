@@ -2,6 +2,33 @@
 (function() {
   'use strict';
 
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  function shouldResetInitialScroll(event) {
+    if (window.location.hash) return false;
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('q') || params.has('category')) return false;
+
+    const navEntry = performance.getEntriesByType('navigation')[0];
+    const navType = navEntry?.type || (event?.persisted ? 'back_forward' : 'navigate');
+    return navType !== 'back_forward';
+  }
+
+  function resetInitialScroll(event) {
+    if (!shouldResetInitialScroll(event)) return;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      });
+    });
+  }
+
+  window.addEventListener('pageshow', resetInitialScroll);
+
   // Get the current theme from localStorage or default to dark
   function getInitialTheme() {
     let savedTheme = null;
