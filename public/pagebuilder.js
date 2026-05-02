@@ -1584,7 +1584,7 @@ class PageBuilder {
   <script src="theme-toggle.js?v=3"></script>
 </head>
 <body>
-  <div class="container">
+  <div class="container container-guide">
     <h1>${this.escapeHtml(this.meta.h1Title)}</h1>
 `;
 

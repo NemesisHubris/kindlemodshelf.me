@@ -516,6 +516,10 @@ body {
   z-index: 1;
 }
 
+.container-guide {
+  max-width: 950px;
+}
+
 h1 {
   text-align: center;
   color: var(--fg);

@@ -1531,39 +1531,6 @@ Educational purposes only. Not affiliated with Amazon. Users responsible for com
 
 ========================================
 
---- FILE: helpkindlemodshelf.html ---
------------------------------------
-
-← Back to Home (index.html)
-
-# Help Kindlemodshelf
-
-Want to contribute to Kindle modding and help others get started easier?
-
-I did—I created https://kindlemodshelf.me/ (https://kindlemodshelf.me/) , and I'd love for you to contribute too!
-
-# Why We Need Your Help
-
-After polling the Kindle Tweaks and Kindle Modding Discord communities, there's overwhelming support for adding images to my guides. However, there's a significant challenge: recreating this would require me to completely redo my jailbreak and reinstall everything from scratch, which would consume far more time than I can spare right now.
-
-That's why I'm reaching out: would you be willing to take screenshots and photos as you install mods to accompany the kindlemodshelf guides?
-
-# What You Get in Return
-
-- You'll be credited for your contributions
-- I can feature your GitHub, donation link, or other profile on kindlemodshelf.me
-- Help make Kindle modding more accessible to everyone
-- Be part of a growing community of Kindle enthusiasts
-
-# How to Contribute
-
-Just DM me on kindlemodding discord or email me at admin@kindlemodshelf.me (mailto:admin@kindlemodshelf.me) with your images and the kindle to the page on kindlemodshelf they are for.
-
-Any screenshots or photos you can provide will help make these guides more visual and easier to follow for newcomers to Kindle modding.
-
-Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. View Source on GitHub (https://github.com/NemesisHubris/kindlemodshelf.me)
-
-========================================
 
 --- FILE: history.html ---
 ------------------------
