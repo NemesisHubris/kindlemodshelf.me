@@ -662,13 +662,6 @@ li {
   padding-bottom: 12px;
 }
 
-.faq-page .section-title {
-  font-size: 1.2rem;
-  margin-top: 32px;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-}
-
 .faq-page .faq-item {
   margin-bottom: 24px;
 }
@@ -4174,4 +4167,18 @@ samp {
 :root:not([data-theme="light"]) .support-cta__button:hover:not(:disabled) {
   transform: translateY(-1px);
   box-shadow: none;
+}
+
+
+/* Style for the refactored FAQ questions */
+.faq-question {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  color: var(--fg) !important;
+  margin-top: 32px !important;
+  margin-bottom: 16px !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+  text-align: left !important;
 }
