@@ -5890,3 +5890,508 @@ Educational purposes only. Not affiliated with Amazon. Users responsible for com
 
 ========================================
 
+
+========================================
+
+--- FILE: glchess.html ---
+-----------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GlChess – Kindle Chess Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play GlChess on your Kindle. A touch-friendly chess application derived from GNOME Chess, featuring UCI engine support for AI play.">
+  <link rel="canonical" href="https://kindlemodshelf.me/glchess.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="GlChess – Kindle Chess Game">
+  <meta property="og:description" content="A Kindle-friendly chess application derived from GNOME Chess with AI support.">
+  <meta property="og:url" content="https://kindlemodshelf.me/glchess.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KindleModShelf">
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container container-guide">
+    <h1>GlChess</h1>
+
+    <div class="summary">
+      <p><b>GlChess</b> is a touch-friendly chess application for Kindle, derived from GNOME Chess. It features Cairo-rendered boards and support for UCI engines like Stockfish.</p>
+    </div>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/jckhng/kindle-glchess/releases/latest/download/kindle-glchess-extension.zip">Download GlChess Extension</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Touch-friendly GTK2 interface optimized for e-ink.</li>
+          <li>Cairo-rendered boards with SVG piece themes.</li>
+          <li>Support for UCI engines (like Stockfish) for AI play.</li>
+          <li>Clean and responsive design.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download the <code>kindle-glchess-extension.zip</code> file.</li>
+          <li>Unzip it and copy the resulting folder to the <code>/extensions/</code> directory on your Kindle.</li>
+          <li>Launch via <b>KUAL -> Kindle GlChess -> Launch</b>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <p>Developed by <a href="https://github.com/jckhng" target="_blank" rel="noopener"><strong>jckhng</strong></a>. Based on GNOME Chess code and artwork.</p>
+      </div>
+    </section>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>
+========================================
+
+--- FILE: iagno.html ---
+-----------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iagno – Kindle Reversi Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play Iagno (Reversi) on your Kindle. A touch-friendly strategy game with multiple AI difficulty levels optimized for e-ink screens.">
+  <link rel="canonical" href="https://kindlemodshelf.me/iagno.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="Iagno – Kindle Reversi Game">
+  <meta property="og:description" content="A Kindle port of the Iagno (Reversi) game with touch controls and AI.">
+  <meta property="og:url" content="https://kindlemodshelf.me/iagno.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KindleModShelf">
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container container-guide">
+    <h1>Iagno</h1>
+
+    <div class="summary">
+      <p><b>Iagno</b> is a port of the Reversi strategy game for Kindle. It features an 8x8 board and multiple AI difficulty levels, optimized for e-ink displays.</p>
+    </div>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/jckhng/kindle-iagno/releases/latest/download/kindle-iagno-extension.zip">Download Iagno Extension</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Classic 8x8 Reversi gameplay.</li>
+          <li>AI difficulty levels: Easy, Medium, and Hard.</li>
+          <li>Touch-friendly interface designed for Kindle.</li>
+          <li>Crisp rendering optimized for e-ink screens.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download the <code>kindle-iagno-extension.zip</code> file.</li>
+          <li>Unzip it and copy the resulting folder to the <code>/extensions/</code> directory on your Kindle.</li>
+          <li>Launch via <b>KUAL -> Kindle Iagno -> Launch</b>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <p>Developed by <a href="https://github.com/jckhng" target="_blank" rel="noopener"><strong>jckhng</strong></a>. Based on GNOME Games Iagno.</p>
+      </div>
+    </section>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>
+========================================
+
+--- FILE: gnect.html ---
+-----------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gnect – Kindle Connect Four Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play Gnect (Connect Four) on your Kindle. A Kindle-friendly version of the classic game with AI levels and e-ink optimized rendering.">
+  <link rel="canonical" href="https://kindlemodshelf.me/gnect.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="Gnect – Kindle Connect Four Game">
+  <meta property="og:description" content="A Kindle-friendly port of Gnect (Connect Four) with touch controls and AI.">
+  <meta property="og:url" content="https://kindlemodshelf.me/gnect.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KindleModShelf">
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container container-guide">
+    <h1>Gnect</h1>
+
+    <div class="summary">
+      <p><b>Gnect</b> is a Kindle-friendly version of the classic Connect Four game. It includes a 7x6 board, multiple AI levels, and rendering optimized for e-ink displays.</p>
+    </div>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/jckhng/kindle-gnect/releases/latest/download/kindle-gnect-extension.zip">Download Gnect Extension</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Classic 7x6 Connect Four board.</li>
+          <li>Adjustable AI difficulty levels.</li>
+          <li>E-ink friendly disc rendering (distinguishable by pattern and contrast).</li>
+          <li>Responsive touch controls.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download the <code>kindle-gnect-extension.zip</code> file.</li>
+          <li>Unzip it and copy the resulting folder to the <code>/extensions/</code> directory on your Kindle.</li>
+          <li>Launch via <b>KUAL -> Kindle Gnect -> Launch</b>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <p>Developed by <a href="https://github.com/jckhng" target="_blank" rel="noopener"><strong>jckhng</strong></a>. Based on GNOME Games Gnect.</p>
+      </div>
+    </section>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>
+========================================
+
+--- FILE: mahjongg.html ---
+-----------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mahjongg – Kindle Mahjongg Solitaire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play Mahjongg solitaire on your Kindle. Featuring tile artwork specifically adapted for grayscale e-ink displays and touch controls.">
+  <link rel="canonical" href="https://kindlemodshelf.me/mahjongg.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="Mahjongg – Kindle Mahjongg Solitaire">
+  <meta property="og:description" content="A Kindle port of Mahjongg solitaire with e-ink optimized tile artwork.">
+  <meta property="og:url" content="https://kindlemodshelf.me/mahjongg.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KindleModShelf">
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container container-guide">
+    <h1>Mahjongg</h1>
+
+    <div class="summary">
+      <p><b>Mahjongg</b> is a Mahjongg solitaire application for Kindle, inspired by GNOME Mahjongg. It features tile artwork specifically adapted for grayscale e-ink displays.</p>
+    </div>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/jckhng/kindle-mahjongg/releases/latest/download/kindle-mahjongg-extension.zip">Download Mahjongg Extension</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Tile artwork optimized for 16-level grayscale e-ink screens.</li>
+          <li>Uses the "Easy" layout shape for a better experience on small screens.</li>
+          <li>Simple and intuitive touch controls.</li>
+          <li>Lightweight and responsive.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download the <code>kindle-mahjongg-extension.zip</code> file.</li>
+          <li>Unzip it and copy the resulting folder to the <code>/extensions/</code> directory on your Kindle.</li>
+          <li>Launch via <b>KUAL -> Kindle Mahjongg -> Launch</b>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <p>Developed by <a href="https://github.com/jckhng" target="_blank" rel="noopener"><strong>jckhng</strong></a>. Based on GNOME Mahjongg code and layouts.</p>
+      </div>
+    </section>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>
+========================================
+
+--- FILE: draughts.html ---
+-----------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Draughts – Kindle Checkers Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play Draughts (Checkers) on your Kindle. Supporting both English 8x8 and International 10x10 variants with AI and e-ink optimized pieces.">
+  <link rel="canonical" href="https://kindlemodshelf.me/draughts.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="Draughts – Kindle Checkers Game">
+  <meta property="og:description" content="A Kindle port of Draughts (Checkers) with multiple variants and AI.">
+  <meta property="og:url" content="https://kindlemodshelf.me/draughts.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KindleModShelf">
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container container-guide">
+    <h1>Draughts</h1>
+
+    <div class="summary">
+      <p><b>Draughts</b> (Checkers) for Kindle supports both English 8x8 and International 10x10 variants. It features a minimax AI and high-contrast pieces optimized for e-ink legibility.</p>
+    </div>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/jckhng/kindle-draughts/releases/latest/download/kindle-draughts-extension.zip">Download Draughts Extension</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>English (8x8) and International (10x10) variants.</li>
+          <li>Minimax AI for challenging computer opponents.</li>
+          <li>High-contrast pieces with labels for better visibility on grayscale screens.</li>
+          <li>Touch-optimized interface.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download the <code>kindle-draughts-extension.zip</code> file.</li>
+          <li>Unzip it and copy the resulting folder to the <code>/extensions/</code> directory on your Kindle.</li>
+          <li>Launch via <b>KUAL -> Kindle Draughts -> Launch</b>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <p>Developed by <a href="https://github.com/jckhng" target="_blank" rel="noopener"><strong>jckhng</strong></a>. Artwork by Thiago Fernandes.</p>
+      </div>
+    </section>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>
+========================================
+
+--- FILE: aisleriot.html ---
+-----------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aisleriot – Kindle Solitaire Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play Aisleriot (Klondike Solitaire) on your Kindle. A familiar card game experience with high-contrast symbols and touch controls optimized for e-ink.">
+  <link rel="canonical" href="https://kindlemodshelf.me/aisleriot.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="Aisleriot – Kindle Solitaire Game">
+  <meta property="og:description" content="A Kindle port of Klondike Solitaire with e-ink optimized card symbols.">
+  <meta property="og:url" content="https://kindlemodshelf.me/aisleriot.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KindleModShelf">
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container container-guide">
+    <h1>Aisleriot</h1>
+
+    <div class="summary">
+      <p><b>Aisleriot</b> brings the classic Klondike Solitaire experience to Kindle. It features high-contrast card symbols and an interface specifically optimized for the e-ink screen.</p>
+    </div>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/jckhng/kindle-aisleriot/releases/latest/download/kindle-aisleriot-extension.zip">Download Aisleriot Extension</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Classic Klondike Solitaire rules.</li>
+          <li>High-contrast card designs and suit symbols for legibility.</li>
+          <li>Touch-friendly layout for easy card movement.</li>
+          <li>Optimized for the Kindle's refresh rate.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download the <code>kindle-aisleriot-extension.zip</code> file.</li>
+          <li>Unzip it and copy the resulting folder to the <code>/extensions/</code> directory on your Kindle.</li>
+          <li>Launch via <b>KUAL -> Kindle Aisleriot -> Launch</b>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <p>Developed by <a href="https://github.com/jckhng" target="_blank" rel="noopener"><strong>jckhng</strong></a>. Inspired by GNOME Aisleriot.</p>
+      </div>
+    </section>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>
+========================================
+
+--- FILE: chinesechess.html ---
+-----------------------------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chinese Chess – Kindle Xiangqi Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play Chinese Chess (Xiangqi) on your Kindle. Featuring a 9x10 board with support for strong UCI engines like Pikafish and touch-friendly controls.">
+  <link rel="canonical" href="https://kindlemodshelf.me/chinesechess.html">
+  <link rel="stylesheet" href="style.css?v=3">
+  <meta property="og:title" content="Chinese Chess – Kindle Xiangqi Game">
+  <meta property="og:description" content="A Kindle port of Chinese Chess (Xiangqi) with UCI engine support and AI.">
+  <meta property="og:url" content="https://kindlemodshelf.me/chinesechess.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KindleModShelf">
+  <script src="theme-toggle.js?v=3"></script>
+</head>
+<body>
+  <div class="container container-guide">
+    <h1>Chinese Chess</h1>
+
+    <div class="summary">
+      <p><b>Chinese Chess</b> (Xiangqi) for Kindle features a standard 9x10 board and supports strong UCI engines like Pikafish for high-level AI play.</p>
+    </div>
+
+    <section aria-labelledby="download">
+      <h2 class="section-title" id="download">Download</h2>
+      <div class="card card-desc">
+        <ul>
+          <li><a href="https://github.com/jckhng/kindle-chinesechess/releases/latest/download/kindle-chinesechess-extension.zip">Download Chinese Chess Extension</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="features">
+      <h2 class="section-title" id="features">Features</h2>
+      <div class="card card-desc">
+        <ul>
+          <li>Full 9x10 Xiangqi board layout.</li>
+          <li>Integrated support for the Pikafish engine for high-level AI.</li>
+          <li>Built-in fallback AI for casual matches.</li>
+          <li>Touch-friendly board interactions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="installation">
+      <h2 class="section-title" id="installation">Installation</h2>
+      <div class="card card-desc">
+        <ol>
+          <li>Download the <code>kindle-chinesechess-extension.zip</code> file.</li>
+          <li>Unzip it and copy the resulting folder to the <code>/extensions/</code> directory on your Kindle.</li>
+          <li>Launch via <b>KUAL -> Kindle ChineseChess -> Launch</b>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="credits">
+      <h2 class="section-title" id="credits">Credits</h2>
+      <div class="card card-desc">
+        <p>Developed by <a href="https://github.com/jckhng" target="_blank" rel="noopener"><strong>jckhng</strong></a>. Based on XMuli ChineseChess and Augus1217 Chinese-Chess artwork.</p>
+      </div>
+    </section>
+  </div>
+  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
+  <script src="navigation.js?v=3"></script>
+</body>
+</html>
