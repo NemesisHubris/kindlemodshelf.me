@@ -9,7 +9,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Kindle Jailbreaking Support & FAQ">
   <meta name="twitter:description" content="Kindle Jailbreaking Support &amp; FAQ – answers to common questions about jailbreaking, troubleshooting, and Kindle modding.">
-<meta name="description" content="Kindle Jailbreaking Support &amp; FAQ – answers to common questions about jailbreaking, troubleshooting, and Kindle modding.">
+  <meta name="description" content="Kindle Jailbreaking Support &amp; FAQ – answers to common questions about jailbreaking, troubleshooting, and Kindle modding.">
   <link rel="canonical" href="https://kindlemodshelf.me/faq.html">
   <meta property="og:title" content="Kindle Jailbreaking Support &amp; FAQ">
   <meta property="og:description" content="Kindle Jailbreaking Support &amp; FAQ – answers to common questions about jailbreaking, troubleshooting, and Kindle modding.">
@@ -17,26 +17,13 @@
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="style.css?v=3">
   <script src="theme-toggle.js?v=3"></script>
-  <style>
-    .faq-item {
-      margin-bottom: 24px;
-    }
-    .faq-item.hidden {
-      display: none;
-    }
-    .faq-no-results {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--muted);
-    }
-  </style>
 </head>
-<body>
+<body class="faq-page">
   <div class="container">
     <h1>Kindle Jailbreaking Support & FAQ</h1>
 
     <div class="summary">
-      <p>Common questions and answers about Kindle jailbreaking, troubleshooting, and modding.</p>
+      <p>Welcome to the Kindle Modding FAQ! Here you can find an exhaustive list of answers to some of our most commonly asked questions. Please don't try to read the whole thing (unless you're just curious), instead, please refer to this Table of Contents or use the search below.</p>
     </div>
 
     <div class="filter-toolbar">
@@ -61,619 +48,423 @@
     </div>
 
     <div id="faq-list">
-    <div class="faq-item">
-      <h2 class="section-title">Q: When is the 5.18.x jailbreak coming out?</h2>
-      <div class="card card-desc">
-      <p>
-        A: Soon - hopefully. There is no ETA given, and side projects, such as KPM (Kindle Package Manager), KindleForge (GUI for KPM), Sh_Integration in C, New jb.sh must be finished too. The in-development jailbreak supports 5.16.4 - 5.18.3 in theory, 5.18.4 patches the jailbreak and will not be supported for a while. No, there is nothing you can do at this time.
-      </p>
-    </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I downgrade my Kindle?</h2>
-    <div class="card card-desc">
-      <p>
-        A: Only if you are jailbroken first. See <a href="https://kindlemodding.org/firmware-and-flashing/downgrading/#downgrading" target="_blank" rel="noopener">kindlemodding.org/firmware-and-flashing/downgrading/#downgrading</a>. Note that you cannot downgrade below 5.18.1.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: The Kindle Disk Filler script isn't working!</h2>
-    <div class="card card-desc">
-      <p>
-        A: You are likely on an MTP kindle. You can manually fill your kindle with junk files. <a href="https://github.com/bastianmarin/Kindle-Filler-Disk/tree/main/MTP" target="_blank" rel="noopener">github.com/bastianmarin/Kindle-Filler-Disk/tree/main/MTP</a>.
-      </p>
-      <p>
-        Note: Ensure to delete any .partial.tmp.bin files or something of that sort when completing this step to prevent updates if you are susceptible to them.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: ;log mrpi fails</h2>
-    <div class="card card-desc">
-      <p>
-        A: You have 2 options. Either:
-      </p>
-      <ol>
-        <li>Drag the .bin file to the root of your kindle and press update your kindle in settings. This works functionally the same.</li>
-        <li>Install <a href="https://github.com/KindleTweaks/PEKI" target="_blank" rel="noopener">PEKI</a> instead of MRPI.</li>
-      </ol>
-      <p>
-        Note: Ensure to delete any .partial.tmp.bin files or something of that sort when completing this step to prevent updates if you are susceptible to them.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: MRPI says 'Destroying ...bin'/Update fails on the previous step</h2>
-    <div class="card card-desc">
-      <p>
-        A: You have an incorrect .bin file. Ensure you are using the correct/compatible KUAL edition (try the other) or software update.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: KUAL Says 'Application Error'</h2>
-    <div class="card card-desc">
-      <p>
-        A: Run the 'Run Hotfix/Bridge' scriptlet.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: Updated to 5.18.x post-jailbreak (e.g. during blocking OTAs)</h2>
-    <div class="card card-desc">
-      <p>
-        A: You may still be jailbroken! search for ;log and if it says something along the lines of "no args passed", you are still jailbroken, reinstall mrpi & kual and run hotfix, it should work.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: KOReader isn't opening!</h2>
-    <div class="card card-desc">
-      <p>
-        A: You have the incorrect KOReader version. Refer to this table to find out which version you need:
-      </p>
-      <p>
-        kindle-legacy: K2, DX, K3 (and all variants)<br>
-        kindle: K4, K5, PW1<br>
-        kindlepw2: PW2 and newer models running firmware <= 5.16.2.1.1<br>
-        kindlehf: Any Kindle device running firmware >= 5.16.3
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: I keep getting KPPMainAppv2 errors/logs!</h2>
-    <div class="card card-desc">
-      <p>
-        A: Create an empty file named "DISABLE_CORE_DUMP" (no extension) in the kindle root.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: How can I prevent updates on 5.18.1-3 whilst waiting?</h2>
-    <div class="card card-desc">
-      <p>
-        A: Fill up your kindle with junk files, either manually or with the filler script, forget networks, and enable aeroplane mode. <a href="https://kindlemodding.org/jailbreaking/prevent-auto-update.html" target="_blank" rel="noopener">kindlemodding.org/jailbreaking/prevent-auto-update.html</a>.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: When copying winterbreak, I recieve "The file name you specified is not valid or too long."</h2>
-    <div class="card card-desc">
-      <p>
-        A: Either you have really long file names, or forgot to extract the winterbreak files. Extract them first, and this should be fixed.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: Do I need a registered kindle to jailbreak?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Varies per-jailbreak. You do, for WinterBreak.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Useful Links & Resources</h2>
+        <div class="card card-desc">
+          <ul>
+            <li><a href="#basics">The Basics</a>: A more user friendly FAQ for all the basics. Check this first!</li>
+            <li><a href="https://kindlemodding.org/jailbreaking/jailbreak-faq.html" target="_blank" rel="noopener">Kindle Modding FAQ</a>: FAQ hosted on the Kindle Modding Wiki, covers most surface questions about apps and modding in general.</li>
+            <li><a href="#in-depth">In-Depth FAQ</a>: An exhaustive list with multiple maintainers that has been developed over time into a list of all of the more niche solutions we have found. Look in here for a more in depth database of solutions.</li>
+            <li><a href="https://www.mobileread.com/forums/forumdisplay.php?f=150" target="_blank" rel="noopener">Legacy Support</a>: Check here for questions regarding older devices/firmwares</li>
+            <li><a href="#unjailbreakable">Currently Unjailbreakable Versions</a>: Check here to see if your Kindle is jailbreakable! If your Kindle is not on that list, check the page on the <a href="https://kindlemodding.org/kindle-models.html" target="_blank" rel="noopener">Kindle Modding Wiki</a> to see what method you should use.</li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Jailbreaking on a blacklisted Kindle?</h2>
-    <div class="card card-desc">
-      <p>
-        A: Only with LanguageBreak for kindles on FW 5.16.2.1.1 or lower. Or WatchThis. Otherwise, wait for the new jailbreak.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: My Mac doesn't see my kindle!</h2>
-      <div class="card card-desc">
-        <p>
-          A: This is because you have an MTP kindle. Download amazon's software to fix: <a href="https://amazon.com/sendtokindle/mac?&linkCode=ll2&tag=ter000-20&linkId=07f7c7db67889bf36e836471c479526e&la" target="_blank" rel="noopener">amazon.com/sendtokindle/mac</a>.
-        </p>
+      <div class="faq-item" id="basics">
+        <h2 class="section-title">Q: Where do I start with modding my Kindle?</h2>
+        <div class="card card-desc">
+          <p>A: Go to <a href="https://kindlemodding.org/jailbreaking/index.html" target="_blank" rel="noopener">kindlemodding.org/jailbreaking/index.html</a> for the latest instructions on how to run the latest jailbreak.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Kindle store encounters an 'Unexpected Error'</h2>
-    <div class="card card-desc">
-      <p>
-        A: Try the below solution:
-      </p>
-      <ul>
-        <li>Factory Reset your Kindle</li>
-        <li>Before registering - plug your Kindle into your PC, move the WinterBreak files to the root of your storage space</li>
-        <li>Login to your account, and enable Airplane mode as soon as possible</li>
-        <li>Connect your Kindle into your PC and delete the cache directory at the path .active_content_sandbox/store/resource/LocalStorage (skip this step if the LocalStorage directory does not exist)</li>
-        <li>Reboot your Kindle</li>
-        <li>Open the Kindle Store on your Kindle</li>
-        <li>When prompted, click Yes to turn off Airplane mode</li>
-      </ul>
-      <p>
-        Still doesn't work?
-      </p>
-      <p>
-        Force update to your current firmware, even if you have disabled OTA Updates. Quote: "You can also force an update by copying the firmware update file to your Kindle and, while still plugged in, hold down the power button until it restarts." Get the firmware version from here: <a href="https://kindlemodding.org/firmware-and-flashing/downloading-updates.html" target="_blank" rel="noopener">kindlemodding.org/firmware-and-flashing/downloading-updates.html</a>.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: PW1 Running KOReader keeps crashing/flashing the default screensaver</h2>
-      <div class="card card-desc">
-        <p>
-          A: Run KOReader in frameworkless instead.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Is my Kindle Jailbreakable?</h2>
+        <div class="card card-desc">
+          <p>A: Check out the chart on the <a href="https://kindlemodding.org/kindle-models.html" target="_blank" rel="noopener">Kindle Modding Wiki</a>!</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: How to jailbreak K4/K4 jailbreaking issues</h2>
-    <div class="card card-desc">
-      <p>
-        A: Refer to the following reddit thread: <a href="https://reddit.com/r/kindle/comments/1ipko3u/comment/mcvmj3s/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" target="_blank" rel="noopener">reddit.com/r/kindle/comments/1ipko3u/comment/mcvmj3s/</a>.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: I cannot load Mesquite</h2>
-      <div class="card card-desc">
-        <p>
-          A: If you are on firmwares below 5.16.4, follow the Winterbreak2 guide. Otherwise, force the store to use cache and not the remote by connecting to wifi without a true valid internet connection.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Is jailbreaking my Kindle safe?</h2>
+        <div class="card card-desc">
+          <p>A: Yes as long as you know what you are doing. Don't mess with the root filesystem unless you know what you are doing.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: On 5.16.3, Cannot jailbreak, 'WINTERBREAK JAILBREAK' appears at the top of the screen</h2>
-      <div class="card card-desc">
-        <p>
-          A: Update manually to 5.16.4, .3 is not supported. It has been reported not to work on .3 in multiple cases.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: What is KOReader? Why should I install it?</h2>
+        <div class="card card-desc">
+          <p>A: KOReader is an awesome alternative reader with fun features! Get it here: <a href="https://github.com/koreader/koreader/releases" target="_blank" rel="noopener">github.com/koreader/koreader/releases</a>.</p>
+          <p>Install guide: <a href="https://kindlemodding.org/jailbreaking/post-jailbreak/koreader.html" target="_blank" rel="noopener">kindlemodding.org/jailbreaking/post-jailbreak/koreader.html</a>.</p>
+          <p>For a more detailed explanation on what KOReader is, check out their <a href="http://koreader.rocks/user_guide/" target="_blank" rel="noopener">user guide</a>!</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: How does WinterBreak/Jailbreaking work/What programming languages do I need to know to get into Jailbreaking?</h2>
-    <div class="card card-desc">
-      <p>
-        A: Look at this. Read it fully to understand. The actual exploit is fully detailed in the "Exploits" section.
-      </p>
-      <p>
-        Jailbreaking works by finding different ways to run sh as root on the kindle, and on most other devices you can jailbreak.
-      </p>
-      <p>
-        Many, depending on the exploit. But definetely sh, so you can actually run the jb code.
-      </p>
-    </div>
-    </div>
-
-    <div class="faq-item">
-      <h2 class="section-title">Q: Illusion isn't working/Illusion 'application error'!</h2>
-      <div class="card card-desc">
-        <p>
-          A: Illusion requires LanguageBreak/WinterBreak with scriptlets (Universal Hotfix), and does not currently support 5.6.1.1. Ensure you meet this criteria, and try rebooting and clicking again if you are, indeed, compatible.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Can I change the screensaver?</h2>
+        <div class="card card-desc">
+          <p>A: Yup! With jailbreak access, you can customize the screensaver images with KOReader! Please note that this will only work when you have KOReader launched. (you need to disable "special offers"/ ads first!)</p>
+          <p>Disabling ads/special offers instructions: <a href="disableads.html">Internal Guide</a></p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Where can I find apps/tweaks?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Check out <a href="https://kindlemodshelf.me" target="_blank" rel="noopener">kindlemodshelf.me</a>
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: I wanna use USBNetwork for SSH. How do I get started?</h2>
+        <div class="card card-desc">
+          <p>A: You can download it here: <a href="https://www.mobileread.com/forums/showthread.php?t=225030" target="_blank" rel="noopener">MobileRead Forum</a>.</p>
+          <p>For Kindles on firmware 5.16.3 or later please use USBNetlite: <a href="https://github.com/notmarek/kindle-usbnetlite/releases/tag/1.0.M" target="_blank" rel="noopener">github.com/notmarek/kindle-usbnetlite</a>.</p>
+          <p>To get started with USBNetwork/USBNetlite you can read the guide here as it applies to both of them: <a href="https://wiki.mobileread.com/wiki/USBNetwork" target="_blank" rel="noopener">wiki.mobileread.com/wiki/USBNetwork</a>.</p>
+          <p>To find more detailed info about USBNetwork/USBNetlite you can go here: <a href="https://www.mobileread.com/forums/showthread.php?t=204942" target="_blank" rel="noopener">MobileRead Thread</a>.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: How can I set a custom screensaver?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Look at the KOReader Guide (<a href="https://koreader.rocks" target="_blank" rel="noopener">koreader.rocks</a>). Manually replacing the screensavers/using NiLuJe's screensaver hack is not recommended, highly dangerous as the kindle is very specific around image formatting and type. Could lead to bricks.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: What is the very basic file structure for jailbroken Kindles (WinterBreak)?</h2>
+        <div class="card card-desc">
+          <pre><code>/
+├── .active_content_sandbox/
+├── voice/
+├── system/
+├── screenshots/
+├── mrpackages (another place for fun filled packages)
+├── fonts/
+├── extensions/ (this is where you put kual packages)
+├── documents/ 
+├── audible/
+├── apps/
+├── winterbreak.log
+├── O/
+└── jb.sh</code></pre>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Whats SF/HF and why does some software not work on my device?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Kindle firmware is SF on 5.16.2.1.1 and below. After 5.16.3, all kindle firmware is HF. SF software may not work on HF, and vice versa. That's why you need to select the correct package for your kindle when installing something.
-        </p>
+      <div class="faq-item" id="in-depth">
+        <h2 class="section-title">Q: Can I downgrade my Kindle?</h2>
+        <div class="card card-desc">
+          <p>A: Only if you are jailbroken first. See <a href="https://kindlemodding.org/firmware-and-flashing/downgrading/#downgrading" target="_blank" rel="noopener">kindlemodding.org/firmware-and-flashing/downgrading</a>. Note that you cannot downgrade below 5.18.1.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I not do x after jailbreaking?</h2>
-      <div class="card card-desc">
-        <p>
-          A: You should still be able to do everything you could do post-jailbreak as you would on an unjailbroken kindle. Jailbreaking itself doesnt visually change anything unless you install apps or tweaks.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: The Kindle Disk Filler script isn't working!</h2>
+        <div class="card card-desc">
+          <p>A: You are likely on an MTP kindle. Follow <a href="https://mip-wiki.pages.dev/database/fillingstorage/" target="_blank" rel="noopener">this guide</a>.</p>
+          <p>Note: Ensure to delete any .partial.tmp.bin files or something of that sort when completing this step to prevent updates if you are susceptible to them.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Cannot install hotfix, no matter what.</h2>
-      <div class="card card-desc">
-        <p>
-          A: You are probably not actually jailbroken!
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: ;log mrpi fails</h2>
+        <div class="card card-desc">
+          <p>A: You generally have 3 options. Either:</p>
+          <ol>
+            <li>Drag the .bin file to the root of your Kindle and press update your Kindle in settings. This works functionally the same although some Kindles don't allow it.</li>
+            <li>Try restarting your Kindle. This is necessary after installing the Hotfix.</li>
+            <li>Install <a href="https://github.com/KindleTweaks/PEKI" target="_blank" rel="noopener">PEKI</a> instead of MRPI.</li>
+          </ol>
+          <p>Note: Ensure to delete any .partial.tmp.bin files or something of that sort when completing this step to prevent updates if you are susceptible to them.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Are there video guides available?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Yes! <a href="https://youtube.com/@dammitjeff" target="_blank" rel="noopener">Dammit Jeff</a> has made plenty of videos covering jailbreaking or installing utilities. Just always make sure to use up to date guides!
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: MRPI says 'Destroying ...bin' / Update fails on the previous step</h2>
+        <div class="card card-desc">
+          <p>A: You have an incorrect .bin file. Ensure you are using the correct/compatible KUAL edition (try the other) or software update.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: How can I develop (GUI apps) for Kindles?</h2>
-      <div class="card card-desc">
-        <p>
-          A: You have 3 options:
-        </p>
-        <ul>
-          <li><a href="https://kindlemodding.org/kindle-dev/gtk-tutorial/" target="_blank" rel="noopener">GTK</a>. Usually done with C(++), or <a href="https://github.com/clintharrison/template-kindle-gtk/tree/clint/go-gtk" target="_blank" rel="noopener">Golang</a>.</li>
-          <li><a href="https://github.com/polish-penguin-dev/Penguins-Kindle-Wiki/" target="_blank" rel="noopener">Mesquite</a>. HTML, CSS, JS.</li>
-          <li>React Native (5.13.7+). Undocumented, but check out <a href="https://github.com/Lukas1h/KPPLauncher" target="_blank" rel="noopener">KPPLauncher</a> and <a href="https://github.com/Lukas1h/react-native-kindle" target="_blank" rel="noopener">React-native-kindle</a>.</li>
-        </ul>
-        <p>
-          Note: For React Native, using KPPSimpleLauncher + Scriptlets instead of KPPLauncher is recommended.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: KUAL Says 'Application Error'</h2>
+        <div class="card card-desc">
+          <p>A: Run the 'Run Hotfix' or 'Run Hotfix/Bridge' scriptlet.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Whats 'UJ'?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Unnamed Jailbreak - the upcoming one. That's what it's referred to commonly in chat, remember that!
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Updated to a newer firmware post-jailbreak (e.g., during blocking OTAs)</h2>
+        <div class="card card-desc">
+          <p>A: You may still be jailbroken! Search for <code>;log</code> and if it says something along the lines of "no args passed", you are still jailbroken. Reinstall mrpi & kual and run hotfix, it should work.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I get a different OS on my kindle?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Theoretically, yes, if your kindle's secure boot is off (older devices). Otherwise, look at Alpine on Kindles, which doesn't fully replace your kindle's actual OS.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: KOReader isn't opening!</h2>
+        <div class="card card-desc">
+          <p>A: You have the incorrect KOReader version. Refer to this list to find out which version you need:</p>
+          <ul>
+            <li><strong>kindle-legacy:</strong> K2, DX, K3 (and all variants)</li>
+            <li><strong>kindle:</strong> K4, K5, PW1</li>
+            <li><strong>kindlepw2:</strong> PW2 and newer models running firmware &lt;= 5.16.2.1.1</li>
+            <li><strong>kindlehf:</strong> Any Kindle device running firmware &gt;= 5.16.3</li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Stuck on 'Jailbreaking - Please Wait...' indefinitely?</h2>
-      <div class="card card-desc">
-        <p>
-          A: <strong>Make sure your storage is filled.</strong> Turn off Airplane Mode.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: My KOReader version isn't in the GitHub Releases!</h2>
+        <div class="card card-desc">
+          <p>A: Make sure you click "Show all assets" to view all of the versions.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I help with the jailbreak?</h2>
-      <div class="card card-desc">
-        <p>
-          A: There is nothing you can do at this time, except be helpful in the community and spread this information.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: I keep getting KPPMainAppv2 errors/logs!</h2>
+        <div class="card card-desc">
+          <p>A: Try <a href="https://mip-wiki.pages.dev/database/crashlog/" target="_blank" rel="noopener">this guide</a>, or create an empty file named "DISABLE_CORE_DUMP" (no extension) in the Kindle root. The already existing logs can be safely deleted.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: The MRPI website is down. What should I do?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Install KUAL using <a href="https://github.com/KindleTweaks/PEKI" target="_blank" rel="noopener">PEKI</a>, once you see the KUAL booklet on your homescreen you can move on to the other post jailbreak steps!
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: How can I prevent updates on an unjailbreakable version whilst waiting?</h2>
+        <div class="card card-desc">
+          <p>A: Fill up your Kindle with junk files, either manually or with the filler script, forget networks, and enable airplane mode. <a href="https://kindlemodding.org/jailbreaking/prevent-auto-update/" target="_blank" rel="noopener">kindlemodding.org/jailbreaking/prevent-auto-update/</a></p>
+          <p>Or if you are on the 2024 refresh of the Kindle 11th Gen, any Kindle Scribe, or a 12+ Gen Kindle, follow this guide: <a href="https://mip-wiki.pages.dev/database/fillingstorage/" target="_blank" rel="noopener">mip-wiki.pages.dev/database/fillingstorage/</a></p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Any other issues?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Ask the kindle modding discord, or read the guide (<a href="https://kindlemodding.org" target="_blank" rel="noopener">kindlemodding.org</a>).
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: When copying WinterBreak, I receive "The file name you specified is not valid or too long."</h2>
+        <div class="card card-desc">
+          <p>A: Either you have really long file names, or forgot to extract the WinterBreak files. Extract them first, and this should be fixed.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I remove my account after jailbreaking?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Yes, but for Winterbreak, you will have to log in again if you want to jailbreak from scratch. Your Kindle will remain jailbroken whether you log back in or log out.
-        </p>
-        <blockquote class="faq-blockquote">
-          After unregistering, the Kindle will delete all files located in the documents folder, including the KUAL Launcher booklet and any other scripts that have been transferred. Be sure to back up these files first.
-        </blockquote>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Do I need a registered Kindle to jailbreak?</h2>
+        <div class="card card-desc">
+          <p>A: Varies per-jailbreak. You do for WinterBreak and AdBreak.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I un-jailbreak my Kindle?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Yes, re-enable automatic updates first (Restore option in renametobin) to avoid an update block. Then, perform a factory reset on the device and install the same firmware update (or a higher version).
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Jailbreaking on a blacklisted/unregistered Kindle?</h2>
+        <div class="card card-desc">
+          <p>A: Here are your options:</p>
+          <ul>
+            <li><a href="https://kindlemodding.org/jailbreaking/Legacy/LanguageBreak.html" target="_blank" rel="noopener">LanguageBreak</a> for Kindles for firmwares 5.16.2.1.1 or lower. Or WatchThis if your Kindle is vulnerable.</li>
+            <li><a href="https://github.com/KindleModding/Winterbreak2" target="_blank" rel="noopener">WinterBreak2</a> for firmwares below 5.16.4 and below.</li>
+            <li><a href="https://kindlemodding.org/jailbreaking/Nosebleed/" target="_blank" rel="noopener">Nosebleed</a> for the PW5, PW5SE, KT5 (possibly the KOA3, KOA3W32C) on firmwares 5.16.4 - 5.18.6.</li>
+          </ul>
+          <p>If your Kindle is not supported, wait for a new Jailbreak.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Will the jailbreak get my Amazon account banned?</h2>
-      <div class="card card-desc">
-        <p>
-          A: No reports of Amazon accounts being banned after jailbreaking have been reported so far. However, please refrain from telling support that you have modified your device.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: My Mac doesn't see my Kindle!</h2>
+        <div class="card card-desc">
+          <p>A: This is because you have an MTP Kindle. Download <a href="https://www.amazon.com/sendtokindle/mac?linkId=07f7c7db67889bf36e836471c479526e&la%29=" target="_blank" rel="noopener">Amazon's software</a> to fix (or use the <a href="https://openmtp.ganeshrvel.com/" target="_blank" rel="noopener">OpenMTP app</a>). Note that only one app can connect to your MTP Kindle at the same time.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Will this void the warranty on my Kindle device?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Probably.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Kindle store encounters an 'Unexpected Error' (WinterBreak)</h2>
+        <div class="card card-desc">
+          <p>A: Try the below solution:</p>
+          <ol>
+            <li>Factory Reset your Kindle</li>
+            <li>Before registering - plug your Kindle into your PC, move the WinterBreak files to the root of your storage space</li>
+            <li>Login to your account, and enable Airplane mode as soon as possible</li>
+            <li>Connect your Kindle into your PC and delete the cache directory at the path <code>.active_content_sandbox/store/resource/LocalStorage</code> (skip this step if the LocalStorage directory does not exist)</li>
+            <li>Reboot your Kindle</li>
+            <li>Open the Kindle Store on your Kindle</li>
+            <li>When prompted, click Yes to turn off Airplane mode</li>
+          </ol>
+          <p>Still doesn't work?</p>
+          <p>Force update to your current firmware, even if you have disabled OTA Updates. Quote: "You can also force an update by copying the firmware update file to your Kindle and, while still plugged in, hold down the power button until it restarts." Get the firmware version from here: <a href="https://kindlemodding.org/firmware-and-flashing/downloading-updates.html" target="_blank" rel="noopener">kindlemodding.org/firmware-and-flashing/downloading-updates.html</a>.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: How do I get the Amazon store back again?</h2>
-      <div class="card card-desc">
-        <p>
-          A: <a href="https://kindlemodding.org/jailbreaking/post-jailbreak/re-enabling-the-store/" target="_blank" rel="noopener">Read and follow this guide</a>.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: PW1 Running KOReader keeps crashing/flashing the default screensaver</h2>
+        <div class="card card-desc">
+          <p>A: Run KOReader in the frameworkless mode instead.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I still use the default reader after jailbreaking?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Yes.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: How to jailbreak K4/K4 jailbreaking issues</h2>
+        <div class="card card-desc">
+          <p>A: Refer to this <a href="https://rxddit.com/r/kindle/comments/1ipko3u/comment/mcvmj3s/" target="_blank" rel="noopener">Reddit thread</a>.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I still sideload books after jailbreaking?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Yes.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: I cannot load Mesquito (WinterBreak)</h2>
+        <div class="card card-desc">
+          <p>A: If you are on a firmware below 5.16.4, follow the <a href="https://github.com/KindleModding/Winterbreak2" target="_blank" rel="noopener">Winterbreak2</a> guide. Otherwise, force the store to use cache and not the remote by connecting to wifi without a true valid internet connection.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Will my books and highlights be deleted after jailbreaking?</h2>
-      <div class="card card-desc">
-        <p>
-          A: No.
-        </p>
-        <blockquote class="faq-blockquote">
-          If your device has been in Airplane mode for a long period of time, there is a possibility that Amazon will delete all sideloaded books from your device after reconnecting to WiFi due to an internal book tag. This can happen regardless of whether your device is jailbroken or not. Backup your books whenever you can.
-        </blockquote>
+      <div class="faq-item">
+        <h2 class="section-title">Q: On 5.16.3, Cannot jailbreak using WinterBreak(2), 'WINTERBREAK JAILBREAK' appears at the top of the screen (WinterBreak)</h2>
+        <div class="card card-desc">
+          <p>A: Use <a href="https://github.com/KindleModding/Winterbreak2" target="_blank" rel="noopener">WinterBreak2</a> or Update manually to 5.16.4. 5.16.3 is not supported. It has been reported not to work on 5.16.3 in multiple cases.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Will Libby/Readwise/GoodReads/Kindle Unlimited/Send To Kindle still work after jailbreaking?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Yes. Jailbreaking doesn't interfere with any of these services.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: How does WinterBreak/Jailbreaking work/What programming languages do I need to know to get into Jailbreaking?</h2>
+        <div class="card card-desc">
+          <ol>
+            <li>Look at <a href="https://github.com/polish-penguin-dev/Penguins-Kindle-Wiki/blob/main/Mesquite-WAFs.md" target="_blank" rel="noopener">this</a>. Read it fully to understand. The actual exploit is fully detailed in the "Exploits" section.</li>
+            <li>Jailbreaking works by finding different ways to run <code>sh</code> as root on the Kindle, and on most other devices you can jailbreak. You can check out <a href="https://kindlemodding.org/kindle-hacking/index.html" target="_blank" rel="noopener">this page</a> on the Kindle Modding Wiki for a bit more explanation.</li>
+            <li>Many, depending on the exploit. But definitely <code>sh</code> (shell), so you can actually run the jb code.</li>
+          </ol>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I use those applications within KOReader?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Unless there's a plugin for it, no.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Illusion isn't working/Illusion 'application error'!</h2>
+        <div class="card card-desc">
+          <p>A: Make sure all files and the folder are copied to <code>documents</code>. If that doesn't work note that Illusion requires LanguageBreak/WinterBreak/AdBreak with Scriptlets (Universal Hotfix), and does not currently support 5.16.1.1. Ensure you meet this criteria, and try rebooting and clicking again if you are, indeed, compatible and have all the files.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I install Android apps on my jailbroken Kindle (Libby, Nook, Webtoon)?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Unless there's an extension/port for any of them, no.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Where can I find apps/tweaks?</h2>
+        <div class="card card-desc">
+          <p>A: Check out <a href="https://kindlemodshelf.me/" target="_blank" rel="noopener">KindleModShelf</a>.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: How do I read my Amazon ebooks within KOReader?</h2>
-      <div class="card card-desc">
-        <p>
-          A: KOReader currently doesn't (and likely never will) support the proprietary formats that Amazon converts all ebooks into (KFX, AZW3, and very limited support for MOBI). It is recommended to get all your books as EPUB and store them in a separate folder for easy access.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Is there a jailbroken app store for the Kindle?</h2>
+        <div class="card card-desc">
+          <p>A: Yes! It's called KindleForge. In order to get it, please go to the <a href="https://github.com/KindleTweaks/KindleForge" target="_blank" rel="noopener">KindleForge GitHub</a> and follow the instructions there.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: How do I read my Libby books?</h2>
-      <div class="card card-desc">
-        <p>
-          A: You cannot use the Libby service within KOReader. You can get the EPUB file from Libby by following <a href="https://help.libbyapp.com/en-us/6059.htm" target="_blank" rel="noopener">this guide</a>.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: How can I set a custom screensaver?</h2>
+        <div class="card card-desc">
+          <p>A: Look at the <a href="https://koreader.rocks/" target="_blank" rel="noopener">KOReader Guide</a>. Manually replacing the screensavers/using NiLuJe's screensaver hack is not recommended, highly dangerous as the Kindle is very specific around image formatting and type and making a mistake could easily lead to bricks. Penguins and some others are developing Screeny a safe way to have custom screensavers everywhere, but until that's completed use KOReader.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: What is the difference between the three KOReader launch options?</h2>
-      <div class="card card-desc">
-        <ul style="margin: 12px 0; padding-left: 20px;">
-          <li><strong>"Start KOReader":</strong> The designed way to start KOReader.</li>
-          <li><strong>"Start KOReader (no framework)":</strong> Temporarily "kills" the Kindle UI to allocate more resources to KOReader.</li>
-          <li><strong>"Start KOReader (ASAP)":</strong> Skips a couple of checks and starts KOReader as soon as possible.</li>
-        </ul>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Whats SF/HF and why does some software not work on my device?</h2>
+        <div class="card card-desc">
+          <p>A: Kindle firmware is SF on 5.16.2.1.1 and below. Starting with firmware 5.16.3, all Kindle firmware is HF. SF software may not work on HF, and vice versa. That's why you need to select the correct package for your Kindle when installing something.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: I can't transfer files through USB while I am in KOReader!</h2>
-      <div class="card card-desc">
-        <p>
-          A: KOReader currently does not support USBMS mode (USB transfer) and will only charge the device. If you want to transfer files, you must exit KOReader to do so.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Can I not do x after jailbreaking?</h2>
+        <div class="card card-desc">
+          <p>A: You should still be able to do everything you could do post-jailbreak as you would on an unjailbroken Kindle. Jailbreaking itself doesn't visually change anything unless you install apps or tweaks.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Do I have to launch KOReader through KUAL?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Not necessarily. You can launch it with simple <a href="https://kindlemodding.org/kindle-dev/scriptlets.html" target="_blank" rel="noopener">scriptlets</a>, specifically, Marek's launcher that is available <a href="https://scriptlets.notmarek.com/" target="_blank" rel="noopener">here</a>.
-        </p>
-        <p style="margin-top: 12px;">
-          A <a href="https://github.com/yparitcher/KUAL_Booklet/releases/" target="_blank" rel="noopener">KUAL booklet launcher (made by yparitcher)</a> extension is also available to install. You can further customize both the KUAL booklet and the KOR launcher with the <a href="https://www.mobileread.com/forums/showpost.php?p=4222466&postcount=15" target="_blank" rel="noopener">coversetter extension made by Stanner</a>.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Cannot install hotfix, no matter what.</h2>
+        <div class="card card-desc">
+          <p>A: You are probably not actually jailbroken!</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: What is the "root directory"?</h2>
-      <div class="card card-desc">
-        <p>
-          A: It's the first directory you see when you plug the device into your computer. If you have SSH access to the device, this directory can be found at <code>/mnt/us/</code>.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Are there video guides available?</h2>
+        <div class="card card-desc">
+          <p>A: Yes! <a href="https://youtube.com/@dammitjeff" target="_blank" rel="noopener">Dammit Jeff</a> has made plenty of videos covering jailbreaking or installing utilities. Just always make sure to use up to date guides!</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Can I update/factory reset/downgrade my Kindle after jailbreaking?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Yes, but you must first enable Airplane mode and enable automatic updates again (Restore option in renametobin) to avoid any potential update blocks or unwanted automatic updates. When updating, ensure that the newer version supports a jailbreak.
-        </p>
-        <blockquote class="faq-blockquote">
-          After updating/factory reset/downgrading, re-install the hotfix from scratch. KUAL and some other extensions may need to be re-installed too.
-        </blockquote>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Any other issues?</h2>
+        <div class="card card-desc">
+          <p>A: Make a ticket! We'll be here to help! (Just don't ping us)</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: How do I check if my device is jailbroken?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Type <code>;log</code> into the search bar. If a message pops up, you're jailbroken.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: How can I develop (GUI apps) for Kindles?</h2>
+        <div class="card card-desc">
+          <p>A: You have 3 options:</p>
+          <ul>
+            <li><a href="https://kindlemodding.org/kindle-dev/gtk-tutorial/" target="_blank" rel="noopener">GTK</a>. Usually done with C(++), or <a href="https://github.com/clintharrison/template-kindle-gtk/tree/clint/go-gtk" target="_blank" rel="noopener">Golang</a>.</li>
+            <li><a href="https://github.com/polish-penguin-dev/Penguins-Kindle-Wiki/" target="_blank" rel="noopener">Mesquite</a>. HTML, CSS, JS.</li>
+            <li>React Native (5.13.7+). Undocumented, but check out <a href="https://github.com/Lukas1h/KPPLauncher" target="_blank" rel="noopener">KPPLauncher</a> and <a href="https://github.com/Lukas1h/react-native-kindle" target="_blank" rel="noopener">React-native-kindle</a>.</li>
+          </ul>
+          <p>NOTE: Personally, for react native, I would use KPPSimpleLauncher + Scriptlets instead of KPPLauncher!</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: KUAL stopped working! I can't launch any of my extensions!</h2>
-      <div class="card card-desc">
-        <p>
-          A: Verify if your device is still jailbroken by typing <code>;log</code> into the search bar.
-        </p>
-        <ul style="margin: 12px 0; padding-left: 20px;">
-          <li>If it prompted any text, <a href="https://kindlemodding.org/jailbreaking/post-jailbreak/setting-up-a-hotfix/" target="_blank" rel="noopener">re-install the hotfix and KUAL</a> from scratch.</li>
-          <li>If not, <a href="https://kindlemodding.org/kindle-models" target="_blank" rel="noopener">re-jailbreak</a> your device.</li>
-          <li>If everything else failed, factory reset your device and start the jailbreak from scratch.</li>
-        </ul>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Whats 'UJ'?</h2>
+        <div class="card card-desc">
+          <p>A: Unnamed Jailbreak - an upcoming one. That's what it's referred to commonly in chat, remember that! You may also see it refered to as "ChromeCracker", which will likely be it's name when it releases.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: I can't update my Kindle after a factory reset/update!</h2>
-      <div class="card card-desc">
-        <p>
-          A: If you reset your Kindle in a jailbroken state with renametobin left enabled, your Kindle may be in a locked state. To fix this, read <a href="https://kindlemodding.org/jailbreaking/recovering-from-a-reset.html" target="_blank" rel="noopener">this guide</a>.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Can I get a different OS on my Kindle?</h2>
+        <div class="card card-desc">
+          <p>A: Theoretically, yes, if your Kindle's secure boot is off (older devices). Otherwise, look at <a href="https://kindlemodshelf.me/all-kindle-linux-chroots" target="_blank" rel="noopener">Linux chroots</a> or <a href="https://mip-wiki.pages.dev/database/alpine/" target="_blank" rel="noopener">Alpine for Kindles</a>, which doesn't fully replace your Kindles actual OS. <strong>Please know that none of these are completely safe and multiple bricks have been reported. (Probably won't happen but beware)</strong></p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: I get a message saying "Failed to remount rootfs RO, waiting"!</h2>
-      <div class="card card-desc">
-        <p>
-          A: This is expected. You can safely reboot your device manually (holding the power button until you get the Restart option).
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Stuck on 'Jailbreaking - Please Wait...' indefinitely? (WinterBreak)</h2>
+        <div class="card card-desc">
+          <p>A: <strong>Make sure that you have filled your storage</strong>, and then turn off Airplane Mode.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: My device hasn't rebooted after the jailbreaking pop-up!</h2>
-      <div class="card card-desc">
-        <p>
-          A: If you're using Winterbreak, unless the Kindle displays the message "You are now ready to install the hotfix" in small text, you can safely continue with the post-jailbreak instructions. If it doesn't, something went wrong during the jailbreak process, and you'll have to try again.
-        </p>
-        <blockquote class="faq-blockquote">
-          Remember to delete any automatic update file that might have appeared.
-        </blockquote>
+      <div class="faq-item">
+        <h2 class="section-title">Q: Can I help with the jailbreak?</h2>
+        <div class="card card-desc">
+          <p>A: There is nothing you can do at this time, except be helpful in the community and spread this information.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: How can I check OTA Status?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Download the "Check OTA Status" scriptlet from <a href="https://scriptlets.notmarek.com/" target="_blank" rel="noopener">here</a>.
-        </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: The MRPI website is down. What should I do?</h2>
+        <div class="card card-desc">
+          <p>A: You can use <a href="https://greencat-777.github.io/mrpi.zip" target="_blank" rel="noopener">this repackaged zip</a> (courtsey of GreenCat777) or Install KUAL using <a href="https://github.com/KindleTweaks/PEKI" target="_blank" rel="noopener">PEKI</a>, once you see the KUAL booklet on your homescreen you can move on to the other post jailbreak steps!</p>
+        </div>
       </div>
-    </div>
 
-    <div class="faq-item">
-      <h2 class="section-title">Q: Is it possible to change screensavers in the native Kindle UI?</h2>
-      <div class="card card-desc">
-        <p>
-          A: Although there are currently no extensions to change the screensavers in hard-float firmware, it is still possible to change them, but it is not recommended as it is very easy to brick the device.
-        </p>
-        <p style="margin-top: 12px;">
-          If you still want to change the screensavers, check the details of your default Kindle screensavers inside the <code>/usr/share/blanket/screensavers</code> folder, get root writing permissions, and set the custom ones with the same name prefix and settings (bit-depth and resolution). You can either replace them all or add them to the slideshow queue.
-        </p>
-        <p style="margin-top: 12px;">
-          Please note that even after following these precautions, it is not guaranteed your device won't brick, especially if you're using GIMP to export the images.
-        </p>
-        <blockquote class="faq-blockquote">
-          If you are, however, running soft-float firmware prior to or on 5.16.2.1.1, you can install <a href="https://www.mobileread.com/forums/showthread.php?t=195474" target="_blank" rel="noopener">NiLuJe's screensaver hack</a>. Please do not make the mistake of installing this extension on hard-float firmware. You can easily change screensavers with <a href="https://koreader.rocks/user_guide/" target="_blank" rel="noopener">KOReader</a> (search for the "screensavers" feature).
-        </blockquote>
+      <div class="faq-item">
+        <h2 class="section-title">Q: How can I mod my Kindle Fire/Fire Tablet?</h2>
+        <div class="card card-desc">
+          <p>A: This server is only for the Kindle E-readers, <strong>not</strong> the fire tablets. You are probably better off looking elsewhere.</p>
+        </div>
       </div>
-    </div>
-    </div>
 
-    <h2 class="section-title">Credits</h2>
-    <div class="card card-desc">
-      <p>
-        PENGUINS184, USERNAME99, MONKEYINPRIVITE
-      </p>
+      <div class="faq-item">
+        <h2 class="section-title">Q: I want to deregister my Kindle. What do I do?</h2>
+        <div class="card card-desc">
+          <p>A: Follow <a href="https://mip-wiki.pages.dev/database/preservefilesonderegister/" target="_blank" rel="noopener">this</a>.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="ads">
+        <h2 class="section-title">Q: I need to enable ads for AdBreak. It's not working/I don't have valid info! What do I do?</h2>
+        <div class="card card-desc">
+          <p>A: Follow <a href="https://mip-wiki.pages.dev/database/enablingads/" target="_blank" rel="noopener">this</a>.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" id="unjailbreakable">
+        <h2 class="section-title">Currently Unjailbreakable Versions</h2>
+        <div class="card card-desc">
+          <p><strong>Firmwares</strong></p>
+          <ul>
+            <li>ANY model on <code>5.19.x</code></li>
+          </ul>
+          <p><strong>Models</strong></p>
+          <ul>
+            <li>12th Generation or above including but not limited to the PW6, KT6, KS, and CS Kindles with a firmware above 5.18.5.0.1</li>
+            <li>Blacklisted/Unregistered 12 Generation or above Kindles (see above)</li>
+            <li>Kindle Scribe (2024 Release) also known as the KS2 on firmware above 5.18.1</li>
+            <li>Kindle Colorsoft also known as the CS on firmware above 5.18.0.2</li>
+            <li>The Kindle Scribe (3rd Generation) also known as the KS3 or the Kindle Scribe Colorsoft also known as the KSC cannot be jailbroken <strong>at all</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <h2 class="section-title">Credits</h2>
+        <div class="card card-desc">
+          <p>
+            Authors: PENGUINS184, USERNAME99, MONKEYINPRIVITE, GREENCAT777, PUMPKINLIME132, SCAM.NET, MERGEN3107, GreenCat777 [KNDL]<br>
+            Last Updated: 5/2/2026
+          </p>
+        </div>
+      </div>
+
     </div>
   </div>
   <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
@@ -689,9 +480,12 @@
 
       let visibleCount = 0;
       faqItems.forEach(item => {
-        const question = item.querySelector('.section-title').textContent.toLowerCase();
-        const answer = item.querySelector('.card').textContent.toLowerCase();
-        const matches = question.includes(query) || answer.includes(query);
+        // Search in both the title and the entire card content
+        const questionText = item.querySelector('.section-title').textContent.toLowerCase();
+        const answerCard = item.querySelector('.card');
+        const answerText = answerCard ? answerCard.textContent.toLowerCase() : '';
+        
+        const matches = questionText.includes(query) || answerText.includes(query);
 
         if (query === '' || matches) {
           item.classList.remove('hidden');

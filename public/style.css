@@ -658,6 +658,27 @@ li {
   padding-bottom: 12px;
 }
 
+.faq-page .section-title {
+  font-size: 1.2rem;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+}
+
+.faq-page .faq-item {
+  margin-bottom: 24px;
+}
+
+.faq-page .faq-item.hidden {
+  display: none;
+}
+
+.faq-page .faq-no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+}
+
 .section-title small {
   font-size: 0.6em;
   opacity: 0.75;
