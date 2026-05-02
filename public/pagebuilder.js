@@ -1551,6 +1551,8 @@ class PageBuilder {
 
   generateExportHTML() {
     const filename = this.getExportFilename();
+    const basename = filename.replace(/\.html$/, '');
+    const targetPath = basename === 'index' ? '' : basename;
     const hasSummaryBlock = this.blocks.some(b => b.type === 'summary');
     const preset = this.getEffectivePagePreset();
     const metaProfile = this.getMetadataProfile(filename, preset);
@@ -1562,11 +1564,11 @@ class PageBuilder {
   <title>${this.escapeHtml(this.meta.pageTitle)}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${this.escapeHtml(this.meta.description)}">
-  <link rel="canonical" href="https://kindlemodshelf.me/${filename}">
+  <link rel="canonical" href="https://kindlemodshelf.me/${targetPath}">
   <link rel="stylesheet" href="style.css?v=3">
   <meta property="og:title" content="${this.escapeHtml(this.meta.pageTitle)}">
   <meta property="og:description" content="${this.escapeHtml(this.meta.description)}">
-  <meta property="og:url" content="https://kindlemodshelf.me/${filename}">
+  <meta property="og:url" content="https://kindlemodshelf.me/${targetPath}">
   <meta property="og:type" content="${metaProfile.ogType}">
   <meta property="og:site_name" content="KindleModShelf">`;
 
