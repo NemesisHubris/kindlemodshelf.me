@@ -474,7 +474,7 @@ function openViewer(thumbnail) {
 }
 
 function loadSidebarImages(author) {
-  const authorImages = authorIndex[author] || [];
+  const authorImages = masterImages.filter(img => img.author === author);
   sidebarImages.innerHTML = '';
 
   const fragment = document.createDocumentFragment();
