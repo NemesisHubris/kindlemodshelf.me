@@ -444,6 +444,7 @@ function bindEvents() {
   els.editorCanvas.addEventListener('wheel', handleWheel, { passive: false });
   window.addEventListener('resize', resizePreview);
   window.addEventListener('keydown', handleKeyboardShortcuts);
+  document.addEventListener('themechange', () => requestPreviewRender());
   setupTooltips();
 }
 
@@ -958,13 +959,16 @@ function drawEmptyFrame(ctx, x, y, width, height) {
 
 function drawTransparencyGrid(ctx, x, y, width, height) {
   const tile = 18;
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  const gridBase = isLight ? '#f3f4f6' : '#2a2a2e';
+  const gridAlt  = isLight ? '#dde2e7' : '#1e1e22';
   ctx.save();
   ctx.beginPath();
   ctx.rect(x, y, width, height);
   ctx.clip();
-  ctx.fillStyle = '#f3f4f6';
+  ctx.fillStyle = gridBase;
   ctx.fillRect(x, y, width, height);
-  ctx.fillStyle = '#dde2e7';
+  ctx.fillStyle = gridAlt;
   for (let row = 0; row < Math.ceil(height / tile); row++) {
     for (let col = 0; col < Math.ceil(width / tile); col++) {
       if ((row + col) % 2 === 0) continue;

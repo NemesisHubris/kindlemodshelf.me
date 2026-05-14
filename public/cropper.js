@@ -107,6 +107,9 @@ function initCropperHTML() {
             <div class="cropper-footer">
               <button id="cropper-download" class="builder-apply-btn">Download Image</button>
             </div>
+            <div class="cropper-note">
+              Good for a quick edit. For more control, use the <a href="imageeditor.html" target="_blank" rel="noopener">KindleModShelf Advanced Editor</a>.
+            </div>
           </div>
         </div>
       </div>
