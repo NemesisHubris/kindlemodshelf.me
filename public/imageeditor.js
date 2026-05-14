@@ -125,7 +125,7 @@ const HISTORY_FIELDS = [
   'displayLook'
 ];
 
-const HISTORY_LIMIT = 40;
+const HISTORY_LIMIT = 250;
 
 const state = {
   image: null,
@@ -139,7 +139,7 @@ const state = {
   width: 1236,
   height: 1648,
   fitMode: 'cover',
-  background: '#ffffff',
+  background: 'transparent',
   scale: 1,
   minScale: 1,
   offsetX: 0,
@@ -165,6 +165,7 @@ const state = {
   threshold: 128,
   exportFormat: 'image/png',
   instantAlphaMode: false,
+  instantAlphaSettingsOpen: false,
   alphaTolerance: 28,
   previewFrameX: 0,
   previewFrameY: 0,
@@ -183,6 +184,9 @@ const state = {
   selectionRect: null,
   selectionDragging: false,
   selectionStart: null,
+  tooltipPinned: false,
+  tooltipTarget: null,
+  compositionGuide: true,
   previewOutputCanvas: document.createElement('canvas'),
   previewRenderQueued: false
 };
@@ -194,12 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
     'imageUpload', 'dropZone', 'uploadMeta', 'devicePreset', 'targetWidth', 'targetHeight',
     'fitMode', 'backgroundColor', 'rotateLeftBtn', 'rotateRightBtn', 'flipXBtn', 'flipYBtn',
     'canvasWrap', 'editorCanvas', 'emptyState', 'zoomOverlay', 'centerBtn', 'fitBtn', 'resetBtn',
-    'downloadBtn', 'zoom', 'zoomInBtn', 'zoomOutBtn', 'zoomDisplay', 'brightness', 'contrast',
+    'downloadBtn', 'zoom', 'zoomInBtn', 'zoomOutBtn', 'zoomInput', 'brightness', 'contrast',
     'saturation', 'exposure', 'gamma', 'sharpen', 'grayscale', 'autoLevels', 'invert', 'border',
     'ditherMode', 'threshold', 'thresholdGroup', 'exportFormat', 'canvasDimsDisplay',
-    'instantAlphaBtn', 'alphaTolerance', 'alphaToleranceValue', 'instantAlphaHint',
-    'undoBtn', 'redoBtn', 'displayLook', 'selectionModeBtn', 'clearSelectionBtn',
-    'eraseSelectionBtn', 'cropSelectionBtn', 'selectionHint'
+    'instantAlphaBtn', 'instantAlphaSettingsBtn', 'instantAlphaSettingsPanel',
+    'alphaTolerance', 'alphaToleranceValue', 'undoBtn', 'redoBtn', 'displayLook', 'selectionModeBtn',
+    'eraseSelectionBtn', 'cropSelectionBtn', 'selectionHint', 'studioTooltip'
   ].forEach(id => {
     els[id] = document.getElementById(id);
   });
@@ -373,16 +377,40 @@ function bindEvents() {
     requestPreviewRender();
     commitHistorySnapshot(before);
   });
+  els.zoomInput.addEventListener('focus', () => {
+    armHistoryDraft();
+    window.requestAnimationFrame(() => {
+      els.zoomInput.select();
+    });
+  });
+  els.zoomInput.addEventListener('input', () => {
+    els.zoomInput.value = String(els.zoomInput.value).replace(/[^\d]/g, '');
+  });
+  els.zoomInput.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      commitZoomInput();
+    } else if (event.key === 'Escape') {
+      event.preventDefault();
+      restoreZoomInput();
+    }
+  });
+  els.zoomInput.addEventListener('blur', () => {
+    restoreZoomInput();
+  });
 
   els.exportFormat.addEventListener('change', () => {
     state.exportFormat = els.exportFormat.value;
   });
 
   els.instantAlphaBtn.addEventListener('click', toggleInstantAlphaMode);
+  if (els.instantAlphaSettingsBtn) {
+    els.instantAlphaSettingsBtn.addEventListener('click', event => {
+      event.preventDefault();
+      toggleInstantAlphaSettings();
+    });
+  }
   els.selectionModeBtn.addEventListener('click', toggleSelectionMode);
-  els.clearSelectionBtn.addEventListener('click', () => {
-    clearSelection();
-  });
   els.eraseSelectionBtn.addEventListener('click', eraseSelectionArea);
   els.cropSelectionBtn.addEventListener('click', cropToSelection);
 
@@ -393,6 +421,7 @@ function bindEvents() {
   els.editorCanvas.addEventListener('wheel', handleWheel, { passive: false });
   window.addEventListener('resize', resizePreview);
   window.addEventListener('keydown', handleKeyboardShortcuts);
+  setupTooltips();
 }
 
 function bindTrackedControl(id, { onInput } = {}) {
@@ -577,6 +606,9 @@ function syncStateToControls() {
   els.alphaTolerance.value = state.alphaTolerance;
   els.displayLook.value = state.displayLook;
   els.zoom.value = Math.round((state.scale / Math.max(state.minScale, 0.0001)) * 100) || 100;
+  if (els.zoomInput) {
+    els.zoomInput.value = els.zoom.value;
+  }
   syncDevicePresetFromSize();
   updateCanvasInfo();
   updateValueLabels();
@@ -588,7 +620,9 @@ function syncStateToControls() {
 function updateValueLabels() {
   const z = `${Math.round(Number(els.zoom.value))}%`;
   setText('zoomValue', z);
-  setText('zoomDisplay', z);
+  if (els.zoomInput) {
+    els.zoomInput.value = String(Math.round(Number(els.zoom.value)));
+  }
   setText('brightnessValue', `${state.brightness}%`);
   setText('contrastValue', `${state.contrast}%`);
   setText('saturationValue', `${state.saturation}%`);
@@ -613,6 +647,21 @@ function updateZoomFromControl() {
   state.offsetY = cy - (cy - state.offsetY) * (state.scale / oldScale);
   constrainOffsets();
   updateValueLabels();
+}
+
+function commitZoomInput() {
+  if (!state.image || !els.zoomInput) return;
+  const next = sanitizeZoomInput(els.zoomInput.value);
+  els.zoomInput.value = String(next);
+  els.zoom.value = String(next);
+  updateZoomFromControl();
+  requestPreviewRender();
+  commitHistoryDraft();
+}
+
+function restoreZoomInput() {
+  if (!els.zoomInput) return;
+  els.zoomInput.value = String(Math.round(Number(els.zoom.value)) || 100);
 }
 
 function fitImage(updateZoom) {
@@ -708,6 +757,7 @@ function drawPreview() {
   ctx.drawImage(output, x, y, frameWidth, frameHeight);
 
   drawSelectionOverlay(ctx, x, y, scale);
+  drawCompositionGuide(ctx, x, y, frameWidth, frameHeight);
 
   ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#ddd';
   ctx.lineWidth = 2;
@@ -735,12 +785,13 @@ function syncInteractionState() {
     'fitBtn',
     'resetBtn',
     'instantAlphaBtn',
+    'instantAlphaSettingsBtn',
     'selectionModeBtn',
-    'clearSelectionBtn',
     'eraseSelectionBtn',
     'cropSelectionBtn',
     'alphaTolerance',
     'zoom',
+    'zoomInput',
     'zoomInBtn',
     'zoomOutBtn',
     'brightness',
@@ -763,9 +814,6 @@ function syncInteractionState() {
   });
 
   const hasSelection = Boolean(state.selectionRect);
-  if (els.clearSelectionBtn) {
-    els.clearSelectionBtn.disabled = !hasImage || !hasSelection;
-  }
   if (els.eraseSelectionBtn) {
     els.eraseSelectionBtn.disabled = !hasImage || !hasSelection;
   }
@@ -780,6 +828,9 @@ function syncInteractionState() {
     els.canvasWrap.classList.toggle('is-dragging', state.dragging);
     els.canvasWrap.classList.toggle('is-alpha-pick', state.instantAlphaMode);
     els.canvasWrap.classList.toggle('is-selecting', state.selectionMode);
+  }
+  if (!hasImage && state.instantAlphaSettingsOpen) {
+    toggleInstantAlphaSettings(false);
   }
   updateInstantAlphaUI();
   updateSelectionUI();
@@ -839,6 +890,52 @@ function drawSelectionOverlay(ctx, frameX, frameY, scale) {
   ctx.lineDashOffset = 7;
   ctx.strokeStyle = '#111111';
   ctx.strokeRect(x, y, width, height);
+  ctx.restore();
+}
+
+function drawCompositionGuide(ctx, frameX, frameY, width, height) {
+  if (!state.image || !state.compositionGuide) return;
+
+  const x1 = frameX + width / 3;
+  const x2 = frameX + (width * 2) / 3;
+  const y1 = frameY + height / 3;
+  const y2 = frameY + (height * 2) / 3;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(frameX, frameY, width, height);
+  ctx.clip();
+
+  ctx.lineWidth = 1;
+
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0.32)';
+  [x1, x2].forEach(x => {
+    ctx.beginPath();
+    ctx.moveTo(x, frameY);
+    ctx.lineTo(x, frameY + height);
+    ctx.stroke();
+  });
+  [y1, y2].forEach(y => {
+    ctx.beginPath();
+    ctx.moveTo(frameX, y);
+    ctx.lineTo(frameX + width, y);
+    ctx.stroke();
+  });
+
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+  [x1, x2].forEach(x => {
+    ctx.beginPath();
+    ctx.moveTo(x + 0.5, frameY);
+    ctx.lineTo(x + 0.5, frameY + height);
+    ctx.stroke();
+  });
+  [y1, y2].forEach(y => {
+    ctx.beginPath();
+    ctx.moveTo(frameX, y + 0.5);
+    ctx.lineTo(frameX + width, y + 0.5);
+    ctx.stroke();
+  });
+
   ctx.restore();
 }
 
@@ -1233,13 +1330,13 @@ function constrainOffsets() {
   const scaledHeight = dims.height * state.scale;
 
   if (scaledWidth <= state.width) {
-    state.offsetX = (state.width - scaledWidth) / 2;
+    state.offsetX = clamp(state.offsetX, 0, state.width - scaledWidth);
   } else {
     state.offsetX = clamp(state.offsetX, state.width - scaledWidth, 0);
   }
 
   if (scaledHeight <= state.height) {
-    state.offsetY = (state.height - scaledHeight) / 2;
+    state.offsetY = clamp(state.offsetY, 0, state.height - scaledHeight);
   } else {
     state.offsetY = clamp(state.offsetY, state.height - scaledHeight, 0);
   }
@@ -1303,34 +1400,37 @@ function toggleInstantAlphaMode() {
   syncInteractionState();
 }
 
+function toggleInstantAlphaSettings(forceOpen) {
+  const next = typeof forceOpen === 'boolean' ? forceOpen : !state.instantAlphaSettingsOpen;
+  state.instantAlphaSettingsOpen = next;
+  if (els.instantAlphaSettingsPanel) {
+    els.instantAlphaSettingsPanel.hidden = !next;
+  }
+  if (els.instantAlphaSettingsBtn) {
+    els.instantAlphaSettingsBtn.setAttribute('aria-expanded', String(next));
+    els.instantAlphaSettingsBtn.classList.toggle('is-active', next);
+  }
+}
+
 function updateInstantAlphaUI() {
   setText('alphaToleranceValue', `${state.alphaTolerance}`);
   if (els.instantAlphaBtn) {
     els.instantAlphaBtn.classList.toggle('is-active', state.instantAlphaMode);
     els.instantAlphaBtn.setAttribute('aria-pressed', String(state.instantAlphaMode));
-    els.instantAlphaBtn.textContent = 'Remove Background';
+    els.instantAlphaBtn.setAttribute('title', state.instantAlphaMode ? 'Remove Background (active)' : 'Remove Background');
   }
-  if (els.instantAlphaHint) {
-    if (!state.image) {
-      els.instantAlphaHint.textContent = 'Remove Background clears the connected area you click or drag across, which helps with paper edges, white cards, and simple backdrops.';
-    } else if (state.instantAlphaMode && hasRemovedPixels()) {
-      els.instantAlphaHint.textContent = 'Removed areas are now transparent. Keep dragging over leftovers or use Undo to step back.';
-    } else if (state.instantAlphaMode) {
-      els.instantAlphaHint.textContent = 'Click or drag over a background area. The editor removes connected colors and switches the canvas background to transparent.';
-    } else if (hasRemovedPixels()) {
-      els.instantAlphaHint.textContent = 'Background removal is active. Use Undo to step back or turn Remove Background back on to keep cleaning up.';
-    } else {
-      els.instantAlphaHint.textContent = 'Remove Background clears the connected area you click or drag across, which helps with paper edges, white cards, and simple backdrops.';
-    }
+  if (els.instantAlphaSettingsBtn) {
+    els.instantAlphaSettingsBtn.setAttribute('aria-expanded', String(state.instantAlphaSettingsOpen));
+    els.instantAlphaSettingsBtn.classList.toggle('is-active', state.instantAlphaSettingsOpen);
+  }
+  if (els.instantAlphaSettingsPanel) {
+    els.instantAlphaSettingsPanel.hidden = !state.instantAlphaSettingsOpen;
   }
 }
 
 function applyInstantAlphaAtPointer(event) {
   const outputPoint = pointerEventToOutputPoint(event, { clampToFrame: true });
   if (!outputPoint) {
-    if (els.instantAlphaHint) {
-      els.instantAlphaHint.textContent = 'Click inside the framed preview to remove a background area.';
-    }
     return;
   }
 
@@ -1350,17 +1450,17 @@ function applyInstantAlphaAtPointer(event) {
     syncDisplayLookFromState();
     syncInteractionState();
     requestPreviewRender();
-    if (els.instantAlphaHint) {
-      els.instantAlphaHint.textContent = `Removed ${removed.toLocaleString()} connected pixels. Drag again to keep removing similar leftovers.`;
-    }
   }
 }
 
 function toggleSelectionMode() {
   if (!state.image) return;
-  state.selectionMode = !state.selectionMode;
-  if (state.selectionMode) {
+  const next = !state.selectionMode;
+  state.selectionMode = next;
+  if (next) {
     state.instantAlphaMode = false;
+  } else {
+    clearSelection(false);
   }
   syncInteractionState();
 }
@@ -1369,19 +1469,15 @@ function updateSelectionUI() {
   if (els.selectionModeBtn) {
     els.selectionModeBtn.classList.toggle('is-active', state.selectionMode);
     els.selectionModeBtn.setAttribute('aria-pressed', String(state.selectionMode));
-    els.selectionModeBtn.textContent = state.selectionMode ? 'Draw Selection' : 'Select Area';
+    const label = state.selectionMode ? 'Drawing Selection' : 'Select Area';
+    els.selectionModeBtn.setAttribute('aria-label', label);
+    els.selectionModeBtn.setAttribute('title', label);
   }
   if (els.selectionHint) {
-    if (!state.image) {
-      els.selectionHint.textContent = 'Use Select Area to drag a rectangle over the image, then crop to it or remove just that selected part.';
-    } else if (state.selectionDragging) {
-      els.selectionHint.textContent = 'Drag on the image preview to make a rectangular selection. Then remove it or crop to it.';
-    } else if (state.selectionRect) {
+    if (state.selectionRect) {
       els.selectionHint.textContent = `Selection ready: ${Math.round(state.selectionRect.width)} x ${Math.round(state.selectionRect.height)} px.`;
-    } else if (state.selectionMode) {
-      els.selectionHint.textContent = 'Drag on the image preview to make a rectangular selection. Then remove it or crop to it.';
     } else {
-      els.selectionHint.textContent = 'Use Select Area to drag a rectangle over the image, then crop to it or remove just that selected part.';
+      els.selectionHint.textContent = '';
     }
   }
 }
@@ -1403,7 +1499,9 @@ function eraseSelectionArea() {
       state.background = 'transparent';
       els.backgroundColor.value = 'transparent';
     }
+    state.selectionRect = null;
     commitHistorySnapshot(before);
+    syncInteractionState();
     if (els.selectionHint) {
       els.selectionHint.textContent = `Removed ${removed.toLocaleString()} pixels inside the current selection.`;
     }
@@ -1489,6 +1587,24 @@ function outputPointToSourcePoint(x, y) {
   return { x: sourceX, y: sourceY };
 }
 
+function sourcePointToOutputPoint(x, y) {
+  if (!state.image) return null;
+  const localX = (x - state.image.naturalWidth / 2) * state.scale * state.flipX;
+  const localY = (y - state.image.naturalHeight / 2) * state.scale * state.flipY;
+  const theta = (state.rotation * Math.PI) / 180;
+  const cos = Math.cos(theta);
+  const sin = Math.sin(theta);
+  const rotatedX = localX * cos - localY * sin;
+  const rotatedY = localX * sin + localY * cos;
+  const dims = transformedImageSize();
+  const centerX = state.offsetX + dims.width * state.scale / 2;
+  const centerY = state.offsetY + dims.height * state.scale / 2;
+  return {
+    x: rotatedX + centerX,
+    y: rotatedY + centerY
+  };
+}
+
 function removeContiguousColorRegion(seedX, seedY, tolerance) {
   if (!state.sourcePixels || !state.sourceMask) return 0;
   const width = state.image.naturalWidth;
@@ -1537,17 +1653,26 @@ function removeContiguousColorRegion(seedX, seedY, tolerance) {
 
 function removeSelectionRect(rect) {
   let removed = 0;
-  const minX = clamp(Math.floor(rect.x), 0, state.width - 1);
-  const minY = clamp(Math.floor(rect.y), 0, state.height - 1);
-  const maxX = clamp(Math.ceil(rect.x + rect.width), 0, state.width);
-  const maxY = clamp(Math.ceil(rect.y + rect.height), 0, state.height);
+  const minX = rect.x;
+  const minY = rect.y;
+  const maxX = rect.x + rect.width;
+  const maxY = rect.y + rect.height;
+  const width = state.image.naturalWidth;
+  const height = state.image.naturalHeight;
+  const padding = Math.max(0.9, Math.abs(state.scale) * 0.8);
 
-  for (let y = minY; y < maxY; y++) {
-    for (let x = minX; x < maxX; x++) {
-      const sourcePoint = outputPointToSourcePoint(x + 0.5, y + 0.5);
-      if (!sourcePoint) continue;
-      const index = sourcePoint.y * state.image.naturalWidth + sourcePoint.x;
-      if (state.sourceMask[index] !== 0) {
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const index = y * width + x;
+      if (state.sourceMask[index] === 0) continue;
+      const outputPoint = sourcePointToOutputPoint(x + 0.5, y + 0.5);
+      if (!outputPoint) continue;
+      if (
+        outputPoint.x >= minX - padding &&
+        outputPoint.x <= maxX + padding &&
+        outputPoint.y >= minY - padding &&
+        outputPoint.y <= maxY + padding
+      ) {
         state.sourceMask[index] = 0;
         removed++;
       }
@@ -1731,13 +1856,110 @@ function handleKeyboardShortcuts(event) {
   const key = event.key.toLowerCase();
   const wantsUndo = (event.metaKey || event.ctrlKey) && !event.shiftKey && key === 'z';
   const wantsRedo = (event.metaKey || event.ctrlKey) && (key === 'y' || (event.shiftKey && key === 'z'));
+  const wantsRemoveSelection = state.selectionRect && !event.metaKey && !event.ctrlKey && (key === 'backspace' || key === 'delete');
+  const wantsClearSelection = state.selectionRect && !event.metaKey && !event.ctrlKey && key === 'escape';
+  const wantsCloseAlphaSettings = state.instantAlphaSettingsOpen && key === 'escape';
+  const wantsHideTooltip = state.tooltipPinned && key === 'escape';
   if (wantsUndo) {
     event.preventDefault();
     undoHistory();
   } else if (wantsRedo) {
     event.preventDefault();
     redoHistory();
+  } else if (wantsHideTooltip) {
+    event.preventDefault();
+    hideTooltip(true);
+  } else if (wantsCloseAlphaSettings) {
+    event.preventDefault();
+    toggleInstantAlphaSettings(false);
+  } else if (wantsRemoveSelection) {
+    event.preventDefault();
+    eraseSelectionArea();
+  } else if (wantsClearSelection) {
+    event.preventDefault();
+    clearSelection();
   }
+}
+
+function setupTooltips() {
+  const targets = document.querySelectorAll('.studio-help-btn[data-help]');
+  targets.forEach(target => {
+    target.addEventListener('pointerenter', () => {
+      if (!state.tooltipPinned) showTooltip(target);
+    });
+    target.addEventListener('pointerleave', () => {
+      if (!state.tooltipPinned) hideTooltip();
+    });
+    target.addEventListener('focusin', () => showTooltip(target, true));
+    target.addEventListener('blur', () => {
+      if (!state.tooltipPinned) hideTooltip();
+    });
+    target.addEventListener('click', event => {
+      event.preventDefault();
+      const isSameTarget = state.tooltipPinned && state.tooltipTarget === target;
+      if (isSameTarget) {
+        hideTooltip(true);
+      } else {
+        showTooltip(target, true);
+      }
+    });
+  });
+  document.addEventListener('pointerdown', event => {
+    if (!event.target.closest('.studio-help-btn') && !event.target.closest('#studioTooltip')) {
+      hideTooltip(true);
+    }
+    if (!event.target.closest('#instantAlphaSettingsPanel') && !event.target.closest('#instantAlphaSettingsBtn')) {
+      toggleInstantAlphaSettings(false);
+    }
+  });
+  window.addEventListener('resize', () => {
+    if (state.tooltipTarget && !els.studioTooltip.hidden) {
+      positionTooltip(state.tooltipTarget);
+    }
+  });
+  document.addEventListener('scroll', () => {
+    if (state.tooltipTarget && !els.studioTooltip.hidden) {
+      positionTooltip(state.tooltipTarget);
+    }
+  }, true);
+}
+
+function showTooltip(target, pinned = false) {
+  if (!els.studioTooltip) return;
+  const message = target.getAttribute('data-help');
+  if (!message) return;
+  state.tooltipPinned = pinned;
+  state.tooltipTarget = target;
+  els.studioTooltip.textContent = message;
+  els.studioTooltip.hidden = false;
+  els.studioTooltip.dataset.pinned = pinned ? 'true' : 'false';
+  positionTooltip(target);
+}
+
+function hideTooltip(force = false) {
+  if (!els.studioTooltip) return;
+  if (state.tooltipPinned && !force) return;
+  els.studioTooltip.hidden = true;
+  els.studioTooltip.removeAttribute('data-pinned');
+  state.tooltipPinned = false;
+  state.tooltipTarget = null;
+}
+
+function positionTooltip(target) {
+  if (!els.studioTooltip || els.studioTooltip.hidden) return;
+  const rect = target.getBoundingClientRect();
+  const tooltipRect = els.studioTooltip.getBoundingClientRect();
+  const gap = 10;
+  let left = rect.left + rect.width / 2 - tooltipRect.width / 2;
+  let top = rect.top - tooltipRect.height - gap;
+
+  left = clamp(left, 10, window.innerWidth - tooltipRect.width - 10);
+  if (top < 10) {
+    top = rect.bottom + gap;
+  }
+
+  els.studioTooltip.style.left = `${left}px`;
+  els.studioTooltip.style.top = `${top}px`;
 }
 
 function normalizeRect(startX, startY, endX, endY) {
@@ -1757,6 +1979,11 @@ function luminance(r, g, b) {
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function sanitizeZoomInput(value) {
+  const digits = String(value).replace(/[^\d]/g, '');
+  return clamp(Number(digits) || 100, 25, 400);
 }
 
 function setText(id, value) {
