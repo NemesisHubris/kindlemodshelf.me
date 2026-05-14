@@ -707,30 +707,10 @@ body.builder-resizing {
   box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.25);
 }
 
-.builder-textarea-input {
-  width: 100%;
-  min-height: 140px;
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: var(--radius-sm);
-  padding: 0.75em;
-  font: inherit;
-  color: var(--fg);
-  resize: vertical;
-  line-height: 1.55;
-}
-
-.builder-textarea-input:focus-visible {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.25);
-}
-
 .builder-sidebar,
 .builder-preview-container,
 .builder-editor-content,
 .builder-code-editor,
-.builder-textarea-input,
 .builder-dialog-body,
 .builder-badge-picker-menu {
   scrollbar-color: var(--card-border) transparent;
@@ -740,7 +720,6 @@ body.builder-resizing {
 .builder-preview-container::-webkit-scrollbar,
 .builder-editor-content::-webkit-scrollbar,
 .builder-code-editor::-webkit-scrollbar,
-.builder-textarea-input::-webkit-scrollbar,
 .builder-dialog-body::-webkit-scrollbar,
 .builder-badge-picker-menu::-webkit-scrollbar {
   width: 6px;
@@ -751,7 +730,6 @@ body.builder-resizing {
 .builder-preview-container::-webkit-scrollbar-track,
 .builder-editor-content::-webkit-scrollbar-track,
 .builder-code-editor::-webkit-scrollbar-track,
-.builder-textarea-input::-webkit-scrollbar-track,
 .builder-dialog-body::-webkit-scrollbar-track,
 .builder-badge-picker-menu::-webkit-scrollbar-track {
   background: transparent;
@@ -761,7 +739,6 @@ body.builder-resizing {
 .builder-preview-container::-webkit-scrollbar-thumb,
 .builder-editor-content::-webkit-scrollbar-thumb,
 .builder-code-editor::-webkit-scrollbar-thumb,
-.builder-textarea-input::-webkit-scrollbar-thumb,
 .builder-dialog-body::-webkit-scrollbar-thumb,
 .builder-badge-picker-menu::-webkit-scrollbar-thumb {
   background: var(--card-border);
@@ -1014,7 +991,6 @@ ol.builder-list {
 .builder-toolbar-select,
 .builder-code-editor,
 .builder-title-input,
-.builder-textarea-input,
 .builder-video-placeholder {
   border-width: 2px;
   box-shadow: none;

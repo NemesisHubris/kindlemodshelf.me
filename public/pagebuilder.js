@@ -1020,12 +1020,15 @@ class PageBuilder {
     const content = this.meta.summary || '';
     panel.innerHTML = `<div class="builder-properties-form">
       <div class="builder-part-header">Edit Header Summary</div>
-      ${this.getRichEditor(content)}
+      ${this.getRichEditor('')}
       <button type="button" class="builder-apply-btn">Apply</button>
     </div>`;
 
     this.pendingTitleSnapshot = this.serializeState();
     const richEditor = this.setupRichEditorInteractions(panel);
+    if (richEditor) {
+      richEditor.textContent = content;
+    }
 
     const applyBtn = panel.querySelector('.builder-apply-btn');
     if (applyBtn) {
