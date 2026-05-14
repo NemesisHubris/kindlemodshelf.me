@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Professional Kindle screensaver image optimizer. Crop, resize, dither, and export directly in your browser.">
   <link rel="canonical" href="https://kindlemodshelf.me/imageeditor">
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css?v=18">
 </head>
 <body class="studio-body">
   <div class="studio-layout">
@@ -44,6 +44,12 @@
               <span>Upload Image</span>
               <input type="file" id="imageUpload" accept="image/*" hidden>
             </label>
+            <button type="button" class="studio-secondary-btn" id="favoriteImportBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.05" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 20.4-1.15-1.05C5.2 14.24 2 11.33 2 7.75 2 5.1 4.08 3 6.72 3c1.5 0 2.94.69 3.88 1.78C11.54 3.69 12.98 3 14.48 3 17.12 3 19.2 5.1 19.2 7.75c0 3.58-3.2 6.49-8.85 11.6Z"></path>
+              </svg>
+              <span>Import Favorites</span>
+            </button>
             <div class="studio-meta" id="uploadMeta">No image selected</div>
           </div>
         </div>
@@ -304,7 +310,23 @@
   </div>
 
   <div class="studio-tooltip" id="studioTooltip" role="tooltip" hidden></div>
+  <div class="studio-favorites-modal" id="favoritesPicker" hidden>
+    <div class="studio-favorites-backdrop" id="favoritesPickerBackdrop"></div>
+    <div class="studio-favorites-panel" role="dialog" aria-modal="true" aria-labelledby="favoritesPickerTitle">
+      <div class="studio-favorites-header">
+        <div>
+          <div class="studio-favorites-eyebrow">Source</div>
+          <h2 id="favoritesPickerTitle">Import from Favorites</h2>
+        </div>
+        <button type="button" class="studio-favorites-close" id="favoritesPickerClose" aria-label="Close favorites picker">Close</button>
+      </div>
+      <div class="studio-favorites-copy">Pick one of your saved gallery images and load it straight into the editor.</div>
+      <div class="studio-favorites-grid" id="favoritesPickerGrid"></div>
+      <div class="studio-favorites-empty" id="favoritesPickerEmpty" hidden>No favorites yet. Heart images in the gallery first, then they will show up here.</div>
+    </div>
+  </div>
 
-  <script src="imageeditor.js?v=13"></script>
+  <script src="favorites.js?v=1"></script>
+  <script src="imageeditor.js?v=14"></script>
 </body>
 </html>

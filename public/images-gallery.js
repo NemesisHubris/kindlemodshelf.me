@@ -4,6 +4,8 @@ const RANDOMIZATION_INTERVAL = 24 * 60 * 60 * 1000;
 const RANDOMIZED_ORDER_KEY = 'gallery_randomized_order';
 const RANDOMIZATION_TIMESTAMP_KEY = 'gallery_randomization_time';
 const SEARCH_DEBOUNCE_MS = 150;
+const favoritesApi = window.KindleModsFavorites || null;
+const urlParams = new URLSearchParams(window.location.search);
 
 // Concurrency control — limit simultaneous image downloads
 const MAX_CONCURRENT_LOADS = 4;
@@ -11,6 +13,7 @@ let activeLoads = 0;
 const loadQueue = [];
 
 let allData = null;
+let masterImages = [];
 let allImages = [];
 let authorIndex = {};
 let loadedCount = 0;
@@ -18,12 +21,16 @@ let isLoading = false;
 let isSearchMode = false;
 let cachedPlaceholderBg = '';
 let searchDebounceTimer = null;
+let isFavoritesMode = urlParams.get('favorites') === '1';
 
 const galleryRoot = document.getElementById('gallery-root');
 const loadingIndicator = document.getElementById('loading-indicator');
 const streamView = document.getElementById('stream-view');
 const searchView = document.getElementById('search-view');
 const searchResults = document.getElementById('search-results');
+const allImagesLink = document.getElementById('all-images-link');
+const favoritesToggleLink = document.getElementById('favorites-toggle-link');
+const favoritesCount = document.getElementById('favorites-count');
 
 const imageObserver = new IntersectionObserver(handleImageIntersection, {
   root: null,
@@ -48,15 +55,15 @@ function shouldRandomizeOrder() {
   return timeSinceLastRandom > RANDOMIZATION_INTERVAL;
 }
 
-function getRandomizedOrder() {
+function getRandomizedOrder(sourceImages = masterImages) {
   if (!shouldRandomizeOrder()) {
     let cached = null;
     try { cached = localStorage.getItem(RANDOMIZED_ORDER_KEY); } catch(e) {}
     if (cached) {
       try {
         const indices = JSON.parse(cached);
-        if (Array.isArray(indices) && indices.length === allImages.length) {
-          return indices.map(i => allImages[i]);
+        if (Array.isArray(indices) && indices.length === sourceImages.length) {
+          return indices.map(i => sourceImages[i]);
         }
       } catch (e) {
         console.warn('Could not parse cached randomized order');
@@ -64,7 +71,7 @@ function getRandomizedOrder() {
     }
   }
 
-  const indices = Array.from({ length: allImages.length }, (_, i) => i);
+  const indices = Array.from({ length: sourceImages.length }, (_, i) => i);
   for (let i = indices.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [indices[i], indices[j]] = [indices[j], indices[i]];
@@ -77,13 +84,13 @@ function getRandomizedOrder() {
     console.warn('Could not save randomized order to localStorage:', e);
   }
 
-  return indices.map(i => allImages[i]);
+  return indices.map(i => sourceImages[i]);
 }
 
-function buildAuthorIndex() {
+function buildAuthorIndex(images = allImages) {
   authorIndex = {};
-  for (let i = 0; i < allImages.length; i++) {
-    const img = allImages[i];
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
     if (!authorIndex[img.author]) {
       authorIndex[img.author] = [];
     }
@@ -189,23 +196,23 @@ fetch('/images.json')
       const images = data[author];
       if (Array.isArray(images)) {
         images.forEach(filename => {
-          allImages.push({ author, filename });
+          masterImages.push({ author, filename });
         });
       }
     });
 
-    if (allImages.length === 0) {
-      galleryRoot.textContent = 'No images found.';
+    if (masterImages.length === 0) {
+      renderEmptyState(galleryRoot, 'No images found.');
       return;
     }
 
-    allImages = getRandomizedOrder();
-    buildAuthorIndex();
-    enableScrollLoading();
-    loadMoreImages(IMAGES_PER_LOAD);
+    refreshGalleryData();
 
     const searchBar = document.getElementById('search-bar');
     if (searchBar) searchBar.addEventListener('input', handleSearchInput);
+    if (favoritesApi) {
+      window.addEventListener(favoritesApi.CHANGE_EVENT, handleFavoritesChanged);
+    }
   })
   .catch(error => {
     console.error('Error loading gallery:', error);
@@ -214,6 +221,14 @@ fetch('/images.json')
 
 // Event delegation for image clicks
 document.addEventListener('click', function(event) {
+  const favoriteBtn = event.target.closest('.favorite-btn');
+  if (favoriteBtn) {
+    event.preventDefault();
+    event.stopPropagation();
+    handleFavoriteToggle(favoriteBtn);
+    return;
+  }
+
   const img = event.target.closest('.img-thumb, .search-image');
   if (img) {
     openViewer(img);
@@ -252,7 +267,7 @@ function handleSearch(query) {
   isSearchMode = true;
   streamView.style.display = 'none';
   searchView.style.display = '';
-  disableScrollLoading();
+    disableScrollLoading();
 
   const matchingAuthors = Object.keys(authorIndex)
     .filter(author => author.toLowerCase().includes(query))
@@ -261,10 +276,7 @@ function handleSearch(query) {
   searchResults.innerHTML = '';
 
   if (matchingAuthors.length === 0) {
-    const msg = document.createElement('div');
-    msg.className = 'no-results';
-    msg.textContent = 'No authors match your search.';
-    searchResults.appendChild(msg);
+    renderEmptyState(searchResults, isFavoritesMode ? 'No favorites match that author.' : 'No authors match your search.');
     return;
   }
 
@@ -298,6 +310,7 @@ function handleSearch(query) {
       img.style.background = bg;
 
       imgWrapper.appendChild(img);
+      imgWrapper.appendChild(createFavoriteButton(author, imgData.filename, { compact: true }));
       imagesGrid.appendChild(imgWrapper);
       imageObserver.observe(img);
     });
@@ -364,6 +377,7 @@ function createImageCell(imgData, bg) {
   img.style.background = bg;
 
   cell.appendChild(img);
+  cell.appendChild(createFavoriteButton(author, filename));
   imageObserver.observe(img);
   return cell;
 }
@@ -402,9 +416,19 @@ const modalAuthor = document.getElementById('img-viewer-author');
 const modalFilename = document.getElementById('img-viewer-filename');
 const modalLoader = document.getElementById('img-viewer-loader');
 const sidebarImages = document.getElementById('sidebar-images');
+const modalFavorite = document.getElementById('img-viewer-favorite');
 
 let currentAuthor = null;
+let currentFilename = null;
 let closeViewerTimer = null;
+
+function heartIconMarkup() {
+  return `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.05" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m12 20.4-1.15-1.05C5.2 14.24 2 11.33 2 7.75 2 5.1 4.08 3 6.72 3c1.5 0 2.94.69 3.88 1.78C11.54 3.69 12.98 3 14.48 3 17.12 3 19.2 5.1 19.2 7.75c0 3.58-3.2 6.49-8.85 11.6Z"></path>
+    </svg>
+  `;
+}
 
 function openViewer(thumbnail) {
   if (closeViewerTimer) {
@@ -415,6 +439,7 @@ function openViewer(thumbnail) {
   const author = thumbnail.dataset.author;
   const filename = thumbnail.dataset.filename;
   currentAuthor = author;
+  currentFilename = filename;
 
   modal.style.display = 'flex';
   modal.classList.remove('active');
@@ -429,6 +454,7 @@ function openViewer(thumbnail) {
   if (filename) {
     modalDownload.download = filename;
   }
+  updateFavoriteButton(modalFavorite, author, filename);
 
   loadSidebarImages(author);
 
@@ -484,6 +510,7 @@ function loadSidebarImages(author) {
     });
 
     sidebarItem.appendChild(sidebarThumb);
+    sidebarItem.appendChild(createFavoriteButton(author, imgData.filename, { compact: true }));
     fragment.appendChild(sidebarItem);
     imageObserver.observe(sidebarThumb);
   });
@@ -500,6 +527,8 @@ function closeViewer() {
     modalDownload.href = '#';
     modalLoader.classList.remove('active');
     sidebarImages.innerHTML = '';
+    currentAuthor = null;
+    currentFilename = null;
   }, 200);
 }
 
@@ -533,6 +562,142 @@ if (resizeButton) {
   });
 } else {
   console.error('Resize button element not found in DOM');
+}
+
+if (modalFavorite) {
+  modalFavorite.addEventListener('click', event => {
+    event.preventDefault();
+    if (!currentAuthor || !currentFilename) return;
+    if (!favoritesApi) return;
+    favoritesApi.toggleFavorite(currentAuthor, currentFilename);
+    updateFavoriteButton(modalFavorite, currentAuthor, currentFilename);
+  });
+}
+
+function favoriteKey(author, filename) {
+  return favoritesApi ? favoritesApi.favoriteKey(author, filename) : `${author}|||${filename}`;
+}
+
+function favoriteMap() {
+  const map = new Map();
+  if (!favoritesApi) return map;
+  favoritesApi.loadFavorites().forEach(entry => {
+    map.set(favoriteKey(entry.author, entry.filename), entry);
+  });
+  return map;
+}
+
+function getFavoritedImages() {
+  if (!favoritesApi) return [];
+  const favorites = favoriteMap();
+  return masterImages
+    .filter(img => favorites.has(favoriteKey(img.author, img.filename)))
+    .sort((a, b) => {
+      const aTime = favorites.get(favoriteKey(a.author, a.filename))?.addedAt || 0;
+      const bTime = favorites.get(favoriteKey(b.author, b.filename))?.addedAt || 0;
+      return bTime - aTime;
+    });
+}
+
+function createFavoriteButton(author, filename, { compact = false } = {}) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = compact ? 'favorite-btn favorite-btn-compact' : 'favorite-btn';
+  button.dataset.author = author;
+  button.dataset.filename = filename;
+  button.setAttribute('aria-label', 'Add to favorites');
+  button.innerHTML = heartIconMarkup();
+  updateFavoriteButton(button, author, filename);
+  return button;
+}
+
+function updateFavoriteButton(button, author, filename) {
+  if (!button) return;
+  const isFavorite = favoritesApi ? favoritesApi.isFavorite(author, filename) : false;
+  button.classList.toggle('is-favorite', isFavorite);
+  button.setAttribute('aria-pressed', String(isFavorite));
+  button.setAttribute('aria-label', isFavorite ? 'Remove from favorites' : 'Add to favorites');
+  if (button.querySelector('span')) {
+    button.querySelector('span').textContent = isFavorite ? 'Favorited' : 'Favorite';
+  }
+}
+
+function handleFavoriteToggle(button) {
+  if (!favoritesApi) return;
+  const author = button.dataset.author;
+  const filename = button.dataset.filename;
+  favoritesApi.toggleFavorite(author, filename);
+  updateFavoriteButton(button, author, filename);
+  if (currentAuthor === author && currentFilename === filename) {
+    updateFavoriteButton(modalFavorite, author, filename);
+  }
+}
+
+function syncFavoriteButtons(scope = document) {
+  if (!favoritesApi) return;
+  scope.querySelectorAll('.favorite-btn').forEach(button => {
+    updateFavoriteButton(button, button.dataset.author, button.dataset.filename);
+  });
+}
+
+function updateModeTabs() {
+  document.body.dataset.galleryMode = isFavoritesMode ? 'favorites' : 'all';
+  if (allImagesLink) {
+    allImagesLink.classList.toggle('is-active', !isFavoritesMode);
+  }
+  if (favoritesToggleLink) {
+    favoritesToggleLink.classList.toggle('is-active', isFavoritesMode);
+  }
+  if (favoritesCount && favoritesApi) {
+    favoritesCount.textContent = String(favoritesApi.loadFavorites().length);
+  }
+}
+
+function renderEmptyState(container, message) {
+  container.innerHTML = '';
+  const msg = document.createElement('div');
+  msg.className = 'no-results';
+  msg.textContent = message;
+  container.appendChild(msg);
+}
+
+function refreshGalleryData() {
+  allImages = isFavoritesMode ? getFavoritedImages() : getRandomizedOrder(masterImages);
+  buildAuthorIndex(allImages);
+  updateModeTabs();
+
+  const searchBar = document.getElementById('search-bar');
+  const query = searchBar ? searchBar.value.trim().toLowerCase() : '';
+
+  if (query) {
+    handleSearch(query);
+    return;
+  }
+
+  isSearchMode = false;
+  streamView.style.display = '';
+  searchView.style.display = 'none';
+  resetGallery();
+
+  if (allImages.length === 0) {
+    disableScrollLoading();
+    renderEmptyState(galleryRoot, isFavoritesMode ? 'No favorites yet. Heart images in the gallery to save them here.' : 'No images found.');
+    return;
+  }
+
+  enableScrollLoading();
+  loadMoreImages(IMAGES_PER_LOAD);
+}
+
+function handleFavoritesChanged() {
+  updateModeTabs();
+  syncFavoriteButtons(document);
+  if (currentAuthor && currentFilename) {
+    updateFavoriteButton(modalFavorite, currentAuthor, currentFilename);
+  }
+  if (isFavoritesMode) {
+    refreshGalleryData();
+  }
 }
 
 // Theme changes — invalidate cached placeholder color

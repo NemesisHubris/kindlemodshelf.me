@@ -96,6 +96,7 @@ const LOOK_PRESETS = {
 };
 
 const LOOK_KEYS = Object.keys(LOOK_PRESETS);
+const favoritesApi = window.KindleModsFavorites || null;
 const HISTORY_FIELDS = [
   'width',
   'height',
@@ -196,6 +197,7 @@ const els = {};
 document.addEventListener('DOMContentLoaded', () => {
   [
     'imageUpload', 'dropZone', 'uploadMeta', 'devicePreset', 'targetWidth', 'targetHeight',
+    'favoriteImportBtn', 'favoritesPicker', 'favoritesPickerBackdrop', 'favoritesPickerClose', 'favoritesPickerGrid', 'favoritesPickerEmpty',
     'fitMode', 'backgroundColor', 'rotateLeftBtn', 'rotateRightBtn', 'flipXBtn', 'flipYBtn',
     'canvasWrap', 'editorCanvas', 'emptyState', 'zoomOverlay', 'centerBtn', 'fitBtn', 'resetBtn',
     'downloadBtn', 'zoom', 'zoomInBtn', 'zoomOutBtn', 'zoomInput', 'brightness', 'contrast',
@@ -212,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   bindEvents();
   syncStateToControls();
   syncInteractionState();
+  updateFavoriteImportState();
   updateCanvasInfo();
   resizePreview();
   loadDemoImageIfRequested();
@@ -229,6 +232,26 @@ function bindEvents() {
     const file = event.target.files && event.target.files[0];
     if (file) loadFile(file);
   });
+
+  if (els.favoriteImportBtn) {
+    els.favoriteImportBtn.addEventListener('click', () => {
+      openFavoritesPicker();
+    });
+  }
+  if (els.favoritesPickerBackdrop) {
+    els.favoritesPickerBackdrop.addEventListener('click', closeFavoritesPicker);
+  }
+  if (els.favoritesPickerClose) {
+    els.favoritesPickerClose.addEventListener('click', closeFavoritesPicker);
+  }
+  if (favoritesApi) {
+    window.addEventListener(favoritesApi.CHANGE_EVENT, () => {
+      updateFavoriteImportState();
+      if (!els.favoritesPicker?.hidden) {
+        renderFavoritesPicker();
+      }
+    });
+  }
 
   ['dragenter', 'dragover'].forEach(type => {
     els.dropZone.addEventListener(type, event => {
@@ -463,6 +486,22 @@ function loadFile(file) {
   image.src = url;
 }
 
+function loadImageFromPath(src, imageName, metaText) {
+  const image = new Image();
+  image.decoding = 'async';
+  image.onload = () => {
+    commitLoadedImage(
+      image,
+      imageName || 'favorite_image',
+      metaText || `${imageName || 'Favorite image'} - ${image.naturalWidth} x ${image.naturalHeight}`
+    );
+  };
+  image.onerror = () => {
+    els.uploadMeta.textContent = 'Could not load favorite image';
+  };
+  image.src = src;
+}
+
 function commitLoadedImage(image, name, metaText) {
   state.image = image;
   state.imageName = name;
@@ -519,6 +558,74 @@ function loadDemoImageIfRequested() {
     commitLoadedImage(image, 'instant-alpha-demo', `Demo image - ${image.naturalWidth} x ${image.naturalHeight}`);
   };
   image.src = demoCanvas.toDataURL('image/png');
+}
+
+function updateFavoriteImportState() {
+  if (!els.favoriteImportBtn) return;
+  const count = favoritesApi ? favoritesApi.loadFavorites().length : 0;
+  els.favoriteImportBtn.disabled = count === 0;
+}
+
+function openFavoritesPicker() {
+  if (!favoritesApi) return;
+  renderFavoritesPicker();
+  if (els.favoritesPicker) {
+    els.favoritesPicker.hidden = false;
+  }
+}
+
+function closeFavoritesPicker() {
+  if (els.favoritesPicker) {
+    els.favoritesPicker.hidden = true;
+  }
+}
+
+function renderFavoritesPicker() {
+  if (!els.favoritesPickerGrid || !els.favoritesPickerEmpty) return;
+  const favorites = favoritesApi ? favoritesApi.loadFavorites() : [];
+  els.favoritesPickerGrid.innerHTML = '';
+  els.favoritesPickerEmpty.hidden = favorites.length !== 0;
+
+  if (favorites.length === 0) {
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  favorites.forEach(entry => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'studio-favorite-tile';
+    button.title = `${entry.author} - ${entry.filename}`;
+
+    const thumb = document.createElement('img');
+    thumb.className = 'studio-favorite-thumb';
+    thumb.alt = entry.filename;
+    thumb.loading = 'lazy';
+    thumb.decoding = 'async';
+    thumb.src = favoritesApi.imagePath(entry.author, entry.filename);
+
+    const label = document.createElement('div');
+    label.className = 'studio-favorite-meta';
+    label.innerHTML = `
+      <strong>${escapeHtml(entry.author)}</strong>
+      <span>${escapeHtml(entry.filename)}</span>
+    `;
+
+    button.appendChild(thumb);
+    button.appendChild(label);
+    button.addEventListener('click', () => {
+      closeFavoritesPicker();
+      const fileBase = entry.filename.replace(/\.[^.]+$/, '') || 'favorite_image';
+      loadImageFromPath(
+        favoritesApi.imagePath(entry.author, entry.filename),
+        fileBase,
+        `${entry.author} / ${entry.filename}`
+      );
+    });
+    fragment.appendChild(button);
+  });
+
+  els.favoritesPickerGrid.appendChild(fragment);
 }
 
 function handleSizeInput() {
@@ -1859,6 +1966,7 @@ function handleKeyboardShortcuts(event) {
   const wantsRemoveSelection = state.selectionRect && !event.metaKey && !event.ctrlKey && (key === 'backspace' || key === 'delete');
   const wantsClearSelection = state.selectionRect && !event.metaKey && !event.ctrlKey && key === 'escape';
   const wantsCloseAlphaSettings = state.instantAlphaSettingsOpen && key === 'escape';
+  const wantsCloseFavoritesPicker = els.favoritesPicker && !els.favoritesPicker.hidden && key === 'escape';
   const wantsHideTooltip = state.tooltipPinned && key === 'escape';
   if (wantsUndo) {
     event.preventDefault();
@@ -1866,6 +1974,9 @@ function handleKeyboardShortcuts(event) {
   } else if (wantsRedo) {
     event.preventDefault();
     redoHistory();
+  } else if (wantsCloseFavoritesPicker) {
+    event.preventDefault();
+    closeFavoritesPicker();
   } else if (wantsHideTooltip) {
     event.preventDefault();
     hideTooltip(true);

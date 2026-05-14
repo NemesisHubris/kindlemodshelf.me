@@ -16,14 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backBtn.className = 'back-home-btn';
     backBtn.setAttribute('aria-label', 'Back');
     backBtn.innerHTML = '← Back';
-
-    backBtn.addEventListener('click', (e) => {
-      const sameOriginReferrer = document.referrer && document.referrer.startsWith(window.location.origin);
-      if (sameOriginReferrer && window.history.length > 1) {
-        e.preventDefault();
-        window.history.back();
-      }
-    });
     
     // Prepend to container
     if (container.firstChild) {
