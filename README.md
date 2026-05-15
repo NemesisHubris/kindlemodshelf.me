@@ -1,4 +1,4 @@
-# Kindle Mod Shelf
+# KindleModShelf
 
 A community resource for Kindle mods, guides, games, utilities, and customizations.
 Find jailbreak instructions, e-ink apps, and advanced Kindle tweaks—all in one place.
@@ -9,7 +9,7 @@ Visit the site: [kindlemodshelf.me](https://kindlemodshelf.me)
 
 ## What is this?
 
-Kindle Mod Shelf is a static website that organizes Kindle homebrew projects, guides, and resources.
+KindleModShelf is a static website that organizes Kindle homebrew projects, guides, and resources.
 You'll find pages for games, apps, mod tools, image galleries, install guides, and more—all curated and community-friendly.
 
 ---
