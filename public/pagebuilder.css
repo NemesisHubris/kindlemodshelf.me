@@ -103,6 +103,41 @@ body.builder-resizing {
   margin-bottom: 1.5em;
 }
 
+.builder-support-section {
+  padding: 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: var(--card-bg);
+}
+
+.builder-support-copy {
+  margin: 0 0 12px;
+  color: var(--fg);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.builder-support-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--button-border);
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.builder-support-link:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
 .builder-section h3 {
   margin: 0 0 0.75em 0;
   font-size: 0.85em;
