@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const isBackButtonExcluded = isEditorPage;
   
   const container = document.querySelector('.container') || document.body;
+  const supportUrl = 'https://ko-fi.com/kindlemodshelfguy';
 
   // 1. Inject Back Button (if not home, not excluded, and not already present)
   if (!isHome && !isBackButtonExcluded && !document.querySelector('.back-home-btn')) {
@@ -92,6 +93,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', handleGlobalScroll, { passive: true });
     handleGlobalScroll();
+  }
+
+  const legalFooter = document.querySelector('.legal-disclaimer');
+  if (legalFooter && !legalFooter.querySelector('.support-link')) {
+    const supportLink = document.createElement('a');
+    supportLink.href = supportUrl;
+    supportLink.className = 'support-link';
+    supportLink.target = '_blank';
+    supportLink.rel = 'noopener';
+    supportLink.textContent = 'Support KindleModShelf';
+    supportLink.setAttribute('aria-label', 'Support KindleModShelf on Ko-fi');
+    supportLink.title = 'Support KindleModShelf on Ko-fi';
+
+    const settingsButton = legalFooter.querySelector('.footer-settings-btn');
+    if (settingsButton) {
+      legalFooter.insertBefore(supportLink, settingsButton);
+    } else {
+      legalFooter.appendChild(supportLink);
+    }
   }
 
   // 5. Global Search Logic (Clear Button & Shortcut)
