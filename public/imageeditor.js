@@ -837,7 +837,8 @@ function drawPreview() {
   ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-base').trim() || '#111';
   ctx.fillRect(0, 0, cssWidth, cssHeight);
 
-  const scale = Math.min(cssWidth / state.width, cssHeight / state.height) * 0.94;
+  const previewFill = state.image ? 0.78 : 0.94;
+  const scale = Math.min(cssWidth / state.width, cssHeight / state.height) * previewFill;
   state.previewScale = scale;
   const frameWidth = state.width * scale;
   const frameHeight = state.height * scale;
@@ -856,6 +857,8 @@ function drawPreview() {
   if (state.background === 'transparent' || hasRemovedPixels()) {
     drawTransparencyGrid(ctx, x, y, frameWidth, frameHeight);
   }
+
+  drawPasteboardImage(ctx, x, y, scale);
 
   const renderWidth = Math.max(1, Math.round(frameWidth));
   const renderHeight = Math.max(1, Math.round(frameHeight));
@@ -1047,6 +1050,33 @@ function drawCompositionGuide(ctx, frameX, frameY, width, height) {
     ctx.stroke();
   });
 
+  ctx.restore();
+}
+
+function drawPasteboardImage(ctx, frameX, frameY, scale) {
+  if (!state.image) return;
+
+  const dims = transformedImageSize();
+  const cx = state.offsetX + dims.width * state.scale / 2;
+  const cy = state.offsetY + dims.height * state.scale / 2;
+  const source = getMaskedSourceCanvas() || state.image;
+
+  ctx.save();
+  ctx.globalAlpha = 0.38;
+  ctx.translate(frameX, frameY);
+  ctx.scale(scale, scale);
+  ctx.translate(cx, cy);
+  ctx.rotate((state.rotation * Math.PI) / 180);
+  ctx.scale(state.flipX, state.flipY);
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(
+    source,
+    -(state.image.naturalWidth * state.scale) / 2,
+    -(state.image.naturalHeight * state.scale) / 2,
+    state.image.naturalWidth * state.scale,
+    state.image.naturalHeight * state.scale
+  );
   ctx.restore();
 }
 
@@ -1440,17 +1470,13 @@ function constrainOffsets() {
   const scaledWidth = dims.width * state.scale;
   const scaledHeight = dims.height * state.scale;
 
-  if (scaledWidth <= state.width) {
-    state.offsetX = clamp(state.offsetX, 0, state.width - scaledWidth);
-  } else {
-    state.offsetX = clamp(state.offsetX, state.width - scaledWidth, 0);
-  }
+  const minOffsetX = -scaledWidth / 2;
+  const maxOffsetX = state.width - scaledWidth / 2;
+  const minOffsetY = -scaledHeight / 2;
+  const maxOffsetY = state.height - scaledHeight / 2;
 
-  if (scaledHeight <= state.height) {
-    state.offsetY = clamp(state.offsetY, 0, state.height - scaledHeight);
-  } else {
-    state.offsetY = clamp(state.offsetY, state.height - scaledHeight, 0);
-  }
+  state.offsetX = clamp(state.offsetX, minOffsetX, maxOffsetX);
+  state.offsetY = clamp(state.offsetY, minOffsetY, maxOffsetY);
 }
 
 function downloadImage() {
