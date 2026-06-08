@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page Builder | KindleModShelf</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pagebuilder.css">
+  <script src="js/theme.js"></script>
+</head>
+<body>
+
+<div class="pb-shell">
+
+  <!-- Top bar -->
+  <div class="pb-topbar">
+    <div class="pb-topbar-start">
+      <a href="index.html" class="pb-home-link">← Home</a>
+      <div class="pb-file-pill">
+        <input id="pbFilename" class="pb-filename" type="text" placeholder="filename" autocomplete="off" spellcheck="false">
+        <span class="pb-file-ext">.md</span>
+      </div>
+      <span id="pbWordCount" class="pb-word-count"></span>
+    </div>
+
+    <div class="pb-topbar-center">
+      <div class="pb-view-switcher">
+        <button class="pb-view-btn" data-view="write" type="button">Write</button>
+        <button class="pb-view-btn active" data-view="split" type="button">Split</button>
+        <button class="pb-view-btn" data-view="preview" type="button">Preview</button>
+      </div>
+    </div>
+
+    <div class="pb-topbar-end">
+      <button id="pbClearBtn" class="pb-topbar-btn pb-topbar-btn-ghost" type="button">Clear</button>
+      <button id="pbBrowseBtn" class="pb-topbar-btn pb-topbar-btn-ghost" type="button">Browse Pages</button>
+      <button id="pbLoadBtn" class="pb-topbar-btn pb-topbar-btn-ghost" type="button">Load .md</button>
+      <input id="pbLoadInput" type="file" accept=".md" style="display:none">
+      <button id="pbCardGenBtn" class="pb-topbar-btn pb-topbar-btn-ghost" type="button">Card Generator</button>
+      <button id="pbExportBtn" class="pb-topbar-btn pb-topbar-btn-primary" type="button">Export .md</button>
+    </div>
+  </div>
+
+  <!-- Workspace -->
+  <div id="pbWorkspace" class="pb-workspace mode-split">
+
+    <!-- Sidebar -->
+    <aside class="pb-sidebar">
+      <div class="pb-sidebar-inner">
+
+        <div class="pb-sidebar-section">
+          <div class="pb-sidebar-heading">Page Structure</div>
+          <div id="pbBlocksList" class="pb-blocks-list"></div>
+        </div>
+
+        <div class="pb-sidebar-divider"></div>
+
+        <div class="pb-sidebar-section">
+          <div class="pb-sidebar-heading">Callouts</div>
+          <div id="pbCalloutsList" class="pb-blocks-list"></div>
+        </div>
+
+        <div class="pb-sidebar-divider"></div>
+
+        <div class="pb-sidebar-section">
+          <div class="pb-sidebar-heading">Content</div>
+          <div id="pbContentList" class="pb-blocks-list"></div>
+        </div>
+
+        <div class="pb-sidebar-divider"></div>
+
+        <div class="pb-sidebar-section">
+          <p class="pb-sidebar-hint">Type <kbd>/</kbd> in the editor to open the command palette.</p>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Editor + Preview -->
+    <div class="pb-content">
+
+      <!-- Editor pane -->
+      <div class="pb-editor-pane">
+        <div class="pb-editor-toolbar">
+          <div class="pb-toolbar-group">
+            <button class="pb-fmt-btn" data-action="bold"   type="button" title="Bold"><strong>B</strong></button>
+            <button class="pb-fmt-btn" data-action="italic" type="button" title="Italic"><em>I</em></button>
+            <button class="pb-fmt-btn" data-action="code"   type="button" title="Inline code"><code>`</code></button>
+          </div>
+          <div class="pb-toolbar-sep"></div>
+          <div class="pb-toolbar-group">
+            <button class="pb-fmt-btn" data-action="link"  type="button" title="Link">↗</button>
+            <button class="pb-fmt-btn" data-action="image" type="button" title="Image">⬜</button>
+          </div>
+        </div>
+        <div class="pb-editor-area">
+          <textarea id="pbEditor" class="pb-editor" placeholder="Start writing… or pick a block from the sidebar." spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+        </div>
+      </div>
+
+      <!-- Drag handle -->
+      <div id="pbDragHandle" class="pb-drag-handle"></div>
+
+      <!-- Preview pane -->
+      <div class="pb-preview-pane">
+        <div class="pb-preview-header">Preview</div>
+        <div class="pb-preview-scroll">
+          <div id="pbPreview" class="pb-preview-content md-content"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Command palette -->
+  <div id="pbPalette" class="pb-palette">
+    <input id="pbPaletteInput" class="pb-palette-input" type="text" placeholder="Search blocks…" autocomplete="off">
+    <div id="pbPaletteList" class="pb-palette-list"></div>
+  </div>
+
+  <!-- Toast -->
+  <div id="pbToast" class="pb-toast"></div>
+
+</div>
+
+<!-- Browse pages modal -->
+<div id="pbBrowseModal" class="pb-modal" hidden>
+  <div class="pb-modal-box">
+    <div class="pb-modal-header">
+      <span>Browse Pages</span>
+      <button class="pb-modal-close" data-modal="pbBrowseModal" type="button">✕</button>
+    </div>
+    <input id="pbBrowseSearch" class="pb-modal-search" type="text" placeholder="Filter pages…" autocomplete="off">
+    <div id="pbBrowseList" class="pb-modal-list"></div>
+  </div>
+</div>
+
+<!-- Card generator modal -->
+<div id="pbCardModal" class="pb-modal" hidden>
+  <div class="pb-modal-box pb-modal-box--wide">
+    <div class="pb-modal-header">
+      <span>Card Generator</span>
+      <button class="pb-modal-close" data-modal="pbCardModal" type="button">✕</button>
+    </div>
+    <div class="pb-card-form">
+      <div class="pb-card-form-row">
+        <label>Title</label>
+        <input id="cgTitle" type="text" placeholder="KOReader" autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Slug</label>
+        <input id="cgSlug" type="text" placeholder="koreader" autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Description</label>
+        <input id="cgDesc" type="text" placeholder="Short one-line description." autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Tag label</label>
+        <input id="cgTagLabel" type="text" placeholder="App" autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Search tags</label>
+        <input id="cgTags" type="text" placeholder="reader epub pdf tool" autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Download URL <span class="pb-card-form-opt">(optional)</span></label>
+        <input id="cgDownload" type="text" placeholder="https://github.com/…" autocomplete="off">
+      </div>
+    </div>
+    <pre id="cgPreview" class="pb-card-preview"></pre>
+    <button id="cgCopyBtn" class="pb-topbar-btn pb-topbar-btn-primary" type="button">Copy HTML</button>
+  </div>
+</div>
+
+<script src="js/marked.min.js"></script>
+<script src="js/pagebuilder-md.js"></script>
+
+</body>
+</html>

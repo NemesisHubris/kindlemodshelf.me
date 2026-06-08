@@ -1,0 +1,725 @@
+/* ============================================================
+   PAGE BUILDER — Markdown Editor
+   Full redesign: Obsidian-style split editor + blocks sidebar.
+   Uses design system variables from style.css.
+   ============================================================ */
+
+/* ── Reset app shell ── */
+body:has(.pb-shell) {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.pb-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body, inherit);
+}
+
+/* ── Top bar ── */
+.pb-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+  padding: 0 16px;
+  background: var(--card-bg);
+  border-bottom: 2px solid var(--card-border);
+  flex-shrink: 0;
+  z-index: 20;
+}
+
+.pb-topbar-start {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pb-topbar-center {
+  flex-shrink: 0;
+}
+
+.pb-topbar-end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.pb-home-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  transition: color 0.15s;
+  flex-shrink: 0;
+}
+.pb-home-link:hover { color: var(--fg); }
+
+/* Filename pill */
+.pb-file-pill {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  max-width: 220px;
+}
+
+.pb-filename {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--fg);
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 0.84rem;
+  width: 130px;
+  padding: 0;
+}
+
+.pb-filename::placeholder { color: var(--muted); opacity: 0.6; }
+
+.pb-file-ext {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* View switcher */
+.pb-view-switcher {
+  display: flex;
+  background: var(--input-bg);
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.pb-view-btn {
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  font-family: inherit;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.12s, color 0.12s;
+}
+.pb-view-btn:hover { color: var(--fg); }
+.pb-view-btn.active {
+  background: var(--fg);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+/* Topbar buttons */
+.pb-topbar-btn {
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--card-border);
+  font-family: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.pb-topbar-btn-ghost {
+  background: none;
+  color: var(--muted);
+}
+.pb-topbar-btn-ghost:hover { color: var(--fg); background: var(--input-bg); }
+.pb-topbar-btn-primary {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  font-weight: 700;
+}
+.pb-topbar-btn-primary:hover { opacity: 0.82; }
+
+.pb-word-count {
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── Workspace ── */
+.pb-workspace {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Sidebar ── */
+.pb-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--card-bg);
+  border-right: 2px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pb-sidebar-inner {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 16px;
+}
+
+.pb-sidebar-section {
+  padding: 12px 12px 4px;
+}
+
+.pb-sidebar-heading {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.pb-sidebar-hint {
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+.pb-sidebar-hint kbd {
+  display: inline-block;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-family: monospace;
+  font-size: 0.78rem;
+}
+
+.pb-sidebar-divider {
+  height: 1px;
+  background: var(--card-border);
+  margin: 8px 0;
+}
+
+/* Block buttons */
+.pb-blocks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pb-block-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  background: none;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: left;
+  color: var(--fg);
+  font-family: inherit;
+  transition: background 0.1s, border-color 0.1s;
+}
+.pb-block-btn:hover {
+  background: var(--input-bg);
+  border-color: var(--card-border);
+}
+.pb-block-btn:active {
+  background: var(--card-border);
+}
+
+.pb-block-icon {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  width: 22px;
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 1;
+  font-variant-emoji: text;
+  font-style: normal;
+}
+
+.pb-block-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* ── Content (editor + preview) ── */
+.pb-content {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ── Editor pane ── */
+.pb-editor-pane {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 50%;
+  min-width: 200px;
+  overflow: hidden;
+  border-right: 2px solid var(--card-border);
+}
+
+/* Editor toolbar */
+.pb-editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 8px;
+  background: var(--card-bg);
+  border-bottom: 1.5px solid var(--card-border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.pb-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.pb-toolbar-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--card-border);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+.pb-fmt-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 7px;
+  min-width: 26px;
+  height: 26px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.1s;
+}
+.pb-fmt-btn:hover {
+  background: var(--input-bg);
+  border-color: var(--card-border);
+}
+.pb-fmt-btn code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88em;
+  background: none;
+  padding: 0;
+}
+
+/* Editor area */
+.pb-editor-area {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  background: var(--input-bg);
+}
+
+.pb-editor {
+  flex: 1;
+  background: transparent;
+  color: var(--fg);
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  padding: 22px 26px;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow-y: auto;
+  tab-size: 2;
+  white-space: pre-wrap;
+  word-break: break-word;
+  caret-color: var(--primary, var(--fg));
+}
+
+.pb-editor::placeholder {
+  color: var(--muted);
+  opacity: 0.45;
+}
+
+/* ── Drag handle ── */
+.pb-drag-handle {
+  width: 6px;
+  background: var(--card-border);
+  cursor: col-resize;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  position: relative;
+}
+.pb-drag-handle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 32px;
+  background: var(--muted);
+  opacity: 0.4;
+  border-radius: 1px;
+}
+.pb-drag-handle:hover,
+.pb-drag-handle.dragging {
+  background: var(--fg);
+}
+.pb-drag-handle:hover::after,
+.pb-drag-handle.dragging::after {
+  opacity: 0.7;
+}
+
+/* ── Preview pane ── */
+.pb-preview-pane {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 50%;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.pb-preview-header {
+  display: flex;
+  align-items: center;
+  padding: 7px 20px;
+  background: var(--card-bg);
+  border-bottom: 1.5px solid var(--card-border);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.pb-preview-scroll {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.pb-preview-content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 28px 28px 60px;
+}
+
+/* ── View modes ── */
+.pb-workspace.mode-write .pb-drag-handle,
+.pb-workspace.mode-write .pb-preview-pane {
+  display: none;
+}
+.pb-workspace.mode-write .pb-editor-pane {
+  border-right: none;
+  flex: 1;
+}
+.pb-workspace.mode-preview .pb-sidebar,
+.pb-workspace.mode-preview .pb-drag-handle,
+.pb-workspace.mode-preview .pb-editor-pane {
+  display: none;
+}
+.pb-workspace.mode-preview .pb-preview-pane {
+  flex: 1;
+}
+
+/* ── Toast ── */
+.pb-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: var(--fg);
+  color: var(--bg);
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 100;
+  white-space: nowrap;
+}
+.pb-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Command palette ── */
+.pb-palette {
+  position: fixed;
+  z-index: 200;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.22);
+  width: 270px;
+  overflow: hidden;
+  display: none;
+}
+.pb-palette.open { display: block; }
+
+.pb-palette-input {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  border-bottom: 1.5px solid var(--card-border);
+  outline: none;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: var(--fg);
+  box-sizing: border-box;
+}
+
+.pb-palette-list {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.pb-palette-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.pb-palette-item:hover,
+.pb-palette-item.active {
+  background: var(--input-bg);
+}
+
+.pb-palette-icon {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  width: 22px;
+  flex-shrink: 0;
+  text-align: center;
+  font-variant-emoji: text;
+  font-style: normal;
+}
+
+.pb-palette-name {
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.pb-palette-desc {
+  font-size: 0.73rem;
+  color: var(--muted);
+  line-height: 1.2;
+  margin-top: 1px;
+}
+
+/* ── Preview heading nav (click to jump to editor) ── */
+.pb-preview-nav {
+  cursor: pointer;
+  position: relative;
+}
+.pb-preview-nav::after {
+  content: '  #';
+  font-size: 0.6em;
+  font-weight: 400;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.15s;
+  user-select: none;
+  pointer-events: none;
+  vertical-align: middle;
+  font-family: 'JetBrains Mono', monospace;
+}
+.pb-preview-nav:hover::after {
+  opacity: 0.55;
+}
+
+/* ── Modals ── */
+.pb-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pb-modal[hidden] { display: none; }
+
+.pb-modal-box {
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.35);
+}
+.pb-modal-box--wide { width: 560px; }
+
+.pb-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1.5px solid var(--card-border);
+  font-size: 0.84rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.pb-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  line-height: 1;
+  transition: color 0.1s;
+}
+.pb-modal-close:hover { color: var(--fg); }
+
+.pb-modal-search {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  border-bottom: 1.5px solid var(--card-border);
+  outline: none;
+  font-family: inherit;
+  font-size: 0.86rem;
+  color: var(--fg);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.pb-modal-list {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.pb-modal-item {
+  padding: 9px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.1s;
+  color: var(--fg);
+}
+.pb-modal-item:hover { background: var(--input-bg); }
+
+.pb-modal-loading {
+  padding: 16px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Card generator form */
+.pb-card-form {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.pb-card-form-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pb-card-form-row label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  width: 90px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.pb-card-form-opt {
+  font-size: 0.68rem;
+  opacity: 0.6;
+}
+
+.pb-card-form-row input {
+  flex: 1;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  padding: 5px 10px;
+  font-family: inherit;
+  font-size: 0.84rem;
+  color: var(--fg);
+  outline: none;
+}
+.pb-card-form-row input:focus { border-color: var(--fg); }
+
+.pb-card-preview {
+  margin: 0 16px;
+  padding: 12px 14px;
+  background: var(--input-bg);
+  border: 1.5px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--muted);
+  overflow-x: auto;
+  white-space: pre;
+  flex-shrink: 0;
+}
+
+#pbCardModal .pb-topbar-btn {
+  margin: 14px 16px;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 700px) {
+  .pb-sidebar { display: none; }
+  .pb-drag-handle { display: none; }
+  .pb-workspace.mode-split .pb-editor-pane { flex: 1; border-right: none; }
+  .pb-workspace.mode-split .pb-preview-pane { display: none; }
+  .pb-topbar { padding: 0 10px; gap: 8px; }
+  .pb-topbar-start { gap: 6px; }
+  .pb-file-pill { max-width: 120px; }
+  .pb-filename { width: 70px; }
+  .pb-word-count { display: none; }
+}

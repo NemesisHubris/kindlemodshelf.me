@@ -6,3 +6,23 @@ server.log
 server.pid
 node_modules/
 .wrangler/
+
+# Page image working/review folders — too large, not for deployment
+public/page_images/organized/
+public/page_images/organized.zip
+public/page_images/moved/
+public/page_images/duplicates/
+public/page_images/_unmatched/
+public/page_images/page_images/
+
+# Dev/maintenance scripts
+activity_log.txt
+discord_review_progress.json
+discord_trash/
+fetch_readme_images.py
+import_discord_media.py
+review_discord_mobile.py
+review_images_desktop.py
+convert_pages.py
+dedup_images.py
+check_css.py

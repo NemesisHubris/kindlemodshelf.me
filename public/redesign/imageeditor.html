@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kindle Screensaver Studio | KindleModShelf</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Professional Kindle screensaver image optimizer. Crop, resize, dither, and export directly in your browser.">
+  <link rel="canonical" href="https://kindlemodshelf.me/imageeditor">
+  <script src="theme-toggle.js"></script>
+  <link rel="stylesheet" href="imageeditor.css">
+</head>
+<body class="studio-body">
+  <div class="studio-layout">
+    <!-- Left Sidebar: Controls -->
+    <aside class="studio-sidebar">
+      <div class="studio-sidebar-header">
+        <a href="index.html" class="studio-back-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span>Back</span>
+        </a>
+        <div class="studio-branding">
+          <h1>Screensaver Studio</h1>
+          <span>Kindle Image Editor</span>
+        </div>
+      </div>
+
+      <div class="studio-sidebar-tools">
+        <button type="button" class="studio-history-btn" id="undoBtn" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m10 15-5-5 5-5"></path><path d="M19 19v-2a7 7 0 0 0-7-7H5"></path></svg>
+          <span>Undo</span>
+        </button>
+        <button type="button" class="studio-history-btn" id="redoBtn" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m14 15 5-5-5-5"></path><path d="M5 19v-2a7 7 0 0 1 7-7h7"></path></svg>
+          <span>Redo</span>
+        </button>
+      </div>
+
+      <div class="studio-sidebar-scroll">
+        <!-- Section: Image Source -->
+        <div class="studio-section">
+          <h3 class="studio-section-title">Source</h3>
+          <div class="studio-group">
+            <label class="studio-upload-btn" for="imageUpload" id="dropZone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <span>Upload Image</span>
+              <input type="file" id="imageUpload" accept="image/*" hidden>
+            </label>
+            <button type="button" class="studio-secondary-btn" id="favoriteImportBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.05" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 20.4-1.15-1.05C5.2 14.24 2 11.33 2 7.75 2 5.1 4.08 3 6.72 3c1.5 0 2.94.69 3.88 1.78C11.54 3.69 12.98 3 14.48 3 17.12 3 19.2 5.1 19.2 7.75c0 3.58-3.2 6.49-8.85 11.6Z"></path>
+              </svg>
+              <span>Import Favorites</span>
+            </button>
+            <div class="studio-meta" id="uploadMeta">No image selected</div>
+          </div>
+        </div>
+
+        <!-- Section: Canvas -->
+        <div class="studio-section">
+          <h3 class="studio-section-title">Canvas</h3>
+          <div class="studio-group">
+            <label>Device Preset</label>
+            <select id="devicePreset" class="studio-select"></select>
+          </div>
+          <div class="studio-row">
+            <div class="studio-group">
+              <label>Width</label>
+              <input type="number" id="targetWidth" class="studio-input" min="100" max="4096">
+            </div>
+            <div class="studio-group">
+              <label>Height</label>
+              <input type="number" id="targetHeight" class="studio-input" min="100" max="4096">
+            </div>
+          </div>
+          <div class="studio-group">
+            <div class="studio-inline-label">
+              <label data-help="Choose how the image fits the canvas. Cover fills the frame. Contain keeps the full image visible.">Fit Mode</label>
+              <button type="button" class="studio-help-btn" data-help="Choose how the image fits the canvas. Cover fills the frame. Contain keeps the full image visible." aria-label="Help: Fit Mode">?</button>
+            </div>
+            <select id="fitMode" class="studio-select" data-help="Choose how the image fits the canvas. Cover fills the frame. Contain keeps the full image visible.">
+              <option value="cover">Cover</option>
+              <option value="contain">Contain</option>
+            </select>
+          </div>
+          <div class="studio-group">
+            <div class="studio-inline-label">
+              <label>Background</label>
+              <button type="button" class="studio-help-btn" data-help="Remove a connected background area by clicking or dragging over it in the image preview." aria-label="Help: Remove Background">?</button>
+            </div>
+            <select id="backgroundColor" class="studio-select">
+              <option value="transparent">Transparent</option>
+              <option value="#ffffff">White</option>
+              <option value="#000000">Black</option>
+              <option value="#f2efdf">Warm Paper</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Section: Adjustments -->
+        <div class="studio-section">
+          <h3 class="studio-section-title">Tone</h3>
+          <div class="studio-group">
+            <div class="studio-inline-label">
+              <label>Kindle Look</label>
+              <button type="button" class="studio-help-btn" data-help="Preset starting points tuned for common e-ink use cases. Pick one, then fine-tune the sliders if needed." aria-label="Help: Kindle Look">?</button>
+            </div>
+            <select id="displayLook" class="studio-select">
+              <option value="balanced">Balanced</option>
+              <option value="paperwhite-crisp">Paperwhite Crisp</option>
+              <option value="paperwhite-soft">Paperwhite Smooth</option>
+              <option value="colorsoft-soft">Colorsoft Soft Color</option>
+              <option value="line-art">Comics & Line Art</option>
+              <option value="custom">Custom</option>
+            </select>
+            <div class="studio-helper-text">Useful starting points for black-and-white Kindles, Colorsoft, and sharp line-heavy artwork.</div>
+          </div>
+          <div class="studio-group">
+            <label>Brightness <span id="brightnessValue">100%</span></label>
+            <input type="range" id="brightness" min="0" max="200" value="100">
+          </div>
+          <div class="studio-group">
+            <label>Contrast <span id="contrastValue">100%</span></label>
+            <input type="range" id="contrast" min="0" max="250" value="100">
+          </div>
+          <div class="studio-group">
+            <label>Saturation <span id="saturationValue">100%</span></label>
+            <input type="range" id="saturation" min="0" max="200" value="100">
+          </div>
+          <div class="studio-group">
+            <label>Exposure <span id="exposureValue">0</span></label>
+            <input type="range" id="exposure" min="-100" max="100" value="0">
+          </div>
+          <div class="studio-group">
+            <div class="studio-inline-label">
+              <label data-help="Gamma shifts the midtones without moving the darkest blacks and brightest whites as much as Contrast does.">Gamma <span id="gammaValue">1.00</span></label>
+              <button type="button" class="studio-help-btn" data-help="Gamma shifts the midtones without moving the darkest blacks and brightest whites as much as Contrast does." aria-label="Help: Gamma">?</button>
+            </div>
+            <input type="range" id="gamma" min="50" max="220" value="100" data-help="Gamma shifts the midtones without moving the darkest blacks and brightest whites as much as Contrast does.">
+          </div>
+          <div class="studio-group">
+            <label>Sharpen <span id="sharpenValue">0</span></label>
+            <input type="range" id="sharpen" min="0" max="100" value="0">
+          </div>
+        </div>
+
+        <!-- Section: Filters -->
+        <div class="studio-section">
+          <h3 class="studio-section-title">Finish</h3>
+          <div class="studio-checkbox-grid">
+            <label class="studio-checkbox" data-help="Convert the image to grayscale before dithering and export.">
+              <input type="checkbox" id="grayscale" checked>
+              <span>Grayscale</span>
+            </label>
+            <label class="studio-checkbox" data-help="Auto Levels stretches the tonal range so dark areas get darker and light areas get lighter.">
+              <input type="checkbox" id="autoLevels">
+              <span>Auto Levels</span>
+            </label>
+            <label class="studio-checkbox">
+              <input type="checkbox" id="invert">
+              <span>Invert Colors</span>
+            </label>
+            <label class="studio-checkbox" data-help="Draw a border around the final image, useful when a white image would otherwise blend into a white screen background.">
+              <input type="checkbox" id="border">
+              <span>Add Border</span>
+            </label>
+          </div>
+          <div class="studio-group mt-12">
+            <div class="studio-inline-label">
+              <label data-help="Dithering controls how shades are simulated on limited-color e-ink displays.">Dithering</label>
+              <button type="button" class="studio-help-btn" data-help="Dithering controls how shades are simulated on limited-color e-ink displays." aria-label="Help: Dithering">?</button>
+            </div>
+            <select id="ditherMode" class="studio-select" data-help="Dithering controls how shades are simulated on limited-color e-ink displays.">
+              <option value="none">None</option>
+              <option value="threshold">Threshold</option>
+              <option value="bayer">Bayer</option>
+              <option value="floyd">Floyd-Steinberg</option>
+            </select>
+            <div class="studio-helper-text">Floyd-Steinberg usually looks best on photos. Bayer often stays cleaner on diagrams, manga panels, and text-heavy images.</div>
+          </div>
+          <div class="studio-group" id="thresholdGroup">
+            <div class="studio-inline-label">
+              <label data-help="Threshold is only used in Threshold mode. Lower values create more black pixels; higher values create more white pixels.">Threshold <span id="thresholdValue">128</span></label>
+              <button type="button" class="studio-help-btn" data-help="Threshold is only used in Threshold mode. Lower values create more black pixels; higher values create more white pixels." aria-label="Help: Threshold">?</button>
+            </div>
+            <input type="range" id="threshold" min="0" max="255" value="128" data-help="Threshold is only used in Threshold mode. Lower values create more black pixels; higher values create more white pixels.">
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Footer: Export -->
+      <div class="studio-sidebar-footer">
+        <div class="studio-group mb-12">
+          <label>Export As</label>
+          <select id="exportFormat" class="studio-select">
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPEG</option>
+            <option value="image/webp">WEBP</option>
+          </select>
+        </div>
+        <button type="button" class="studio-export-btn" id="downloadBtn" disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Export Image</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="studio-workspace">
+      <header class="studio-workspace-toolbar">
+        <div class="studio-toolbar-group">
+          <div class="studio-toolbar-actions">
+            <button type="button" class="studio-toolbar-btn" id="selectionModeBtn" aria-label="Select Area" title="Select Area">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h6"></path><path d="M14 4h6v6"></path><path d="M20 14v6h-6"></path><path d="M10 20H4v-6"></path>
+              </svg>
+            </button>
+            <button type="button" class="studio-toolbar-btn" id="eraseSelectionBtn" aria-label="Remove Selected Area" title="Remove Selected Area">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 20H7L3 16l9-9 8 8z"></path><path d="m14 6 4-4 4 4"></path>
+              </svg>
+            </button>
+            <button type="button" class="studio-toolbar-btn" id="cropSelectionBtn" aria-label="Crop to Selection" title="Crop to Selection">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2v14a2 2 0 0 0 2 2h14"></path><path d="M18 22V8a2 2 0 0 0-2-2H2"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="studio-toolbar-divider"></div>
+        <div class="studio-toolbar-group">
+          <div class="studio-toolbar-actions">
+            <button type="button" class="studio-toolbar-btn" id="instantAlphaBtn" aria-label="Remove Background" title="Remove Background">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 7h10"></path><path d="M14 7l6 6-8 8-6-6"></path><path d="M14 7l3-3"></path><path d="M7 14l3-3"></path>
+              </svg>
+            </button>
+            <button type="button" class="studio-toolbar-btn" id="instantAlphaSettingsBtn" aria-label="Background Tool Settings" title="Background Tool Settings" aria-expanded="false">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.7 1.7 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.7 1.7 0 0 0-1.82-.33 1.7 1.7 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09a1.7 1.7 0 0 0-1-1.51 1.7 1.7 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.7 1.7 0 0 0 .33-1.82 1.7 1.7 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09a1.7 1.7 0 0 0 1.51-1 1.7 1.7 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.7 1.7 0 0 0 1.82.33h.09a1.7 1.7 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.7 1.7 0 0 0 1 1.51 1.7 1.7 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.7 1.7 0 0 0-.33 1.82V9a1.7 1.7 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.7 1.7 0 0 0-1.51 1z"></path>
+              </svg>
+            </button>
+            <div class="studio-toolbar-popover" id="instantAlphaSettingsPanel" hidden>
+              <div class="studio-toolbar-popover-title">Background removal</div>
+              <div class="studio-toolbar-popover-copy">Click or drag to remove a connected color area. Tolerance changes how far the tool reaches into nearby shades.</div>
+              <div class="studio-toolbar-popover-row">
+                <label for="alphaTolerance">Tolerance <span id="alphaToleranceValue">28</span></label>
+                <input type="range" id="alphaTolerance" min="0" max="120" value="28">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="studio-toolbar-divider"></div>
+        <div class="studio-toolbar-group">
+          <div class="studio-toolbar-actions">
+            <button type="button" class="studio-toolbar-btn" id="rotateLeftBtn" aria-label="Rotate Left" title="Rotate Left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+            </button>
+            <button type="button" class="studio-toolbar-btn" id="rotateRightBtn" aria-label="Rotate Right" title="Rotate Right">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg>
+            </button>
+            <button type="button" class="studio-toolbar-btn" id="flipXBtn" aria-label="Flip Horizontal" title="Flip Horizontal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3"></path><path d="M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"></path><path d="M12 2v20"></path></svg>
+            </button>
+            <button type="button" class="studio-toolbar-btn" id="flipYBtn" aria-label="Flip Vertical" title="Flip Vertical">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3"></path><path d="M3 16v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"></path><path d="M2 12h20"></path></svg>
+            </button>
+          </div>
+        </div>
+        <div class="studio-toolbar-feedback" id="selectionHint" aria-live="polite"></div>
+      </header>
+      <div class="studio-canvas-container" id="canvasWrap">
+        <canvas id="editorCanvas"></canvas>
+        
+        <!-- Empty State Overlay -->
+        <div class="studio-empty-state" id="emptyState">
+          <div class="studio-empty-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          </div>
+          <h2>Ready to Optimize</h2>
+          <p>Drag and drop an image here or use the sidebar to upload.</p>
+        </div>
+
+        <!-- Zoom Overlay -->
+        <div class="studio-zoom-overlay" id="zoomOverlay">
+          <input type="range" id="zoom" min="25" max="400" value="100" hidden>
+          <div class="studio-zoom-pill">
+            <button type="button" id="zoomInBtn">+</button>
+            <div class="studio-zoom-entry">
+              <input type="text" id="zoomInput" class="studio-zoom-input" inputmode="numeric" value="100" aria-label="Zoom percent">
+              <span id="zoomSuffix">%</span>
+            </div>
+            <button type="button" id="zoomOutBtn">−</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Status Bar -->
+      <footer class="studio-status-bar">
+        <div class="studio-status-left">
+          <span id="canvasDimsDisplay">1236 x 1648 px</span>
+        </div>
+        <div class="studio-status-right">
+          <button type="button" class="studio-bar-btn" id="centerBtn">Center</button>
+          <button type="button" class="studio-bar-btn" id="fitBtn">Fit</button>
+          <div class="studio-bar-divider"></div>
+          <button type="button" class="studio-bar-btn danger" id="resetBtn">Reset</button>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <div class="studio-tooltip" id="studioTooltip" role="tooltip" hidden></div>
+  <div class="studio-favorites-modal" id="favoritesPicker" hidden>
+    <div class="studio-favorites-backdrop" id="favoritesPickerBackdrop"></div>
+    <div class="studio-favorites-panel" role="dialog" aria-modal="true" aria-labelledby="favoritesPickerTitle">
+      <div class="studio-favorites-header">
+        <div>
+          <div class="studio-favorites-eyebrow">Source</div>
+          <h2 id="favoritesPickerTitle">Import from Favorites</h2>
+        </div>
+        <button type="button" class="studio-favorites-close" id="favoritesPickerClose" aria-label="Close favorites picker">Close</button>
+      </div>
+      <div class="studio-favorites-copy">Pick one of your saved gallery images and load it straight into the editor.</div>
+      <div class="studio-favorites-grid" id="favoritesPickerGrid"></div>
+      <div class="studio-favorites-empty" id="favoritesPickerEmpty" hidden>No favorites yet. Heart images in the gallery first, then they will show up here.</div>
+    </div>
+  </div>
+
+  <script src="favorites.js"></script>
+  <script src="imageeditor.js"></script>
+</body>
+</html>

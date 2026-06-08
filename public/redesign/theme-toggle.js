@@ -1,0 +1,177 @@
+// Theme Toggle Functionality
+(function() {
+  'use strict';
+
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  function shouldResetInitialScroll(event) {
+    if (window.location.hash) return false;
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('q') || params.has('category')) return false;
+
+    const navEntry = performance.getEntriesByType('navigation')[0];
+    const navType = navEntry?.type || (event?.persisted ? 'back_forward' : 'navigate');
+    return navType !== 'back_forward';
+  }
+
+  function resetInitialScroll(event) {
+    if (!shouldResetInitialScroll(event)) return;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      });
+    });
+  }
+
+  window.addEventListener('pageshow', resetInitialScroll);
+
+  // Get the current theme from localStorage or default to dark
+  function getInitialTheme() {
+    let savedTheme = null;
+    try {
+      savedTheme = localStorage.getItem('theme');
+    } catch (e) {
+      console.warn('LocalStorage access denied, using default theme.');
+    }
+    return {
+      theme: savedTheme || 'dark',
+      persist: Boolean(savedTheme)
+    };
+  }
+
+  // Apply theme to the document
+  function applyTheme(theme, persist = true) {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+    if (persist) {
+      try {
+        localStorage.setItem('theme', theme);
+      } catch (e) {}
+    } else {
+      try {
+        localStorage.removeItem('theme');
+      } catch (e) {}
+    }
+
+    // Dispatch custom event for theme change
+    const event = new CustomEvent('themechange', { detail: { theme } });
+    document.dispatchEvent(event);
+  }
+
+  // Toggle between themes
+  function toggleTheme() {
+    const root = document.documentElement;
+    const currentTheme = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  }
+
+  // Initialize theme on page load
+  function initTheme() {
+    const { theme, persist } = getInitialTheme();
+    applyTheme(theme, persist);
+  }
+
+  // Setup theme toggle button (either existing or create new one)
+  function setupToggleButton() {
+    // Check if button already exists in HTML
+    const existingButton = document.querySelector('.theme-toggle');
+
+    if (existingButton) {
+      if (existingButton.getAttribute('data-theme-initialized') === 'true') {
+        return;
+      }
+      // Mark as initialized to prevent duplicate handlers
+      existingButton.setAttribute('data-theme-initialized', 'true');
+      // Attach click handler to existing button
+      existingButton.addEventListener('click', toggleTheme);
+      attachScrollBehavior(existingButton);
+      return;
+    }
+
+    // Create button if it doesn't exist
+    const button = document.createElement('button');
+    button.className = 'theme-toggle';
+    button.setAttribute('data-theme-initialized', 'true');
+    button.setAttribute('aria-label', 'Toggle theme');
+    button.setAttribute('title', 'Toggle theme');
+
+    // Create sun icon (shows in dark mode - clicking switches to light mode)
+    const starIcon = document.createElement('span');
+    starIcon.className = 'theme-icon sun';
+    starIcon.setAttribute('aria-hidden', 'true');
+    starIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42m12.72-12.72l1.42-1.42"/></svg>';
+
+    // Create moon icon (shows in light mode - clicking switches to dark mode)
+    const moonIcon = document.createElement('span');
+    moonIcon.className = 'theme-icon moon';
+    moonIcon.setAttribute('aria-hidden', 'true');
+    moonIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
+    button.appendChild(starIcon);
+    button.appendChild(moonIcon);
+
+    button.addEventListener('click', toggleTheme);
+
+    document.body.appendChild(button);
+    attachScrollBehavior(button);
+  }
+
+  // Add scroll behavior for progressive disclosure
+  function attachScrollBehavior(button) {
+    if (button.getAttribute('data-theme-scroll-bound') === 'true') {
+      return;
+    }
+    button.setAttribute('data-theme-scroll-bound', 'true');
+
+    let isScrolled = false;
+
+    const handleScroll = () => {
+      const scrollPos = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrollPos > 100) {
+        if (!isScrolled) {
+          button.classList.add('scrolled');
+          isScrolled = true;
+        }
+      } else {
+        if (isScrolled) {
+          button.classList.remove('scrolled');
+          isScrolled = false;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }
+
+  // Initialize theme immediately to prevent FOUC
+  initTheme();
+
+  // Initialize button when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupToggleButton);
+  } else {
+    setupToggleButton();
+  }
+
+  // Listen for system theme changes
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
+      // Only apply if user hasn't manually set a theme
+      let hasManualTheme = false;
+      try { hasManualTheme = !!localStorage.getItem('theme'); } catch(e) {}
+      if (!hasManualTheme) {
+        applyTheme(e.matches ? 'light' : 'dark', false);
+      }
+    });
+  }
+})();
