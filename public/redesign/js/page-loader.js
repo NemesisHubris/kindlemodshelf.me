@@ -1,14 +1,15 @@
 (function () {
   'use strict';
 
-  // Resolve page slug from ?p= param OR from the HTML filename.
+  // Resolve page slug from ?p= param OR from the URL path.
   // /redesign/koreader.html  →  "koreader"
+  // /redesign/koreader       →  "koreader"  (Cloudflare strips .html)
   // page.html?p=koreader     →  "koreader"
   const params = new URLSearchParams(window.location.search);
   let page = params.get('p');
   if (!page) {
-    const match = window.location.pathname.match(/\/([^\/]+)\.html$/);
-    if (match && match[1] !== 'page') page = match[1];
+    const match = window.location.pathname.match(/\/([^\/]+?)(?:\.html)?\/?$/);
+    if (match && match[1] !== 'page' && match[1] !== 'redesign') page = match[1];
   }
 
   const el = document.getElementById('content');
