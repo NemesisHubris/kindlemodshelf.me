@@ -2,121 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Parental Controls for KOReader | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Parental Controls for KOReader">
-  <meta name="twitter:description" content="KOReader Time Block limits when children can read in KOReader with customizable reading windows so kids can enjoy ebooks only during the times you approve.">
-<meta name="description" content="KOReader Time Block limits when children can read in KOReader with customizable reading windows so kids can enjoy ebooks only during the times you approve.">
-  <link rel="canonical" href="https://kindlemodshelf.me/timeblock">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="Parental Controls for KOReader">
-  <meta property="og:description" content="KOReader Time Block limits when children can read in KOReader with customizable reading windows so kids can enjoy ebooks only during the times you approve.">
-  <meta property="og:url" content="https://kindlemodshelf.me/timeblock">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>Parental Controls for KOReader</h1>
-
-    <div class="summary">
-      KOReader Time Block limits when children can read in KOReader with customizable reading windows so kids can enjoy ebooks only during the times you approve.
-    </div>
-
-    <div class="legal-warning" role="alert">
-      <strong>Still in active development:</strong> Time Block may fail to lock KOReader reliably and should not be treated as a guaranteed parental control solution. Expect bugs, missed lockouts, and behavior changes between releases.
-    </div>
-
-    <section aria-labelledby="overview">
-      <h2 class="section-title" id="overview">Overview</h2>
-      <div class="card card-desc">
-        <p>KOReader Time Block adds parental controls to KOReader, letting you define daily reading hours, set PIN-protected overrides, and keep curious kids from bypassing the rules. It works entirely on-device and is easy to configure after installation.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="downloads">
-      <h2 class="section-title" id="downloads">Downloads</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="downloads/timeblock.koplugin.zip">KOReader Time Block Plugin</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Features</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Define start and end times for when KOReader may be used</li>
-          <li>Lock settings behind a parent PIN with recovery access</li>
-          <li>Enable or disable the schedule without uninstalling</li>
-          <li>Optional manual lock to immediately secure the device</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="requirements">
-      <h2 class="section-title" id="requirements">Requirements</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>KOReader installed on Kindle</li>
-          <li>USB access to copy plugin files</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="installation">
-      <h2 class="section-title" id="installation">Installation</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Download the plugin archive above and unzip it.</li>
-          <li>Copy the extracted <code>timeblock.koplugin</code> folder into <code>koreader/plugins/</code> on your Kindle.</li>
-          <li>Eject the Kindle safely and launch KOReader.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="setup">
-      <h2 class="section-title" id="setup">Initial Setup</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>In KOReader, tap the top menu, choose <strong>File Cabinet</strong>, then open <strong>Parental Controls</strong>.</li>
-          <li>Unlock the settings with the default PIN <code>0000</code>; change it immediately via <strong>Change PIN</strong>.</li>
-          <li>Note the recovery PIN <code>8642</code>; use it if the main PIN is forgotten.</li>
-          <li>Set <strong>Blocking Enabled</strong> to control whether the schedule is active.</li>
-          <li>Configure the daily <strong>Start Time</strong> and <strong>End Time</strong> that KOReader should allow reading.</li>
-          <li>Toggle <strong>Enable PIN Override</strong> if you want the parent PIN to temporarily bypass the schedule.</li>
-          <li>Exit the settings menu to save changes; always lock the settings manually before handing the Kindle back to your child.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="tips">
-      <h2 class="section-title" id="tips">Tips &amp; Best Practices</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Time Block relocks automatically, but use the lock option after editing to be safe.</li>
-          <li>Enable KOReader&rsquo;s “launch on boot” option so a reboot does not expose the stock Kindle UI.</li>
-          <li>Store your pin somewhere secure.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credits</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>kindlemodshelfguy</li>
-          <li>Plugin authors and maintainers from the KOReader community</li>
-        </ul>
-      </div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

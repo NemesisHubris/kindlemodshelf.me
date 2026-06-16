@@ -2,85 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Architecture Detector | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Instantly detect your Kindle's CPU architecture (Soft-float vs Hard-float). Essential tool for choosing the correct mod packages for your jailbroken Kindle.">
-  <link rel="canonical" href="https://kindlemodshelf.me/architecture-detector">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="Architecture Detector">
-  <meta property="og:description" content="Instantly detect your Kindle's CPU architecture (Soft-float vs Hard-float). Essential tool for choosing the correct mod packages for your jailbroken Kindle.">
-  <meta property="og:url" content="https://kindlemodshelf.me/architecture-detector">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="keywords" content="architecture, soft-float, hard-float, kindle, sf, hf, architecture detector">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Architecture Detector",
-    "operatingSystem": "Kindle OS / Web Browser",
-    "applicationCategory": "Utility",
-    "description": "Instantly detect your Kindle's CPU architecture (Soft-float vs Hard-float).",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/architecture-detector.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Architecture Detector">
-  <meta name="twitter:description" content="Instantly detect your Kindle's CPU architecture (Soft-float vs Hard-float). Essential tool for choosing the correct mod packages for your jailbroken Kindle.">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>Architecture Detector</h1>
-
-    <div class="summary">
-      <p>A simple <a href="https://mip-wiki.pages.dev/database/scriptlets/" target="_blank" rel="noopener">Kindle Scriptlet</a> to instantly detect your device's architecture. This is essential for knowing whether to install <strong>SF</strong> (Soft-float) or <strong>HF</strong> (Hard-float) packages.</p>
-    </div>
-
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="https://greencat-777.github.io/arcdetect.sh">Download arcdetect.sh</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="overview">
-      <h2 class="section-title" id="overview">Overview</h2>
-      <div class="card card-desc">
-        <p>Kindle firmware versions 5.16.3 and newer typically use <strong>Hard-float (HF)</strong> architecture, while older versions use <strong>Soft-float (SF)</strong>. Many homebrew applications (like KOReader or USBNetwork) have specific versions for each.</p>
-        <p>Running this scriptlet on your Kindle will provide an immediate pop-up or log entry identifying your device's specific architecture, ensuring you never install the wrong version of a mod again.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="usage">
-      <h2 class="section-title" id="usage">How to Use</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Download the <code>arcdetect.sh</code> script.</li>
-          <li>Copy it to your Kindle's <code>documents</code> folder.</li>
-          <li>Open the scriptlet from your library (it will appear as a book).</li>
-          <li>Read the result displayed on your screen.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credits</h2>
-      <div class="card card-desc">
-        <p>Developed by <a href="https://gc-bio.vercel.app/" target="_blank" rel="noopener"><strong>GreenCat777</strong></a>.</p>
-      </div>
-    </section>
-
+    <div id="content" class="md-content"></div>
   </div>
-  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

@@ -93,7 +93,7 @@
   }
 
   function imagePath(author, filename) {
-    return `images/${author}/${filename}`;
+    return `/images/${author}/${filename}`;
   }
 
   window.KindleModsFavorites = {

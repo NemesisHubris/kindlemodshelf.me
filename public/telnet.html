@@ -1,106 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Telnet for Kindle – Remote Command Line... | KindleModShelf</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Telnet for Kindle – Remote Command Line...">
-  <meta name="twitter:description" content="Telnet for Kindle gives you quick remote CLI access to a jailbroken Kindle over your local network. Explore our collection of Kindle mods and guides.">
-<meta name="description" content="Telnet for Kindle gives you quick remote CLI access to a jailbroken Kindle over your local network. Explore our collection of Kindle mods and guides.">
-  <link rel="canonical" href="https://kindlemodshelf.me/telnet">
-  <link rel="stylesheet" href="style.css?v=3" />
-  <meta property="og:title" content="Telnet for Kindle – Remote Command Line...">
-  <meta property="og:description" content="Telnet for Kindle gives you quick remote CLI access to a jailbroken Kindle over your local network. Explore our collection of Kindle mods and guides.">
-  <meta property="og:url" content="https://kindlemodshelf.me/telnet">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Telnet for Kindle",
-    "operatingSystem": "Kindle OS (jailbroken)",
-    "applicationCategory": "Utility",
-    "description": "Run a lightweight Telnet server on your jailbroken Kindle for remote command-line access and quick debugging over your network.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/telnet.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <meta charset="UTF-8">
+  <title>KindleModShelf</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>Telnet for Kindle – Remote Command Line Tool</h1>
-
-    <div class="summary">
-      <p><b>Telnet for Kindle</b> gives you quick remote CLI access to a jailbroken Kindle over your local network.</p>
-    </div>
-
-    <h2 class="section-title">What Is Telnet for Kindle?</h2>
-    <div class="card card-desc">
-      <p>
-        This script opens a Telnet server on your Kindle so you can connect to it remotely via any Telnet client. Touching the Kindle screen closes the session.
-        A title bar and icon are included for user visibility.
-      </p>
-      <p>
-        <b>Security Note:</b> Telnet is unencrypted. Only use on secure local networks.
-        For encrypted access, use <a href="usbnetlite.html">SSH via USBNet instead</a>.
-      </p>
-    </div>
-
-    <h2 class="section-title">Features</h2>
-    <div class="card card-desc">
-      <ul>
-        <li>Remote shell access over your local network</li>
-        <li>Tap the Kindle screen to close the session</li>
-        <li>Extremely lightweight and fast to launch</li>
-        <li>Useful for debugging, recovery, or remote system management</li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Requirements</h2>
-    <div class="card card-desc">
-      <ul>
-        <li><a href="jailbreaking.html">Jailbroken Kindle</a></li>
-        <li><a href="kterm.html">KUAL or KTerm</a> to run scripts</li>
-        <li>A computer and Kindle on the same Wi-Fi network</li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Installation & Usage</h2>
-    <div class="card card-desc">
-      <ol>
-        <li>Download <b>Telnet.sh</b> from the project repository or release page.</li>
-        <li>Copy <code>Telnet.sh</code> to <code>/mnt/us/extensions/</code> on your Kindle.</li>
-        <li>Run it via KUAL or with this KTerm command:<br><code>sh /mnt/us/extensions/Telnet.sh</code></li>
-        <li>From your computer, use any Telnet client to connect to your Kindle’s IP address.</li>
-        <li>To end the session, tap the Kindle screen.</li>
-      </ol>
-    </div>
-
-    <h2 class="section-title">Technical Notes</h2>
-    <div class="card card-desc">
-      <ul>
-        <li>Touchscreen event detection cleanly terminates the Telnet server</li>
-        <li>No persistent installation—server stops after session ends</li>
-        <li>Low system resource use, ideal for minimal debugging tasks</li>
-      </ul>
-    </div>
-
-    <div class="card card-desc">
-      <p>
-        Use Telnet for quick, local command-line access to your Kindle without USB or SSH.
-      </p>
-    </div>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

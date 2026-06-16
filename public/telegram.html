@@ -2,105 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KOReader Telegram Highlights Plugin | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="KOReader Telegram Highlights Plugin">
-  <meta name="twitter:description" content="Send Kindle highlights and screenshots to Telegram instantly with the KOReader Telegram Highlights Plugin. Fast, easy setup using @bookshotsbot.">
-<meta name="description" content="Send Kindle highlights and screenshots to Telegram instantly with the KOReader Telegram Highlights Plugin. Fast, easy setup using @bookshotsbot.">
-  <link rel="canonical" href="https://kindlemodshelf.me/telegram">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="KOReader Telegram Highlights Plugin">
-  <meta property="og:description" content="Send Kindle highlights and screenshots to Telegram instantly with the KOReader Telegram Highlights Plugin. Fast, easy setup using @bookshotsbot.">
-  <meta property="og:url" content="https://kindlemodshelf.me/telegram">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "KOReader Telegram Highlights Plugin",
-    "operatingSystem": "Kindle OS (with KOReader installed)",
-    "applicationCategory": "Plugin",
-    "description": "Send Kindle highlights and screenshots to Telegram directly from KOReader. Works with @bookshotsbot for fast, automatic sharing.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/telegram.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>KOReader Telegram Highlights Plugin</h1>
-
-    <div class="summary">
-      <p>A beautiful way to instantly send Kindle book highlights and screenshots from <b>KOReader</b> to your Telegram account using the <b>@bookshotsbot</b> Telegram bot.</p>
-    </div>
-
-    <h2 class="section-title">Features</h2>
-    <div class="card card-desc">
-      <ul>
-        <li>Send highlights and selected text from KOReader directly to Telegram</li>
-        <li>Share Kindle screenshots to Telegram in seconds</li>
-        <li>Bulk upload all bookmarks or individual highlights</li>
-        <li>Auto Wi-Fi toggle: turns Wi-Fi on to send, then off (where supported)</li>
-        <li>Customize quote images using the Telegram miniapp (backgrounds, colors, Unsplash photos)</li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Requirements</h2>
-    <div class="card card-desc">
-      <ul>
-        <li><a href="koreader.html">KOReader</a> installed on your Kindle or e-reader</li>
-        <li>Telegram account</li>
-        <li>Wi-Fi enabled for sending highlights and screenshots</li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">How to Install</h2>
-    <div class="card card-desc">
-      <ol>
-        <li>Download the latest release from <a href="https://github.com/0xmiki/telegramhighlights.koplugin/releases" target="_blank" rel="noopener">the GitHub repository</a>.</li>
-        <li>Unzip the downloaded file. You’ll get a folder named <code>telegramhighlights.koplugin</code>.</li>
-        <li>Copy this folder to your KOReader <code>plugins</code> directory.</li>
-        <li>Restart KOReader. The plugin appears under <b>Tools → Telegram Highlights</b>.</li>
-      </ol>
-    </div>
-
-    <h2 class="section-title">How to Set Up</h2>
-    <div class="card card-desc">
-      <ol>
-        <li>Start a chat with <a href="https://t.me/bookshotsbot" target="_blank" rel="noopener">@bookshotsbot</a> on Telegram and get your verification code.</li>
-        <li>In KOReader, open the Telegram Highlights plugin from the <b>Tools</b> menu and enter your code.</li>
-      </ol>
-    </div>
-
-    <h2 class="section-title">How to Use</h2>
-    <div class="card card-desc">
-      <ul>
-        <li><b>Send a highlight:</b> Select text, open the highlight menu, and tap <i>Send to Bot</i> or <i>Save &amp; Send</i>.</li>
-        <li><b>Send a bookmark:</b> Long-press a bookmark, then tap <i>Send to Bot</i>. To send all bookmarks, go to <b>Bookmarks → Menu → Send all to Bot</b>.</li>
-        <li><b>Send a screenshot:</b> Swipe diagonally to capture, then select <i>Send to Bot</i> in the dialog.</li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Customization</h2>
-    <div class="card card-desc">
-      <p>Use the Telegram miniapp to change quote backgrounds, colors, or add Unsplash images. Launch the miniapp from the Highlights screen in KOReader.</p>
-    </div>
-
-    <h2 class="section-title">Credits</h2>
-    <div class="card card-desc">
-      <p>Developed by <b>Miki</b>.</p>
-    </div>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

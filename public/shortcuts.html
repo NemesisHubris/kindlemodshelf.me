@@ -2,126 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Home Screen Shortcuts | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Home Screen Shortcuts">
-  <meta name="twitter:description" content="Home Screen Shortcuts launch installed Kindle mods directly from the Home screen without opening KUAL. Explore our collection of Kindle mods and guides.">
-<meta name="description" content="Home Screen Shortcuts launch installed Kindle mods directly from the Home screen without opening KUAL. Explore our collection of Kindle mods and guides.">
-  <link rel="canonical" href="https://kindlemodshelf.me/shortcuts">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="Home Screen Shortcuts">
-  <meta property="og:description" content="Home Screen Shortcuts launch installed Kindle mods directly from the Home screen without opening KUAL. Explore our collection of Kindle mods and guides.">
-  <meta property="og:url" content="https://kindlemodshelf.me/shortcuts">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Home Screen Shortcuts for Kindle",
-    "operatingSystem": "Kindle OS (jailbroken)",
-    "applicationCategory": "Utility",
-    "description": "Quick and beautiful launcher shortcuts for Kindle mods. Launch KOReader, KTerm, Alpine, and more directly from the Home screen.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "url": "https://kindlemodshelf.me/shortcuts.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>Home Screen Shortcuts</h1>
-
-    <div class="summary">
-      <p><b>Home Screen Shortcuts</b> launch installed Kindle mods directly from the Home screen without opening KUAL.</p>
-    </div>
-
-    <h2 class="section-title">Installation Steps</h2>
-    <div class="card card-desc">
-      <ol>
-        <li>Select the shortcuts you want to add and download them from the list below.</li>
-        <li>Copy them to the <code>/mnt/us/documents</code> folder on your Kindle.</li>
-      </ol>
-    </div>
-
-    <h2 class="section-title">Shortcut Files</h2>
-    <div class="card card-desc">
-      <div class="download-list">
-        <div class="download-item">
-          <a href="downloads/KOReader.sh" class="download-item-link" download>KOReader.sh</a>
-          <p class="download-item-desc">KOReader launcher — opens KOReader directly from the Home screen.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/koreader_launcher_asap.sh" class="download-item-link" download>koreader_launcher_asap.sh</a>
-          <p class="download-item-desc">KOReader ASAP launcher — opens KOReader instantly.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/Kterm.sh" class="download-item-link" download>Kterm.sh</a>
-          <p class="download-item-desc">KTerm terminal launcher.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/Alpine.sh" class="download-item-link" download>Alpine.sh</a>
-          <p class="download-item-desc">Alpine launcher.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/KindleFetch.sh" class="download-item-link" download>KindleFetch.sh</a>
-          <p class="download-item-desc">KindleFetch utility launcher.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/KindleFetch2.sh" class="download-item-link" download>KindleFetch2.sh</a>
-          <p class="download-item-desc">Alternative KindleFetch launcher script.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/shortcut_gambatte-k2.sh" class="download-item-link" download>shortcut_gambatte-k2.sh</a>
-          <p class="download-item-desc">Game Boy emulator launcher for hardfloat Kindles.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/gargoyle.sh" class="download-item-link" download>gargoyle.sh</a>
-          <p class="download-item-desc">Text adventure (Infocom) emulator launcher.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/screenControl.sh" class="download-item-link" download>screenControl.sh</a>
-          <p class="download-item-desc">Screen control utility.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/USB_Network_Toggle.sh" class="download-item-link" download>USB_Network_Toggle.sh</a>
-          <p class="download-item-desc">USB network toggle utility.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="downloads/storagetool.sh" class="download-item-link" download>storagetool.sh</a>
-          <p class="download-item-desc">Storage management tool.</p>
-        </div>
-
-        <div class="download-item">
-          <a href="peki.html" class="download-item-link">PEKI</a>
-          <p class="download-item-desc">MRPI-free KUAL installer and launcher booklet.</p>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="section-title">Notes</h2>
-    <div class="card card-desc">
-      <ul>
-        <li>If a shortcut doesn't run, confirm the file is executable and located in <code>/mnt/us/documents</code>.</li>
-        <li>If a shortcut doesn’t appear, restart your Kindle and wait — it should show up within a minute.</li>
-        <li>These scripts are simple launchers that call the actual app start scripts on your device. You must have the corresponding app installed for them to work.</li>
-      </ul>
-    </div>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

@@ -2,253 +2,179 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Pagebuilder | KindleModShelf</title>
+  <title>Page Builder | KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:title" content="Pagebuilder">
-  <meta property="og:description" content="Create Kindle modding guide pages with KindleModShelf Page Builder Find the best Kindle jailbreak tools, KOReader plugins, and more here. Get started today.">
-  <meta property="og:url" content="https://kindlemodshelf.me/pagebuilder">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Pagebuilder">
-  <meta name="twitter:description" content="Create Kindle modding guide pages with KindleModShelf Page Builder Find the best Kindle jailbreak tools, KOReader plugins, and more here. Get started today.">
-<meta name="description" content="Create Kindle modding guide pages with KindleModShelf Page Builder Find the best Kindle jailbreak tools, KOReader plugins, and more here. Get started today.">
-  <link rel="canonical" href="https://kindlemodshelf.me/pagebuilder">
-  <link rel="stylesheet" href="style.css?v=3">
-  <link rel="stylesheet" href="pagebuilder.css?v=9">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pagebuilder.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
-  <div class="builder-wrapper">
-    <div class="builder-container" id="builderContainer">
-      <aside class="builder-sidebar builder-sidebar-left">
-        <div class="builder-section">
-          <h3>Page Basics</h3>
-          <form class="builder-meta-form" id="metaForm">
-            <div class="form-group">
-              <label for="pageTitle">Page Title (H1)</label>
-              <input type="text" id="pageTitle" placeholder="e.g., KOReader Installation" required>
-            </div>
-            <div class="form-group">
-              <label for="headerDescription">Header Summary</label>
-              <textarea id="headerDescription" placeholder="Shown in the summary box directly below the page title." rows="4"></textarea>
-              <p class="builder-form-hint">Use this for the short visual intro at the top of the page.</p>
-            </div>
-          </form>
-        </div>
 
-        <div class="builder-divider"></div>
+<div class="pb-shell">
 
-        <div class="builder-section">
-          <h3>Extra Setup</h3>
-          <div class="builder-action-list">
-            <div class="builder-action-card">
-              <button id="openTemplateDialogBtn" class="builder-secondary-btn builder-action-btn" type="button">Starter Templates</button>
-              <p class="builder-action-copy">Insert a ready-made tool, guide, or reference structure.</p>
-            </div>
-            <div class="builder-action-card">
-              <button id="openCardDialogBtn" class="builder-secondary-btn builder-action-btn" type="button">Homepage Card</button>
-              <p class="builder-action-copy">Edit the card content used when you copy the snippet for <code>index.html</code>.</p>
-            </div>
-            <div class="builder-action-card">
-              <button id="openSeoDialogBtn" class="builder-secondary-btn builder-action-btn" type="button">SEO &amp; Sharing</button>
-              <p class="builder-action-copy">Set the hidden meta description and keywords for the exported page.</p>
-            </div>
-          </div>
-        </div>
+  <!-- Top bar -->
+  <div class="pb-topbar">
+    <div class="pb-topbar-start">
+      <a href="index.html" class="pb-home-link">← Home</a>
+      <div class="pb-file-pill">
+        <input id="pbFilename" class="pb-filename" type="text" placeholder="filename" autocomplete="off" spellcheck="false">
+        <span class="pb-file-ext">.md</span>
+      </div>
+      <span id="pbWordCount" class="pb-word-count"></span>
+    </div>
 
-        <div class="builder-divider"></div>
+    <div class="pb-topbar-center">
+      <div class="pb-view-switcher">
+        <button class="pb-view-btn" data-view="write" type="button">Write</button>
+        <button class="pb-view-btn active" data-view="split" type="button">Split</button>
+        <button class="pb-view-btn" data-view="preview" type="button">Preview</button>
+      </div>
+    </div>
 
-        <div class="builder-section">
-          <h3>Add Blocks</h3>
-          <div class="builder-block-palette">
-            <button class="builder-add-block" data-block-type="summary" aria-label="Add summary block">
-              + Summary Box
-            </button>
-            <button class="builder-add-block" data-block-type="section" aria-label="Add section block">
-              + Section
-            </button>
-            <button class="builder-add-block" data-block-type="text" aria-label="Add text block">
-              + Text
-            </button>
-            <button class="builder-add-block" data-block-type="list" aria-label="Add list block">
-              + List
-            </button>
-            <button class="builder-add-block" data-block-type="video" aria-label="Add video block">
-              + Video
-            </button>
-            <button class="builder-add-block" data-block-type="code" aria-label="Add code block">
-              + Code
-            </button>
-            <button class="builder-add-block" data-block-type="banner" aria-label="Add banner block">
-              + Banner
-            </button>
-            <button class="builder-add-block" data-block-type="credit" aria-label="Add credit block">
-              + Credit
-            </button>
-          </div>
-        </div>
-
-        <div class="builder-divider"></div>
-
-        <div class="builder-section builder-support-section">
-          <h3>Support KindleModShelf</h3>
-          <p class="builder-support-copy">If the builder saves you time, supporting helps keep KindleModShelf running and gives me more room to keep building tools like this.</p>
-          <a href="https://ko-fi.com/kindlemodshelfguy" class="builder-support-link" target="_blank" rel="noopener">Support KindleModShelf</a>
-        </div>
-
-        <div class="builder-spacer"></div>
-      </aside>
-
-      <div class="builder-resizer builder-resizer-left" data-resizer="left" aria-hidden="true"></div>
-
-      <main class="builder-canvas">
-        <div class="builder-canvas-header">
-          <h2>Live Preview</h2>
-          <div class="builder-toolbar">
-            <button id="toggleLeftSidebarBtn" class="builder-toolbar-btn builder-toolbar-btn-panel" type="button" aria-label="Toggle page setup panel">
-              Page Setup
-            </button>
-            <button id="toggleRightSidebarBtn" class="builder-toolbar-btn builder-toolbar-btn-panel" type="button" aria-label="Toggle block properties panel">
-              Block Properties
-            </button>
-            <button id="exportBtn" class="builder-toolbar-btn builder-toolbar-btn-primary" aria-label="Export as HTML">
-              Export HTML
-            </button>
-            <button id="clearAllBtn" class="builder-toolbar-btn builder-toolbar-btn-danger" aria-label="Clear all blocks">
-              Clear All
-            </button>
-            <button id="clearStorageBtn" class="builder-toolbar-btn builder-toolbar-btn-danger" aria-label="Clear saved data">
-              Clear Saved
-            </button>
-          </div>
-        </div>
-
-        <div class="builder-preview-container">
-          <div class="builder-preview" id="preview">
-            </div>
-        </div>
-      </main>
-
-      <div class="builder-resizer builder-resizer-right" data-resizer="right" aria-hidden="true"></div>
-
-      <aside class="builder-sidebar builder-sidebar-right">
-        <div class="builder-section">
-          <h3>Block Properties</h3>
-          <div id="propertiesPanel" class="builder-properties-empty">
-            <p>Select a block to edit its properties</p>
-          </div>
-        </div>
-      </aside>
+    <div class="pb-topbar-end">
+      <button id="pbClearBtn" class="pb-topbar-btn pb-topbar-btn-ghost" type="button">Clear</button>
+      <button id="pbBrowseBtn" class="pb-topbar-btn pb-topbar-btn-ghost" type="button">Browse Pages</button>
+      <button id="pbLoadBtn" class="pb-topbar-btn pb-topbar-btn-ghost" type="button">Load .md</button>
+      <input id="pbLoadInput" type="file" accept=".md" style="display:none">
+      <button id="pbCardGenBtn" class="pb-topbar-btn pb-topbar-btn-ghost" type="button">Card Generator</button>
+      <button id="pbExportBtn" class="pb-topbar-btn pb-topbar-btn-primary" type="button">Export .md</button>
     </div>
   </div>
 
-  <div id="copyNotification" class="builder-copy-notification" style="display:none;">
-    HTML copied to clipboard!
+  <!-- Workspace -->
+  <div id="pbWorkspace" class="pb-workspace mode-split">
+
+    <!-- Sidebar -->
+    <aside class="pb-sidebar">
+      <div class="pb-sidebar-inner">
+
+        <div class="pb-sidebar-section">
+          <div class="pb-sidebar-heading">Page Structure</div>
+          <div id="pbBlocksList" class="pb-blocks-list"></div>
+        </div>
+
+        <div class="pb-sidebar-divider"></div>
+
+        <div class="pb-sidebar-section">
+          <div class="pb-sidebar-heading">Callouts</div>
+          <div id="pbCalloutsList" class="pb-blocks-list"></div>
+        </div>
+
+        <div class="pb-sidebar-divider"></div>
+
+        <div class="pb-sidebar-section">
+          <div class="pb-sidebar-heading">Content</div>
+          <div id="pbContentList" class="pb-blocks-list"></div>
+        </div>
+
+        <div class="pb-sidebar-divider"></div>
+
+        <div class="pb-sidebar-section">
+          <p class="pb-sidebar-hint">Type <kbd>/</kbd> in the editor to open the command palette.</p>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Editor + Preview -->
+    <div class="pb-content">
+
+      <!-- Editor pane -->
+      <div class="pb-editor-pane">
+        <div class="pb-editor-toolbar">
+          <div class="pb-toolbar-group">
+            <button class="pb-fmt-btn" data-action="bold"   type="button" title="Bold"><strong>B</strong></button>
+            <button class="pb-fmt-btn" data-action="italic" type="button" title="Italic"><em>I</em></button>
+            <button class="pb-fmt-btn" data-action="code"   type="button" title="Inline code"><code>`</code></button>
+          </div>
+          <div class="pb-toolbar-sep"></div>
+          <div class="pb-toolbar-group">
+            <button class="pb-fmt-btn" data-action="link"  type="button" title="Link">↗</button>
+            <button class="pb-fmt-btn" data-action="image" type="button" title="Image">⬜</button>
+          </div>
+        </div>
+        <div class="pb-editor-area">
+          <textarea id="pbEditor" class="pb-editor" placeholder="Start writing… or pick a block from the sidebar." spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+        </div>
+      </div>
+
+      <!-- Drag handle -->
+      <div id="pbDragHandle" class="pb-drag-handle"></div>
+
+      <!-- Preview pane -->
+      <div class="pb-preview-pane">
+        <div class="pb-preview-header">Preview</div>
+        <div class="pb-preview-scroll">
+          <div id="pbPreview" class="pb-preview-content md-content"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <dialog id="templateDialog" class="builder-dialog" aria-labelledby="templateDialogTitle">
-    <div class="builder-dialog-header">
-      <div>
-        <h3 id="templateDialogTitle">Starter Templates</h3>
-        <p>Use one of these when you want a ready-made page structure. Applying a template replaces the current block list.</p>
-      </div>
-      <button type="button" class="builder-dialog-close" data-close-dialog="templateDialog" aria-label="Close starter templates dialog">Close</button>
-    </div>
-    <div class="builder-dialog-body">
-      <div class="builder-template-grid">
-        <article class="builder-template-card">
-          <h4>Tool Page</h4>
-          <p>Best for mods, utilities, and downloads.</p>
-          <p class="builder-template-sections">Sections: Download, Features, Requirements, Installation, Usage, Notes, Credits.</p>
-          <button id="toolTemplateBtn" class="builder-secondary-btn" type="button">Use Tool Template</button>
-        </article>
-        <article class="builder-template-card">
-          <h4>Guide Page</h4>
-          <p>Best for step-by-step walkthroughs and tutorials.</p>
-          <p class="builder-template-sections">Sections: Overview, Requirements, Steps, Notes, Credits.</p>
-          <button id="guideTemplateBtn" class="builder-secondary-btn" type="button">Use Guide Template</button>
-        </article>
-        <article class="builder-template-card">
-          <h4>Reference Page</h4>
-          <p>Best for resource lists, compatibility notes, and documentation hubs.</p>
-          <p class="builder-template-sections">Sections: Overview, Resources, Compatibility, Links, Credits.</p>
-          <button id="referenceTemplateBtn" class="builder-secondary-btn" type="button">Use Reference Template</button>
-        </article>
-      </div>
-    </div>
-  </dialog>
+  <!-- Command palette -->
+  <div id="pbPalette" class="pb-palette">
+    <input id="pbPaletteInput" class="pb-palette-input" type="text" placeholder="Search blocks…" autocomplete="off">
+    <div id="pbPaletteList" class="pb-palette-list"></div>
+  </div>
 
-  <dialog id="cardDialog" class="builder-dialog" aria-labelledby="cardDialogTitle">
-    <div class="builder-dialog-header">
-      <div>
-        <h3 id="cardDialogTitle">Homepage Card</h3>
-        <p>This content is only used for the homepage card snippet that gets copied into <code>index.html</code>.</p>
-      </div>
-      <button type="button" class="builder-dialog-close" data-close-dialog="cardDialog" aria-label="Close homepage card dialog">Close</button>
-    </div>
-        <div class="builder-dialog-body">
-          <form class="builder-meta-form" id="cardForm">
-            <div class="form-group">
-              <label for="cardTitle">Card Title</label>
-              <input type="text" id="cardTitle" placeholder="Auto-filled from the page title">
-            </div>
-            <div class="form-group">
-              <label for="cardDescription">Card Description</label>
-              <textarea id="cardDescription" placeholder="Auto-filled from the header summary." rows="3"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="cardTags">Search Tags</label>
-              <input type="text" id="cardTags" placeholder="kindle tool mod utility reader">
-            </div>
-            <div class="form-group">
-              <label>Homepage Badges</label>
-              <input type="hidden" id="cardBadges">
-              <details id="cardBadgePicker" class="builder-badge-picker">
-                <summary id="cardBadgePickerLabel">Select badges</summary>
-                <div id="cardBadgeOptions" class="builder-badge-picker-menu"></div>
-              </details>
-              <p class="builder-form-hint">These are the little labels shown on the homepage card, like Tool, Game, or Beta.</p>
-            </div>
-            <div class="form-group">
-              <label for="cardDownloadUrl">Card Download URL (optional)</label>
-              <input type="url" id="cardDownloadUrl" placeholder="https://github.com/example/project/releases">
-            </div>
-      </form>
-    </div>
-    <div class="builder-dialog-footer">
-      <button id="copyCardBtn" class="builder-toolbar-btn builder-toolbar-btn-primary" type="button">Copy Homepage Card HTML</button>
-    </div>
-  </dialog>
+  <!-- Toast -->
+  <div id="pbToast" class="pb-toast"></div>
 
-  <dialog id="seoDialog" class="builder-dialog" aria-labelledby="seoDialogTitle">
-    <div class="builder-dialog-header">
-      <div>
-        <h3 id="seoDialogTitle">SEO &amp; Sharing</h3>
-        <p>These fields are hidden in the page itself, but they are included in the exported HTML for search engines and previews.</p>
-      </div>
-      <button type="button" class="builder-dialog-close" data-close-dialog="seoDialog" aria-label="Close SEO and sharing dialog">Close</button>
-    </div>
-    <div class="builder-dialog-body">
-      <form class="builder-meta-form" id="seoForm">
-        <div class="form-group">
-          <label for="metaDescription">SEO Meta Description</label>
-          <textarea id="metaDescription" placeholder="Brief description for search engines and link previews." rows="3"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="keywords">Keywords (optional)</label>
-          <input type="text" id="keywords" placeholder="comma, separated, keywords">
-        </div>
-      </form>
-    </div>
-    <div class="builder-dialog-footer">
-      <button type="button" class="builder-secondary-btn" data-close-dialog="seoDialog">Done</button>
-    </div>
-  </dialog>
+</div>
 
-  <script src="pagebuilder.js?v=9"></script>
-  <script src="navigation.js?v=4"></script>
+<!-- Browse pages modal -->
+<div id="pbBrowseModal" class="pb-modal" hidden>
+  <div class="pb-modal-box">
+    <div class="pb-modal-header">
+      <span>Browse Pages</span>
+      <button class="pb-modal-close" data-modal="pbBrowseModal" type="button">✕</button>
+    </div>
+    <input id="pbBrowseSearch" class="pb-modal-search" type="text" placeholder="Filter pages…" autocomplete="off">
+    <div id="pbBrowseList" class="pb-modal-list"></div>
+  </div>
+</div>
+
+<!-- Card generator modal -->
+<div id="pbCardModal" class="pb-modal" hidden>
+  <div class="pb-modal-box pb-modal-box--wide">
+    <div class="pb-modal-header">
+      <span>Card Generator</span>
+      <button class="pb-modal-close" data-modal="pbCardModal" type="button">✕</button>
+    </div>
+    <div class="pb-card-form">
+      <div class="pb-card-form-row">
+        <label>Title</label>
+        <input id="cgTitle" type="text" placeholder="KOReader" autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Slug</label>
+        <input id="cgSlug" type="text" placeholder="koreader" autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Description</label>
+        <input id="cgDesc" type="text" placeholder="Short one-line description." autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Tag label</label>
+        <input id="cgTagLabel" type="text" placeholder="App" autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Search tags</label>
+        <input id="cgTags" type="text" placeholder="reader epub pdf tool" autocomplete="off">
+      </div>
+      <div class="pb-card-form-row">
+        <label>Download URL <span class="pb-card-form-opt">(optional)</span></label>
+        <input id="cgDownload" type="text" placeholder="https://github.com/…" autocomplete="off">
+      </div>
+    </div>
+    <pre id="cgPreview" class="pb-card-preview"></pre>
+    <button id="cgCopyBtn" class="pb-topbar-btn pb-topbar-btn-primary" type="button">Copy HTML</button>
+  </div>
+</div>
+
+<script src="js/marked.min.js"></script>
+<script src="js/pagebuilder-md.js"></script>
+
 </body>
 </html>

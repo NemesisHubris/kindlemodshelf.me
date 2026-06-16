@@ -4,7 +4,8 @@
 const fs   = require('fs');
 const path = require('path');
 
-const redesignDir  = path.join(__dirname, 'public', 'redesign');
+// The redesign is now the main site: pages live directly in public/.
+const redesignDir  = path.join(__dirname, 'public');
 const contentDir   = path.join(redesignDir, 'content');
 const pageImagesDir = path.join(__dirname, 'public', 'page_images');
 const templatePath = path.join(redesignDir, 'page.html');
@@ -71,15 +72,20 @@ for (const slug of mdSlugs) {
   created++;
 }
 
-// Remove shells whose .md was deleted
+// Remove shells whose .md was deleted.
+// Now that pages live directly in public/ alongside hand-written pages
+// (editor.html, history.html, …), only ever delete a file that is byte-for-byte
+// identical to the generated template — i.e. a genuine auto-generated shell.
+// Hand-written pages never match the template, so they can never be removed.
 for (const file of fs.readdirSync(redesignDir)) {
   if (!file.endsWith('.html')) continue;
   const slug = path.basename(file, '.html');
-  if (!PROTECTED.has(file) && !mdSlugs.has(slug)) {
-    fs.unlinkSync(path.join(redesignDir, file));
-    console.log(`  - removed orphaned ${file}`);
-    removed++;
-  }
+  if (PROTECTED.has(file) || mdSlugs.has(slug)) continue;
+  const full = path.join(redesignDir, file);
+  if (fs.readFileSync(full, 'utf8') !== template) continue; // not a generated shell — leave it
+  fs.unlinkSync(full);
+  console.log(`  - removed orphaned ${file}`);
+  removed++;
 }
 
 // Write pages manifest for the page builder's "Browse" feature

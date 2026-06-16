@@ -2,88 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KOREADER EPUB LINKS | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="KOREADER EPUB LINKS">
-  <meta name="twitter:description" content="Create links in your Kindle library to open EPUBs in your documents folder in KOReader. Uses cover images from EPUBs so they display like Kindle books.">
-<meta name="description" content="Create links in your Kindle library to open EPUBs in your documents folder in KOReader. Uses cover images from EPUBs so they display like Kindle books.">
-  <link rel="canonical" href="https://kindlemodshelf.me/koreader-epub-links">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="KOREADER EPUB LINKS">
-  <meta property="og:description" content="Create links in your Kindle library to open EPUBs in your documents folder in KOReader. Uses cover images from EPUBs so they display like Kindle books.">
-  <meta property="og:url" content="https://kindlemodshelf.me/koreader-epub-links">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "KOReader EPUB Links",
-    "operatingSystem": "Kindle OS",
-    "applicationCategory": "Utility",
-    "description": "Script which creates links in your Kindle library to open EPUBs in your documents folder in KOReader.",
-    "offers": {"@type": "Offer","price":"0","priceCurrency":"USD"},
-    "url": "https://kindlemodshelf.me/koreader-epub-links.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
-
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-
-    <h1>KOREADER EPUB LINKS</h1>
-
-    <div class="summary">
-      This script adds Kindle library entries for your EPUB files so they open in KOReader with their cover images.
-    </div>
-
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download Link</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="https://github.com/mriscott/KindleKOreaderEpubLinks/blob/main/createEpubLinks.sh" target="_blank" rel="noopener noreferrer">createEpubLinks.sh</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="requirements">
-      <h2 class="section-title" id="requirements">Requirements</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>kterm recommended</li>
-          <li>If Kterm is installed you will see a simple interface to choose which links to create or delete. Otherwise it will create links to all books in your documents folder.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">Installation Steps</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Ensure you have some epub files in your documents folder, and that koreader is installed to read them</li>
-          <li>Download the script from the link below</li>
-          <li>Optionally edit the file to change configuration (eg if anything is not installed in the standard location)</li>
-          <li>Copy it to the /mnt/us/documents folder on your Kindle.</li>
-          <li>Disconnect your Kindle from your computer.</li>
-          <li>After a few seconds, you will see a new book called "Create Epub Links" which will create links for any epubs in your documents folder</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credits</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="https://github.com/mriscott" target="_blank" rel="noopener">irongeek</a></li>
-        </ul>
-      </div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

@@ -2,87 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mahjongg | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Mahjongg is a Mahjongg solitaire application for Kindle, inspired by GNOME Mahjongg. It features tile artwork specifically adapted for grayscale e-ink displays.">
-  <link rel="canonical" href="https://kindlemodshelf.me/mahjongg">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="Mahjongg">
-  <meta property="og:description" content="Mahjongg is a Mahjongg solitaire application for Kindle, inspired by GNOME Mahjongg. It features tile artwork specifically adapted for grayscale e-ink displays.">
-  <meta property="og:url" content="https://kindlemodshelf.me/mahjongg">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks, kindle board games, gnome games port">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Mahjongg">
-  <meta name="twitter:description" content="Mahjongg is a Mahjongg solitaire application for Kindle, inspired by GNOME Mahjongg. It features tile artwork specifically adapted for grayscale e-ink displays.">
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Kindle Mahjongg",
-  "operatingSystem": "Kindle OS",
-  "applicationCategory": "Game",
-  "description": "Play Mahjongg Solitaire on your jailbroken Kindle.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "url": "https://kindlemodshelf.me/mahjongg"
-}
-  </script>
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>Mahjongg</h1>
-
-    <div class="summary">
-      <p><b>Mahjongg</b> is a Mahjongg solitaire application for Kindle, inspired by GNOME Mahjongg. It features tile artwork specifically adapted for grayscale e-ink displays.</p>
-    </div>
-
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="https://github.com/jckhng/kindle-mahjongg/releases/latest" target="_blank" rel="noopener">Download Mahjongg Extension (Latest Release)</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Features</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Tile artwork optimized for 16-level grayscale e-ink screens.</li>
-          <li>Uses the "Easy" layout shape for a better experience on small screens.</li>
-          <li>Simple and intuitive touch controls.</li>
-          <li>Lightweight and responsive.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="installation">
-      <h2 class="section-title" id="installation">Installation</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Download the <code>kindle-mahjongg-extension.zip</code> file.</li>
-          <li>Unzip it and copy the resulting folder to the <code>/extensions/</code> directory on your Kindle.</li>
-          <li>Launch via <b>KUAL -> Kindle Mahjongg -> Launch</b>.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credits</h2>
-      <div class="card card-desc">
-        <p>Developed by <a href="https://github.com/jckhng" target="_blank" rel="noopener"><strong>jckhng</strong></a>. Based on GNOME Mahjongg code and layouts.</p>
-      </div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a></footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

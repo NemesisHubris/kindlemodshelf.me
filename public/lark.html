@@ -2,72 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LARK | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="LARK">
-  <meta name="twitter:description" content="LARK is a Libre Audiobook Player for Kindle. It uses KinAMP's audio engine and is optimized for e-book readers. Your hub for Kindle modding.">
-<meta name="description" content="LARK is a Libre Audiobook Player for Kindle. It uses KinAMP's audio engine and is optimized for e-book readers. Your hub for Kindle modding.">
-  <link rel="canonical" href="https://kindlemodshelf.me/lark">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="LARK">
-  <meta property="og:description" content="LARK is a Libre Audiobook Player for Kindle. It uses KinAMP's audio engine and is optimized for e-book readers. Your hub for Kindle modding.">
-  <meta property="og:url" content="https://kindlemodshelf.me/lark">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>LARK</h1>
-    <div class="summary">
-      <b>LARK</b> is a Libre Audiobook Player for Kindle. It uses KinAMP's audio engine and is optimized for e-book readers.
-    </div>
-
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="https://github.com/kbarni/LARKPlayer/releases/" target="_blank" rel="noopener">Download LARK from GitHub</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Features</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Support for AAC encoded M4B audiobooks</li>
-          <li>Uses KinAMP's audio engine and FAAD2 decoder library</li>
-          <li>Optimized for e-book readers: minimum screen refreshes, backlight management</li>
-          <li>Listening history</li>
-          <li>Scriptlet and KUAL launcher included</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">Installation</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Download the latest release from <a href="https://github.com/kbarni/LARKPlayer/releases/" target="_blank" rel="noopener">GitHub</a> and extract the archive.</li>
-          <li>Put <code>lark/LARK</code> in your root directory.</li>
-          <li>Put <code>lark/extensions/lark</code> folder in your <code>extensions</code> folder on your Kindle.</li>
-          <li>Put <code>lark/documents/lark.sh</code> script in your Kindle <code>documents</code> folder.</li>
-          <li>Start it from the library using the provided scriptlet or from KUAL.</li>
-        </ol>
-      </div>
-    </section>
-
-    <div class="section-title">Credits</div>
-    <div class="card card-desc">
-      <p><a href="https://github.com/kbarni" target="_blank" rel="noopener">kbarni</a></p>
-    </div>
-
+    <div id="content" class="md-content"></div>
   </div>
-  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

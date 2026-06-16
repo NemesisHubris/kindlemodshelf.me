@@ -2,105 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>2048 for Kindle | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="2048 for Kindle">
-  <meta name="twitter:description" content="2048 is the number-merging puzzle where you combine tiles to reach 2048. Built with the Illusion framework and tuned for Kindle's e-ink display.">
-<meta name="description" content="2048 is the number-merging puzzle where you combine tiles to reach 2048. Built with the Illusion framework and tuned for Kindle's e-ink display.">
-  <link rel="canonical" href="https://kindlemodshelf.me/2048">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="2048 for Kindle">
-  <meta property="og:description" content="2048 is the number-merging puzzle where you combine tiles to reach 2048. Built with the Illusion framework and tuned for Kindle's e-ink display.">
-  <meta property="og:url" content="https://kindlemodshelf.me/2048">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "2048 for Kindle",
-    "operatingSystem": "Kindle OS (Mesquite compatible)",
-    "applicationCategory": "Game",
-    "description": "The addictive 2048 sliding puzzle game for Kindle. Combine tiles to reach 2048 on your e-reader.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "url": "https://kindlemodshelf.me/2048.html"
-  }
-  </script>
-
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>2048 for Kindle</h1>
-    <div class="summary">
-      <b>2048</b> is the number-merging puzzle where you combine tiles to reach 2048. Built with the Illusion framework and tuned for Kindle's e-ink display.
-    </div>
-
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="downloads/2048.zip" download>Download 2048.zip</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Features</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Classic 2048 on a 4×4 grid</li>
-          <li><b>Arrow-button controls</b> (no swipe required)</li>
-          <li>Score and high-score tracking</li>
-          <li>Clean e-ink-friendly interface</li>
-          <li>Endless play—continue past 2048 if you want</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="requirements">
-      <h2 class="section-title" id="requirements">Requirements</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Jailbroken Kindle with Mesquite support</li>
-          <li>Illusion framework compatibility</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">How to Install</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Download <a href="downloads/2048.zip" download>2048.zip</a></li>
-          <li>Unzip the file on your computer (uncompressed folder + <b>.sh</b> script)</li>
-          <li>Place the <b>.sh script</b> and the <b>folder</b> in your Kindle’s <b>documents</b> folder</li>
-          <li>Disconnect your Kindle</li>
-          <li>Tap the new book in your Kindle library to launch</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="howtoplay">
-      <h2 class="section-title" id="howtoplay">How to Play</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Use the on-screen arrow buttons (▲ ◀ ▶ ▼) to slide the board</li>
-          <li>Equal tiles that collide merge into one (e.g., 2+2→4)</li>
-          <li>Keep merging tiles to create 2048</li>
-          <li>The game ends when no moves remain</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <div class="card card-desc">Enjoy the 2048 puzzle on your Kindle's e-ink display!</div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

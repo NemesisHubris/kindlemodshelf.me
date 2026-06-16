@@ -2,92 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Blocking Amazon | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Blocking Amazon">
-  <meta name="twitter:description" content="This extension blocks amazon tracking, kindle store, and ui ads on your kindle. Find the best Kindle jailbreak tools, KOReader plugins, and more here.">
-<meta name="description" content="This extension blocks amazon tracking, kindle store, and ui ads on your kindle. Find the best Kindle jailbreak tools, KOReader plugins, and more here.">
-  <link rel="canonical" href="https://kindlemodshelf.me/blockamazon">
-  <link rel="stylesheet" href="style.css?v=3">
-  <!-- Open Graph / Social metadata -->
-  <meta property="og:title" content="Blocking Amazon">
-  <meta property="og:description" content="This extension blocks amazon tracking, kindle store, and ui ads on your kindle. Find the best Kindle jailbreak tools, KOReader plugins, and more here.">
-  <meta property="og:url" content="https://kindlemodshelf.me/blockamazon">
-  <!-- Optional JSON-LD for SoftwareApplication -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Blocking Amazon",
-    "operatingSystem": "Kindle OS (Mesquite compatible)",
-    "applicationCategory": "Utility",
-    "description": "Block Amazon tracking, Kindle store, and UI ads on your jailbroken Kindle with this KUAL extension.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/blockamazon.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>Blocking Amazon</h1>
-
-    <div class="summary">
-      This extension blocks amazon tracking, kindle store, and ui ads on your kindle.
-    </div>
-
-    <!-- Download Section -->
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download</h2>
-      <div class="card card-desc">
-        <p><a href="https://github.com/mitchellurgero/kindle-kual-blockamazon/releases" target="_blank" rel="noopener">Latest Zip</a></p>
-      </div>
-    </section>
-
-    <!-- Installation Section -->
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">Installation</h2>
-      <div class="card card-desc">
-        <p>Download the <a href="https://github.com/mitchellurgero/kindle-kual-blockamazon/releases" target="_blank" rel="noopener">Latest Zip</a></p>
-        <p>Extract and then copy blockamazon to your KUAL Extensions folder (<code>&lt;YourKindle&gt;/extensions/</code> by default).</p>
-        <p>Open KUAL and run the block or unblock function. It will take effect immediately.</p>
-      </div>
-    </section>
-
-    <!-- Notes Section -->
-    <section aria-labelledby="notes">
-      <h2 class="section-title" id="notes">Notes</h2>
-      <div class="card card-desc">
-        <p>This extension blocks some Amazon domains via /etc/hosts to disable the kindle store on the device.</p>
-      </div>
-    </section>
-
-    <!-- Known Issues Section -->
-    <section aria-labelledby="knownissues">
-      <h2 class="section-title" id="knownissues">Known Issues</h2>
-      <div class="card card-desc">
-        <p>If there is store cache, it will still show some ads. However new stuff is still blocked. Use our <a href="clearadcache.html">script</a> to clear the cache to get rid of most of the remaining ads on the kindle ui.</p>
-      </div>
-    </section>
-
-    <!-- Credits Section -->
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credits</h2>
-      <div class="card card-desc">
-        <p><a href="https://github.com/mitchellurgero" target="_blank" rel="noopener">mitchellurgero</a></p>
-      </div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

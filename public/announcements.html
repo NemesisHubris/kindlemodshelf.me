@@ -2,229 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Announcements & Updates | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Announcements & Updates">
-  <meta name="twitter:description" content="KindleModShelf updates feed with site news, release notes, and major jailbreak or tool announcements. Explore our collection of Kindle mods and guides.">
-<meta name="description" content="KindleModShelf updates feed with site news, release notes, and major jailbreak or tool announcements. Explore our collection of Kindle mods and guides.">
-  <link rel="canonical" href="https://kindlemodshelf.me/announcements">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="Announcements & Updates">
-  <meta property="og:description" content="KindleModShelf updates feed with site news, release notes, and major jailbreak or tool announcements. Explore our collection of Kindle mods and guides.">
-  <meta property="og:url" content="https://kindlemodshelf.me/announcements">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>Announcements &amp; Updates</h1>
-
-    <div class="summary">
-      <p>
-        KindleModShelf updates feed with site news, release notes, and major jailbreak or tool announcements.
-      </p>
-    </div>
-
-    <div class="section-title">Latest Updates <small>Newest entries sit at the top</small></div>
-
-    <div class="card card-desc">
-      <div class="card-title">05/21/2026 — New Fun Recommendations Page</div>
-      <p>Added a personal recommendations page for favorite projects and apps, including Audiobookshelf, Still, and Calibre-Web.</p>
-      <p><a href="recommendations.html">Check out the recommendations page here.</a></p>
-    </div>
-
-    <div class="card card-desc">
-      <div class="card-title">05/02/2026 — Linus Tech Tips Mention</div>
-      <p>Linus Tech Tips mentioned Kindle jailbreaking as an option for older devices that are reaching their end of life as Amazon begins to phase out legacy cloud features.</p>
-      <p>Check out the timestamped segment here: <a href="https://youtu.be/WbFGK-tjiEY?t=427" target="_blank" rel="noopener">Linus Tech Tips - Kindle Modding Mention</a></p>
-    </div>
-
-    <div class="card card-desc">
-      <div class="card-title">02/03/2026 — Nosebleed has been released.</div>
-      <p>A new jailbreak by <code>hhhhhhhhh</code> has just been released! It targets Kindle firmware <strong>5.16.4 to 5.18.6</strong> and works on blacklisted and registered mass-storage Kindles.</p>
-      <p>It has been confirmed to work on 5.18.6 with PW5(SE) and KT5. KOA3 was listed as untested in the guide, but community reports indicate it can trigger on KOA3 running 5.18.2.</p>
-      <p>Unfortunately this will not work on any MTP devices, such as PW6/KT6. Amazon is already patching the exploit via firmware updates, so enable Airplane Mode immediately to avoid silent OTA updates closing the window.</p>
-      <p><a href="https://kindlemodding.org/jailbreaking/Nosebleed/" target="_blank" rel="noopener">https://kindlemodding.org/jailbreaking/Nosebleed/</a></p>
-    </div>
-
-    <div class="card card-desc">
-      <div class="card-title">Firmware 5.19.2 Update (11th Gen and Newer) <small>(posts on 2026-02-17)</small></div>
-      <p>Initial concerns were that 5.19.2 might carry over hardened security changes seen on KS3/KSC in 5.19.1, which could have broken hotfix preservation behavior and delayed future jailbreak progress.</p>
-      <p>Follow-up testing later found impacts were limited: hotfix still technically worked in testing, and the specific hardened security concern did not appear to be copied to other models.</p>
-      <p>Recommendation is still to avoid updating when possible, fill storage if not jailbroken, and verify OTA binaries are renamed correctly if already jailbroken.</p>
-      <p><strong>Source:</strong> scam.net, Kindle Modding Discord.</p>
-    </div>
-    
-    <div class="card card-desc">
-      <div class="card-title">Gallery Update — Basic Image Editing</div>
-      <p>The <a href="images.html">Image Gallery</a> now supports resizing and basic editing of images before downloading. Customize screensavers directly in your browser to fit your Kindle perfectly.</p>
-      <p><strong>Credit:</strong> Idea by <a href="https://www.ebookscreensaver.com/" target="_blank" rel="noopener">ebookscreensaver.com</a>.</p>
-    </div>
-
-    <div class="card card-desc">
-      <div class="card-title">January 2026 - Ladies and Gentlemen, we got em.</div>
-      <p>5.19.1 for the Kindle Scribe Colorsoft and Kindle Scribe 3rd Generation was exploited by scam.net, approximately one month after these models released.</p>
-
-      <h3>Huge shoutouts go to:</h3>
-      <ul>
-        <li>@hhhhhhhhh for discovering one small part that ended up being the key to this exploit being possible</li>
-        <li>@kluyg for testing the code on their personal Kindle Scribe 3rd Generation, and being willing to help me test the updated version a week after my first attempt failed spectacularly.</li>
-      </ul>
-
-      <p>Please do not bother any of the above people, or scam.net, for access to the exploit. You will not get it early.</p>
-
-      <p>Much work has to be done to turn this into a functional jailbreak, as many things have been changed by amazon so much existing code no longer works, but a jailbreak will probably be made from this at some point.</p>
-      <p><strong>Source:</strong> scam.net, Kindle Modding Discord.</p>
-    </div>
-
-    <div class="card card-desc">
-      <div class="card-title">December 2025 — New Tools, Games &amp; Guides</div>
-
-      <h3>New Pages Added</h3>
-      <ul>
-        <li><a href="blockamazon.html">blockamazon.html</a> helps block unwanted Amazon content on your Kindle.</li>
-        <li><a href="clearadcache.html">clearadcache.html</a> provides tools to clear ad caches and optimize performance.</li>
-        <li><a href="kships.html">kships.html</a> brings the KShips Battleship game to your Kindle.</li>
-        <li><a href="universalpaperclips.html">universalpaperclips.html</a> ports the popular Universal Paperclips game to Kindle.</li>
-        <li><a href="all-kindle-linux-chroots.html">All Kindle Linux Chroots</a> (credit: GreenCat-777) compiles a complete guide to Linux environments on Kindle devices.</li>
-      </ul>
-
-      <h3>Improvements</h3>
-      <ul>
-        <li>Enhanced UI across the entire site for a more polished and consistent experience.</li>
-        <li>Improved <a href="editor.html">KAnki Editor</a> with better usability and design.</li>
-        <li>Added more informational pages to help you get the most out of your Kindle.</li>
-      </ul>
-    </div>
-
-    <div class="card card-desc">
-      <div class="card-title">December 2025 — Gallery Overhaul &amp; Site Reorganization</div>
-
-      <h3>Images Gallery Complete Redesign</h3>
-      <ul>
-        <li>The <a href="images.html">image gallery</a> now displays images in a randomized continuous stream for a cleaner browsing experience.</li>
-        <li>Gallery order refreshes daily so you get a fresh selection of images on each visit.</li>
-        <li>Clicking any image opens a full-size viewer with a sidebar showing all other images by the same author.</li>
-        <li>Placeholder backgrounds now adapt to your light or dark mode theme.</li>
-        <li>Search by author name still shows results in the original grouped layout for easy discovery.</li>
-      </ul>
-
-      <h3>Site Structure &amp; Navigation</h3>
-      <ul>
-        <li>Added a new Emulators section to organize all emulator tools in one place.</li>
-        <li>Reorganized Tools into development tools and utilities for better clarity.</li>
-        <li>Top navigation menu now includes quick links to <a href="images.html">Gallery</a>, <a href="announcements.html">Updates</a>, and more.</li>
-        <li>Fixed category filtering to show more accurate results across all tools and guides.</li>
-      </ul>
-
-      <h3>KOReader Patches Page Updates</h3>
-      <ul>
-        <li>The <a href="patches.html">patches page</a> now organizes user patches into logical categories for easier browsing.</li>
-        <li>Essential patches are clearly marked so you can find the most useful ones quickly.</li>
-        <li>Added setup guidance for patches that require special installation steps.</li>
-      </ul>
-
-      <h3>Credits &amp; Attribution</h3>
-      <ul>
-        <li>Added proper developer credits to Gambatte emulator pages (Gambatte-K by liim, Gambatte-K2 by crazy-electron).</li>
-      </ul>
-    </div>
-
-    <div class="card card-desc">
-      <div class="card-title">Late October 2025 — KOReader Tools &amp; Extras</div>
-
-      <h3>New Pages</h3>
-      <ul>
-        <li><a href="patches.html">patches.html</a> collects KOReader user patches with install steps and compatibility notes.</li>
-        <li><a href="gpt.html">gpt.html</a> ships KindleModShelfGPT context packs and the exact prompt text.</li>
-        <li><a href="peki.html">peki.html</a> and <a href="bootkoreader.html">bootkoreader.html</a> document MRPI-free KUAL installs plus KOReader autostart toggles.</li>
-        <li><a href="timeblock.html">timeblock.html</a> introduces KOReader Time Block parental controls with a downloadable plugin.</li>
-        <li><a href="icon.html">icon.html</a> showcases the hand-drawn KOReader interface pack with matching Project Title icons.</li>
-        <li><a href="debrick.html">debrick.html</a> (by MonkeyInPrivite) breaks down how to recover a “bricked” Kindle step by step.</li>
-      </ul>
-
-      <h3>Content Updates</h3>
-      <ul>
-        <li><a href="adbreak.html">AdBreak guide</a> tightened its layout and copy so the video, summary, and checklist line up cleanly.</li>
-        <li><a href="kanki.html">KAnki page</a> now includes a personal maintainer note, clearer install guidance, and editor callouts.</li>
-        <li><a href="plugins.html">plugins.html</a>, <a href="storagetool.html">storagetool.html</a>, and <a href="kindleforge.html">kindleforge.html</a> were expanded into deep-dive references with fresh screenshots and download callouts.</li>
-        <li><a href="index.html">Homepage</a> call-to-actions highlight KindleModShelfGPT, new KOReader utilities, and the announcements feed.</li>
-      </ul>
-
-      <h3>Downloads &amp; Assets</h3>
-      <ul>
-        <li><a href="downloads/timeblock.koplugin.zip">timeblock.koplugin.zip</a> hosts the KOReader Time Block build linked from the new guide.</li>
-        <li><a href="downloads/icons.zip">icons.zip</a> and <a href="downloads/projecttitleicons.zip">projecttitleicons.zip</a> provide the hand-drawn UI assets in one place.</li>
-      </ul>
-    </div>
-
-    <div class="card card-desc">
-      <div class="card-title">October 2025 — Full Site Refresh</div>
-      <h3>Major Updates</h3>
-      <ul>
-        <li>Completely rebuilt the entire UI from the ground up with a cleaner, more responsive design.</li>
-        <li>Fully rewritten and refreshed all site content — every single page has been updated.</li>
-        <li>Improved the <a href="images.html">screensaver gallery</a> for faster loading and smoother performance.</li>
-      </ul>
-
-      <h3>New Pages Added</h3>
-      <ul>
-        <li><a href="plugins.html">plugins.html</a></li>
-        <li><a href="kindleforge.html">kindleforge.html</a></li>
-        <li><a href="projecttitle.html">projecttitle.html</a></li>
-        <li><a href="gargoyle.html">gargoyle.html</a></li>
-        <li><a href="nethack.html">nethack.html</a></li>
-        <li><a href="tictactoe.html">tictactoe.html</a></li>
-        <li><a href="audiovideo.html">audiovideo.html</a></li>
-        <li><a href="jarlauncher.html">jarlauncher.html</a></li>
-        <li><a href="textadept.html">textadept.html</a></li>
-        <li><a href="storagetool.html">storagetool.html</a></li>
-        <li><a href="screencontrol.html">screencontrol.html</a></li>
-        <li><a href="nano.html">nano.html</a></li>
-      </ul>
-
-      <h3>Informational Section Started</h3>
-      <ul>
-        <li><a href="kual.html">kual.html</a></li>
-        <li><a href="jailbreakonmac.html">jailbreakonmac.html</a></li>
-      </ul>
-
-      <h3>Notes</h3>
-      <p>
-        If you’d like your content removed, prefer to stay anonymous, or notice missing credit or incorrect links, please reach out:
-      </p>
-      <ul>
-        <li>Discord: <strong>@kindlemodshelfguy</strong> on the Kindle Modding server</li>
-        <li>Email: <a href="mailto:admin@kindlemodshelf.me">admin@kindlemodshelf.me</a> (responses may be slower)</li>
-      </ul>
-    </div>
-
-    <div class="card card-desc" id="launching-announcements">
-      <div class="card-title">September 2025 — Launching KindleModShelf Announcements</div>
-      <p>
-        Welcome! This new announcements page gathers every noteworthy change happening across KindleModShelf.
-        We’ve added it so you can track fresh jailbreak guides, mod updates, and behind-the-scenes improvements
-        without hunting through individual pages.
-      </p>
-      <p>
-        Here’s what to expect from this feed:
-      </p>
-      <ul>
-        <li>Spotlights on new or overhauled guides, including jailbreak walkthroughs and KOReader plugins.</li>
-        <li>Heads-up on refreshed downloads, compatibility notes, or breaking firmware news.</li>
-        <li>Reminders about updated screenshots, assets, or navigation tweaks so the site stays easy to browse on Kindle.</li>
-      </ul>
-      <p>
-        Have something you need us to change? DM <strong>kindlemodshelfguy</strong> on the Kindle Modding Discord
-        or email <a href="mailto:admin@kindlemodshelf.me">admin@kindlemodshelf.me</a>.
-      </p>
-    </div>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

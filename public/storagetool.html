@@ -2,83 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>StorageTool | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="StorageTool">
-  <meta name="twitter:description" content="StorageTool is a storage management utility for jailbroken Kindles. Analyze, visualize, and organize your ebook collection to keep storage under control.">
-<meta name="description" content="StorageTool is a storage management utility for jailbroken Kindles. Analyze, visualize, and organize your ebook collection to keep storage under control.">
-  <link rel="canonical" href="https://kindlemodshelf.me/storagetool">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="StorageTool">
-  <meta property="og:description" content="StorageTool is a storage management utility for jailbroken Kindles. Analyze, visualize, and organize your ebook collection to keep storage under control.">
-  <meta property="og:url" content="https://kindlemodshelf.me/storagetool">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>StorageTool</h1>
-
-    <div class="summary">
-      StorageTool is a storage management utility for jailbroken Kindles.<br>
-      Analyze, visualize, and organize your ebook collection to keep storage under control.
-    </div>
-
-    <h2 class="section-title">Download</h2>
-    <div class="card card-desc">
-      <p><a href="https://github.com/jkpth/StorageTool" target="_blank" rel="noopener"><strong>StorageTool on GitHub</strong></a></p>
-    </div>
-
-    <h2 class="section-title">Requirements</h2>
-    <div class="card card-desc">
-      <ul>
-        <li><a href="kterm.html">KTerm</a></li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Installation</h2>
-    <div class="card card-desc">
-      <h3>Method 1: One-Line Install (Recommended)</h3>
-      <ol>
-        <li>On your Kindle, open KUAL and launch KTerm.</li>
-        <li>Run the following command:</li>
-      </ol>
-      <pre><code>curl https://jpt.bio/StorageTool/install.sh | sh</code></pre>
-      <ol start="3">
-        <li>Restart KUAL to see StorageTool in your menu.</li>
-      </ol>
-      <h3>Method 2: Direct Installation</h3>
-      <ol>
-        <li>Copy the <code>storagetool</code> folder to your Kindle's <code>/mnt/us/extensions/</code> directory.</li>
-        <li>Restart KUAL to see StorageTool in your menu.</li>
-      </ol>
-    </div>
-
-    <h2 class="section-title">Usage</h2>
-    <div class="card card-desc">
-      <p>Launch StorageTool from the KUAL menu. From there, you can:</p>
-      <ol>
-        <li>Storage Overview: View your Kindle's overall storage usage.</li>
-        <li>Scan Books Directory: Analyze your books directory for size and file types.</li>
-        <li>Analyze by File Type: See a breakdown of book formats and their storage usage.</li>
-        <li>Recent Files: View recently added or modified books.</li>
-        <li>Find Duplicates: Identify potential duplicate books.</li>
-        <li>Settings: Configure StorageTool options and set your books directory.</li>
-        <li>Check for Updates: Automatically check for and install the latest version of StorageTool.</li>
-      </ol>
-    </div>
-
-    <h2 class="section-title">Credits</h2>
-    <div class="card card-desc">
-      <p>Made by <a href="https://github.com/jkpth" target="_blank" rel="noopener">jkpth</a></p>
-      <p>Inspired by KindleFetch</p>
-    </div>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

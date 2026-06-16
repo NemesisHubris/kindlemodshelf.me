@@ -2,212 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kindleleaks | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta name="robots" content="noindex, nofollow">
-  <meta property="og:title" content="Kindleleaks">
-  <meta property="og:description" content="Explore Kindleleaks on KindleModShelf. The best tools, plugins, and guides for your jailbroken Kindle e-reader. Your hub for Kindle modding.">
-  <meta property="og:url" content="https://kindlemodshelf.me/kindleleaks">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Kindleleaks">
-  <meta name="twitter:description" content="Explore Kindleleaks on KindleModShelf. The best tools, plugins, and guides for your jailbroken Kindle e-reader. Your hub for Kindle modding.">
-<meta name="description" content="Explore Kindleleaks on KindleModShelf. The best tools, plugins, and guides for your jailbroken Kindle e-reader. Your hub for Kindle modding.">
-  <link rel="canonical" href="https://kindlemodshelf.me/kindleleaks">
-  <link rel="stylesheet" href="style.css?v=3">
-  <script src="theme-toggle.js?v=3"></script>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background-color: var(--bg);
-      color: var(--fg);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-
-    .leak-container {
-      text-align: center;
-      width: 100%;
-      max-width: 600px;
-      padding: 1rem;
-    }
-
-    #password-modal {
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      padding: 3rem 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px var(--shadow-color);
-    }
-
-    #password-modal h2 {
-      margin-top: 0;
-      margin-bottom: 1.5rem;
-      color: var(--card-title);
-    }
-
-    .input-group {
-      margin-bottom: 1rem;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    input[type="password"] {
-      padding: 12px 16px;
-      border-radius: 6px;
-      border: 1px solid var(--input-border);
-      background-color: var(--input-bg);
-      color: var(--fg);
-      font-size: 1rem;
-      outline: none;
-      width: 60%;
-    }
-
-    input[type="password"]:focus {
-      border-color: var(--primary);
-    }
-
-    .kindleleaks-page button {
-      padding: 12px 24px;
-      border-radius: 6px;
-      border: 1px solid var(--button-border);
-      background-color: var(--button-bg);
-      color: var(--button-text);
-      font-size: 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .kindleleaks-page button:hover {
-      background-color: var(--link-hover);
-      color: #fff;
-      border-color: var(--link-hover);
-    }
-
-    #error-msg {
-      color: #ff6b6b;
-      margin-top: 1rem;
-      min-height: 1.5em;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    #secret-content {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .huge-text {
-      font-size: 20vw;
-      font-weight: 900;
-      line-height: 1;
-      color: var(--fg);
-      text-transform: uppercase;
-      text-shadow: 0 0 30px rgba(91, 157, 217, 0.3);
-      animation: pulse 3s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(0.98); }
-    }
-  </style>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
-<body class="kindleleaks-page">
+<body>
 
-  <div id="password-modal" class="leak-container">
-    <h2>Restricted Access</h2>
-    <div class="input-group">
-      <input type="password" id="password" placeholder="Enter password" autocomplete="off" aria-label="Password">
-      <button onclick="unlock()">Unlock</button>
-    </div>
-    <div id="error-msg">Incorrect password. Access denied.</div>
+  <a href="index.html" class="back-home-btn">← Home</a>
+
+  <div class="container container-guide">
+    <div id="content" class="md-content"></div>
   </div>
 
-  <div id="secret-content"></div>
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
 
-  <script>
-    const passwordInput = document.getElementById('password');
-    const modal = document.getElementById('password-modal');
-    const secretContent = document.getElementById('secret-content');
-    const errorMsg = document.getElementById('error-msg');
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
 
-    const config = {
-      iv: "e082cef8db370da2253842ad",
-      ciphertext: "983365c53ed8",
-      tag: "24b61d8cd1c6cce0fd79812b7b86b078"
-    };
-
-    function hexToBytes(hex) {
-      const bytes = new Uint8Array(hex.length / 2);
-      for (let i = 0; i < bytes.length; i++) {
-        bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
-      }
-      return bytes;
-    }
-
-    async function unlock() {
-      const pass = passwordInput.value.trim();
-      const enc = new TextEncoder();
-
-      try {
-        const hashBuffer = await crypto.subtle.digest('SHA-512', enc.encode(pass));
-        const keyBuffer = hashBuffer.slice(0, 32); 
-        const key = await crypto.subtle.importKey(
-          "raw", 
-          keyBuffer, 
-          "AES-GCM", 
-          false, 
-          ["decrypt"]
-        );
-
-        const ivBytes = hexToBytes(config.iv);
-        const encryptedBytes = hexToBytes(config.ciphertext + config.tag);
-
-        const decryptedBuffer = await crypto.subtle.decrypt(
-          { name: "AES-GCM", iv: ivBytes },
-          key,
-          encryptedBytes
-        );
-
-        const decryptedText = new TextDecoder().decode(decryptedBuffer);
-        modal.style.display = 'none';
-        secretContent.style.display = 'flex';
-        secretContent.innerHTML = `<div class="huge-text">${decryptedText}</div>`;
-        document.body.style.overflow = 'hidden';
-
-      } catch (e) {
-        showError();
-      }
-    }
-
-    function showError() {
-      errorMsg.style.opacity = '1';
-      passwordInput.value = '';
-      passwordInput.focus();
-      setTimeout(() => {
-        errorMsg.style.opacity = '0';
-      }, 3000);
-    }
-
-    passwordInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') unlock();
-    });
-
-    window.onload = () => passwordInput.focus();
-  </script>
-
-<script src="navigation.js?v=3"></script></body>
+</body>
 </html>

@@ -2,87 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kreate | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Kreate">
-  <meta name="twitter:description" content="Kreate is a minimal Kindle drawing app with tap-based tools for dots, lines, and curves. Find the best Kindle jailbreak tools, KOReader plugins, and more here.">
-<meta name="description" content="Kreate is a minimal Kindle drawing app with tap-based tools for dots, lines, and curves. Find the best Kindle jailbreak tools, KOReader plugins, and more here.">
-  <link rel="canonical" href="https://kindlemodshelf.me/kreate">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="Kreate">
-  <meta property="og:description" content="Kreate is a minimal Kindle drawing app with tap-based tools for dots, lines, and curves. Find the best Kindle jailbreak tools, KOReader plugins, and more here.">
-  <meta property="og:url" content="https://kindlemodshelf.me/kreate">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Kreate",
-    "operatingSystem": "Kindle OS",
-    "applicationCategory": "DrawingApplication",
-    "description": "Minimal drawing app for Kindle using tap-based gestures for dots, lines, and curves.",
-    "offers": {"@type": "Offer","price":"0","priceCurrency":"USD"},
-    "url": "https://kindlemodshelf.me/kreate.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-
-    <h1>Kreate</h1>
-
-    <div class="summary">
-      <b>Kreate</b> is a minimal Kindle drawing app with tap-based tools for dots, lines, and curves.
-    </div>
-
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="https://github.com/foskya/kreate" target="_blank" rel="noopener">Kreate on GitHub</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">Installation & Usage</h2>
-      <div class="card card-desc">
-        <p><b>Install through Kindle Forge (recommended):</b><br>
-        Click the download button in Kindle Forge for <b>Kreate</b> once installed.</p>
-
-        <p><b>Manual installation:</b></p>
-        <ul>
-          <li>Copy the <code>/kreate</code> folder and <code>.sh</code> file into <code>/mnt/us/documents</code> (from root).</li>
-          <li>Launch <b>Kreate</b> from your Kindle Home screen by opening the booklet.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="notes">
-      <h2 class="section-title" id="notes">Notes</h2>
-      <div class="card card-desc">
-        <p>Kindle’s <code>kindle.gestures</code> API recognizes taps and only coarse swipe directions (up, down, left, right), not precise finger paths or endpoints.  
-        This makes traditional “press-and-drag to draw” impossible.</p>
-
-        <p>To work around this, <b>Kreate</b> provides multiple drawing modes so you can choose exactly what to place — dots, lines, or curves.</p>
-
-        <p>Kreate automatically adapts to any Kindle screen size and model.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credits</h2>
-      <div class="card card-desc">
-        <p>Foskya</p>
-      </div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

@@ -1,79 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>usbnetlite (HF Only) — SSH over USB & Wi-Fi | KindleModShelf</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="usbnetlite (HF Only) — SSH over USB & Wi-Fi">
-  <meta name="twitter:description" content="SSH into your Kindle via Wi-Fi or a USB cable using the streamlined usbnetlite package for hardfloat devices. Explore our collection of Kindle mods and guides.">
-<meta name="description" content="SSH into your Kindle via Wi-Fi or a USB cable using the streamlined usbnetlite package for hardfloat devices. Explore our collection of Kindle mods and guides.">
-  <meta property="og:title" content="usbnetlite (HF Only) — SSH over USB & Wi-Fi">
-  <meta property="og:description" content="SSH into your Kindle via Wi-Fi or a USB cable using the streamlined usbnetlite package for hardfloat devices. Explore our collection of Kindle mods and guides.">
-  <meta property="og:url" content="https://kindlemodshelf.me/usbnetlite">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://kindlemodshelf.me/usbnetlite">
-  <link rel="stylesheet" href="style.css?v=3">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <meta charset="UTF-8">
+  <title>KindleModShelf</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>usbnetlite (HF Only) — SSH over USB &amp; Wi-Fi</h1>
-
-    <div class="summary card card-desc">
-      SSH into your Kindle via Wi-Fi or a USB cable using the streamlined usbnetlite package for hardfloat devices.
-    </div>
-
-    <h2 class="section-title">Download</h2>
-    <div class="card card-desc">
-      <p><a href="https://github.com/notmarek/kindle-usbnetlite" target="_blank" rel="noopener"><strong>usbnetlite releases on GitHub</strong></a></p>
-    </div>
-
-    <h2 class="section-title">Credits</h2>
-    <div class="card card-desc">
-      <p><a href="https://github.com/notmarek" target="_blank" rel="noopener">notmarek</a></p>
-    </div>
-
-    <h2 class="section-title">Install via MR Package</h2>
-    <div class="card card-desc">
-      <ol>
-        <li><strong>Download</strong> the correct <code>update_*.bin</code> file for your firmware version from the usbnetlite project’s Releases page.</li>
-        <li><strong>Do not extract or unzip</strong> anything — you need the raw <code>.bin</code> file.</li>
-        <li><strong>Copy</strong> the <code>.bin</code> file into the <code>mrpackages</code> folder on your Kindle’s USB storage (create <code>mrpackages</code> if it doesn’t exist).</li>
-        <li>On your Kindle, open <strong>KUAL</strong> → go to <em>Helper → Install MR Packages</em>. This will install the <code>.bin</code> you placed in <code>mrpackages</code>.</li>
-        <li>Optional: type <code>;log mrpi</code> in the Kindle search bar to check MR installer logs if troubleshooting is needed.</li>
-        <li>Once installed, usbnetlite will appear in the KUAL menu and can be launched from there.</li>
-      </ol>
-    </div>
-
-    <h2 class="section-title">Connection Info (default config)</h2>
-    <div class="card card-desc">
-      <p>Edit the config file if needed (can be done in KOReader). Default login credentials are:</p>
-      <pre><code>username: root
-password: kindle</code></pre>
-      <p>Once usbnetlite is running, you can enable/disable USB networking directly from KUAL.</p>
-    </div>
-
-    <h2 class="section-title">Quick Launch</h2>
-    <div class="card card-desc">
-      <ul>
-        <li>Install the MR package as described above.</li>
-        <li>Open KUAL → find <strong>usbnetlite</strong> in the menu → launch.</li>
-        <li>Use the KUAL interface to toggle USB networking.</li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Notes</h2>
-    <div class="card card-desc">
-      <ul>
-        <li>This page contains only the minimal, corrected steps — always follow the project’s Releases for firmware-specific builds.</li>
-      </ul>
-    </div>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

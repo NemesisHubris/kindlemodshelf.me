@@ -1,15 +1,10 @@
 const KINDLE_PRESETS = {
   'Kindle (11th Gen)': [1072, 1448],
-  'Kindle Paperwhite 6 (12th Gen)': [1272, 1696],
-  'Kindle Colorsoft': [1272, 1696],
+  'Kindle PW (12th Gen)': [1264, 1680],
   'Kindle PW (11th Gen)': [1236, 1648],
   'Kindle PW (10th Gen & earlier)': [1072, 1448],
   'Kindle Oasis (3rd Gen)': [1264, 1680],
-  'Kindle Scribe (2025)': [1986, 2648],
-  'Kindle Scribe (2024 / 1st Gen)': [1860, 2480],
-  'Kindle DX': [824, 1200],
-  'Kindle PW 1st / 2nd Gen': [758, 1024],
-  'Kindle Basic (1st–3rd Gen)': [600, 800],
+  'Kindle Scribe': [1860, 2480],
   'Kobo Nia': [758, 1024],
   'Kobo Clara BW': [1072, 1448],
   'Kobo Clara 2E / HD': [1072, 1448],
@@ -1474,11 +1469,13 @@ function constrainOffsets() {
   const dims = transformedImageSize();
   const scaledWidth = dims.width * state.scale;
   const scaledHeight = dims.height * state.scale;
+  const margin = 20;
 
-  const minOffsetX = -scaledWidth / 2;
-  const maxOffsetX = state.width - scaledWidth / 2;
-  const minOffsetY = -scaledHeight / 2;
-  const maxOffsetY = state.height - scaledHeight / 2;
+  // Allow panning until only `margin` px of the image remains on-canvas
+  const minOffsetX = -(scaledWidth - margin);
+  const maxOffsetX = state.width - margin;
+  const minOffsetY = -(scaledHeight - margin);
+  const maxOffsetY = state.height - margin;
 
   state.offsetX = clamp(state.offsetX, minOffsetX, maxOffsetX);
   state.offsetY = clamp(state.offsetY, minOffsetY, maxOffsetY);

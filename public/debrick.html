@@ -2,152 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>REPAIR GUIDE | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="REPAIR GUIDE">
-  <meta name="twitter:description" content="Step-by-step Kindle unbrick guide: confirm whether it is truly bricked, recover with a computer, and escalate to advanced fixes like serial access.">
-<meta name="description" content="Step-by-step Kindle unbrick guide: confirm whether it is truly bricked, recover with a computer, and escalate to advanced fixes like serial access.">
-  <link rel="canonical" href="https://kindlemodshelf.me/debrick">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="REPAIR GUIDE">
-  <meta property="og:description" content="Step-by-step Kindle unbrick guide: confirm whether it is truly bricked, recover with a computer, and escalate to advanced fixes like serial access.">
-  <meta property="og:url" content="https://kindlemodshelf.me/debrick">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "Unbricking a Kindle",
-    "description": "Diagnose whether your Kindle is bricked and follow recovery paths ranging from soft resets to advanced serial fixes.",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "name": "Confirm the Kindle is actually bricked",
-        "text": "Hold the power button for 5 seconds to restart; if that fails, hold it for about a minute to force a reboot."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Trigger a factory restore via computer",
-        "text": "Connect your Kindle to a computer, create a file called DO_FACTORY_RESTORE on the root, then restart the Kindle."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Escalate to advanced recovery steps",
-        "text": "If software resets fail, follow serial unbricking guides or community Mobileread tooling at your own risk."
-      }
-    ],
-    "tool": [
-      "USB data cable",
-      "Computer (Windows PC preferred, macOS supported with MTP tools)",
-      "Optional: Serial interface tools or soldering equipment"
-    ]
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
-
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-
-    <h1>REPAIR GUIDE</h1>
-
-    <div class="summary">
-      Sometimes things go wrong when jailbreaking or messing around. So let's fix it!
-    </div>
-    <section aria-labelledby="prerequisites">
-      <h2 class="section-title" id="prerequisites">PREREQUISITES</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><strong>Patience</strong></li>
-          <li>Preferably a PC, but a Mac can work</li>
-          <li>Decent technical experience (don't worry, I'll try to make it easy)</li>
-          <li>A cable that supports data transfer</li>
-          <li><em>Potential experience with soldering and/or disassembling devices</em> <strong>(worst-case scenario)</strong></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="is-it-bricked">
-      <h2 class="section-title" id="is-it-bricked">IS IT ACTUALLY BRICKED?</h2>
-      <div class="card card-desc">
-        <p>First, lets figure out if your Kindle is actually bricked</p>
-        <ol>
-          <li>See if holding down the power button for about 5 seconds pops up a screen thats lets you restart and if it does then do so.</li>
-          <li>If it does not or your kindle is still bricked, then hold down the power button for about a minute and it should force restart.</li>
-        </ol>
-        <p>If this still does not work/did not fix your issue, it is safe to say your Kindle is bricked.<br>
-        You have a few options now:</p>
-        <ol>
-          <li><strong>Wait</strong> for the battery to run out <em>(This could take an <strong>extremely</strong> long time)</em> and then plug it in.</li>
-          <li>If you are comfortable with doing so, <strong>open up your Kindle</strong> and unplug the battery. Then just plug it back in.</li>
-        </ol>
-        <p>Unless the physics that apply everywhere else on Earth are suspended in your house, your Kindle has now restarted</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="accessing">
-      <h2 class="section-title" id="accessing">ACCESSING YOUR KINDLE WITH A COMPUTER</h2>
-      <div class="card card-desc">
-        <div class="info-callout">
-          <strong>Important:</strong> If you are not able to access your Kindle with a computer, you will have to continue to the <a href="#advanced-steps">advanced steps</a>.
-        </div>
-        <p>Now, we need to gain access to your Kindle's filesystem with a computer!</p>
-        <h3>PC Instructions</h3>
-        <ol>
-          <li><strong>Grab</strong> a data supported USB cable</li>
-          <li><strong>Plug in</strong> your Kindle to your computer</li>
-          <li>If it's not showing up, <strong>try waiting</strong> a bit or restarting your Kindle</li>
-          <li>Once you have access to the Kindle, open the root (where the documents and audible folders are).</li>
-          <li>Create a file on the root <strong><em>with no extension</em></strong> called <code>DO_FACTORY_RESTORE</code> and restart your Kindle</li>
-          <li>Your Kindle should now go back to the initial setup, you are officially unbricked!</li>
-        </ol>
-        <h3>Mac Instructions</h3>
-        <ul>
-          <li>If you are on an older Kindle, you should be able to follow the PC instructions. The instructions below are for newer (MTP) Kindles</li>
-          <li>You can tell if your Kindle is MTP if it does not appear when you plug it in on Mac</li>
-        </ul>
-        <p>If your Kindle is MTP, you will need to install either the <a href="https://www.amazon.com/sendtokindle/mac?&amp;linkCode=ll2&amp;tag=ter000-20&amp;linkId=07f7c7db67889bf36e836471c479526e&amp;la" target="_blank" rel="noopener">Amazon Send to Kindle App</a> or <a href="https://openmtp.ganeshrvel.com/" target="_blank" rel="noopener">OpenMTP</a>. You should now be able to follow the PC instructions.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="advanced-steps">
-      <h2 class="section-title" id="advanced-steps">ADVANCED STEPS</h2>
-      <div class="card card-desc legal-warning">
-        <p><strong>Follow these steps at your own risk</strong></p>
-      </div>
-      <div class="card card-desc">
-        <p>This is where things start to get complicated. You absolutely follow all of these instructions at your own risk and accept the <strong>responsibility</strong> for any consequences of messing it up.</p>
-        <ul>
-          <li>You could try <a href="https://gist.github.com/TobiasWooldridge/22f0cdca75190b9a473f" target="_blank" rel="noopener">this guide</a> about using the Serial interface if you are on a Paperwhite.</li>
-          <li>Or you could check out the <a href="https://wiki.mobileread.com/wiki/Kindle_Tools_Index#Debricking" target="_blank" rel="noopener">Mobileread Tools</a>.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="conclusion">
-      <h2 class="section-title" id="conclusion">CONCLUSION</h2>
-      <div class="card card-desc">
-        <p>Hopefully this Debricked your kindle! If you still need support, join the <a href="https://discord.kindlemodding.org/" target="_blank" rel="noopener">Kindle Modding Community</a> and open a ticket in #questions-and-support!</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">CREDITS</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><strong>MonkeyInPrivite</strong> – Wrote the original guide</li>
-          <li><strong>Mobileread</strong> – Advanced debricking references</li>
-          <li><strong>Tobias Wooldridge</strong> – Paperwhite serial recovery instructions</li>
-          <li><a href="https://mip-wiki.pages.dev/database/unbrick/" target="_blank" rel="noopener"><strong>MIP Wiki</strong></a> – Original database entry</li>
-        </ul>
-      </div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

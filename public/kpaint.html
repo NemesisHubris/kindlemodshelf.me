@@ -2,105 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KPAINT | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="KPAINT">
-  <meta name="twitter:description" content="KPaint is a GB Paint-style drawing ROM for Kindle via Gambatte-K2, with a simple e-ink-friendly interface. Explore our collection of Kindle mods and guides.">
-<meta name="description" content="KPaint is a GB Paint-style drawing ROM for Kindle via Gambatte-K2, with a simple e-ink-friendly interface. Explore our collection of Kindle mods and guides.">
-  <link rel="canonical" href="https://kindlemodshelf.me/kpaint">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="KPAINT">
-  <meta property="og:description" content="KPaint is a GB Paint-style drawing ROM for Kindle via Gambatte-K2, with a simple e-ink-friendly interface. Explore our collection of Kindle mods and guides.">
-  <meta property="og:url" content="https://kindlemodshelf.me/kpaint">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "KPaint",
-    "operatingSystem": "Kindle OS",
-    "applicationCategory": "DrawingApplication",
-    "description": "KPaint is a Game Boy drawing app optimized for Kindle, inspired by GB Paint by Bownly.",
-    "offers": {"@type": "Offer","price":"0","priceCurrency":"USD"},
-    "url": "https://kindlemodshelf.me/kpaint.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
-
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-
-    <h1>KPAINT</h1>
-
-    <div class="summary">
-      <b>KPaint</b> is a GB Paint-style drawing ROM for Kindle via Gambatte-K2, with a simple e-ink-friendly interface.
-    </div>
-
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="https://github.com/crizmo/KPaint" target="_blank" rel="noopener">KPaint on GitHub</a></li>
-          <li><a href="https://github.com/crizmo/KPaint/releases" target="_blank" rel="noopener">ROM Downloads</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Features</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>18 × 15 pixel canvas</li>
-          <li>Game Boy 4-color palette (tuned for Kindle)</li>
-          <li>Up to 16 canvases</li>
-          <li>Clear-canvas menu</li>
-          <li>Visual color indicators when holding <code>B</code></li>
-          <li>Static, flicker-free cursor</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">Installation</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Install and set up <a href="gambatte-k2.html">Gambatte-K2</a> on your Kindle.</li>
-          <li>Download the <code>kpaint.gb</code> file from the <a href="https://github.com/crizmo/KPaint/releases" target="_blank" rel="noopener">GitHub releases</a>.</li>
-          <li>Copy the ROM to your Kindle.</li>
-          <li>Open it with Gambatte-K2.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="controls">
-      <h2 class="section-title" id="controls">Controls</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><b>D-pad:</b> Move cursor</li>
-          <li><b>A:</b> Draw pixel</li>
-          <li><b>B + D-pad:</b> Switch colors</li>
-          <li><b>B + Up:</b> Black (white on Kindle)</li>
-          <li><b>B + Right:</b> Dark Gray</li>
-          <li><b>B + Down:</b> White (black on Kindle)</li>
-          <li><b>B + Left:</b> Light Gray</li>
-          <li><b>Start:</b> Clear canvas menu</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credits</h2>
-      <div class="card card-desc">
-        <p><a href="https://ko-fi.com/kurizu" target="_blank" rel="noopener">Kurizu</a></p>
-      </div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

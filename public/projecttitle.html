@@ -2,121 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ProjectTitle | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="ProjectTitle">
-  <meta name="twitter:description" content="ProjectTitle is a KOReader library plugin with cover-first browsing, progress indicators, and customizable layout controls. Your hub for Kindle modding.">
-<meta name="description" content="ProjectTitle is a KOReader library plugin with cover-first browsing, progress indicators, and customizable layout controls. Your hub for Kindle modding.">
-  <link rel="canonical" href="https://kindlemodshelf.me/projecttitle">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="ProjectTitle">
-  <meta property="og:description" content="ProjectTitle is a KOReader library plugin with cover-first browsing, progress indicators, and customizable layout controls. Your hub for Kindle modding.">
-  <meta property="og:url" content="https://kindlemodshelf.me/projecttitle">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>ProjectTitle</h1>
-
-    <div class="summary">
-      ProjectTitle is a KOReader library plugin with cover-first browsing, progress indicators, and customizable layout controls.
-    </div>
-
-    <section aria-labelledby="overview">
-      <h2 class="section-title" id="overview">Overview</h2>
-      <div class="card card-desc">
-        <p>ProjectTitle replaces KOReader’s default Cover Browser with a polished interface that emphasises library artwork, reading progress, and quick navigation shortcuts.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download</h2>
-      <div class="card card-desc">
-        <p><a href="https://github.com/joshuacant/ProjectTitle/releases" target="_blank" rel="noopener">Releases Page</a> – Download the version matching your KOReader build exactly.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Features</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><strong>Enhanced Title Bar</strong> – Quick access to Favorites, History, Open Last Book, and Up Folder.</li>
-          <li><strong>Visual Book Listing</strong> – Custom fonts, icons for missing covers, and optional progress bars showing book length.</li>
-          <li><strong>Clean Folders</strong> – Display as cover images, thumbnails, or icons.</li>
-          <li><strong>Configurable Footer</strong> – Show folder paths or device status (time, Wi-Fi, battery, frontlight).</li>
-          <li><strong>Updated Status Page</strong> – Stylish screensaver view with book description and completion progress.</li>
-          <li><strong>Trophy Icons</strong> – Mark finished books at a glance.</li>
-          <li><strong>Gesture Controls</strong> – Pinch or spread to resize items.</li>
-          <li><strong>Library Mode</strong> – Long-press the origami bird to view all books sorted by author or series.</li>
-          <li><strong>Auto-scan</strong> – Detect new books after USB eject.</li>
-          <li><strong>Filenames Mode</strong> – Optional barebones listing (v2025.08v3.5+).</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="installation">
-      <h2 class="section-title" id="installation">Installation</h2>
-      <div class="card card-desc">
-        <p><strong>Kindle Only:</strong></p>
-        <ol>
-          <li>Navigate to <em>Menu → Tools → Plugin Management</em> and disable <strong>Cover Browser</strong>.</li>
-          <li>Download the release that matches your KOReader version.</li>
-          <li>Extract the archive and copy the <code>projecttitle.koplugin</code> folder to <code>koreader/plugins/</code>.</li>
-          <li>Copy the bundled fonts to <code>koreader/fonts/</code>.</li>
-          <li>Copy the icons to <code>koreader/icons/</code>.</li>
-          <li>Restart KOReader so ProjectTitle becomes the default browser.</li>
-        </ol>
-        <p>If you installed KOReader through Kindleforge you will be on the nightly build; use <em>Menu → Tools → Update</em> to downgrade to the tagged release that matches your ProjectTitle download before re-enabling the plugin.</p>
-        <p><strong>Uninstall:</strong> Re-enable Cover Browser in Plugin Management, then delete the ProjectTitle plugin folder, fonts, and icons.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="howto">
-      <h2 class="section-title" id="howto">How to Use</h2>
-      <div class="card card-desc">
-        <p>Open ProjectTitle settings in KOReader via <em>Menu → Tools → More Tools → Project: Title</em>.</p>
-        <p>Review the full documentation for customization tips: <a href="https://github.com/joshuacant/ProjectTitle/wiki/Documentation" target="_blank" rel="noopener">ProjectTitle Wiki</a>.</p>
-      </div>
-    </section>
-
-    <section aria-labelledby="notes">
-      <h2 class="section-title" id="notes">Notes</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Release versions must match KOReader exactly.</li>
-          <li>Works best with libraries that have clean metadata and cover images.</li>
-          <li>Optional Calibre integration powers the reading progress bars.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="links">
-      <h2 class="section-title" id="links">Links</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="https://github.com/joshuacant/ProjectTitle" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="https://github.com/joshuacant/ProjectTitle/wiki/Installation" target="_blank" rel="noopener">Installation Guide</a></li>
-          <li><a href="https://github.com/joshuacant/ProjectTitle/wiki/Configure-Calibre-Page-Counts" target="_blank" rel="noopener">Calibre Setup</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credits</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Based on Cover Browser by @poire-z and the KOReader team</li>
-          <li>Modified by @joshuacant and @elfbutt</li>
-        </ul>
-      </div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

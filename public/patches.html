@@ -2,189 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KOReader Patches | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="KOReader Patches">
-  <meta name="twitter:description" content="KOReader patches fine-tune the interface, browser, screensaver, and Project: Title styling. Apply only what you need and restart KOReader after every change....">
-<meta name="description" content="KOReader patches fine-tune the interface, browser, screensaver, and Project: Title styling. Apply only what you need and restart KOReader after every change....">
-  <link rel="canonical" href="https://kindlemodshelf.me/patches">
-  <meta property="og:title" content="KOReader Patches">
-  <meta property="og:description" content="KOReader patches fine-tune the interface, browser, screensaver, and Project: Title styling. Apply only what you need and restart KOReader after every change....">
-  <meta property="og:url" content="https://kindlemodshelf.me/patches">
-  <meta property="og:type" content="website">
-  <link rel="stylesheet" href="style.css?v=3">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-
-    <h1>KOReader Patches</h1>
-
-    <div class="summary">
-      KOReader patches fine-tune the interface, browser, screensaver, and Project: Title styling. Apply only what you need and restart KOReader after every change.
-    </div>
-
-    <div class="card card-desc" style="background-color: var(--warning-bg); border-color: var(--warning-border); border-left: 4px solid var(--warning-border);">
-      <p style="color: var(--warning-text); margin: 0;">
-        <strong>DISCLAIMER:</strong> These user patches are community-created. Download and use at your own risk. Please read each patch's GitHub instructions and README to understand what it does. See the <a href="https://github.com/koreader/koreader/wiki/User-patches" target="_blank" rel="noopener">KOReader User Patches documentation</a> for installation details.
-      </p>
-    </div>
-
-    <div class="section-title">Installation</div>
-    <div class="card card-desc">
-      <ol>
-        <li>Create a <code>patches</code> folder inside your KOReader directory (skip if it already exists).</li>
-        <li>Download each user patch and copy the <code>.lua</code> file into <code>/koreader/patches/</code> without renaming it.</li>
-        <li>Restart KOReader so the new patch loads.</li>
-      </ol>
-    </div>
-
-    <div class="section-title">Core Reading Patches</div>
-    <div class="card card-desc">
-      <p>Essential patches for improving the reading experience.</p>
-      <ul>
-        <li id="patch-browser-folder-cover"><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-browser-folder-cover.lua" target="_blank" rel="noopener"><strong>2-browser-folder-cover.lua</strong></a> - Add cover art to mosaic folders with optional custom <code>.cover</code> images and layout toggles under <em>Settings → Mosaic &amp; detailed list</em>.</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-browser-hide-underline.lua" target="_blank" rel="noopener"><strong>2-browser-hide-underline.lua</strong></a> - Hide the "last visited" underline; enable the toggle in <em>Settings → Mosaic &amp; detailed list</em>.</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-browser-up-folder.lua" target="_blank" rel="noopener"><strong>2-browser-up-folder.lua</strong></a> - Move the "up folder" control into the title bar and optionally hide empty folders.</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-filemanager-titlebar.lua" target="_blank" rel="noopener"><strong>2-filemanager-titlebar.lua</strong></a> - Add rearrangeable metadata widgets to the file manager title bar.</li>
-        <li><a href="https://github.com/omer-faruq/koreader-user-patches" target="_blank" rel="noopener"><strong>Book Receipt</strong></a> - Display detailed book statistics and reading metadata on-screen</li>
-      </ul>
-    </div>
-
-    <div class="section-title">UI Customization</div>
-    <div class="card card-desc">
-      <p>Patches for customizing the KOReader interface and menus.</p>
-      <ul>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2--ui-font.lua" target="_blank" rel="noopener"><strong>2--ui-font.lua</strong></a> - Switch the KOReader UI font via <em>Settings → UI font</em>.</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-menu-size.lua" target="_blank" rel="noopener"><strong>2-menu-size.lua</strong></a> - Reflow menu dimensions to match your device DPI for nicer touch targets.</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-disable-top-menu-zones.lua" target="_blank" rel="noopener"><strong>2-disable-top-menu-zones.lua</strong></a> - Disable the swipe/tap hotzones so the top menu always reopens on its last tab.</li>
-        <li><a href="https://gist.github.com/noxhirsch/47d0cb4ee35980ec3c5bc4fc6f2afd2a" target="_blank" rel="noopener"><strong>Info Message when Opening File Manager</strong></a> - Display helpful notifications when accessing files</li>
-        <li><a href="https://github.com/koreader/koreader/issues/8472" target="_blank" rel="noopener"><strong>2-BrowseByMetadata.lua</strong></a> - Adds author, title, series, and keyword browser views.</li>
-        <li><a href="https://github.com/sparklerfish/KOReader.patches?tab=readme-ov-file#-2-browser-double-tap" target="_blank" rel="noopener"><strong>2-browser-double-tap.lua</strong></a> - Require double-tap to open books in the file browser, preventing accidental single-tap opens.</li>
-        <li><a href="https://github.com/sparklerfish/KOReader.patches?tab=readme-ov-file#-2-browser-frontlight-update" target="_blank" rel="noopener"><strong>2-browser-frontlight-update.lua</strong></a> - Update Project: Title/Cover Browser frontlight widget in real time when frontlight is adjusted.</li>
-        <li><a href="https://github.com/xusoo/KOReader.patches" target="_blank" rel="noopener"><strong>2-automatic-book-series.lua</strong></a> - Automatically group books in the same series into virtual folders within the File Browser.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Status Bar & Visual Tweaks</div>
-    <div class="card card-desc">
-      <p>Patches for customizing the status bar, colors, and visual appearance.</p>
-      <ul>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-statusbar-better-compact.lua" target="_blank" rel="noopener"><strong>2-statusbar-better-compact.lua</strong></a> - Improve compact mode icons, separators, and title/author labels.</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-statusbar-cycle-presets.lua" target="_blank" rel="noopener"><strong>2-statusbar-cycle-presets.lua</strong></a> - Tap the status bar to cycle through saved preset layouts (requires KOReader v2025.04.52+).</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-statusbar-thin-chapter.lua" target="_blank" rel="noopener"><strong>2-statusbar-thin-chapter.lua</strong></a> - Add level-1 TOC chapter markers to the thin progress bar.</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-reference-page-count.lua" target="_blank" rel="noopener"><strong>2-reference-page-count.lua</strong></a> - Fix reference page fallback logic so page counts stay accurate.</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-change-status-bar-color.lua" target="_blank" rel="noopener"><strong>2-change-status-bar-color.lua</strong></a> - Change status bar read/unread colors under <em>Status bar → Progress bar → Thickness, height &amp; colors</em>.</li>
-        <li><a href="https://gist.github.com/IntrovertedMage/d759ff214f799cfb5e1f8c85daab6cae" target="_blank" rel="noopener"><strong>Change Status Bar Color</strong></a> - Customize status bar colors for color e-reader displays</li>
-        <li><a href="https://github.com/prashanthglen/kojustifystatusbar" target="_blank" rel="noopener"><strong>Justify Status Bar</strong></a> - Align status bar content with proper spacing and justification</li>
-        <li><a href="https://github.com/joshuacant/KOReader.patches/blob/main/2-reader-header-print-edition.lua" target="_blank" rel="noopener"><strong>2-reader-header-print-edition.lua</strong></a> - Impacts the page header / footer layout when reading a book.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Screen & Sleep Customization</div>
-    <div class="card card-desc">
-      <p>Patches for screensaver behavior and sleep screen messages.</p>
-      <ul>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-screensaver-chapter.lua" target="_blank" rel="noopener"><strong>2-screensaver-chapter.lua</strong></a> - Add <code>%C</code> chapter title and <code>%P</code> percent tokens to the sleep screen message.</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-screensaver-cover.lua" target="_blank" rel="noopener"><strong>2-screensaver-cover.lua</strong></a> - Center images, refresh before sleep, and tweak night mode behavior for sleep screens.</li>
-        <li><a href="https://www.reddit.com/r/koreader/comments/1qxjle6/release_i_redesigned_the_default_sleep_screen/" target="_blank" rel="noopener"><strong>Redesigned Banner Sleep Screen</strong></a> - Visual refresh of the default banner-style sleep screen with enhanced layout and additional data field.</li>
-        <li><a href="https://github.com/sparklerfish/KOReader.patches?tab=readme-ov-file#-2-redacted-screensaver" target="_blank" rel="noopener"><strong>2-redacted-screensaver.lua</strong></a> - Show the current page with random words covered by black redaction bars as a sleep screen.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Advanced Features</div>
-    <div class="card card-desc">
-      <p>Standalone patches for extending functionality.</p>
-      <ul>
-        <li><a href="https://github.com/koreader/koreader/issues/13839" target="_blank" rel="noopener"><strong>Increase Font List</strong></a> - Expand available fonts by adding custom typeface options. <em>Note: Read through the entire issue thread to locate the code snippet, copy it into a text editor, save the file with a <code>.lua</code> extension (e.g., <code>2-increase-font-list.lua</code>), then place it in your patches folder.</em></li>
-        <li><a href="https://gist.github.com/mallomar/67349ac3c88e1950754ba39a4913c029" target="_blank" rel="noopener"><strong>Unified Auto Sync</strong></a> - Enable automatic synchronization of reading progress across devices</li>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches/blob/main/2-update-patches.lua" target="_blank" rel="noopener"><strong>2-update-patches.lua</strong></a> - In-app updater for the sebdelsol patch collection (requires KOReader v2025.04.107+).</li>
-        <li><a href="https://github.com/kbarni/KinAMP" target="_blank" rel="noopener"><strong>KinAMP KOReader Integration</strong></a> - Launch KinAMP music player from KOReader's Tools menu with basic integration.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Community Patch Collections</div>
-    <div class="card card-desc">
-      <p>Curated patch collections from community developers. Each repository contains multiple patches organized by function—explore the full collection on GitHub for patches matching your setup.</p>
-      <ul>
-        <li><a href="https://github.com/sebdelsol/KOReader.patches" target="_blank" rel="noopener"><strong>sebdelsol</strong></a> – Curated the patch library and original documentation</li>
-        <li><a href="https://github.com/angelsangita/Koreader-Patches" target="_blank" rel="noopener"><strong>angelsangita Assorted User Patches</strong></a> - Community collection with browser and UI enhancements</li>
-        <li><a href="https://github.com/medinauta/Koreader-Patches" target="_blank" rel="noopener"><strong>medinauta Patches</strong></a> - UI enhancements including Book Spine Effect and Rounded Corners</li>
-        <li><a href="https://github.com/joshuacant/KOReader.patches" target="_blank" rel="noopener"><strong>joshuacant Assorted User Patches</strong></a> - Comprehensive collection including Project: Title patches</li>
-        <li><a href="https://github.com/Djeymisson/KOReader.patches" target="_blank" rel="noopener"><strong>Djeymisson Assorted User Patches</strong></a> - Focused patches for cover browser customization</li>
-        <li><a href="https://github.com/zenixlabs/koreader-frankenpatches-public" target="_blank" rel="noopener"><strong>zenixlabs Frankenpatches</strong></a> - Experimental and advanced patches for power users</li>
-        <li><a href="https://github.com/VeeBui/KOReader-patches" target="_blank" rel="noopener"><strong>VeeBui's Detailed Header Footer Patches</strong></a> - Enhanced header and footer customization options</li>
-        <li><a href="https://github.com/clarainna/KOReader-Patches" target="_blank" rel="noopener"><strong>clarainna Download Buttons</strong></a> - Add download indicators and management buttons to your browser</li>
-        <li><a href="https://github.com/Litaliaa/koreader-user-patches" target="_blank" rel="noopener"><strong>Minimal Book Stats</strong></a> - Lightweight version of book receipt showing essential statistics</li>
-        <li><a href="https://github.com/oh1apps/koreader_header" target="_blank" rel="noopener"><strong>Reader Header Alternative</strong></a> - Streamlined page header design for reading view</li>
-        <li><a href="https://github.com/advokatb/KOReader-Patches" target="_blank" rel="noopener"><strong>Smart Collections</strong></a> - Organize books by custom collections and tags</li>
-        <li><a href="https://github.com/timault/KOReader-Patch" target="_blank" rel="noopener"><strong>timault KOReader Patch</strong></a> - Visual UI overhaul with spine shadows and smart collections</li>
-        <li><a href="https://github.com/KukkiiNeko/koreader-user-patches-collection" target="_blank" rel="noopener"><strong>KukkiiNeko User Patches Collection</strong></a> - Community collection with assorted UI and behavior tweaks</li>
-        <li><a href="https://github.com/gennaro-tedesco/KOReader.patches" target="_blank" rel="noopener"><strong>gennaro-tedesco KOReader.patches</strong></a> - Patch set including font normalizers and weather lockscreen tweaks</li>
-        <li><a href="https://github.com/gilgulgamesh/koreader-patches" target="_blank" rel="noopener"><strong>Stacked Top or Bottom Bars</strong></a> - Reposition and reorganize interface bars for different layouts</li>
-        <li><a href="https://github.com/sparklerfish/KOReader.patches" target="_blank" rel="noopener"><strong>sparklerfish Patches</strong></a> - Browser double-tap, frontlight widget updates, and redacted screensaver</li>
-        <li><a href="https://github.com/xusoo/KOReader.patches" target="_blank" rel="noopener"><strong>xusoo Patches</strong></a> - Automatic book series grouping in virtual folders</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Project: Title — User Patches</div>
-    <div class="card card-desc">
-      <p>User patches crafted specifically for <a href="projecttitle.html"><strong>Project: Title</strong></a>. Download manually—these are not bundled with the plugin.</p>
-      <ul>
-        <li><a href="https://github.com/joshuacant/KOReader.patches/blob/main/2-disable-unread-progressbars.lua" target="_blank" rel="noopener"><strong>2-disable-unread-progressbars.lua</strong></a> - Hide unread progress bars in Cover Grid for cleaner cards.</li>
-        <li><a href="https://github.com/joshuacant/KOReader.patches/blob/main/2-menutext-overrides.lua" target="_blank" rel="noopener"><strong>2-menutext-overrides.lua</strong></a> - Rename folders/files for display by replacing underscores and reordering leading articles.</li>
-        <li><a href="https://gist.github.com/mallomar/22176237a7c72b585b802db83d67b38f" target="_blank" rel="noopener"><strong>2-project-title-jpeg-filter.lua</strong></a> - Filter <code>.jpg</code>/<code>.jpeg</code> files from Library mode to keep grids focused on books.</li>
-        <li><a href="https://gist.github.com/mallomar/147bc13f90fee36df16c6896d0c79e67" target="_blank" rel="noopener"><strong>2-progress-bar-colors.lua</strong></a> - Recolor progress bars on color displays to match Project: Title palettes.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Project: Title — Developer Collections</div>
-    <div class="card card-desc">
-      <p>Comprehensive patch repositories from Project: Title enthusiasts with themed customizations and UI variations.</p>
-      <ul>
-        <li><a href="https://github.com/loeffner/KOReader.patches" target="_blank" rel="noopener"><strong>loeffner Project Title Patches</strong></a> - Advanced styling patches tailored for Project: Title grid layouts</li>
-        <li><a href="https://github.com/cramoisi/koreader.patches" target="_blank" rel="noopener"><strong>crasmoisi PT Assorted Patches</strong></a> - Thematic customizations and header/footer variations for Project: Title</li>
-        <li><a href="https://github.com/SeriousHornet/KOReader.patches" target="_blank" rel="noopener"><strong>Project Title Alternative</strong></a> - Alternative Project: Title styling with different visual themes</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Project: Title — Grid & Cover Enhancements</div>
-    <div class="card card-desc">
-      <ul>
-        <li><a href="https://github.com/Leoparodo/Leos-KOReader-Patches-Plugins" target="_blank" rel="noopener"><strong>Centered Arrows in Footer</strong></a> - Center navigation arrows in footer area for balanced layout</li>
-        <li><a href="https://github.com/WorkingLemon/KOReader.patches" target="_blank" rel="noopener"><strong>Page Count Instead of Progress Bar When Unopened</strong></a> - Display page count on unread books in Cover Grid view</li>
-        <li><a href="https://github.com/solyytes/koreader-patches" target="_blank" rel="noopener"><strong>Page Count When New or Finished</strong></a> - Show page totals for unstarted and completed books in Cover List view</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Project: Title — Compatible Extras</div>
-    <div class="card card-desc">
-      <p>General patches verified to cooperate with Project: Title while extending library features. Pair them with the browser tweaks above for a full themed shelf.</p>
-      <ul>
-        <li><a href="pageheader.html"><strong>KOReader Page Header</strong></a> - Fiction-style header bar with per-book configuration that matches Project: Title layouts.</li>
-        <li><a href="https://github.com/koreader/koreader/issues/8472" target="_blank" rel="noopener"><strong>2-BrowseByMetadata.lua</strong></a> - Adds author, title, series, and keyword browser views that slot neatly into Project: Title navigation.</li>
-        <li><a href="#patch-browser-folder-cover"><strong>2-browser-folder-cover.lua</strong></a> - Pair with Project: Title layouts for folder covers that match the themed grid.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Make Your Own</div>
-    <div class="card card-desc">
-      <p>
-        Clone the <a href="https://github.com/joshuacant/ProjectTitle/blob/master/resources/2-userpatch-template.lua" target="_blank" rel="noopener"><strong>2-userpatch-template.lua</strong></a> starter, rename it with the correct execution-order prefix, and customize the Lua hooks for your workflow.
-      </p>
-    </div>
-
-
-    <div class="summary">
-      Missing a favorite patch? Let us know and we’ll add it after verifying compatibility.
-    </div>
-
+    <div id="content" class="md-content"></div>
   </div>
-  <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

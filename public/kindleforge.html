@@ -2,149 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kindle Forge | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Kindle Forge">
-  <meta name="twitter:description" content="KindleForge is an on-device app store for jailbroken Kindles. Install apps like KOReader without manual file copying. Your hub for Kindle modding.">
-<meta name="description" content="KindleForge is an on-device app store for jailbroken Kindles. Install apps like KOReader without manual file copying. Your hub for Kindle modding.">
-  <link rel="canonical" href="https://kindlemodshelf.me/kindleforge">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="Kindle Forge">
-  <meta property="og:description" content="KindleForge is an on-device app store for jailbroken Kindles. Install apps like KOReader without manual file copying. Your hub for Kindle modding.">
-  <meta property="og:url" content="https://kindlemodshelf.me/kindleforge">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>Kindle Forge</h1>
-
-    <div class="summary">
-      <p>
-        KindleForge is an on-device app store for jailbroken Kindles. Install apps like KOReader without manual file copying.
-      </p>
-    </div>
-
-    <div class="section-title">Download</div>
-    <div class="card card-desc">
-      <p>
-        <a href="https://github.com/KindleTweaks/KindleForge/releases" target="_blank" rel="noopener">Kindle Forge</a>
-      </p>
-    </div>
-
-    <div class="card card-desc">
-      <div class="responsive-video">
-        <iframe
-          src="https://www.youtube.com/embed/I29vVhx1e68?rel=0&modestbranding=1&playsinline=1"
-          title="Kindle Forge overview"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </div>
-
-    <div class="section-title">MAIN FEATURES</div>
-    <div class="card card-desc">
-      <ul>
-        <li>On-device GUI for discovering and installing packages and scriptlets.</li>
-        <li>Install/uninstall directly from the app.</li>
-        <li>Basic version awareness for selecting the correct builds where applicable, so you don't have to worry about downloading the wrong version.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Installation</div>
-    <div class="card card-desc">
-      <ul>
-        <li>Download from <a href="https://github.com/KindleTweaks/KindleForge/releases" target="_blank" rel="noopener">Kindle Forge</a>.</li>
-        <li>Unzip <code>KindleForge.zip</code>.</li>
-        <li>Plug in your Kindle to your computer.</li>
-        <li>Copy <code>KindleForge</code> and <code>KindleForge.sh</code> into the <code>documents</code> folder on your Kindle.</li>
-        <li>Safely eject your Kindle.</li>
-        <li>On your Kindle home screen, within a few seconds, you should see Kindle Forge appear as a “book.”</li>
-        <li>Open the book and install.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Usage &amp; troubleshooting</div>
-    <div class="card card-desc">
-      <ul>
-        <li>To reload the app store to see if there are new apps available through Kindle Forge, click the three dots at the top of the page and click reload.</li>
-        <li>If the UI behaves oddly, try reloading the page (reload several times) and reboot the device.</li>
-        <li>Some packages install a scriptlet (launcher) by default; others install to KUAL. Behavior varies per package.</li>
-      </ul>
-    </div>
-
-    <div class="section-title">Questions and support</div>
-    <div class="card card-desc">
-      <ul>
-        <li>Kindle Forge has its own Discord: <a href="https://discord.gg/aSG3eMsAsW" target="_blank" rel="noopener">https://discord.gg/aSG3eMsAsW</a></li>
-      </ul>
-    </div>
-
-    <div class="section-title">FAQ &amp; Support</div>
-    <div class="card card-desc">
-      <h3>KindleForge</h3>
-
-      <div class="faq-item">
-        <h4>Q: The KindleForge scriptlet doesn't appear!</h4>
-        <p>A: Ensure you have copied <code>KindleForge.sh</code> into your <code>documents</code> folder. If this is true and the scriptlet still isn't showing, then reinstall the latest hotfix using the following steps:</p>
-        <ol>
-          <li>Turn on aeroplane mode</li>
-          <li>Restore OTAs</li>
-          <li>Download latest hotfix from wiki, copy to Kindle root</li>
-          <li>Update your Kindle</li>
-          <li>Run the hotfix</li>
-          <li>Rename OTAs</li>
-          <li>You can use WiFi once more</li>
-        </ol>
-      </div>
-
-      <div class="faq-item">
-        <h4>Q: When I click on the scriptlet, it says "Application Error!"</h4>
-        <p>A: Chances are you've installed KindleForge incorrectly. BOTH the folder AND scriptlet MUST be in the documents folder on your Kindle!</p>
-      </div>
-
-      <div class="faq-item">
-        <h4>Q: I keep getting core dumps &amp; crashlogs generated when using KindleForge/Scriptlets!</h4>
-        <p>A: You must be on the latest hotfix, 2.3.1+. Use these steps to reinstall:</p>
-        <ol>
-          <li>Turn on aeroplane mode</li>
-          <li>Restore OTAs</li>
-          <li>Download latest hotfix from wiki, copy to Kindle root</li>
-          <li>Update your Kindle</li>
-          <li>Run the hotfix</li>
-          <li>Rename OTAs</li>
-          <li>You can use WiFi once more</li>
-        </ol>
-      </div>
-
-      <div class="faq-item">
-        <h4>Q: No apps load and I'm getting "Unknown ABI!"</h4>
-        <p>A: This happens commonly after you fix the core dump issue. Please use the "Update KForge" functionality in-app to resolve. Also try reboots, refreshes, etc. This requires WiFi.</p>
-      </div>
-    </div>
-
-    <div class="section-title">Note from the kindlemodshelfguy (Author and maintainer)</div>
-    <div class="card card-desc">
-      <p>
-        This is an essential tool for new jailbroken Kindles, especially for those who have not jailbroken before! We HIGHLY recommend you use it!
-        Penguins will continue to add mods as people give permission.
-      </p>
-    </div>
-
-    <div class="section-title">CREDITS</div>
-    <div class="card card-desc">
-      <ul>
-        <li>Created and maintained by <a href="https://ko-fi.com/penguins186" target="_blank" rel="noopener">Penguins</a>.</li>
-      </ul>
-    </div>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

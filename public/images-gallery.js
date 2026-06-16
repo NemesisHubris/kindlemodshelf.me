@@ -303,7 +303,7 @@ function handleSearch(query) {
       img.decoding = 'async';
       img.dataset.loaded = '0';
       img.dataset.queued = '0';
-      img.dataset.fullPath = `images/${author}/${imgData.filename}`;
+      img.dataset.fullPath = `/images/${author}/${imgData.filename}`;
       img.dataset.author = author;
       img.dataset.filename = imgData.filename;
       img.src = PLACEHOLDER_SRC;
@@ -370,7 +370,7 @@ function createImageCell(imgData, bg) {
   img.decoding = 'async';
   img.dataset.loaded = '0';
   img.dataset.queued = '0';
-  img.dataset.fullPath = `images/${author}/${filename}`;
+  img.dataset.fullPath = `/images/${author}/${filename}`;
   img.dataset.author = author;
   img.dataset.filename = filename;
   img.src = PLACEHOLDER_SRC;
@@ -490,7 +490,7 @@ function loadSidebarImages(author) {
     sidebarThumb.alt = imgData.filename;
     sidebarThumb.loading = 'lazy';
     sidebarThumb.decoding = 'async';
-    sidebarThumb.dataset.fullPath = `images/${author}/${imgData.filename}`;
+    sidebarThumb.dataset.fullPath = `/images/${author}/${imgData.filename}`;
     sidebarThumb.dataset.author = author;
     sidebarThumb.dataset.filename = imgData.filename;
     sidebarThumb.dataset.loaded = '0';

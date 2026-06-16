@@ -2,106 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KOWeather – Weather Plugin for KOReader | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="KOWeather – Weather Plugin for KOReader">
-  <meta name="twitter:description" content="KOWeather is a lo-fidelity weather app that delivers current conditions and short forecasts directly to your Kindle in KOReader. Weather information is provi...">
-<meta name="description" content="KOWeather is a lo-fidelity weather app that delivers current conditions and short forecasts directly to your Kindle in KOReader. Weather information is provi...">
-  <link rel="canonical" href="https://kindlemodshelf.me/koweather">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="KOWeather – Weather Plugin for KOReader">
-  <meta property="og:description" content="KOWeather is a lo-fidelity weather app that delivers current conditions and short forecasts directly to your Kindle in KOReader. Weather information is provi...">
-  <meta property="og:url" content="https://kindlemodshelf.me/koweather">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "KOWeather",
-    "operatingSystem": "KOReader (Kindle, Kobo, e-ink)",
-    "applicationCategory": "WeatherApplication",
-    "description": "KOWeather is a lo-fidelity weather plugin for KOReader that displays current conditions and forecasts. Weather data is provided by WeatherAPI.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/koweather.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-    <h1>KOWeather – Weather Plugin for KOReader</h1>
-
-    <div class="summary">
-      <p><b>KOWeather</b> is a lo-fidelity weather app that delivers current conditions and short forecasts directly to your Kindle in KOReader. Weather information is provided by <a href="https://www.weatherapi.com/" target="_blank" rel="noopener">WeatherAPI</a>.</p>
-    </div>
-
-    <h2 class="section-title">Download</h2>
-    <div class="card card-desc">
-      <ul>
-        <li><a href="https://github.com/roygbyte/weather.koplugin" target="_blank" rel="noopener">KOWeather on GitHub</a></li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Features</h2>
-    <div class="card card-desc">
-      <ul>
-        <li>Forecast for the current day</li>
-        <li>Forecast for the next two days</li>
-        <li>Hourly forecast for the current day</li>
-        <li>Celsius and Fahrenheit support (note: not fully working yet)</li>
-        <li>24-hour or 12-hour clock options</li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Requirements</h2>
-    <div class="card card-desc">
-      <ul>
-        <li><a href="koreader.html">KOReader</a> installed on your Kindle or other e-reader</li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Installation</h2>
-    <div class="card card-desc">
-      <ol>
-        <li>Download the latest release from the project’s GitHub: <a href="https://github.com/roygbyte/weather.koplugin" target="_blank" rel="noopener">roygbyte/weather.koplugin</a>.</li>
-        <li>Unzip the downloaded archive on your computer.</li>
-        <li>Transfer the <code>weather.koplugin</code> folder to your KOReader-powered device and place it under <code>/koreader/plugins/</code>.</li>
-        <li>Restart KOReader. The plugin should appear under <b>Plugins → More tools → Weather</b>.</li>
-      </ol>
-    </div>
-
-    <h2 class="section-title">How to Use</h2>
-    <div class="card card-desc">
-      <ol>
-        <li>Open KOReader.</li>
-        <li>Navigate to <b>Plugins → More tools → Weather</b>.</li>
-        <li>View the current conditions and short forecast. Tap or press the navigation control to return to KOReader.</li>
-        <li>To change location, open the plugin settings and enter your postal code.</li>
-      </ol>
-    </div>
-
-    <h2 class="section-title">Notes &amp; Troubleshooting</h2>
-    <div class="card card-desc">
-      <ul>
-        <li>Weather data courtesy of <a href="https://www.weatherapi.com/" target="_blank" rel="noopener">WeatherAPI</a>. An internet connection is required to fetch updates.</li>
-        <li>If the Celsius/Fahrenheit toggle isn’t working, try updating to the latest version of the plugin.</li>
-      </ul>
-    </div>
-
-    <h2 class="section-title">Credits</h2>
-    <div class="card card-desc">
-      <p>Developed by <b>Roygbyte</b>.</p>
-    </div>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

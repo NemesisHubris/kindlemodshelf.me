@@ -2,120 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SOX Media Player | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="SOX Media Player">
-  <meta name="twitter:description" content="SOX Media Player adds Bluetooth audio playback to your jailbroken Kindle for music, audiobooks, and internet streams. Supports WAV, MP3, FLAC, OGG, and more.">
-<meta name="description" content="SOX Media Player adds Bluetooth audio playback to your jailbroken Kindle for music, audiobooks, and internet streams. Supports WAV, MP3, FLAC, OGG, and more.">
-  <link rel="canonical" href="https://kindlemodshelf.me/sox">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="SOX Media Player">
-  <meta property="og:description" content="SOX Media Player adds Bluetooth audio playback to your jailbroken Kindle for music, audiobooks, and internet streams. Supports WAV, MP3, FLAC, OGG, and more.">
-  <meta property="og:url" content="https://kindlemodshelf.me/sox">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "SOX Media Player for Kindle",
-    "operatingSystem": "Kindle OS (softfloat & hardfloat)",
-    "applicationCategory": "MediaApplication",
-    "description": "SOX Media Player brings Bluetooth audio playback—music, audiobooks, and internet streams—to your Kindle. Supports MP3, FLAC, WAV, and more formats.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "url": "https://kindlemodshelf.me/sox.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-
-    <h1>SOX Media Player</h1>
-
-    <div class="summary">
-      <b>SOX Media Player</b> adds Bluetooth audio playback to Kindle for music, audiobooks, and streams. Builds are available for SF and HF firmware.
-    </div>
-
-    <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Features</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Bluetooth audio playback for music, audiobooks, and internet streams</li>
-          <li>Supports WAV, MP3, FLAC, OGG, AIFF, AU, GSM, RAW, CAF, VOC, W64, WVE, XA, XI, and more</li>
-          <li>Playlist support: M3U, PLS</li>
-          <li>Simple KUAL-based interface</li>
-          <li>Custom internet radio/stream support via editable <code>menu.json</code></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="requirements">
-      <h2 class="section-title" id="requirements">Requirements</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Kindle with Bluetooth support</li>
-          <li>Jailbroken with <a href="kual.html">KUAL</a> installed</li>
-          <li>Download either SF (softfloat) or HF (hardfloat) version matching your Kindle firmware</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">How to Install</h2>
-      <div class="card card-desc">
-        <p><b>Install through Kindle Forge (recommended):</b></p>
-        <ul>
-          <li>Click the download button in Kindle Forge for SOX once installed. It will appear in KUAL automatically.</li>
-        </ul>
-        <p><b>Manual installation:</b></p>
-        <ol>
-          <li>Visit the <a href="https://www.mobileread.com/forums/showthread.php?t=368945" target="_blank" rel="noopener">official SOX Media Player thread</a> and download the correct zip for your firmware (SF or HF).</li>
-          <li>Unzip the file on your computer.</li>
-          <li>Copy the <code>SOX</code> folder to <code>/mnt/us/extensions/</code> on your Kindle.</li>
-          <li>Place your music or audiobooks in <code>/mnt/us/music/</code> on your Kindle.</li>
-          <li>Safely eject and disconnect your Kindle.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="usage">
-      <h2 class="section-title" id="usage">How to Use</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Pair your Bluetooth audio device with your Kindle via Settings.</li>
-          <li>Open <b>KUAL</b> on your Kindle.</li>
-          <li>Launch <b>SOX Media Player</b> from the KUAL menu.</li>
-          <li>For internet radio, edit <code>menu.json</code> to add custom streams (see the README and forum thread for setup details).</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="notes">
-      <h2 class="section-title" id="notes">Notes & Troubleshooting</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>All files in a single playlist or call must share the same format, rate, channels, and bit depth.</li>
-          <li>Bluetooth may sometimes disconnect; if playback freezes, reconnect your device or restart the Kindle.</li>
-          <li><b>AAC files are not supported</b> — playback attempts will fail.</li>
-          <li>Ensure your device is properly paired before launching SOX for smoother performance.</li>
-        </ul>
-      </div>
-    </section>
-
-    <div class="section-title">Credits</div>
-    <div class="card card-desc">
-      <p>dhdurgee</p>
-    </div>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>

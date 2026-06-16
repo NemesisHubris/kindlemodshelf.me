@@ -2,35 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Kindle Screensaver Image Gallery | KindleModShelf</title>
+  <title>Screensaver Gallery | KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Kindle Screensaver Image Gallery">
-  <meta name="twitter:description" content="A curated gallery of community Kindle screensaver images, organized by author. Download and explore creative Kindle backgrounds, wallpapers, and more.">
-<meta name="description" content="A curated gallery of community Kindle screensaver images, organized by author. Download and explore creative Kindle backgrounds, wallpapers, and more.">
-  <link rel="canonical" href="https://kindlemodshelf.me/images">
-  <link rel="stylesheet" href="style.css?v=20">
-  <meta property="og:title" content="Kindle Screensaver Image Gallery">
-  <meta property="og:description" content="A curated gallery of community Kindle screensaver images, organized by author. Download and explore creative Kindle backgrounds, wallpapers, and more.">
-  <meta property="og:url" content="https://kindlemodshelf.me/images">
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <meta name="description" content="Browse and download community Kindle screensaver images. Search by author, favorite images, and open directly in Screensaver Studio.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="gallery.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container">
-    <div class="info-callout">
-      If you want me to remove your image, DM me on Discord for fastest response or email me at admin@kindlemodshelf.me
+
+    <div class="gallery-info-callout">
+      Want your image removed? DM on Discord or email <strong>admin@kindlemodshelf.me</strong>
     </div>
-    <h1>Kindle Screensaver Image Gallery</h1>
-    <div class="summary">
-      Browse and download community Kindle screensaver images, then search by author to find related uploads.
+
+    <div class="gallery-page-header">
+      <h1>Screensaver Gallery</h1>
+      <p class="summary">Browse and download community Kindle screensaver images.</p>
     </div>
+
     <div class="gallery-view-tabs" aria-label="Gallery Views">
       <a href="images.html" id="all-images-link" class="gallery-view-tab">All Images</a>
       <a href="images.html?favorites=1" id="favorites-toggle-link" class="gallery-view-tab">
@@ -38,18 +31,19 @@
         <span id="favorites-count" class="gallery-view-count">0</span>
       </a>
     </div>
+
     <div class="search-bar-wrap">
-      <label for="search-bar" class="search-label">Search authors (optional):</label>
+      <label for="search-bar" class="search-label">Search by author</label>
       <div class="search-input-shell">
         <span class="search-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <path d="m21 21-4.35-4.35"></path>
           </svg>
         </span>
         <input type="text" id="search-bar" placeholder="Type an author name…" autocomplete="off">
-        <button id="search-clear" class="search-clear" aria-label="Clear search" style="display: none;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button id="search-clear" class="search-clear" aria-label="Clear search" style="display:none">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
@@ -57,71 +51,78 @@
       </div>
     </div>
 
-    <!-- Normal Stream View (default) -->
-    <div id="stream-view" class="stream-view">
+    <!-- Stream view -->
+    <div id="stream-view">
       <div id="gallery-root" class="gallery-stream"></div>
-      <div id="loading-indicator" style="text-align: center; margin: 20px 0; display: none;">
+      <div id="loading-indicator">
         <div class="loader"></div>
-        <p>Loading more images...</p>
+        Loading images…
       </div>
     </div>
 
-    <!-- Search Results View (organized by author) -->
-    <div id="search-view" class="search-view" style="display: none;">
+    <!-- Search results view -->
+    <div id="search-view" style="display:none">
       <div id="search-results"></div>
     </div>
 
-    <!-- Modal Viewer with Side Panel -->
-    <div id="img-viewer-modal">
-      <div id="img-viewer-img-wrap">
-        <div class="viewer-topbar">
-          <div class="viewer-info">
-            <div class="viewer-author-header">
-              <div id="img-viewer-author" class="author-name"></div>
-              <div id="img-viewer-filename" class="filename"></div>
-            </div>
-          </div>
-          <div class="viewer-actions">
-            <button id="img-viewer-favorite" class="viewer-button viewer-favorite" type="button" aria-pressed="false">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.05" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m12 20.4-1.15-1.05C5.2 14.24 2 11.33 2 7.75 2 5.1 4.08 3 6.72 3c1.5 0 2.94.69 3.88 1.78C11.54 3.69 12.98 3 14.48 3 17.12 3 19.2 5.1 19.2 7.75c0 3.58-3.2 6.49-8.85 11.6Z"></path>
-              </svg>
-              <span>Favorite</span>
-            </button>
-            <a id="img-viewer-download" class="viewer-button viewer-download" href="#" download>
-              <svg width="21" height="21" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>Download</span>
-            </a>
-            <button id="img-viewer-resize" class="viewer-button viewer-resize" type="button">
-              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 2v14a2 2 0 0 0 2 2h14"></path>
-                <path d="M18 22V8a2 2 0 0 0-2-2H2"></path>
-              </svg>
-              <span>Resize</span>
-            </button>
-            <button id="img-viewer-close" class="viewer-button viewer-close" type="button">Close</button>
+  </div>
+
+  <!-- Image viewer modal -->
+  <div id="img-viewer-modal">
+    <div id="img-viewer-img-wrap">
+      <div class="viewer-topbar">
+        <div class="viewer-info">
+          <div class="viewer-author-header">
+            <div id="img-viewer-author" class="author-name"></div>
+            <div id="img-viewer-filename" class="filename"></div>
           </div>
         </div>
-        <div class="viewer-content">
-          <div class="viewer-canvas">
-            <div id="img-viewer-loader"></div>
-            <img id="img-viewer-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Large view" draggable="false" loading="lazy">
-          </div>
-          <div id="viewer-sidebar" class="viewer-sidebar">
-            <div class="sidebar-header">Other images by this author</div>
-            <div id="sidebar-images" class="sidebar-images"></div>
-          </div>
+        <div class="viewer-actions">
+          <button id="img-viewer-favorite" class="viewer-button viewer-favorite" type="button" aria-pressed="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.05" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 20.4-1.15-1.05C5.2 14.24 2 11.33 2 7.75 2 5.1 4.08 3 6.72 3c1.5 0 2.94.69 3.88 1.78C11.54 3.69 12.98 3 14.48 3 17.12 3 19.2 5.1 19.2 7.75c0 3.58-3.2 6.49-8.85 11.6Z"></path>
+            </svg>
+            <span>Favorite</span>
+          </button>
+          <a id="img-viewer-download" class="viewer-button viewer-download" href="#" download>
+            <svg width="19" height="19" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 3v10m0 0l-4-4m4 4l4-4M4 17h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Download</span>
+          </a>
+          <button id="img-viewer-resize" class="viewer-button viewer-resize" type="button">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2v14a2 2 0 0 0 2 2h14"></path>
+              <path d="M18 22V8a2 2 0 0 0-2-2H2"></path>
+            </svg>
+            <span>Resize</span>
+          </button>
+          <button id="img-viewer-close" class="viewer-button viewer-close" type="button">Close</button>
+        </div>
+      </div>
+      <div class="viewer-content">
+        <div class="viewer-canvas">
+          <div id="img-viewer-loader"></div>
+          <img id="img-viewer-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Large view" draggable="false" loading="lazy">
+        </div>
+        <div id="viewer-sidebar" class="viewer-sidebar">
+          <div class="sidebar-header">More by this author</div>
+          <div id="sidebar-images" class="sidebar-images"></div>
         </div>
       </div>
     </div>
   </div>
-  <script src="favorites.js?v=1"></script>
-  <script src="images-gallery.js?v=5"></script>
-  <script src="cropper.js?v=4"></script>
 
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=4"></script>
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="favorites.js"></script>
+  <script src="images-gallery.js"></script>
+  <script src="cropper.js"></script>
+  <script src="navigation.js"></script>
+
 </body>
 </html>

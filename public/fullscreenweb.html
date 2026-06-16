@@ -2,112 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FULLSCREEN WEB BROWSER | KindleModShelf</title>
+  <title>KindleModShelf</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KindleModShelf">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="FULLSCREEN WEB BROWSER">
-  <meta name="twitter:description" content="Fullscreen Web Browser launches websites in a minimal fullscreen view on HF Kindles. Find the best Kindle jailbreak tools, KOReader plugins, and more here.">
-<meta name="description" content="Fullscreen Web Browser launches websites in a minimal fullscreen view on HF Kindles. Find the best Kindle jailbreak tools, KOReader plugins, and more here.">
-  <link rel="canonical" href="https://kindlemodshelf.me/fullscreenweb">
-  <link rel="stylesheet" href="style.css?v=3">
-  <meta property="og:title" content="FULLSCREEN WEB BROWSER">
-  <meta property="og:description" content="Fullscreen Web Browser launches websites in a minimal fullscreen view on HF Kindles. Find the best Kindle jailbreak tools, KOReader plugins, and more here.">
-  <meta property="og:url" content="https://kindlemodshelf.me/fullscreenweb">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Fullscreen Web Browser",
-    "operatingSystem": "Kindle OS (HF)",
-    "applicationCategory": "WebBrowserApplication",
-    "description": "A fullscreen web browser for Kindle devices running HF firmware, enabling distraction-free reading and browsing.",
-    "offers": {"@type": "Offer","price":"0","priceCurrency":"USD"},
-    "url": "https://kindlemodshelf.me/fullscreenweb.html"
-  }
-  </script>
-  <script src="theme-toggle.js?v=3"></script>
-  <meta name="keywords" content="kindle mod, kindle jailbreak, koreader, kindle games, kindle hacks">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/theme.js"></script>
 </head>
-
 <body>
+
+  <a href="index.html" class="back-home-btn">← Home</a>
+
   <div class="container container-guide">
-
-    <h1>FULLSCREEN WEB BROWSER</h1>
-
-    <div class="summary">
-      <b>Fullscreen Web Browser</b> launches websites in a minimal fullscreen view on HF Kindles.
-    </div>
-
-    <section aria-labelledby="download">
-      <h2 class="section-title" id="download">Download</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><a href="https://github.com/mitchellurgero/kindle-shortcut-browser/releases" target="_blank" rel="noopener">Get it from GitHub Releases</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="features">
-      <h2 class="section-title" id="features">Features</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Open any website in a clean, fullscreen view</li>
-          <li>Easily set your homepage to any site you want</li>
-          <li>Minimal interface for maximum reading space</li>
-          <li>Includes a script to stop the browser if needed</li>
-          <li>Designed for Kindle firmware 5.16.4 and newer</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="install">
-      <h2 class="section-title" id="install">How to Install &amp; Use</h2>
-      <div class="card card-desc">
-        <ol>
-          <li>Download the latest ZIP: <a href="https://github.com/mitchellurgero/kindle-shortcut-browser/releases" target="_blank" rel="noopener">Get it from GitHub Releases</a></li>
-          <li>Extract the contents: Unzip and copy everything to the <code>/</code> (root) directory of your Kindle.</li>
-          <li>Set your website:
-            <ul>
-              <li><b>Method 1:</b> Edit <code>index.html</code> in the <code>fullscreenbrowser</code> folder and change the URL to your desired website.</li>
-              <li><b>Method 2:</b> Edit <code>documents/shortcut_browser.sh</code> and set the <code>FULLSCREEN_SITE</code> variable to your preferred URL.</li>
-            </ul>
-          </li>
-          <li>Launch the browser: Open the shortcut script from your Kindle’s library to launch the fullscreen web browser.<br>
-          (Tip: Rename the script for multiple website shortcuts!)</li>
-        </ol>
-      </div>
-    </section>
-
-    <section aria-labelledby="options">
-      <h2 class="section-title" id="options">Options</h2>
-      <div class="card card-desc">
-        <ul>
-          <li><b>GO_FULLSCREEN:</b> Set this to <code>false</code> in the script if you want to keep the Kindle’s UI visible instead of true full screen.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="issues">
-      <h2 class="section-title" id="issues">Known Issues</h2>
-      <div class="card card-desc">
-        <ul>
-          <li>Some websites may not load with the <code>index.html</code> method (iframe limitation). For best results, use the <code>FULLSCREEN_SITE</code> variable in the script.</li>
-          <li>If the browser freezes or stops responding, use the Stop Shortcut Browser script or restart your Kindle.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section aria-labelledby="credits">
-      <h2 class="section-title" id="credits">Credit</h2>
-      <div class="card card-desc">
-        <p>Hyper</p>
-      </div>
-    </section>
+    <div id="content" class="md-content"></div>
   </div>
-    <footer class="legal-disclaimer">Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws. <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a> </footer>
-  <script src="navigation.js?v=3"></script>
+
+  <footer class="legal-disclaimer">
+    Educational purposes only. Not affiliated with Amazon. Users responsible for compliance with applicable laws.
+    <a href="https://ko-fi.com/kindlemodshelfguy" class="footer-support-link" target="_blank" rel="noopener">Support on Ko-fi</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me" target="_blank" rel="noopener">View Source on GitHub</a>
+    <a href="https://github.com/NemesisHubris/kindlemodshelf.me/issues/new" class="footer-bug-link" target="_blank" rel="noopener">Report a Bug</a>
+  </footer>
+
+  <script src="js/marked.min.js"></script>
+  <script src="js/page-loader.js"></script>
+
 </body>
 </html>
