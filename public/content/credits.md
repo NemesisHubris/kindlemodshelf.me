@@ -1,3 +1,5 @@
+<!-- no-action-buttons -->
+
 # Credits
 
 > KindleModShelf is built and maintained by a dedicated community of developers and contributors. This page honors everyone who has helped make this resource possible.
