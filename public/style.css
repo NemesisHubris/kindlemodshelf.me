@@ -1846,6 +1846,18 @@ button:focus-visible,
   font-family: var(--font-mono, monospace);
 }
 
+/* Small disclaimer shown under auto-collected (scraped) image galleries. */
+.gallery-disclaimer {
+  max-width: 720px;
+  margin: -24px auto 36px;
+  text-align: center;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--fg);
+  opacity: 0.5;
+}
+
 /* ====================================================
    PAGE ACTION BUTTONS (GitHub / Ko-fi)
    Auto-injected at the bottom of .md content pages.
