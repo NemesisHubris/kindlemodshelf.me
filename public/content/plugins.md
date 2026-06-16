@@ -91,7 +91,7 @@
 
 ## Games & Entertainment
 
-  - [**Frotz**](https://github.com/kbarni/frotz.koplugin) \- Play interactive fiction (Z-machine) games inside KOReader
+  - [**Frotz**](frotz.html) \- Play interactive fiction (Z-machine) games inside KOReader
   - [**Connections**](https://github.com/odrling/connections.koplugin) \- NYT Connections puzzle game
   - [**sudoku**](https://github.com/omer-faruq/sudoku.koplugin) \- Sudoku in KOReader
   - [**sudoku non-touch version**](https://github.com/maharjanmilan/sudoku.koplugin) \- Sudoku non-touch version
