@@ -6,7 +6,7 @@
 
 ## llama.cpp for Kindle PW3
 
-Run large language models on a Kindle Paperwhite 3 (ARMv7 Cortex-A9 @ ~1GHz, 512MB RAM). Cross-compiled via GitHub Actions to a single static binary with no runtime dependencies — works on both stock Kindle OS and an Alpine Linux chroot. Tested models include `stories15M_MOE` (~15 tok/s) and `SmolLM2-135M-Instruct` (~0.8 tok/s). Keep context size at 64–128 tokens; models over ~110MB will OOM on load.
+Run large language models on a Kindle Paperwhite 3 (ARMv7 Cortex-A9 @ 1GHz, 512MB RAM). Cross-compiled via GitHub Actions to a single static binary with no runtime dependencies — works on both stock Kindle OS and an Alpine Linux chroot. Tested models include stories15M_MOE (approx. 15 tok/s) and SmolLM2-135M-Instruct (approx. 0.8 tok/s). Keep context size at 64–128; the Kindle has about 250MB free RAM and llama.cpp needs contiguous memory blocks — models over about 110MB will likely OOM on load.
 
 :::danger
 **Note:** Untested on devices other than the Kindle Paperwhite 3. README was written with AI assistance.
@@ -135,16 +135,6 @@ KOReader patch that shows upcoming ICS calendar events on your Kindle sleep scre
 
   - **Download:** [2-zzz-calendar-overlay.lua](../downloads/2-zzz-calendar-overlay.lua)
   - **Guide:** [More Information](calendaroverlay.html)
-
-## Parental Controls Reset
-
-Instructions on how to reset forgotten parental control passwords on your Kindle.
-
-:::danger
-**Note:** Some people say that this doesn't work.
-:::
-
-  - **Guide:** [More Information](parentalcontrols.html)
 
 ## Video + Audio Playback (Beta)
 
