@@ -4,17 +4,29 @@
 
 ## Latest Updates Newest entries sit at the top
 
+06/23/2026 — SpringBreak Jailbreak Released
+
+SpringBreak is a new jailbreak for KT5, PW5, PW5SE, KT4, and PW4 on firmware 5.19.2, 5.19.2.0.1, and 5.18.1.1.1. It also brings KPM support, making `;kpm install koreader` a reality. Big thanks to H^9, Hackerdude, and Scamdotnet. Note: this will not work on any models or firmware versions not listed above.
+
+[SpringBreak Guide](https://kindlemodding.org/jailbreaking/SpringBreak/)
+
+---
+
 05/21/2026 — New Fun Recommendations Page
 
 Added a personal recommendations page for favorite projects and apps, including Audiobookshelf, Still, and Calibre-Web.
 
 [Check out the recommendations page here.](recommendations.html)
 
+---
+
 05/02/2026 — Linus Tech Tips Mention
 
 Linus Tech Tips mentioned Kindle jailbreaking as an option for older devices that are reaching their end of life as Amazon begins to phase out legacy cloud features.
 
 Check out the timestamped segment here: [Linus Tech Tips - Kindle Modding Mention](https://youtu.be/WbFGK-tjiEY?t=427)
+
+---
 
 02/03/2026 — Nosebleed has been released.
 
@@ -26,6 +38,8 @@ Unfortunately this will not work on any MTP devices, such as PW6/KT6. Amazon is 
 
 <https://kindlemodding.org/jailbreaking/Nosebleed/>
 
+---
+
 Firmware 5.19.2 Update (11th Gen and Newer) (posts on 2026-02-17)
 
 Initial concerns were that 5.19.2 might carry over hardened security changes seen on KS3/KSC in 5.19.1, which could have broken hotfix preservation behavior and delayed future jailbreak progress.
@@ -36,11 +50,15 @@ Recommendation is still to avoid updating when possible, fill storage if not jai
 
 **Source:** scam.net, Kindle Modding Discord.
 
+---
+
 Gallery Update — Basic Image Editing
 
 The [Image Gallery](images.html) now supports resizing and basic editing of images before downloading. Customize screensavers directly in your browser to fit your Kindle perfectly.
 
 **Credit:** Idea by [ebookscreensaver.com](https://www.ebookscreensaver.com/).
+
+---
 
 January 2026 - Ladies and Gentlemen, we got em.
 
@@ -57,6 +75,8 @@ Much work has to be done to turn this into a functional jailbreak, as many thing
 
 **Source:** scam.net, Kindle Modding Discord.
 
+---
+
 December 2025 — New Tools, Games & Guides
 
 ### New Pages Added
@@ -72,6 +92,8 @@ December 2025 — New Tools, Games & Guides
   - Enhanced UI across the entire site for a more polished and consistent experience.
   - Improved [KAnki Editor](editor.html) with better usability and design.
   - Added more informational pages to help you get the most out of your Kindle.
+
+---
 
 December 2025 — Gallery Overhaul & Site Reorganization
 
@@ -100,6 +122,8 @@ December 2025 — Gallery Overhaul & Site Reorganization
 
   - Added proper developer credits to Gambatte emulator pages (Gambatte-K by liim, Gambatte-K2 by crazy-electron).
 
+---
+
 Late October 2025 — KOReader Tools & Extras
 
 ### New Pages
@@ -109,7 +133,7 @@ Late October 2025 — KOReader Tools & Extras
   - [peki.html](peki.html) and [bootkoreader.html](bootkoreader.html) document MRPI-free KUAL installs plus KOReader autostart toggles.
   - [timeblock.html](timeblock.html) introduces KOReader Time Block parental controls with a downloadable plugin.
   - [icon.html](icon.html) showcases the hand-drawn KOReader interface pack with matching Project Title icons.
-  - [debrick.html](debrick.html) (by MonkeyInPrivite) breaks down how to recover a “bricked” Kindle step by step.
+  - [debrick.html](debrick.html) (by MonkeyInPrivite) breaks down how to recover a "bricked" Kindle step by step.
 
 ### Content Updates
 
@@ -122,6 +146,8 @@ Late October 2025 — KOReader Tools & Extras
 
   - [timeblock.koplugin.zip](../downloads/timeblock.koplugin.zip) hosts the KOReader Time Block build linked from the new guide.
   - [icons.zip](../downloads/icons.zip) and [projecttitleicons.zip](../downloads/projecttitleicons.zip) provide the hand-drawn UI assets in one place.
+
+---
 
 October 2025 — Full Site Refresh
 
@@ -153,16 +179,18 @@ October 2025 — Full Site Refresh
 
 ### Notes
 
-If you’d like your content removed, prefer to stay anonymous, or notice missing credit or incorrect links, please reach out:
+If you'd like your content removed, prefer to stay anonymous, or notice missing credit or incorrect links, please reach out:
 
   - Discord: **@kindlemodshelfguy** on the Kindle Modding server
   - Email: [admin@kindlemodshelf.me](mailto:admin@kindlemodshelf.me) (responses may be slower)
 
+---
+
 September 2025 — Launching KindleModShelf Announcements
 
-Welcome! This new announcements page gathers every noteworthy change happening across KindleModShelf. We’ve added it so you can track fresh jailbreak guides, mod updates, and behind-the-scenes improvements without hunting through individual pages.
+Welcome! This new announcements page gathers every noteworthy change happening across KindleModShelf. We've added it so you can track fresh jailbreak guides, mod updates, and behind-the-scenes improvements without hunting through individual pages.
 
-Here’s what to expect from this feed:
+Here's what to expect from this feed:
 
   - Spotlights on new or overhauled guides, including jailbreak walkthroughs and KOReader plugins.
   - Heads-up on refreshed downloads, compatibility notes, or breaking firmware news.

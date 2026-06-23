@@ -43,6 +43,9 @@ Select your firmware version below. **Note:** WinterBreak/Mesquito does *NOT* wo
   - **Firmware 5.16.4 to 5.18.6:** Use Nosebleed
 → [Nosebleed Guide](https://kindlemodding.org/jailbreaking/Nosebleed/)
 Supported Models: PW5, PW5SE, KT5, KOA3, and KOA3W32C
+  - **Firmware 5.19.2, 5.19.2.0.1, and 5.18.1.1.1:** Use SpringBreak
+→ [SpringBreak Guide](https://kindlemodding.org/jailbreaking/SpringBreak/)
+Supported Models: KT5, PW5, PW5SE, KT4, and PW4
 
 Note: there is overlap and device specific requirements. Check the [Comprehensive Model List](https://kindlemodding.org/kindle-models.html) for more information.
 
