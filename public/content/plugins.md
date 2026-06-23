@@ -4,6 +4,7 @@
 
 ## Essential
 
+  - [**Audiobook Read-Along**](https://github.com/stradichenko/audiobook.koplugin) \- TTS with synchronized word highlighting, automatic page turns, Bluetooth audio, audiobook/music playback, and Audiobookshelf server integration. Works offline on Kindle, Kobo, Android, and Linux
   - [**Time Block**](timeblock.html) \- Schedule KOReader reading windows with PIN-locked parental controls
   - [**Project: Title**](https://github.com/joshuacant/ProjectTitle) \- Enhanced cover browser with custom title bar, book listings, and visual improvements
   - [**Notes**](https://github.com/prasy-loyola/notes.koplugin) \- Handwritten notes with stylus support

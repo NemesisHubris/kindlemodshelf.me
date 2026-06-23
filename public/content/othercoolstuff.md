@@ -4,12 +4,41 @@
 **DISCLAIMER:** All of these are fully untested and may brick your Kindle. If your Kindle is already bricked, see our [debrick guide](debrick.html).
 :::
 
+## llama.cpp for Kindle PW3
+
+Run large language models on a Kindle Paperwhite 3 (ARMv7 Cortex-A9 @ ~1GHz, 512MB RAM). Cross-compiled via GitHub Actions to a single static binary with no runtime dependencies — works on both stock Kindle OS and an Alpine Linux chroot. Tested models include `stories15M_MOE` (~15 tok/s) and `SmolLM2-135M-Instruct` (~0.8 tok/s). Keep context size at 64–128 tokens; models over ~110MB will OOM on load.
+
+:::danger
+**Note:** Untested on devices other than the Kindle Paperwhite 3. README was written with AI assistance.
+:::
+
+  - **Repository:** [LlamaCPP-kindlellama.cpp](https://github.com/Entersjkhdfkjdhfksjf/LlamaCPP-kindlellama.cpp)
+
 ## Flash Android onto Your Kindle
 
 This only works on older Kindles with an unlocked boot loader. This will be incredibly slow, and basically unusable! You will have no battery life! This thing will drain your battery incredibly quickly! It defeats the purpose of an E ink screen being extremely low power! The only reason why you would want to do this is for the clout of having android on your kindle.
 
   - **Guide:** [XDA Forums Android Installation Guide](https://xdaforums.com/t/guide-installing-android-on-your-aging-kindle-e-reader.4450117/)
   - **Successful attempt:** [Reddit Thread](https://www.reddit.com/r/kindlejailbreak/comments/1oqirrj/i_managed_to_install_android_on_my_kindle/)
+
+## Parental Controls for KOReader (Time Block)
+
+KOReader Time Block limits when children can read with customizable reading windows and a PIN lock.
+
+  - **Download:** [timeblock.koplugin.zip](../downloads/timeblock.koplugin.zip)
+  - **Guide:** [More Information](timeblock.html)
+
+## TicTacToe
+
+Classic TicTacToe for Kindle, launchable from KUAL.
+
+  - **Guide:** [More Information](tictactoe.html)
+
+## Tower of Hanoi
+
+Classic logic puzzle: move the disk stack to another peg one disk at a time.
+
+  - **Guide:** [More Information](towerofhanoi.html)
 
 ## KoChess
 
