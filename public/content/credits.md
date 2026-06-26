@@ -13,10 +13,6 @@ Site creator and maintainer.
 
   - [**GreenCat-777**](https://github.com/GreenCat-777)
 Contributed significantly to the FAQ and added many pages. Created the All Kindle Linux Chroots page and was the first to test the Page Builder tool.
-  - [**MonkeyInPrivite**](https://github.com/MonkeyInPrivate)
-Created the [DeBrick guide](debrick.html). Explicit permission granted to use this project via [mip-wiki.pages.dev](https://mip-wiki.pages.dev).
-  - [**mip-wiki.pages.dev**](https://mip-wiki.pages.dev)
-External resource and contributor.
   - [**trashcatt**](https://github.com/trashcatt)
 Contributor to the project.
   - [**imanubdesigner**](https://github.com/imanubdesigner)
