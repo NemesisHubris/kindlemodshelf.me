@@ -48,7 +48,7 @@ After the first two steps, you may still see a row of recommended books. This st
 :::
 
 :::danger
-**DISCLAIMER:** This requires modifying rootfs. I am not responsible for bricked Kindles.
+**DISCLAIMER:** This requires modifying rootfs.
 :::
 
 1. Open KTerm and run: `mntroot rw`
