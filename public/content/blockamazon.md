@@ -45,14 +45,10 @@ To undo, just re-enable the Block Amazon extension.
 
 :::warning
 After the first two steps, you may still see a row of recommended books. This step removes the **images** for those books. The row itself may still show, just blank.
-
-MonkeyInPrivite tested this and reported: *"only got the images for the books to go away — recommended books still there, just no images."*
-
-[See the Discord thread](https://discord.com/channels/1083603487025274911/1360078377964408904/1435028457632563240) for more context.
 :::
 
 :::danger
-**DISCLAIMER:** This requires modifying rootfs. I am not responsible for bricked Kindles.
+**DISCLAIMER:** This requires modifying rootfs.
 :::
 
 1. Open KTerm and run: `mntroot rw`
