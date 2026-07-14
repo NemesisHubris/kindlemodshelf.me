@@ -100,5 +100,12 @@ Special thanks to all contributors and open-source Kindle tool authors.
 
 
 ## Star History
+## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=NemesisHubris/kindlemodshelf.me&type=date&legend=top-left)](https://www.star-history.com/#NemesisHubris/kindlemodshelf.me&type=date&legend=top-left)
+<a href="https://www.star-history.com/?type=date&legend=top-left&repos=NemesisHubris%2Fkindlemodshelf.me">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=NemesisHubris/kindlemodshelf.me&type=date&theme=dark&legend=top-left&sealed_token=IVPa1sd6gzfGAt5u_qNLvpgXfoBcjP_HMB_haj1tEyHYbtMHPL7z2uVdsLeyxzOwJHCF2CcOR5LqM9szDrUYJ-6q5aZv4HxjpfnDy6v6LtXHTu8YX_sfFXfV2Iysvmx1dgfyE6QTc6cQ3cL8MWZslu8GwEguhranLp-KZOtZu1A2m-p7mHb83jJu6C209S8" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=NemesisHubris/kindlemodshelf.me&type=date&legend=top-left&sealed_token=IVPa1sd6gzfGAt5u_qNLvpgXfoBcjP_HMB_haj1tEyHYbtMHPL7z2uVdsLeyxzOwJHCF2CcOR5LqM9szDrUYJ-6q5aZv4HxjpfnDy6v6LtXHTu8YX_sfFXfV2Iysvmx1dgfyE6QTc6cQ3cL8MWZslu8GwEguhranLp-KZOtZu1A2m-p7mHb83jJu6C209S8" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=NemesisHubris/kindlemodshelf.me&type=date&legend=top-left&sealed_token=IVPa1sd6gzfGAt5u_qNLvpgXfoBcjP_HMB_haj1tEyHYbtMHPL7z2uVdsLeyxzOwJHCF2CcOR5LqM9szDrUYJ-6q5aZv4HxjpfnDy6v6LtXHTu8YX_sfFXfV2Iysvmx1dgfyE6QTc6cQ3cL8MWZslu8GwEguhranLp-KZOtZu1A2m-p7mHb83jJu6C209S8" />
+ </picture>
+</a>
