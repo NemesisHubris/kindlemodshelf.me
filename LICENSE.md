@@ -23,7 +23,7 @@ The **HTML, CSS, JavaScript, site design, and the "KindleModShelf" name/logo** a
 - Copy the site's design or code to create a derivative platform.
 - Use the "KindleModShelf" brand to represent your own project.
 
-**Summary:** You can share the *knowledge* (the text), but you cannot steal the *platform* (the site code and look) without explicit permission from `admin@kindlemodshelf.me`.
+**Summary:** You can share the *knowledge* (the text), but you cannot steal the *platform* (the site code and look) without explicit permission — open a GitHub issue to request it.
 
 ---
 
@@ -32,7 +32,7 @@ The **HTML, CSS, JavaScript, site design, and the "KindleModShelf" name/logo** a
 **Community Gallery:**
 All images in the gallery were collected from the Kindle Modding Discord (a public Discord server available to everyone), with a few exceptions that were directly submitted by users.
 - **We do NOT own these images.** Original creators retain all rights.
-- **Removal requests:** admin@kindlemodshelf.me
+- **Removal requests:** open a GitHub issue
 
 **Direct Contributions:**
 Images *explicitly submitted to us for hosting* are licensed under **CC BY-NC-ND 4.0** (Attribution-NonCommercial-NoDerivatives), unless otherwise noted by the author.
@@ -60,7 +60,7 @@ Site source code and content published before January 15, 2026 was originally re
 
 ## Contact
 
-admin@kindlemodshelf.me
+Open a GitHub issue.
 https://kindlemodshelf.me
 
 ---
