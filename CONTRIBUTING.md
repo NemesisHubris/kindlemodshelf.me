@@ -7,8 +7,6 @@ Last Updated: January 14, 2026
 ## How to Contribute
 
 - GitHub pull request
-- Email: admin@kindlemodshelf.me
-- Discord: @kindlemodshelfguy
 
 ---
 
@@ -59,7 +57,6 @@ Guides may involve jailbreaking, firmware modification, and voiding warranties. 
 
 ## Contact
 
-admin@kindlemodshelf.me
-Discord: @kindlemodshelfguy
+Open a GitHub issue — that's the fastest way to reach us about contributions.
 
 This is a community-led project. Response times vary, but we'll try to get back to you within 30 days.

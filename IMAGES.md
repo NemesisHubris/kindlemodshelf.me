@@ -78,14 +78,9 @@ Example:
 - make sure filenames in `public/images.json` exactly match the real files
 - do not add nested folders inside an author folder if you want them to appear in the gallery
 
-### If You Do Not Want To Use GitHub
+### If You're Not Comfortable Using GitHub Directly
 
-You can still send images directly:
-
-- Email: `admin@kindlemodshelf.me`
-- Discord: `@kindlemodshelfguy`
-
-Include your credited name and images.
+Open a GitHub issue and we can help walk you through the pull request.
 
 ---
 
@@ -129,14 +124,14 @@ This is a community-led project. Response times vary, but we'll try to get back 
 
 ---
 
-Want to update your credited name or provide better versions? Email us.
+Want to update your credited name or provide better versions? Open a GitHub issue.
 
 ---
 
 ## Contact
 
-admin@kindlemodshelf.me
-Discord: @kindlemodshelfguy
+Open a GitHub issue for anything contribution-related.
+For content removal or copyright requests, email: admin@kindlemodshelf.me
 https://kindlemodshelf.me
 
 This is a community-led project. Response times vary, but we'll try to get back to you within 30 days.
