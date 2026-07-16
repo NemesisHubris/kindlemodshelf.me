@@ -22,7 +22,7 @@ Our goal: Keep this project safe, friendly, and welcoming for everyone intereste
 
 ## If you see a problem
 
-Ping @kindlemodshelfguy on the [Kindle Modding Discord](https://dsc.gg/kindle-modding).
+Open a GitHub issue. If it's sensitive and you'd rather not post it publicly, email admin@kindlemodshelf.me instead.
 We’ll listen, review, and take action if needed.
 
 ## Enforcement

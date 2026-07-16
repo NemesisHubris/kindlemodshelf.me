@@ -21,7 +21,7 @@ Credit is provided by username/handle on the specific image or page when known.
 
 **Correction Requests:**
 Want your credited name updated or content removed?
-Email: admin@kindlemodshelf.me
+Open a GitHub issue.
 
 This is a community-led project. Response times vary, but we'll try to get back to you within 30 days.
 
