@@ -1,62 +1,28 @@
 # Contributing to KindleModShelf.me
 
-Last Updated: January 14, 2026
-
----
-
 ## How to Contribute
 
-- GitHub pull request
-
----
+Open a pull request. See the [README](README.md) for the full flow.
 
 ## By Submitting Content
 
-By submitting content (text, images) or code to this repository, you agree to the following terms:
+By submitting content or code, you agree to the following:
 
-### 1. Licensing Your Contributions
-- **Text & Guides:** You agree that your submitted text will be licensed under **CC BY-NC-SA 4.0** (Creative Commons Attribution-NonCommercial-ShareAlike).
-- **Images:** You agree that your submitted images will be licensed under **CC BY-NC-ND 4.0** (Creative Commons Attribution-NonCommercial-NoDerivatives), unless you explicitly state otherwise.
-- **Code & Site Design:** If you submit code patches or design improvements for the website structure itself, you grant KindleModShelf.me a perpetual, non-exclusive right to use this code within the "Platform" (which is All Rights Reserved), while you retain your own copyright.
-
-### 2. Permissions & Ownership
-- You affirm that you own the content or have the legal right to submit it.
-- You grant us permission to host, display, adapt, and distribute your contribution.
-- We will credit you as the author.
-
----
+- **Text & guides** are licensed CC BY-NC-SA 4.0; **images** are CC BY-NC-ND 4.0 unless you say otherwise; **code/site changes** grant us a perpetual, non-exclusive right to use them on the platform, while you keep your own copyright.
+- You own the content or have the right to submit it, and you're granting us permission to host, display, adapt, and distribute it. You'll be credited as the author.
 
 ## Don't Submit
 
-- Content you don't own (unless compatible with our licenses)
-- Plagiarized material
-- Malicious code
-- Spam
-- Illegal content
+Content you don't own, plagiarized material, malicious code, spam, or illegal content.
 
----
+## Editorial Rights
 
-## Our Editorial Rights
-
-To maintain the quality of the documentation, we reserve the right to:
-- Fix typos and grammar
-- Update outdated information
-- Reformat content for consistency
-- Translate to other languages
-- Merge your content with other guides
-
-You will always be credited as the original author of your specific contribution.
-
----
+We may fix typos, update outdated info, reformat, translate, or merge your content with other guides. You'll still be credited as the original author.
 
 ## Disclaimer
 
-Guides may involve jailbreaking, firmware modification, and voiding warranties. Users modify devices at their own risk. Contributors are not liable for damage to user devices.
-
----
+Guides may involve jailbreaking, firmware modification, and voiding warranties. Modify your device at your own risk — contributors aren't liable for any damage.
 
 ## Contact
 
-Open a GitHub issue — that's the fastest way to reach us about contributions.
-
-This is a community-led project. Response times vary, but we'll try to get back to you within 30 days.
+Open a GitHub issue.

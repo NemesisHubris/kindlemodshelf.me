@@ -1,29 +1,18 @@
 # Kindle Mod Shelf Code of Conduct
 
-Our goal: Keep this project safe, friendly, and welcoming for everyone interested in Kindle mods.
+Keep this project safe, friendly, and welcoming for everyone interested in Kindle mods.
 
 ## Please do
 
-- Be kind and respectful to others.
-- Give helpful, constructive feedback.
-- Use appropriate language.
+Be kind and respectful, give constructive feedback, and keep language appropriate.
 
 ## Please do not
 
-- Harass or bully others.
-- Use hateful, derogatory, or sexual language.
-- Spam, troll, or attack others.
-- Submit malicious code, malware, or unsafe content.
-
-## Security and Safety
-
-- **Malicious, spam, or unsafe contributions are strictly forbidden.**
-- All contributions are reviewed for safety. Anything harmful will be removed, and the contributor may be banned and reported.
+Harass or bully, use hateful or sexual language, spam or troll, or submit malicious code, malware, or unsafe content. All contributions are reviewed for safety — anything harmful is removed, and the contributor may be banned and reported.
 
 ## If you see a problem
 
-Open a GitHub issue. If it's sensitive and you'd rather not post it publicly, email admin@kindlemodshelf.me instead.
-We’ll listen, review, and take action if needed.
+Open a GitHub issue. Prefer not to post publicly? Email admin@kindlemodshelf.me instead.
 
 ## Enforcement
 
@@ -31,4 +20,4 @@ Violations may result in warnings, removal, banning, or reporting.
 
 ---
 
-We’re here to build cool Kindle stuff together—let’s keep it positive and safe!
+We're here to build cool Kindle stuff together — let's keep it positive and safe!
