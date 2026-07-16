@@ -23,4 +23,4 @@ Not comfortable using GitHub directly? Open an issue and we'll help.
 
 ## Removal & Corrections
 
-Want your credit updated, or your content removed? Open a GitHub issue. For a copyright/takedown request you'd rather not post publicly, email admin@kindlemodshelf.me with "Image Removal Request" and the name you're credited under.
+Want your credit updated, or your content removed? Open a GitHub issue with "Image Removal Request" and the name you're credited under.

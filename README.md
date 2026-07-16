@@ -37,7 +37,6 @@ Always open a [GitHub issue](../../issues) — bugs, ideas, new pages, correctio
 ---
 
 ## Star History
-## Star History
 
 <a href="https://www.star-history.com/?type=date&legend=top-left&repos=NemesisHubris%2Fkindlemodshelf.me">
  <picture>
