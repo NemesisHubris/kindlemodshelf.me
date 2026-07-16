@@ -2,6 +2,8 @@
 
 > KindleModShelf updates feed with site news, release notes, and major jailbreak or tool announcements.
 
+Subscribe: [RSS feed](/rss.xml)
+
 ## Latest Updates Newest entries sit at the top
 
 06/23/2026 — SpringBreak Jailbreak Released
