@@ -1,137 +1,26 @@
 # Community Images & Content
 
-Last Updated: January 14, 2026
-
----
-
-## About KindleModShelf.me
-
-The goal of KindleModShelf is to highlight the great work done by the community that for over a decade has been jailbreaking Kindles, and make this material easy to access on one site instead of needing to find it all yourself - accessible to everyone!
-
----
+KindleModShelf preserves images and resources from over a decade of Kindle modding, before Discord messages get deleted, forums shut down, and image hosts expire.
 
 ## About These Images
 
-All images in the gallery were collected from the Kindle Modding Discord (a public Discord server available to everyone), with a few exceptions that were directly submitted by users.
+Most images were collected from the public Kindle Modding Discord; a few were submitted directly by users. We do NOT own this content and can't grant permission to use it — we host it because it was posted publicly, has educational/historical value, doesn't harm any commercial market, and we credit creators when known and remove content on request.
 
-We do NOT own this content and CANNOT give you permission to use it.
+## Adding Your Own Images
 
-We credit creators by including usernames/handles when known.
+1. Create a folder in `public/images/<your-name>/` and add your image files
+2. Add or update your entry in `public/images.json`:
+   ```json
+   "yourname": ["example-1.png", "example-2.jpg"]
+   ```
+3. Open a pull request
 
----
+(`public/images.html` + `public/images-gallery.js` render the gallery from `images.json`.)
 
-## Adding Your Own Images Through GitHub
+Only add images you made or have permission to share, keep them inside your own author folder, and make sure filenames match exactly.
 
-If you want to add your own gallery images yourself, use a GitHub pull request.
+Not comfortable using GitHub directly? Open an issue and we'll help.
 
-### How the Gallery Works
+## Removal & Corrections
 
-The gallery is built from two things:
-
-- image files stored in `public/images/<author-name>/`
-- the index file `public/images.json`
-
-`public/images.html` loads `public/images.json`, and `public/images-gallery.js` turns that into the gallery view.
-
-The JSON format is simple:
-
-```json
-{
-  "author-name": [
-    "image1.png",
-    "image2.jpg"
-  ]
-}
-```
-
-Each top-level key is an author name, and each value is a list of filenames inside that author's folder.
-
-### What to Add
-
-To add your own images:
-
-1. Create a folder in `public/images/` using the name you want credited under
-2. Put your image files in that folder
-3. Add or update that author entry in `public/images.json`
-4. Open a pull request
-
-Example:
-
-- folder: `public/images/yourname/`
-- files:
-  - `public/images/yourname/example-1.png`
-  - `public/images/yourname/example-2.jpg`
-- JSON entry:
-
-```json
-"yourname": [
-  "example-1.png",
-  "example-2.jpg"
-]
-```
-
-
-### Important Rules
-
-- only add images you made yourself, or have permission to share
-- keep images inside a single author folder
-- make sure filenames in `public/images.json` exactly match the real files
-- do not add nested folders inside an author folder if you want them to appear in the gallery
-
-### If You're Not Comfortable Using GitHub Directly
-
-Open a GitHub issue and we can help walk you through the pull request.
-
----
-
-## Why We Host Them
-
-10+ years of Kindle modding knowledge is disappearing:
-- Discord deletes old messages
-- Forums shut down
-- Image hosts expire
-- Creators go inactive
-
-We're preserving this before it's lost forever.
-
----
-
-## Legal Status
-
-We don't have explicit permission from every creator.
-
-We host this because:
-- It was posted publicly in the Kindle Modding Discord (a public server)
-- It has educational and historical value
-- No commercial market is being harmed
-- We credit creators where known
-- We remove content on request
-
-This is archival preservation, not commercial exploitation.
-
----
-
-## If You're a Creator
-
-Want your content removed?
-
-Email: admin@kindlemodshelf.me
-Subject: "Image Removal Request"
-
-Provide the name you're credited under. We'll remove your content and add your name to our list of creators whose work should not be scraped in the future.
-
-This is a community-led project. Response times vary, but we'll try to get back to you within 30 days.
-
----
-
-Want to update your credited name or provide better versions? Open a GitHub issue.
-
----
-
-## Contact
-
-Open a GitHub issue for anything contribution-related.
-For content removal or copyright requests, email: admin@kindlemodshelf.me
-https://kindlemodshelf.me
-
-This is a community-led project. Response times vary, but we'll try to get back to you within 30 days.
+Want your credit updated, or your content removed? Open a GitHub issue. For a copyright/takedown request you'd rather not post publicly, email admin@kindlemodshelf.me with "Image Removal Request" and the name you're credited under.

@@ -61,7 +61,6 @@ Site source code and content published before January 15, 2026 was originally re
 ## Contact
 
 admin@kindlemodshelf.me
-Discord: @kindlemodshelfguy
 https://kindlemodshelf.me
 
 ---
