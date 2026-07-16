@@ -2,7 +2,7 @@
 
 ## Lead Developer
 
-**NemesisHubris** — admin@kindlemodshelf.me
+**NemesisHubris**
 
 ## Community
 
