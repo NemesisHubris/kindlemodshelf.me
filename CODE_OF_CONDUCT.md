@@ -12,7 +12,7 @@ Harass or bully, use hateful or sexual language, spam or troll, or submit malici
 
 ## If you see a problem
 
-Open a GitHub issue. Prefer not to post publicly? Email admin@kindlemodshelf.me instead.
+Open a GitHub issue.
 
 ## Enforcement
 
