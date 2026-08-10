@@ -38,4 +38,10 @@ Always open a [GitHub issue](../../issues) — bugs, ideas, new pages, correctio
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=NemesisHubris/kindlemodshelf.me&type=Date)](https://star-history.com/#NemesisHubris/kindlemodshelf.me&Date)
+<a href="https://www.star-history.com/?repos=NemesisHubris%2Fkindlemodshelf.me&type=timeline&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=NemesisHubris/kindlemodshelf.me&type=timeline&theme=dark&legend=top-left&sealed_token=oYJcxwhPq9h3wwhN54Yt25Cycy8rWnN56E5tNRD-Qy6N2_VlkpYUrdwyMc0yFnu3054UkQXklJf13gXVA07Thhig0hj7UCDbHL7uiP79laFzHRjg6QnjBgraRUWINfCT6wJdmzdmKqg5GfE8Daxs4An4J5vDXs3sM7R5se1CXspC3hJezFtUWQu9rn_6" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=NemesisHubris/kindlemodshelf.me&type=timeline&legend=top-left&sealed_token=oYJcxwhPq9h3wwhN54Yt25Cycy8rWnN56E5tNRD-Qy6N2_VlkpYUrdwyMc0yFnu3054UkQXklJf13gXVA07Thhig0hj7UCDbHL7uiP79laFzHRjg6QnjBgraRUWINfCT6wJdmzdmKqg5GfE8Daxs4An4J5vDXs3sM7R5se1CXspC3hJezFtUWQu9rn_6" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=NemesisHubris/kindlemodshelf.me&type=timeline&legend=top-left&sealed_token=oYJcxwhPq9h3wwhN54Yt25Cycy8rWnN56E5tNRD-Qy6N2_VlkpYUrdwyMc0yFnu3054UkQXklJf13gXVA07Thhig0hj7UCDbHL7uiP79laFzHRjg6QnjBgraRUWINfCT6wJdmzdmKqg5GfE8Daxs4An4J5vDXs3sM7R5se1CXspC3hJezFtUWQu9rn_6" />
+ </picture>
+</a>
