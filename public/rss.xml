@@ -5,14 +5,16 @@
   <link>https://kindlemodshelf.me/announcements.html</link>
   <description>KindleModShelf updates feed with site news, release notes, and major jailbreak or tool announcements.</description>
   <language>en-us</language>
-  <lastBuildDate>Mon, 10 Aug 2026 18:39:41 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 10 Aug 2026 19:45:15 GMT</lastBuildDate>
   <item>
-    <title>Véra Jailbreak Released</title>
+    <title>Wiki Revamp &amp; Véra Jailbreak Released</title>
     <link>https://kindlemodshelf.me/announcements.html</link>
-    <guid isPermaLink="false">https://kindlemodshelf.me/announcements.html#v-ra-jailbreak-released</guid>
+    <guid isPermaLink="false">https://kindlemodshelf.me/announcements.html#wiki-revamp-v-ra-jailbreak-released</guid>
     <pubDate>Mon, 10 Aug 2026 12:00:00 GMT</pubDate>
-    <description><![CDATA[<p>Véra, a new jailbreak, has been released today by Ava and sparklerfish. Rather than a fixed firmware range, Véra uses a browser-based exploit through a jailbreaking wizard that guides you based on your specific device and firmware — check the guide to see if your Kindle is supported. Ports to KS3(NFL) and KSC on firmware 5.19.6 and below are planned for the future.</p>
-<p><a href="https://kindlemodding.org/jailbreaking/Vera/">Véra Guide</a> <a href="https://ko-fi.com/yubaix">Support Ava on Ko-fi</a></p>]]></description>
+    <description><![CDATA[<p>There has been a full wiki revamp, as well as a new jailbreak coming out, Véra!</p>
+<p>Véra works on all 5.19 firmware versions and devices, other than KS3(NFL) and KSC. It also works on blacklisted devices! This will not work on any firmwares earlier than 5.17.0.</p>
+<p>Made by ava, sparklerfish.</p>
+<p><a href="https://kindlemodding.org/jailbreaking/Vera/">Véra Guide</a> <a href="https://kindlemodding.org/jailbreak-wizard.html">Find the jailbreak applicable for you</a> <a href="https://ko-fi.com/yubaix">Support ava on Ko-fi</a> <a href="https://ko-fi.com/sparklerfish">Support sparklerfish on Ko-fi</a></p>]]></description>
   </item>
   <item>
     <title>Sanctuary Jailbreak Released</title>

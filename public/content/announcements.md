@@ -4,12 +4,18 @@
 
 ## Latest Updates Newest entries sit at the top
 
-08/10/2026 — Véra Jailbreak Released
+08/10/2026 — Wiki Revamp & Véra Jailbreak Released
 
-Véra, a new jailbreak, has been released today by Ava and sparklerfish. Rather than a fixed firmware range, Véra uses a browser-based exploit through a jailbreaking wizard that guides you based on your specific device and firmware — check the guide to see if your Kindle is supported. Ports to KS3(NFL) and KSC on firmware 5.19.6 and below are planned for the future.
+There has been a full wiki revamp, as well as a new jailbreak coming out, Véra!
+
+Véra works on all 5.19 firmware versions and devices, other than KS3(NFL) and KSC. It also works on blacklisted devices! This will not work on any firmwares earlier than 5.17.0.
+
+Made by ava, sparklerfish.
 
 [Véra Guide](https://kindlemodding.org/jailbreaking/Vera/)
-[Support Ava on Ko-fi](https://ko-fi.com/yubaix)
+[Find the jailbreak applicable for you](https://kindlemodding.org/jailbreak-wizard.html)
+[Support ava on Ko-fi](https://ko-fi.com/yubaix)
+[Support sparklerfish on Ko-fi](https://ko-fi.com/sparklerfish)
 
 ---
 
