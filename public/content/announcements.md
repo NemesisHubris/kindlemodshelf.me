@@ -2,9 +2,31 @@
 
 > KindleModShelf updates feed with site news, release notes, and major jailbreak or tool announcements.
 
-Subscribe: [RSS feed](/rss.xml)
-
 ## Latest Updates Newest entries sit at the top
+
+08/10/2026 — Véra Jailbreak Released
+
+Véra, a new jailbreak, has been released today by Ava and sparklerfish. Rather than a fixed firmware range, Véra uses a browser-based exploit through a jailbreaking wizard that guides you based on your specific device and firmware — check the guide to see if your Kindle is supported. Ports to KS3(NFL) and KSC on firmware 5.19.6 and below are planned for the future.
+
+[Véra Guide](https://kindlemodding.org/jailbreaking/Vera/)
+[Support Ava on Ko-fi](https://ko-fi.com/yubaix)
+
+---
+
+08/10/2026 — Sanctuary Jailbreak Released
+
+After a long wait, Sanctuary, a new jailbreak, has been released. This works on almost every Kindle running 5.16.4 to 5.18.3, inclusive — including blacklisted Kindles.
+
+This was created in collaboration with sparklerfish and No Parts (PW6/KT-K5/CS SE). Additionally, this would not have been possible without our beta testers: Gimzie, Wise Mistress Ella, mergen3107, PrincipalGoodBling, Corn Cup Spilleth Over, PluPlu, and GreenCat777 (PW6 5.18.1).
+
+Sanctuary is also bundled with KPM, similar to SpringBreak. This will not work on any firmwares outside of the 5.16.4–5.18.3 range.
+
+Thank you all for your support! Made by ava [GOS].
+
+[Sanctuary Guide](https://kindlemodding.org/jailbreaking/Sanctuary/)
+[Reddit Announcement](https://www.reddit.com/r/kindlejailbreak/s/TqzRh6siK3)
+
+---
 
 06/23/2026 — SpringBreak Jailbreak Released
 

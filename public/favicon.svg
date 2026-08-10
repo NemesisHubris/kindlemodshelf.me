@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#1a1a1a"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="13" fill="none" stroke="#3a3a3a" stroke-width="3"/>
+  <!-- reader device -->
+  <rect x="17" y="9" width="26" height="46" rx="3.5" fill="none" stroke="#d8d2c2" stroke-width="3"/>
+  <!-- broken/open padlock -->
+  <rect x="22" y="33" width="16" height="12" rx="2.2" fill="none" stroke="#d8d2c2" stroke-width="3"/>
+  <path d="M25.5 33v-3.5a4.5 4.5 0 0 1 8.8-1.1" fill="none" stroke="#d8d2c2" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="30" cy="39" r="1.6" fill="#d8d2c2"/>
+</svg>

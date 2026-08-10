@@ -97,6 +97,10 @@
         injectActionButtons(el);
       }
 
+      if (page === 'announcements') {
+        injectRssButton(el);
+      }
+
       // Try to load per-page image manifest; inject gallery after the opening
       // description if images exist. Falls through to initGallery either way.
       fetch(`content/${page}.images.json`)
@@ -266,6 +270,30 @@
     bar.appendChild(a);
 
     container.appendChild(bar);
+  }
+
+  // ── RSS subscribe button ──────────────────────────────────────────────
+  // Placed right under the title/description on the announcements page,
+  // rather than as a plain-text link buried in the body.
+  function injectRssButton(container) {
+    const h1 = container.querySelector('h1');
+    if (!h1) return;
+
+    let anchor = h1;
+    const next = h1.nextElementSibling;
+    if (next && (next.tagName === 'P' || next.tagName === 'BLOCKQUOTE' ||
+                 (next.tagName === 'DIV' && next.classList.contains('callout')))) {
+      anchor = next;
+    }
+
+    const a = document.createElement('a');
+    a.href = '/rss.xml';
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.className = 'page-action-btn page-action-rss rss-subscribe-row';
+    a.innerHTML = '<span class="page-action-icon"></span>Subscribe via RSS';
+
+    anchor.parentNode.insertBefore(a, anchor.nextSibling);
   }
 
   function notFound(name) {
