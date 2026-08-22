@@ -271,6 +271,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kindlemodshelf.me/kindlehub</loc>
+    <lastmod>2026-08-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://kindlemodshelf.me/kindlekraft</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
