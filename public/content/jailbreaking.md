@@ -21,35 +21,9 @@ Jailbreaking your Kindle gives you the freedom to do more with your device and y
 
 ## How To Jailbreak
 
-### 1 Check Your Firmware Version
+Go to [kindlemodding.org/jailbreaking](https://kindlemodding.org/jailbreaking/) to jailbreak your Kindle.
 
-  1. Turn on your Kindle
-  2. Click the 3 dots on the right top hand side
-  3. Click **Settings**
-  4. Click **Device Options**
-  5. Select **Device Info**
-  6. Check your firmware version
-
-### 2 Use the Appropriate Guide
-
-Select your firmware version below. **Note:** WinterBreak/Mesquito does *NOT* work on firmware 5.18.1 and beyond.
-
-  - **Firmware 5.16.2.1.1 or earlier:** Use Legacy jailbreaks
-→ [Legacy Jailbreak Guide](https://kindlemodding.org/jailbreaking/Legacy/index.html)
-  - **Firmware 5.16.3 to 5.18.0:** Use WinterBreak
-→ [WinterBreak Guide](https://kindlemodding.org/jailbreaking/WinterBreak/)
-  - **Firmware 5.18.1 to 5.18.5.0.1 (Ad-Supported):** Use AdBreak
-→ [AdBreak Guide](https://kindlemodding.org/jailbreaking/AdBreak/)
-  - **Firmware 5.16.4 to 5.18.6:** Use Nosebleed
-→ [Nosebleed Guide](https://kindlemodding.org/jailbreaking/Nosebleed/)
-Supported Models: PW5, PW5SE, KT5, KOA3, and KOA3W32C
-  - **Firmware 5.19.2, 5.19.2.0.1, and 5.18.1.1.1:** Use SpringBreak (by penguins184)
-→ [SpringBreak Guide](https://kindlemodding.org/jailbreaking/SpringBreak/)
-Supported Models: KT5, PW5, PW5SE, KT4, and PW4
-
-Note: there is overlap and device specific requirements. Check the [Comprehensive Model List](https://kindlemodding.org/kindle-models.html) for more information.
-
-### 3 Post-Jailbreak Essentials
+### Post-Jailbreak Essentials
 
 Make sure you have installed **Block OTA Updates** , **MRPI** , and **KUAL** from the [Post-Jailbreak Guide](https://kindlemodding.org/jailbreaking/post-jailbreak/index.html).
 

@@ -632,6 +632,16 @@ button:focus-visible,
   color: var(--muted);
 }
 
+.support-callout-alt {
+  margin-top: 6px !important;
+  font-size: 0.85rem !important;
+}
+
+.support-callout-alt a {
+  color: var(--primary);
+  font-weight: 700;
+}
+
 .support-callout-actions {
   display: flex;
   align-items: center;
@@ -1416,7 +1426,7 @@ button:focus-visible,
 }
 
 .settings-toggle-input:checked + .settings-toggle-slider { background: var(--primary); }
-.settings-toggle-input:checked + .settings-toggle-slider::before { transform: translateX(22px); }
+.settings-toggle-input:checked + .settings-toggle-slider::before { transform: translateX(22px); background: var(--bg-base); }
 
 /* ====================================================
    LEGAL DISCLAIMER FOOTER
