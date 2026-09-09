@@ -28,18 +28,6 @@ It feels like having your own Kindle-store-style interface for your personal col
 
 <https://github.com/janeczku/calibre-web>
 
-Claude Usage CLI (Open Source)
-
-My favorite Claude usage tracker. Look, I know what you're thinking—this is basically the "Hello World" for every vibe coder on Reddit right now. But trust me bro, this one is actually good because I helped with it!
-
-<https://github.com/NemesisHubris/Claude-Usage-CLI>
-
-Claude Desktop for Linux (Open Source Wrapper)
-
-It is literally the Claude app, but just for Linux! It provides a native-feeling experience with support for MCP and other desktop features on Debian, Ubuntu, and Fedora.
-
-<https://github.com/aaddrick/claude-desktop-debian>
-
 More to come
 
 I will keep adding random favorites here over time whenever I find things worth shouting out.
