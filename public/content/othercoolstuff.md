@@ -21,6 +21,31 @@ An early ScummVM port for Kindle, for playing point-and-click adventure games. I
   - **Download:** [KinnVM 1.0](https://github.com/fuzzyghosty/kinnvm/releases/tag/KinnVM-1.0)
   - **Project:** [kinnvm on GitHub](https://github.com/fuzzyghosty/kinnvm)
 
+## 2048, Sudoku, Connect 4 and Hangman
+
+Simple games built with the Illusion framework. They need a Kindle with Mesquite support.
+
+  - **Downloads:** [2048.zip](../downloads/2048.zip), [sudoku.zip](../downloads/sudoku.zip), [connect4.zip](../downloads/connect4.zip), [hangman.zip](../downloads/hangman.zip)
+
+## Tetris for KTerm (HF)
+
+A terminal Tetris for hard-float Kindles, run from KTerm. It is not a standalone app.
+
+  - **Download:** [kindletetris.zip](../downloads/kindletetris.zip)
+
+## Nine Men's Morris
+
+The classic board game. There is a KUAL version for soft-float Kindles and a KTerm version for hard-float ones.
+
+  - **Download (HF):** [morris-kindle.zip](../downloads/morris-kindle.zip)
+  - **Download (SF):** [MobileRead post](https://www.mobileread.com/forums/showpost.php?p=2524556&postcount=43)
+
+## Universal Paperclips
+
+The incremental game about an AI that makes paperclips, ported to Kindle.
+
+  - **Download:** [com.kbarni.paperclips.zip](../downloads/com.kbarni.paperclips.zip)
+
 ## Flash Android onto Your Kindle
 
 This only works on older Kindles with an unlocked boot loader. This will be incredibly slow, and basically unusable! You will have no battery life! This thing will drain your battery incredibly quickly! It defeats the purpose of an E ink screen being extremely low power! The only reason why you would want to do this is for the clout of having android on your kindle.
@@ -43,6 +68,8 @@ Classic TicTacToe for Kindle, launchable from KUAL.
 ## Tower of Hanoi
 
 Classic logic puzzle: move the disk stack to another peg one disk at a time.
+
+  - **Download:** [tower-of-hanoi.zip](../downloads/tower-of-hanoi.zip)
 
 
 ## KoChess

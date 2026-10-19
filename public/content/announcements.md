@@ -106,7 +106,6 @@ December 2025 — New Tools, Games & Guides
   - [blockamazon.html](blockamazon.html) helps block unwanted Amazon content on your Kindle.
   - [clearadcache.html](clearadcache.html) provides tools to clear ad caches and optimize performance.
   - [kships.html](kships.html) brings the KShips Battleship game to your Kindle.
-  - [universalpaperclips.html](universalpaperclips.html) ports the popular Universal Paperclips game to Kindle.
   - [All Kindle Linux Chroots](all-kindle-linux-chroots.html) (credit: GreenCat-777) compiles a complete guide to Linux environments on Kindle devices.
 
 ### Improvements
