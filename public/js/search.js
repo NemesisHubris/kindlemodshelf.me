@@ -57,36 +57,75 @@
     filterToggleBtn.setAttribute('aria-expanded', String(expanded));
   });
 
-  // ── Category filter config ───────────────────────────────────────────────
-  const categoryConfig = {
-    all:            () => true,
-    essential:      (tags) => tags.includes('Essential'),
-    blocking:       (_, raw) => raw.includes('blocking') || raw.includes('amazon'),
-    koreader:       (tags, raw) => (tags.includes('Plugin') || raw.includes('plugin')) && raw.includes('koreader'),
-    patches:        (tags, raw) => tags.includes('Patch') || raw.includes('patch') || raw.includes('userpatch'),
-    emulators:      (tags) => tags.includes('Emulator'),
-    games:          (tags) => tags.includes('Game'),
-    media:          (_, raw) => ['media', 'audio', 'player', 'mp3', 'wav', 'flac'].some(t => raw.includes(t)),
-    drawing:        (_, raw) => ['drawing', 'paint', 'kpaint', 'sketch'].some(t => raw.includes(t)),
-    tools:          (tags, raw) => tags.includes('Tool') || raw.includes('tool'),
-    resources:      (tags) => tags.includes('Resource'),
-    dev:            (tags, raw) => tags.includes('Dev') || raw.includes('dev'),
-    guides:         (tags, raw) => tags.includes('Guide') || raw.includes('guide'),
-    beta:           (tags) => tags.includes('Beta') || tags.includes('Experimental'),
-    'other-koreader': (tags, raw) => raw.includes('koreader') && !tags.includes('Plugin') && !tags.includes('Patch'),
-  };
-
-  // ── Gather cards ─────────────────────────────────────────────────────────
+  // ── Cards ────────────────────────────────────────────────────────────────
+  // Each card carries data-category (its section) and data-tags (search keywords).
   const cards = Array.from(document.querySelectorAll('.card'));
   const sectionTitles = Array.from(document.querySelectorAll('.section-title'));
 
+  // Lowercase words with punctuation stripped, so "Game Boy" and "game-boy" both work.
+  const words = text => (text.toLowerCase().match(/[a-z0-9]+/g) || []);
+
   cards.forEach(card => {
-    const rawTags = (card.getAttribute('data-tags') || '').toLowerCase();
-    const primaryTags = Array.from(card.querySelectorAll('.card-tags .tag')).map(t => t.textContent.trim());
-    card._rawTags = rawTags;
-    card._primaryTags = primaryTags;
-    card._searchText = (card.innerText + ' ' + rawTags).toLowerCase();
+    const title = card.querySelector('.card-title')?.textContent || '';
+    const desc  = card.querySelector('.card-desc')?.textContent || '';
+    const types = Array.from(card.querySelectorAll('.card-tags .tag')).map(t => t.textContent).join(' ');
+    card._category = card.getAttribute('data-category') || '';
+    card._titleWords = words(title);
+    card._words = words([title, types, desc, card.getAttribute('data-tags') || ''].join(' '));
   });
+
+  // Every search word must match the start of a word on the card ("emul" finds "emulator").
+  function matchesSearch(card, tokens) {
+    return tokens.every(t => card._words.some(w => w.startsWith(t)));
+  }
+
+  // ── Collapsible sections ─────────────────────────────────────────────────
+  // Each section title gets a chevron. Click it to hide that section's cards and keep only the title.
+  const COLLAPSE_KEY = 'kmsCollapsedSections';
+  let collapsed = new Set();
+  try { collapsed = new Set(JSON.parse(localStorage.getItem(COLLAPSE_KEY) || '[]')); } catch {}
+
+  function saveCollapsed() {
+    try { localStorage.setItem(COLLAPSE_KEY, JSON.stringify([...collapsed])); } catch {}
+  }
+
+  sectionTitles.forEach(title => {
+    const grid = title.nextElementSibling;
+    const slug = title.getAttribute('data-category');
+    if (!grid || !slug) return;
+    const name = title.textContent.trim();
+    grid.id = grid.id || 'grid-' + slug;
+    title.classList.add('section-title--collapsible');
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'section-toggle';
+    btn.setAttribute('aria-controls', grid.id);
+    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+    title.prepend(btn);
+
+    const toggle = () => {
+      if (collapsed.has(slug)) collapsed.delete(slug); else collapsed.add(slug);
+      saveCollapsed();
+      render();
+    };
+    btn.addEventListener('click', e => { e.stopPropagation(); toggle(); });
+    title.addEventListener('click', e => { if (!e.target.closest('a')) toggle(); });
+  });
+
+  function applyCollapsed(forceOpen) {
+    sectionTitles.forEach(title => {
+      const grid = title.nextElementSibling;
+      const slug = title.getAttribute('data-category');
+      const btn = title.querySelector('.section-toggle');
+      if (!grid || !btn) return;
+      const isCollapsed = collapsed.has(slug) && !forceOpen;
+      grid.classList.toggle('is-collapsed', isCollapsed);
+      title.classList.toggle('is-collapsed', collapsed.has(slug));
+      btn.setAttribute('aria-expanded', String(!isCollapsed));
+      btn.setAttribute('aria-label', (isCollapsed ? 'Expand ' : 'Collapse ') + title.textContent.trim());
+    });
+  }
 
   // ── State ────────────────────────────────────────────────────────────────
   const searchBar      = document.getElementById('search-bar');
@@ -96,6 +135,7 @@
 
   let activeCategories = new Set(['all']);
   let searchQuery      = '';
+  let searchTokens     = [];
 
   function syncChipUI() {
     chipBtns.forEach(b => {
@@ -109,11 +149,8 @@
     let visibleCount = 0;
 
     cards.forEach(card => {
-      const categoryMatch = showAll || [...activeCategories].some(cat => {
-        const fn = categoryConfig[cat];
-        return fn && fn(card._primaryTags, card._rawTags);
-      });
-      const searchMatch  = !searchQuery || card._searchText.includes(searchQuery);
+      const categoryMatch = showAll || activeCategories.has(card._category);
+      const searchMatch  = !searchTokens.length || matchesSearch(card, searchTokens);
       const show         = categoryMatch && searchMatch;
       card.style.display = show ? '' : 'none';
       if (show) visibleCount++;
@@ -128,9 +165,11 @@
       grid.style.display  = hasVisible ? '' : 'none';
     });
 
+    applyCollapsed(!showAll || searchTokens.length > 0);
+
     // Filter note
     if (filterNote) {
-      const filtering = !showAll || searchQuery;
+      const filtering = !showAll || searchTokens.length;
       if (filtering) {
         const catCount = showAll ? 0 : activeCategories.size;
         const label = searchQuery
@@ -169,7 +208,8 @@
 
   // ── Search input ─────────────────────────────────────────────────────────
   searchBar?.addEventListener('input', () => {
-    searchQuery = searchBar.value.trim().toLowerCase();
+    searchQuery = searchBar.value.trim();
+    searchTokens = words(searchQuery);
     if (searchClear) searchClear.style.display = searchQuery ? '' : 'none';
     render();
   });
@@ -177,10 +217,62 @@
   searchClear?.addEventListener('click', () => {
     if (searchBar) searchBar.value = '';
     searchQuery = '';
+    searchTokens = [];
     searchClear.style.display = 'none';
     render();
   });
 
+  // In-page links (e.g. the Guides card): clear any filter or search first so the target is visible.
+  document.querySelectorAll('.card-links a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      collapsed.delete(target.getAttribute('data-category'));
+      saveCollapsed();
+      activeCategories = new Set(['all']);
+      searchQuery = '';
+      searchTokens = [];
+      if (searchBar) searchBar.value = '';
+      if (searchClear) searchClear.style.display = 'none';
+      syncChipUI();
+      render();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
   // Initial render
   render();
+
+  // ── Return to the card you came from ─────────────────────────────────────
+  // Remember which card opened a page on this site, and bring it back into view on return.
+  document.addEventListener('click', e => {
+    const link = e.target.closest('.card-links a');
+    if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
+    if ((link.getAttribute('href') || '').startsWith('#')) return;
+    const title = link.closest('.card')?.querySelector('.card-title')?.textContent;
+    try { if (title) sessionStorage.setItem('kmsReturnCard', title); } catch {}
+  });
+
+  (function restoreCard() {
+    let title = null, returning = false;
+    try {
+      const nav = performance.getEntriesByType('navigation')[0];
+      returning = !!nav && nav.type === 'back_forward';
+    } catch {}
+    try {
+      if (sessionStorage.getItem('kmsReturn') === '1') returning = true;
+      title = sessionStorage.getItem('kmsReturnCard');
+      sessionStorage.removeItem('kmsReturn');
+    } catch {}
+    if (!returning || !title) return;
+    const card = cards.find(c => c.querySelector('.card-title')?.textContent === title);
+    if (!card) return;
+    const slug = card.getAttribute('data-category');
+    if (collapsed.has(slug)) { collapsed.delete(slug); saveCollapsed(); render(); }
+    const r = card.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > window.innerHeight) {
+      card.scrollIntoView({ block: 'center' });
+    }
+  })();
 })();

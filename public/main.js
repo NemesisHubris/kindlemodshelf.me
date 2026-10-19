@@ -39,6 +39,7 @@ let activeCategories = new Set(['all']);
 const categoryFilterConfig = {
   all: () => true,
   essential: (primaryTags) => primaryTags.includes('Essential'),
+  community: (primaryTags) => primaryTags.includes('Community'),
   blocking: (_, tagTokens) => tagTokens.includes('blocking') || tagTokens.includes('amazon'),
   koreader: (primaryTags, tagTokens) =>
     (primaryTags.includes('Plugin') || tagTokens.includes('plugin')) && tagTokens.includes('koreader'),

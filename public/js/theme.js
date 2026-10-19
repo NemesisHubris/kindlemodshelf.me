@@ -2,7 +2,23 @@
 (function () {
   'use strict';
 
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  // "← Home" goes back in history when the visitor came from the homepage, so the browser
+  // restores their scroll position. Otherwise it opens the homepage and flags a return to the last card.
+  document.addEventListener('click', e => {
+    const link = e.target.closest && e.target.closest('a.back-home-btn');
+    if (!link) return;
+    let fromHome = false;
+    try {
+      const ref = new URL(document.referrer);
+      fromHome = ref.origin === location.origin && /^\/(index(\.html)?)?$/.test(ref.pathname);
+    } catch {}
+    if (fromHome && history.length > 1) {
+      e.preventDefault();
+      history.back();
+    } else {
+      try { sessionStorage.setItem('kmsReturn', '1'); } catch {}
+    }
+  });
 
   function getTheme() {
     try { return localStorage.getItem('theme') || 'dark'; } catch { return 'dark'; }

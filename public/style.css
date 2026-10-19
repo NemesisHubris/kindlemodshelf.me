@@ -594,14 +594,14 @@ button:focus-visible,
 
 .support-callout {
   max-width: 1000px;
-  margin: 0 auto 30px;
-  padding: 22px 24px;
+  margin: 0 auto 28px;
+  padding: 18px 22px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 20px;
   align-items: center;
-  background: var(--card-bg);
-  border: 2px solid var(--card-border);
+  background: transparent;
+  border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
   box-shadow: none;
 }
@@ -609,18 +609,19 @@ button:focus-visible,
 .support-callout-copy { min-width: 0; }
 
 .support-callout-eyebrow {
-  margin-bottom: 8px;
-  font-size: 0.72em;
-  font-weight: 700;
+  margin-bottom: 4px;
+  font-size: 0.7em;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .support-callout h2 {
-  margin: 0 0 8px;
-  font-size: 1.3rem;
-  line-height: 1.15;
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
   color: var(--primary);
   text-align: left;
 }
@@ -633,13 +634,16 @@ button:focus-visible,
 }
 
 .support-callout-alt {
-  margin-top: 6px !important;
-  font-size: 0.85rem !important;
+  margin-top: 10px !important;
+  font-size: 1.1rem !important;
+  line-height: 1.5 !important;
 }
 
 .support-callout-alt a {
   color: var(--primary);
-  font-weight: 700;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .support-callout-actions {
@@ -652,14 +656,15 @@ button:focus-visible,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 0 18px;
+  min-height: 40px;
+  padding: 0 16px;
   border-radius: var(--radius-sm);
-  border: 2px solid var(--button-border);
+  border: 1px solid var(--button-border);
   background: var(--button-border);
   color: var(--bg-base);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.9rem;
   white-space: nowrap;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
@@ -860,8 +865,7 @@ button:focus-visible,
   border-bottom: none;
 }
 
-.card-links a.card-download,
-.card-links a.card-open {
+.card-links a.card-download {
   border-color: var(--button-border);
   background: var(--button-border);
   color: var(--bg-base);
@@ -869,8 +873,7 @@ button:focus-visible,
 
 .card-links a.card-download::before { content: "↓"; font-size: 1.1em; font-weight: 600; }
 
-.card-links a.card-download:hover,
-.card-links a.card-open:hover {
+.card-links a.card-download:hover {
   background: var(--secondary);
   border-color: var(--secondary);
   color: var(--bg-base);
@@ -878,8 +881,7 @@ button:focus-visible,
   box-shadow: -3px -3px 0 var(--card-border);
 }
 
-:root:not([data-theme="light"]) .card-links a.card-download:hover,
-:root:not([data-theme="light"]) .card-links a.card-open:hover {
+:root:not([data-theme="light"]) .card-links a.card-download:hover {
   transform: translateY(-1px);
   box-shadow: none;
 }
@@ -1969,3 +1971,43 @@ button:focus-visible,
   .card { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; margin-bottom: 20px; }
   a[href]:after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; }
 }
+
+/* Text selection: readable in both themes (the default grey made light text unreadable) */
+::selection {
+  background: var(--secondary);
+  color: var(--bg-base);
+  -webkit-text-fill-color: var(--bg-base);
+  text-shadow: none;
+}
+
+/* Collapsible homepage sections */
+.section-title--collapsible {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-toggle {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.section-toggle svg { transition: transform 0.2s ease; }
+.section-title--collapsible:hover .section-toggle,
+.section-toggle:focus-visible { color: var(--primary); border-color: var(--primary); }
+.section-title.is-collapsed .section-toggle svg { transform: rotate(-90deg); }
+.section-title.is-collapsed { margin-bottom: 8px; }
+.card-grid.is-collapsed { display: none !important; }
