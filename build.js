@@ -26,7 +26,7 @@ const mdSlugs = new Set(
 
 // Build image manifest: slug → ["/page_images/<cat>/<slug>/file", ...]
 const imageManifest = {};
-for (const cat of fs.readdirSync(pageImagesDir)) {
+for (const cat of fs.existsSync(pageImagesDir) ? fs.readdirSync(pageImagesDir) : []) {
   if (SKIP_DIRS.has(cat)) continue;
   const catPath = path.join(pageImagesDir, cat);
   if (!fs.statSync(catPath).isDirectory()) continue;

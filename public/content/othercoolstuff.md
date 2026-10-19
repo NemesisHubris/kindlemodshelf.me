@@ -46,6 +46,13 @@ The incremental game about an AI that makes paperclips, ported to Kindle.
 
   - **Download:** [com.kbarni.paperclips.zip](../downloads/com.kbarni.paperclips.zip)
 
+## Kindle Touch Doom
+
+A Doom port for touchscreen Kindles (PW2 and newer hard-float models) built on doomgeneric. It runs as a KUAL extension with on-screen controls, and sound works over a Bluetooth speaker or headphones.
+
+  - **Project:** [kbarni/kindle-touch-doom](https://github.com/kbarni/kindle-touch-doom)
+  - **Discussion:** [MobileRead thread](https://www.mobileread.com/forums/showthread.php?p=4313126)
+
 ## Flash Android onto Your Kindle
 
 This only works on older Kindles with an unlocked boot loader. This will be incredibly slow, and basically unusable! You will have no battery life! This thing will drain your battery incredibly quickly! It defeats the purpose of an E ink screen being extremely low power! The only reason why you would want to do this is for the clout of having android on your kindle.

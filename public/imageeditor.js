@@ -268,8 +268,23 @@ function bindEvents() {
   });
 
   els.dropZone.addEventListener('drop', event => {
+    event.stopPropagation();
     const file = event.dataTransfer.files && event.dataTransfer.files[0];
     if (file && file.type.startsWith('image/')) loadFile(file);
+  });
+
+  // Drop an image anywhere on the page, or paste one from the clipboard.
+  window.addEventListener('dragover', event => event.preventDefault());
+  window.addEventListener('drop', event => {
+    event.preventDefault();
+    const file = Array.from(event.dataTransfer?.files || []).find(f => f.type.startsWith('image/'));
+    if (file) loadFile(file);
+    else if (event.dataTransfer?.files?.length) els.uploadMeta.textContent = 'That file is not an image';
+  });
+  window.addEventListener('paste', event => {
+    const item = Array.from(event.clipboardData?.items || []).find(i => i.type.startsWith('image/'));
+    const file = item && item.getAsFile();
+    if (file) loadFile(new File([file], 'pasted-image.png', { type: file.type }));
   });
 
   els.devicePreset.addEventListener('change', () => {
@@ -287,6 +302,18 @@ function bindEvents() {
 
   bindTrackedControl('targetWidth', { onInput: handleSizeInput });
   bindTrackedControl('targetHeight', { onInput: handleSizeInput });
+  // Show the clamped value once editing ends, so 99999 or an empty field doesn't linger.
+  ['targetWidth', 'targetHeight'].forEach(id => {
+    els[id].addEventListener('blur', () => {
+      els.targetWidth.value = state.width;
+      els.targetHeight.value = state.height;
+    });
+    els[id].addEventListener('change', () => {
+      handleSizeInput();
+      els.targetWidth.value = state.width;
+      els.targetHeight.value = state.height;
+    });
+  });
   bindTrackedControl('fitMode', {
     onInput: () => {
       state.fitMode = els.fitMode.value;
@@ -504,6 +531,7 @@ function loadImageFromPath(src, imageName, metaText) {
 }
 
 function commitLoadedImage(image, name, metaText) {
+  const hadImage = Boolean(state.image);
   state.image = image;
   state.imageName = name;
   initializeSourceImageState(image);
@@ -514,7 +542,7 @@ function commitLoadedImage(image, name, metaText) {
   els.uploadMeta.textContent = metaText;
   els.emptyState.hidden = true;
   els.downloadBtn.disabled = false;
-  resetEdits();
+  resetEdits(hadImage);
   syncInteractionState();
 }
 
@@ -565,6 +593,9 @@ function updateFavoriteImportState() {
   if (!els.favoriteImportBtn) return;
   const count = favoritesApi ? favoritesApi.loadFavorites().length : 0;
   els.favoriteImportBtn.disabled = count === 0;
+  els.favoriteImportBtn.title = count === 0
+    ? 'Heart images in the Screensaver Gallery to import them here'
+    : `Import one of your ${count} favorite${count === 1 ? '' : 's'}`;
 }
 
 function openFavoritesPicker() {
@@ -642,14 +673,14 @@ function rotate(delta) {
   fitImage(true);
 }
 
-function resetEdits() {
+function resetEdits(keepLook = false) {
   state.rotation = 0;
   state.flipX = 1;
   state.flipY = 1;
   state.instantAlphaMode = false;
   state.selectionMode = false;
   clearSelection(false);
-  applyDisplayLook('balanced');
+  if (!keepLook) applyDisplayLook('balanced');
   clearCutoutMask(false);
   syncStateToControls();
   syncInteractionState();
@@ -744,13 +775,13 @@ function updateValueLabels() {
   }
 }
 
-function updateZoomFromControl() {
+function updateZoomFromControl(anchor) {
   if (!state.image) return;
   const oldScale = state.scale;
   const zoom = Number(els.zoom.value) / 100;
   state.scale = state.minScale * zoom;
-  const cx = state.width / 2;
-  const cy = state.height / 2;
+  const cx = anchor ? anchor.x : state.width / 2;
+  const cy = anchor ? anchor.y : state.height / 2;
   state.offsetX = cx - (cx - state.offsetX) * (state.scale / oldScale);
   state.offsetY = cy - (cy - state.offsetY) * (state.scale / oldScale);
   constrainOffsets();
@@ -1080,18 +1111,18 @@ function drawPasteboardImage(ctx, frameX, frameY, scale) {
   ctx.restore();
 }
 
-function renderOutput(backgroundOverride = state.background, targetWidth = state.width, targetHeight = state.height) {
+function renderOutput(backgroundOverride = state.background, targetWidth = state.width, targetHeight = state.height, raw = false) {
   const canvas = targetWidth === state.previewOutputCanvas.width && targetHeight === state.previewOutputCanvas.height
     ? state.previewOutputCanvas
     : document.createElement('canvas');
-  renderIntoCanvas(canvas, backgroundOverride, targetWidth, targetHeight);
+  renderIntoCanvas(canvas, backgroundOverride, targetWidth, targetHeight, raw);
   if (canvas !== state.previewOutputCanvas && targetWidth !== state.width) {
     state.previewOutputCanvas = canvas;
   }
   return canvas;
 }
 
-function renderIntoCanvas(canvas, backgroundOverride, targetWidth, targetHeight) {
+function renderIntoCanvas(canvas, backgroundOverride, targetWidth, targetHeight, raw = false) {
   canvas.width = targetWidth;
   canvas.height = targetHeight;
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
@@ -1104,6 +1135,7 @@ function renderIntoCanvas(canvas, backgroundOverride, targetWidth, targetHeight)
   }
 
   drawTransformedImage(ctx, targetWidth, targetHeight);
+  if (raw) return;
 
   const imageData = ctx.getImageData(0, 0, targetWidth, targetHeight);
   processPixels(imageData);
@@ -1158,6 +1190,7 @@ function processPixels(imageData) {
   let max = 0;
   if (state.autoLevels) {
     for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] === 0) continue;
       const luma = luminance(data[i], data[i + 1], data[i + 2]);
       min = Math.min(min, luma);
       max = Math.max(max, luma);
@@ -1454,9 +1487,11 @@ function handleWheel(event) {
   event.preventDefault();
   armHistoryDraft();
   clearTimeout(state.wheelHistoryTimer);
-  els.zoom.value = clamp(Number(els.zoom.value) + (event.deltaY < 0 ? 8 : -8), 25, 400);
+  // Proportional steps feel the same for mouse wheels and trackpads; zoom toward the cursor.
+  const delta = clamp(event.deltaY, -120, 120);
+  els.zoom.value = clamp(Math.round(Number(els.zoom.value) * Math.exp(-delta * 0.0015)), 25, 400);
   syncControlsToState();
-  updateZoomFromControl();
+  updateZoomFromControl(pointerEventToOutputPoint(event) || undefined);
   requestPreviewRender();
   state.wheelHistoryTimer = window.setTimeout(() => {
     commitHistoryDraft();
@@ -1490,8 +1525,16 @@ function downloadImage() {
   const link = document.createElement('a');
   const ext = state.exportFormat === 'image/jpeg' ? 'jpg' : state.exportFormat === 'image/webp' ? 'webp' : 'png';
   link.download = `${slugify(state.imageName)}_${state.width}x${state.height}.${ext}`;
-  link.href = output.toDataURL(state.exportFormat, 0.92);
-  link.click();
+  output.toBlob(blob => {
+    if (!blob) {
+      els.uploadMeta.textContent = 'Export failed - try a smaller size or another format';
+      return;
+    }
+    const url = URL.createObjectURL(blob);
+    link.href = url;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  }, state.exportFormat, 0.92);
 }
 
 function initializeSourceImageState(image) {
@@ -1610,7 +1653,7 @@ function updateSelectionUI() {
     els.selectionModeBtn.setAttribute('aria-pressed', String(state.selectionMode));
     const label = state.selectionMode ? 'Drawing Selection' : 'Select Area';
     els.selectionModeBtn.setAttribute('aria-label', label);
-    els.selectionModeBtn.setAttribute('title', label);
+    els.selectionModeBtn.setAttribute('title', `${label} (S)`);
   }
   if (els.selectionHint) {
     if (state.selectionRect) {
@@ -1655,7 +1698,8 @@ function cropToSelection() {
   const cropWidth = clamp(Math.round(state.selectionRect.width), 1, state.width - cropX);
   const cropHeight = clamp(Math.round(state.selectionRect.height), 1, state.height - cropY);
 
-  const output = renderOutput(state.background, state.width, state.height);
+  // Crop the unprocessed composition so tone and dither are not baked in and then applied twice.
+  const output = renderOutput(state.background, state.width, state.height, true);
   const cropCanvas = document.createElement('canvas');
   cropCanvas.width = cropWidth;
   cropCanvas.height = cropHeight;
@@ -1664,7 +1708,10 @@ function cropToSelection() {
 
   const image = new Image();
   image.onload = () => {
+    const keep = {};
+    ['background', 'fitMode', 'exportFormat', 'displayLook', ...Object.keys(LOOK_PRESETS.balanced)].forEach(key => { keep[key] = state[key]; });
     commitLoadedImage(image, `${state.imageName}-crop`, `Cropped image - ${cropWidth} x ${cropHeight}`);
+    Object.assign(state, keep);
     state.width = cropWidth;
     state.height = cropHeight;
     syncDevicePresetFromSize();
@@ -2000,6 +2047,31 @@ function handleKeyboardShortcuts(event) {
   const wantsCloseAlphaSettings = state.instantAlphaSettingsOpen && key === 'escape';
   const wantsCloseFavoritesPicker = els.favoritesPicker && !els.favoritesPicker.hidden && key === 'escape';
   const wantsHideTooltip = state.tooltipPinned && key === 'escape';
+  const plain = !event.metaKey && !event.ctrlKey && !event.altKey;
+  const toolButtons = {
+    s: els.selectionModeBtn,
+    b: els.instantAlphaBtn,
+    c: state.selectionRect ? els.cropSelectionBtn : null,
+    r: event.shiftKey ? els.rotateLeftBtn : els.rotateRightBtn,
+    h: els.flipXBtn,
+    v: els.flipYBtn,
+    f: els.fitBtn,
+    '0': els.fitBtn,
+    '=': els.zoomInBtn,
+    '+': els.zoomInBtn,
+    '-': els.zoomOutBtn
+  };
+  if ((event.metaKey || event.ctrlKey) && key === 's' && state.image) {
+    event.preventDefault();
+    els.downloadBtn.click();
+    return;
+  }
+  if (plain && state.image && toolButtons[key] && !toolButtons[key].disabled
+      && !(els.favoritesPicker && !els.favoritesPicker.hidden)) {
+    event.preventDefault();
+    toolButtons[key].click();
+    return;
+  }
   if (wantsUndo) {
     event.preventDefault();
     undoHistory();

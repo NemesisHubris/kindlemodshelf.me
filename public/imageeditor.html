@@ -17,10 +17,14 @@
     <!-- Left Sidebar: Controls -->
     <aside class="studio-sidebar">
       <div class="studio-sidebar-header">
-        <a href="index.html" class="studio-back-link">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          <span>Back</span>
-        </a>
+        <nav class="studio-nav" aria-label="Site">
+          <a href="index.html" class="studio-back-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>Home</span>
+          </a>
+          <a href="images.html" class="studio-nav-link">Gallery</a>
+          <a href="customscreensavers.html" class="studio-nav-link">Guide</a>
+        </nav>
         <div class="studio-branding">
           <h1>Screensaver Studio</h1>
           <span>Kindle Image Editor</span>
@@ -212,17 +216,17 @@
       <header class="studio-workspace-toolbar">
         <div class="studio-toolbar-group">
           <div class="studio-toolbar-actions">
-            <button type="button" class="studio-toolbar-btn" id="selectionModeBtn" aria-label="Select Area" title="Select Area">
+            <button type="button" class="studio-toolbar-btn" id="selectionModeBtn" aria-label="Select Area" title="Select Area (S)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 4h6"></path><path d="M14 4h6v6"></path><path d="M20 14v6h-6"></path><path d="M10 20H4v-6"></path>
               </svg>
             </button>
-            <button type="button" class="studio-toolbar-btn" id="eraseSelectionBtn" aria-label="Remove Selected Area" title="Remove Selected Area">
+            <button type="button" class="studio-toolbar-btn" id="eraseSelectionBtn" aria-label="Remove Selected Area" title="Remove Selected Area (Delete)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 20H7L3 16l9-9 8 8z"></path><path d="m14 6 4-4 4 4"></path>
               </svg>
             </button>
-            <button type="button" class="studio-toolbar-btn" id="cropSelectionBtn" aria-label="Crop to Selection" title="Crop to Selection">
+            <button type="button" class="studio-toolbar-btn" id="cropSelectionBtn" aria-label="Crop to Selection" title="Crop to Selection (C)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 2v14a2 2 0 0 0 2 2h14"></path><path d="M18 22V8a2 2 0 0 0-2-2H2"></path>
               </svg>
@@ -232,7 +236,7 @@
         <div class="studio-toolbar-divider"></div>
         <div class="studio-toolbar-group">
           <div class="studio-toolbar-actions">
-            <button type="button" class="studio-toolbar-btn" id="instantAlphaBtn" aria-label="Remove Background" title="Remove Background">
+            <button type="button" class="studio-toolbar-btn" id="instantAlphaBtn" aria-label="Remove Background" title="Remove Background (B)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 7h10"></path><path d="M14 7l6 6-8 8-6-6"></path><path d="M14 7l3-3"></path><path d="M7 14l3-3"></path>
               </svg>
@@ -256,16 +260,16 @@
         <div class="studio-toolbar-divider"></div>
         <div class="studio-toolbar-group">
           <div class="studio-toolbar-actions">
-            <button type="button" class="studio-toolbar-btn" id="rotateLeftBtn" aria-label="Rotate Left" title="Rotate Left">
+            <button type="button" class="studio-toolbar-btn" id="rotateLeftBtn" aria-label="Rotate Left" title="Rotate Left (Shift+R)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
             </button>
-            <button type="button" class="studio-toolbar-btn" id="rotateRightBtn" aria-label="Rotate Right" title="Rotate Right">
+            <button type="button" class="studio-toolbar-btn" id="rotateRightBtn" aria-label="Rotate Right" title="Rotate Right (R)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg>
             </button>
-            <button type="button" class="studio-toolbar-btn" id="flipXBtn" aria-label="Flip Horizontal" title="Flip Horizontal">
+            <button type="button" class="studio-toolbar-btn" id="flipXBtn" aria-label="Flip Horizontal" title="Flip Horizontal (H)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3"></path><path d="M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3"></path><path d="M12 2v20"></path></svg>
             </button>
-            <button type="button" class="studio-toolbar-btn" id="flipYBtn" aria-label="Flip Vertical" title="Flip Vertical">
+            <button type="button" class="studio-toolbar-btn" id="flipYBtn" aria-label="Flip Vertical" title="Flip Vertical (V)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3"></path><path d="M3 16v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"></path><path d="M2 12h20"></path></svg>
             </button>
           </div>
