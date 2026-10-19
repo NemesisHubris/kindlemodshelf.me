@@ -4,7 +4,7 @@
 
 ## Download
 
-  - [Download Aisleriot Extension (Latest Release)](https://github.com/jckhng/kindle-aisleriot/releases/latest)
+  - [Download Aisleriot Extension (Latest Release)](https://github.com/jckhng/exact-solitaire/releases/latest)
 
 ## Features
 

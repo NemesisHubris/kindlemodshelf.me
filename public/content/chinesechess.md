@@ -4,7 +4,7 @@
 
 ## Download
 
-  - [Download Chinese Chess Extension (Latest Release)](https://github.com/jckhng/kindle-chinesechess/releases/latest)
+  - [Download Chinese Chess Extension (Latest Release)](https://github.com/jckhng/exact-chinesechess/releases/latest)
 
 ## Features
 

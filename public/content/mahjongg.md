@@ -4,7 +4,7 @@
 
 ## Download
 
-  - [Download Mahjongg Extension (Latest Release)](https://github.com/jckhng/kindle-mahjongg/releases/latest)
+  - [Download Mahjongg Extension (Latest Release)](https://github.com/jckhng/exact-mahjong-solitaire/releases/latest)
 
 ## Features
 

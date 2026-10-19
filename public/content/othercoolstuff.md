@@ -1,7 +1,7 @@
 # Other Cool Stuff
 
 :::danger
-**DISCLAIMER:** All of these are fully untested and may brick your Kindle. If your Kindle is already bricked, see our [debrick guide](debrick.html).
+**DISCLAIMER:** All of these are fully untested and may brick your Kindle. If your Kindle is already bricked, see the [unbrick guide](https://mip-wiki.pages.dev/database/unbrick/).
 :::
 
 ## llama.cpp for Kindle
@@ -13,6 +13,13 @@ Run small language models on a Kindle. Cross-compiled to a static binary with no
 :::
 
   - **Repository:** [LlamaCPP-kindle](https://github.com/Entersjkhdfkjdhfksjf/LlamaCPP-kindle)
+
+## KinnVM (ScummVM for Kindle)
+
+An early ScummVM port for Kindle, for playing point-and-click adventure games. It needs firmware 5.16.3 or newer, and the author says it only sometimes works.
+
+  - **Download:** [KinnVM 1.0](https://github.com/fuzzyghosty/kinnvm/releases/tag/KinnVM-1.0)
+  - **Project:** [kinnvm on GitHub](https://github.com/fuzzyghosty/kinnvm)
 
 ## Flash Android onto Your Kindle
 
@@ -26,7 +33,6 @@ This only works on older Kindles with an unlocked boot loader. This will be incr
 KOReader Time Block limits when children can read with customizable reading windows and a PIN lock.
 
   - **Download:** [timeblock.koplugin.zip](../downloads/timeblock.koplugin.zip)
-  - **Guide:** [More Information](timeblock.html)
 
 ## TicTacToe
 
@@ -38,7 +44,6 @@ Classic TicTacToe for Kindle, launchable from KUAL.
 
 Classic logic puzzle: move the disk stack to another peg one disk at a time.
 
-  - **Guide:** [More Information](towerofhanoi.html)
 
 ## KoChess
 
@@ -134,7 +139,6 @@ KOReader patch that shows upcoming ICS calendar events on your Kindle sleep scre
 :::
 
   - **Download:** [2-zzz-calendar-overlay.lua](../downloads/2-zzz-calendar-overlay.lua)
-  - **Guide:** [More Information](calendaroverlay.html)
 
 ## Video + Audio Playback (Beta)
 
@@ -145,7 +149,6 @@ Beta gmplay + SoX setup for video and audio playback on HF Kindles.
 :::
 
   - **Download:** [Google Drive Link](https://drive.google.com/file/d/1633_dfciSHXBJbkhkTucIDFEsM4Z7SLX/view)
-  - **Guide:** [More Information](audiovideo.html)
 
 ## Snake
 
@@ -156,4 +159,3 @@ A version of the classic Snake game for Kindle.
 :::
 
   - **Download:** [snake.zip](../downloads/snake.zip)
-  - **Guide:** [More Information](snake.html)

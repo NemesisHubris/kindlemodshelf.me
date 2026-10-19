@@ -4,7 +4,7 @@
 
 ## Download
 
-  - [Download Draughts Extension (Latest Release)](https://github.com/jckhng/kindle-draughts/releases/latest)
+  - [Download Draughts Extension (Latest Release)](https://github.com/jckhng/exact-draughts/releases/latest)
 
 ## Features
 

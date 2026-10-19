@@ -7,6 +7,7 @@
   - [**Audiobook Read-Along**](https://github.com/stradichenko/audiobook.koplugin) \- TTS with synchronized word highlighting, automatic page turns, Bluetooth audio, audiobook/music playback, and Audiobookshelf server integration. Works offline on Kindle, Kobo, Android, and Linux
   - [**Time Block**](timeblock.html) \- Schedule KOReader reading windows with PIN-locked parental controls
   - [**Project: Title**](https://github.com/joshuacant/ProjectTitle) \- Enhanced cover browser with custom title bar, book listings, and visual improvements
+  - [**ZenOS**](https://github.com/xZenLabs/zen-os) \- Interface layer for KOReader with a Home page of widgets, a redesigned Library, a quick Controls panel and a launcher
   - [**Notes**](https://github.com/prasy-loyola/notes.koplugin) \- Handwritten notes with stylus support
   - [**Crossword**](https://github.com/roygbyte/crossword.koplugin) \- Solve crosswords on your device
   - [**Anki**](https://github.com/Ajatt-Tools/anki.koplugin) \- Generate Anki flashcards from dictionary lookups
@@ -18,7 +19,6 @@
   - [**Weather**](https://github.com/roygbyte/weather.koplugin) \- Weather forecasts and conditions
   - [**MTA Stop**](https://github.com/HaukeCornell/mtastop.koplugin) \- Real-time MTA bus arrivals and local weather
   - [**Web Browser**](https://github.com/omer-faruq/webbrowser.koplugin) \- Text-based web browsing
-  - [**Assistant**](https://github.com/zeeyado/assistant.koplugin) \- AI assistant with multiple providers
   - [**Assistant (omer-faruq)**](https://github.com/omer-faruq/assistant.koplugin) \- AI assistant for translation and summarization while reading
   - [**Go To Bed**](https://github.com/edoput/gotobed.koplugin) \- Enforces bedtime
   - [**ScreenLockPin**](https://github.com/oleasteo/koreader-screenlockpin) \- Protect your KOReader with a PIN
@@ -31,11 +31,10 @@
 ## File Management & Sync
 
   - [**Telegram Downloader**](https://github.com/Evgeniy-94/TelegramDownloader.koplugin) \- Send files via Telegram bot
-  - [**File Browser Plus**](https://github.com/patelneeraj/filebrowserplus.koplugin) \- Run Filebrowser server for wireless file management
-  - [**File Browser**](https://github.com/b-/filebrowser.koplugin) \- Manage Kindle files from a browser web UI
+  - [**ZenFM**](https://github.com/xZenLabs/zen-fm) \- Web file manager for your e-reader. Browse, upload and share files from a phone or computer on the same network. Beta
   - [**LocalSend**](https://github.com/kaikozlov/localsend.koplugin) \- Wireless file transfer to Kindle without USB or server setup
   - [**Annotation Sync**](https://github.com/dani84bs/AnnotationSync.koplugin) \- Sync annotations across devices via cloud
-  - [**Super Sync**](https://github.com/BrendanL79/supersync.koplugin) \- Full metadata sync to cloud storage
+  - [**Super Sync**](https://github.com/brendanlefebvre/supersync.koplugin) \- Full metadata sync to cloud storage
   - [**Email to KOReader**](https://github.com/marinov752/emailtokoreader.koplugin) \- Receive documents and articles directly to your device via email
   - [**SyncThing**](https://github.com/jasonchoimtt/koreader-syncthing) \- Seamless file synchronization across devices using Syncthing
   - [**FileSync**](https://github.com/abrahamnm/filesync.koplugin) \- Wireless file manager
@@ -52,6 +51,7 @@
 ## Reading Services Integration
 
   - [**Readeck**](https://github.com/flip-rossi/readeck.koplugin) \- Integration with Readeck instance
+  - [**Substack Reader**](https://codeberg.org/anserina/substack.koplugin) \- Read your Substack inbox, saved posts and subscriptions. Uses your own login cookie
   - [**Readeck (iceyear)**](https://github.com/iceyear/readeck.koplugin) \- Readeck integration
   - [**Wallabag 2**](https://github.com/clach04/wallabag2.koplugin) \- Wallabag v2 server integration
   - [**Hardcover**](https://github.com/Billiam/hardcoverapp.koplugin) \- Update reading status on Hardcover.app
@@ -59,11 +59,10 @@
   - [**Zotero**](https://github.com/stelzch/zotero.koplugin) \- Browse and download from Zotero collections
   - [**Audiobookshelf**](https://github.com/naleo/audiobookshelf.koplugin) \- Browse and download from Audiobookshelf server
   - [**Beeminder**](https://github.com/cbrxyz/beeminder.koplugin) \- Auto-log reading progress to Beeminder
-  - [**KoInsight**](https://github.com/GeorgeSG/KoInsight) \- Web dashboard for reading stats, streaks, and history
   - [**Gota (Raindrop.io)**](https://github.com/cristenger/gota.koplugin-for-raindrop) \- Access Raindrop.io bookmarks
   - [**Karakeep**](https://github.com/AlgusDark/karakeep.koplugin) \- Access Karakeep bookmarks
   - [**WebDAV Highlights Export**](https://github.com/fairlygood/provider-webdav-highlights.koplugin) \- Export highlights to WebDAV
-  - [**Highlight Sync**](https://github.com/gitalexcampos/koreader-Highlight-Sync) \- Sync reading highlights with external services and cloud storage
+  - [**Highlight Sync**](https://github.com/gitalexcampos/highlightsync.koplugin) \- Sync reading highlights with external services and cloud storage
   - [**Highlights Web App**](https://github.com/VeeBui/KOReader-highlights-web-app) \- View and filter KOReader highlights in your browser
   - [**Hylit**](https://github.com/TaylanTatli/Hylit) \- Sync KOReader highlights to Notion or Hardcover
   - [**ABS KoSync Bridge**](https://github.com/J-Lich/abs-kosync-bridge) \- Sync reading progress between Audiobookshelf and KOReader
@@ -134,9 +133,13 @@
   - [**RSS Reader**](https://github.com/omer-faruq/rssreader.koplugin) \- Follow RSS feeds from a single screen
   - [**TBR Planner**](https://github.com/omer-faruq/tbrplanner.koplugin) \- Organize and schedule your To Be Read list
   - [**Tailscale Toggle**](https://github.com/victoria-riley-barnett/koreader-tailscale) \- Toggle Tailscale VPN for secure remote access
+  - [**Tailscale**](https://github.com/TimmyKug/koreader-tailscale) \- Install the Tailscale binaries and join your tailnet from KOReader. Pairs well with the Syncthing plugin for syncing books away from home
   - [**Flat View / By Author**](https://github.com/peterstamps/Flat-View-Ebooks-and-By-Author) \- Reorganize file view by author or flat list without moving files
   - [**KOAssistant**](https://github.com/zeeyado/koassistant.koplugin) \- AI assistant integrated into KOReader
+  - [**Insightful**](https://github.com/jyliuu/insightful.koplugin) \- Lightweight AI reading helper that searches the open book to answer questions. Needs your own API key for OpenAI, DeepSeek, OpenRouter or Anthropic
   - [**Customisable Sleep Screen**](https://github.com/pxlflux/customisablesleepscreen.koplugin) \- Show reading stats and book info on your sleep screen
+  - [**CoverScene**](https://github.com/DerSchmachtin/coverscene.koplugin) \- Put the current book's cover into a background picture on the sleep screen, such as a lectern in a library
+  - [**Hitokoto**](https://github.com/AronnaxM/hitokoto.koplugin) \- Show a random quote on your sleep screen. Needs the Hitokoto sentence files downloaded separately; tested on a Paperwhite 11th gen
   - [**Appearance**](https://github.com/Euphoriyy/appearance.koplugin) \- Customize KOReader's look and color scheme
   - [**SimpleUI Ext**](https://github.com/omer-faruq/simpleui_ext.koplugin) \- Extra home screen modules and patches for SimpleUI
   - [**Shortcuts Toolbar**](https://github.com/xusoo/shortcutstoolbar.koplugin) \- Toolbar of shortcuts for quick access
@@ -157,12 +160,19 @@
   - [**Derainbowify**](https://github.com/Euphoriyy/derainbowify.koplugin) \- Remove rainbow artifacts on Kaleido 3 color e-ink screens, including Kindle Colorsoft
   - [**Doctor Battery**](https://github.com/LoShady/DoctorBattery.koplugin) \- Battery diagnostics, health analysis and charging status
   - [**Tapless**](https://github.com/azac/tapless.koplugin) \- Swipe keyboard
+  - [**Ligature**](https://github.com/Pixxel123/ligature.koplugin) \- Swipe typing tuned for e-ink and one-handed use. Learns your words, with a one-handed keyboard mode. Replaces Tapless and is not compatible with it
   - [**Reorder Menus**](https://github.com/nraikm/reordermenus.koplugin) \- Reorder and hide menu items
   - [**WiFi Indicator**](https://github.com/asxelot/wifiindicator.koplugin) \- Suppress Wi-Fi popups and show a quiet status icon instead
   - [**Folder Memory**](https://github.com/Craftwork2720/foldermemory.koplugin) \- Remembers your folder preferences
   - [**Incognito**](https://github.com/Craftwork2720/incognito.koplugin) \- Read without recording history
   - [**Stopwatch & Timer**](https://github.com/markleenders/stopwatchtimer.koplugin) \- Stopwatch and timer
   - [**Eye Rest**](https://github.com/CalebLinGit/eyerest.koplugin) \- 20-20-20 eye-strain break reminders paced by reading time, plus a sleep timer
+  - [**Two Lines**](https://github.com/s3vro-h1/twolines.koplugin) \- Two vertical guide lines on the page as a speed-reading aid
+  - [**Minfolio**](https://github.com/kbarni/minfolio.koplugin) \- Markdown editor with live styling and a command palette. Best with a Bluetooth keyboard. Fork of the original by Kal Kaliper
+  - [**Kindle Auto Brightness Bridge**](https://github.com/alexferrari88/kindle-auto-brightness-bridge) \- Keeps KOReader's brightness controls in sync with the Kindle's native auto-brightness. Needs a Kindle with a light sensor
+  - [**Picture Feed**](https://github.com/zackify/picturefeed.koplugin) \- Show a live camera snapshot (Frigate, Blue Iris, UniFi and others) in a corner of the page while you read
+  - [**KOReader Remote**](https://github.com/helitra/koreader-remote) \- Turn pages and control KOReader from a phone browser on the same network, with no app or account. No password, so use it on trusted networks only
+  - [**ZenPM**](https://github.com/xZenLabs/zen-pm) \- Package manager for KOReader plugins and patches and Kindle scriptlets. Also available as a standalone Kindle app
   - [**Crop Enhancer**](https://github.com/tachibana-shin/crop_enhancer.koplugin) \- Better page auto-crop using connected-component analysis
   - [**Page Turner**](https://github.com/TomasDiLeo/pageturner.koplugin) \- Remote page turning from an Android companion app
   - [**TTS**](https://github.com/norude/TTS.koplugin) \- Text-to-speech
@@ -199,7 +209,8 @@
   - [**Crossword (omer-faruq)**](https://github.com/omer-faruq/crossword.koplugin) \- Play .puz/.ipuz crosswords from local files or online sources
   - [**Nonogram**](https://github.com/omer-faruq/nonogram.koplugin) \- Picture cross puzzles with tap-friendly controls and hints
   - [**Board Games**](https://github.com/KitanaCode/boardgames.koplugin) \- Chess, Checkers, Connect 4, Tic Tac Toe and more in one plugin
-  - [**InkMate**](https://github.com/stormseasons/Inkmate.Koplugin) \- Chess, Checkers, Reversi and Fox & Hounds for e-ink
+  - [**InkMate**](https://github.com/stormseasons/Inkmate.Koplugin) \- Chess, Checkers, Reversi and Fox & Hounds for e-ink, with offline AI opponents and online chess through Lichess
+  - [**Mahjong Solitaire**](https://github.com/Quad-Plex/komahjong-solitaire) \- 24 layouts, 3D tiles, hints, undo and statistics. Made with the Kindle Touch in mind
   - [**Backgammon**](https://github.com/EmirErtorer/backgammon.koplugin) \- Backgammon with five AI levels
   - [**Merchant**](https://github.com/omer-faruq/merchant.koplugin) \- Turn-based trading game across six trading posts
 
@@ -230,6 +241,7 @@
 ## Comics
 
   - [**Mokuro Reader**](https://github.com/Magyarapointe/mokuroreader-koreader) \- Manga OCR text overlay reader for KOReader
+  - [**Meguru**](https://github.com/Craftwork2720/meguru) \- Faster CBZ manga reader with auto-crop, manga mode and panel reading. Streams from Kavita, Suwayomi and Komga through OPDS
   - [**Comic Meta**](https://github.com/KORComic/comicmeta.koplugin) \- Extract metadata from CBZ/CBR files
   - [**Comic Reader**](https://github.com/KORComic/comicreader.koplugin) \- Dual-page view for comics
   - [**Maximum**](https://github.com/Shac0x/maximum.koplugin) \- Better zooming for manga

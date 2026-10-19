@@ -14,7 +14,7 @@ On-device app store for installing Kindle mods without manual USB file copying. 
 
 ## PEKI (Penguins' Epic KUAL Installer)
 
-Installs and launches KUAL without MRPI and adds a polished booklet icon. The repository is archived. If you only need KUAL, see the [KUAL overview](kual.html).
+Installs and launches KUAL without MRPI and adds a polished booklet icon. The repository is archived.
 
   - **Repository:** [PEKI on GitHub](https://github.com/KindleTweaks/PEKI)
   - **Organization:** [KindleTweaks on GitHub](https://github.com/KindleTweaks)
@@ -27,11 +27,23 @@ On-device scriptlet that updates your Kindle hotfix without a computer. It is no
   - **Repository:** [HotfixUpdater on GitHub](https://github.com/KindleTweaks/HotfixUpdater)
   - **Organization:** [KindleTweaks on GitHub](https://github.com/KindleTweaks)
 
+## GNU Nano (HF)
+
+A terminal text editor for hard-float Kindles. It is no longer maintained.
+
+  - **Discussion:** [Kindle Modding Community thread](https://discord.com/channels/1083603487025274911/1112794488700686506/threads/1418538699775283310)
+
 ## Kindle BT Keepalive
 
 Background utility that keeps Bluetooth active so your headphones stay connected while you read. The repository is no longer available.
 
-  - **Former repository:** [imanubdesigner/kindle-bt-keepalive](https://github.com/imanubdesigner/kindle-bt-keepalive)
+## Archived KOReader Plugins
+
+These plugins were on the plugins list. Their repositories are now archived (read-only). For wireless file management, see ZenFM on the plugins list.
+
+  - [File Browser](https://github.com/b-/filebrowser.koplugin): Manage Kindle files from a browser web UI.
+  - [File Browser Plus](https://github.com/patelneeraj/filebrowserplus.koplugin): Runs a Filebrowser server for wireless file management.
+  - [KoInsight](https://github.com/Ko-Insight/KoInsight): Web dashboard for reading stats, streaks and history.
 
 ## mip-wiki
 

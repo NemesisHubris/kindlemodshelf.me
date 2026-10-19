@@ -4,7 +4,7 @@
 
 ## Download
 
-  - [Download GlChess Extension (Latest Release)](https://github.com/jckhng/kindle-glchess/releases/latest)
+  - [Download GlChess Extension (Latest Release)](https://github.com/jckhng/exact-chess/releases/latest)
 
 ## Features
 

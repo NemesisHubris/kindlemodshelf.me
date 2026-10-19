@@ -4,7 +4,7 @@
 
 ## Download
 
-  - [Download Gnect Extension (Latest Release)](https://github.com/jckhng/kindle-gnect/releases/latest)
+  - [Download Gnect Extension (Latest Release)](https://github.com/jckhng/exact-four-in-a-row/releases/latest)
 
 ## Features
 

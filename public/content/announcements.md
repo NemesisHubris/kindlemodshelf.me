@@ -155,7 +155,6 @@ Late October 2025 — KOReader Tools & Extras
   - [peki.html](archived.html) and [bootkoreader.html](bootkoreader.html) document MRPI-free KUAL installs plus KOReader autostart toggles.
   - [timeblock.html](timeblock.html) introduces KOReader Time Block parental controls with a downloadable plugin.
   - [icon.html](icon.html) showcases the hand-drawn KOReader interface pack with matching Project Title icons.
-  - [debrick.html](debrick.html) (by MonkeyInPrivite) breaks down how to recover a "bricked" Kindle step by step.
 
 ### Content Updates
 
@@ -192,7 +191,6 @@ October 2025 — Full Site Refresh
   - [textadept.html](textadept.html)
   - [storagetool.html](storagetool.html)
   - [screencontrol.html](screencontrol.html)
-  - [nano.html](nano.html)
 
 ### Informational Section Started
 

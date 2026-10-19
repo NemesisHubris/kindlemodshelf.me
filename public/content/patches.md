@@ -84,7 +84,7 @@ Curated patch collections from community developers. Each repository contains mu
   - [**zenixlabs Frankenpatches**](https://github.com/zenixlabs/koreader-frankenpatches-public) \- Experimental and advanced patches for power users
   - [**VeeBui's Detailed Header Footer Patches**](https://github.com/VeeBui/KOReader-patches) \- Enhanced header and footer customization options
   - [**clarainna Download Buttons**](https://github.com/clarainna/KOReader-Patches) \- Add download indicators and management buttons to your browser
-  - [**Minimal Book Stats**](https://github.com/Litaliaa/koreader-user-patches) \- Lightweight version of book receipt showing essential statistics
+  - [**Minimal Book Stats**](https://github.com/curiouslynatalia/koreader-user-patches) \- Lightweight version of book receipt showing essential statistics
   - [**Reader Header Alternative**](https://github.com/oh1apps/koreader_header) \- Streamlined page header design for reading view
   - [**Smart Collections**](https://github.com/advokatb/KOReader-Patches) \- Organize books by custom collections and tags
   - [**timault KOReader Patch**](https://github.com/timault/KOReader-Patch) \- Visual UI overhaul with spine shadows and smart collections

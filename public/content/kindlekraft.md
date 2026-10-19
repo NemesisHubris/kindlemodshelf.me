@@ -4,8 +4,8 @@
 
 ## Download
 
-  - [KindleKraft on GitHub](https://github.com/polish-penguin-dev/KindleKraft)
-  - [Latest Release](https://github.com/polish-penguin-dev/KindleKraft/releases)
+  - [KindleKraft on GitHub](https://github.com/penguins184/KindleKraft)
+  - [Latest Release](https://github.com/penguins184/KindleKraft/releases)
 
 ## Requirements
 
@@ -18,7 +18,7 @@
   - After installing Kindle Forge, click the download button for KINDLEKRAFT.
   - It will appear in KUAL automatically after downloading.
 
-  1. Download: [KindleKraft on GitHub](https://github.com/polish-penguin-dev/KindleKraft)
+  1. Download: [KindleKraft on GitHub](https://github.com/penguins184/KindleKraft)
   2. Place the extension in **/extensions** and the archive in your Kindle’s root directory (do not extract).
   3. (Optional) Create a 256MB swapfile for better performance.
 

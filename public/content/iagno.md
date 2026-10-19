@@ -4,7 +4,7 @@
 
 ## Download
 
-  - [Download Iagno Extension (Latest Release)](https://github.com/jckhng/kindle-iagno/releases/latest)
+  - [Download Iagno Extension (Latest Release)](https://github.com/jckhng/exact-reversi/releases/latest)
 
 ## Features
 
