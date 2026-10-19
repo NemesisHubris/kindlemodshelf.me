@@ -5,7 +5,7 @@
   <link>https://kindlemodshelf.me/announcements.html</link>
   <description>KindleModShelf updates feed with site news, release notes, and major jailbreak or tool announcements.</description>
   <language>en-us</language>
-  <lastBuildDate>Fri, 04 Sep 2026 14:20:07 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 19 Oct 2026 05:31:25 GMT</lastBuildDate>
   <item>
     <title>Wiki Revamp &amp; Véra Jailbreak Released</title>
     <link>https://kindlemodshelf.me/announcements.html</link>
@@ -34,14 +34,6 @@
     <pubDate>Tue, 23 Jun 2026 12:00:00 GMT</pubDate>
     <description><![CDATA[<p>SpringBreak is a new jailbreak for KT5, PW5, PW5SE, KT4, and PW4 on firmware 5.19.2, 5.19.2.0.1, and 5.18.1.1.1. It also brings KPM support, making <code>;kpm install koreader</code> a reality. Big thanks to H^9, Hackerdude, and Scamdotnet. Note: this will not work on any models or firmware versions not listed above.</p>
 <p><a href="https://kindlemodding.org/jailbreaking/SpringBreak/">SpringBreak Guide</a></p>]]></description>
-  </item>
-  <item>
-    <title>New Fun Recommendations Page</title>
-    <link>https://kindlemodshelf.me/announcements.html</link>
-    <guid isPermaLink="false">https://kindlemodshelf.me/announcements.html#new-fun-recommendations-page</guid>
-    <pubDate>Thu, 21 May 2026 12:00:00 GMT</pubDate>
-    <description><![CDATA[<p>Added a personal recommendations page for favorite projects and apps, including Audiobookshelf, Still, and Calibre-Web.</p>
-<p><a href="https://kindlemodshelf.me/recommendations.html">Check out the recommendations page here.</a></p>]]></description>
   </item>
   <item>
     <title>Linus Tech Tips Mention</title>
@@ -121,9 +113,9 @@
     <guid isPermaLink="false">https://kindlemodshelf.me/announcements.html#koreader-tools-extras</guid>
     <pubDate>Mon, 20 Oct 2025 12:00:00 GMT</pubDate>
     <description><![CDATA[<h4>New Pages</h4>
-<ul><li><a href="https://kindlemodshelf.me/patches.html">patches.html</a> collects KOReader user patches with install steps and compatibility notes.</li><li><a href="https://kindlemodshelf.me/gpt.html">gpt.html</a> ships KindleModShelfGPT context packs and the exact prompt text.</li><li><a href="https://kindlemodshelf.me/peki.html">peki.html</a> and <a href="https://kindlemodshelf.me/bootkoreader.html">bootkoreader.html</a> document MRPI-free KUAL installs plus KOReader autostart toggles.</li><li><a href="https://kindlemodshelf.me/timeblock.html">timeblock.html</a> introduces KOReader Time Block parental controls with a downloadable plugin.</li><li><a href="https://kindlemodshelf.me/icon.html">icon.html</a> showcases the hand-drawn KOReader interface pack with matching Project Title icons.</li><li><a href="https://kindlemodshelf.me/debrick.html">debrick.html</a> (by MonkeyInPrivite) breaks down how to recover a "bricked" Kindle step by step.</li></ul>
+<ul><li><a href="https://kindlemodshelf.me/patches.html">patches.html</a> collects KOReader user patches with install steps and compatibility notes.</li><li><a href="https://kindlemodshelf.me/gpt.html">gpt.html</a> ships KindleModShelfGPT context packs and the exact prompt text.</li><li><a href="https://kindlemodshelf.me/archived.html">peki.html</a> and <a href="https://kindlemodshelf.me/bootkoreader.html">bootkoreader.html</a> document MRPI-free KUAL installs plus KOReader autostart toggles.</li><li><a href="https://kindlemodshelf.me/timeblock.html">timeblock.html</a> introduces KOReader Time Block parental controls with a downloadable plugin.</li><li><a href="https://kindlemodshelf.me/icon.html">icon.html</a> showcases the hand-drawn KOReader interface pack with matching Project Title icons.</li><li><a href="https://kindlemodshelf.me/debrick.html">debrick.html</a> (by MonkeyInPrivite) breaks down how to recover a "bricked" Kindle step by step.</li></ul>
 <h4>Content Updates</h4>
-<ul><li><a href="https://kindlemodshelf.me/adbreak.html">AdBreak guide</a> tightened its layout and copy so the video, summary, and checklist line up cleanly.</li><li><a href="https://kindlemodshelf.me/kanki.html">KAnki page</a> now includes a personal maintainer note, clearer install guidance, and editor callouts.</li><li><a href="https://kindlemodshelf.me/plugins.html">plugins.html</a>, <a href="https://kindlemodshelf.me/storagetool.html">storagetool.html</a>, and <a href="https://kindlemodshelf.me/kindleforge.html">kindleforge.html</a> were expanded into deep-dive references with fresh screenshots and download callouts.</li><li><a href="https://kindlemodshelf.me/index.html">Homepage</a> call-to-actions highlight KindleModShelfGPT, new KOReader utilities, and the announcements feed.</li></ul>
+<ul><li><a href="https://kindlemodshelf.me/adbreak.html">AdBreak guide</a> tightened its layout and copy so the video, summary, and checklist line up cleanly.</li><li><a href="https://kindlemodshelf.me/kanki.html">KAnki page</a> now includes a personal maintainer note, clearer install guidance, and editor callouts.</li><li><a href="https://kindlemodshelf.me/plugins.html">plugins.html</a>, <a href="https://kindlemodshelf.me/storagetool.html">storagetool.html</a>, and <a href="https://kindlemodshelf.me/archived.html">kindleforge.html</a> were expanded into deep-dive references with fresh screenshots and download callouts.</li><li><a href="https://kindlemodshelf.me/index.html">Homepage</a> call-to-actions highlight KindleModShelfGPT, new KOReader utilities, and the announcements feed.</li></ul>
 <h4>Downloads & Assets</h4>
 <ul><li><a href="https://kindlemodshelf.me/downloads/timeblock.koplugin.zip">timeblock.koplugin.zip</a> hosts the KOReader Time Block build linked from the new guide.</li><li><a href="https://kindlemodshelf.me/downloads/icons.zip">icons.zip</a> and <a href="https://kindlemodshelf.me/downloads/projecttitleicons.zip">projecttitleicons.zip</a> provide the hand-drawn UI assets in one place.</li></ul>]]></description>
   </item>
@@ -135,7 +127,7 @@
     <description><![CDATA[<h4>Major Updates</h4>
 <ul><li>Completely rebuilt the entire UI from the ground up with a cleaner, more responsive design.</li><li>Fully rewritten and refreshed all site content — every single page has been updated.</li><li>Improved the <a href="https://kindlemodshelf.me/images.html">screensaver gallery</a> for faster loading and smoother performance.</li></ul>
 <h4>New Pages Added</h4>
-<ul><li><a href="https://kindlemodshelf.me/plugins.html">plugins.html</a></li><li><a href="https://kindlemodshelf.me/kindleforge.html">kindleforge.html</a></li><li><a href="https://kindlemodshelf.me/projecttitle.html">projecttitle.html</a></li><li><a href="https://kindlemodshelf.me/gargoyle.html">gargoyle.html</a></li><li><a href="https://kindlemodshelf.me/nethack.html">nethack.html</a></li><li><a href="https://kindlemodshelf.me/tictactoe.html">tictactoe.html</a></li><li><a href="https://kindlemodshelf.me/audiovideo.html">audiovideo.html</a></li><li><a href="https://kindlemodshelf.me/jarlauncher.html">jarlauncher.html</a></li><li><a href="https://kindlemodshelf.me/textadept.html">textadept.html</a></li><li><a href="https://kindlemodshelf.me/storagetool.html">storagetool.html</a></li><li><a href="https://kindlemodshelf.me/screencontrol.html">screencontrol.html</a></li><li><a href="https://kindlemodshelf.me/nano.html">nano.html</a></li></ul>
+<ul><li><a href="https://kindlemodshelf.me/plugins.html">plugins.html</a></li><li><a href="https://kindlemodshelf.me/archived.html">kindleforge.html</a></li><li><a href="https://kindlemodshelf.me/projecttitle.html">projecttitle.html</a></li><li><a href="https://kindlemodshelf.me/gargoyle.html">gargoyle.html</a></li><li><a href="https://kindlemodshelf.me/nethack.html">nethack.html</a></li><li><a href="https://github.com/progzone122/tictactoe-kindle">tictactoe.html</a></li><li><a href="https://kindlemodshelf.me/audiovideo.html">audiovideo.html</a></li><li><a href="https://kindlemodshelf.me/jarlauncher.html">jarlauncher.html</a></li><li><a href="https://kindlemodshelf.me/textadept.html">textadept.html</a></li><li><a href="https://kindlemodshelf.me/storagetool.html">storagetool.html</a></li><li><a href="https://kindlemodshelf.me/screencontrol.html">screencontrol.html</a></li><li><a href="https://kindlemodshelf.me/nano.html">nano.html</a></li></ul>
 <h4>Informational Section Started</h4>
 <ul><li><a href="https://kindlemodshelf.me/kual.html">kual.html</a></li><li><a href="https://kindlemodshelf.me/jailbreakonmac.html">jailbreakonmac.html</a></li></ul>
 <h4>Notes</h4>

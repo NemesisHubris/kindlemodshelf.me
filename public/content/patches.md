@@ -34,6 +34,10 @@ Patches for customizing the KOReader interface and menus.
   - [**2-browser-double-tap.lua**](https://github.com/sparklerfish/KOReader.patches?tab=readme-ov-file#-2-browser-double-tap) \- Require double-tap to open books in the file browser, preventing accidental single-tap opens.
   - [**2-browser-frontlight-update.lua**](https://github.com/sparklerfish/KOReader.patches?tab=readme-ov-file#-2-browser-frontlight-update) \- Update Project: Title/Cover Browser frontlight widget in real time when frontlight is adjusted.
   - [**2-automatic-book-series.lua**](https://github.com/xusoo/KOReader.patches) \- Automatically group books in the same series into virtual folders within the File Browser.
+  - [**Swipe Animation**](https://github.com/koplugin-swipe-animation/Swipe_Animation.koplugin) \- Software page-turn animation (wipe/erase effect) as a patch
+  - [**Fancy Highlight Styles**](https://github.com/witnesscloser/KoreaderHighlights) \- Adds 8 new highlight and underline styles
+  - [**Menu Breadcrumbs**](https://github.com/Khady/koreader-menu-breadcrumbs) \- Menu breadcrumbs with a full-path popup
+  - [**Calibre Page Estimate**](https://github.com/Caprice-co/2-calibre-page-estimate) \- Page-count estimate for unopened books using Calibre data
 
 ## Status Bar & Visual Tweaks
 
@@ -47,6 +51,7 @@ Patches for customizing the status bar, colors, and visual appearance.
   - [**Change Status Bar Color**](https://gist.github.com/IntrovertedMage/d759ff214f799cfb5e1f8c85daab6cae) \- Customize status bar colors for color e-reader displays
   - [**Justify Status Bar**](https://github.com/prashanthglen/kojustifystatusbar) \- Align status bar content with proper spacing and justification
   - [**2-reader-header-print-edition.lua**](https://github.com/joshuacant/KOReader.patches/blob/main/2-reader-header-print-edition.lua) \- Impacts the page header / footer layout when reading a book.
+  - [**Color Themes**](https://github.com/artemartemenko/koreader-color-themes) \- Day/night reading themes with a curated, customizable palette
 
 ## Screen & Sleep Customization
 
@@ -65,6 +70,7 @@ Standalone patches for extending functionality.
   - [**Unified Auto Sync**](https://gist.github.com/mallomar/67349ac3c88e1950754ba39a4913c029) \- Enable automatic synchronization of reading progress across devices
   - [**2-update-patches.lua**](https://github.com/sebdelsol/KOReader.patches/blob/main/2-update-patches.lua) \- In-app updater for the sebdelsol patch collection (requires KOReader v2025.04.107+).
   - [**KinAMP KOReader Integration**](https://github.com/kbarni/KinAMP) \- Launch KinAMP music player from KOReader's Tools menu with basic integration.
+  - [**Cloudflare Auth**](https://github.com/crocodilestick/koreader-cloudflare-auth-patch) \- Access OPDS libraries protected by Cloudflare authentication
 
 ## Community Patch Collections
 
@@ -87,6 +93,18 @@ Curated patch collections from community developers. Each repository contains mu
   - [**Stacked Top or Bottom Bars**](https://github.com/gilgulgamesh/koreader-patches) \- Reposition and reorganize interface bars for different layouts
   - [**sparklerfish Patches**](https://github.com/sparklerfish/KOReader.patches) \- Browser double-tap, frontlight widget updates, and redacted screensaver
   - [**xusoo Patches**](https://github.com/xusoo/KOReader.patches) \- Automatic book series grouping in virtual folders
+  - [**qewer33 Patches**](https://github.com/qewer33/koreader-patches) \- Custom navbar and title bar, hide pagination, and quick settings
+  - [**quanganhdo User Patches**](https://github.com/quanganhdo/koreader-user-patches) \- Author/series display, finished badge, reading stats and insights popups, metadata tabs in the file manager
+  - [**jmanteau Patches**](https://github.com/jmanteau/KOReader.patches) \- Visual overhaul, browser double-tap, and a switch to disable all cover browser widgets
+  - [**Euphoriyy Patches**](https://github.com/Euphoriyy/KOReader.patches) \- Percent badges, rounded covers for SimpleUI, screen border and refresh dimming fixes, document inversion, custom pan rate
+  - [**ImSoRight Patches**](https://github.com/ImSoRight/KOReader.patches) \- Star rating overlay, custom highlight colors, completed-status icon, and larger subtitles
+  - [**Craftwork2720 Patches**](https://github.com/Craftwork2720/koreader-patches) \- Exclude folders, incognito mode, hide the status bar, physical page count, and file manager title tweaks
+  - [**peterboda236 Patches**](https://github.com/peterboda236/koreader-user-patches) \- Frontlight widget with profiles and night mode, plus reading time in the table of contents
+  - [**chiahsien Patches**](https://github.com/chiahsien/KOReader.Patches) \- Sort by author or series, folder covers, and cleanup of orphaned .sdr folders
+  - [**koboprincess Patches**](https://github.com/koboprincess/KOReader-Patches-) \- Book cover navbar, page/percent badges, stacked rounded folder covers, and highlight menu edits
+  - [**de3sw2aq1 Patches**](https://github.com/de3sw2aq1/koreader-patches) \- Browse by metadata, auto collections from folder paths, minimal progress bar, random sort, and search by author
+  - [**brugsbells Patches**](https://github.com/brugsbells/Koreader-Patches) \- Series badge, uniform cover size, and disable Wi-Fi notifications
+  - [**reuerendo Patches**](https://github.com/reuerendo/koreader-patches) \- Book load cover, keep previous screen, and PocketBook-native dialogs
 
 ## Project: Title — User Patches
 

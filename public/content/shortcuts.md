@@ -13,14 +13,12 @@
 - [koreader_launcher_asap.sh](../downloads/koreader_launcher_asap.sh) — KOReader ASAP launcher — opens KOReader instantly.
 - [Kterm.sh](../downloads/Kterm.sh) — KTerm terminal launcher.
 - [Alpine.sh](../downloads/Alpine.sh) — Alpine launcher.
-- [KindleFetch.sh](../downloads/KindleFetch.sh) — KindleFetch utility launcher.
-- [KindleFetch2.sh](../downloads/KindleFetch2.sh) — Alternative KindleFetch launcher script.
 - [shortcut_gambatte-k2.sh](../downloads/shortcut_gambatte-k2.sh) — Game Boy emulator launcher for hardfloat Kindles.
 - [gargoyle.sh](../downloads/gargoyle.sh) — Text adventure (Infocom) emulator launcher.
 - [screenControl.sh](../downloads/screenControl.sh) — Screen control utility.
 - [USB_Network_Toggle.sh](../downloads/USB_Network_Toggle.sh) — USB network toggle utility.
 - [storagetool.sh](../downloads/storagetool.sh) — Storage management tool.
-- [PEKI](peki.html) — MRPI-free KUAL installer and launcher booklet.
+- [PEKI](archived.html) — MRPI-free KUAL installer and launcher booklet.
 
 ## Notes
 

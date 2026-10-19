@@ -18,7 +18,6 @@ Developed by **Huckle** , PaperCut serves as a utility for installing jailbreaks
 
 Future updates are planned to include integration with other tools, such as:
 
-  - [Screeny](screeny.html) integration
   - Enhanced mod management capabilities
 
 ## Download

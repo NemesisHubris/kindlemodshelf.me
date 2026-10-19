@@ -4,7 +4,8 @@
 
 ## Download
 
-  - [Illusion on GitHub](https://github.com/polish-penguin-dev/Illusion)
+  - [Illusion Guide (Penguins' Kindle Wiki)](https://github.com/penguins184/Penguins-Kindle-Wiki/blob/main/Illusion-Guide.md)
+  - [Illusion Generic scriptlet](../downloads/IllusionGeneric.sh)
 
 ## What is Illusion?
 
@@ -19,8 +20,8 @@ Illusion lets you turn any folder of HTML, CSS, and JavaScript into a real Kindl
 
 ## How to Use
 
-For detailed setup instructions, developer documentation, and examples, visit the [Illusion GitHub page](https://github.com/polish-penguin-dev/Illusion). Everything you need—including sample projects, install scripts, and a full wiki—is there.
+For detailed setup instructions, developer documentation, and examples, read the [Illusion Guide](https://github.com/penguins184/Penguins-Kindle-Wiki/blob/main/Illusion-Guide.md) in Penguins' Kindle Wiki. It covers setup, the generic install scriptlet, and developing your own apps.
 
 ## Example: IllusionChess
 
-**IllusionChess** is a real open-source chess web app built using Illusion and Mesquite. Playable on Kindle e-readers. See the example at [IllusionChess on GitHub](https://github.com/polish-penguin-dev/IllusionChess).
+**IllusionChess** is a real open-source chess web app built using Illusion and Mesquite. Playable on Kindle e-readers. See the example at [IllusionChess on GitHub](https://github.com/penguins184/IllusionChess).

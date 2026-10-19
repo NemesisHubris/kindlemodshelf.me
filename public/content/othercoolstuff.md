@@ -4,15 +4,15 @@
 **DISCLAIMER:** All of these are fully untested and may brick your Kindle. If your Kindle is already bricked, see our [debrick guide](debrick.html).
 :::
 
-## llama.cpp for Kindle PW3
+## llama.cpp for Kindle
 
-Run large language models on a Kindle Paperwhite 3 (ARMv7 Cortex-A9 @ 1GHz, 512MB RAM). Cross-compiled via GitHub Actions to a single static binary with no runtime dependencies — works on both stock Kindle OS and an Alpine Linux chroot. Tested models include stories15M_MOE (approx. 15 tok/s) and SmolLM2-135M-Instruct (approx. 0.8 tok/s). Keep context size at 64–128; the Kindle has about 250MB free RAM and llama.cpp needs contiguous memory blocks — models over about 110MB will likely OOM on load.
+Run small language models on a Kindle. Cross-compiled to a static binary with no runtime dependencies, so it works on stock Kindle OS and in an Alpine Linux chroot. It was first built and tested on the Kindle Paperwhite 3 (ARMv7, 512MB RAM), where only very small models fit in memory.
 
 :::danger
-**Note:** Untested on devices other than the Kindle Paperwhite 3. README was written with AI assistance.
+**Note:** Untested on devices other than the Kindle Paperwhite 3.
 :::
 
-  - **Repository:** [LlamaCPP-kindlellama.cpp](https://github.com/Entersjkhdfkjdhfksjf/LlamaCPP-kindlellama.cpp)
+  - **Repository:** [LlamaCPP-kindle](https://github.com/Entersjkhdfkjdhfksjf/LlamaCPP-kindle)
 
 ## Flash Android onto Your Kindle
 
@@ -32,7 +32,7 @@ KOReader Time Block limits when children can read with customizable reading wind
 
 Classic TicTacToe for Kindle, launchable from KUAL.
 
-  - **Guide:** [More Information](tictactoe.html)
+  - **Repository:** [TicTacToe on GitHub](https://github.com/progzone122/tictactoe-kindle)
 
 ## Tower of Hanoi
 

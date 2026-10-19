@@ -42,14 +42,6 @@ SpringBreak is a new jailbreak for KT5, PW5, PW5SE, KT4, and PW4 on firmware 5.1
 
 ---
 
-05/21/2026 — New Fun Recommendations Page
-
-Added a personal recommendations page for favorite projects and apps, including Audiobookshelf, Still, and Calibre-Web.
-
-[Check out the recommendations page here.](recommendations.html)
-
----
-
 05/02/2026 — Linus Tech Tips Mention
 
 Linus Tech Tips mentioned Kindle jailbreaking as an option for older devices that are reaching their end of life as Amazon begins to phase out legacy cloud features.
@@ -160,7 +152,7 @@ Late October 2025 — KOReader Tools & Extras
 
   - [patches.html](patches.html) collects KOReader user patches with install steps and compatibility notes.
   - [gpt.html](gpt.html) ships KindleModShelfGPT context packs and the exact prompt text.
-  - [peki.html](peki.html) and [bootkoreader.html](bootkoreader.html) document MRPI-free KUAL installs plus KOReader autostart toggles.
+  - [peki.html](archived.html) and [bootkoreader.html](bootkoreader.html) document MRPI-free KUAL installs plus KOReader autostart toggles.
   - [timeblock.html](timeblock.html) introduces KOReader Time Block parental controls with a downloadable plugin.
   - [icon.html](icon.html) showcases the hand-drawn KOReader interface pack with matching Project Title icons.
   - [debrick.html](debrick.html) (by MonkeyInPrivite) breaks down how to recover a "bricked" Kindle step by step.
@@ -169,7 +161,7 @@ Late October 2025 — KOReader Tools & Extras
 
   - [AdBreak guide](adbreak.html) tightened its layout and copy so the video, summary, and checklist line up cleanly.
   - [KAnki page](kanki.html) now includes a personal maintainer note, clearer install guidance, and editor callouts.
-  - [plugins.html](plugins.html), [storagetool.html](storagetool.html), and [kindleforge.html](kindleforge.html) were expanded into deep-dive references with fresh screenshots and download callouts.
+  - [plugins.html](plugins.html), [storagetool.html](storagetool.html), and [kindleforge.html](archived.html) were expanded into deep-dive references with fresh screenshots and download callouts.
   - [Homepage](index.html) call-to-actions highlight KindleModShelfGPT, new KOReader utilities, and the announcements feed.
 
 ### Downloads & Assets
@@ -190,11 +182,11 @@ October 2025 — Full Site Refresh
 ### New Pages Added
 
   - [plugins.html](plugins.html)
-  - [kindleforge.html](kindleforge.html)
+  - [kindleforge.html](archived.html)
   - [projecttitle.html](projecttitle.html)
   - [gargoyle.html](gargoyle.html)
   - [nethack.html](nethack.html)
-  - [tictactoe.html](tictactoe.html)
+  - [tictactoe.html](https://github.com/progzone122/tictactoe-kindle)
   - [audiovideo.html](audiovideo.html)
   - [jarlauncher.html](jarlauncher.html)
   - [textadept.html](textadept.html)

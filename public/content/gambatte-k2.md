@@ -15,7 +15,7 @@
 
 ## Installation
 
-**Recommended: Install through[KindleForge](kindleforge.html)**
+**Recommended: Install through[KindleForge](archived.html)**
 
 Or install manually:
 
