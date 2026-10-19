@@ -121,13 +121,6 @@
   function injectManifestGallery(container, images) {
     const gallery = buildGallery(images);
 
-    // These images are auto-collected (scraped) and not yet hand-verified, so
-    // some may be inaccurate or unrelated to this page. Note it under the gallery.
-    const disclaimer = document.createElement('p');
-    disclaimer.className = 'gallery-disclaimer';
-    disclaimer.textContent =
-      'These images were automatically collected and may be inaccurate or not related to this page yet — still being reviewed.';
-
     // Find insertion point: after h1, then optionally after the first
     // descriptive block (p, blockquote, or callout div) that immediately follows.
     const h1 = container.querySelector('h1');
@@ -142,7 +135,6 @@
 
     const group = document.createDocumentFragment();
     group.appendChild(gallery);
-    group.appendChild(disclaimer);
 
     if (anchor && anchor.parentNode) {
       anchor.parentNode.insertBefore(group, anchor.nextSibling);

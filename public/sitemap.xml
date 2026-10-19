@@ -21,19 +21,9 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/alpine</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/announcements</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/recommendations</loc>
-    <lastmod>2026-05-21</lastmod>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kindlemodshelf.me/architecture-detector</loc>
@@ -111,11 +101,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/faq</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/fullscreenweb</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
@@ -162,11 +147,6 @@
   </url>
   <url>
     <loc>https://kindlemodshelf.me/history</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/hotfixupdater</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
@@ -241,32 +221,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/kcc</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/kinamp</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/kindle-bt-keepalive</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/kindle-file-manager</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/kindlebrowserpatch</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/kindleforge</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
@@ -286,11 +246,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/koclock</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/koreader-epub-links</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
@@ -306,17 +261,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/koweather</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/kpaint</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/kpm</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
@@ -357,11 +302,6 @@
   </url>
   <url>
     <loc>https://kindlemodshelf.me/mahjongg</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/nano</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
@@ -411,11 +351,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/peki</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/plugins</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
@@ -442,16 +377,6 @@
   </url>
   <url>
     <loc>https://kindlemodshelf.me/screencontrol</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/screenlockpin</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/screeny</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
@@ -491,16 +416,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/tailscale</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/telegram</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/telnet</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
@@ -512,11 +427,6 @@
   </url>
   <url>
     <loc>https://kindlemodshelf.me/textadept</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/tictactoe</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
@@ -538,6 +448,26 @@
   <url>
     <loc>https://kindlemodshelf.me/usbnetlite</loc>
     <lastmod>2026-05-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/abiword</loc>
+    <lastmod>2026-10-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/archived</loc>
+    <lastmod>2026-10-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/frotz</loc>
+    <lastmod>2026-10-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/gameoflife</loc>
+    <lastmod>2026-10-19</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>
