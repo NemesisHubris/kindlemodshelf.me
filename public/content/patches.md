@@ -38,6 +38,7 @@ Patches for customizing the KOReader interface and menus.
   - [**Fancy Highlight Styles**](https://github.com/witnesscloser/KoreaderHighlights) \- Adds 8 new highlight and underline styles
   - [**Menu Breadcrumbs**](https://github.com/Khady/koreader-menu-breadcrumbs) \- Menu breadcrumbs with a full-path popup
   - [**Calibre Page Estimate**](https://github.com/Caprice-co/2-calibre-page-estimate) \- Page-count estimate for unopened books using Calibre data
+  - [**Fonts Menu Link**](https://github.com/Wolfazzo/Koreader-2-fonts-menu) \- Adds a fonts menu link to the character panel (single patch file)
 
 ## Status Bar & Visual Tweaks
 
@@ -52,6 +53,7 @@ Patches for customizing the status bar, colors, and visual appearance.
   - [**Justify Status Bar**](https://github.com/prashanthglen/kojustifystatusbar) \- Align status bar content with proper spacing and justification
   - [**2-reader-header-print-edition.lua**](https://github.com/joshuacant/KOReader.patches/blob/main/2-reader-header-print-edition.lua) \- Impacts the page header / footer layout when reading a book.
   - [**Color Themes**](https://github.com/artemartemenko/koreader-color-themes) \- Day/night reading themes with a curated, customizable palette
+  - [**Kindle-Style UI**](https://github.com/gwynnnplaine/koreader-kindle-style-patches) \- Kindle-inspired footer with chapter time and a centred clock header
 
 ## Screen & Sleep Customization
 

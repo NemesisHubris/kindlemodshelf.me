@@ -868,15 +868,15 @@ button:focus-visible,
 .card-links a.card-download {
   border-color: var(--button-border);
   background: var(--button-border);
-  color: var(--bg-base);
+  color: #000000;
 }
 
 .card-links a.card-download::before { content: "↓"; font-size: 1.1em; font-weight: 600; }
 
 .card-links a.card-download:hover {
-  background: var(--secondary);
-  border-color: var(--secondary);
-  color: var(--bg-base);
+  background: #e6e6e6;
+  border-color: #000000;
+  color: #000000;
   transform: translate(3px, 3px);
   box-shadow: -3px -3px 0 var(--card-border);
 }

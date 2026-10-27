@@ -47,6 +47,7 @@
   - [**Syncthing (Kindle & Kobo)**](https://github.com/bps/syncthing.koplugin) \- Run Syncthing on Kindle and Kobo e-readers
   - [**Kindle MTP**](https://github.com/danihrndzld/kindlemtp.koplugin) \- USB file transfer (MTP) on newer Kindles while KOReader keeps running
   - [**Remote Library**](https://github.com/dani84bs/RemoteLibrary.koplugin) \- Browse your remote cloud libraries inside KOReader's file manager
+  - [**USBNet Calibre Connect**](https://github.com/mireq/KOReader-usbnet-connect-to-calibre) \- Connects KOReader to Calibre over USBNet
 
 ## Reading Services Integration
 
@@ -85,6 +86,8 @@
   - [**Send to Discord**](https://github.com/Intedai/sendtodiscord.koplugin) \- Send highlighted text or your clipboard to Discord via webhooks
   - [**Heartbeat**](https://github.com/moritz-john/heartbeat.koplugin) \- Expose your reading state and book metadata as a Home Assistant sensor
   - [**SciELO**](https://github.com/decko/scielo.koplugin) \- Search and download open access articles from SciELO
+  - [**Readwise Reader**](https://github.com/Endle/readwisereader) \- Read-later and highlights with Readwise and Readwise Reader (subscription needed)
+  - [**ShelfSync**](https://github.com/Lyfts/ShelfSync) \- Syncs progress, notes and status to The StoryGraph, Hardcover and others
 
 ## PocketBook Specific
 
@@ -113,6 +116,7 @@
   - [**Phrase Deck**](https://github.com/omer-faruq/phrasedeck.koplugin) \- Collect phrases from books and study them with Anki flashcards
   - [**Vocab Deck**](https://github.com/yupmoon/vocabdeck.koplugin) \- Save words while reading and review them as flashcards
   - [**Offline Translator**](https://github.com/anezih/offlinetranslator.koplugin) \- Offline translation and OCR bridge
+  - [**Footcream**](https://github.com/Fank1/foot-cream) \- Converts measurements while you read (imperial to metric and back)
 
 ## Utilities & Tools
 
@@ -191,6 +195,23 @@
   - [**Unit Lens**](https://github.com/farengeyt451/unitlens.koplugin) \- Find the equivalent of a unit in another measurement system
   - [**Metadata File Extract**](https://github.com/RafaelMeirim/metafileextract.koplugin) \- Parse metadata from filenames and sync local .meta description files
   - [**KOFetch**](https://github.com/jopidovba-a11y/kofetch.koplugin) \- System-monitor style dashboard
+  - [**Glimpse**](https://github.com/Fank1/glimpse) \- Peek at maps, family trees and other reference images without losing your place
+  - [**KoPlay**](https://github.com/orkunseyman/koplay) \- Spotify on your e-reader: see what's playing, skip, pause and browse playlists
+  - [**CyberUI**](https://github.com/EmirErtorer/CyberUI.koplugin) \- Cyberpunk home screen with neon themes
+  - [**Dynamic X-Ray**](https://github.com/smartscripts-nl/dynamic-xray) \- Kindle-style X-Ray: your own explanations of people and places, across a single book or a whole series
+  - [**X-Ray Plugin (AI)**](https://github.com/0zd3m1r/koreader-xray-plugin) \- AI character tracking and timelines (needs a Gemini or ChatGPT API key)
+  - [**Font Switcher**](https://github.com/right9code/fontswitcher.koplugin) \- Cycle through fonts with gestures or a menu
+  - [**Icon Browser**](https://github.com/rachelmgaldino/iconbrowser.koplugin) \- Browse KOReader's icon names
+  - [**Icon Pack Manager**](https://github.com/THE-XSX/iconpackmanager.koplugin) \- Switch icon packs for KOReader and Simple UI (Chinese docs)
+  - [**QuickUI**](https://github.com/gytwo/quickui.koplugin) \- Quick actions, cover visuals, cloze mode, header and footer, and a metadata editor
+  - [**Life Tracker**](https://github.com/uttam-salamander/koreader-life-tracker) \- Bullet-journal planner for quests, habits, mood and reading stats
+  - [**RSVP Speed Reader**](https://github.com/karpushchenko/koreader-rsvp-plugin) \- Speed reading (RSVP) with tap-to-launch and resume
+  - [**Neo QuickSettings**](https://github.com/yanllsama/Neo-QuickSettings-for-KOReader) \- Customisable quick settings panel with shortcuts, sliders and an icon picker
+  - [**Kodashboard**](https://github.com/Yuchen971/Kodashboard) \- Local web dashboard for your library, reading stats and calendar. Designed to run only while you need it
+  - [**PagePair**](https://github.com/GarionBracken/PagePair) \- Syncs page turns between two Kindles for side-by-side reading (pre-release)
+  - [**TRMNL KOReader**](https://github.com/usetrmnl/trmnl-koreader) \- Turns KOReader into a TRMNL dashboard display
+  - [**Kindle Apps for KOReader**](https://github.com/Mcp20091/kindle-koreader-apps) \- Launcher and apps for the Kindle Scribe: Home Assistant, To Do, notes, SSH and more
+  - [**Bookshelf Screensaver**](https://github.com/ameyrk99/koreader-bookshelf-screensaver) \- Bookshelf-style sleep screen showing your recent books
 
 ## Games & Entertainment
 
@@ -213,6 +234,8 @@
   - [**Mahjong Solitaire**](https://github.com/Quad-Plex/komahjong-solitaire) \- 24 layouts, 3D tiles, hints, undo and statistics. Made with the Kindle Touch in mind
   - [**Backgammon**](https://github.com/EmirErtorer/backgammon.koplugin) \- Backgammon with five AI levels
   - [**Merchant**](https://github.com/omer-faruq/merchant.koplugin) \- Turn-based trading game across six trading posts
+  - [**Sudoku+**](https://github.com/Borisvl/sudokuplus.koplugin) \- Sudoku puzzles with a logic tutor
+  - [**Water Sort**](https://github.com/appy013-tdl/watersort.koplugin) \- Monochrome water sort puzzle, built for e-ink
 
 ## Reading Tracking & Goals
 
@@ -232,6 +255,7 @@
   - [**My Clippings**](https://github.com/nirajkamal/myclippings.koplugin) \- Consolidate highlights scattered across your reading setup
   - [**Pomodoro**](https://github.com/s4m-mo/pomodoro.koplugin) \- Pomodoro timer
   - [**Context Creator**](https://github.com/mcurmi05/contextcreator.koplugin) \- Build context around characters, places and concepts as you read
+  - [**Relego**](https://github.com/krusty93/relego) \- Periodic recap of your highlights
 
 ## Archive of Our Own (AO3)
 
@@ -252,6 +276,8 @@
   - [**Komga**](https://github.com/JimDBh/kokomga.koplugin) \- Komga client
   - [**Stretch**](https://github.com/mgrimace/stretch.koplugin) \- Stretch manga and comic pages to fill the screen width
   - [**Smart Webtoon Scroll**](https://github.com/QQRush/smart-webtoon-scroll.koplugin) \- Panel-aware scrolling with auto fit for webtoons
+  - [**Dynamic Panel Zoom**](https://github.com/JorgeTheFox/koreader-dynamic-panelzoom) \- Panel-by-panel zoom for comics and manga you own
+  - [**Panels+**](https://github.com/KristanLaimon/PanelsPlus) \- Panel-by-panel reading with auto-zoom for comics
 
 ## Development
 
