@@ -2032,3 +2032,32 @@ button:focus-visible,
 .section-title.is-collapsed .section-toggle svg { transform: rotate(-90deg); }
 .section-title.is-collapsed { margin-bottom: 8px; }
 .card-grid.is-collapsed { display: none !important; }
+
+/* 404 page */
+.error-card { padding: 32px 28px; }
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.error-img {
+  display: block;
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 2px solid var(--card-border);
+}
+.error-body { flex: 1 1 280px; max-width: 420px; text-align: center; }
+.error-title { font-size: clamp(3.5rem, 10vw, 5.5rem); line-height: 1; margin: 0 0 4px; letter-spacing: 0.04em; }
+.error-subtitle { margin: 0 0 14px; font-weight: 600; }
+.error-body .intro-text p { margin: 0; }
+.error-actions { margin-top: 24px; gap: 12px; }
+.error-actions a { flex: 1 1 0; }
+.error-actions a.card-download::before { content: none; }
+@media (max-width: 640px) {
+  .error-img { width: 200px; }
+  .error-actions { flex-direction: column; }
+}
