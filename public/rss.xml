@@ -5,7 +5,17 @@
   <link>https://kindlemodshelf.me/announcements</link>
   <description>KindleModShelf updates feed with site news, release notes, and major jailbreak or tool announcements.</description>
   <language>en-us</language>
-  <lastBuildDate>Wed, 28 Oct 2026 01:06:41 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 28 Oct 2026 03:24:53 GMT</lastBuildDate>
+  <item>
+    <title>Shadow Jailbreak Released</title>
+    <link>https://kindlemodshelf.me/announcements</link>
+    <guid isPermaLink="false">https://kindlemodshelf.me/announcements#shadow-jailbreak-released</guid>
+    <pubDate>Tue, 27 Oct 2026 12:00:00 GMT</pubDate>
+    <description><![CDATA[<p>A new jailbreak, Shadow, has been released!</p>
+<p>Shadow works on all MTP Kindles running firmware 5.19.4 to 5.19.6, inclusive. Support for KS3(NFL) and KSC is planned for the future, so it will not work on KSC, KS3 or KS3NFL yet.</p>
+<p>It does not require storage filling, since it runs fully offline. A technical writeup was published alongside it. Thanks to the beta testers who helped test it.</p>
+<p><a href="https://kindlemodding.org/jailbreaking/Shadow/">Shadow Guide</a> <a href="https://chirp.tene7.com/?action=view&url=shadow-dummy-folders-an-obvious-overflow-and-a-rop-chain">Shadow Writeup</a> <a href="https://ko-fi.com/yubaix">Support the developer on Ko-fi</a> <a href="https://discord.com/channels/1083603487025274911/1166993303221321758/1564131792741597185">Original announcement (Discord)</a></p>]]></description>
+  </item>
   <item>
     <title>Wiki Revamp &amp; Véra Jailbreak Released</title>
     <link>https://kindlemodshelf.me/announcements</link>

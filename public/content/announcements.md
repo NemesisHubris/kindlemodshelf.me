@@ -4,6 +4,21 @@
 
 ## Latest Updates Newest entries sit at the top
 
+10/27/2026 — Shadow Jailbreak Released
+
+A new jailbreak, Shadow, has been released!
+
+Shadow works on all MTP Kindles running firmware 5.19.4 to 5.19.6, inclusive. Support for KS3(NFL) and KSC is planned for the future, so it will not work on KSC, KS3 or KS3NFL yet.
+
+It does not require storage filling, since it runs fully offline. A technical writeup was published alongside it. Thanks to the beta testers who helped test it.
+
+[Shadow Guide](https://kindlemodding.org/jailbreaking/Shadow/)
+[Shadow Writeup](https://chirp.tene7.com/?action=view&url=shadow-dummy-folders-an-obvious-overflow-and-a-rop-chain)
+[Support the developer on Ko-fi](https://ko-fi.com/yubaix)
+[Original announcement (Discord)](https://discord.com/channels/1083603487025274911/1166993303221321758/1564131792741597185)
+
+---
+
 08/10/2026 — Wiki Revamp & Véra Jailbreak Released
 
 There has been a full wiki revamp, as well as a new jailbreak coming out, Véra!
