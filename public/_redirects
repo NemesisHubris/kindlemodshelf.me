@@ -1,1 +1,8 @@
 # No global redirect; serve pages normally.
+
+# Old URLs that Google still lists as 404; send them to the page that replaced them
+/gameboy        /gambatte-k  301
+/gameboy.html   /gambatte-k  301
+/llusion.html   /illusion    301
+/llusion        /illusion    301
+/redesign/shortcuts  /shortcuts  301

@@ -130,7 +130,7 @@ function drainQueue() {
 
 function startLoad(img) {
   activeLoads++;
-  const imgPath = img.dataset.fullPath;
+  const imgPath = img.dataset.thumbPath || img.dataset.fullPath;
 
   const loader = new Image();
   loader.decoding = 'async';
@@ -317,6 +317,7 @@ function handleSearch(query) {
       img.dataset.loaded = '0';
       img.dataset.queued = '0';
       img.dataset.fullPath = `/images/${author}/${imgData.filename}`;
+      img.dataset.thumbPath = `/images-thumbs/${author}/${imgData.filename.replace(/\.[^.]+$/, '')}.webp`;
       img.dataset.author = author;
       img.dataset.filename = imgData.filename;
       img.src = PLACEHOLDER_SRC;
@@ -384,6 +385,7 @@ function createImageCell(imgData, bg) {
   img.dataset.loaded = '0';
   img.dataset.queued = '0';
   img.dataset.fullPath = `/images/${author}/${filename}`;
+  img.dataset.thumbPath = `/images-thumbs/${author}/${filename.replace(/\.[^.]+$/, '')}.webp`;
   img.dataset.author = author;
   img.dataset.filename = filename;
   img.src = PLACEHOLDER_SRC;

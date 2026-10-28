@@ -87,11 +87,15 @@ function buildShell(slug, md) {
     `  <meta property="og:url" content="${url}">\n` +
     `  <meta property="og:type" content="article">\n` +
     `  <meta property="og:site_name" content="KindleModShelf">\n` +
-    `  <meta name="twitter:card" content="summary">`;
+    `  <meta property="og:image" content="https://kindlemodshelf.me/og-image.png">\n` +
+    `  <meta property="og:image:width" content="1200">\n` +
+    `  <meta property="og:image:height" content="630">\n` +
+    `  <meta name="twitter:image" content="https://kindlemodshelf.me/og-image.png">\n` +
+    `  <meta name="twitter:card" content="summary_large_image">`;
   let out = template
     .replace(/\s*<meta name="robots" content="noindex, nofollow">/, NOINDEX_SLUGS.has(slug) ? '\n  <meta name="robots" content="noindex, nofollow">' : '')
     .replace('<title>KindleModShelf</title>', () => head)
-    .replace('<div id="content" class="md-content"></div>', () => `<div id="content" class="md-content">${marked.parse(md)}</div>`);
+    .replace('<div id="content" class="md-content"></div>', () => `<div id="content" class="md-content"${imageManifest[slug] ? ' data-manifest="1"' : ''}>${marked.parse(md)}</div>`);
   return out.replace('<head>', `<head>\n  ${GENERATED_MARKER}`);
 }
 

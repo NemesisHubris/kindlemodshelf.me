@@ -1,6 +1,6 @@
 # KShips
 
-> **KShips** is a Battleship port for Kindle.
+> **KShips** is a Battleship port for Kindle: play the classic ship-sinking game on your jailbroken Kindle, with download and install steps.
 
 ## Download
 

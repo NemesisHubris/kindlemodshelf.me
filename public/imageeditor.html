@@ -9,8 +9,20 @@
   <link rel="alternate icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="description" content="Professional Kindle screensaver image optimizer. Crop, resize, dither, and export directly in your browser.">
+  <meta property="og:title" content="Kindle Screensaver Studio | KindleModShelf">
+  <meta property="og:description" content="Professional Kindle screensaver image optimizer. Crop, resize, dither, and export directly in your browser.">
+  <meta property="og:url" content="https://kindlemodshelf.me/imageeditor">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KindleModShelf">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://kindlemodshelf.me/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://kindlemodshelf.me/og-image.png">
   <link rel="canonical" href="https://kindlemodshelf.me/imageeditor">
   <script src="theme-toggle.js"></script>
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="imageeditor.css">
 </head>
 <body class="studio-body">
@@ -46,7 +58,7 @@
       <div class="studio-sidebar-scroll">
         <!-- Section: Image Source -->
         <div class="studio-section">
-          <h3 class="studio-section-title">Source</h3>
+          <h2 class="studio-section-title">Source</h2>
           <div class="studio-group">
             <label class="studio-upload-btn" for="imageUpload" id="dropZone">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -65,24 +77,24 @@
 
         <!-- Section: Canvas -->
         <div class="studio-section">
-          <h3 class="studio-section-title">Canvas</h3>
+          <h2 class="studio-section-title">Canvas</h2>
           <div class="studio-group">
-            <label>Device Preset</label>
+            <label for="devicePreset">Device Preset</label>
             <select id="devicePreset" class="studio-select"></select>
           </div>
           <div class="studio-row">
             <div class="studio-group">
-              <label>Width</label>
+              <label for="targetWidth">Width</label>
               <input type="number" id="targetWidth" class="studio-input" min="100" max="4096">
             </div>
             <div class="studio-group">
-              <label>Height</label>
+              <label for="targetHeight">Height</label>
               <input type="number" id="targetHeight" class="studio-input" min="100" max="4096">
             </div>
           </div>
           <div class="studio-group">
             <div class="studio-inline-label">
-              <label data-help="Choose how the image fits the canvas. Cover fills the frame. Contain keeps the full image visible.">Fit Mode</label>
+              <label for="fitMode" data-help="Choose how the image fits the canvas. Cover fills the frame. Contain keeps the full image visible.">Fit Mode</label>
               <button type="button" class="studio-help-btn" data-help="Choose how the image fits the canvas. Cover fills the frame. Contain keeps the full image visible." aria-label="Help: Fit Mode">?</button>
             </div>
             <select id="fitMode" class="studio-select" data-help="Choose how the image fits the canvas. Cover fills the frame. Contain keeps the full image visible.">
@@ -92,7 +104,7 @@
           </div>
           <div class="studio-group">
             <div class="studio-inline-label">
-              <label>Background</label>
+              <label for="backgroundColor">Background</label>
               <button type="button" class="studio-help-btn" data-help="Remove a connected background area by clicking or dragging over it in the image preview." aria-label="Help: Remove Background">?</button>
             </div>
             <select id="backgroundColor" class="studio-select">
@@ -106,10 +118,10 @@
 
         <!-- Section: Adjustments -->
         <div class="studio-section">
-          <h3 class="studio-section-title">Tone</h3>
+          <h2 class="studio-section-title">Tone</h2>
           <div class="studio-group">
             <div class="studio-inline-label">
-              <label>Kindle Look</label>
+              <label for="displayLook">Kindle Look</label>
               <button type="button" class="studio-help-btn" data-help="Preset starting points tuned for common e-ink use cases. Pick one, then fine-tune the sliders if needed." aria-label="Help: Kindle Look">?</button>
             </div>
             <select id="displayLook" class="studio-select">
@@ -123,37 +135,37 @@
             <div class="studio-helper-text">Useful starting points for black-and-white Kindles, Colorsoft, and sharp line-heavy artwork.</div>
           </div>
           <div class="studio-group">
-            <label>Brightness <span id="brightnessValue">100%</span></label>
+            <label for="brightness">Brightness <span id="brightnessValue">100%</span></label>
             <input type="range" id="brightness" min="0" max="200" value="100">
           </div>
           <div class="studio-group">
-            <label>Contrast <span id="contrastValue">100%</span></label>
+            <label for="contrast">Contrast <span id="contrastValue">100%</span></label>
             <input type="range" id="contrast" min="0" max="250" value="100">
           </div>
           <div class="studio-group">
-            <label>Saturation <span id="saturationValue">100%</span></label>
+            <label for="saturation">Saturation <span id="saturationValue">100%</span></label>
             <input type="range" id="saturation" min="0" max="200" value="100">
           </div>
           <div class="studio-group">
-            <label>Exposure <span id="exposureValue">0</span></label>
+            <label for="exposure">Exposure <span id="exposureValue">0</span></label>
             <input type="range" id="exposure" min="-100" max="100" value="0">
           </div>
           <div class="studio-group">
             <div class="studio-inline-label">
-              <label data-help="Gamma shifts the midtones without moving the darkest blacks and brightest whites as much as Contrast does.">Gamma <span id="gammaValue">1.00</span></label>
+              <label for="gamma" data-help="Gamma shifts the midtones without moving the darkest blacks and brightest whites as much as Contrast does.">Gamma <span id="gammaValue">1.00</span></label>
               <button type="button" class="studio-help-btn" data-help="Gamma shifts the midtones without moving the darkest blacks and brightest whites as much as Contrast does." aria-label="Help: Gamma">?</button>
             </div>
             <input type="range" id="gamma" min="50" max="220" value="100" data-help="Gamma shifts the midtones without moving the darkest blacks and brightest whites as much as Contrast does.">
           </div>
           <div class="studio-group">
-            <label>Sharpen <span id="sharpenValue">0</span></label>
+            <label for="sharpen">Sharpen <span id="sharpenValue">0</span></label>
             <input type="range" id="sharpen" min="0" max="100" value="0">
           </div>
         </div>
 
         <!-- Section: Filters -->
         <div class="studio-section">
-          <h3 class="studio-section-title">Finish</h3>
+          <h2 class="studio-section-title">Finish</h2>
           <div class="studio-checkbox-grid">
             <label class="studio-checkbox" data-help="Convert the image to grayscale before dithering and export.">
               <input type="checkbox" id="grayscale" checked>
@@ -174,7 +186,7 @@
           </div>
           <div class="studio-group mt-12">
             <div class="studio-inline-label">
-              <label data-help="Dithering controls how shades are simulated on limited-color e-ink displays.">Dithering</label>
+              <label for="ditherMode" data-help="Dithering controls how shades are simulated on limited-color e-ink displays.">Dithering</label>
               <button type="button" class="studio-help-btn" data-help="Dithering controls how shades are simulated on limited-color e-ink displays." aria-label="Help: Dithering">?</button>
             </div>
             <select id="ditherMode" class="studio-select" data-help="Dithering controls how shades are simulated on limited-color e-ink displays.">
@@ -187,7 +199,7 @@
           </div>
           <div class="studio-group" id="thresholdGroup">
             <div class="studio-inline-label">
-              <label data-help="Threshold is only used in Threshold mode. Lower values create more black pixels; higher values create more white pixels.">Threshold <span id="thresholdValue">128</span></label>
+              <label for="threshold" data-help="Threshold is only used in Threshold mode. Lower values create more black pixels; higher values create more white pixels.">Threshold <span id="thresholdValue">128</span></label>
               <button type="button" class="studio-help-btn" data-help="Threshold is only used in Threshold mode. Lower values create more black pixels; higher values create more white pixels." aria-label="Help: Threshold">?</button>
             </div>
             <input type="range" id="threshold" min="0" max="255" value="128" data-help="Threshold is only used in Threshold mode. Lower values create more black pixels; higher values create more white pixels.">
@@ -198,7 +210,7 @@
       <!-- Sidebar Footer: Export -->
       <div class="studio-sidebar-footer">
         <div class="studio-group mb-12">
-          <label>Export As</label>
+          <label for="exportFormat">Export As</label>
           <select id="exportFormat" class="studio-select">
             <option value="image/png">PNG</option>
             <option value="image/jpeg">JPEG</option>

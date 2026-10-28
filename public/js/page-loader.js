@@ -66,36 +66,54 @@
   };
 
   // ── Configure marked ─────────────────────────────────────────────────────
-  if (typeof marked !== 'undefined') {
-    marked.use({ extensions: [calloutExtension], renderer, gfm: true, breaks: false });
+  function configureMarked() {
+    if (typeof marked !== 'undefined') {
+      marked.use({ extensions: [calloutExtension], renderer, gfm: true, breaks: false });
+    }
+  }
+  configureMarked();
+
+  // build.js already rendered the page into #content, so the markdown is only
+  // fetched and re-rendered here when that markup is missing (page.html?p=slug).
+  const prerendered = el.childElementCount > 0 && !params.get('p');
+
+  // marked is only needed for client-side rendering, so load it on demand.
+  function loadMarked() {
+    if (typeof marked !== 'undefined') return Promise.resolve();
+    return new Promise(resolve => {
+      const s = document.createElement('script');
+      s.src = 'js/marked.min.js';
+      s.onload = () => { configureMarked(); resolve(); };
+      s.onerror = resolve;
+      document.head.appendChild(s);
+    });
   }
 
   // ── Fetch and render ─────────────────────────────────────────────────────
-  fetch(`content/${page}.md`)
-    .then(r => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      return r.text();
-    })
+  (prerendered
+    ? Promise.resolve(null)
+    : loadMarked()
+        .then(() => fetch(`content/${page}.md`))
+        .then(r => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.text();
+        }))
     .then(md => {
-      const titleMatch = md.match(/^#\s+(.+)$/m);
+      const titleMatch = md !== null && md.match(/^#\s+(.+)$/m);
       if (titleMatch) {
         document.title = titleMatch[1].replace(/\*\*/g, '') + ' | KindleModShelf';
       }
 
-      const skipActionButtons = /<!--\s*no-action-buttons\s*-->/.test(md);
-
-      el.innerHTML = typeof marked !== 'undefined'
-        ? marked.parse(md)
-        : `<pre>${escapeHTML(md)}</pre>`;
+      if (md !== null) {
+        el.innerHTML = typeof marked !== 'undefined'
+          ? marked.parse(md)
+          : `<pre>${escapeHTML(md)}</pre>`;
+      }
 
       el.querySelectorAll('a[href^="http"]').forEach(a => {
         a.target = '_blank';
         a.rel    = 'noopener noreferrer';
       });
-
-      if (!skipActionButtons) {
-        injectActionButtons(el);
-      }
 
       if (page === 'announcements') {
         injectRssButton(el);
@@ -103,8 +121,9 @@
 
       // Try to load per-page image manifest; inject gallery after the opening
       // description if images exist. Falls through to initGallery either way.
-      fetch(`content/${page}.images.json`)
-        .then(r => r.ok ? r.json() : null)
+      (prerendered && el.dataset.manifest !== '1'
+        ? Promise.resolve(null)
+        : fetch(`content/${page}.images.json`).then(r => r.ok ? r.json() : null))
         .then(images => {
           if (images && images.length > 0) {
             injectManifestGallery(el, images);
@@ -233,35 +252,6 @@
     nextBtn.addEventListener('click', () => { if (current < total - 1) goTo(current + 1); });
 
     return gallery;
-  }
-
-  // ── Action buttons (GitHub / Buy / Support) ──────────────────────────────
-  // Scans rendered links for a GitHub repo root and Ko-fi/BMC URL, then appends
-  // a button bar at the bottom. Add <!-- no-action-buttons --> to an .md file
-  // to opt out entirely.
-  function injectActionButtons(container) {
-    let kofiUrl = null;
-
-    container.querySelectorAll('a[href]').forEach(a => {
-      if (!kofiUrl && /ko-fi\.com|buymeacoffee\.com/.test(a.href)) {
-        kofiUrl = a.href;
-      }
-    });
-
-    if (!kofiUrl) return;
-
-    const bar = document.createElement('div');
-    bar.className = 'page-action-bar';
-
-    const a = document.createElement('a');
-    a.href = kofiUrl;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.className = 'page-action-btn page-action-kofi';
-    a.innerHTML = '<span class="page-action-icon"></span>Buy a Coffee';
-    bar.appendChild(a);
-
-    container.appendChild(bar);
   }
 
   // ── RSS subscribe button ──────────────────────────────────────────────

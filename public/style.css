@@ -1,4 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap");
+/* Self-hosted fonts. font-display: optional never swaps after first paint, so they cannot shift the layout. */
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: optional;
+  src: url("/fonts/libre-baskerville.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Libre Baskerville";
+  font-style: italic;
+  font-weight: 400;
+  font-display: optional;
+  src: url("/fonts/libre-baskerville-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: optional;
+  src: url("/fonts/jetbrains-mono.woff2") format("woff2");
+}
+
+
+/* Reserve the scrollbar width so content does not slide sideways when a page grows taller than the window */
+html {
+  scrollbar-gutter: stable;
+}
 
 /* ====================================================
    DESIGN TOKENS
@@ -1950,10 +1977,6 @@ button:focus-visible,
   mask-image: var(--icon-github);
 }
 
-.page-action-kofi .page-action-icon {
-  -webkit-mask-image: var(--icon-support);
-  mask-image: var(--icon-support);
-}
 
 .page-action-rss .page-action-icon {
   -webkit-mask-image: var(--icon-rss);
@@ -2060,4 +2083,17 @@ button:focus-visible,
 @media (max-width: 640px) {
   .error-img { width: 200px; }
   .error-actions { flex-direction: column; }
+}
+
+/* Text for screen readers and crawlers only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
