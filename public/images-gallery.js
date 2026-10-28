@@ -414,6 +414,62 @@ const modalResize = document.getElementById('img-viewer-resize');
 const modalClose = document.getElementById('img-viewer-close');
 const modalAuthor = document.getElementById('img-viewer-author');
 const modalFilename = document.getElementById('img-viewer-filename');
+const modalCredit = document.getElementById('img-viewer-credit');
+let credits = {};
+
+fetch('/images-credits.json')
+  .then(res => (res.ok ? res.json() : {}))
+  .then(data => { credits = data || {}; })
+  .catch(() => {});
+
+const CREDIT_ICONS = {
+  github: '<path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.9.83.09-.64.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" fill="currentColor" stroke="none"/>',
+  repo: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+  link: '<path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/>'
+};
+
+function renderCredit(author) {
+  modalCredit.textContent = '';
+  const links = ((credits[author] || {}).links || []).filter(link => /^https:\/\//.test(link.url));
+  const hasCredit = Object.prototype.hasOwnProperty.call(credits, author);
+  modalCredit.hidden = !hasCredit;
+  modalCredit.parentElement.classList.toggle('has-credit', hasCredit);
+  if (!hasCredit) return;
+
+  const label = document.createElement('div');
+  label.className = 'viewer-credit-label';
+  label.textContent = 'Credit';
+  modalCredit.appendChild(label);
+
+  const name = document.createElement('div');
+  name.className = 'viewer-credit-name';
+  author.split('_').forEach((part, i, parts) => {
+    name.appendChild(document.createTextNode(i < parts.length - 1 ? part + '_' : part));
+    if (i < parts.length - 1) name.appendChild(document.createElement('wbr'));
+  });
+  modalCredit.appendChild(name);
+
+  if (links.length === 0) {
+    name.classList.add('no-links');
+    return;
+  }
+
+  const list = document.createElement('div');
+  list.className = 'viewer-credit-links';
+  links.forEach(link => {
+    const a = document.createElement('a');
+    a.className = 'viewer-credit-link';
+    a.href = link.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    const icon = link.icon && CREDIT_ICONS[link.icon] ? link.icon : 'link';
+    a.title = link.label;
+    a.setAttribute('aria-label', link.label);
+    a.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${CREDIT_ICONS[icon]}</svg>`;
+    list.appendChild(a);
+  });
+  modalCredit.appendChild(list);
+}
 const modalLoader = document.getElementById('img-viewer-loader');
 const sidebarImages = document.getElementById('sidebar-images');
 const modalFavorite = document.getElementById('img-viewer-favorite');
@@ -450,6 +506,7 @@ function openViewer(thumbnail) {
 
   modalAuthor.textContent = author;
   modalFilename.textContent = filename;
+  renderCredit(author);
   modalDownload.href = src;
   if (filename) {
     modalDownload.download = filename;

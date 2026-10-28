@@ -748,3 +748,68 @@ body:has(#img-viewer-modal.active) { overflow: hidden; }
   .viewer-sidebar { width: 140px; }
   .sidebar-header { padding: 8px; font-size: 0.75em; }
 }
+
+/* Credit card beside the image */
+.viewer-canvas.has-credit { padding-left: 236px; }
+.viewer-credit {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 204px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--viewer-wrap-bg);
+  border: 2px solid var(--card-border);
+  border-radius: 14px;
+}
+.viewer-credit[hidden] { display: none; }
+.viewer-credit-label {
+  font-size: 0.72em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.viewer-credit-name {
+  font-size: 1.1em;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  line-height: 1.25;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--card-border);
+}
+.viewer-credit-name.no-links { padding-bottom: 0; border-bottom: 0; }
+.viewer-credit-links { display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+.viewer-credit-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--card-border);
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--viewer-button-text);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.viewer-credit-link svg { flex-shrink: 0; }
+.viewer-credit-link:hover {
+  background: var(--viewer-button-hover-bg);
+  color: var(--viewer-button-hover-text);
+}
+@media (max-width: 900px) {
+  .viewer-canvas.has-credit { padding-left: 20px; padding-bottom: 150px; }
+  .viewer-credit {
+    left: 12px; right: 12px; top: auto; bottom: 12px;
+    transform: none; width: auto;
+    flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+    padding: 10px 12px;
+  }
+  .viewer-credit-name { padding-bottom: 0; border-bottom: 0; }
+  .viewer-credit-links { flex-direction: row; flex-wrap: wrap; }
+}
