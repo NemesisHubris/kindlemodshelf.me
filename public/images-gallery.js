@@ -206,9 +206,12 @@ fetch('/images.json')
       return;
     }
 
+    const searchBar = document.getElementById('search-bar');
+    const linkedQuery = (urlParams.get('q') || urlParams.get('search') || urlParams.get('author') || '').trim();
+    if (searchBar && linkedQuery) searchBar.value = linkedQuery;
+
     refreshGalleryData();
 
-    const searchBar = document.getElementById('search-bar');
     if (searchBar) searchBar.addEventListener('input', handleSearchInput);
     if (favoritesApi) {
       window.addEventListener(favoritesApi.CHANGE_EVENT, handleFavoritesChanged);
@@ -252,7 +255,17 @@ function handleSearchInput(event) {
   }, SEARCH_DEBOUNCE_MS);
 }
 
+// Keep ?q= in the address bar so a search can be shared as a link
+function syncSearchToUrl(query) {
+  const url = new URL(window.location.href);
+  ['search', 'author'].forEach(key => url.searchParams.delete(key));
+  if (query) url.searchParams.set('q', query);
+  else url.searchParams.delete('q');
+  try { history.replaceState(null, '', url); } catch (e) {}
+}
+
 function handleSearch(query) {
+  syncSearchToUrl(query);
   if (query === '') {
     isSearchMode = false;
     streamView.style.display = '';
