@@ -42,7 +42,7 @@ You may need to swap in the correct `dfrotz` binary for your device. Check the [
 ## Finding Games
 
 - [IFDB](https://ifdb.org/search?browse) — searchable database with reviews, recommendation lists, and contest results
-- [IFWiki](https://www.ifwiki.org/Special:Drilldown/Games) — encyclopedia and game directory
+- [IFWiki](https://www.ifwiki.org/) — encyclopedia and game directory
 
 ## Also on Kindle: Gargoyle
 

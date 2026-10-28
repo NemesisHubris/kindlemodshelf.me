@@ -1,3 +1,4 @@
+<!-- no-action-buttons -->
 # Other Cool Stuff
 
 :::danger
@@ -12,114 +13,118 @@ Run small language models on a Kindle. Cross-compiled to a static binary with no
 **Note:** Untested on devices other than the Kindle Paperwhite 3.
 :::
 
-  - **Repository:** [LlamaCPP-kindle](https://github.com/Entersjkhdfkjdhfksjf/LlamaCPP-kindle)
+  - [**LlamaCPP-kindle**](https://github.com/Entersjkhdfkjdhfksjf/LlamaCPP-kindle) \- Source repository
 
 ## KinnVM (ScummVM for Kindle)
 
 An early ScummVM port for Kindle, for playing point-and-click adventure games. It needs firmware 5.16.3 or newer, and the author says it only sometimes works.
 
-  - **Download:** [KinnVM 1.0](https://github.com/fuzzyghosty/kinnvm/releases/tag/KinnVM-1.0)
-  - **Project:** [kinnvm on GitHub](https://github.com/fuzzyghosty/kinnvm)
+  - [**KinnVM 1.0**](https://github.com/fuzzyghosty/kinnvm/releases/tag/KinnVM-1.0) \- Download
+  - [**kinnvm on GitHub**](https://github.com/fuzzyghosty/kinnvm) \- Project page
 
 ## 2048, Sudoku, Connect 4 and Hangman
 
 Simple games built with the Illusion framework. They need a Kindle with Mesquite support.
 
-  - **Downloads:** [2048.zip](../downloads/2048.zip), [sudoku.zip](../downloads/sudoku.zip), [connect4.zip](../downloads/connect4.zip), [hangman.zip](../downloads/hangman.zip)
+  - [**2048**](../downloads/2048.zip) \- Download
+  - [**Sudoku**](../downloads/sudoku.zip) \- Download
+  - [**Connect 4**](../downloads/connect4.zip) \- Download
+  - [**Hangman**](../downloads/hangman.zip) \- Download
 
 ## Tetris for KTerm (HF)
 
 A terminal Tetris for hard-float Kindles, run from KTerm. It is not a standalone app.
 
-  - **Download:** [kindletetris.zip](../downloads/kindletetris.zip)
+  - [**Kindle Tetris**](../downloads/kindletetris.zip) \- Download
 
 ## Nine Men's Morris
 
 The classic board game. There is a KUAL version for soft-float Kindles and a KTerm version for hard-float ones.
 
-  - **Download (HF):** [morris-kindle.zip](../downloads/morris-kindle.zip)
-  - **Download (SF):** [MobileRead post](https://www.mobileread.com/forums/showpost.php?p=2524556&postcount=43)
+  - [**Nine Men's Morris (HF)**](../downloads/morris-kindle.zip) \- Download for hard-float Kindles
+  - [**Nine Men's Morris (SF)**](https://www.mobileread.com/forums/showpost.php?p=2524556&postcount=43) \- MobileRead post with the soft-float download
 
 ## Universal Paperclips
 
 The incremental game about an AI that makes paperclips, ported to Kindle.
 
-  - **Download:** [com.kbarni.paperclips.zip](../downloads/com.kbarni.paperclips.zip)
+  - [**Universal Paperclips**](../downloads/com.kbarni.paperclips.zip) \- Download
 
 ## Kindle Touch Doom
 
 A Doom port for touchscreen Kindles (PW2 and newer hard-float models) built on doomgeneric. It runs as a KUAL extension with on-screen controls, and sound works over a Bluetooth speaker or headphones.
 
-  - **Project:** [kbarni/kindle-touch-doom](https://github.com/kbarni/kindle-touch-doom)
-  - **Discussion:** [MobileRead thread](https://www.mobileread.com/forums/showthread.php?p=4313126)
+  - [**kindle-touch-doom**](https://github.com/kbarni/kindle-touch-doom) \- Project page
+  - [**MobileRead thread**](https://www.mobileread.com/forums/showthread.php?p=4313126) \- Discussion
 
 ## Flash Android onto Your Kindle
 
-This only works on older Kindles with an unlocked boot loader. This will be incredibly slow, and basically unusable! You will have no battery life! This thing will drain your battery incredibly quickly! It defeats the purpose of an E ink screen being extremely low power! The only reason why you would want to do this is for the clout of having android on your kindle.
+:::danger
+**Warning:** This only works on older Kindles with an unlocked boot loader. This will be incredibly slow, and basically unusable! You will have no battery life! This thing will drain your battery incredibly quickly! It defeats the purpose of an E ink screen being extremely low power! The only reason why you would want to do this is for the clout of having android on your kindle.
+:::
 
-  - **Guide:** [XDA Forums Android Installation Guide](https://xdaforums.com/t/guide-installing-android-on-your-aging-kindle-e-reader.4450117/)
-  - **Successful attempt:** [Reddit Thread](https://www.reddit.com/r/kindlejailbreak/comments/1oqirrj/i_managed_to_install_android_on_my_kindle/)
+  - [**XDA Forums Android installation guide**](https://xdaforums.com/t/guide-installing-android-on-your-aging-kindle-e-reader.4450117/) \- Guide
+  - [**Successful attempt**](https://www.reddit.com/r/kindlejailbreak/comments/1oqirrj/i_managed_to_install_android_on_my_kindle/) \- Reddit thread
 
 ## Parental Controls for KOReader (Time Block)
 
 KOReader Time Block limits when children can read with customizable reading windows and a PIN lock.
 
-  - **Download:** [timeblock.koplugin.zip](../downloads/timeblock.koplugin.zip)
+  - [**timeblock.koplugin**](../downloads/timeblock.koplugin.zip) \- Download
 
 ## TicTacToe
 
 Classic TicTacToe for Kindle, launchable from KUAL.
 
-  - **Repository:** [TicTacToe on GitHub](https://github.com/progzone122/tictactoe-kindle)
+  - [**TicTacToe on GitHub**](https://github.com/progzone122/tictactoe-kindle) \- Source repository
 
 ## Tower of Hanoi
 
 Classic logic puzzle: move the disk stack to another peg one disk at a time.
 
-  - **Download:** [tower-of-hanoi.zip](../downloads/tower-of-hanoi.zip)
-
+  - [**Tower of Hanoi**](../downloads/tower-of-hanoi.zip) \- Download
 
 ## KoChess
 
 Chess for your Kindle.
 
-  - [KoChess GitHub Repository](https://github.com/bateast/kochess/tree/461fb8969012c7f44285a883f37ccd2021923b28)
+  - [**KoChess GitHub Repository**](https://github.com/bateast/kochess/tree/461fb8969012c7f44285a883f37ccd2021923b28) \- Source repository
 
 ## Barna's Interactive Fiction Recommendations
 
 Barna's recommendations from the original MobileRead thread for interactive fictions you can play on [Gargoyle](gargoyle.html) or [Frotz](frotz.html).
 
-  - [MobileRead Thread](https://www.mobileread.com/forums/showpost.php?p=4508221&postcount=31)
+  - [**MobileRead thread**](https://www.mobileread.com/forums/showpost.php?p=4508221&postcount=31) \- Recommendations
 
 ## How to Change the Order and Position of Menu Items
 
 Customize your KOReader menu layout.
 
-  - [Reddit Guide](https://www.reddit.com/r/koreader/comments/1krejjg/how_to_change_to_order_and_position_of_menu_items/?rdt=48083)
+  - [**Reddit guide**](https://www.reddit.com/r/koreader/comments/1krejjg/how_to_change_to_order_and_position_of_menu_items/?rdt=48083) \- Guide
 
 ## Install KOReader on Mac
 
 Run KOReader on macOS for testing or reading on your computer.
 
-  - [KOReader MacOS Installation Guide](https://github.com/koreader/koreader/wiki/Installation-on-MacOS)
+  - [**KOReader macOS installation guide**](https://github.com/koreader/koreader/wiki/Installation-on-MacOS) \- Official wiki page
 
 ## Gmplay Video Player for Kindle
 
 Experimental video player for Kindle.
 
-  - [MobileRead Forum Thread](https://www.mobileread.com/forums/showthread.php?t=177455&highlight=gmplay)
+  - [**Gmplay MobileRead thread**](https://www.mobileread.com/forums/showthread.php?t=177455&highlight=gmplay) \- Discussion
 
 ## Send Books to KOReader via iPhone Shortcuts
 
 SSH books from your iPhone to KOReader on your Kindle using iPhone Shortcuts.
 
-  - [Reddit Thread](https://www.reddit.com/r/koreader/comments/1odp5rs/i_created_a_send_to_kindle_shortcut/?share_id=OgcqimWDicU45KdakpYtc&utm_content=1&utm_medium=ios_app&utm_name=ioscss&utm_source=share&utm_term=1&rdt=56803)
+  - [**Send to Kindle shortcut**](https://www.reddit.com/r/koreader/comments/1odp5rs/i_created_a_send_to_kindle_shortcut/?share_id=OgcqimWDicU45KdakpYtc&utm_content=1&utm_medium=ios_app&utm_name=ioscss&utm_source=share&utm_term=1&rdt=56803) \- Reddit thread
 
 ## Original KOReader Plugin Page
 
 Original [KOReader plugins](plugins.html) page which I added to to make my own version.
 
-  - [RSS Reader Plugin Repository](https://github.com/omer-faruq/rssreader.koplugin/tree/7d425c1785685b48799a54d185de1d9f771ece12)
+  - [**RSS Reader Plugin Repository**](https://github.com/omer-faruq/rssreader.koplugin/tree/7d425c1785685b48799a54d185de1d9f771ece12) \- Source repository
 
 ## Fake Registration
 
@@ -129,7 +134,7 @@ Original [KOReader plugins](plugins.html) page which I added to to make my own v
 
 Spoof Kindle registration info locally so you can use your Kindle without an Amazon account and without nagging pop-ups.
 
-**Download:** [fakereg.sh](../downloads/fakereg.sh)
+  - [**fakereg.sh**](../downloads/fakereg.sh) \- Download
 
 **Requirements:**
 
@@ -158,7 +163,7 @@ Spoof Kindle registration info locally so you can use your Kindle without an Ama
 
 Do not run this without understanding that it WILL brick your Kindle.
 
-  - [EasyBrick](../downloads/easybrick.txt) – A simple Scriptlet to brick your kindle.
+  - [**EasyBrick**](../downloads/easybrick.txt) \- A simple scriptlet to brick your Kindle
 
 Currently there have been no reports of bricked Kindles; any such report has been debunked as a joke. For more stats look [here](https://greencat-777.github.io/ebstats.html).
 
@@ -172,7 +177,7 @@ KOReader patch that shows upcoming ICS calendar events on your Kindle sleep scre
 **Note:** Some people say that this doesn't work.
 :::
 
-  - **Download:** [2-zzz-calendar-overlay.lua](../downloads/2-zzz-calendar-overlay.lua)
+  - [**2-zzz-calendar-overlay.lua**](../downloads/2-zzz-calendar-overlay.lua) \- Download
 
 ## Video + Audio Playback (Beta)
 
@@ -182,7 +187,7 @@ Beta gmplay + SoX setup for video and audio playback on HF Kindles.
 **Note:** Some people say that this doesn't work.
 :::
 
-  - **Download:** [Google Drive Link](https://drive.google.com/file/d/1633_dfciSHXBJbkhkTucIDFEsM4Z7SLX/view)
+  - [**Google Drive link**](https://drive.google.com/file/d/1633_dfciSHXBJbkhkTucIDFEsM4Z7SLX/view) \- Download. Not checked
 
 ## Snake
 
@@ -192,13 +197,7 @@ A version of the classic Snake game for Kindle.
 **Note:** This is basically impossible to play on an e-ink display due to refresh rates, and it isn't the best looking.
 :::
 
-  - **Download:** [snake.zip](../downloads/snake.zip)
-
-## PokePal
-
-A virtual Pokémon companion for your Kindle: feed it, play a memory game, and send it exploring while you read. Needs KUAL or KOReader. Pokémon is a trademark of its owners.
-
-  - **Post:** [PokePal on r/kindlejailbreak](https://www.reddit.com/r/kindlejailbreak/comments/1xc8iw7/i_made_a_pok%C3%A9mon_tamagotchi_for_kindle/) (the code is not checked yet)
+  - [**snake.zip**](../downloads/snake.zip) \- Download
 
 ## Calibre Tools and Converters
 
@@ -232,7 +231,6 @@ Calibre plugins need Calibre installed on your computer. Most of them convert or
   - [**push-to-kindle**](https://github.com/Aneureka/push-to-kindle) \- Web tool for pushing documents to your Kindle (Chinese docs)
   - [**send-to-kindle-telegram-bot**](https://github.com/michaelfmnk/send-to-kindle-telegram-bot) \- Self-hosted Telegram bot that sends documents to your Kindle (Docker)
   - [**sendKindle**](https://github.com/kparal/sendKindle) \- CLI for emailing files to your Kindle (older)
-  - [**KoSend**](https://github.com/FedericoDiTosto/KoSend) \- Android app that sends EPUB, PDF and MOBI files straight to KOReader over Wi-Fi. No computer or USB cable needed. Small project (20 stars)
   - [**webkin**](https://github.com/mr-karan/webkin) \- CLI tool that sends web pages to your Kindle
   - [**Full book sync (Reddit post)**](https://www.reddit.com/r/kindlejailbreak/comments/1u6fc1j/full_book_sync_between_a_jailbroken_kindle/) \- Syncs books between a jailbroken Kindle, Android and Nextcloud. Described in the Reddit post; not checked yet
 
@@ -240,7 +238,6 @@ Calibre plugins need Calibre installed on your computer. Most of them convert or
 
 These are untested unless noted. Some need a server, an API key or a Home Assistant install.
 
-  - [**Pokédex Sleep Screens (151 Kanto)**](https://github.com/dmellok/eink-screens/releases/tag/pokedex-v2.0) \- All 151 Kanto Pokémon as sleep screens for KOReader, in sizes for several Kindle models. Pokémon is a trademark of its owners.
   - [**kindle-eink-panel**](https://github.com/UpLearner/kindle-eink-panel) \- Docker render pipeline and layout editor for an e-ink info panel on a jailbroken Paperwhite (Chinese docs)
   - [**Kindle Paperwhite Clock**](https://github.com/Crucial-hash/kindle-paperwhite-clock) \- Clock website for a Kindle: time, F1 dates and prayer times
   - [**Kindle Side Card**](https://github.com/perduewu-ops/kindle-side-card) \- Local e-ink side display for an old Kindle (experimental)
@@ -264,7 +261,6 @@ These are untested unless noted. Some need a server, an API key or a Home Assist
   - [**Simple UI v1.5 Wallpapers and Icon Packs (Reddit post)**](https://www.reddit.com/r/koreader/comments/1te05y5/update_simple_ui_v15_wallpapers_custom_icon_packs/) \- Wallpapers, icon packs and UI fonts for SimpleUI. Described in the Reddit post; not checked yet
   - [**K-Bridge**](https://github.com/Soshi31/K-Bridge) \- Desktop app: converts PDFs to EPUB and sends screensavers and wallpapers to KOReader over SSH (new project)
   - [**Life Dashboard**](https://github.com/davidhampgonsalves/Life-Dashboard) \- Low-power e-ink dashboard for everyday life, on a hacked Kindle (needs setup on the device)
-
 
 ## Icon Packs, Fonts and Theme Tools
 
@@ -295,8 +291,7 @@ These run on a server or a computer you control. None of them needs a Kindle jai
   - [**KoHighlights**](https://github.com/noembryo/KoHighlights) \- Desktop viewer and exporter for KOReader highlights, to text, HTML, CSV or Markdown
   - [**KoShelf**](https://github.com/paviro/KoShelf) \- Web dashboard that combines your KOReader notes, highlights and reading stats. Runs as a server you host
 
-
-## KUAL, SSH and Remote Tools
+## KUAL and SSH Tools
 
 :::danger
 **Caution:** SSH tools open a network service on your Kindle. Read each project's security notes first, and only turn them on when you need them.
@@ -312,12 +307,17 @@ These run on a server or a computer you control. None of them needs a Kindle jai
   - [**pytimelit**](https://github.com/largomst/pytimelit) \- KUAL literary clock. Tested only on a Kindle Touch
   - [**fread-kual-extension**](https://github.com/fread-ink/fread-kual-extension) \- KUAL extension for launching fread.ink
   - [**Kindle Scribe Screen Sharing (Reddit post)**](https://www.reddit.com/r/kindlejailbreak/comments/1rb34wo/kindle_scribe_screen_sharing_via_ssh/) \- Shares the Scribe screen over SSH. Described in the Reddit post; not checked yet
-  - [**KOReader iPhone Remote**](https://github.com/maxoliinyk/koreader-ios-remote) \- Native iPhone and Apple Watch remote for KOReader over Wi-Fi. Experimental
-  - [**Keep Bluetooth Headphones Connected (Reddit post)**](https://www.reddit.com/r/kindlejailbreak/comments/1t72464/keep_your_bluetooth_headphones_connected_on_kindle/) \- Keeps Bluetooth headphones connected on a Kindle. Described in the Reddit post; not checked yet
+
+## Bluetooth Page-Turners and Remotes
+
+Page turners and remotes that connect to the Kindle or to KOReader over Bluetooth or Wi-Fi.
+
   - [**Kindle HID Passthrough (Reddit post)**](https://www.reddit.com/r/kindlejailbreak/comments/1vvousi/bluetooth_remote_alone_is_worth_the_jailbreak/) \- Bluetooth page turners on a Kindle. Described in the Reddit post; not checked yet
   - [**Android Bluetooth Page-Turner App (Reddit post)**](https://www.reddit.com/r/kindlejailbreak/comments/1v8m0qk/made_a_free_android_bluetooth_pageturner_app/) \- A free Android app for turning pages over Bluetooth. Described in the Reddit post; not checked yet
   - [**Galaxy Watch Bezel Page-Turner (Reddit post)**](https://www.reddit.com/r/koreader/comments/1v52pmv/i_got_my_galaxy_watch_bezel_working_as_a_koreader/) \- Uses the Galaxy Watch bezel to turn pages in KOReader. Described in the Reddit post; not checked yet
   - [**Wear OS Watch Remote (Reddit post)**](https://www.reddit.com/r/kindlejailbreak/comments/1vmc2ta/guide_turn_a_wear_os_watch_into_a_koreader_remote/) \- Turns a Wear OS watch into a KOReader remote. Described in the Reddit post; not checked yet
+  - [**KOReader iPhone Remote**](https://github.com/maxoliinyk/koreader-ios-remote) \- Native iPhone and Apple Watch remote for KOReader over Wi-Fi. Experimental
+  - [**Keep Bluetooth Headphones Connected (Reddit post)**](https://www.reddit.com/r/kindlejailbreak/comments/1t72464/keep_your_bluetooth_headphones_connected_on_kindle/) \- Keeps Bluetooth headphones connected on a Kindle. Described in the Reddit post; not checked yet
 
 ## Developer and Hardware Projects
 
