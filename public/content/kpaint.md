@@ -18,7 +18,7 @@
 
 ## Installation
 
-  1. Install and set up [Gambatte-K2](gambatte-k2.html) on your Kindle.
+  1. Install and set up [Gambatte-K2](/gambatte-k2) on your Kindle.
   2. Download the `kpaint.gb` file from the [GitHub releases](https://github.com/crizmo/KPaint/releases).
   3. Copy the ROM to your Kindle.
   4. Open it with Gambatte-K2.

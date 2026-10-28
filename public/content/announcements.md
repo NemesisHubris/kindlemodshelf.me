@@ -76,7 +76,7 @@ Recommendation is still to avoid updating when possible, fill storage if not jai
 
 Gallery Update — Basic Image Editing
 
-The [Image Gallery](images.html) now supports resizing and basic editing of images before downloading. Customize screensavers directly in your browser to fit your Kindle perfectly.
+The [Image Gallery](/images) now supports resizing and basic editing of images before downloading. Customize screensavers directly in your browser to fit your Kindle perfectly.
 
 **Credit:** Idea by [ebookscreensaver.com](https://www.ebookscreensaver.com/).
 
@@ -103,15 +103,15 @@ December 2025 — New Tools, Games & Guides
 
 ### New Pages Added
 
-  - [blockamazon.html](blockamazon.html) helps block unwanted Amazon content on your Kindle.
-  - [clearadcache.html](clearadcache.html) provides tools to clear ad caches and optimize performance.
-  - [kships.html](kships.html) brings the KShips Battleship game to your Kindle.
-  - [All Kindle Linux Chroots](all-kindle-linux-chroots.html) (credit: GreenCat-777) compiles a complete guide to Linux environments on Kindle devices.
+  - [blockamazon.html](/blockamazon) helps block unwanted Amazon content on your Kindle.
+  - [clearadcache.html](/clearadcache) provides tools to clear ad caches and optimize performance.
+  - [kships.html](/kships) brings the KShips Battleship game to your Kindle.
+  - [All Kindle Linux Chroots](/all-kindle-linux-chroots) (credit: GreenCat-777) compiles a complete guide to Linux environments on Kindle devices.
 
 ### Improvements
 
   - Enhanced UI across the entire site for a more polished and consistent experience.
-  - Improved [KAnki Editor](editor.html) with better usability and design.
+  - Improved [KAnki Editor](/editor) with better usability and design.
   - Added more informational pages to help you get the most out of your Kindle.
 
 ---
@@ -120,7 +120,7 @@ December 2025 — Gallery Overhaul & Site Reorganization
 
 ### Images Gallery Complete Redesign
 
-  - The [image gallery](images.html) now displays images in a randomized continuous stream for a cleaner browsing experience.
+  - The [image gallery](/images) now displays images in a randomized continuous stream for a cleaner browsing experience.
   - Gallery order refreshes daily so you get a fresh selection of images on each visit.
   - Clicking any image opens a full-size viewer with a sidebar showing all other images by the same author.
   - Placeholder backgrounds now adapt to your light or dark mode theme.
@@ -130,12 +130,12 @@ December 2025 — Gallery Overhaul & Site Reorganization
 
   - Added a new Emulators section to organize all emulator tools in one place.
   - Reorganized Tools into development tools and utilities for better clarity.
-  - Top navigation menu now includes quick links to [Gallery](images.html), [Updates](announcements.html), and more.
+  - Top navigation menu now includes quick links to [Gallery](/images), [Updates](/announcements), and more.
   - Fixed category filtering to show more accurate results across all tools and guides.
 
 ### KOReader Patches Page Updates
 
-  - The [patches page](patches.html) now organizes user patches into logical categories for easier browsing.
+  - The [patches page](/patches) now organizes user patches into logical categories for easier browsing.
   - Essential patches are clearly marked so you can find the most useful ones quickly.
   - Added setup guidance for patches that require special installation steps.
 
@@ -149,18 +149,18 @@ Late October 2025 — KOReader Tools & Extras
 
 ### New Pages
 
-  - [patches.html](patches.html) collects KOReader user patches with install steps and compatibility notes.
-  - [gpt.html](gpt.html) ships KindleModShelfGPT context packs and the exact prompt text.
-  - [peki.html](archived.html) and [bootkoreader.html](bootkoreader.html) document MRPI-free KUAL installs plus KOReader autostart toggles.
-  - [timeblock.html](timeblock.html) introduces KOReader Time Block parental controls with a downloadable plugin.
-  - [icon.html](icon.html) showcases the hand-drawn KOReader interface pack with matching Project Title icons.
+  - [patches.html](/patches) collects KOReader user patches with install steps and compatibility notes.
+  - [gpt.html](/gpt) ships KindleModShelfGPT context packs and the exact prompt text.
+  - [peki.html](/archived) and [bootkoreader.html](/bootkoreader) document MRPI-free KUAL installs plus KOReader autostart toggles.
+  - [timeblock.html](/timeblock) introduces KOReader Time Block parental controls with a downloadable plugin.
+  - [icon.html](/icon) showcases the hand-drawn KOReader interface pack with matching Project Title icons.
 
 ### Content Updates
 
-  - [AdBreak guide](adbreak.html) tightened its layout and copy so the video, summary, and checklist line up cleanly.
-  - [KAnki page](kanki.html) now includes a personal maintainer note, clearer install guidance, and editor callouts.
-  - [plugins.html](plugins.html), [storagetool.html](storagetool.html), and [kindleforge.html](archived.html) were expanded into deep-dive references with fresh screenshots and download callouts.
-  - [Homepage](index.html) call-to-actions highlight KindleModShelfGPT, new KOReader utilities, and the announcements feed.
+  - [AdBreak guide](/adbreak) tightened its layout and copy so the video, summary, and checklist line up cleanly.
+  - [KAnki page](/kanki) now includes a personal maintainer note, clearer install guidance, and editor callouts.
+  - [plugins.html](/plugins), [storagetool.html](/storagetool), and [kindleforge.html](/archived) were expanded into deep-dive references with fresh screenshots and download callouts.
+  - [Homepage](/) call-to-actions highlight KindleModShelfGPT, new KOReader utilities, and the announcements feed.
 
 ### Downloads & Assets
 
@@ -175,26 +175,26 @@ October 2025 — Full Site Refresh
 
   - Completely rebuilt the entire UI from the ground up with a cleaner, more responsive design.
   - Fully rewritten and refreshed all site content — every single page has been updated.
-  - Improved the [screensaver gallery](images.html) for faster loading and smoother performance.
+  - Improved the [screensaver gallery](/images) for faster loading and smoother performance.
 
 ### New Pages Added
 
-  - [plugins.html](plugins.html)
-  - [kindleforge.html](archived.html)
-  - [projecttitle.html](projecttitle.html)
-  - [gargoyle.html](gargoyle.html)
-  - [nethack.html](nethack.html)
+  - [plugins.html](/plugins)
+  - [kindleforge.html](/archived)
+  - [projecttitle.html](/projecttitle)
+  - [gargoyle.html](/gargoyle)
+  - [nethack.html](/nethack)
   - [tictactoe.html](https://github.com/progzone122/tictactoe-kindle)
-  - [audiovideo.html](audiovideo.html)
-  - [jarlauncher.html](jarlauncher.html)
-  - [textadept.html](textadept.html)
-  - [storagetool.html](storagetool.html)
-  - [screencontrol.html](screencontrol.html)
+  - [audiovideo.html](/audiovideo)
+  - [jarlauncher.html](/jarlauncher)
+  - [textadept.html](/textadept)
+  - [storagetool.html](/storagetool)
+  - [screencontrol.html](/screencontrol)
 
 ### Informational Section Started
 
-  - [kual.html](kual.html)
-  - [jailbreakonmac.html](jailbreakonmac.html)
+  - [kual.html](/kual)
+  - [jailbreakonmac.html](/jailbreakonmac)
 
 ### Notes
 

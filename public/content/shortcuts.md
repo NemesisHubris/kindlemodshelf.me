@@ -18,7 +18,7 @@
 - [screenControl.sh](../downloads/screenControl.sh) — Screen control utility.
 - [USB_Network_Toggle.sh](../downloads/USB_Network_Toggle.sh) — USB network toggle utility.
 - [storagetool.sh](../downloads/storagetool.sh) — Storage management tool.
-- [PEKI](archived.html) — MRPI-free KUAL installer and launcher booklet.
+- [PEKI](/archived) — MRPI-free KUAL installer and launcher booklet.
 
 ## Notes
 

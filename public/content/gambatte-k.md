@@ -17,7 +17,7 @@
   1. Visit the [MobileRead: Gambatte-K thread](https://www.mobileread.com/forums/showthread.php?t=284364)
   2. Download the Kindle-specific build (`bin kindle.7z`) from the attachments
   3. Extract the files to your Kindle's `/extensions` directory
-  4. Open [KUAL](kual.html) and launch Gambatte-K from the menu
+  4. Open [KUAL](/kual) and launch Gambatte-K from the menu
 
 ## Usage Notes
 

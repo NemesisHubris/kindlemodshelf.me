@@ -17,7 +17,7 @@
 ## Requirements
 
   - Kindle with Bluetooth support
-  - Jailbroken with [KUAL](kual.html) installed
+  - Jailbroken with [KUAL](/kual) installed
   - Download either SF (softfloat) or HF (hardfloat) version matching your Kindle firmware
 
 ## How to Install

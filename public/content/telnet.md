@@ -3,7 +3,7 @@
 > **Telnet for Kindle** gives you quick remote CLI access to a jailbroken Kindle over your local network. Opens a Telnet server on your Kindle — tap the screen to close the session.
 
 :::warning
-**Security Note:** Telnet is unencrypted. Only use on secure local networks. For encrypted access, use [SSH via USBNet instead](usbnetlite.html).
+**Security Note:** Telnet is unencrypted. Only use on secure local networks. For encrypted access, use [SSH via USBNet instead](/usbnetlite).
 :::
 
 ## Features
@@ -15,8 +15,8 @@
 
 ## Requirements
 
-  - [Jailbroken Kindle](jailbreaking.html)
-  - [KUAL or KTerm](kterm.html) to run scripts
+  - [Jailbroken Kindle](/jailbreaking)
+  - [KUAL or KTerm](/kterm) to run scripts
   - A computer and Kindle on the same Wi-Fi network
 
 ## Installation & Usage

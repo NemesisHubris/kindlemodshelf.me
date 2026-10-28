@@ -6,13 +6,13 @@
 
 ## Requirements
 
-  - [Jailbroken Kindle](jailbreaking.html) (KOReader requires jailbreak access)
-  - [KOReader installed](koreader.html) and launching correctly
-  - [A custom screensaver image or folder of images](images.html)
+  - [Jailbroken Kindle](/jailbreaking) (KOReader requires jailbreak access)
+  - [KOReader installed](/koreader) and launching correctly
+  - [A custom screensaver image or folder of images](/images)
 
 ## Install & Setup
 
-  1. If your Kindle has Special Offers (ads), remove them by paying Amazon’s $20 fee or by running the [Disable Ads script](disableads.html).
+  1. If your Kindle has Special Offers (ads), remove them by paying Amazon’s $20 fee or by running the [Disable Ads script](/disableads).
   2. Copy your custom screensaver image (or image folder) to the Kindle’s USB root (`/mnt/us`).
   3. Launch KOReader from your preferred launcher.
   4. Open **Settings ▸ Screen ▸ Sleep Screen ▸ Wallpaper**.

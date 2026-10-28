@@ -15,13 +15,13 @@
 
 ## Installation
 
-**Recommended: Install through[KindleForge](archived.html)**
+**Recommended: Install through[KindleForge](/archived)**
 
 Or install manually:
 
   1. Download the latest version from [GitHub Releases](https://github.com/crazy-electron/gambatte-k2/releases)
   2. Unzip the folder and place it in `/mnt/us/extensions/` on your Kindle.
-  3. Open [KUAL (Kindle Unified Application Launcher)](kual.html). Gambatte-K2 will appear as an extension.
+  3. Open [KUAL (Kindle Unified Application Launcher)](/kual). Gambatte-K2 will appear as an extension.
 
 ## How to Use
 

@@ -50,21 +50,21 @@ Only install things from sources you trust. Mods run code on your device.
 
 ## What This Site Has to Offer
 
-Everything here requires a jailbroken Kindle unless a page says otherwise. Start at the [catalog](index.html), which has more than 70 entries, or jump straight to a category:
+Everything here requires a jailbroken Kindle unless a page says otherwise. Start at the [catalog](/), which has more than 70 entries, or jump straight to a category:
 
-  - **KOReader plugins and patches:** More than 200 [plugins](plugins.html) and about 70 [user patches](patches.html), grouped by what they do, plus a [guide to writing your own plugin](koreaderplugindev.html).
-  - **Games and interactive fiction:** More than 20 games, including chess, Sudoku, 2048, Tetris, solitaire and puzzle collections, plus a Game Boy emulator and the [Frotz](frotz.html) and [Gargoyle](gargoyle.html) interactive fiction players.
+  - **KOReader plugins and patches:** More than 200 [plugins](/plugins) and about 70 [user patches](/patches), grouped by what they do, plus a [guide to writing your own plugin](/koreaderplugindev).
+  - **Games and interactive fiction:** More than 20 games, including chess, Sudoku, 2048, Tetris, solitaire and puzzle collections, plus a Game Boy emulator and the [Frotz](/frotz) and [Gargoyle](/gargoyle) interactive fiction players.
   - **Media and drawing:** Music players and drawing apps built for e-ink.
-  - **Everyday tools:** A terminal ([KTerm](kterm.html)), a file manager, [Tailscale](https://github.com/mitanshu7/tailscale_kual) for remote access, [Kindle Comic Converter](https://github.com/ciromattia/kcc) for preparing comics, and [full Linux chroots](all-kindle-linux-chroots.html).
-  - **Screensavers:** A community [screensaver gallery](images.html) and an [image editor](imageeditor.html) for preparing your own.
+  - **Everyday tools:** A terminal ([KTerm](/kterm)), a file manager, [Tailscale](https://github.com/mitanshu7/tailscale_kual) for remote access, [Kindle Comic Converter](https://github.com/ciromattia/kcc) for preparing comics, and [full Linux chroots](/all-kindle-linux-chroots).
+  - **Screensavers:** A community [screensaver gallery](/images) and an [image editor](/imageeditor) for preparing your own.
   - **Fixing problems:** An [archived repair guide](https://mip-wiki.pages.dev/database/unbrick/) for bricked Kindles, and write-ups for removing ads, blocking tracking and resetting parental controls.
 
 ## Privacy & Customization
 
 Take control of your Kindle experience:
 
-  - **KOReader:** The [KOReader guide](koreader.html) covers installing and setting it up.
-  - **Block tracking:** Stop Amazon from monitoring your usage. [Guide](blockamazon.html)
-  - **Remove ads:** Take ads off your lock screen. [Guide](disableads.html) | Clear leftovers with the [ad cache guide](clearadcache.html)
-  - **Custom screensavers:** [Browse the gallery](images.html) | [Installation guide](customscreensavers.html)
-  - **KOReader extensions:** Explore [plugins](plugins.html) and [patches](patches.html).
+  - **KOReader:** The [KOReader guide](/koreader) covers installing and setting it up.
+  - **Block tracking:** Stop Amazon from monitoring your usage. [Guide](/blockamazon)
+  - **Remove ads:** Take ads off your lock screen. [Guide](/disableads) | Clear leftovers with the [ad cache guide](/clearadcache)
+  - **Custom screensavers:** [Browse the gallery](/images) | [Installation guide](/customscreensavers)
+  - **KOReader extensions:** Explore [plugins](/plugins) and [patches](/patches).

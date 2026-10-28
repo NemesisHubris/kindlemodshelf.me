@@ -13,7 +13,7 @@
 
 ## Requirements
 
-  - [KOReader](koreader.html) installed on your Kindle.
+  - [KOReader](/koreader) installed on your Kindle.
 
 ## How to Install
 

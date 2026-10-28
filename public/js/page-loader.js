@@ -294,7 +294,7 @@
       <div class="summary">
         ${name ? `Could not load <code>content/${name}.md</code>.` : 'No page specified.'}
         <br><br>
-        <a href="index.html">← Back to the catalog</a>
+        <a href="/">← Back to the catalog</a>
       </div>`;
   }
 

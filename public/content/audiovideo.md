@@ -21,7 +21,7 @@ Hardfloat (HF) Demo
 ## Requirements
 
   - Jailbroken Kindle running hardfloat firmware.
-  - [KTerm](kterm.html) terminal installed.
+  - [KTerm](/kterm) terminal installed.
 
 ## Download & Install (HF)
 
@@ -44,7 +44,7 @@ Softfloat (SF) Demo
 ## Requirements
 
   - Jailbroken Kindle with softfloat firmware.
-  - [KUAL](kual.html) (Kindle Unified Application Launcher) installed.
+  - [KUAL](/kual) (Kindle Unified Application Launcher) installed.
 
 ## Download & Install (SF)
 
@@ -59,7 +59,7 @@ Open **KUAL** and launch the demo directly from the menu. It plays the included 
 ## References
 
   - gmplay (Geekmaster video): [MobileRead thread](https://www.mobileread.com/forums/showthread.php?t=177455)
-  - SoX Media Player: [local page](sox.html) · [MobileRead thread](https://www.mobileread.com/forums/showthread.php?t=336390)
+  - SoX Media Player: [local page](/sox) · [MobileRead thread](https://www.mobileread.com/forums/showthread.php?t=336390)
 
 ## Credits
 

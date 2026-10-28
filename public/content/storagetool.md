@@ -9,7 +9,7 @@
 
 ## Requirements
 
-  - [KTerm](kterm.html)
+  - [KTerm](/kterm)
 
 ## Installation
 

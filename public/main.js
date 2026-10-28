@@ -118,10 +118,10 @@ function updateFilterNote() {
   if (!filterNote) return;
   let message = '';
   if (activeCategories.has('koreader')) {
-    message = 'Tip: Install <a href="koreader.html">KOReader</a> to use these plug-ins.';
+    message = 'Tip: Install <a href="/koreader">KOReader</a> to use these plug-ins.';
   }
   if (activeCategories.has('patches')) {
-    message = 'Tip: Install <a href="koreader.html">KOReader</a> to use these patches.';
+    message = 'Tip: Install <a href="/koreader">KOReader</a> to use these patches.';
   }
   if (message) {
     filterNote.innerHTML = message;

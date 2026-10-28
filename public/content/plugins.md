@@ -5,7 +5,7 @@
 ## Essential
 
   - [**Audiobook Read-Along**](https://github.com/stradichenko/audiobook.koplugin) \- TTS with synchronized word highlighting, automatic page turns, Bluetooth audio, audiobook/music playback, and Audiobookshelf server integration. Works offline on Kindle, Kobo, Android, and Linux
-  - [**Time Block**](timeblock.html) \- Schedule KOReader reading windows with PIN-locked parental controls
+  - [**Time Block**](/timeblock) \- Schedule KOReader reading windows with PIN-locked parental controls
   - [**Project: Title**](https://github.com/joshuacant/ProjectTitle) \- Enhanced cover browser with custom title bar, book listings, and visual improvements
   - [**ZenOS**](https://github.com/xZenLabs/zen-os) \- Interface layer for KOReader with a Home page of widgets, a redesigned Library, a quick Controls panel and a launcher
   - [**Notes**](https://github.com/prasy-loyola/notes.koplugin) \- Handwritten notes with stylus support
@@ -215,7 +215,7 @@
 
 ## Games & Entertainment
 
-  - [**Frotz**](frotz.html) \- Play interactive fiction (Z-machine) games inside KOReader
+  - [**Frotz**](/frotz) \- Play interactive fiction (Z-machine) games inside KOReader
   - [**Connections**](https://github.com/odrling/connections.koplugin) \- NYT Connections puzzle game
   - [**sudoku**](https://github.com/omer-faruq/sudoku.koplugin) \- Sudoku in KOReader
   - [**sudoku non-touch version**](https://github.com/maharjanmilan/sudoku.koplugin) \- Sudoku non-touch version
@@ -281,6 +281,6 @@
 
 ## Development
 
-  - [**Developing Your First KOReader Plugin**](koreaderplugindev.html) \- Learn to build KOReader plugins with Lua. Complete guide covering environment setup, _meta.lua, main.lua, and Hello World example
+  - [**Developing Your First KOReader Plugin**](/koreaderplugindev) \- Learn to build KOReader plugins with Lua. Complete guide covering environment setup, _meta.lua, main.lua, and Hello World example
 
 > Missing something? Ping me and I'll add it.

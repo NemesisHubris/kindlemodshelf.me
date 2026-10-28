@@ -12,10 +12,10 @@ Bookmark this page or subscribe to the site updates so you are notified the mome
 
   - Step-by-step installation instructions for hardfloat (HF) and softfloat (SF) Kindles.
   - Recommended terminal settings and key bindings tailored to Kindle keyboards and touch controls.
-  - Tips for managing save files and backup runs inside KOReader or [KTerm](kterm.html).
+  - Tips for managing save files and backup runs inside KOReader or [KTerm](/kterm).
 
 ## Stay Tuned
 
 Have NetHack port updates to share? Reach out through the site’s contact channels and we’ll add the latest instructions here.
 
-In the meantime, explore the other titles in our [Games collection](index.html#games-section) to get your device ready.
+In the meantime, explore the other titles in our [Games collection](/#games-section) to get your device ready.

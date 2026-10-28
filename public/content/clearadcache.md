@@ -2,4 +2,4 @@
 
 This guide has moved. See the full combined guide:
 
-**[Remove Amazon Ads & UI →](blockamazon.html)**
+**[Remove Amazon Ads & UI →](/blockamazon)**

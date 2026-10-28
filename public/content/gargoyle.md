@@ -18,7 +18,7 @@ Hardfloat (HF) Version
   - Supports multiple IF formats: Z-Machine (.z1-.z8), Glulx (.ulx, .blb), TADS (.gam, .t3), and many more.
   - On-screen keyboard with gesture controls.
   - Configurable fonts and typography via garglk.ini.
-  - Available as KUAL extension or booklet launcher; see [here](shortcuts.html).
+  - Available as KUAL extension or booklet launcher; see [here](/shortcuts).
 
 ## Requirements
 

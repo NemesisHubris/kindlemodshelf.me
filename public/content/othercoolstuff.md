@@ -92,7 +92,7 @@ Chess for your Kindle.
 
 ## Barna's Interactive Fiction Recommendations
 
-Barna's recommendations from the original MobileRead thread for interactive fictions you can play on [Gargoyle](gargoyle.html) or [Frotz](frotz.html).
+Barna's recommendations from the original MobileRead thread for interactive fictions you can play on [Gargoyle](/gargoyle) or [Frotz](/frotz).
 
   - [**MobileRead thread**](https://www.mobileread.com/forums/showpost.php?p=4508221&postcount=31) \- Recommendations
 
@@ -122,7 +122,7 @@ SSH books from your iPhone to KOReader on your Kindle using iPhone Shortcuts.
 
 ## Original KOReader Plugin Page
 
-Original [KOReader plugins](plugins.html) page which I added to to make my own version.
+Original [KOReader plugins](/plugins) page which I added to to make my own version.
 
   - [**RSS Reader Plugin Repository**](https://github.com/omer-faruq/rssreader.koplugin/tree/7d425c1785685b48799a54d185de1d9f771ece12) \- Source repository
 

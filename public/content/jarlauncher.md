@@ -9,7 +9,7 @@
 
 ## Prerequisites
 
-  - [KTerm](kterm.html)
+  - [KTerm](/kterm)
 
 ## Installation
 
@@ -18,7 +18,7 @@
 
 ## Notes
 
-  - [KTerm](kterm.html)
+  - [KTerm](/kterm)
   - [JarLauncher Release](https://github.com/ThatPotatoDev/JarLauncher/releases)
 
 ## Credits

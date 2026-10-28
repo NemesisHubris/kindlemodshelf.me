@@ -51,11 +51,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/clearadcache</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/credits</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
@@ -66,17 +61,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/debug-nav</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/disableads</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/download</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
@@ -217,11 +202,6 @@
   </url>
   <url>
     <loc>https://kindlemodshelf.me/kindlekraft</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kindlemodshelf.me/kindleleaks</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
   </url>
@@ -381,11 +361,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindlemodshelf.me/subscribe</loc>
-    <lastmod>2026-05-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kindlemodshelf.me/telnet</loc>
     <lastmod>2026-05-02</lastmod>
     <priority>0.8</priority>
@@ -430,5 +405,10 @@
   </url>
   <url>
     <loc>https://kindlemodshelf.me/icons</loc>
+  </url>
+  <url>
+    <loc>https://kindlemodshelf.me/sudoku</loc>
+    <lastmod>2026-05-02</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>

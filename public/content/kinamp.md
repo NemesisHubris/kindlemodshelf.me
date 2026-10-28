@@ -30,7 +30,7 @@
 
 ## Notes
 
-  - **No Background Playback:** This is a GUI app and cannot run in the background. To listen to music while reading, [SOX Media Player](sox.html) is a better alternative.
+  - **No Background Playback:** This is a GUI app and cannot run in the background. To listen to music while reading, [SOX Media Player](/sox) is a better alternative.
   - Requires Firmware 5.16 or higher.
 
 ## Credits

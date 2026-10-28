@@ -19,7 +19,7 @@
 
   - **Hardfloat (HF) Kindle build only** — Textadept requires HF runtime support
   - Mesquite / Illusion environment for GUI integration (if using GTK frontend)
-  - [KTerm](kterm.html) (terminal) available for CLI usage
+  - [KTerm](/kterm) (terminal) available for CLI usage
   - External Bluetooth keyboard recommended (see Bugs)
 
 ## How to Install

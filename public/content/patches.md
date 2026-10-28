@@ -110,7 +110,7 @@ Curated patch collections from community developers. Each repository contains mu
 
 ## Project: Title — User Patches
 
-User patches crafted specifically for [**Project: Title**](projecttitle.html). Download manually—these are not bundled with the plugin.
+User patches crafted specifically for [**Project: Title**](/projecttitle). Download manually—these are not bundled with the plugin.
 
   - [**2-disable-unread-progressbars.lua**](https://github.com/joshuacant/KOReader.patches/blob/main/2-disable-unread-progressbars.lua) \- Hide unread progress bars in Cover Grid for cleaner cards.
   - [**2-menutext-overrides.lua**](https://github.com/joshuacant/KOReader.patches/blob/main/2-menutext-overrides.lua) \- Rename folders/files for display by replacing underscores and reordering leading articles.
@@ -135,7 +135,7 @@ Comprehensive patch repositories from Project: Title enthusiasts with themed cus
 
 General patches verified to cooperate with Project: Title while extending library features. Pair them with the browser tweaks above for a full themed shelf.
 
-  - [**KOReader Page Header**](pageheader.html) \- Fiction-style header bar with per-book configuration that matches Project: Title layouts.
+  - [**KOReader Page Header**](/pageheader) \- Fiction-style header bar with per-book configuration that matches Project: Title layouts.
   - [**2-BrowseByMetadata.lua**](https://github.com/koreader/koreader/issues/8472) \- Adds author, title, series, and keyword browser views that slot neatly into Project: Title navigation.
   - **2-browser-folder-cover.lua** \- Pair with Project: Title layouts for folder covers that match the themed grid.
 
